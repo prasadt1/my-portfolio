@@ -1,14 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/projects';
-import { CaseStudy } from '../types/CaseStudy';
 import { DOMAINS } from '../data/domains';
-import { FolderGit2, Building2, Layers, ArrowRight } from 'lucide-react';
+import { FolderGit2 } from 'lucide-react';
 import SEO from '../components/SEO';
 
 import SmartProjectFilter from '../components/SmartProjectFilter';
 import DomainFilter from '../components/DomainFilter';
+
+import ProjectCard from '../components/ProjectCard';
 
 const ProjectsPage: React.FC = () => {
   const location = useLocation();
@@ -149,98 +150,6 @@ const ProjectsPage: React.FC = () => {
         )}
       </div>
     </div>
-  );
-};
-
-// Internal Project Card
-const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
-  const { t } = useTranslation();
-  // Default theme fallback
-  const theme = project.theme || {
-    color: 'emerald',
-    gradient: 'from-slate-800 to-emerald-600 dark:from-slate-700 dark:to-emerald-500',
-    iconBg: 'text-emerald-600 dark:text-emerald-400'
-  };
-
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
-      className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden"
-    >
-      {/* Dynamic Hover Gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
-
-      {/* Contextual Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
-        style={{ backgroundImage: `url(${theme.backgroundImage || '/assets/bg/card-default.jpg'})` }}
-      />
-
-      {/* Top Decoration */}
-      <div className={`h-2 bg-gradient-to-r ${theme.gradient}`}></div>
-
-      <div className="p-6 flex flex-col flex-1 relative z-10">
-        {/* Header */}
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <div className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-2 text-${theme.color}-600 dark:text-${theme.color}-400`}>
-              <Building2 size={12} />
-              {t(`projects:${project.id}.header.eyebrow`, project.header.eyebrow)}
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
-              {t(`projects:${project.id}.header.title`, project.header.title)}
-            </h3>
-          </div>
-        </div>
-
-        {/* Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          {/* Project Type Badge */}
-          <span className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-xs font-medium uppercase border border-slate-200 dark:border-slate-600">
-            {project.projectType.replace('-', ' ')}
-          </span>
-          {/* Primary Domain Badge */}
-          <span className={`bg-${theme.color}-50 dark:bg-${theme.color}-900/20 text-${theme.color}-700 dark:text-${theme.color}-300 px-2 py-0.5 rounded text-xs font-medium border border-${theme.color}-100 dark:border-${theme.color}-800`}>
-            {project.domains[0]}
-          </span>
-        </div>
-
-        {/* Challenge/Summary */}
-        <div className="space-y-3 mb-6 flex-1">
-          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-4">
-            {t(`projects:${project.id}.challenge.situation`, project.challenge.situation)}
-          </p>
-        </div>
-
-        {/* Tech Stack */}
-        <div className="border-t border-slate-100 dark:border-slate-700 pt-4 mt-auto">
-          <div className="flex items-center gap-2 mb-3 text-xs font-medium text-slate-400 dark:text-slate-500">
-            <Layers size={14} /> Technology Stack
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {project.technical.after?.stack.slice(0, 5).map((tech) => (
-              <span key={tech} className="px-2.5 py-1 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200/50 dark:border-slate-600/50">
-                {tech}
-              </span>
-            ))}
-            {(project.technical.after?.stack.length || 0) > 5 && (
-              <span className="px-2 py-1 text-[10px] text-slate-400 dark:text-slate-500">+ {(project.technical.after?.stack.length || 0) - 5} more</span>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Footer / Link */}
-      <div className="px-6 pb-6 pt-0 mt-2 relative z-10">
-        <Link to={`/projects/${project.slug}`} className={`font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all text-${theme.color}-600 dark:text-${theme.color}-400`}>
-          {t(`projects:${project.id}.cta.primary`, project.cta.primary?.text || 'View Case Study')} <ArrowRight size={16} />
-        </Link>
-      </div>
-    </motion.div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface LoadingStateProps {
     variant?: 'spinner' | 'dots' | 'skeleton';
@@ -8,6 +9,9 @@ interface LoadingStateProps {
 }
 
 const LoadingState: React.FC<LoadingStateProps> = ({ variant = 'spinner', text, className = '' }) => {
+    const { t } = useTranslation();
+    const defaultText = t('common.loading');
+
     if (variant === 'skeleton') {
         return (
             <div className={`animate-pulse space-y-4 ${className}`}>
@@ -39,11 +43,9 @@ const LoadingState: React.FC<LoadingStateProps> = ({ variant = 'spinner', text, 
     return (
         <div className={`flex flex-col items-center justify-center p-8 ${className}`}>
             <Loader2 className="w-10 h-10 text-emerald-600 animate-spin mb-4" />
-            {text && (
-                <p className="text-slate-600 dark:text-slate-300 font-medium animate-pulse">
-                    {text}
-                </p>
-            )}
+            <p className="text-slate-600 dark:text-slate-300 font-medium animate-pulse">
+                {text || defaultText}
+            </p>
         </div>
     );
 };

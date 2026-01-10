@@ -1,3 +1,4 @@
+// src/i18n.ts - FIXED VERSION
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -21,19 +22,20 @@ const resources = {
 
 i18n
     .use(LanguageDetector)
-    .use(initReactI18next) // passes i18n down to react-i18next
+    .use(initReactI18next)
     .init({
         resources,
-        fallbackLng: 'en', // use en if detected lng is not available
+        fallbackLng: 'en',
+        lng: 'en', // default language
         interpolation: {
-            escapeValue: false // react already safes from xss
-        },
-        react: {
-            useSuspense: false
+            escapeValue: false
         },
         detection: {
-            order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
+            order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
             caches: ['localStorage', 'cookie']
+        },
+        react: {
+            useSuspense: true // Enable Suspense
         }
     });
 

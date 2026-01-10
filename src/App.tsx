@@ -11,6 +11,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { Loader2 } from 'lucide-react';
 import CommandPalette from './components/CommandPalette';
 import ExitIntentPopup from './components/ExitIntentPopup';
+import './i18n';
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import('./pages/HomePageMultiDomain'));
@@ -60,11 +61,11 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
-                <Route path="about" element={<AboutPage />} />
                 <Route path="products" element={<ProductsPage />} />
                 <Route path="products/:slug" element={<ProductDetailPage />} />
                 <Route path="climate-tech" element={<ClimateTechPage />} />
                 <Route path="fit-check" element={<FitCheckPage />} />
+                <Route path="about" element={<AboutPage />} />
                 <Route path="projects" element={<ProjectsPage />} />
                 <Route path="projects/:slug" element={<CaseStudyPage />} />
                 <Route path="architecture-engine" element={<ArchitectureEngine />} />

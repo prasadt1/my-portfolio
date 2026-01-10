@@ -3,6 +3,7 @@ import { GoogleGenerativeAI, Tool, SchemaType } from '@google/generative-ai';
 import { SYSTEM_PROMPT } from './aiContext';
 import { products } from '../data/products';
 import { caseStudies } from '../data/caseStudies';
+import i18n from '../i18n';
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey || '');
@@ -71,7 +72,11 @@ const model = genAI.getGenerativeModel({
 const functions: Record<string, Function> = {
     get_products: ({ category }: { category?: string }) => {
         const filtered = category ? products.filter(p => p.category === category) : products;
-        return filtered.map(p => ({ title: p.title, price: p.price, link: `/products/${p.slug}` }));
+        return filtered.map(p => ({
+            title: i18n.t(`products.${p.id}.title`),
+            price: p.price,
+            link: `/products/${p.slug}`
+        }));
     },
     get_case_studies: ({ industry }: { industry?: string }) => {
         const filtered = industry

@@ -1,4 +1,15 @@
 {
+    "common": {
+        "loading": "Lädt...",
+        "error": "Ein Fehler ist aufgetreten",
+        "tryAgain": "Erneut versuchen",
+        "learnMore": "Mehr erfahren",
+        "viewMore": "Mehr ansehen",
+        "readMore": "Weiterlesen",
+        "close": "Schließen",
+        "viewProject": "Projekt ansehen",
+        "viewAllProjects": "Alle Projekte ansehen"
+    },
     "nav": {
         "home": "Startseite",
         "frameworks": "Frameworks",
@@ -7,7 +18,9 @@
         "engagement": "Zusammenarbeit",
         "contact": "Kontakt",
         "consulting": "Beratung",
-        "architectureEngine": "Architecture Engine"
+        "architectureEngine": "Architecture Engine",
+        "toggleLanguage": "Sprache wechseln",
+        "toggleTheme": "Design wechseln"
     },
     "hero": {
         "title": "Business-First AI Engineering",
@@ -265,11 +278,6 @@
         "contact": "Kontakt aufnehmen",
         "rights": "Alle Rechte vorbehalten.",
         "builtWith": "Erstellt mit AI"
-    },
-    "common": {
-        "viewProject": "Projekt ansehen",
-        "viewAllProjects": "Alle Projekte ansehen",
-        "readMore": "Mehr lesen"
     },
     "productsPage": {
         "title": "Marktführerschaft durch Technologie",

@@ -1,4 +1,15 @@
 {
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "tryAgain": "Try Again",
+        "learnMore": "Learn More",
+        "viewMore": "View More",
+        "readMore": "Read More",
+        "close": "Close",
+        "viewProject": "View Project",
+        "viewAllProjects": "View All Projects"
+    },
     "nav": {
         "home": "Home",
         "frameworks": "Frameworks",
@@ -7,7 +18,9 @@
         "engagement": "Engagement",
         "contact": "Contact",
         "consulting": "Consulting",
-        "architectureEngine": "Architecture Engine"
+        "architectureEngine": "Architecture Engine",
+        "toggleLanguage": "Toggle Language",
+        "toggleTheme": "Toggle Theme"
     },
     "hero": {
         "title": "Business-First AI Engineering",
@@ -231,11 +244,6 @@
         "contact": "Get in Touch",
         "rights": "All rights reserved.",
         "builtWith": "Built with AI"
-    },
-    "common": {
-        "viewProject": "View Project",
-        "viewAllProjects": "View All Projects",
-        "readMore": "Read More"
     },
     "productsPage": {
         "title": "Battle-Tested Toolkits",

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    CheckCircle2,
     ArrowRight,
     ArrowLeft,
     X,
@@ -346,7 +345,7 @@ const LeadQualificationQuiz: React.FC<{
                                         strokeDasharray={251.2}
                                         strokeDashoffset={251.2 - (251.2 * result.score) / 100}
                                         className={`${result.score >= 85 ? 'text-emerald-500' :
-                                                result.score >= 50 ? 'text-amber-500' : 'text-slate-400'
+                                            result.score >= 50 ? 'text-amber-500' : 'text-slate-400'
                                             }`}
                                     />
                                 </svg>
