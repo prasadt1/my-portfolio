@@ -26,3 +26,9 @@ dist-ssr
 # Environment variables
 .env
 .env.local
+
+# Backups
+src_backup*
+*_backup*
+*.zip
+*.tar.gz

@@ -110,7 +110,7 @@ VITE_GEMINI_API_KEY=AIzaSy...your_actual_key
 ## 🎯 What the File Should Look Like
 
 ```
-VITE_GEMINI_API_KEY=AIzaSyC3Ht4kJ8L2MnP5QrS9TuV6WxY7ZaB8CdE
+VITE_GEMINI_API_KEY=your_actual_api_key_here
 ```
 
 **Important notes:**
