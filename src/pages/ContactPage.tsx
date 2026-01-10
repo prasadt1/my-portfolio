@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Linkedin, Github, ExternalLink, Mail, Calendar, MessageSquare, ArrowRight } from 'lucide-react';
+import { Linkedin, Mail, Calendar, MessageSquare, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
+  const { t } = useTranslation();
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const onSubmit = (e: React.FormEvent) => {
@@ -42,10 +44,10 @@ const ContactPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6"
           >
-            Let's Transform Your Business
+            {t('contactPage.title')}
           </motion.h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Whether you have a specific project in mind or just want to explore possibilities, I'm here to help.
+            {t('contactPage.subtitle')}
           </p>
         </div>
 
@@ -69,10 +71,10 @@ const ContactPage: React.FC = () => {
                   <div className="bg-white/20 p-2 rounded-lg">
                     <Calendar size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold">Book a Consultation</h3>
+                  <h3 className="text-2xl font-bold">{t('contactPage.book.title')}</h3>
                 </div>
                 <p className="text-emerald-100 mb-6 leading-relaxed">
-                  Skip the email tag. Schedule a free 30-minute discovery call to discuss your challenges directly.
+                  {t('contactPage.book.desc')}
                 </p>
                 <a
                   href="https://calendly.com/prasadtilloo/30min"
@@ -80,7 +82,7 @@ const ContactPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-emerald-800 px-6 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-colors"
                 >
-                  View Availability <ArrowRight size={18} />
+                  {t('contactPage.book.cta')} <ArrowRight size={18} />
                 </a>
               </div>
             </div>
@@ -95,8 +97,8 @@ const ContactPage: React.FC = () => {
                 <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Mail size={24} />
                 </div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-lg">Email Me</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">prasad.sgsits@gmail.com</p>
+                <h3 className="font-bold text-slate-900 dark:text-white text-lg">{t('contactPage.email.title')}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t('contactPage.email.subtitle')}</p>
               </a>
 
               <a
@@ -108,8 +110,8 @@ const ContactPage: React.FC = () => {
                 <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Linkedin size={24} />
                 </div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-lg">LinkedIn</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">Connect professionally</p>
+                <h3 className="font-bold text-slate-900 dark:text-white text-lg">{t('contactPage.linkedin.title')}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t('contactPage.linkedin.subtitle')}</p>
               </a>
             </div>
 
@@ -124,26 +126,26 @@ const ContactPage: React.FC = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <MessageSquare className="text-emerald-500" size={24} />
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Send a Message</h2>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{t('contactPage.form.title')}</h2>
             </div>
 
             <form onSubmit={onSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">I'm interested in...</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.interestedIn')}</label>
                 <select
                   name="interest"
                   className="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                 >
-                  <option value="Consulting Project">Consulting Project</option>
-                  <option value="Product/Toolkit">Buying a Toolkit</option>
-                  <option value="Speaking/Training">Speaking / Training</option>
-                  <option value="Other">Other</option>
+                  <option value="Consulting Project">{t('contactPage.form.options.consulting')}</option>
+                  <option value="Product/Toolkit">{t('contactPage.form.options.product')}</option>
+                  <option value="Speaking/Training">{t('contactPage.form.options.speaking')}</option>
+                  <option value="Other">{t('contactPage.form.options.other')}</option>
                 </select>
               </div>
 
               <div className="grid grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Name</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.name')}</label>
                   <input
                     name="name"
                     placeholder="John Doe"
@@ -152,7 +154,7 @@ const ContactPage: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.email')}</label>
                   <input
                     name="email"
                     type="email"
@@ -164,10 +166,10 @@ const ContactPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Message</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.message')}</label>
                 <textarea
                   name="message"
-                  placeholder="Tell me about your project needs..."
+                  placeholder={t('contactPage.form.placeholder')}
                   required
                   rows={4}
                   className="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-y"
@@ -179,14 +181,14 @@ const ContactPage: React.FC = () => {
                 disabled={formState !== 'idle'}
                 className="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all disabled:opacity-70 flex justify-center items-center gap-2"
               >
-                {formState === 'idle' && <>Send Message <ArrowRight size={18} /></>}
-                {formState === 'submitting' && 'Sending...'}
-                {formState === 'success' && 'Message Sent!'}
+                {formState === 'idle' && <>{t('contactPage.form.submit')} <ArrowRight size={18} /></>}
+                {formState === 'submitting' && t('contactPage.form.sending')}
+                {formState === 'success' && t('contactPage.form.sent')}
               </button>
 
               {formState === 'success' && (
                 <p className="text-center text-sm text-emerald-600 dark:text-emerald-400 animate-fade-in">
-                  Opening your email client...
+                  {t('contactPage.form.redirect')}
                 </p>
               )}
             </form>

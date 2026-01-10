@@ -84,6 +84,146 @@
             }
         }
     },
+    "about": {
+        "title": "Prasad Tilloo",
+        "role": "Senior Engineering Leader & Enterprise Architect",
+        "description": "15+ Jahre Erfahrung in der Lieferung transformativer Ergebnisse in Cloud-Modernisierung, Legacy-System-Migration und KI/ML-Infrastruktur für Fortune-100-Kunden.",
+        "buttons": {
+            "contact": "Kontaktieren",
+            "linkedin": "LinkedIn",
+            "github": "GitHub"
+        },
+        "stats": {
+            "exp": "Jahre Erfahrung",
+            "value": "Projektwert",
+            "industries": "Branchen",
+            "delivery": "Lieferquote"
+        },
+        "philosophy": {
+            "title": "Meine Führungsphilosophie",
+            "quote": "Die besten Lösungen entstehen aus dem Verständnis sowohl des Geschäftsproblems ALS AUCH der Menschen, die es lösen.",
+            "attribution": "— Mein Ansatz für jedes Projekt",
+            "outcomes": {
+                "title": "Geschäftsergebnisse vor technischer Eleganz",
+                "desc": "Ich messe Erfolg am geschäftlichen Einfluss, nicht an der technischen Komplexität. Eine einfache Lösung, die Umsatz bringt, schlägt eine elegante, die es nicht tut."
+            },
+            "innovation": {
+                "title": "Innovation durch kreative Problemlösung",
+                "desc": "Ich hinterfrage Annahmen und denke quer. Wenn alle sagen 'es geht nicht', frage ich 'warum nicht?'"
+            },
+            "leadership": {
+                "title": "Servant Leadership & Empathie",
+                "desc": "Ich führe, indem ich andere befähige, nicht befehle. Meine Rolle ist es, Hindernisse zu beseitigen, Kontext zu geben und Teams zu stärken."
+            },
+            "execution": {
+                "title": "Hands-On Umsetzung",
+                "desc": "Ich strategiere nicht nur – ich setze um. Ich schreibe Code, entwerfe Architekturen und deploye in Produktion."
+            }
+        },
+        "proof": {
+            "title": "Der Beweis des Architekten",
+            "p1": "Ich entwerfe nicht nur Systeme; ich sichere ihr Überleben und ihre Skalierbarkeit in der realen Welt.",
+            "p2": "Meine Karriere ist definiert durch komplexe Transformationen – von der Migration von Legacy-Code bis zur Architektur globaler Standards.",
+            "quote": "Prasad kombiniert tiefes technisches Fachwissen mit der seltenen Fähigkeit, komplexe Architekturen C-Level-Stakeholdern zu erklären."
+        },
+        "consulting": {
+            "title": "Tier-1 Beratungshintergrund",
+            "role": "Managementberater bei PricewaterhouseCoopers (PwC)",
+            "desc": "Verbrachte 5+ Jahre mit der Leitung digitaler Transformationsinitiativen.",
+            "highlights": [
+                "Leitete $50M+ Pharma RFPs",
+                "Industrie 4.0 Strategieimplementierung",
+                "Cloud Center of Excellence (CCoE) Aufbau",
+                "Experte für regulatorische Compliance (GxP/HIPAA)"
+            ]
+        },
+        "journey": {
+            "title": "Karrierereise",
+            "challenge": "Geschäftliche Herausforderung:",
+            "delivered": "Was ich geliefert habe:",
+            "viewCaseStudy": "Vollständige Fallstudie ansehen",
+            "buyBlueprint": "Blueprint kaufen"
+        },
+        "certifications": {
+            "title": "Zertifizierungen"
+        },
+        "techStack": {
+            "title": "Tech Stack"
+        },
+        "education": {
+            "title": "Ausbildung",
+            "degree": "Bachelor of Engineering (B.E.)",
+            "major": "Informatik",
+            "school": "S.G.S.I.T.S, Indien"
+        },
+        "cta": {
+            "title": "Bereit, Ihr Unternehmen zu modernisieren?",
+            "subtitle": "Ob Sie einen Hands-on-Architekten für eine Migration oder einen strategischen Leiter für Ihr Engineering-Team benötigen, lassen Sie uns sprechen.",
+            "schedule": "Beratung vereinbaren",
+            "viewWork": "Architekturarbeiten ansehen"
+        }
+    },
+    "contactPage": {
+        "title": "Lassen Sie uns Ihr Geschäft transformieren",
+        "subtitle": "Ob Sie ein konkretes Projekt im Sinn haben oder einfach Möglichkeiten erkunden möchten, ich bin hier, um zu helfen.",
+        "book": {
+            "title": "Beratung buchen",
+            "desc": "Überspringen Sie den E-Mail-Verkehr. Vereinbaren Sie ein kostenloses 30-minütiges Discovery-Gespräch.",
+            "cta": "Verfügbarkeit prüfen"
+        },
+        "email": {
+            "title": "E-Mail schreiben",
+            "subtitle": "prasad.sgsits@gmail.com"
+        },
+        "linkedin": {
+            "title": "LinkedIn",
+            "subtitle": "Professionell vernetzen"
+        },
+        "form": {
+            "title": "Nachricht senden",
+            "interestedIn": "Ich interessiere mich für...",
+            "options": {
+                "consulting": "Beratungsprojekt",
+                "product": "Toolkit Kauf",
+                "speaking": "Vortrag / Training",
+                "other": "Sonstiges"
+            },
+            "name": "Name",
+            "email": "E-Mail",
+            "message": "Nachricht",
+            "placeholder": "Erzählen Sie mir von Ihren Projektanforderungen...",
+            "submit": "Nachricht senden",
+            "sending": "Senden...",
+            "sent": "Nachricht gesendet!",
+            "redirect": "Öffne E-Mail-Programm..."
+        }
+    },
+    "climateTech": {
+        "hero": {
+            "badge": "NACHHALTIGE DIGITALE INFRASTRUKTUR",
+            "title": "Dekarbonisierung von Lieferketten durch <0>Datentransparenz</0>",
+            "subtitle": "Förderung von Engagement und Gemeinschaft zur Gestaltung globaler Standards und digitaler Plattformen, die es Fortune-100-Unternehmen ermöglichen, Scope-3-Emissionsdaten sicher und skalierbar auszutauschen.",
+            "cta": {
+                "explore": "PACT Standard erkunden",
+                "discuss": "Strategie besprechen"
+            }
+        },
+        "stats": {
+            "scope": "CO2e Scope Abgedeckt",
+            "partners": "Fortune 100 Partner",
+            "body": "Globales Standardgremium",
+            "arch": "Protokollarchitektur"
+        },
+        "challenge": {
+            "title": "Das Scope-3-Datenproblem",
+            "desc": "90% des CO2-Fußabdrucks eines Unternehmens liegen in der Lieferkette (Scope 3). Dennoch verlassen sich die meisten Unternehmen auf vage Branchendurchschnitte, da sie keine <0>Primärdaten</0> von ihren tausenden Lieferanten erhalten können.",
+            "points": [
+                "Datensilos über inkompatible ERP-Systeme hinweg",
+                "Mangel an standardisierten Berechnungsmethoden",
+                "Sicherheitsbedenken beim Teilen sensibler Lieferantendaten"
+            ]
+        }
+    },
     "pathSelector": {
         "title": "Was brauchen Sie?",
         "subtitle": "Wählen Sie Ihren Weg zum Start",

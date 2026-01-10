@@ -85,6 +85,111 @@
             }
         }
     },
+    "about": {
+        "title": "Prasad Tilloo",
+        "role": "Senior Engineering Leader & Enterprise Architect",
+        "description": "15+ years delivering transformational outcomes across Cloud Modernization, Legacy System Migration, and AI/ML Infrastructure for Fortune 100 clients.",
+        "buttons": {
+            "contact": "Contact Me",
+            "linkedin": "LinkedIn",
+            "github": "GitHub"
+        },
+        "stats": {
+            "exp": "Years Experience",
+            "value": "Project Value",
+            "industries": "Industries",
+            "delivery": "Delivery Rate"
+        },
+        "philosophy": {
+            "title": "My Leadership Philosophy",
+            "quote": "The best solutions come from understanding both the business problem AND the people solving it.",
+            "attribution": "— My approach to every project",
+            "outcomes": {
+                "title": "Business Outcomes Over Technical Elegance",
+                "desc": "I measure success by business impact, not technical complexity. A simple solution that drives revenue beats an elegant one that doesn't."
+            },
+            "innovation": {
+                "title": "Innovation Through Creative Problem-Solving",
+                "desc": "I challenge assumptions and think outside the box. When everyone says 'it can't be done,' I ask 'why not?'"
+            },
+            "leadership": {
+                "title": "Servant Leadership & Empathy",
+                "desc": "I lead by enabling others, not commanding them. My role is to remove obstacles, provide context, and empower teams."
+            },
+            "execution": {
+                "title": "Hands-On Execution",
+                "desc": "I don't just strategize—I execute. I write code, design architectures, and deploy to production."
+            }
+        },
+        "proof": {
+            "title": "The Architect's Proof",
+            "p1": "I don't just design systems; I ensure their survival and scale in the real world.",
+            "p2": "My career has been defined by complex transformations—from migrating legacy code to architecting global standards.",
+            "quote": "Prasad combines deep technical expertise with a rare ability to explain complex architectures to C-level stakeholders."
+        },
+        "consulting": {
+            "title": "Tier-1 Consulting Pedigree",
+            "role": "PricewaterhouseCoopers (PwC) Management Consultant",
+            "desc": "Spent 5+ years leading high-stakes digital transformation initiatives.",
+            "highlights": [
+                "Led $50M+ Pharma RFPs",
+                "Industry 4.0 Strategy Implementation",
+                "Cloud Center of Excellence (CCoE) Setup",
+                "Regulatory Compliance (GxP/HIPAA) Expert"
+            ]
+        },
+        "journey": {
+            "title": "Career Journey",
+            "challenge": "Business Challenge:",
+            "delivered": "What I Delivered:",
+            "viewCaseStudy": "View Full Case Study",
+            "buyBlueprint": "Buy Blueprint"
+        },
+        "certifications": {
+            "title": "Certifications"
+        },
+        "techStack": {
+            "title": "Tech Stack"
+        },
+        "education": {
+            "title": "Education",
+            "degree": "Bachelor of Engineering (B.E.)",
+            "major": "Computer Science",
+            "school": "S.G.S.I.T.S, India"
+        },
+        "cta": {
+            "title": "Ready to modernize your enterprise?",
+            "subtitle": "Whether you need a hands-on architect for a migration or a strategic leader for your engineering team, let's talk.",
+            "schedule": "Schedule Consultation",
+            "viewWork": "View Architecture Work"
+        }
+    },
+    "climateTech": {
+        "hero": {
+            "badge": "SUSTAINABLE DIGITAL INFRASTRUCTURE",
+            "title": "Decarbonizing Supply Chains through <0>Data Transparency</0>",
+            "subtitle": "Facilitating engagement and community for shaping the global standards and digital platforms that enable Fortune 100 companies to exchange Scope 3 emissions data securely and at scale.",
+            "cta": {
+                "explore": "Explore PACT Standard",
+                "discuss": "Discuss Your Strategy"
+            }
+        },
+        "stats": {
+            "scope": "CO2e Scope Covered",
+            "partners": "Fortune 100 Partners",
+            "body": "Global Standard Body",
+            "arch": "Protocol Architecture"
+        },
+        "challenge": {
+            "title": "The Scope 3 Data Problem",
+            "desc": "90% of a company's carbon footprint lies in its supply chain (Scope 3). Yet, most companies rely on vague industry averages because they cannot get <0>primary data</0> from their thousands of suppliers.",
+            "points": [
+                "Data silos across incompatible ERP systems",
+                "Lack of standardized calculation methodologies",
+                "Security concerns sharing sensitive supplier data"
+            ]
+        }
+    },
     "pathSelector": {
         "title": "What Do You Need?",
         "subtitle": "Choose your path to get started",
@@ -141,6 +246,7 @@
         "consultingSubtitle": "Exclusive intellectual property available through my consulting engagements. These are not sold separately but are the foundation of my delivery excellence."
     },
     "products": {
+        "back": "Back to Toolkit Catalog",
         "ecommerce-blueprint": {
             "title": "Global Headless eCommerce Blueprint",
             "desc": "The exact architecture used to scale BRITA to 15+ markets. Includes Azure middleware patterns and Nuxt.js store templates.",

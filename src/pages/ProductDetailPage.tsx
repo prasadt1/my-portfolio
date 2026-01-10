@@ -43,7 +43,7 @@ const ProductDetailPage: React.FC = () => {
             <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
                     <Link to="/products" className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-emerald-600 mb-8 transition-colors">
-                        <ArrowLeft size={20} /> Back to Toolkit Catalog
+                        <ArrowLeft size={20} /> {t('products.back')}
                     </Link>
 
                     <motion.div

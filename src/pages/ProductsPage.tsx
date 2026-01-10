@@ -65,7 +65,7 @@ const ProductsPage: React.FC = () => {
                                     {/* Contextual Background Image */}
                                     {product.theme.backgroundImage && (
                                         <div
-                                            className="absolute inset-0 bg-cover bg-center opacity-5 dark:opacity-10 transition-transform duration-700 group-hover:scale-110 pointer-events-none mix-blend-overlay"
+                                            className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
                                             style={{ backgroundImage: `url(${product.theme.backgroundImage})` }}
                                         />
                                     )}

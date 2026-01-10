@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Mail, MapPin, Linkedin, Github, Award, Briefcase,
-  GraduationCap, Languages, Target, Heart, Zap, BookOpen,
-  ChevronRight, Building2, Globe, CheckCircle2,
-  Users, Lightbulb, ArrowRight, Package
+  GraduationCap, Target, Users, Lightbulb, ArrowRight, Package, CheckCircle2, Zap, Building2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import profilepic from '../assets/images/profilepic.png';
 import TechChips from '../components/TechChips';
-import Recommendations from '../components/Recommendations';
 import SEO from '../components/SEO';
 import QuickStats from '../components/QuickStats';
 
 const AboutPage: React.FC = () => {
+  const { t } = useTranslation();
+
   const techCategories: Record<string, string[]> = {
     'Languages': ['C#', 'Java', 'JavaScript', 'HTML5', 'Python', 'TypeScript'],
     'Frontend': ['React', 'Redux', 'Vue.js', 'Next JS', 'Nuxt JS', 'Angular', 'Bootstrap', 'Vite'],
@@ -25,6 +25,8 @@ const AboutPage: React.FC = () => {
     'Tools': ['Figma', 'Adobe Photoshop', 'Lightroom', 'Canva', 'Postman']
   };
 
+  // Note: For a real app, these would also be in translation files or fetched from a CMS
+  // For now, we'll extract the headers/labels to i18n
   const experiences = [
     {
       company: 'BRITA',
@@ -144,8 +146,8 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="About Prasad Tilloo | Empathetic Leader & Innovation Driver"
-        description="Business-focused problem solver with 15+ years architecting transformations. Servant leadership, creative thinking, hands-on execution. Led teams at PwC, Boehringer, BRITA, SINE."
+        title={`${t('about.title')} | ${t('about.role')}`}
+        description={t('about.description')}
         keywords="servant leadership, empathetic leader, innovation, creative problem solving, business outcomes, enterprise architect"
         type="profile"
       />
@@ -191,14 +193,13 @@ const AboutPage: React.FC = () => {
                 className="text-center md:text-left"
               >
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 font-serif">
-                  Prasad Tilloo
+                  {t('about.title')}
                 </h1>
                 <p className="text-xl md:text-2xl text-emerald-400 font-semibold mb-4">
-                  Senior Engineering Leader & Enterprise Architect
+                  {t('about.role')}
                 </p>
                 <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
-                  15+ years delivering transformational outcomes across Cloud Modernization,
-                  Legacy System Migration, and AI/ML Infrastructure for Fortune 100 clients.
+                  {t('about.description')}
                 </p>
 
                 <div className="flex flex-wrap justify-center md:justify-start gap-4">
@@ -207,7 +208,7 @@ const AboutPage: React.FC = () => {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-all shadow-lg hover:shadow-emerald-900/20"
                   >
                     <Mail size={18} />
-                    Contact Me
+                    {t('about.buttons.contact')}
                   </a>
                   <a
                     href="https://linkedin.com/in/prasadtilloo"
@@ -216,7 +217,7 @@ const AboutPage: React.FC = () => {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all"
                   >
                     <Linkedin size={18} />
-                    LinkedIn
+                    {t('about.buttons.linkedin')}
                   </a>
                   <a
                     href="https://github.com/prasadtilloo"
@@ -225,7 +226,7 @@ const AboutPage: React.FC = () => {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all"
                   >
                     <Github size={18} />
-                    GitHub
+                    {t('about.buttons.github')}
                   </a>
                 </div>
               </motion.div>
@@ -238,10 +239,10 @@ const AboutPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800">
               {[
-                { value: '15+', label: 'Years Experience' },
-                { value: '€2M+', label: 'Project Value' },
-                { value: '8', label: 'Industries' },
-                { value: '100%', label: 'Delivery Rate' }
+                { value: '15+', label: t('about.stats.exp') },
+                { value: '€2M+', label: t('about.stats.value') },
+                { value: '8', label: t('about.stats.industries') },
+                { value: '100%', label: t('about.stats.delivery') }
               ].map((stat, idx) => (
                 <div key={idx} className="py-8 text-center">
                   <div className="text-3xl font-bold text-emerald-400 font-serif mb-1">{stat.value}</div>
@@ -256,7 +257,7 @@ const AboutPage: React.FC = () => {
         <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-900/10 dark:to-blue-900/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl font-bold text-center mb-12 text-slate-900 dark:text-white">
-              My Leadership Philosophy
+              {t('about.philosophy.title')}
             </h2>
 
             <div className="space-y-8">
@@ -267,12 +268,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                      Business Outcomes Over Technical Elegance
+                      {t('about.philosophy.outcomes.title')}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300">
-                      I measure success by business impact, not technical complexity.
-                      A simple solution that drives revenue beats an elegant one that doesn't.
-                      My question is always: "What problem are we solving for the business?"
+                      {t('about.philosophy.outcomes.desc')}
                     </p>
                   </div>
                 </div>
@@ -285,12 +284,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                      Innovation Through Creative Problem-Solving
+                      {t('about.philosophy.innovation.title')}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300">
-                      I challenge assumptions and think outside the box. When everyone says
-                      "it can't be done," I ask "why not?" Some of my best solutions came from
-                      questioning the status quo and trying approaches others dismissed.
+                      {t('about.philosophy.innovation.desc')}
                     </p>
                   </div>
                 </div>
@@ -303,12 +300,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                      Servant Leadership & Empathy
+                      {t('about.philosophy.leadership.title')}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300">
-                      I lead by enabling others, not commanding them. My role is to remove
-                      obstacles, provide context, and empower teams to do their best work.
-                      I listen deeply, understand perspectives, and build collaborative solutions.
+                      {t('about.philosophy.leadership.desc')}
                     </p>
                   </div>
                 </div>
@@ -321,12 +316,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                      Hands-On Execution
+                      {t('about.philosophy.execution.title')}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300">
-                      I don't just strategize—I execute. I write code, design architectures,
-                      and deploy to production. I believe leaders should be in the trenches
-                      with their teams, not just in conference rooms.
+                      {t('about.philosophy.execution.desc')}
                     </p>
                   </div>
                 </div>
@@ -335,11 +328,10 @@ const AboutPage: React.FC = () => {
 
             <div className="mt-12 text-center">
               <blockquote className="text-2xl font-serif italic text-slate-700 dark:text-slate-300">
-                "The best solutions come from understanding both the business problem
-                AND the people solving it."
+                "{t('about.philosophy.quote')}"
               </blockquote>
               <p className="text-slate-500 dark:text-slate-400 mt-4">
-                — My approach to every project
+                {t('about.philosophy.attribution')}
               </p>
             </div>
           </div>
@@ -355,17 +347,17 @@ const AboutPage: React.FC = () => {
               <section>
                 <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
                   <span className="w-8 h-1 bg-emerald-500 rounded-full"></span>
-                  The Architect's Proof
+                  {t('about.proof.title')}
                 </h2>
                 <div className="prose prose-lg text-slate-600 dark:text-slate-300 max-w-none leading-relaxed">
                   <p className="mb-6">
-                    I don't just design systems; I <strong>ensure their survival and scale</strong> in the real world. As a results-driven Senior Architect, I bridge the gap between high-level strategy and low-level code.
+                    {t('about.proof.p1')}
                   </p>
                   <p className="mb-6">
-                    My career has been defined by complex transformations—from migrating 7.8M lines of legacy code to the cloud for <strong>PwC</strong> to architecting the global Product Carbon Footprint standard for <strong>WBCSD</strong>. I thrive in high-stakes environments where reliability, compliance (HIPAA, GDPR), and performance are non-negotiable.
+                    {t('about.proof.p2')}
                   </p>
                   <div className="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 italic text-slate-700 dark:text-slate-300 rounded-r-lg">
-                    "Prasad combines deep technical expertise with a rare ability to explain complex architectures to C-level stakeholders. He is a true enabler of digital transformation."
+                    "{t('about.proof.quote')}"
                   </div>
                 </div>
               </section>
@@ -374,31 +366,21 @@ const AboutPage: React.FC = () => {
               <section className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
                 <h2 className="text-2xl font-serif font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                   <Building2 className="text-emerald-600 dark:text-emerald-500" size={24} />
-                  Tier-1 Consulting Pedigree
+                  {t('about.consulting.title')}
                 </h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2">PricewaterhouseCoopers (PwC) Management Consultant</h3>
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2">{t('about.consulting.role')}</h3>
                     <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                      Spent 5+ years leading high-stakes digital transformation initiatives. Specialized in bridging the gap between C-suite strategy and engineering execution.
+                      {t('about.consulting.desc')}
                     </p>
                     <ul className="grid sm:grid-cols-2 gap-4 text-sm text-slate-700 dark:text-slate-300">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                        <span>Led <strong>$50M+</strong> Pharma RFPs (Lonza, Novartis)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                        <span>Industry 4.0 Strategy Implementation</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                        <span>Cloud Center of Excellence (CCoE) Setup</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                        <span>Regulatory Compliance (GxP/HIPAA) Expert</span>
-                      </li>
+                      {(t('about.consulting.highlights', { returnObjects: true }) as string[]).map((highlight, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -408,7 +390,7 @@ const AboutPage: React.FC = () => {
               <section>
                 <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
                   <Briefcase className="text-emerald-600 dark:text-emerald-500" size={28} />
-                  Career Journey
+                  {t('about.journey.title')}
                 </h2>
 
                 <div className="space-y-12 pb-4">
@@ -441,7 +423,7 @@ const AboutPage: React.FC = () => {
                       {/* Business Context */}
                       <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-4 mb-4">
                         <div className="font-semibold text-emerald-900 dark:text-emerald-300 mb-2">
-                          Business Challenge:
+                          {t('about.journey.challenge')}
                         </div>
                         <p className="text-slate-700 dark:text-slate-300">
                           {exp.businessChallenge}
@@ -451,7 +433,7 @@ const AboutPage: React.FC = () => {
                       {/* What I Did */}
                       <div className="mb-4">
                         <div className="font-semibold text-slate-900 dark:text-white mb-2">
-                          What I Delivered:
+                          {t('about.journey.delivered')}
                         </div>
                         <ul className="space-y-2">
                           {exp.deliverables.map((item, i) => (
@@ -476,12 +458,12 @@ const AboutPage: React.FC = () => {
                       <div className="flex flex-wrap gap-3">
                         {exp.links?.caseStudy && (
                           <Link to={exp.links.caseStudy} className="text-emerald-600 font-semibold flex items-center gap-2 hover:underline">
-                            View Full Case Study <ArrowRight size={16} />
+                            {t('about.journey.viewCaseStudy')} <ArrowRight size={16} />
                           </Link>
                         )}
                         {exp.links?.product && (
                           <Link to={exp.links.product} className="text-emerald-600 font-semibold flex items-center gap-2 hover:underline">
-                            Buy Blueprint <Package size={16} />
+                            {t('about.journey.buyBlueprint')} <Package size={16} />
                           </Link>
                         )}
                       </div>
@@ -494,7 +476,7 @@ const AboutPage: React.FC = () => {
               <section>
                 <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
                   <Award className="text-emerald-600 dark:text-emerald-500" size={28} />
-                  Certifications
+                  {t('about.certifications.title')}
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6">
@@ -529,7 +511,7 @@ const AboutPage: React.FC = () => {
               <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
                 <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white mb-6 pb-2 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
                   <Zap className="text-emerald-500" size={20} />
-                  Tech Stack
+                  {t('about.techStack.title')}
                 </h3>
                 <TechChips categories={techCategories} />
               </div>
@@ -558,12 +540,12 @@ const AboutPage: React.FC = () => {
               <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
                 <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                   <GraduationCap className="text-purple-500" size={20} />
-                  Education
+                  {t('about.education.title')}
                 </h3>
                 <div>
-                  <div className="font-bold text-slate-900 dark:text-white">Bachelor of Engineering (B.E.)</div>
-                  <div className="text-purple-600 dark:text-purple-400 font-medium text-sm">Computer Science</div>
-                  <div className="text-sm text-slate-500 dark:text-slate-400 mt-1">S.G.S.I.T.S, India</div>
+                  <div className="font-bold text-slate-900 dark:text-white">{t('about.education.degree')}</div>
+                  <div className="text-purple-600 dark:text-purple-400 font-medium text-sm">{t('about.education.major')}</div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400 mt-1">{t('about.education.school')}</div>
                 </div>
               </div>
             </aside>
@@ -574,23 +556,23 @@ const AboutPage: React.FC = () => {
         <div className="bg-slate-100 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 py-20">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-slate-900 dark:text-white">
-              Ready to modernize your enterprise?
+              {t('about.cta.title')}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-              Whether you need a hands-on architect for a migration or a strategic leader for your engineering team, let's talk.
+              {t('about.cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to="/contact"
                 className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
               >
-                Schedule Consultation
+                {t('about.cta.schedule')}
               </Link>
               <Link
                 to="/projects"
                 className="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-white rounded-xl font-bold transition-all hover:bg-slate-50 dark:hover:bg-slate-700"
               >
-                View Architecture Work
+                {t('about.cta.viewWork')}
               </Link>
             </div>
           </div>
