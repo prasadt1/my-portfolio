@@ -63,12 +63,10 @@ const ProductsPage: React.FC = () => {
                                     <div className={`absolute inset-0 bg-gradient-to-br ${product.theme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
                                     {/* Contextual Background Image */}
-                                    {product.theme.backgroundImage && (
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
-                                            style={{ backgroundImage: `url(${product.theme.backgroundImage})` }}
-                                        />
-                                    )}
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                                        style={{ backgroundImage: `url(${product.theme.backgroundImage || '/assets/bg/card-default.jpg'})` }}
+                                    />
 
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${product.theme.iconBg} transition-transform group-hover:scale-110 duration-300`}>

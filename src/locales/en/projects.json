@@ -1,0 +1,210 @@
+{
+    "photography-coach-ai": {
+        "header": {
+            "eyebrow": "GOOGLE DEEPMIND COMPETITION PROJECT",
+            "title": "Photography Coach AI: Productionizing Gemini 3 Pro"
+        },
+        "challenge": {
+            "situation": "Most AI tools are black boxes. Photographers needed transparent, actionable coaching. The technical challenge was productionizing Gemini 3 Pro while keeping token costs viable."
+        },
+        "cta": {
+            "primary": "Try Live Demo",
+            "secondary": "View Code"
+        }
+    },
+    "pact-pcf-data-exchange-network": {
+        "header": {
+            "eyebrow": "GLOBAL STANDARD ADOPTION",
+            "title": "Architecting the Global Product Carbon Footprint (PCF) Data Exchange Network"
+        },
+        "challenge": {
+            "situation": "Global supply chains lacked a standardized way to exchange Product Carbon Footprint (PCF) data, making Scope 3 emissions tracking impossible. Major corporations (Microsoft, SAP, Siemens) needed a unified language and protocol."
+        },
+        "cta": {
+            "primary": "View Ecosystem",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "brita-ecommerce-modernization": {
+        "header": {
+            "eyebrow": "MULTI-MARKET ROLLOUT",
+            "title": "Modernizing Global eCommerce: From Monolith to Headless Architecture"
+        },
+        "challenge": {
+            "situation": "Legacy Shopware platform could not support rapid global expansion. Managing 15+ markets with monolithic architecture was slow and costly."
+        },
+        "cta": {
+            "primary": "Book Consultation",
+            "secondary": "View Architecture"
+        }
+    },
+    "delivery-hero-adtech": {
+        "header": {
+            "eyebrow": "$20M REVENUE UPLIFT",
+            "title": "Scaling Display Ads Platform to 5M+ Daily Transactions"
+        },
+        "challenge": {
+            "situation": "Existing ad server crashed during peak lunch hours. Latency > 200ms caused lost impressions and revenue."
+        },
+        "cta": {
+            "primary": "Scale Your System",
+            "secondary": "View Architecture"
+        }
+    },
+    "ai-photography-coach": {
+        "header": {
+            "eyebrow": "PRODUCTION AI ENGINEERING",
+            "title": "Building an Agentic AI Photography Coach with Full Observability"
+        },
+        "challenge": {
+            "situation": "Most AI demos lack production readiness (observability, cost control, evaluation). Wanted to prove end-to-end engineering excellence."
+        },
+        "cta": {
+            "primary": "Try Demo",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "devops-maturity-framework": {
+        "header": {
+            "eyebrow": "REUSABLE FRAMEWORK",
+            "title": "Enterprise DevOps Maturity Assessment & Transformation Model"
+        },
+        "challenge": {
+            "situation": "Many organizations claimed to do DevOps but lacked standardization, leading to \"fragile agile\" and unstable releases."
+        },
+        "cta": {
+            "primary": "Assess Your Org",
+            "secondary": "View Framework"
+        }
+    },
+    "app-rationalization-cloud-readiness": {
+        "header": {
+            "eyebrow": "STRATEGIC DECISION MAKING",
+            "title": "Application Rationalization & Cloud Readiness Framework"
+        },
+        "challenge": {
+            "situation": "Enterprises with 1000+ apps struggled to decide what to move to cloud, leading to stalled migrations or \"lift-and-shift\" cost disasters."
+        },
+        "cta": {
+            "primary": "Plan Migration",
+            "secondary": "See Template"
+        }
+    },
+    "mainframe-to-java-migration": {
+        "header": {
+            "eyebrow": "LEGACY TRANSFORMATION",
+            "title": "Mainframe-to-Java Migration Framework"
+        },
+        "challenge": {
+            "situation": "Critical core banking/insurance systems locked in COBOL/mainframes with retiring talent pool and exploding MIPS costs."
+        },
+        "cta": {
+            "primary": "Modernize Legacy",
+            "secondary": "View Approach"
+        }
+    },
+    "hipaa-fhir-compliance": {
+        "header": {
+            "eyebrow": "REGULATORY GOVERNANCE",
+            "title": "HIPAA/FHIR/HL7 Compliance Governance Framework"
+        },
+        "challenge": {
+            "situation": "Healthcare orgs struggling to meet new interoperability rules (Cures Act) and secure patient data in the cloud."
+        },
+        "cta": {
+            "primary": "Secure Your Data",
+            "secondary": "View Framework"
+        }
+    },
+    "boehringer-aiml-platform": {
+        "header": {
+            "eyebrow": "50% FASTER INSIGHTS",
+            "title": "Medical Research AI/ML Platform & Data Lake"
+        },
+        "challenge": {
+            "situation": "R&D data siloed in PDFs and disparate systems. Researchers spent too much time searching."
+        },
+        "cta": {
+            "primary": "Build Data Platform",
+            "secondary": "View Details"
+        }
+    },
+    "telecom-future-pricing-platform": {
+        "header": {
+            "eyebrow": "EVENT-DRIVEN ARCHITECTURE",
+            "title": "Future Pricing Platform (FPP) Transformation"
+        },
+        "challenge": {
+            "situation": "Manual pricing updates took days/weeks. Needed real-time dynamic pricing."
+        },
+        "cta": {
+            "primary": "Discuss Modernization",
+            "secondary": "View Solution"
+        }
+    },
+    "innova-claims-processing": {
+        "header": {
+            "eyebrow": "80% EFFICIENCY GAIN",
+            "title": "Claims Processing Data Platform"
+        },
+        "challenge": {
+            "situation": "Manual claims processing was slow and error-prone."
+        },
+        "cta": {
+            "primary": "Automate Operations",
+            "secondary": "View Details"
+        }
+    },
+    "bofa-account-opening": {
+        "header": {
+            "eyebrow": "PROCESS OPTIMIZATION",
+            "title": "Streamlined Account Opening for Financial Advisors"
+        },
+        "challenge": {
+            "situation": "Complex onboarding process frustrated advisors and clients."
+        },
+        "cta": {
+            "primary": "Improve UX",
+            "secondary": "View Details"
+        }
+    },
+    "ileap-logistics-emissions": {
+        "header": {
+            "eyebrow": "SUPPLY CHAIN DECARBONIZATION",
+            "title": "iLEAP: Logistics Emissions Integration Project"
+        },
+        "challenge": {
+            "situation": "Up to 60% of product Scope 3 emissions come from logistics, but data was disconnected."
+        },
+        "cta": {
+            "primary": "Learn More",
+            "secondary": "View Details"
+        }
+    },
+    "pwc-healthcare-modernization": {
+        "header": {
+            "eyebrow": "$500K SAVED",
+            "title": "Healthcare System Modernization & Mobile App"
+        },
+        "challenge": {
+            "situation": "Legacy system needed modernization and mobile access."
+        },
+        "cta": {
+            "primary": "Modernize Apps",
+            "secondary": "View Details"
+        }
+    },
+    "voice-of-customer-360": {
+        "header": {
+            "eyebrow": "CUSTOMER EXPERIENCE",
+            "title": "Voice of Customer (VoC) 360 Model"
+        },
+        "challenge": {
+            "situation": "Insurers had no single view of customer sentiment."
+        },
+        "cta": {
+            "primary": "Build 360 View",
+            "secondary": "View Details"
+        }
+    }
+}

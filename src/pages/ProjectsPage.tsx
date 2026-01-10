@@ -154,6 +154,7 @@ const ProjectsPage: React.FC = () => {
 
 // Internal Project Card
 const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
+  const { t } = useTranslation();
   // Default theme fallback
   const theme = project.theme || {
     color: 'emerald',
@@ -174,12 +175,10 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
       <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
 
       {/* Contextual Background Image */}
-      {theme.backgroundImage && (
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
-          style={{ backgroundImage: `url(${theme.backgroundImage})` }}
-        />
-      )}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+        style={{ backgroundImage: `url(${theme.backgroundImage || '/assets/bg/card-default.jpg'})` }}
+      />
 
       {/* Top Decoration */}
       <div className={`h-2 bg-gradient-to-r ${theme.gradient}`}></div>
@@ -190,10 +189,10 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
           <div>
             <div className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-2 text-${theme.color}-600 dark:text-${theme.color}-400`}>
               <Building2 size={12} />
-              {project.header.client.industry}
+              {t(`projects:${project.id}.header.eyebrow`, project.header.eyebrow)}
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
-              {project.header.title}
+              {t(`projects:${project.id}.header.title`, project.header.title)}
             </h3>
           </div>
         </div>
@@ -213,7 +212,7 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
         {/* Challenge/Summary */}
         <div className="space-y-3 mb-6 flex-1">
           <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-4">
-            {project.challenge.situation}
+            {t(`projects:${project.id}.challenge.situation`, project.challenge.situation)}
           </p>
         </div>
 
@@ -238,7 +237,7 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
       {/* Footer / Link */}
       <div className="px-6 pb-6 pt-0 mt-2 relative z-10">
         <Link to={`/projects/${project.slug}`} className={`font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all text-${theme.color}-600 dark:text-${theme.color}-400`}>
-          View Case Study <ArrowRight size={16} />
+          {t(`projects:${project.id}.cta.primary`, project.cta.primary?.text || 'View Case Study')} <ArrowRight size={16} />
         </Link>
       </div>
     </motion.div>

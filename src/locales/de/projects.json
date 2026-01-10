@@ -1,0 +1,210 @@
+{
+    "photography-coach-ai": {
+        "header": {
+            "eyebrow": "GOOGLE DEEPMIND WETTBEWERBSPROJEKT",
+            "title": "Photography Coach AI: Gemini 3 Pro in Produktion"
+        },
+        "challenge": {
+            "situation": "Die meisten KI-Tools sind Black Boxes. Fotografen benötigten transparentes, umsetzbares Coaching. Die technische Herausforderung bestand darin, Gemini 3 Pro produktionsreif zu machen und dabei die Token-Kosten tragfähig zu halten."
+        },
+        "cta": {
+            "primary": "Live-Demo testen",
+            "secondary": "Code ansehen"
+        }
+    },
+    "pact-pcf-data-exchange-network": {
+        "header": {
+            "eyebrow": "GLOBALE STANDARDADOPTION",
+            "title": "Architektur des Globalen Netzwerks für den Austausch von Product Carbon Footprint (PCF) Daten"
+        },
+        "challenge": {
+            "situation": "Globalen Lieferketten fehlte ein standardisierter Weg zum Austausch von Product Carbon Footprint (PCF) Daten, was die Verfolgung von Scope-3-Emissionen unmöglich machte. Großkonzerne (Microsoft, SAP, Siemens) benötigten eine einheitliche Sprache und ein Protokoll."
+        },
+        "cta": {
+            "primary": "Ökosystem ansehen",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "brita-ecommerce-modernization": {
+        "header": {
+            "eyebrow": "MULTI-MARKT ROLLOUT",
+            "title": "Modernisierung des globalen E-Commerce: Von Monolyth zu Headless-Architektur"
+        },
+        "challenge": {
+            "situation": "Die alte Shopware-Plattform konnte die schnelle globale Expansion nicht unterstützen. Die Verwaltung von 15+ Märkten mit monolithischer Architektur war langsam und kostspielig."
+        },
+        "cta": {
+            "primary": "Beratung buchen",
+            "secondary": "Architektur ansehen"
+        }
+    },
+    "delivery-hero-adtech": {
+        "header": {
+            "eyebrow": "$20M UMSATZSTEIGERUNG",
+            "title": "Skalierung der Display-Ads-Plattform auf 5M+ tägliche Transaktionen"
+        },
+        "challenge": {
+            "situation": "Der bestehende Ad-Server stürzte zu den Stoßzeiten beim Mittagessen ab. Latenz > 200ms führte zu verlorenen Impressionen und Umsatz."
+        },
+        "cta": {
+            "primary": "System skalieren",
+            "secondary": "Architektur ansehen"
+        }
+    },
+    "ai-photography-coach": {
+        "header": {
+            "eyebrow": "PRODUKTIONS-KI-ENGINEERING",
+            "title": "Aufbau eines agentenbasierten KI-Fotocoachs mit voller Observability"
+        },
+        "challenge": {
+            "situation": "Den meisten KI-Demos fehlt die Produktionsreife (Observability, Kostenkontrolle, Evaluierung). Ziel war es, End-to-End-Engineering-Exzellenz zu beweisen."
+        },
+        "cta": {
+            "primary": "Demo testen",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "devops-maturity-framework": {
+        "header": {
+            "eyebrow": "WIEDERVERWENDBARES RAHMENWERK",
+            "title": "Enterprise DevOps Reifegrad-Assessment & Transformationsmodell"
+        },
+        "challenge": {
+            "situation": "Viele Organisationen behaupteten, DevOps zu praktizieren, litten jedoch unter mangelnder Standardisierung, was zu \"zerbrechlichem Agile\" und instabilen Releases führte."
+        },
+        "cta": {
+            "primary": "Organisation bewerten",
+            "secondary": "Framework ansehen"
+        }
+    },
+    "app-rationalization-cloud-readiness": {
+        "header": {
+            "eyebrow": "STRATEGISCHE ENTSCHEIDUNGSFINDUNG",
+            "title": "Anwendungsrationalisierung & Cloud-Reifegrad-Framework"
+        },
+        "challenge": {
+            "situation": "Unternehmen mit 1000+ Apps taten sich schwer zu entscheiden, was in die Cloud verschoben werden soll, was zu gestoppten Migrationen oder \"Lift-and-Shift\"-Kostenfallen führte."
+        },
+        "cta": {
+            "primary": "Migration planen",
+            "secondary": "Vorlage ansehen"
+        }
+    },
+    "mainframe-to-java-migration": {
+        "header": {
+            "eyebrow": "LEGACY TRANSFORMATION",
+            "title": "Mainframe-zu-Java Migrations-Framework"
+        },
+        "challenge": {
+            "situation": "Kritische Kernbank-/Versicherungssysteme waren in COBOL/Mainframes gefangen, bei schwindendem Talentpool und explodierenden MIPS-Kosten."
+        },
+        "cta": {
+            "primary": "Legacy modernisieren",
+            "secondary": "Ansatz ansehen"
+        }
+    },
+    "hipaa-fhir-compliance": {
+        "header": {
+            "eyebrow": "REGULATORISCHE GOVERNANCE",
+            "title": "HIPAA/FHIR/HL7 Compliance Governance Framework"
+        },
+        "challenge": {
+            "situation": "Gesundheitsorganisationen kämpften damit, neue Interoperabilitätsregeln (Cures Act) zu erfüllen und Patientendaten in der Cloud zu sichern."
+        },
+        "cta": {
+            "primary": "Daten sichern",
+            "secondary": "Framework ansehen"
+        }
+    },
+    "boehringer-aiml-platform": {
+        "header": {
+            "eyebrow": "50% SCHNELLERE ERKENNTNISSE",
+            "title": "Medizinische Forschung KI/ML-Plattform & Data Lake"
+        },
+        "challenge": {
+            "situation": "Forschungsdaten waren in PDFs und unterschiedlichen Systemen isoliert. Forscher verbrachten zu viel Zeit mit Suchen."
+        },
+        "cta": {
+            "primary": "Datenplattform bauen",
+            "secondary": "Details ansehen"
+        }
+    },
+    "telecom-future-pricing-platform": {
+        "header": {
+            "eyebrow": "EVENT-DRIVEN ARCHITECTURE",
+            "title": "Transformation zur Future Pricing Platform (FPP)"
+        },
+        "challenge": {
+            "situation": "Manuelle Preisaktualisierungen dauerten Tage/Wochen. Echtzeit-Dynamic-Pricing war erforderlich."
+        },
+        "cta": {
+            "primary": "Modernisierung besprechen",
+            "secondary": "Lösung ansehen"
+        }
+    },
+    "innova-claims-processing": {
+        "header": {
+            "eyebrow": "80% EFFIZIENZGEWINN",
+            "title": "Schadensbearbeitungs-Datenplattform"
+        },
+        "challenge": {
+            "situation": "Manuelle Schadensbearbeitung war langsam und fehleranfällig."
+        },
+        "cta": {
+            "primary": "Betrieb automatisieren",
+            "secondary": "Details ansehen"
+        }
+    },
+    "bofa-account-opening": {
+        "header": {
+            "eyebrow": "PROZESSOPTIMIERUNG",
+            "title": "Optimierte Kontoeröffnung für Finanzberater"
+        },
+        "challenge": {
+            "situation": "Komplexer Onboarding-Prozess frustrierte Berater und Kunden."
+        },
+        "cta": {
+            "primary": "UX verbessern",
+            "secondary": "Details ansehen"
+        }
+    },
+    "ileap-logistics-emissions": {
+        "header": {
+            "eyebrow": "LIEFERKETTEN-DEKARBONISIERUNG",
+            "title": "iLEAP: Logistik-Emissions-Integrationsprojekt"
+        },
+        "challenge": {
+            "situation": "Bis zu 60% der produktbezogenen Scope-3-Emissionen stammen aus der Logistik, aber die Daten waren nicht verbunden."
+        },
+        "cta": {
+            "primary": "Mehr erfahren",
+            "secondary": "Details ansehen"
+        }
+    },
+    "pwc-healthcare-modernization": {
+        "header": {
+            "eyebrow": "$500K GESPART",
+            "title": "Gesundheitssystem-Modernisierung & Mobile App"
+        },
+        "challenge": {
+            "situation": "Veraltetes System benötigte Modernisierung und mobilen Zugriff."
+        },
+        "cta": {
+            "primary": "Apps modernisieren",
+            "secondary": "Details ansehen"
+        }
+    },
+    "voice-of-customer-360": {
+        "header": {
+            "eyebrow": "KUNDENERLEBNIS",
+            "title": "Voice of Customer (VoC) 360 Modell"
+        },
+        "challenge": {
+            "situation": "Versicherer hatten keine einheitliche Sicht auf die Kundenstimmung."
+        },
+        "cta": {
+            "primary": "360-Grad-Sicht aufbauen",
+            "secondary": "Details ansehen"
+        }
+    }
+}
