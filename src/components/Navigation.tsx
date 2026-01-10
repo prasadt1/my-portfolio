@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,13 +24,13 @@ const Navigation: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/products', label: 'Frameworks' },
-    { path: '/projects', label: 'Projects' },
+    { path: '/', label: t('nav.home') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/products', label: t('nav.frameworks') },
+    { path: '/projects', label: t('nav.projects') },
     { path: '/climate-tech', label: 'Climate Tech' },
-    { path: '/fit-check', label: 'Engagement' },
-    { path: '/contact', label: 'Contact' }
+    { path: '/fit-check', label: t('nav.engagement') },
+    { path: '/contact', label: t('nav.contact') }
   ];
 
   return (
@@ -42,7 +45,7 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3 text-slate-900 dark:text-slate-100 hover:opacity-80 transition-opacity"
+            className="flex-shrink-0 flex items-center gap-3 text-slate-900 dark:text-slate-100 hover:opacity-80 transition-opacity whitespace-nowrap"
           >
             <div className="w-10 h-10 rounded-full bg-slate-900 dark:bg-emerald-500 flex items-center justify-center text-white font-serif font-bold text-lg shadow-md">
               PT
@@ -53,13 +56,13 @@ const Navigation: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex gap-8">
+          <div className="hidden xl:flex items-center gap-6 2xl:gap-8 ml-12">
+            <div className="flex gap-4 2xl:gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm font-medium transition-colors relative py-1 ${isActive(link.path)
+                  className={`text-sm font-medium transition-colors relative py-1 whitespace-nowrap ${isActive(link.path)
                     ? 'text-slate-900 dark:text-white'
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
@@ -74,6 +77,9 @@ const Navigation: React.FC = () => {
                 </Link>
               ))}
             </div>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
 
             {/* Search Trigger */}
             <button
@@ -96,14 +102,15 @@ const Navigation: React.FC = () => {
             {/* Architecture Engine CTA */}
             <Link
               to="/architecture-engine"
-              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md active:scale-95"
+              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap"
             >
-              Architecture Engine
+              {t('nav.architectureEngine')}
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 xl:hidden">
+            <LanguageSwitcher />
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -129,7 +136,7 @@ const Navigation: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed top-20 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg z-40 md:hidden overflow-hidden transition-colors"
+            className="fixed top-20 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg z-40 xl:hidden overflow-hidden transition-colors"
           >
             <div className="p-4 flex flex-col gap-2">
               {navLinks.map((link) => (
@@ -170,5 +177,4 @@ const Navigation: React.FC = () => {
     </>
   );
 };
-
 export default Navigation;

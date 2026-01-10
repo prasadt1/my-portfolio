@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
     ArrowRight,
     CheckCircle2,
@@ -20,6 +21,8 @@ import LogoCarousel from '../components/LogoCarousel';
 import { caseStudies } from '../data/caseStudies';
 
 const HomePageMultiDomain: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <SEO
@@ -55,92 +58,88 @@ const HomePageMultiDomain: React.FC = () => {
 
                             {/* Main Headline */}
                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-                                I Don't Just Build Systems—
-                                <br />
-                                <span className="text-emerald-400">I Solve Business Problems</span>
+                                {t('hero.title')}
                             </h1>
 
                             {/* Subheadline */}
                             <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-4xl mx-auto leading-relaxed">
-                                15+ years driving business outcomes through innovative technical solutions.
-                                <br />
-                                From hands-on architecture to Fortune 100 ecosystem leadership.
+                                {t('hero.subtitle')}
                             </p>
 
                             {/* Business Outcomes Stats */}
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
+                            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 }}
-                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
                                 >
-                                    <div className="text-4xl font-bold text-emerald-400 mb-2">$1M+</div>
-                                    <div className="text-sm text-slate-300">Cost Savings Delivered</div>
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.savings.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.savings.label')}</div>
                                 </motion.div>
 
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
-                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
                                 >
-                                    <div className="text-4xl font-bold text-emerald-400 mb-2">20%</div>
-                                    <div className="text-sm text-slate-300">Revenue Increases</div>
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.revenue.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.revenue.label')}</div>
                                 </motion.div>
 
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4 }}
-                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
                                 >
-                                    <div className="text-4xl font-bold text-emerald-400 mb-2">30%</div>
-                                    <div className="text-sm text-slate-300">Efficiency Gains</div>
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.efficiency.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.efficiency.label')}</div>
                                 </motion.div>
 
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
-                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
                                 >
-                                    <div className="text-4xl font-bold text-emerald-400 mb-2">100+</div>
-                                    <div className="text-sm text-slate-300">Companies Impacted</div>
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.impact.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.impact.label')}</div>
                                 </motion.div>
                             </div>
 
                             {/* Value Proposition Bullets */}
-                            <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12 text-left">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12 text-left">
                                 <div className="flex items-start gap-3">
                                     <Lightbulb className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
                                     <div>
-                                        <div className="font-bold text-white mb-1">Innovation-Driven</div>
-                                        <div className="text-sm text-slate-300">Out-of-box thinking for complex challenges</div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.innovation.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.innovation.desc')}</div>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start gap-3">
                                     <Target className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
                                     <div>
-                                        <div className="font-bold text-white mb-1">Business-First</div>
-                                        <div className="text-sm text-slate-300">Revenue, cost, and impact focused</div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.business.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.business.desc')}</div>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start gap-3">
                                     <Users className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
                                     <div>
-                                        <div className="font-bold text-white mb-1">Servant Leader</div>
-                                        <div className="text-sm text-slate-300">Empathetic, collaborative approach</div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.leadership.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.leadership.desc')}</div>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start gap-3">
                                     <Zap className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
                                     <div>
-                                        <div className="font-bold text-white mb-1">Full-Stack</div>
-                                        <div className="text-sm text-slate-300">Design to deployment to leadership</div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.fullstack.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.fullstack.desc')}</div>
                                     </div>
                                 </div>
                             </div>
@@ -151,14 +150,14 @@ const HomePageMultiDomain: React.FC = () => {
                                     <div className="text-left flex-1">
                                         <div className="flex items-center gap-2 mb-2">
                                             <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-                                                For Recruiters
+                                                {t('hero.recruiter.badge')}
                                             </span>
                                         </div>
                                         <h3 className="text-lg font-bold text-white mb-1">
-                                            Hiring an Enterprise Architect?
+                                            {t('hero.recruiter.title')}
                                         </h3>
                                         <p className="text-sm text-slate-300">
-                                            Get the executive summary of my 15+ years experience.
+                                            {t('hero.recruiter.desc')}
                                         </p>
                                     </div>
 
@@ -169,14 +168,14 @@ const HomePageMultiDomain: React.FC = () => {
                                             className="flex items-center gap-2 bg-white text-slate-900 px-5 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-colors text-sm"
                                         >
                                             <Download size={18} />
-                                            Download Resume
+                                            {t('hero.recruiter.download')}
                                         </a>
                                         <Link
                                             to="/projects"
                                             className="flex items-center gap-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-5 py-3 rounded-lg font-bold transition-all text-sm"
                                         >
                                             <FileText size={18} />
-                                            View Portfolio
+                                            {t('hero.recruiter.portfolio')}
                                         </Link>
                                     </div>
                                 </div>
@@ -219,11 +218,10 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-16"
                         >
                             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
-                                How I Approach Problems
+                                {t('howItWork.title')}
                             </h2>
                             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-                                Not through technology for technology's sake—but through
-                                business-first, human-centered innovation
+                                {t('howItWork.subtitle')}
                             </p>
                         </motion.div>
 
@@ -242,12 +240,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 <Target className="w-12 h-12 text-emerald-600 mb-4 mt-4" />
 
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    Business Outcomes First
+                                    {t('howItWork.steps.1.title')}
                                 </h3>
 
                                 <p className="text-slate-700 dark:text-slate-300 mb-4">
-                                    I start with: "What business problem are we solving?" Not: "What
-                                    technology should we use?"
+                                    {t('howItWork.steps.1.desc')}
                                 </p>
 
                                 <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
@@ -255,8 +252,7 @@ const HomePageMultiDomain: React.FC = () => {
                                         Example:
                                     </div>
                                     <div className="text-slate-600 dark:text-slate-400">
-                                        Delivery Hero needed revenue growth → Display Ads platform
-                                        → 20% revenue increase
+                                        {t('howItWork.steps.1.example')}
                                     </div>
                                 </div>
                             </motion.div>
@@ -276,12 +272,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 <Lightbulb className="w-12 h-12 text-blue-600 mb-4 mt-4" />
 
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    Out-of-Box Thinking
+                                    {t('howItWork.steps.2.title')}
                                 </h3>
 
                                 <p className="text-slate-700 dark:text-slate-300 mb-4">
-                                    I challenge assumptions and find creative solutions others miss.
-                                    Innovation over convention.
+                                    {t('howItWork.steps.2.desc')}
                                 </p>
 
                                 <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
@@ -289,8 +284,7 @@ const HomePageMultiDomain: React.FC = () => {
                                         Example:
                                     </div>
                                     <div className="text-slate-600 dark:text-slate-400">
-                                        BRITA: Prototyped AI-driven search optimization to future-proof
-                                        for Google AI results
+                                        {t('howItWork.steps.2.example')}
                                     </div>
                                 </div>
                             </motion.div>
@@ -310,12 +304,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 <Users className="w-12 h-12 text-violet-600 mb-4 mt-4" />
 
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    Empathetic Leadership
+                                    {t('howItWork.steps.3.title')}
                                 </h3>
 
                                 <p className="text-slate-700 dark:text-slate-300 mb-4">
-                                    I lead by enabling others, not commanding. Collaboration and
-                                    empathy over hierarchy.
+                                    {t('howItWork.steps.3.desc')}
                                 </p>
 
                                 <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
@@ -323,8 +316,7 @@ const HomePageMultiDomain: React.FC = () => {
                                         Example:
                                     </div>
                                     <div className="text-slate-600 dark:text-slate-400">
-                                        PACT: Aligned 100+ competing companies through facilitation,
-                                        not force
+                                        {t('howItWork.steps.3.example')}
                                     </div>
                                 </div>
                             </motion.div>
@@ -344,12 +336,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 <Zap className="w-12 h-12 text-orange-600 mb-4 mt-4" />
 
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    Hands-On Execution
+                                    {t('howItWork.steps.4.title')}
                                 </h3>
 
                                 <p className="text-slate-700 dark:text-slate-300 mb-4">
-                                    I don't just advise—I architect, code, and deploy. From design to
-                                    production.
+                                    {t('howItWork.steps.4.desc')}
                                 </p>
 
                                 <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
@@ -357,12 +348,12 @@ const HomePageMultiDomain: React.FC = () => {
                                         Example:
                                     </div>
                                     <div className="text-slate-600 dark:text-slate-400">
-                                        SINE: Designed AND implemented PACT Catalog (Next.js, React,
-                                        Java Spring Boot)
+                                        {t('howItWork.steps.4.example')}
                                     </div>
                                 </div>
                             </motion.div>
                         </div>
+
 
                         {/* Bottom tagline */}
                         <motion.div
@@ -373,15 +364,16 @@ const HomePageMultiDomain: React.FC = () => {
                         >
                             <div className="inline-block bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-8 py-4 rounded-xl shadow-lg">
                                 <p className="text-xl font-bold">
-                                    Result: Solutions that work for business, teams, and users
+                                    {t('howItWork.resultTagline')}
                                 </p>
                             </div>
                         </motion.div>
                     </div>
+
                 </section>
 
                 {/* PATH SELECTOR - NEW SECTION */}
-                <section id="path-selector" className="py-32 bg-white dark:bg-slate-800 scroll-mt-20">
+                <section id="path-selector" className="py-32 bg-white dark:bg-slate-800 scroll-mt-20" >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -390,10 +382,10 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-20"
                         >
                             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900 dark:text-white">
-                                What Do You Need?
+                                {t('pathSelector.title')}
                             </h2>
                             <p className="text-2xl text-slate-600 dark:text-slate-300">
-                                Choose your path to get started
+                                {t('pathSelector.subtitle')}
                             </p>
                         </motion.div>
 
@@ -407,10 +399,10 @@ const HomePageMultiDomain: React.FC = () => {
                             >
                                 <div className="text-7xl mb-6">🤝</div>
                                 <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                                    Custom Consulting
+                                    {t('pathSelector.consulting.title')}
                                 </h3>
                                 <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 flex-grow">
-                                    Complex transformation requiring hands-on architecture expertise
+                                    {t('pathSelector.consulting.desc')}
                                 </p>
                                 <ul className="space-y-3 mb-8 text-base">
                                     <li className="flex items-start gap-3">
@@ -432,7 +424,7 @@ const HomePageMultiDomain: React.FC = () => {
                                     rel="noopener noreferrer"
                                     className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-blue-500/30"
                                 >
-                                    Book Strategy Call
+                                    {t('pathSelector.consulting.cta')}
                                 </a>
                                 <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 font-medium">
                                     €300/hour
@@ -447,13 +439,13 @@ const HomePageMultiDomain: React.FC = () => {
                                 transition={{ delay: 0.1 }}
                                 className="group bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-3xl p-10 border-2 border-emerald-200 dark:border-emerald-700 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col relative overflow-hidden"
                             >
-                                <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl uppercase tracking-wider">Most Popular</div>
+                                <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl uppercase tracking-wider">{t('pathSelector.products.badge')}</div>
                                 <div className="text-7xl mb-6">📦</div>
                                 <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                                    Ready-Made Solutions
+                                    {t('pathSelector.products.title')}
                                 </h3>
                                 <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 flex-grow">
-                                    Battle-tested toolkits to accelerate your transformation
+                                    {t('pathSelector.products.desc')}
                                 </p>
                                 <ul className="space-y-3 mb-8 text-base">
                                     <li className="flex items-start gap-3">
@@ -473,7 +465,7 @@ const HomePageMultiDomain: React.FC = () => {
                                     to="/products"
                                     className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-emerald-500/30"
                                 >
-                                    Browse Products
+                                    {t('pathSelector.products.cta')}
                                 </Link>
                                 <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 font-medium">
                                     €1,000 - €15,000
@@ -490,10 +482,10 @@ const HomePageMultiDomain: React.FC = () => {
                             >
                                 <div className="text-7xl mb-6">🔍</div>
                                 <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                                    See the Proof
+                                    {t('pathSelector.proof.title')}
                                 </h3>
                                 <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 flex-grow">
-                                    Explore case studies and real project outcomes
+                                    {t('pathSelector.proof.desc')}
                                 </p>
                                 <ul className="space-y-3 mb-8 text-base">
                                     <li className="flex items-start gap-3">
@@ -513,7 +505,7 @@ const HomePageMultiDomain: React.FC = () => {
                                     to="/projects"
                                     className="block w-full text-center bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-violet-500/30"
                                 >
-                                    View Case Studies
+                                    {t('pathSelector.proof.cta')}
                                 </Link>
                                 <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 font-medium">
                                     Free to explore
@@ -547,12 +539,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 </div>
 
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                    Enterprise Architecture & Implementation
+                                    {t('pillars.architecture.title')}
                                 </h3>
 
                                 <p className="text-slate-600 dark:text-slate-300 mb-6">
-                                    Full-stack solutions from architecture to deployment.
-                                    I don't just design—I build, lead teams, and deliver.
+                                    {t('pillars.architecture.desc')}
                                 </p>
 
                                 <div className="space-y-3 mb-6">
@@ -636,12 +627,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 </div>
 
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                    Compliance-First Cloud Migration
+                                    {t('pillars.compliance.title')}
                                 </h3>
 
                                 <p className="text-slate-600 dark:text-slate-300 mb-6">
-                                    Specialized in regulated industries. Zero breaches, 100% audit
-                                    pass rate, significant cost savings.
+                                    {t('pillars.compliance.desc')}
                                 </p>
 
                                 <div className="space-y-3 mb-6">
@@ -709,7 +699,7 @@ const HomePageMultiDomain: React.FC = () => {
                                 <div className="mt-4 text-center text-sm text-slate-500">
                                     Industries: Healthcare, Pharma, Finance, Retail
                                 </div>
-                            </motion.div >
+                            </motion.div>
 
                             {/* Pillar 3: Sustainability & Ecosystem */}
                             <motion.div
@@ -728,12 +718,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 </div>
 
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                    Sustainability Tech & Ecosystem Building
+                                    {t('pillars.ecosystem.title')}
                                 </h3>
 
                                 <p className="text-slate-600 dark:text-slate-300 mb-6">
-                                    Led PACT Protocol standardization. Designed, built, and aligned
-                                    a global ecosystem—technical + organizational.
+                                    {t('pillars.ecosystem.desc')}
                                 </p>
 
                                 <div className="space-y-3 mb-6">
@@ -874,11 +863,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 </Link>
                             </div>
                         </div>
-                    </div >
-                </section >
+                    </div>
+                </section>
 
                 {/* LEADERSHIP VALUES BANNER */}
-                < section className="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-emerald-900 text-white" >
+                <section className="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-emerald-900 text-white" >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl font-bold mb-4">Why Work With Me</h2>
@@ -927,10 +916,10 @@ const HomePageMultiDomain: React.FC = () => {
                             </blockquote>
                         </div>
                     </div>
-                </section >
+                </section>
 
                 {/* FINAL CTA - Simplified */}
-                < section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center" >
+                <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center" >
                     <div className="max-w-4xl mx-auto px-4">
                         <h2 className="text-4xl md:text-5xl font-bold mb-8">
                             Ready to Transform?
@@ -942,7 +931,7 @@ const HomePageMultiDomain: React.FC = () => {
                             Choose Your Path
                         </a>
                     </div>
-                </section >
+                </section>
             </div>
         </>
     );

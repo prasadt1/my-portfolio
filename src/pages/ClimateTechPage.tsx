@@ -43,7 +43,7 @@ const ClimateTechPage: React.FC = () => {
                                 Decarbonizing Supply Chains through <span className="text-emerald-400">Data Transparency</span>
                             </h1>
                             <p className="text-xl text-slate-200 mb-8 max-w-2xl leading-relaxed">
-                                Architecting the global standards and digital platforms that enable Fortune 100 companies to exchange Scope 3 emissions data securely and at scale.
+                                Facilitating engagement and community for shaping the global standards and digital platforms that enable Fortune 100 companies to exchange Scope 3 emissions data securely and at scale.
                             </p>
 
                             <div className="flex flex-wrap gap-4">

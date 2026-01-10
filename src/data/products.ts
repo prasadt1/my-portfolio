@@ -1,128 +1,154 @@
-import { LucideIcon } from 'lucide-react';
+// import { LucideIcon } from 'lucide-react';
 
 export interface Product {
     id: string;
     slug: string;
-    title: string;
-    description: string;
+    // title & description will be pulled from i18n
     price: number;
-    icon: string; // Lucide icon name or emoji
-    features: string[];
+    icon: string; // Lucide icon name
+    // features will be pulled from i18n
     category: 'industry40' | 'compliance' | 'consulting' | 'carbon' | 'ecommerce' | 'architecture' | 'data';
     ctaLink: string;
+    theme: {
+        color: string; // e.g. "blue", "emerald", "orange", "purple", "rose", "cyan"
+        gradient: string; // Tailwinc classes
+        iconBg: string;
+        backgroundImage?: string; // path to image
+    }
 }
 
 export const products: Product[] = [
     {
         id: 'ecommerce-blueprint',
         slug: 'ecommerce-blueprint',
-        title: 'Global Headless eCommerce Blueprint',
-        description: 'The exact architecture used to scale BRITA to 15+ markets. Includes Azure middleware patterns and Nuxt.js store templates.',
         price: 15000,
         icon: 'ShoppingBag',
-        features: [
-            'Headless Commerce Reference Architecture',
-            'Multi-Tenant Governance Model',
-            'Azure Integration Logic Apps',
-            'Vue.js/Nuxt.js Storefront Boilerplate'
-        ],
         category: 'ecommerce',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'orange',
+            gradient: 'from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10',
+            iconBg: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
+        }
     },
     {
         id: 'pact-starter-kit',
         slug: 'pact-starter-kit',
-        title: 'PACT Carbon Transparency Starter Kit',
-        description: 'Accelerate PCF data exchange implementation. Connect to the WBCSD network with pre-built adaptors.',
         price: 9500,
         icon: 'Leaf',
-        features: [
-            'API Implementation Guide (OpenAPI)',
-            'Conformance Testing Scripts',
-            'Data Model Mapping Template',
-            'Includes 3hr integration workshop'
-        ],
         category: 'carbon',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'emerald',
+            gradient: 'from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/10',
+            iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
+            backgroundImage: '/assets/bg/bg-eco.png'
+        }
     },
     {
         id: 'data-lake-architecture',
         slug: 'data-lake-architecture',
-        title: 'GDPR-Compliant Data Mesh Framework',
-        description: 'Enterprise Data Lake architecture with automated PII masking and governance. Validated in pharma.',
         price: 18000,
         icon: 'Database',
-        features: [
-            'AWS Lake Formation Terraform Modules',
-            'Automated PII Masking Pipeline',
-            'Data Governance Charter Template',
-            'Self-Service Portal Wireframes'
-        ],
         category: 'data',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+        }
     },
     {
         id: 'display-ads-architecture',
         slug: 'display-ads-architecture',
-        title: 'High-Scale AdTech Architecture',
-        description: 'Event-driven architecture for <20ms latency bidding systems. Proven at Delivery Hero.',
         price: 12000,
         icon: 'Zap',
-        features: [
-            'Golang & Redis Architecture Diagrams',
-            'Kubernetes Scaling Policies',
-            'Exact-Once Processing Patterns',
-            'Load Testing Framework (k6)'
-        ],
         category: 'architecture',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'purple',
+            gradient: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/10',
+            iconBg: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
+        }
     },
     {
         id: 'hipaa-compliance-package',
         slug: 'hipaa-compliance-package',
-        title: 'HIPAA Cloud Migration Compliance Package',
-        description: 'Used in 12 successful migrations. Ensure zero-breach cloud architecture to audit standards.',
         price: 8000,
         icon: 'Shield',
-        features: [
-            'Gap Analysis Template (Excel)',
-            'AWS Architecture Blueprints (HIPAA-Ready)',
-            'Security Controls Checklist',
-            'Includes 2hr implementation consultation'
-        ],
         category: 'compliance',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'red',
+            gradient: 'from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/10',
+            iconBg: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
+        }
     },
     {
-        id: 'industry-4-0-toolkit',
+        id: 'industry40-toolkit',
         slug: 'industry40-toolkit',
-        title: 'Industry 4.0 Digital Transformation Toolkit',
-        description: 'Based on Lonza & AstraZeneca RFPs. Accelerate manufacturing digitization and IoT adoption.',
         price: 12000,
         icon: 'Factory',
-        features: [
-            'IoT Assessment Framework',
-            'Smart Factory Implementation Roadmap',
-            'ROI Calculator (Manufacturing-Specific)',
-            'Includes 2hr consultation'
-        ],
         category: 'industry40',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'cyan',
+            gradient: 'from-cyan-50 to-sky-50 dark:from-cyan-900/20 dark:to-sky-900/10',
+            iconBg: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400'
+        }
     },
     {
         id: 'it-effectiveness-assessment',
         slug: 'it-effectiveness-assessment',
-        title: 'IT Effectiveness Assessment Framework',
-        description: 'Benchmark against 100+ companies. Quantify IT value and maturity for investors or boards.',
         price: 5000,
         icon: 'BarChart',
-        features: [
-            '50-Point Assessment Questionnaire',
-            'Automated Scoring & Benchmarking',
-            'Executive Summary Template',
-            'Includes 1hr consultation'
-        ],
         category: 'consulting',
-        ctaLink: '#'
+        ctaLink: '#',
+        theme: {
+            color: 'slate',
+            gradient: 'from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-900',
+            iconBg: 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+        }
+    },
+    {
+        id: 'devops-maturity-assessment',
+        slug: 'devops-maturity-assessment',
+        price: 8000,
+        icon: 'Loop', // Will need to map to Infinity/Loop symbol
+        category: 'consulting',
+        ctaLink: '#',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+            backgroundImage: '/assets/bg/bg-devops.png'
+        }
+    },
+    {
+        id: 'architecture-assessment',
+        slug: 'architecture-assessment',
+        price: 15000,
+        icon: 'Structure', // Will need to map to Layout/Building
+        category: 'architecture',
+        ctaLink: '#',
+        theme: {
+            color: 'indigo',
+            gradient: 'from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/10',
+            iconBg: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400',
+            backgroundImage: '/assets/bg/bg-architecture.png'
+        }
+    },
+    {
+        id: 'agile-maturity-assessment',
+        slug: 'agile-maturity-assessment',
+        price: 6000,
+        icon: 'Users',
+        category: 'consulting',
+        ctaLink: '#',
+        theme: {
+            color: 'lime',
+            gradient: 'from-lime-50 to-green-50 dark:from-lime-900/20 dark:to-green-900/10',
+            iconBg: 'bg-lime-100 dark:bg-lime-900/30 text-lime-600 dark:text-lime-400'
+        }
     }
 ];

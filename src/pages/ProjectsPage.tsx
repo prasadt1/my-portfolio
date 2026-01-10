@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/projects';
 import { CaseStudy } from '../types/CaseStudy';
 import { DOMAINS } from '../data/domains';
-import { FolderGit2, Building2, Tag, Layers, ArrowRight } from 'lucide-react';
+import { FolderGit2, Building2, Layers, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 import SmartProjectFilter from '../components/SmartProjectFilter';
@@ -154,6 +154,13 @@ const ProjectsPage: React.FC = () => {
 
 // Internal Project Card
 const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
+  // Default theme fallback
+  const theme = project.theme || {
+    color: 'emerald',
+    gradient: 'from-slate-800 to-emerald-600 dark:from-slate-700 dark:to-emerald-500',
+    iconBg: 'text-emerald-600 dark:text-emerald-400'
+  };
+
   return (
     <motion.div
       layout
@@ -161,20 +168,31 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.3 }}
-      className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:shadow-emerald-900/5 dark:hover:shadow-emerald-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden"
+      className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden"
     >
-      {/* Top Decoration */}
-      <div className="h-2 bg-gradient-to-r from-slate-800 to-emerald-600 dark:from-slate-700 dark:to-emerald-500"></div>
+      {/* Dynamic Hover Gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
 
-      <div className="p-6 flex flex-col flex-1">
+      {/* Contextual Background Image */}
+      {theme.backgroundImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-5 dark:opacity-10 transition-transform duration-700 group-hover:scale-110 pointer-events-none mix-blend-overlay"
+          style={{ backgroundImage: `url(${theme.backgroundImage})` }}
+        />
+      )}
+
+      {/* Top Decoration */}
+      <div className={`h-2 bg-gradient-to-r ${theme.gradient}`}></div>
+
+      <div className="p-6 flex flex-col flex-1 relative z-10">
         {/* Header */}
         <div className="flex justify-between items-start mb-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+            <div className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-2 text-${theme.color}-600 dark:text-${theme.color}-400`}>
               <Building2 size={12} />
               {project.header.client.industry}
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
               {project.header.title}
             </h3>
           </div>
@@ -187,7 +205,7 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
             {project.projectType.replace('-', ' ')}
           </span>
           {/* Primary Domain Badge */}
-          <span className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-xs font-medium border border-slate-200 dark:border-slate-600">
+          <span className={`bg-${theme.color}-50 dark:bg-${theme.color}-900/20 text-${theme.color}-700 dark:text-${theme.color}-300 px-2 py-0.5 rounded text-xs font-medium border border-${theme.color}-100 dark:border-${theme.color}-800`}>
             {project.domains[0]}
           </span>
         </div>
@@ -218,14 +236,11 @@ const ProjectCard: React.FC<{ project: CaseStudy }> = ({ project }) => {
       </div>
 
       {/* Footer / Link */}
-      <div className="px-6 pb-6 pt-0 mt-2">
-        <Link to={`/projects/${project.slug}`} className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+      <div className="px-6 pb-6 pt-0 mt-2 relative z-10">
+        <Link to={`/projects/${project.slug}`} className={`font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all text-${theme.color}-600 dark:text-${theme.color}-400`}>
           View Case Study <ArrowRight size={16} />
         </Link>
       </div>
-
-      {/* Hover Layer */}
-      <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/[0.02] dark:group-hover:bg-white/[0.02] transition-colors pointer-events-none" />
     </motion.div>
   );
 };

@@ -1,0 +1,245 @@
+{
+    "nav": {
+        "home": "Home",
+        "frameworks": "Frameworks",
+        "about": "About",
+        "projects": "Projects",
+        "engagement": "Engagement",
+        "contact": "Contact",
+        "consulting": "Consulting",
+        "architectureEngine": "Architecture Engine"
+    },
+    "hero": {
+        "title": "Business-First AI Engineering",
+        "subtitle": "I bridge the gap between Enterprise Architecture and Modern AI, delivering scalable solutions that drive real revenue.",
+        "cta": "Explore My Work",
+        "carousel": "Trusted by Fortune 500 Leaders",
+        "stats": {
+            "savings": {
+                "value": "$1M+",
+                "label": "Cost Savings Delivered"
+            },
+            "revenue": {
+                "value": "20%",
+                "label": "Revenue Increases"
+            },
+            "efficiency": {
+                "value": "30%",
+                "label": "Efficiency Gains"
+            },
+            "impact": {
+                "value": "100+",
+                "label": "Companies Impacted"
+            }
+        },
+        "values": {
+            "innovation": {
+                "title": "Innovation-Driven",
+                "desc": "Out-of-box thinking for complex challenges"
+            },
+            "business": {
+                "title": "Business-First",
+                "desc": "Revenue, cost, and impact focused"
+            },
+            "leadership": {
+                "title": "Servant Leader",
+                "desc": "Empathetic, collaborative approach"
+            },
+            "fullstack": {
+                "title": "Full-Stack",
+                "desc": "Design to deployment to leadership"
+            }
+        },
+        "recruiter": {
+            "badge": "For Recruiters",
+            "title": "Hiring an Enterprise Architect?",
+            "desc": "Get the executive summary of my 15+ years experience.",
+            "download": "Download Resume",
+            "portfolio": "View Portfolio"
+        }
+    },
+    "howItWork": {
+        "title": "How I Approach Problems",
+        "subtitle": "Not through technology for technology's sake—but through business-first, human-centered innovation",
+        "resultTagline": "Result: Solutions that work for business, teams, and users",
+        "steps": {
+            "1": {
+                "title": "Business Outcomes First",
+                "desc": "I start with: \"What business problem are we solving?\" Not: \"What technology should we use?\"",
+                "example": "Delivery Hero needed revenue growth → Display Ads platform → 20% revenue increase"
+            },
+            "2": {
+                "title": "Out-of-Box Thinking",
+                "desc": "I challenge assumptions and find creative solutions others miss. Innovation over convention.",
+                "example": "BRITA: Prototyped AI-driven search optimization to future-proof for Google AI results"
+            },
+            "3": {
+                "title": "Empathetic Leadership",
+                "desc": "I lead by enabling others, not commanding. Collaboration and empathy over hierarchy.",
+                "example": "PACT: Aligned 100+ competing companies through facilitation, not force"
+            },
+            "4": {
+                "title": "Hands-On Execution",
+                "desc": "I don't just advise—I architect, code, and deploy. From design to production.",
+                "example": "SINE: Designed AND implemented PACT Catalog (Next.js, React, Java Spring Boot)"
+            }
+        }
+    },
+    "pathSelector": {
+        "title": "What Do You Need?",
+        "subtitle": "Choose your path to get started",
+        "consulting": {
+            "title": "Custom Consulting",
+            "desc": "Complex transformation requiring hands-on architecture expertise",
+            "cta": "Book Strategy Call"
+        },
+        "products": {
+            "title": "Ready-Made Solutions",
+            "desc": "Battle-tested toolkits to accelerate your transformation",
+            "cta": "Browse Products",
+            "badge": "Most Popular"
+        },
+        "proof": {
+            "title": "See the Proof",
+            "desc": "Explore case studies and real project outcomes",
+            "cta": "View Case Studies"
+        }
+    },
+    "pillars": {
+        "architecture": {
+            "title": "Enterprise Architecture",
+            "desc": "Full-stack solutions from architecture to deployment."
+        },
+        "compliance": {
+            "title": "Compliance-First Migration",
+            "desc": "Specialized in regulated industries. Zero breaches."
+        },
+        "ecosystem": {
+            "title": "Sustainability Tech",
+            "desc": "Led PACT Protocol standardization. Global ecosystem building."
+        }
+    },
+    "footer": {
+        "tagline": "Strategic Enterprise Architect & Business Problem Solver.",
+        "explore": "Explore",
+        "expertise": "Expertise",
+        "contact": "Get in Touch",
+        "rights": "All rights reserved.",
+        "builtWith": "Built with AI"
+    },
+    "common": {
+        "viewProject": "View Project",
+        "viewAllProjects": "View All Projects",
+        "readMore": "Read More"
+    },
+    "productsPage": {
+        "title": "Battle-Tested Toolkits",
+        "subtitle": "Proven intellectual property and frameworks developed over 15+ years of enterprise consulting. Save months of effort and reduce risk.",
+        "price": "Price",
+        "inquire": "Inquire to Purchase",
+        "consultingTitle": "Proprietary Consulting Methodologies",
+        "consultingSubtitle": "Exclusive intellectual property available through my consulting engagements. These are not sold separately but are the foundation of my delivery excellence."
+    },
+    "products": {
+        "ecommerce-blueprint": {
+            "title": "Global Headless eCommerce Blueprint",
+            "desc": "The exact architecture used to scale BRITA to 15+ markets. Includes Azure middleware patterns and Nuxt.js store templates.",
+            "features": [
+                "Headless Commerce Reference Architecture",
+                "Multi-Tenant Governance Model",
+                "Azure Integration Logic Apps",
+                "Vue.js/Nuxt.js Storefront Boilerplate"
+            ]
+        },
+        "pact-starter-kit": {
+            "title": "PACT Carbon Transparency Starter Kit",
+            "desc": "Accelerate PCF data exchange implementation. Connect to the WBCSD network with pre-built adaptors.",
+            "features": [
+                "API Implementation Guide (OpenAPI)",
+                "Conformance Testing Scripts",
+                "Data Model Mapping Template",
+                "Includes 3hr integration workshop"
+            ]
+        },
+        "data-lake-architecture": {
+            "title": "GDPR-Compliant Data Mesh Framework",
+            "desc": "Enterprise Data Lake architecture with automated PII masking and governance. Validated in pharma.",
+            "features": [
+                "AWS Lake Formation Terraform Modules",
+                "Automated PII Masking Pipeline",
+                "Data Governance Charter Template",
+                "Self-Service Portal Wireframes"
+            ]
+        },
+        "display-ads-architecture": {
+            "title": "High-Scale AdTech Architecture",
+            "desc": "Event-driven architecture for <20ms latency bidding systems. Proven at Delivery Hero.",
+            "features": [
+                "Golang & Redis Architecture Diagrams",
+                "Kubernetes Scaling Policies",
+                "Exact-Once Processing Patterns",
+                "Load Testing Framework (k6)"
+            ]
+        },
+        "hipaa-compliance-package": {
+            "title": "HIPAA Cloud Migration Compliance Package",
+            "desc": "Used in 12 successful migrations. Ensure zero-breach cloud architecture to audit standards.",
+            "features": [
+                "Gap Analysis Template (Excel)",
+                "AWS Architecture Blueprints (HIPAA-Ready)",
+                "Security Controls Checklist",
+                "Includes 2hr implementation consultation"
+            ]
+        },
+        "industry40-toolkit": {
+            "title": "Industry 4.0 Digital Transformation Toolkit",
+            "desc": "Based on Lonza & AstraZeneca RFPs. Accelerate manufacturing digitization and IoT adoption.",
+            "features": [
+                "IoT Assessment Framework",
+                "Smart Factory Implementation Roadmap",
+                "ROI Calculator (Manufacturing-Specific)",
+                "Includes 2hr consultation"
+            ]
+        },
+        "it-effectiveness-assessment": {
+            "title": "IT Effectiveness Assessment Framework",
+            "desc": "Benchmark against 100+ companies. Quantify IT value and maturity for investors or boards.",
+            "features": [
+                "50-Point Assessment Questionnaire",
+                "Automated Scoring & Benchmarking",
+                "Executive Summary Template",
+                "Includes 1hr consultation"
+            ]
+        },
+        "devops-maturity-assessment": {
+            "title": "DevOps Maturity Assessment",
+            "desc": "Evaluate your CI/CD pipelines, culture, and automation levels against industry best practices.",
+            "features": [
+                "DORA Metrics Analysis",
+                "Pipeline Bottle-neck Identification",
+                "Culture & Process Review",
+                "Transformation Roadmap"
+            ]
+        },
+        "architecture-assessment": {
+            "title": "Enterprise Architecture Assessment",
+            "desc": "Comprehensive review of your application portfolio, technical debt, and architectural governance.",
+            "features": [
+                "Application Portfolio Rationalization",
+                "Technical Debt Heatmap",
+                "Cloud Readiness Score",
+                "Governance Gap Analysis"
+            ]
+        },
+        "agile-maturity-assessment": {
+            "title": "Agile Maturity Assessment",
+            "desc": "Move beyond 'Fragile Agile'. Assess team autonomy, velocity, and product-mindset adoption.",
+            "features": [
+                "Scrum/Kanban Anti-pattern Check",
+                "Product Ownership Maturity",
+                "Team Autonomy Index",
+                "Agile Coaching Plan"
+            ]
+        }
+    }
+}

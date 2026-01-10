@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
+    const { t } = useTranslation();
 
     return (
         <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-24 md:pb-16 font-sans">
@@ -20,7 +22,7 @@ const Footer: React.FC = () => {
                             </span>
                         </Link>
                         <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                            Strategic Enterprise Architect & Business Problem Solver. Helping organizations navigate complexity through innovation and leadership.
+                            {t('footer.tagline')}
                         </p>
                         <div className="flex gap-4">
                             <a
@@ -53,18 +55,18 @@ const Footer: React.FC = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">Explore</h3>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.explore')}</h3>
                         <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-                            <li><Link to="/about" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">About Me</Link></li>
-                            <li><Link to="/projects" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Selected Works</Link></li>
-                            <li><Link to="/products" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Frameworks</Link></li>
+                            <li><Link to="/about" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.about')} me</Link></li>
+                            <li><Link to="/projects" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.projects')}</Link></li>
+                            <li><Link to="/products" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.frameworks')}</Link></li>
                             <li><Link to="/architecture-engine" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Architecture Engine</Link></li>
                         </ul>
                     </div>
 
                     {/* Expertise */}
                     <div>
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">Expertise</h3>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.expertise')}</h3>
                         <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                             <li><Link to="/projects?tag=Cloud" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Cloud Migration</Link></li>
                             <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
@@ -75,7 +77,7 @@ const Footer: React.FC = () => {
 
                     {/* Contact CTA */}
                     <div>
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">Get in Touch</h3>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.contact')}</h3>
                         <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
                             Ready to transform your business or solve a complex architectural challenge?
                         </p>
@@ -92,10 +94,10 @@ const Footer: React.FC = () => {
 
                 <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-slate-500 text-sm text-center md:text-left">
-                        © {currentYear} Prasad Tilloo. All rights reserved.
+                        © {currentYear} Prasad Tilloo. {t('footer.rights')}
                     </p>
                     <div className="flex items-center gap-2 text-xs text-slate-400">
-                        <span>Built with AI</span>
+                        <span>{t('footer.builtWith')}</span>
                         <span className="w-1 h-1 bg-slate-400 rounded-full" />
                         <span>React & Tailwind</span>
                     </div>

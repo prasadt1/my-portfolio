@@ -1,0 +1,214 @@
+{
+    "nav": {
+        "home": "Startseite",
+        "frameworks": "Frameworks",
+        "about": "Über mich",
+        "projects": "Projekte",
+        "engagement": "Zusammenarbeit",
+        "contact": "Kontakt",
+        "consulting": "Beratung",
+        "architectureEngine": "Architecture Engine"
+    },
+    "hero": {
+        "title": "Business-First AI Engineering",
+        "subtitle": "Ich überbrücke die Lücke zwischen Enterprise Architecture und modernster KI – für skalierbare Lösungen, die echten Umsatz generieren.",
+        "cta": "Meine Arbeit entdecken",
+        "carousel": "Vertraut von Fortune 500 Führungskräften",
+        "stats": {
+            "savings": {
+                "value": "1M$+",
+                "label": "Kosteneinsparungen"
+            },
+            "revenue": {
+                "value": "20%",
+                "label": "Umsatzsteigerung"
+            },
+            "efficiency": {
+                "value": "30%",
+                "label": "Effizienzgewinne"
+            },
+            "impact": {
+                "value": "100+",
+                "label": "Unternehmen erreicht"
+            }
+        },
+        "values": {
+            "innovation": {
+                "title": "Innovationsgetrieben",
+                "desc": "Querdenken für komplexe Herausforderungen"
+            },
+            "business": {
+                "title": "Business-First",
+                "desc": "Fokus auf Umsatz, Kosten und Wirkung"
+            },
+            "leadership": {
+                "title": "Servant Leader",
+                "desc": "Empathischer, kollaborativer Ansatz"
+            },
+            "fullstack": {
+                "title": "Full-Stack",
+                "desc": "Vom Design bis zum Deployment"
+            }
+        },
+        "recruiter": {
+            "badge": "Für Recruiter",
+            "title": "Suchen Sie einen Enterprise Architect?",
+            "desc": "Holen Sie sich die Zusammenfassung meiner 15+ Jahre Erfahrung.",
+            "download": "Lebenslauf herunterladen",
+            "portfolio": "Portfolio ansehen"
+        }
+    },
+    "howItWork": {
+        "title": "Wie ich Probleme angehe",
+        "subtitle": "Nicht Technologie um der Technologie willen – sondern business-orientierte Innovation",
+        "resultTagline": "Ergebnis: Lösungen, die für Geschäft, Teams und Benutzer funktionieren",
+        "steps": {
+            "1": {
+                "title": "Business Impact zuerst",
+                "desc": "Ich starte mit: \"Welches Geschäftsproblem lösen wir?\" Nicht: \"Welche Technologie nutzen wir?\""
+            },
+            "2": {
+                "title": "Out-of-Box Denken",
+                "desc": "Ich hinterfrage Annahmen und finde kreative Lösungen. Innovation vor Konvention.",
+                "example": "BRITA: Prototyping von KI-gesteuerter Suchoptimierung zur Zukunftssicherung für Google AI-Ergebnisse"
+            },
+            "3": {
+                "title": "Empathische Führung",
+                "desc": "Ich führe durch Befähigung, nicht durch Befehl. Zusammenarbeit und Empathie vor Hierarchie.",
+                "example": "PACT: 100+ konkurrierende Unternehmen durch Moderation, nicht Zwang, ausgerichtet"
+            },
+            "4": {
+                "title": "Hands-On Umsetzung",
+                "desc": "Ich berate nicht nur – ich architekte, programmiere und deploye. Vom Entwurf bis zur Produktion.",
+                "example": "SINE: Entwurf UND Implementierung des PACT-Katalogs (Next.js, React, Java Spring Boot)"
+            }
+        }
+    },
+    "pathSelector": {
+        "title": "Was brauchen Sie?",
+        "subtitle": "Wählen Sie Ihren Weg zum Start",
+        "consulting": {
+            "title": "Individuelle Beratung",
+            "desc": "Komplexe Transformation mit Hands-on Architektur-Expertise",
+            "cta": "Strategiegespräch buchen"
+        },
+        "products": {
+            "title": "Fertige Lösungen",
+            "desc": "Praxiserprobte Toolkits zur Beschleunigung Ihrer Transformation",
+            "cta": "Produkte ansehen",
+            "badge": "Beliebt"
+        },
+        "proof": {
+            "title": "Der Beweis",
+            "desc": "Entdecken Sie Fallstudien und echte Projektergebnisse",
+            "cta": "Fallstudien ansehen"
+        }
+    },
+    "pillars": {
+        "architecture": {
+            "title": "Enterprise Architecture",
+            "desc": "Full-Stack Lösungen von Architektur bis Deployment."
+        },
+        "compliance": {
+            "title": "Compliance-First Migration",
+            "desc": "Spezialisiert auf regulierte Branchen. Null Vorfälle."
+        },
+        "ecosystem": {
+            "title": "Sustainability Tech",
+            "desc": "PACT Protokoll Standardisierung. Globaler Ökosystem-Aufbau."
+        }
+    },
+    "footer": {
+        "tagline": "Strategischer Enterprise Architect & Problemlöser.",
+        "explore": "Entdecken",
+        "expertise": "Expertise",
+        "contact": "Kontakt aufnehmen",
+        "rights": "Alle Rechte vorbehalten.",
+        "builtWith": "Erstellt mit AI"
+    },
+    "common": {
+        "viewProject": "Projekt ansehen",
+        "viewAllProjects": "Alle Projekte ansehen",
+        "readMore": "Mehr lesen"
+    },
+    "productsPage": {
+        "title": "Marktführerschaft durch Technologie",
+        "subtitle": "Bewährte Frameworks und Architekturen aus über 15 Jahren Enterprise Consulting. Sparen Sie Monate an Arbeit und minimieren Sie Risiken.",
+        "price": "Preis",
+        "inquire": "Kaufanfrage stellen",
+        "consultingTitle": "Proprietäre Beratungsansätze",
+        "consultingSubtitle": "Exklusives geistiges Eigentum, verfügbar durch meine Beratungsmandate. Diese sind die Grundlage meiner exzellenten Lieferqualität."
+    },
+    "products": {
+        "ecommerce-blueprint": {
+            "title": "Global Headless eCommerce Blueprint",
+            "desc": "Die exakte Architektur für die Skalierung von BRITA in 15+ Märkte. Inklusive Azure Middleware Patterns und Nuxt.js Vorlagen.",
+            "features": [
+                "Headless Commerce Referenzarchitektur",
+                "Multi-Tenant Governance Modell",
+                "Azure Integration Logic Apps",
+                "Vue.js/Nuxt.js Storefront Boilerplate"
+            ]
+        },
+        "pact-starter-kit": {
+            "title": "PACT Carbon Transparency Starter Kit",
+            "desc": "Beschleunigen Sie den PCF-Datenaustausch. Verbinden Sie sich mit dem WBCSD-Netzwerk mit vorgefertigten Adaptern.",
+            "features": [
+                "API Implementierungs-Guide (OpenAPI)",
+                "Konformitäts-Test-Skripte",
+                "Datenmodell-Mapping-Vorlage",
+                "Inklusive 3 Std. Integrations-Workshop"
+            ]
+        },
+        "data-lake-architecture": {
+            "title": "GDPR-Konformes Data Mesh",
+            "desc": "Enterprise Data Lake Architektur mit automatischer PII-Maskierung und Governance. Validiert in der Pharma-Industrie.",
+            "features": [
+                "AWS Lake Formation Terraform Module",
+                "Automatisierte PII Maskierungs-Pipeline",
+                "Data Governance Charter Vorlage",
+                "Self-Service Portal Wireframes"
+            ]
+        },
+        "display-ads-architecture": {
+            "title": "High-Scale AdTech Architektur",
+            "desc": "Event-getriebene Architektur für Bidding-Systeme mit <20ms Latenz. Bewährt bei Delivery Hero.",
+            "features": [
+                "Golang & Redis Architektur Diagramme",
+                "Kubernetes Skalierungs-Policies",
+                "Exact-Once Processing Patterns",
+                "Lasttest Framework (k6)"
+            ]
+        },
+        "hipaa-compliance-package": {
+            "title": "HIPAA Cloud Migration Paket",
+            "desc": "Genutzt in 12 erfolgreichen Migrationen. Sichern Sie Null-Breach Cloud Architektur nach Audit-Standards.",
+            "features": [
+                "Gap Analyse Vorlage (Excel)",
+                "AWS Architektur Blueprints (HIPAA-Ready)",
+                "Sicherheits-Kontroll-Checkliste",
+                "Inklusive 2 Std. Implementierungs-Beratung"
+            ]
+        },
+        "industry40-toolkit": {
+            "title": "Industry 4.0 Digital Transformation",
+            "desc": "Basierend auf Lonza & AstraZeneca RFPs. Beschleunigen Sie die Digitalisierung der Fertigung und IoT-Adoption.",
+            "features": [
+                "IoT Assessment Framework",
+                "Smart Factory Roadmap",
+                "ROI Kalkulator (Fertigung)",
+                "Inklusive 2 Std. Beratung"
+            ]
+        },
+        "it-effectiveness-assessment": {
+            "title": "IT Effektivitäts-Assessment",
+            "desc": "Benchmarking gegen 100+ Unternehmen. Quantifizieren Sie IT-Wert und Reifegrad für Investoren oder Vorstände.",
+            "features": [
+                "50-Punkte Fragebogen",
+                "Automatisches Scoring & Benchmarking",
+                "Executive Summary Vorlage",
+                "Inklusive 1 Std. Beratung"
+            ]
+        }
+    }
+}

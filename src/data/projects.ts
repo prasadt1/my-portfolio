@@ -4,6 +4,12 @@ export const projects: CaseStudy[] = [
     {
         id: 'photography-coach-ai',
         slug: 'photography-coach-ai',
+        theme: {
+            color: 'purple',
+            gradient: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/10',
+            iconBg: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
+            backgroundImage: '/assets/bg/bg-ai.png'
+        },
         domains: ['AI & GenAI', 'Product Engineering', 'Cost Optimization'],
         projectType: 'product',
         seoTags: ['Gemini 3 Pro', 'React', 'Context Caching', 'AI Vision', 'Google DeepMind'],
@@ -59,6 +65,12 @@ export const projects: CaseStudy[] = [
     {
         id: 'pact-pcf-network',
         slug: 'pact-pcf-data-exchange-network',
+        theme: {
+            color: 'emerald',
+            gradient: 'from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/10',
+            iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
+            backgroundImage: '/assets/bg/bg-eco.png'
+        },
         domains: ['Climate Tech', 'Standards Development'],
         projectType: 'standard',
         seoTags: ['Carbon Accounting', 'Scope 3 Emissions', 'ESG Technology', 'Product Carbon Footprint', 'Climate Action', 'Sustainability Standards'],
@@ -134,6 +146,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'brita-ecommerce',
         slug: 'brita-ecommerce-modernization',
+        theme: {
+            color: 'orange',
+            gradient: 'from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10',
+            iconBg: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
+        },
         domains: ['eCommerce', 'Digital Transformation'],
         projectType: 'migration',
         seoTags: ['Headless Commerce', 'Sustainable Ecommerce', 'Cloud Optimization', 'Green IT'],
@@ -185,6 +202,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'delivery-hero',
         slug: 'delivery-hero-adtech',
+        theme: {
+            color: 'rose',
+            gradient: 'from-rose-50 to-red-50 dark:from-rose-900/20 dark:to-red-900/10',
+            iconBg: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400'
+        },
         domains: ['AdTech', 'eCommerce', 'High-Scale'],
         projectType: 'product',
         seoTags: ['AdTech', 'High Scale', 'Go', 'Kubernetes', 'Revenue Growth'],
@@ -232,6 +254,12 @@ export const projects: CaseStudy[] = [
     {
         id: 'ai-photography-coach',
         slug: 'ai-photography-coach',
+        theme: {
+            color: 'indigo',
+            gradient: 'from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/10',
+            iconBg: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400',
+            backgroundImage: '/assets/bg/bg-ai.png'
+        },
         domains: ['AI/ML', 'Innovation'],
         projectType: 'product',
         seoTags: ['Green AI', 'Responsible AI', 'AIOptimization', 'Sustainable AI', 'Agentic AI'],
@@ -282,6 +310,12 @@ export const projects: CaseStudy[] = [
     {
         id: 'devops-maturity',
         slug: 'devops-maturity-framework',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+            backgroundImage: '/assets/bg/bg-devops.png'
+        },
         domains: ['DevOps', 'Consulting'],
         projectType: 'framework',
         seoTags: ['DevOps Maturity', 'CICD', 'Infrastructure as Code', 'SRE'],
@@ -324,6 +358,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'app-rationalization',
         slug: 'app-rationalization-cloud-readiness',
+        theme: {
+            color: 'slate',
+            gradient: 'from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-900',
+            iconBg: 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+        },
         domains: ['Cloud Modernization', 'Consulting'],
         projectType: 'framework',
         seoTags: ['Cloud Migration', '6R Strategy', 'App Portfolio Management'],
@@ -366,6 +405,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'mainframe-migration',
         slug: 'mainframe-to-java-migration',
+        theme: {
+            color: 'amber',
+            gradient: 'from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/10',
+            iconBg: 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+        },
         domains: ['Legacy Modernization', 'Consulting', 'FinServ'],
         projectType: 'framework',
         seoTags: ['Mainframe', 'COBOL', 'Java', 'Modernization'],
@@ -408,6 +452,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'healthcare-compliance',
         slug: 'hipaa-fhir-compliance',
+        theme: {
+            color: 'teal',
+            gradient: 'from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/10',
+            iconBg: 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400'
+        },
         domains: ['Healthcare', 'Compliance', 'Consulting'],
         projectType: 'framework',
         seoTags: ['HIPAA', 'FHIR', 'Compliance', 'HealthIT'],
@@ -452,6 +501,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'boehringer-aiml',
         slug: 'boehringer-aiml-platform',
+        theme: {
+            color: 'cyan',
+            gradient: 'from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/10',
+            iconBg: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400'
+        },
         domains: ['Pharma', 'AI/ML', 'Data Platforms'],
         projectType: 'data-platform',
         seoTags: ['Data Lake', 'BioBERT', 'Pharma R&D'],
@@ -494,6 +548,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'telecom-fpp',
         slug: 'telecom-future-pricing-platform',
+        theme: {
+            color: 'violet',
+            gradient: 'from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/10',
+            iconBg: 'bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400'
+        },
         domains: ['Telecom', 'Consulting'],
         projectType: 'migration',
         seoTags: ['Microservices', 'Event Driven', 'Telecom'],
@@ -536,6 +595,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'innova-claims',
         slug: 'innova-claims-processing',
+        theme: {
+            color: 'sky',
+            gradient: 'from-sky-50 to-blue-50 dark:from-sky-900/20 dark:to-blue-900/10',
+            iconBg: 'bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400'
+        },
         domains: ['FinServ', 'Insurance'],
         projectType: 'data-platform',
         seoTags: ['Claims Automation', 'Data Efficiency'],
@@ -578,6 +642,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'bofa-account-opening',
         slug: 'bofa-account-opening',
+        theme: {
+            color: 'red',
+            gradient: 'from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/10',
+            iconBg: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
+        },
         domains: ['FinServ'],
         projectType: 'product',
         seoTags: ['FinTech', 'User Experience'],
@@ -620,6 +689,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'ileap-logistics',
         slug: 'ileap-logistics-emissions',
+        theme: {
+            color: 'emerald',
+            gradient: 'from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/10',
+            iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400'
+        },
         domains: ['Climate Tech', 'Standards Development'],
         projectType: 'standard',
         seoTags: ['Logistics Emissions', 'Scope 3', 'Supply Chain'],
@@ -662,6 +736,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'pwc-healthcare-mod',
         slug: 'pwc-healthcare-modernization',
+        theme: {
+            color: 'teal',
+            gradient: 'from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/10',
+            iconBg: 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400'
+        },
         domains: ['Healthcare', 'Consulting'],
         projectType: 'migration',
         seoTags: ['Healthcare Modernization', 'Mobile App'],
@@ -704,6 +783,11 @@ export const projects: CaseStudy[] = [
     {
         id: 'voc-360',
         slug: 'voice-of-customer-360',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+        },
         domains: ['Consulting', 'FinServ'],
         projectType: 'data-platform',
         seoTags: ['Customer 360', 'Insurance', 'Analytics'],

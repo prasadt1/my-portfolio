@@ -82,4 +82,12 @@ export interface CaseStudy {
         primary: { text: string; action: string; context: string };
         secondary: { text: string; action: string };
     };
+
+    // UI Theme
+    theme?: {
+        color: string;
+        gradient: string;
+        iconBg: string;
+        backgroundImage?: string;
+    };
 }
