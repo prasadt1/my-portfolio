@@ -200,7 +200,7 @@ export const caseStudies: CaseStudy[] = [
             migration_strategy: 'Phased rollout market-by-market'
         },
         cta: {
-            primary: { text: 'Modernize Your eComm', action: 'https://calendly.com/prasadtilloo/30min', context: 'Move to Headless.' },
+            primary: { text: 'Modernize Your eComm', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Move to Headless.' },
             secondary: { text: 'See Architecture', action: '/products?category=ecommerce' }
         }
     },
@@ -289,7 +289,7 @@ export const caseStudies: CaseStudy[] = [
             migration_strategy: 'Greenfield standard creation'
         },
         cta: {
-            primary: { text: 'Adopt PACT', action: 'https://calendly.com/prasadtilloo/30min', context: 'Implement the standard.' },
+            primary: { text: 'Adopt PACT', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Implement the standard.' },
             secondary: { text: 'View on GitHub', action: 'https://github.com/wbcsd/pact-catalog' }
         }
     },
@@ -347,7 +347,7 @@ export const caseStudies: CaseStudy[] = [
             migration_strategy: 'Strangler Fig pattern'
         },
         cta: {
-            primary: { text: 'Scale Your System', action: 'https://calendly.com/prasadtilloo/30min', context: 'Fix performance bottlenecks.' },
+            primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
             secondary: { text: 'View Architecture', action: '/architecture-engine' }
         }
     },
@@ -406,7 +406,7 @@ export const caseStudies: CaseStudy[] = [
             migration_strategy: 'Domain-oriented decomposition'
         },
         cta: {
-            primary: { text: 'Discuss Data Strategy', action: 'https://calendly.com/prasadtilloo/30min', context: 'Build your data mesh.' },
+            primary: { text: 'Discuss Data Strategy', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Build your data mesh.' },
             secondary: { text: 'More AI Projects', action: '/projects?tag=AI' }
         }
     },
@@ -467,7 +467,7 @@ export const caseStudies: CaseStudy[] = [
             migration_strategy: 'Blue-green deployment'
         },
         cta: {
-            primary: { text: 'Ensure Compliance', action: 'https://calendly.com/prasadtilloo/30min', context: 'Audit-proof your cloud.' },
+            primary: { text: 'Ensure Compliance', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Audit-proof your cloud.' },
             secondary: { text: 'See Healthcare Projects', action: '/projects?industry=healthcare' }
         }
     }

@@ -77,7 +77,7 @@ const ContactPage: React.FC = () => {
                   {t('contactPage.book.desc')}
                 </p>
                 <a
-                  href="https://calendly.com/prasadtilloo/30min"
+                  href="https://calendly.com/prasad-sgsits/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-emerald-800 px-6 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-colors"
