@@ -15,6 +15,7 @@ RUN npm ci
 COPY . .
 
 # Build the frontend
+RUN echo "VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY" > .env
 RUN npm run build
 
 # Stage 2: Setup the server
