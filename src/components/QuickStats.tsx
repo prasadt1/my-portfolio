@@ -43,7 +43,7 @@ const QuickStats: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
                 <div className="space-y-2">
                     <a
-                        href="https://calendly.com/prasad-sgsits"
+                        href="https://calendly.com/prasad-sgsits/30min"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-sm"

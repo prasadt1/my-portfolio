@@ -87,7 +87,7 @@ const functions: Record<string, Function> = {
     check_availability: () => {
         return {
             next_slots: ['Tomorrow 10:00 AM CET', 'Tomorrow 2:00 PM CET', 'Friday 11:00 AM CET'],
-            booking_link: 'https://calendly.com/prasadtilloo/30min'
+            booking_link: 'https://calendly.com/prasad-sgsits/30min'
         };
     },
     get_roi_estimate: ({ spend, type }: { spend: number, type: string }) => {

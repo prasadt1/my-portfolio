@@ -58,7 +58,7 @@ export const projects: CaseStudy[] = [
         },
         cta: {
             primary: { text: 'Try Live Demo', action: 'https://aistudio.google.com/app/apikey', context: 'See it in action.' },
-            secondary: { text: 'View Code', action: 'https://github.com/prasadtilloo/photography-coach-ai' }
+            secondary: { text: 'View Code', action: 'https://github.com/prasadt1/photography-coach-ai' }
         }
     },
     // --- TIER 1: FLAGSHIP ---
@@ -195,7 +195,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Strangler Fig Pattern'
         },
         cta: {
-            primary: { text: 'Book Consultation', action: 'https://calendly.com/prasadtilloo/30min', context: 'Discuss your migration.' },
+            primary: { text: 'Book Consultation', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Discuss your migration.' },
             secondary: { text: 'View Architecture', action: '#' }
         }
     },
@@ -247,7 +247,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Strangler Fig pattern'
         },
         cta: {
-            primary: { text: 'Scale Your System', action: 'https://calendly.com/prasadtilloo/30min', context: 'Fix performance bottlenecks.' },
+            primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
             secondary: { text: 'View Architecture', action: '#' }
         }
     },
@@ -351,7 +351,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Assessment -> Roadmap -> Transformation'
         },
         cta: {
-            primary: { text: 'Assess Your Org', action: 'https://calendly.com/prasadtilloo/30min', context: 'Get a maturity score.' },
+            primary: { text: 'Assess Your Org', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Get a maturity score.' },
             secondary: { text: 'View Framework', action: '#' }
         }
     },
@@ -398,7 +398,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Discovery -> Rationalization -> Wave Planning'
         },
         cta: {
-            primary: { text: 'Plan Migration', action: 'https://calendly.com/prasadtilloo/30min', context: 'Avoid cloud cost traps.' },
+            primary: { text: 'Plan Migration', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Avoid cloud cost traps.' },
             secondary: { text: 'See Template', action: '#' }
         }
     },
@@ -445,7 +445,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Automated Code Conversion + Manual Optimization'
         },
         cta: {
-            primary: { text: 'Modernize Legacy', action: 'https://calendly.com/prasadtilloo/30min', context: 'Reduce MIPS costs.' },
+            primary: { text: 'Modernize Legacy', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Reduce MIPS costs.' },
             secondary: { text: 'View Approach', action: '#' }
         }
     },
@@ -492,7 +492,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Assessment -> Remediation -> Governance'
         },
         cta: {
-            primary: { text: 'Secure Your Data', action: 'https://calendly.com/prasadtilloo/30min', context: 'Get HIPAA compliant.' },
+            primary: { text: 'Secure Your Data', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Get HIPAA compliant.' },
             secondary: { text: 'View Framework', action: '#' }
         }
     },
@@ -541,7 +541,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Greenfield Build'
         },
         cta: {
-            primary: { text: 'Build Data Platform', action: 'https://calendly.com/prasadtilloo/30min', context: 'Unlock R&D data.' },
+            primary: { text: 'Build Data Platform', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Unlock R&D data.' },
             secondary: { text: 'View Details', action: '#' }
         }
     },
@@ -588,7 +588,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Phased Migration'
         },
         cta: {
-            primary: { text: 'Discuss Modernization', action: 'https://calendly.com/prasadtilloo/30min', context: 'Automate core processes.' },
+            primary: { text: 'Discuss Modernization', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Automate core processes.' },
             secondary: { text: 'View Solution', action: '#' }
         }
     },
@@ -635,7 +635,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Automation'
         },
         cta: {
-            primary: { text: 'Automate Operations', action: 'https://calendly.com/prasadtilloo/30min', context: 'Reduce manual work.' },
+            primary: { text: 'Automate Operations', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Reduce manual work.' },
             secondary: { text: 'View Details', action: '#' }
         }
     },
@@ -682,7 +682,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Optimization'
         },
         cta: {
-            primary: { text: 'Improve UX', action: 'https://calendly.com/prasadtilloo/30min', context: 'Better onboarding.' },
+            primary: { text: 'Improve UX', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Better onboarding.' },
             secondary: { text: 'View Details', action: '#' }
         }
     },
@@ -776,7 +776,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Modernization'
         },
         cta: {
-            primary: { text: 'Modernize Apps', action: 'https://calendly.com/prasadtilloo/30min', context: 'Go mobile.' },
+            primary: { text: 'Modernize Apps', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Go mobile.' },
             secondary: { text: 'View Details', action: '#' }
         }
     },
@@ -823,7 +823,7 @@ export const projects: CaseStudy[] = [
             migration_strategy: 'Integration'
         },
         cta: {
-            primary: { text: 'Improve CX', action: 'https://calendly.com/prasadtilloo/30min', context: 'Build 360 view.' },
+            primary: { text: 'Improve CX', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Build 360 view.' },
             secondary: { text: 'View Model', action: '#' }
         }
     }

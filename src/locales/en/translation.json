@@ -756,5 +756,40 @@
                 "Architecture blueprint draft"
             ]
         }
+    },
+    "contactPage": {
+        "title": "Let's Work Together",
+        "subtitle": "Ready to transform your architecture? Book a consultation, send an email, or connect on LinkedIn.",
+        "book": {
+            "title": "Book a Discovery Call",
+            "desc": "Schedule a 30-minute call to discuss your architecture challenges and explore how I can help.",
+            "cta": "Book Now"
+        },
+        "email": {
+            "title": "Send an Email",
+            "subtitle": "prasad.sgsits@gmail.com"
+        },
+        "linkedin": {
+            "title": "Connect on LinkedIn",
+            "subtitle": "Let's connect and start a conversation"
+        },
+        "form": {
+            "title": "Send a Message",
+            "interestedIn": "I'm interested in",
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+            "placeholder": "Tell me about your project, timeline, and what you're hoping to achieve...",
+            "submit": "Send Message",
+            "sending": "Sending...",
+            "sent": "Message Sent!",
+            "redirect": "Opening your email client...",
+            "options": {
+                "consulting": "Consulting Project",
+                "product": "Product/Toolkit",
+                "speaking": "Speaking/Training",
+                "other": "Other"
+            }
+        }
     }
 }

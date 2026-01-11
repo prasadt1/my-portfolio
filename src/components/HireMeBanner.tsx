@@ -32,7 +32,7 @@ const HireMeBanner = () => {
 
                 <div className="flex items-center gap-2">
                     <a
-                        href="https://calendly.com/prasad-sgsits"
+                        href="https://calendly.com/prasad-sgsits/30min"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-white dark:bg-emerald-600 text-emerald-600 dark:text-white px-4 py-2 rounded-lg font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-500 transition-all flex items-center gap-2 text-sm"

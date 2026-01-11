@@ -123,7 +123,7 @@ const SkillsMatcher = () => {
                                 Great fit! Let's discuss this role.
                             </p>
                             <a
-                                href="https://calendly.com/prasad-sgsits"
+                                href="https://calendly.com/prasad-sgsits/30min"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-block px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 transition"

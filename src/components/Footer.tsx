@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
                             Ready to transform your business or solve a complex architectural challenge?
                         </p>
                         <a
-                            href="https://calendly.com/prasadtilloo/30min"
+                            href="https://calendly.com/prasad-sgsits/30min"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"

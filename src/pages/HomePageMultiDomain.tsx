@@ -187,7 +187,7 @@ const HomePageMultiDomain: React.FC = () => {
                             {/* Primary CTA */}
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                                 <a
-                                    href="https://calendly.com/prasadtilloo/30min"
+                                    href="https://calendly.com/prasad-sgsits/30min"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
@@ -422,7 +422,7 @@ const HomePageMultiDomain: React.FC = () => {
                                     </li>
                                 </ul>
                                 <a
-                                    href="https://calendly.com/prasadtilloo/30min"
+                                    href="https://calendly.com/prasad-sgsits/30min"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-blue-500/30"

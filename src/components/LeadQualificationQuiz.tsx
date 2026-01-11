@@ -124,7 +124,7 @@ const calculateQualification = (answers: Record<string, string>): QualificationR
             next_steps: {
                 primary: {
                     text: "Book 30-Min Strategy Call",
-                    action: "https://calendly.com/prasadtilloo/30min",
+                    action: "https://calendly.com/prasad-sgsits/30min",
                     urgency: "I have 2 consultation slots available this week"
                 },
                 secondary: {
@@ -146,7 +146,7 @@ const calculateQualification = (answers: Record<string, string>): QualificationR
                 },
                 secondary: {
                     text: "15-Min Discovery Call",
-                    action: "https://calendly.com/prasadtilloo/15min"
+                    action: "https://calendly.com/prasad-sgsits/30min"
                 }
             },
             reasoning: reasons
@@ -159,7 +159,7 @@ const calculateQualification = (answers: Record<string, string>): QualificationR
             next_steps: {
                 primary: {
                     text: "15-Min Discovery Call",
-                    action: "https://calendly.com/prasadtilloo/15min"
+                    action: "https://calendly.com/prasad-sgsits/30min"
                 },
                 alternative: {
                     text: "View Specialist Referrals",

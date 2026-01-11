@@ -207,7 +207,7 @@ const AboutPage: React.FC = () => {
                     {t('about.buttons.linkedin')}
                   </a>
                   <a
-                    href="https://github.com/prasadtilloo"
+                    href="https://github.com/prasadt1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all"

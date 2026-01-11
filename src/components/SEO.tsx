@@ -54,7 +54,7 @@ const SEO: React.FC<SEOProps> = ({
                         "url": siteUrl,
                         "sameAs": [
                             "https://linkedin.com/in/prasadtilloo",
-                            "https://github.com/prasadtilloo"
+                            "https://github.com/prasadt1"
                         ],
                         "knowsAbout": [
                             "Cloud Architecture",

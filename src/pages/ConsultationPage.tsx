@@ -6,7 +6,7 @@ const ConsultationPage: React.FC = () => {
     useEffect(() => {
         // Redirect to Calendly after 2 seconds
         const timer = setTimeout(() => {
-            window.location.href = 'https://calendly.com/prasadtilloo/30min';
+            window.location.href = 'https://calendly.com/prasad-sgsits/30min';
         }, 1500);
 
         return () => clearTimeout(timer);
@@ -28,7 +28,7 @@ const ConsultationPage: React.FC = () => {
                     <p className="text-xl text-white/90">
                         Preparing your strategy slot.
                         <br />
-                        If not redirected, <a href="https://calendly.com/prasadtilloo/30min" className="underline font-bold hover:text-emerald-200">click here</a>.
+                        If not redirected, <a href="https://calendly.com/prasad-sgsits/30min" className="underline font-bold hover:text-emerald-200">click here</a>.
                     </p>
                 </div>
             </div>
