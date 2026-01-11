@@ -32,22 +32,13 @@ const HireMeBanner = () => {
 
                 <div className="flex items-center gap-2">
                     <a
-                        href="/resume.pdf"
-                        download
-                        className="bg-white dark:bg-emerald-600 text-emerald-600 dark:text-white px-4 py-2 rounded-lg font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-500 transition-all flex items-center gap-2 text-sm"
-                    >
-                        <Download size={16} />
-                        Download Resume
-                    </a>
-
-                    <a
                         href="https://calendly.com/prasad-sgsits"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-emerald-700 dark:bg-slate-800 px-4 py-2 rounded-lg font-semibold hover:bg-emerald-800 dark:hover:bg-slate-700 transition-all flex items-center gap-2 text-sm"
+                        className="bg-white dark:bg-emerald-600 text-emerald-600 dark:text-white px-4 py-2 rounded-lg font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-500 transition-all flex items-center gap-2 text-sm"
                     >
                         <Calendar size={16} />
-                        Schedule Call
+                        Book Discovery Call
                     </a>
 
                     <button

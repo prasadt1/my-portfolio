@@ -26,8 +26,9 @@ const Navigation: React.FC = () => {
   // Simplified navigation - core pages only
   const navLinks = [
     { path: '/', label: t('nav.home') },
-    { path: '/about', label: t('nav.about') },
+    { path: '/services', label: t('nav.services') },
     { path: '/projects', label: t('nav.projects') },
+    { path: '/about', label: t('nav.about') },
     { path: '/contact', label: t('nav.contact') }
   ];
 

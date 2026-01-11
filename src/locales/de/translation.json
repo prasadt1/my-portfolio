@@ -12,6 +12,7 @@
     },
     "nav": {
         "home": "Startseite",
+        "services": "Services",
         "frameworks": "Frameworks",
         "about": "Über mich",
         "projects": "Projekte",
@@ -23,8 +24,8 @@
         "toggleTheme": "Design wechseln"
     },
     "hero": {
-        "title": "Business-First Architektur & KI-Enablement",
-        "subtitle": "Ich helfe Teams dabei, Plattformen zu modernisieren und sich auf die KI-Adoption vorzubereiten – durch Architektur-Blueprints, Entscheidungsunterstützung und Delivery Leadership.",
+        "title": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU",
+        "subtitle": "Ich helfe CTOs und Engineering-Leadern dabei, Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen zu validieren – bevor sie den falschen Weg einschlagen.",
         "cta": "Meine Arbeit entdecken",
         "carousel": "Vertraut von Fortune 500 Führungskräften",
         "stats": {
@@ -652,24 +653,6 @@
             "readCaseStudy": "Fallstudie lesen"
         }
     },
-    "fitCheck": {
-        "title": "Projekt-Fit-Bewertung",
-        "beta": "Beta",
-        "subtitle": "Beschreiben Sie Ihre Architektur-Herausforderung oder Ihr Projekt unten. Mein KI-Agent analysiert sie anhand meiner 15+ Jahre Erfahrung und gibt Ihnen einen ehrlichen Fit-Score und einen individuellen Pitch.",
-        "inputLabel": "Architektur-Herausforderung / Projekt beschreiben",
-        "placeholder": "Fügen Sie die vollständige Stellenbeschreibung hier ein...",
-        "analyzeButton": "Fit analysieren",
-        "analyzing": "Analysiere Übereinstimmung...",
-        "results": {
-            "placeholderTitle": "Analyseergebnisse erscheinen hier",
-            "matchScore": "Übereinstimmungs-Score",
-            "highAlignment": "Hohe Übereinstimmung",
-            "potentialMatch": "Potenzielle Übereinstimmung",
-            "topMatches": "Top Treffer",
-            "missingGaps": "Fehlend / Lücken",
-            "generatedPitch": "KI-generierter Pitch"
-        }
-    },
     "quickStats": {
         "title": "Auf einen Blick",
         "available": "Unabhängiger Berater",
@@ -722,6 +705,59 @@
         "readyToTransform": {
             "title": "Bereit für die Transformation?",
             "cta": "Wählen Sie Ihren Weg"
+        }
+    },
+    "servicesPage": {
+        "title": "Architektur-Bewertungsdienstleistungen",
+        "subtitle": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU. Validieren Sie Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen, bevor Sie den falschen Weg einschlagen.",
+        "timeline": "Zeitraum",
+        "price": "Preis",
+        "for": "Für",
+        "deliverables": "Leistungen",
+        "bookCall": "Kostenloses Erstgespräch buchen",
+        "ctaTitle": "Bereit, Ihre Architektur-Entscheidungen zu validieren?",
+        "ctaSubtitle": "Buchen Sie ein kostenloses Erstgespräch, um Ihre spezifische Herausforderung zu besprechen.",
+        "bookDiscoveryCall": "Kostenloses Erstgespräch buchen"
+    },
+    "services": {
+        "dueDiligence": {
+            "title": "Technische Due-Diligence-Prüfung",
+            "subtitle": "Umfassende Architekturprüfung für M&A, Investitionen oder Übernahmen. Identifizieren Sie technische Risiken, Schulden und Compliance-Lücken, bevor Sie sich festlegen.",
+            "timeline": "2 Wochen",
+            "price": "€4.000 – €7.000",
+            "for": "PE-Firmen, Investoren, CTOs von übernehmenden Unternehmen",
+            "deliverables": [
+                "Architekturprüfung",
+                "Risiken & Technische-Schulden-Register",
+                "Sicherheits-/Compliance-Lücken (übergeordnet)",
+                "30/60/90-Tage-Empfehlungen"
+            ]
+        },
+        "cloudMigration": {
+            "title": "Cloud-Migrationsbereitschaftsprüfung",
+            "subtitle": "Bewerten Sie Ihre Bereitschaft für AWS/Azure/GCP-Migration. Verstehen Sie Risiken, Sequenzierung und erstellen Sie eine praktische Roadmap.",
+            "timeline": "3 Wochen",
+            "price": "€5.000 – €9.000",
+            "for": "Unternehmen, die eine AWS/Azure/GCP-Migration planen",
+            "deliverables": [
+                "Ist-Zustands-Mapping",
+                "Migrationsrisiken + Sequenzierung",
+                "Ziel-Referenzarchitektur",
+                "Praktische Migrations-Roadmap"
+            ]
+        },
+        "platformEvaluation": {
+            "title": "Plattform-Bewertungsprüfung",
+            "subtitle": "Treffen Sie fundierte Entscheidungen zur Plattform-Modernisierung. Bewerten Sie Optionen, Kompromisse und erhalten Sie Architektur-Blueprints für Ihren gewählten Weg.",
+            "timeline": "2 Wochen",
+            "price": "€4.000 – €7.000",
+            "for": "Plattform-Modernisierungsentscheidungen (Shopware→Shopify, CMS, API-Gateway, etc.)",
+            "deliverables": [
+                "Entscheidungsmatrix",
+                "Optionen & Kompromisse",
+                "Go/No-Go-Empfehlung",
+                "Architektur-Blueprint-Entwurf"
+            ]
         }
     }
 }
