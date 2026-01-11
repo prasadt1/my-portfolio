@@ -7,7 +7,7 @@ import { contextData } from './context.js';
 dotenv.config({ path: '../.env.local' });
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -65,6 +65,22 @@ app.post('/api/chat', async (req, res) => {
         console.error('Error:', error);
         res.status(500).json({ error: 'Failed to generate response' });
     }
+});
+
+// Serve static files from the React app
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from the dist directory (one level up from server)
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.listen(port, () => {

@@ -519,10 +519,10 @@ const HomePageMultiDomain: React.FC = () => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                                What I Can Help You With
+                                {t('home.whatICanHelpWith.title')}
                             </h2>
                             <p className="text-xl text-slate-600 dark:text-slate-300">
-                                Three core areas where I drive business outcomes
+                                {t('home.whatICanHelpWith.subtitle')}
                             </p>
                         </div>
 
@@ -796,7 +796,7 @@ const HomePageMultiDomain: React.FC = () => {
                         {/* NEW: Featured Projects Section (Dynamic) */}
                         <div className="mt-20">
                             <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-10 text-center">
-                                Featured Case Studies
+                                {t('home.featuredCaseStudies.title')}
                             </h3>
                             <div className="grid md:grid-cols-2 gap-8">
                                 {caseStudies.slice(0, 4).map((study, index) => (
@@ -818,9 +818,10 @@ const HomePageMultiDomain: React.FC = () => {
                                                     {study.header.client.industry}
                                                 </span>
                                                 {index === 0 && (
-                                                    <span className="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-bold">
-                                                        New
-                                                    </span>
+                                                    <div className="text-xs font-bold text-amber-500 flex items-center gap-1">
+                                                        <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
+                                                        {t('home.featuredCaseStudies.new')}
+                                                    </div>
                                                 )}
                                             </div>
 
@@ -834,7 +835,7 @@ const HomePageMultiDomain: React.FC = () => {
 
                                             <div className="flex items-center gap-4 mb-6">
                                                 <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3">
-                                                    <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">Impact</div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">{t('home.featuredCaseStudies.impact')}</div>
                                                     <div className="font-bold text-emerald-600 dark:text-emerald-400">
                                                         {study.outcomes.hero_metric.value} {study.outcomes.hero_metric.label}
                                                     </div>
@@ -846,7 +847,7 @@ const HomePageMultiDomain: React.FC = () => {
                                                     to={`/projects/${study.slug}`}
                                                     className="flex-1 inline-flex justify-center items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-400 transition-colors"
                                                 >
-                                                    View Case Study <ArrowRight size={16} />
+                                                    {t('home.featuredCaseStudies.viewCaseStudy')} <ArrowRight size={16} />
                                                 </Link>
                                             </div>
                                         </div>
@@ -854,12 +855,12 @@ const HomePageMultiDomain: React.FC = () => {
                                 ))}
                             </div>
 
-                            <div className="mt-12 text-center">
+                            <div className="text-center mt-12">
                                 <Link
                                     to="/projects"
-                                    className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold hover:underline"
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold hover:opacity-90 transition-opacity"
                                 >
-                                    View All Projects <ArrowRight size={16} />
+                                    {t('home.featuredCaseStudies.viewAll')} <ArrowRight size={20} />
                                 </Link>
                             </div>
                         </div>
@@ -870,49 +871,46 @@ const HomePageMultiDomain: React.FC = () => {
                 <section className="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-emerald-900 text-white" >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold mb-4">Why Work With Me</h2>
+                            <h2 className="text-4xl font-bold mb-4">{t('home.whyWorkWithMe.title')}</h2>
                             <p className="text-xl text-slate-200">
-                                More than technical skills—it's about how I work
+                                {t('home.whyWorkWithMe.subtitle')}
                             </p>
                         </div>
 
                         <div className="grid md:grid-cols-4 gap-6">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center">
-                                <div className="text-4xl mb-4">🎯</div>
-                                <h3 className="font-bold text-lg mb-2">Business-First</h3>
-                                <p className="text-sm text-slate-200">
-                                    Every decision measured by business impact, not technical ego
+                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
+                                <Building2 className="text-emerald-400 mb-4" size={32} />
+                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.businessFirst.title')}</h3>
+                                <p className="text-slate-300">
+                                    {t('home.whyWorkWithMe.values.businessFirst.desc')}
                                 </p>
                             </div>
-
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center">
-                                <div className="text-4xl mb-4">💡</div>
-                                <h3 className="font-bold text-lg mb-2">Innovation-Driven</h3>
-                                <p className="text-sm text-slate-200">
-                                    Creative problem-solving when conventional approaches fail
+                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
+                                <Lightbulb className="text-emerald-400 mb-4" size={32} />
+                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.innovation.title')}</h3>
+                                <p className="text-slate-300">
+                                    {t('home.whyWorkWithMe.values.innovation.desc')}
                                 </p>
                             </div>
-
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center">
-                                <div className="text-4xl mb-4">🤝</div>
-                                <h3 className="font-bold text-lg mb-2">Servant Leader</h3>
-                                <p className="text-sm text-slate-200">
-                                    Empathetic, collaborative approach that empowers teams
+                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
+                                <Users className="text-emerald-400 mb-4" size={32} />
+                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.servantLeader.title')}</h3>
+                                <p className="text-slate-300">
+                                    {t('home.whyWorkWithMe.values.servantLeader.desc')}
                                 </p>
                             </div>
-
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center">
-                                <div className="text-4xl mb-4">⚡</div>
-                                <h3 className="font-bold text-lg mb-2">Hands-On</h3>
-                                <p className="text-sm text-slate-200">
-                                    From strategy to code to deployment—I execute, not just advise
+                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
+                                <Zap className="text-emerald-400 mb-4" size={32} />
+                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.handsOn.title')}</h3>
+                                <p className="text-slate-300">
+                                    {t('home.whyWorkWithMe.values.handsOn.desc')}
                                 </p>
                             </div>
                         </div>
 
-                        <div className="text-center mt-12">
-                            <blockquote className="text-2xl font-serif italic text-white/90">
-                                "I solve business problems through people, process, and technology—in that order."
+                        <div className="mt-16 text-center max-w-4xl mx-auto">
+                            <blockquote className="text-2xl md:text-3xl font-serif italic text-emerald-200">
+                                {t('home.whyWorkWithMe.quote')}
                             </blockquote>
                         </div>
                     </div>
@@ -920,15 +918,15 @@ const HomePageMultiDomain: React.FC = () => {
 
                 {/* FINAL CTA - Simplified */}
                 <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center" >
-                    <div className="max-w-4xl mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                            Ready to Transform?
+                            {t('home.readyToTransform.title')}
                         </h2>
                         <a
                             href="#path-selector"
-                            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:scale-105 transition-all"
+                            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105"
                         >
-                            Choose Your Path
+                            {t('home.readyToTransform.cta')}
                         </a>
                     </div>
                 </section>

@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { generateFitCheck } from '../services/fitCheckService';
 import { Briefcase, CheckCircle, AlertTriangle, FileText, Loader2, ArrowRight, Copy } from 'lucide-react';
 import SEO from '../components/SEO';
+import { useTranslation } from 'react-i18next';
 
 const FitCheckPage: React.FC = () => {
+    const { t } = useTranslation();
     const [jd, setJd] = useState('');
     const [status, setStatus] = useState<'idle' | 'analyzing' | 'complete'>('idle');
     const [result, setResult] = useState<any>(null);
@@ -31,12 +33,12 @@ const FitCheckPage: React.FC = () => {
                 <div className="text-center mb-12">
                     <div className="flex items-center justify-center gap-3 mb-4">
                         <h1 className="text-4xl font-serif font-bold text-slate-900 dark:text-white">
-                            Will I Fit Your Role?
+                            {t('fitCheck.title')}
                         </h1>
-                        <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-emerald-200">Beta</span>
+                        <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-emerald-200">{t('fitCheck.beta')}</span>
                     </div>
                     <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                        Paste your Job Description below. My AI Agent will analyze it against my 15+ years of experience and give you an honest Fit Score and custom pitch.
+                        {t('fitCheck.subtitle')}
                     </p>
                 </div>
 
@@ -44,11 +46,11 @@ const FitCheckPage: React.FC = () => {
                     {/* INPUT SECTION */}
                     <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 h-fit">
                         <label className="block font-bold text-slate-900 dark:text-white mb-3">
-                            Paste Job Description / RFP
+                            {t('fitCheck.inputLabel')}
                         </label>
                         <textarea
                             className="w-full h-80 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none resize-none mb-6 text-sm"
-                            placeholder="Paste the full job description here..."
+                            placeholder={t('fitCheck.placeholder')}
                             value={jd}
                             onChange={(e) => setJd(e.target.value)}
                         />
@@ -58,9 +60,9 @@ const FitCheckPage: React.FC = () => {
                             className="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex justify-center items-center gap-2 hover:bg-emerald-600 dark:hover:bg-emerald-400 transition-colors disabled:opacity-50"
                         >
                             {status === 'analyzing' ? (
-                                <><Loader2 className="animate-spin" /> Analyzing Match...</>
+                                <><Loader2 className="animate-spin" /> {t('fitCheck.analyzing')}</>
                             ) : (
-                                <>Analyze Fit <ArrowRight size={18} /></>
+                                <>{t('fitCheck.analyzeButton')} <ArrowRight size={18} /></>
                             )}
                         </button>
                     </div>
@@ -70,7 +72,7 @@ const FitCheckPage: React.FC = () => {
                         {status === 'idle' && (
                             <div className="h-full flex flex-col items-center justify-center text-slate-400 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-12">
                                 <Briefcase size={48} className="mb-4 opacity-50" />
-                                <p>Analysis results will appear here</p>
+                                <p>{t('fitCheck.results.placeholderTitle')}</p>
                             </div>
                         )}
 
@@ -79,14 +81,14 @@ const FitCheckPage: React.FC = () => {
                                 {/* SCORE CARD */}
                                 <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg mb-6 flex items-center justify-between">
                                     <div>
-                                        <div className="text-sm font-bold uppercase tracking-wider text-slate-500">Match Score</div>
+                                        <div className="text-sm font-bold uppercase tracking-wider text-slate-500">{t('fitCheck.results.matchScore')}</div>
                                         <div className={`text-5xl font-bold ${result.score > 80 ? 'text-emerald-500' : 'text-amber-500'}`}>
                                             {result.score}%
                                         </div>
                                     </div>
                                     <div className="text-right max-w-xs">
                                         <div className="font-bold text-slate-900 dark:text-white mb-1">
-                                            {result.score > 80 ? 'High Alignment' : 'Potential Match'}
+                                            {result.score > 80 ? t('fitCheck.results.highAlignment') : t('fitCheck.results.potentialMatch')}
                                         </div>
                                         <p className="text-sm text-slate-500">{result.matchSummary}</p>
                                     </div>
@@ -96,7 +98,7 @@ const FitCheckPage: React.FC = () => {
                                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                                     <div className="p-6 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800">
                                         <h3 className="flex items-center gap-2 font-bold text-emerald-800 dark:text-emerald-300 mb-3">
-                                            <CheckCircle size={18} /> Top Matches
+                                            <CheckCircle size={18} /> {t('fitCheck.results.topMatches')}
                                         </h3>
                                         <ul className="text-sm space-y-2">
                                             {result.keyMatches.map((skill: string, i: number) => (
@@ -109,7 +111,7 @@ const FitCheckPage: React.FC = () => {
                                     </div>
                                     <div className="p-6 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800">
                                         <h3 className="flex items-center gap-2 font-bold text-amber-800 dark:text-amber-300 mb-3">
-                                            <AlertTriangle size={18} /> Missing / Gaps
+                                            <AlertTriangle size={18} /> {t('fitCheck.results.missingGaps')}
                                         </h3>
                                         <ul className="text-sm space-y-2">
                                             {result.missingSkills.length > 0 ? result.missingSkills.map((skill: string, i: number) => (
@@ -125,7 +127,7 @@ const FitCheckPage: React.FC = () => {
                                 {/* GENERATED COVER LETTER */}
                                 <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm relative">
                                     <h3 className="flex items-center gap-2 font-bold text-slate-900 dark:text-white mb-4">
-                                        <FileText size={20} className="text-blue-500" /> Al-Generated Pitch
+                                        <FileText size={20} className="text-blue-500" /> {t('fitCheck.results.generatedPitch')}
                                     </h3>
                                     <div className="prose prose-slate dark:prose-invert text-sm max-w-none whitespace-pre-wrap">
                                         {result.coverLetter}

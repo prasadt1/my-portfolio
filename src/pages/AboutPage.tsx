@@ -30,106 +30,90 @@ const AboutPage: React.FC = () => {
   const experiences = [
     {
       company: 'BRITA',
-      role: 'Solution Architect',
+      role: t('about.journey.items.brita.role'),
       period: 'May 2025 - Nov 2025',
       location: 'Frankfurt, Germany',
-      businessChallenge: '6 EMEA markets running on outdated Shopware. Needed to modernize to Shopify Plus without disrupting €XX million in annual e-commerce revenue.',
-      deliverables: [
-        'Led Shopware-to-Shopify Plus discovery and POC across 6 markets',
-        'Designed headless reference architecture (Shopify + Vue/Nuxt + Magnolia + Azure)',
-        'Architected multi-tenant governance enabling white-label operations',
-        'Prototyped AI-driven search optimization for future Google AI results'
-      ],
+      businessChallenge: t('about.journey.items.brita.challenge'),
+      deliverables: t('about.journey.items.brita.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '6 Markets', label: 'Successfully Migrated' },
-        { value: 'Zero', label: 'Downtime Achieved' },
-        { value: '15+', label: 'Market Expansion Ready' }
+        { value: '6 Markets', label: t('about.journey.items.brita.outcomes.markets') },
+        { value: 'Zero', label: t('about.journey.items.brita.outcomes.downtime') },
+        { value: 'Global', label: t('about.journey.items.brita.outcomes.expansion') },
       ],
       links: {
         caseStudy: '/projects/brita-ecommerce',
         product: '/products/ecommerce-blueprint'
-      }
+      },
+      logo: '/assets/logos/Brita_(Unternehmen)_logo.svg'
     },
     {
-      company: 'SINE Foundation e.V.',
-      role: 'Senior Technical Project Manager / Lead Architect',
-      period: 'Oct 2022 – Jun 2024',
+      company: 'SINE Foundation',
+      role: t('about.journey.items.sine.role'),
+      period: 'Jan 2024 - Apr 2024',
       location: 'Berlin, Germany',
-      businessChallenge: 'Scope 3 emissions tracking was impossible due to data silos. Need a global standard for carbon data exchange.',
-      deliverables: [
-        'Defined global Tech Specification for Product Carbon Footprint with Microsoft, SAP, Siemens',
-        'Built PACT Online Catalog cloud marketplace from scratch',
-        'Led WBCSD PACT Standard adoption with 20+ Fortune 100 firms'
-      ],
+      businessChallenge: t('about.journey.items.sine.challenge'),
+      deliverables: t('about.journey.items.sine.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '100+', label: 'Companies Adopted' },
-        { value: 'Global', label: 'Standard Created' },
-        { value: '25%', label: 'Adoption Boost' }
+        { value: '20+', label: t('about.journey.items.sine.outcomes.adopted') },
+        { value: 'WBCSD', label: t('about.journey.items.sine.outcomes.standard') },
+        { value: '10x', label: t('about.journey.items.sine.outcomes.boost') },
       ],
       links: {
         caseStudy: '/projects/pact-protocol',
         product: '/products/pact-starter-kit'
-      }
+      },
+      logo: '/assets/logos/sine-foundation-logo.svg' // Placeholder - replace with real logo if available
     },
     {
-      company: 'Delivery Hero SE',
-      role: 'Senior Engineering Manager (Freelance)',
-      period: 'Mar 2022 – Sept 2022',
+      company: 'Delivery Hero',
+      role: t('about.journey.items.deliveryHero.role'),
+      period: 'Jun 2022 - Dec 2023',
       location: 'Berlin, Germany',
-      businessChallenge: 'Ad server latency costing revenue during peak hours. Need to scale to 5M+ daily transactions.',
-      deliverables: [
-        'Re-architected to Go + Redis for <20ms latency',
-        'Implemented per-second billing and exact-once processing',
-        'Led 10-member cross-functional team (iOS, Android, Golang)'
-      ],
+      businessChallenge: t('about.journey.items.deliveryHero.challenge'),
+      deliverables: t('about.journey.items.deliveryHero.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '20%', label: 'Revenue Increase' },
-        { value: '5M+', label: 'Daily Transactions' },
-        { value: '<20ms', label: 'Latency' }
+        { value: '+20%', label: t('about.journey.items.deliveryHero.outcomes.revenue') },
+        { value: '5M+', label: t('about.journey.items.deliveryHero.outcomes.transactions') },
+        { value: '<20ms', label: t('about.journey.items.deliveryHero.outcomes.latency') },
       ],
       links: {
         product: '/products/display-ads-architecture'
-      }
+      },
+      logo: '/assets/logos/Delivery_Hero_logo.svg'
     },
     {
       company: 'Boehringer Ingelheim',
-      role: 'Lead Architect',
-      period: 'Nov 2020 - Feb 2022',
+      role: t('about.journey.items.boehringer.role'),
+      period: 'Mar 2021 - May 2022',
       location: 'Ingelheim, Germany',
-      businessChallenge: 'R&D data silos slowing drug discovery. Need GDPR-compliant Data Mesh.',
-      deliverables: [
-        'Built Enterprise Data Lake accelerating AI/ML insights by 50%',
-        'Established governance framework satisfying German Works Council',
-        'Automated PII masking and access controls'
-      ],
+      businessChallenge: t('about.journey.items.boehringer.challenge'),
+      deliverables: t('about.journey.items.boehringer.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '50%', label: 'Faster Insights' },
-        { value: '€500K', label: 'Cloud Migration' },
-        { value: '100%', label: 'GDPR Compliant' }
+        { value: '50%', label: t('about.journey.items.boehringer.outcomes.insights') },
+        { value: '100%', label: t('about.journey.items.boehringer.outcomes.migration') },
+        { value: 'Zero', label: t('about.journey.items.boehringer.outcomes.gdpr') },
       ],
       links: {
         product: '/products/data-lake-architecture'
-      }
+      },
+      logo: '/assets/logos/Boehringer_Ingelheim_Logo.svg'
     },
     {
-      company: 'PricewaterhouseCoopers (PwC)',
-      role: 'Senior Manager',
-      period: 'Mar 2015 – Oct 2020',
-      location: 'Chicago, USA',
-      businessChallenge: 'Healthcare clients facing compliance audits and legacy system EOL.',
-      deliverables: [
-        'Led $650K cloud modernization program for e-commerce and healthcare systems',
-        'Designed pharmacy module boosting mobile app traffic by 70%',
-        'Co-developed cloud-based Enterprise Data Lake and domain-driven microservices'
-      ],
+      company: 'PwC',
+      role: t('about.journey.items.pwc.role'),
+      period: 'May 2016 - Feb 2021',
+      location: 'Mumbai, India',
+      businessChallenge: t('about.journey.items.pwc.challenge'),
+      deliverables: t('about.journey.items.pwc.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '$500K', label: 'Annual Savings' },
-        { value: '70%', label: 'Traffic Boost' },
-        { value: 'Zero', label: 'Audit Findings' }
+        { value: '$650K', label: t('about.journey.items.pwc.outcomes.savings') },
+        { value: '+70%', label: t('about.journey.items.pwc.outcomes.traffic') },
+        { value: 'Zero', label: t('about.journey.items.pwc.outcomes.audit') },
       ],
       links: {
         product: '/products/hipaa-compliance-package'
-      }
+      },
+      logo: '/assets/logos/PricewaterhouseCoopers_Logo.svg'
     }
   ];
 
@@ -516,26 +500,32 @@ const AboutPage: React.FC = () => {
                 <TechChips categories={techCategories} />
               </div>
 
-              {/* Products CTA Widget */}
-              <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Building2 size={120} />
-                </div>
-                <div className="relative z-10">
-                  <h3 className="font-bold text-lg mb-3 text-emerald-400 uppercase tracking-wider text-xs">For Teams</h3>
-                  <h4 className="font-bold text-xl mb-4">Need proven frameworks?</h4>
-                  <p className="text-slate-300 text-sm mb-6 leading-relaxed">
-                    Don't reinvent the wheel. Accelerate your roadmap with my battle-tested toolkits.
-                  </p>
-                  <Link
-                    to="/products"
-                    className="block w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-center rounded-lg font-bold transition-colors"
-                  >
-                    Browse Toolkits
-                  </Link>
-                </div>
-              </div>
+              {/* FOR TEAMS / RECRUITERS TEASER */}
+              <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-slate-900 dark:bg-slate-800 rounded-3xl p-12 relative overflow-hidden text-center">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
 
+                    <div className="relative z-10">
+                      <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                        {t('about.forTeams.badge')}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                        {t('about.forTeams.title')}
+                      </h2>
+                      <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                        {t('about.forTeams.desc')}
+                      </p>
+                      <a
+                        href="/products"
+                        className="inline-flex bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105"
+                      >
+                        {t('about.forTeams.cta')}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
               {/* Education Widget */}
               <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
                 <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white mb-6 flex items-center gap-2">

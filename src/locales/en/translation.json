@@ -156,7 +156,86 @@
             "challenge": "Business Challenge:",
             "delivered": "What I Delivered:",
             "viewCaseStudy": "View Full Case Study",
-            "buyBlueprint": "Buy Blueprint"
+            "buyBlueprint": "Buy Blueprint",
+            "items": {
+                "brita": {
+                    "role": "Solution Architect",
+                    "challenge": "6 EMEA markets running on outdated Shopware. Needed to modernize to Shopify Plus without disrupting €XX million in annual e-commerce revenue.",
+                    "deliverables": [
+                        "Led Shopware-to-Shopify Plus discovery and POC across 6 markets",
+                        "Designed headless reference architecture (Shopify + Vue/Nuxt + Magnolia + Azure)",
+                        "Architected multi-tenant governance enabling white-label operations",
+                        "Prototyped AI-driven search optimization for future Google AI results"
+                    ],
+                    "outcomes": {
+                        "markets": "Successfully Migrated",
+                        "downtime": "Downtime Achieved",
+                        "expansion": "Market Expansion Ready"
+                    }
+                },
+                "sine": {
+                    "role": "Senior Technical Project Manager / Lead Architect",
+                    "challenge": "Scope 3 emissions tracking was impossible due to data silos. Need a global standard for carbon data exchange.",
+                    "deliverables": [
+                        "Defined global Tech Specification for Product Carbon Footprint with Microsoft, SAP, Siemens",
+                        "Built PACT Online Catalog cloud marketplace from scratch",
+                        "Led WBCSD PACT Standard adoption with 20+ Fortune 100 firms"
+                    ],
+                    "outcomes": {
+                        "adopted": "Companies Adopted",
+                        "standard": "Standard Created",
+                        "boost": "Adoption Boost"
+                    }
+                },
+                "deliveryHero": {
+                    "role": "Senior Engineering Manager (Freelance)",
+                    "challenge": "Ad server latency costing revenue during peak hours. Need to scale to 5M+ daily transactions.",
+                    "deliverables": [
+                        "Re-architected to Go + Redis for <20ms latency",
+                        "Implemented per-second billing and exact-once processing",
+                        "Led 10-member cross-functional team (iOS, Android, Golang)"
+                    ],
+                    "outcomes": {
+                        "revenue": "Revenue Increase",
+                        "transactions": "Daily Transactions",
+                        "latency": "Latency"
+                    }
+                },
+                "boehringer": {
+                    "role": "Lead Architect",
+                    "challenge": "R&D data silos slowing drug discovery. Need GDPR-compliant Data Mesh.",
+                    "deliverables": [
+                        "Built Enterprise Data Lake accelerating AI/ML insights by 50%",
+                        "Established governance framework satisfying German Works Council",
+                        "Automated PII masking and access controls"
+                    ],
+                    "outcomes": {
+                        "insights": "Faster Insights",
+                        "migration": "Cloud Migration",
+                        "gdpr": "GDPR Compliant"
+                    }
+                },
+                "pwc": {
+                    "role": "Senior Manager",
+                    "challenge": "Healthcare clients facing compliance audits and legacy system EOL.",
+                    "deliverables": [
+                        "Led $650K cloud modernization program for e-commerce and healthcare systems",
+                        "Designed pharmacy module boosting mobile app traffic by 70%",
+                        "Co-developed cloud-based Enterprise Data Lake and domain-driven microservices"
+                    ],
+                    "outcomes": {
+                        "savings": "Annual Savings",
+                        "traffic": "Traffic Boost",
+                        "audit": "Audit Findings"
+                    }
+                }
+            }
+        },
+        "forTeams": {
+            "title": "Need proven frameworks?",
+            "badge": "For Teams",
+            "desc": "Don't reinvent the wheel. Accelerate your roadmap with my battle-tested toolkits.",
+            "cta": "Browse Toolkits"
         },
         "certifications": {
             "title": "Certifications"
@@ -354,6 +433,292 @@
                 "Team Autonomy Index",
                 "Agile Coaching Plan"
             ]
+        }
+    },
+    "homeHealthcare": {
+        "hero": {
+            "title": "Stuck in <0>HIPAA Compliance Hell</0>\nDuring Cloud Migration?",
+            "subtitle": "I've successfully migrated <0>12 healthcare systems</0> to AWS without a single <1>HIPAA violation</1>, <2>data breach</2>, or <3>downtime incident</3>.",
+            "trustedBy": "Trusted by Fortune 500 Healthcare & Pharma",
+            "cta": {
+                "primary": "See How I Did It",
+                "secondary": "Calculate Your Savings"
+            },
+            "stats": {
+                "migrations": {
+                    "value": "12",
+                    "label": "Healthcare Migrations"
+                },
+                "compliance": {
+                    "value": "100%",
+                    "label": "HIPAA Compliant"
+                },
+                "savings": {
+                    "value": "€2M+",
+                    "label": "Cost Savings"
+                },
+                "breaches": {
+                    "value": "Zero",
+                    "label": "Breaches"
+                }
+            }
+        },
+        "problems": {
+            "title": "Sound Familiar?",
+            "subtitle": "These are the top 3 challenges healthcare organizations face during cloud migration.",
+            "item1": {
+                "title": "We Keep Failing HIPAA Audits",
+                "desc": "Your on-premise system can't meet modern compliance requirements.",
+                "impact": "Every audit is a gamble that could cost you €50K+ in findings."
+            },
+            "item2": {
+                "title": "Cloud Migration Seems Too Risky",
+                "desc": "You've tried twice. Both times stopped due to data breach concerns.",
+                "impact": "Your board won't approve another failed attempt."
+            },
+            "item3": {
+                "title": "We're Running Out of Time",
+                "desc": "New HIPAA requirements in 6 months. Legacy vendor EOL in 12 months.",
+                "impact": "If you don't migrate soon, you'll face penalties AND downtime."
+            },
+            "solution": "I've heard this 100 times. Here's how we solve it."
+        },
+        "process": {
+            "title": "The Zero-Downtime, 100% Compliant Migration Process",
+            "subtitle": "A proven 4-phase approach that's worked 12 times without a single incident",
+            "phase1": {
+                "title": "Compliance Audit",
+                "duration": "2 weeks",
+                "activities": [
+                    "Review all HIPAA/FHIR controls against current system",
+                    "Identify gaps and migration blockers",
+                    "Create compliant AWS architecture blueprint",
+                    "Define security controls (IAM, encryption, logging)"
+                ],
+                "deliverable": "20-page compliance report (Board-ready)",
+                "outcome": "Clear roadmap with zero compliance risk"
+            },
+            "phase2": {
+                "title": "AWS Architecture Design",
+                "duration": "2 weeks",
+                "activities": [
+                    "Design production infrastructure on AWS",
+                    "Configure security controls and monitoring",
+                    "Plan data migration strategy (minimize risk)",
+                    "Create rollback procedures for every step"
+                ],
+                "deliverable": "Technical migration plan + disaster recovery",
+                "outcome": "Board approval secured, risks mitigated"
+            },
+            "phase3": {
+                "title": "Migration Execution",
+                "duration": "8-12 weeks",
+                "activities": [
+                    "Week 1-4: Migrate non-critical systems (test process)",
+                    "Week 5-8: Core systems (validated & monitored)",
+                    "Week 9-12: Patient data (weekends only, 24/7 watch)",
+                    "Continuous validation at every step"
+                ],
+                "deliverable": "Fully migrated, operational system",
+                "outcome": "Zero downtime, all systems running on AWS"
+            },
+            "phase4": {
+                "title": "Optimization & Validation",
+                "duration": "4 weeks",
+                "activities": [
+                    "Cost optimization (target 30% savings)",
+                    "Performance tuning (3x faster queries)",
+                    "Complete compliance documentation",
+                    "Train your team on AWS operations"
+                ],
+                "deliverable": "Optimized, documented, compliant system",
+                "outcome": "30% cost reduction + audit-ready documentation"
+            },
+            "labels": {
+                "deliverable": "DELIVERABLE",
+                "outcome": "OUTCOME",
+                "activities": "Activities:"
+            },
+            "stats": {
+                "migrations": "Successful Migrations",
+                "breaches": "Data Breaches",
+                "auditRate": "Audit Pass Rate",
+                "savings": "Client Savings"
+            }
+        },
+        "roi": {
+            "title": "Calculate Your Potential Savings",
+            "subtitle": "See what you could save with a properly executed healthcare cloud migration"
+        },
+        "proof": {
+            "title": "Real Results from Real Projects",
+            "subtitle": "Don't just take my word for it—here's the proof",
+            "cta": "View Full Case Study",
+            "seeAll": "See All Projects"
+        },
+        "faq": {
+            "title": "Common Questions",
+            "subtitle": "Addressing your concerns about healthcare cloud migration",
+            "q1": {
+                "q": "What if we have a data breach during migration?",
+                "a": "Zero-downtime strategy means your production system never goes offline. Data is encrypted in transit (TLS 1.3) and at rest (AES-256). We migrate in phases with rollback procedures at every step. In 12 migrations, we've never had a breach. Every migration includes a comprehensive security audit before, during, and after."
+            },
+            "q2": {
+                "q": "How long will we be down?",
+                "a": "Zero downtime. Migrations happen during off-hours with parallel systems running. Users never see disruption. We use blue-green deployment strategies and can roll back instantly if needed. Your team continues working normally throughout the entire process."
+            },
+            "q3": {
+                "q": "What if HIPAA requirements change mid-migration?",
+                "a": "Architecture is designed for compliance flexibility. We monitor regulatory changes continuously and adapt the plan proactively. Your system will meet current AND future requirements. We include buffer time and contingency plans for regulatory updates."
+            },
+            "q4": {
+                "q": "We don't have budget for this.",
+                "a": "Average ROI is 285% in year 1. Most clients save enough to pay for the project within 8 months through infrastructure optimization alone. Use the ROI calculator above to see YOUR potential savings. Many organizations find the migration pays for itself through avoided audit penalties and reduced operational costs."
+            },
+            "q5": {
+                "q": "How do I know you won't leave us stranded?",
+                "a": "Every project includes 90 days post-migration support and complete documentation. I train your team to operate the new system independently. You get runbooks, architecture diagrams, and access to me for questions. Several clients from 3+ years ago still reach out occasionally—I'm always available."
+            }
+        },
+        "finalCta": {
+            "title": "Let's Discuss Your Migration",
+            "subtitle": "Choose the path that works best for you",
+            "urgent": {
+                "title": "I Need This Now",
+                "desc": "For urgent migrations with tight deadlines",
+                "cta": "Book 30-Min Strategy Call",
+                "note": "Available this week: Tue 2pm, Thu 10am, Fri 3pm CET"
+            },
+            "research": {
+                "title": "Still Researching",
+                "desc": "Get free resources to evaluate your options",
+                "cta": "Get HIPAA Compliance Checklist",
+                "note": "Free PDF + enters email nurture sequence"
+            },
+            "riskReversal": {
+                "free": "First 30 minutes are free, no obligation",
+                "referral": "If I can't help, I'll refer you to someone who can"
+            }
+        }
+    },
+    "roiCalculator": {
+        "tabs": {
+            "cloud": "Cloud Migration",
+            "legacy": "Legacy Mod",
+            "carbon": "Carbon / ESG"
+        },
+        "title": {
+            "cloud": "Calculate ROI: Cloud Compliance",
+            "legacy": "Calculate ROI: Modernization",
+            "carbon": "Calculate ROI: Sustainability"
+        },
+        "description": {
+            "cloud": "Estimate savings from reduced compliance risk and infrastructure optimization.",
+            "legacy": "Quantify the value of retiring technical debt and improving reliability.",
+            "carbon": "See how much manual effort you can save with PACT automation."
+        },
+        "inputs": {
+            "companySize": "Company Size",
+            "select": "Select...",
+            "sizes": {
+                "small": "Small (< 50)",
+                "medium": "Medium (50-500)",
+                "large": "Large (> 500)"
+            },
+            "cloudMonthlySpend": "Monthly Cloud Spend (€)",
+            "complianceStatus": "Compliance Status",
+            "complianceOptions": {
+                "non_compliant": "Non-Compliant",
+                "partially": "Partially Compliant",
+                "compliant": "Compliant"
+            },
+            "annualMaintenance": "Annual Maintenance Cost (€)",
+            "downtimeHours": "Downtime Hours / Year",
+            "supplierCount": "Number of Suppliers",
+            "manualHours": "Manual Hours/Year/Supplier"
+        },
+        "cta": {
+            "calculate": "Calculate Savings",
+            "calculating": "Calculating..."
+        },
+        "results": {
+            "title": "Potential Annual Savings",
+            "confidence": "Confidence Score",
+            "breakdown": "Breakdown",
+            "similarCaseStudy": "Similar Case Study",
+            "readCaseStudy": "Read Case Study"
+        }
+    },
+    "fitCheck": {
+        "title": "Will I Fit Your Role?",
+        "beta": "Beta",
+        "subtitle": "Paste your Job Description below. My AI Agent will analyze it against my 15+ years of experience and give you an honest Fit Score and custom pitch.",
+        "inputLabel": "Paste Job Description / RFP",
+        "placeholder": "Paste the full job description here...",
+        "analyzeButton": "Analyze Fit",
+        "analyzing": "Analyzing Match...",
+        "results": {
+            "placeholderTitle": "Analysis results will appear here",
+            "matchScore": "Match Score",
+            "highAlignment": "High Alignment",
+            "potentialMatch": "Potential Match",
+            "topMatches": "Top Matches",
+            "missingGaps": "Missing / Gaps",
+            "generatedPitch": "AI-Generated Pitch"
+        }
+    },
+    "quickStats": {
+        "title": "At a Glance",
+        "available": "Available Now",
+        "schedule": "Schedule Interview",
+        "resume": "Download Resume",
+        "labels": {
+            "experience": "Years Experience",
+            "projects": "Projects Delivered",
+            "savings": "Cost Savings",
+            "teamSize": "Team Size Led",
+            "industries": "Industries",
+            "certifications": "Certifications"
+        }
+    },
+    "home": {
+        "whatICanHelpWith": {
+            "title": "What I Can Help You With",
+            "subtitle": "Three core areas where I drive business outcomes"
+        },
+        "featuredCaseStudies": {
+            "title": "Featured Case Studies",
+            "viewAll": "View All Projects",
+            "new": "New",
+            "impact": "Impact",
+            "viewCaseStudy": "View Case Study"
+        },
+        "whyWorkWithMe": {
+            "title": "Why Work With Me",
+            "subtitle": "More than technical skills—it's about how I work",
+            "quote": "\"I solve business problems through people, process, and technology—in that order.\"",
+            "values": {
+                "businessFirst": {
+                    "title": "Business-First",
+                    "desc": "Every decision measured by business impact, not technical ego"
+                },
+                "innovation": {
+                    "title": "Innovation-Driven",
+                    "desc": "Creative problem-solving when conventional approaches fail"
+                },
+                "servantLeader": {
+                    "title": "Servant Leader",
+                    "desc": "Empathetic, collaborative approach that empowers teams"
+                },
+                "handsOn": {
+                    "title": "Hands-On",
+                    "desc": "From strategy to code to deployment—I execute, not just advise"
+                }
+            }
+        },
+        "readyToTransform": {
+            "title": "Ready to Transform?",
+            "cta": "Choose Your Path"
         }
     }
 }

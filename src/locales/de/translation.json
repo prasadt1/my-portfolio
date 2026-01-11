@@ -155,7 +155,86 @@
             "challenge": "Geschäftliche Herausforderung:",
             "delivered": "Was ich geliefert habe:",
             "viewCaseStudy": "Vollständige Fallstudie ansehen",
-            "buyBlueprint": "Blueprint kaufen"
+            "buyBlueprint": "Blueprint kaufen",
+            "items": {
+                "brita": {
+                    "role": "Solution Architect",
+                    "challenge": "6 EMEA-Märkte mit veraltetem Shopware-System. Modernisierung zu Shopify Plus ohne Störung von €XX Mio. Jahresumsatz notendig.",
+                    "deliverables": [
+                        "Leitete Shopware-zu-Shopify Plus Discovery und POC für 6 Märkte",
+                        "Entwarf Headless Referenzarchitektur (Shopify + Vue/Nuxt + Magnolia + Azure)",
+                        "Architektierte Mandantenfähiges Governance-Modell für White-Label-Betrieb",
+                        "Prototyping von KI-gesteuerter Suchoptimierung für zukünftige Google AI-Ergebnisse"
+                    ],
+                    "outcomes": {
+                        "markets": "Erfolgreich migriert",
+                        "downtime": "Ausfallzeit erreicht",
+                        "expansion": "Bereit für Marktexpansion"
+                    }
+                },
+                "sine": {
+                    "role": "Senior Technical Project Manager / Lead Architect",
+                    "challenge": "Scope 3 Emissionsverfolgung wegen Datensilos unmöglich. Globaler Standard für CO2-Datenaustausch benötigt.",
+                    "deliverables": [
+                        "Definierte globale Tech-Spezifikation für Product Carbon Footprint mit Microsoft, SAP, Siemens",
+                        "Baute PACT Online Catalog Cloud-Marktplatz von Grund auf neu",
+                        "Leitete WBCSD PACT Standard Adoption mit 20+ Fortune 100 Firmen"
+                    ],
+                    "outcomes": {
+                        "adopted": "Unternehmen haben adaptiert",
+                        "standard": "Standard erstellt",
+                        "boost": "Adoption-Boost"
+                    }
+                },
+                "deliveryHero": {
+                    "role": "Senior Engineering Manager (Freelance)",
+                    "challenge": "Ad-Server-Latenz kostete Umsatz zu Spitzenzeiten. Skalierung auf 5M+ tägliche Transaktionen nötig.",
+                    "deliverables": [
+                        "Re-Architektur auf Go + Redis für <20ms Latenz",
+                        "Implementierung von sekundengenauer Abrechnung und Exact-Once Processing",
+                        "Leitete 10-köpfiges cross-funktionales Team (iOS, Android, Golang)"
+                    ],
+                    "outcomes": {
+                        "revenue": "Umsatzsteigerung",
+                        "transactions": "Tägliche Transaktionen",
+                        "latency": "Latenz"
+                    }
+                },
+                "boehringer": {
+                    "role": "Lead Architect",
+                    "challenge": "F&E-Datensilos verlangsamten Medikamentenentwicklung. GDPR-konformes Data Mesh benötigt.",
+                    "deliverables": [
+                        "Baute Enterprise Data Lake, der KI/ML-Insights um 50% beschleunigte",
+                        "Etablierte Governance-Framework zur Zufriedenheit des deutschen Betriebsrats",
+                        "Automatisierte PII-Maskierung und Zugriffskontrollen"
+                    ],
+                    "outcomes": {
+                        "insights": "Schnellere Insights",
+                        "migration": "Cloud Migration",
+                        "gdpr": "GDPR-konform"
+                    }
+                },
+                "pwc": {
+                    "role": "Senior Manager",
+                    "challenge": "Gesundheitskunden standen vor Compliance-Audits und Legacy-System EOL.",
+                    "deliverables": [
+                        "Leitete $650K Cloud-Modernisierungsprogramm für E-Commerce und Gesundheitssysteme",
+                        "Entwarf Apotheken-Modul, das den App-Traffic um 70% steigerte",
+                        "Mitentwickelte Cloud-basierten Enterprise Data Lake und Domain-Driven Microservices"
+                    ],
+                    "outcomes": {
+                        "savings": "Jährliche Einsparungen",
+                        "traffic": "Traffic-Steigerung",
+                        "audit": "Audit-Feststellungen"
+                    }
+                }
+            }
+        },
+        "forTeams": {
+            "title": "Brauchen Sie bewährte Frameworks?",
+            "badge": "Für Teams",
+            "desc": "Erfinden Sie das Rad nicht neu. Beschleunigen Sie Ihre Roadmap mit meinen kampferprobten Toolkits.",
+            "cta": "Toolkits durchsuchen"
         },
         "certifications": {
             "title": "Zertifizierungen"
@@ -357,6 +436,292 @@
                 "Executive Summary Vorlage",
                 "Inklusive 1 Std. Beratung"
             ]
+        }
+    },
+    "homeHealthcare": {
+        "hero": {
+            "title": "Stecken Sie in der <0>HIPAA-Compliance-Hölle</0>\nwährend der Cloud-Migration?",
+            "subtitle": "Ich habe erfolgreich <0>12 Gesundheitssysteme</0> zu AWS migriert, ohne eine einzige <1>HIPAA-Verletzung</1>, <2>Datenpanne</2> oder <3>Ausfallzeit</3>.",
+            "trustedBy": "Vertraut von Fortune 500 Healthcare & Pharma",
+            "cta": {
+                "primary": "Sehen Sie, wie ich es gemacht habe",
+                "secondary": "Berechnen Sie Ihre Einsparungen"
+            },
+            "stats": {
+                "migrations": {
+                    "value": "12",
+                    "label": "Healthcare Migrationen"
+                },
+                "compliance": {
+                    "value": "100%",
+                    "label": "HIPAA-konform"
+                },
+                "savings": {
+                    "value": "€2M+",
+                    "label": "Kosteneinsparungen"
+                },
+                "breaches": {
+                    "value": "Null",
+                    "label": "Datenpannen"
+                }
+            }
+        },
+        "problems": {
+            "title": "Kommt Ihnen das bekannt vor?",
+            "subtitle": "Dies sind die Top 3 Herausforderungen, denen sich Gesundheitsorganisationen bei der Cloud-Migration stellen müssen.",
+            "item1": {
+                "title": "Wir bestehen HIPAA-Audits nicht",
+                "desc": "Ihr On-Premise-System kann moderne Compliance-Anforderungen nicht erfüllen.",
+                "impact": "Jedes Audit ist ein Glücksspiel, das Sie €50K+ an Feststellungen kosten könnte."
+            },
+            "item2": {
+                "title": "Cloud-Migration scheint zu riskant",
+                "desc": "Sie haben es zweimal versucht. Beide Male wegen Bedenken hinsichtlich Datenpannen gestoppt.",
+                "impact": "Ihr Vorstand wird keinen weiteren gescheiterten Versuch genehmigen."
+            },
+            "item3": {
+                "title": "Uns läuft die Zeit davon",
+                "desc": "Neue HIPAA-Anforderungen in 6 Monaten. Legacy-Anbieter EOL in 12 Monaten.",
+                "impact": "Wenn Sie nicht bald migrieren, drohen Strafen UND Ausfallzeiten."
+            },
+            "solution": "Ich habe das 100 Mal gehört. Hier ist, wie wir es lösen."
+        },
+        "process": {
+            "title": "Der Null-Downtime, 100% konforme Migrationsprozess",
+            "subtitle": "Ein bewährter 4-Phasen-Ansatz, der 12 Mal ohne einen einzigen Vorfall funktioniert hat",
+            "phase1": {
+                "title": "Compliance Audit",
+                "duration": "2 Wochen",
+                "activities": [
+                    "Überprüfung aller HIPAA/FHIR-Kontrollen gegen das aktuelle System",
+                    "Identifizierung von Lücken und Migrationsblockern",
+                    "Erstellung eines konformen AWS-Architektur-Blueprints",
+                    "Definition von Sicherheitskontrollen (IAM, Verschlüsselung, Logging)"
+                ],
+                "deliverable": "20-seitiger Compliance-Bericht (Vorstandsreif)",
+                "outcome": "Klarer Fahrplan ohne Compliance-Risiko"
+            },
+            "phase2": {
+                "title": "AWS Architektur Design",
+                "duration": "2 Wochen",
+                "activities": [
+                    "Design der Produktionsinfrastruktur auf AWS",
+                    "Konfiguration von Sicherheitskontrollen und Monitoring",
+                    "Planung der Datenmigrationsstrategie (Risikominimierung)",
+                    "Erstellung von Rollback-Verfahren für jeden Schritt"
+                ],
+                "deliverable": "Technischer Migrationsplan + Disaster Recovery",
+                "outcome": "Vorstandsgenehmigung gesichert, Risiken gemindert"
+            },
+            "phase3": {
+                "title": "Migration Ausführung",
+                "duration": "8-12 Wochen",
+                "activities": [
+                    "Woche 1-4: Migration nicht-kritischer Systeme (Testprozess)",
+                    "Woche 5-8: Kernsysteme (validiert & überwacht)",
+                    "Woche 9-12: Patientendaten (nur am Wochenende, 24/7 Überwachung)",
+                    "Kontinuierliche Validierung bei jedem Schritt"
+                ],
+                "deliverable": "Vollständig migriertes, betriebsbereites System",
+                "outcome": "Null Ausfallzeit, alle Systeme laufen auf AWS"
+            },
+            "phase4": {
+                "title": "Optimierung & Validierung",
+                "duration": "4 Wochen",
+                "activities": [
+                    "Kostenoptimierung (Ziel 30% Einsparung)",
+                    "Performance-Tuning (3x schnellere Abfragen)",
+                    "Vollständige Compliance-Dokumentation",
+                    "Schulung Ihres Teams im AWS-Betrieb"
+                ],
+                "deliverable": "Optimiertes, dokumentiertes, konformes System",
+                "outcome": "30% Kostenreduktion + prüfungssichere Dokumentation"
+            },
+            "labels": {
+                "deliverable": "LIEFEROBJEKT",
+                "outcome": "ERGEBNIS",
+                "activities": "Aktivitäten:"
+            },
+            "stats": {
+                "migrations": "Erfolgreiche Migrationen",
+                "breaches": "Datenpannen",
+                "auditRate": "Audit-Bestehensquote",
+                "savings": "Kundeneinsparungen"
+            }
+        },
+        "roi": {
+            "title": "Berechnen Sie Ihre potenziellen Einsparungen",
+            "subtitle": "Sehen Sie, was Sie mit einer korrekt durchgeführten Healthcare-Cloud-Migration sparen könnten"
+        },
+        "proof": {
+            "title": "Echte Ergebnisse von echten Projekten",
+            "subtitle": "Nehmen Sie mich nicht beim Wort – hier ist der Beweis",
+            "cta": "Vollständige Fallstudie ansehen",
+            "seeAll": "Alle Projekte ansehen"
+        },
+        "faq": {
+            "title": "Häufige Fragen",
+            "subtitle": "Antworten auf Ihre Bedenken zur Cloud-Migration im Gesundheitswesen",
+            "q1": {
+                "q": "Was, wenn wir während der Migration eine Datenpanne haben?",
+                "a": "Null-Downtime-Strategie bedeutet, dass Ihr Produktionssystem nie offline geht. Daten werden während der Übertragung (TLS 1.3) und im Ruhezustand (AES-256) verschlüsselt. Wir migrieren in Phasen mit Rollback-Verfahren bei jedem Schritt. In 12 Migrationen hatten wir nie eine Panne. Jede Migration beinhaltet ein umfassendes Sicherheitsaudit vor, während und nach dem Prozess."
+            },
+            "q2": {
+                "q": "Wie lange werden wir offline sein?",
+                "a": "Null Ausfallzeit. Migrationen finden außerhalb der Geschäftszeiten statt, während parallele Systeme laufen. Benutzer bemerken keine Unterbrechung. Wir verwenden Blue-Green-Deployment-Strategien und können bei Bedarf sofort zurückrollen. Ihr Team arbeitet während des gesamten Prozesses normal weiter."
+            },
+            "q3": {
+                "q": "Was, wenn sich die HIPAA-Anforderungen während der Migration ändern?",
+                "a": "Die Architektur ist auf Compliance-Flexibilität ausgelegt. Wir überwachen regulatorische Änderungen kontinuierlich und passen den Plan proaktiv an. Ihr System wird aktuelle UND zukünftige Anforderungen erfüllen. Wir planen Pufferzeiten und Notfallpläne für regulatorische Updates ein."
+            },
+            "q4": {
+                "q": "Wir haben kein Budget dafür.",
+                "a": "Der durchschnittliche ROI beträgt 285% im ersten Jahr. Die meisten Kunden sparen genug, um das Projekt innerhalb von 8 Monaten allein durch Infrastrukturoptimierung zu bezahlen. Nutzen Sie den ROI-Rechner oben, um IHRE potenziellen Einsparungen zu sehen. Viele Organisationen stellen fest, dass sich die Migration durch vermiedene Audit-Strafen und reduzierte Betriebskosten selbst bezahlt."
+            },
+            "q5": {
+                "q": "Wie kann ich sicher sein, dass Sie uns nicht hängen lassen?",
+                "a": "Jedes Projekt beinhaltet 90 Tage Support nach der Migration und vollständige Dokumentation. Ich schule Ihr Team, damit es das neue System unabhängig betreiben kann. Sie erhalten Runbooks, Architekturdiagramme und Zugang zu mir für Fragen. Mehrere Kunden von vor 3+ Jahren melden sich gelegentlich immer noch – ich bin immer erreichbar."
+            }
+        },
+        "finalCta": {
+            "title": "Lassen Sie uns Ihre Migration besprechen",
+            "subtitle": "Wählen Sie den Weg, der am besten zu Ihnen passt",
+            "urgent": {
+                "title": "Ich brauche das jetzt",
+                "desc": "Für dringende Migrationen mit engen Fristen",
+                "cta": "30-Min Strategiegespräch buchen",
+                "note": "Verfügbar diese Woche: Di 14 Uhr, Do 10 Uhr, Fr 15 Uhr MEZ"
+            },
+            "research": {
+                "title": "Noch am Recherchieren",
+                "desc": "Holen Sie sich kostenlose Ressourcen, um Ihre Optionen zu bewerten",
+                "cta": "HIPAA-Compliance-Checkliste erhalten",
+                "note": "Kostenloses PDF + E-Mail-Nurture-Sequenz"
+            },
+            "riskReversal": {
+                "free": "Die ersten 30 Minuten sind kostenlos, unverbindlich",
+                "referral": "Wenn ich nicht helfen kann, verweise ich Sie an jemanden, der es kann"
+            }
+        }
+    },
+    "roiCalculator": {
+        "tabs": {
+            "cloud": "Cloud Migration",
+            "legacy": "Legacy Mod",
+            "carbon": "Carbon / ESG"
+        },
+        "title": {
+            "cloud": "ROI berechnen: Cloud Compliance",
+            "legacy": "ROI berechnen: Modernisierung",
+            "carbon": "ROI berechnen: Nachhaltigkeit"
+        },
+        "description": {
+            "cloud": "Schätzen Sie Einsparungen durch reduziertes Compliance-Risiko und Infrastrukturoptimierung.",
+            "legacy": "Quantifizieren Sie den Wert der Beseitigung technischer Schulden und der Verbesserung der Zuverlässigkeit.",
+            "carbon": "Sehen Sie, wie viel manuellen Aufwand Sie mit PACT-Automatisierung sparen können."
+        },
+        "inputs": {
+            "companySize": "Unternehmensgröße",
+            "select": "Auswählen...",
+            "sizes": {
+                "small": "Klein (< 50)",
+                "medium": "Mittel (50-500)",
+                "large": "Groß (> 500)"
+            },
+            "cloudMonthlySpend": "Monatliche Cloud-Ausgaben (€)",
+            "complianceStatus": "Compliance-Status",
+            "complianceOptions": {
+                "non_compliant": "Nicht konform",
+                "partially": "Teilweise konform",
+                "compliant": "Konform"
+            },
+            "annualMaintenance": "Jährliche Wartungskosten (€)",
+            "downtimeHours": "Ausfallstunden / Jahr",
+            "supplierCount": "Anzahl der Lieferanten",
+            "manualHours": "Manuelle Stunden/Jahr/Lieferant"
+        },
+        "cta": {
+            "calculate": "Einsparungen berechnen",
+            "calculating": "Berechne..."
+        },
+        "results": {
+            "title": "Potenzielle jährliche Einsparungen",
+            "confidence": "Konfidenz-Score",
+            "breakdown": "Aufschlüsselung",
+            "similarCaseStudy": "Ähnliche Fallstudie",
+            "readCaseStudy": "Fallstudie lesen"
+        }
+    },
+    "fitCheck": {
+        "title": "Passe ich in Ihre Rolle?",
+        "beta": "Beta",
+        "subtitle": "Fügen Sie Ihre Stellenbeschreibung unten ein. Mein KI-Agent analysiert sie anhand meiner 15+ Jahre Erfahrung und gibt Ihnen einen ehrlichen Fit-Score und einen individuellen Pitch.",
+        "inputLabel": "Stellenbeschreibung / RFP einfügen",
+        "placeholder": "Fügen Sie die vollständige Stellenbeschreibung hier ein...",
+        "analyzeButton": "Fit analysieren",
+        "analyzing": "Analysiere Übereinstimmung...",
+        "results": {
+            "placeholderTitle": "Analyseergebnisse erscheinen hier",
+            "matchScore": "Übereinstimmungs-Score",
+            "highAlignment": "Hohe Übereinstimmung",
+            "potentialMatch": "Potenzielle Übereinstimmung",
+            "topMatches": "Top Treffer",
+            "missingGaps": "Fehlend / Lücken",
+            "generatedPitch": "KI-generierter Pitch"
+        }
+    },
+    "quickStats": {
+        "title": "Auf einen Blick",
+        "available": "Verfügbar ab sofort",
+        "schedule": "Interview vereinbaren",
+        "resume": "Lebenslauf herunterladen",
+        "labels": {
+            "experience": "Jahre Erfahrung",
+            "projects": "Gelieferte Projekte",
+            "savings": "Kosteneinsparungen",
+            "teamSize": "Teamgröße geführt",
+            "industries": "Branchen",
+            "certifications": "Zertifizierungen"
+        }
+    },
+    "home": {
+        "whatICanHelpWith": {
+            "title": "Wobei ich Ihnen helfen kann",
+            "subtitle": "Drei Kernbereiche, in denen ich Geschäftsergebnisse erziele"
+        },
+        "featuredCaseStudies": {
+            "title": "Ausgewählte Fallstudien",
+            "viewAll": "Alle Projekte ansehen",
+            "new": "Neu",
+            "impact": "Wirkung",
+            "viewCaseStudy": "Fallstudie ansehen"
+        },
+        "whyWorkWithMe": {
+            "title": "Warum mit mir arbeiten",
+            "subtitle": "Mehr als technische Fähigkeiten – es geht um meine Arbeitsweise",
+            "quote": "\"Ich löse Geschäftsprobleme durch Menschen, Prozesse und Technologie – in dieser Reihenfolge.\"",
+            "values": {
+                "businessFirst": {
+                    "title": "Business-First",
+                    "desc": "Jede Entscheidung wird am geschäftlichen Einfluss gemessen, nicht am technischen Ego"
+                },
+                "innovation": {
+                    "title": "Innovationsgetrieben",
+                    "desc": "Kreative Problemlösung, wenn konventionelle Ansätze scheitern"
+                },
+                "servantLeader": {
+                    "title": "Servant Leader",
+                    "desc": "Empathischer, kollaborativer Ansatz, der Teams stärkt"
+                },
+                "handsOn": {
+                    "title": "Hands-On",
+                    "desc": "Von Strategie bis Code und Deployment – ich setze um, berate nicht nur"
+                }
+            }
+        },
+        "readyToTransform": {
+            "title": "Bereit für die Transformation?",
+            "cta": "Wählen Sie Ihren Weg"
         }
     }
 }

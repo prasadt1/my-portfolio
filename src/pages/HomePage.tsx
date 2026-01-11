@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation, Trans } from 'react-i18next';
 import {
   CheckCircle2,
   Shield,
@@ -15,6 +16,7 @@ import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
 
 const HomePage: React.FC = () => {
+  const { t } = useTranslation();
   const [showROICalculator, setShowROICalculator] = useState(false);
 
   return (
@@ -46,21 +48,25 @@ const HomePage: React.FC = () => {
             >
               {/* Main Headline */}
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Stuck in <span className="text-red-400">HIPAA Compliance Hell</span>
-                <br />
-                During Cloud Migration?
+                <Trans i18nKey="homeHealthcare.hero.title">
+                  Stuck in <span className="text-red-400">HIPAA Compliance Hell</span>
+                  <br />
+                  During Cloud Migration?
+                </Trans>
               </h1>
 
               {/* Subheadline */}
               <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed">
-                I've successfully migrated <strong className="text-emerald-400">12 healthcare systems</strong> to AWS
-                without a single <strong>HIPAA violation</strong>, <strong>data breach</strong>, or <strong>downtime incident</strong>.
+                <Trans i18nKey="homeHealthcare.hero.subtitle">
+                  I've successfully migrated <strong className="text-emerald-400">12 healthcare systems</strong> to AWS
+                  without a single <strong>HIPAA violation</strong>, <strong>data breach</strong>, or <strong>downtime incident</strong>.
+                </Trans>
               </p>
 
               {/* Social Proof - Client Logos */}
               <div className="mb-10">
                 <p className="text-sm uppercase tracking-wider text-slate-400 mb-4">
-                  Trusted by Fortune 500 Healthcare & Pharma
+                  {t('homeHealthcare.hero.trustedBy')}
                 </p>
                 <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                   {['PwC', 'Boehringer Ingelheim', 'Delivery Hero', 'BRITA'].map((client) => (
@@ -80,7 +86,7 @@ const HomePage: React.FC = () => {
                   to="/projects#healthcare"
                   className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
                 >
-                  See How I Did It
+                  {t('homeHealthcare.hero.cta.primary')}
                   <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                 </Link>
 
@@ -89,17 +95,17 @@ const HomePage: React.FC = () => {
                   className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
                 >
                   <DollarSign size={20} />
-                  Calculate Your Savings
+                  {t('homeHealthcare.hero.cta.secondary')}
                 </button>
               </div>
 
               {/* Trust Metrics Bar */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
                 {[
-                  { value: '12', label: 'Healthcare Migrations', icon: Shield },
-                  { value: '100%', label: 'HIPAA Compliant', icon: CheckCircle2 },
-                  { value: '€2M+', label: 'Cost Savings', icon: TrendingDown },
-                  { value: 'Zero', label: 'Breaches', icon: Award }
+                  { value: t('homeHealthcare.hero.stats.migrations.value'), label: t('homeHealthcare.hero.stats.migrations.label'), icon: Shield },
+                  { value: t('homeHealthcare.hero.stats.compliance.value'), label: t('homeHealthcare.hero.stats.compliance.label'), icon: CheckCircle2 },
+                  { value: t('homeHealthcare.hero.stats.savings.value'), label: t('homeHealthcare.hero.stats.savings.label'), icon: TrendingDown },
+                  { value: t('homeHealthcare.hero.stats.breaches.value'), label: t('homeHealthcare.hero.stats.breaches.label'), icon: Award }
                 ].map((stat, idx) => (
                   <motion.div
                     key={idx}
@@ -128,10 +134,10 @@ const HomePage: React.FC = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                Sound Familiar?
+                {t('homeHealthcare.problems.title')}
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-                These are the top 3 challenges healthcare organizations face during cloud migration.
+                {t('homeHealthcare.problems.subtitle')}
               </p>
             </motion.div>
 
@@ -139,23 +145,23 @@ const HomePage: React.FC = () => {
               {[
                 {
                   emoji: '😰',
-                  title: 'We Keep Failing HIPAA Audits',
-                  problem: 'Your on-premise system can\'t meet modern compliance requirements.',
-                  impact: 'Every audit is a gamble that could cost you €50K+ in findings.',
+                  title: t('homeHealthcare.problems.item1.title'),
+                  problem: t('homeHealthcare.problems.item1.desc'),
+                  impact: t('homeHealthcare.problems.item1.impact'),
                   color: 'from-red-500 to-orange-500'
                 },
                 {
                   emoji: '💸',
-                  title: 'Cloud Migration Seems Too Risky',
-                  problem: 'You\'ve tried twice. Both times stopped due to data breach concerns.',
-                  impact: 'Your board won\'t approve another failed attempt.',
+                  title: t('homeHealthcare.problems.item2.title'),
+                  problem: t('homeHealthcare.problems.item2.desc'),
+                  impact: t('homeHealthcare.problems.item2.impact'),
                   color: 'from-orange-500 to-yellow-500'
                 },
                 {
                   emoji: '⏰',
-                  title: 'We\'re Running Out of Time',
-                  problem: 'New HIPAA requirements in 6 months. Legacy vendor EOL in 12 months.',
-                  impact: 'If you don\'t migrate soon, you\'ll face penalties AND downtime.',
+                  title: t('homeHealthcare.problems.item3.title'),
+                  problem: t('homeHealthcare.problems.item3.desc'),
+                  impact: t('homeHealthcare.problems.item3.impact'),
                   color: 'from-yellow-500 to-red-500'
                 }
               ].map((pain, idx) => (
@@ -190,7 +196,7 @@ const HomePage: React.FC = () => {
               className="text-center mt-12"
             >
               <p className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                I've heard this 100 times. Here's how we solve it.
+                {t('homeHealthcare.problems.solution')}
               </p>
               <ArrowRight className="mx-auto animate-bounce text-emerald-600" size={48} />
             </motion.div>
@@ -207,10 +213,10 @@ const HomePage: React.FC = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                The Zero-Downtime, 100% Compliant Migration Process
+                {t('homeHealthcare.process.title')}
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-                A proven 4-phase approach that's worked 12 times without a single incident
+                {t('homeHealthcare.process.subtitle')}
               </p>
             </motion.div>
 
@@ -218,119 +224,86 @@ const HomePage: React.FC = () => {
               {[
                 {
                   phase: 'PHASE 1',
-                  title: 'Compliance Audit',
-                  duration: '2 weeks',
-                  activities: [
-                    'Review all HIPAA/FHIR controls against current system',
-                    'Identify gaps and migration blockers',
-                    'Create compliant AWS architecture blueprint',
-                    'Define security controls (IAM, encryption, logging)'
-                  ],
-                  deliverable: '20-page compliance report (Board-ready)',
-                  outcome: 'Clear roadmap with zero compliance risk',
+                  key: 'phase1',
                   color: 'emerald'
                 },
                 {
                   phase: 'PHASE 2',
-                  title: 'AWS Architecture Design',
-                  duration: '2 weeks',
-                  activities: [
-                    'Design production infrastructure on AWS',
-                    'Configure security controls and monitoring',
-                    'Plan data migration strategy (minimize risk)',
-                    'Create rollback procedures for every step'
-                  ],
-                  deliverable: 'Technical migration plan + disaster recovery',
-                  outcome: 'Board approval secured, risks mitigated',
+                  key: 'phase2',
                   color: 'blue'
                 },
                 {
                   phase: 'PHASE 3',
-                  title: 'Migration Execution',
-                  duration: '8-12 weeks',
-                  activities: [
-                    'Week 1-4: Migrate non-critical systems (test process)',
-                    'Week 5-8: Core systems (validated & monitored)',
-                    'Week 9-12: Patient data (weekends only, 24/7 watch)',
-                    'Continuous validation at every step'
-                  ],
-                  deliverable: 'Fully migrated, operational system',
-                  outcome: 'Zero downtime, all systems running on AWS',
+                  key: 'phase3',
                   color: 'violet'
                 },
                 {
                   phase: 'PHASE 4',
-                  title: 'Optimization & Validation',
-                  duration: '4 weeks',
-                  activities: [
-                    'Cost optimization (target 30% savings)',
-                    'Performance tuning (3x faster queries)',
-                    'Complete compliance documentation',
-                    'Train your team on AWS operations'
-                  ],
-                  deliverable: 'Optimized, documented, compliant system',
-                  outcome: '30% cost reduction + audit-ready documentation',
+                  key: 'phase4',
                   color: 'amber'
                 }
-              ].map((phase, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="relative"
-                >
-                  {/* Connecting Line */}
-                  {idx < 3 && (
-                    <div className="hidden md:block absolute left-12 top-full w-0.5 h-8 bg-slate-300 dark:bg-slate-600 z-0" />
-                  )}
+              ].map((phase, idx) => {
+                const activities = t(`homeHealthcare.process.${phase.key}.activities`, { returnObjects: true }) as string[];
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="relative"
+                  >
+                    {/* Connecting Line */}
+                    {idx < 3 && (
+                      <div className="hidden md:block absolute left-12 top-full w-0.5 h-8 bg-slate-300 dark:bg-slate-600 z-0" />
+                    )}
 
-                  <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row gap-8">
-                      {/* Phase Label */}
-                      <div className="flex-shrink-0">
-                        <div className={`bg-${phase.color}-100 dark:bg-${phase.color}-900/30 text-${phase.color}-800 dark:text-${phase.color}-400 px-4 py-2 rounded-lg font-bold text-sm mb-2 inline-block`}>
-                          {phase.phase}
-                        </div>
-                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                          {phase.title}
-                        </h3>
-                        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                          <Clock size={16} />
-                          <span className="font-semibold">{phase.duration}</span>
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-grow space-y-4">
-                        <div>
-                          <h4 className="font-bold text-slate-900 dark:text-white mb-2">Activities:</h4>
-                          <ul className="space-y-2">
-                            {phase.activities.map((activity, actIdx) => (
-                              <li key={actIdx} className="flex items-start gap-2 text-slate-600 dark:text-slate-300">
-                                <CheckCircle2 className="flex-shrink-0 text-emerald-600 mt-0.5" size={16} />
-                                <span>{activity}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
-                            <h5 className="font-bold text-sm text-slate-600 dark:text-slate-400 mb-1">DELIVERABLE</h5>
-                            <p className="text-slate-900 dark:text-white">{phase.deliverable}</p>
+                    <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition-all duration-300">
+                      <div className="flex flex-col md:flex-row gap-8">
+                        {/* Phase Label */}
+                        <div className="flex-shrink-0">
+                          <div className={`bg-${phase.color}-100 dark:bg-${phase.color}-900/30 text-${phase.color}-800 dark:text-${phase.color}-400 px-4 py-2 rounded-lg font-bold text-sm mb-2 inline-block`}>
+                            {phase.phase}
                           </div>
-                          <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border border-emerald-200 dark:border-emerald-800">
-                            <h5 className="font-bold text-sm text-emerald-700 dark:text-emerald-400 mb-1">OUTCOME</h5>
-                            <p className="text-slate-900 dark:text-white">{phase.outcome}</p>
+                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                            {t(`homeHealthcare.process.${phase.key}.title`)}
+                          </h3>
+                          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                            <Clock size={16} />
+                            <span className="font-semibold">{t(`homeHealthcare.process.${phase.key}.duration`)}</span>
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-grow space-y-4">
+                          <div>
+                            <h4 className="font-bold text-slate-900 dark:text-white mb-2">{t('homeHealthcare.process.labels.activities')}</h4>
+                            <ul className="space-y-2">
+                              {activities.map((activity, actIdx) => (
+                                <li key={actIdx} className="flex items-start gap-2 text-slate-600 dark:text-slate-300">
+                                  <CheckCircle2 className="flex-shrink-0 text-emerald-600 mt-0.5" size={16} />
+                                  <span>{activity}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                              <h5 className="font-bold text-sm text-slate-600 dark:text-slate-400 mb-1">{t('homeHealthcare.process.labels.deliverable')}</h5>
+                              <p className="text-slate-900 dark:text-white">{t(`homeHealthcare.process.${phase.key}.deliverable`)}</p>
+                            </div>
+                            <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border border-emerald-200 dark:border-emerald-800">
+                              <h5 className="font-bold text-sm text-emerald-700 dark:text-emerald-400 mb-1">{t('homeHealthcare.process.labels.outcome')}</h5>
+                              <p className="text-slate-900 dark:text-white">{t(`homeHealthcare.process.${phase.key}.outcome`)}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+              })}
             </div>
 
             {/* Final Stats Bar */}
@@ -342,10 +315,10 @@ const HomePage: React.FC = () => {
             >
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
-                  { value: '12', label: 'Successful Migrations' },
-                  { value: 'Zero', label: 'Data Breaches' },
-                  { value: '100%', label: 'Audit Pass Rate' },
-                  { value: '€2M+', label: 'Client Savings' }
+                  { value: t('homeHealthcare.hero.stats.migrations.value'), label: t('homeHealthcare.process.stats.migrations') },
+                  { value: t('homeHealthcare.hero.stats.breaches.value'), label: t('homeHealthcare.process.stats.breaches') },
+                  { value: '100%', label: t('homeHealthcare.process.stats.auditRate') },
+                  { value: t('homeHealthcare.hero.stats.savings.value'), label: t('homeHealthcare.process.stats.savings') }
                 ].map((stat, idx) => (
                   <div key={idx}>
                     <div className="text-4xl font-bold mb-1">{stat.value}</div>
@@ -367,10 +340,10 @@ const HomePage: React.FC = () => {
               className="text-center mb-12"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                Calculate Your Potential Savings
+                {t('homeHealthcare.roi.title')}
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-                See what you could save with a properly executed healthcare cloud migration
+                {t('homeHealthcare.roi.subtitle')}
               </p>
             </motion.div>
 
@@ -388,10 +361,10 @@ const HomePage: React.FC = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                Real Results from Real Projects
+                {t('homeHealthcare.proof.title')}
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-300">
-                Don't just take my word for it—here's the proof
+                {t('homeHealthcare.proof.subtitle')}
               </p>
             </motion.div>
 
@@ -458,7 +431,7 @@ const HomePage: React.FC = () => {
                     to={project.link}
                     className="inline-flex items-center gap-2 text-emerald-600 font-semibold group-hover:gap-3 transition-all"
                   >
-                    View Full Case Study
+                    {t('homeHealthcare.proof.cta')}
                     <ArrowRight size={16} />
                   </Link>
                 </motion.div>
@@ -475,7 +448,7 @@ const HomePage: React.FC = () => {
                 to="/projects"
                 className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl"
               >
-                See All Projects
+                {t('homeHealthcare.proof.seeAll')}
                 <ArrowRight size={20} />
               </Link>
             </motion.div>
@@ -492,36 +465,15 @@ const HomePage: React.FC = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                Common Questions
+                {t('homeHealthcare.faq.title')}
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-300">
-                Addressing your concerns about healthcare cloud migration
+                {t('homeHealthcare.faq.subtitle')}
               </p>
             </motion.div>
 
             <div className="space-y-6">
-              {[
-                {
-                  question: 'What if we have a data breach during migration?',
-                  answer: 'Zero-downtime strategy means your production system never goes offline. Data is encrypted in transit (TLS 1.3) and at rest (AES-256). We migrate in phases with rollback procedures at every step. In 12 migrations, we\'ve never had a breach. Every migration includes a comprehensive security audit before, during, and after.'
-                },
-                {
-                  question: 'How long will we be down?',
-                  answer: 'Zero downtime. Migrations happen during off-hours with parallel systems running. Users never see disruption. We use blue-green deployment strategies and can roll back instantly if needed. Your team continues working normally throughout the entire process.'
-                },
-                {
-                  question: 'What if HIPAA requirements change mid-migration?',
-                  answer: 'Architecture is designed for compliance flexibility. We monitor regulatory changes continuously and adapt the plan proactively. Your system will meet current AND future requirements. We include buffer time and contingency plans for regulatory updates.'
-                },
-                {
-                  question: 'We don\'t have budget for this.',
-                  answer: 'Average ROI is 285% in year 1. Most clients save enough to pay for the project within 8 months through infrastructure optimization alone. Use the ROI calculator above to see YOUR potential savings. Many organizations find the migration pays for itself through avoided audit penalties and reduced operational costs.'
-                },
-                {
-                  question: 'How do I know you won\'t leave us stranded?',
-                  answer: 'Every project includes 90 days post-migration support and complete documentation. I train your team to operate the new system independently. You get runbooks, architecture diagrams, and access to me for questions. Several clients from 3+ years ago still reach out occasionally—I\'m always available.'
-                }
-              ].map((faq, idx) => (
+              {[1, 2, 3, 4, 5].map((idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -532,10 +484,10 @@ const HomePage: React.FC = () => {
                 >
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-start gap-3">
                     <AlertCircle className="text-emerald-600 flex-shrink-0 mt-1" size={24} />
-                    {faq.question}
+                    {t(`homeHealthcare.faq.q${idx}.q`)}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
-                    {faq.answer}
+                    {t(`homeHealthcare.faq.q${idx}.a`)}
                   </p>
                 </motion.div>
               ))}
@@ -552,10 +504,10 @@ const HomePage: React.FC = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Let's Discuss Your Migration
+                {t('homeHealthcare.finalCta.title')}
               </h2>
               <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-                Choose the path that works best for you
+                {t('homeHealthcare.finalCta.subtitle')}
               </p>
 
               {/* Two Path Choice */}
@@ -563,9 +515,9 @@ const HomePage: React.FC = () => {
                 {/* Path A: Urgent */}
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border-2 border-white/30 hover:border-white transition-all duration-300">
                   <div className="text-3xl mb-4">🚀</div>
-                  <h3 className="text-2xl font-bold mb-4">I Need This Now</h3>
+                  <h3 className="text-2xl font-bold mb-4">{t('homeHealthcare.finalCta.urgent.title')}</h3>
                   <p className="text-white/80 mb-6">
-                    For urgent migrations with tight deadlines
+                    {t('homeHealthcare.finalCta.urgent.desc')}
                   </p>
                   <a
                     href="https://calendly.com/prasadtilloo/30min"
@@ -573,28 +525,28 @@ const HomePage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="block w-full bg-white text-emerald-600 px-6 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition-all duration-300"
                   >
-                    Book 30-Min Strategy Call
+                    {t('homeHealthcare.finalCta.urgent.cta')}
                   </a>
                   <p className="text-sm text-white/60 mt-3">
-                    Available this week: Tue 2pm, Thu 10am, Fri 3pm CET
+                    {t('homeHealthcare.finalCta.urgent.note')}
                   </p>
                 </div>
 
                 {/* Path B: Research */}
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border-2 border-white/30 hover:border-white transition-all duration-300">
                   <div className="text-3xl mb-4">📚</div>
-                  <h3 className="text-2xl font-bold mb-4">Still Researching</h3>
+                  <h3 className="text-2xl font-bold mb-4">{t('homeHealthcare.finalCta.research.title')}</h3>
                   <p className="text-white/80 mb-6">
-                    Get free resources to evaluate your options
+                    {t('homeHealthcare.finalCta.research.desc')}
                   </p>
                   <Link
                     to="/contact?resource=hipaa-checklist"
                     className="block w-full bg-white/20 text-white border-2 border-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-white/30 transition-all duration-300"
                   >
-                    Get HIPAA Compliance Checklist
+                    {t('homeHealthcare.finalCta.research.cta')}
                   </Link>
                   <p className="text-sm text-white/60 mt-3">
-                    Free PDF + enters email nurture sequence
+                    {t('homeHealthcare.finalCta.research.note')}
                   </p>
                 </div>
               </div>
@@ -604,11 +556,11 @@ const HomePage: React.FC = () => {
                 <h4 className="font-bold text-lg mb-2">Not sure if I'm the right fit?</h4>
                 <p className="text-white/90">
                   <CheckCircle2 className="inline mr-2" size={20} />
-                  First 30 minutes are free, no obligation
+                  {t('homeHealthcare.finalCta.riskReversal.free')}
                 </p>
                 <p className="text-white/90 mt-2">
                   <CheckCircle2 className="inline mr-2" size={20} />
-                  If I can't help, I'll refer you to someone who can
+                  {t('homeHealthcare.finalCta.riskReversal.referral')}
                 </p>
               </div>
             </motion.div>
@@ -622,7 +574,7 @@ const HomePage: React.FC = () => {
           <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-6 flex justify-between items-center">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Calculate Your Savings
+                {t('roiCalculator.cta.calculate')}
               </h3>
               <button
                 onClick={() => setShowROICalculator(false)}

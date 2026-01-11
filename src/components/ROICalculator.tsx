@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, TrendingDown, CheckCircle2, ExternalLink, Cloud, Database, Leaf, Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface ROIInputs {
     // Common
@@ -32,6 +33,7 @@ interface ROIResult {
 }
 
 const ROICalculator: React.FC = () => {
+    const { t } = useTranslation();
     const [mode, setMode] = useState<CalculatorMode>('cloud');
     const [inputs, setInputs] = useState<ROIInputs>({
         company_size: '',
@@ -126,47 +128,49 @@ const ROICalculator: React.FC = () => {
                     onClick={() => { setMode('cloud'); setResult(null); }}
                     className={`flex-1 p-4 font-bold flex items-center justify-center gap-2 transition-colors ${mode === 'cloud' ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
                 >
-                    <Cloud size={20} /> Cloud Migration
+                    <Cloud size={20} /> {t('roiCalculator.tabs.cloud')}
                 </button>
                 <button
                     onClick={() => { setMode('legacy'); setResult(null); }}
                     className={`flex-1 p-4 font-bold flex items-center justify-center gap-2 transition-colors ${mode === 'legacy' ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-b-2 border-blue-500' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
                 >
-                    <Database size={20} /> Legacy Mod
+                    <Database size={20} /> {t('roiCalculator.tabs.legacy')}
                 </button>
                 <button
                     onClick={() => { setMode('carbon'); setResult(null); }}
                     className={`flex-1 p-4 font-bold flex items-center justify-center gap-2 transition-colors ${mode === 'carbon' ? 'bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 border-b-2 border-teal-500' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
                 >
-                    <Leaf size={20} /> Carbon / ESG
+                    <Leaf size={20} /> {t('roiCalculator.tabs.carbon')}
                 </button>
             </div>
 
             <div className="p-8">
                 <div className="mb-8">
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                        Calculate ROI: {mode === 'cloud' ? 'Cloud Compliance' : mode === 'legacy' ? 'Modernization' : 'Sustainability'}
+                        {mode === 'cloud' && t('roiCalculator.title.cloud')}
+                        {mode === 'legacy' && t('roiCalculator.title.legacy')}
+                        {mode === 'carbon' && t('roiCalculator.title.carbon')}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-400">
-                        {mode === 'cloud' && 'Estimate savings from reduced compliance risk and infrastructure optimization.'}
-                        {mode === 'legacy' && 'Quantify the value of retiring technical debt and improving reliability.'}
-                        {mode === 'carbon' && 'See how much manual effort you can save with PACT automation.'}
+                        {mode === 'cloud' && t('roiCalculator.description.cloud')}
+                        {mode === 'legacy' && t('roiCalculator.description.legacy')}
+                        {mode === 'carbon' && t('roiCalculator.description.carbon')}
                     </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                     {/* Common Input */}
                     <div>
-                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Company Size</label>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.companySize')}</label>
                         <select
                             value={inputs.company_size}
                             onChange={(e) => setInputs({ ...inputs, company_size: e.target.value })}
                             className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                         >
-                            <option value="">Select...</option>
-                            <option value="small">Small ({'<'} 50)</option>
-                            <option value="medium">Medium (50-500)</option>
-                            <option value="large">Large ({'>'} 500)</option>
+                            <option value="">{t('roiCalculator.inputs.select')}</option>
+                            <option value="small">{t('roiCalculator.inputs.sizes.small')}</option>
+                            <option value="medium">{t('roiCalculator.inputs.sizes.medium')}</option>
+                            <option value="large">{t('roiCalculator.inputs.sizes.large')}</option>
                         </select>
                     </div>
 
@@ -174,7 +178,7 @@ const ROICalculator: React.FC = () => {
                     {mode === 'cloud' && (
                         <>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Monthly Cloud Spend (€)</label>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.cloudMonthlySpend')}</label>
                                 <input
                                     type="number"
                                     value={inputs.cloud_monthly_spend}
@@ -184,16 +188,16 @@ const ROICalculator: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Compliance Status</label>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.complianceStatus')}</label>
                                 <select
                                     value={inputs.compliance_status}
                                     onChange={(e) => setInputs({ ...inputs, compliance_status: e.target.value })}
                                     className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
                                 >
-                                    <option value="">Select...</option>
-                                    <option value="non_compliant">Non-Compliant</option>
-                                    <option value="partially">Partially Compliant</option>
-                                    <option value="compliant">Compliant</option>
+                                    <option value="">{t('roiCalculator.inputs.select')}</option>
+                                    <option value="non_compliant">{t('roiCalculator.inputs.complianceOptions.non_compliant')}</option>
+                                    <option value="partially">{t('roiCalculator.inputs.complianceOptions.partially')}</option>
+                                    <option value="compliant">{t('roiCalculator.inputs.complianceOptions.compliant')}</option>
                                 </select>
                             </div>
                         </>
@@ -202,7 +206,7 @@ const ROICalculator: React.FC = () => {
                     {mode === 'legacy' && (
                         <>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Annual Maintenance Cost (€)</label>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.annualMaintenance')}</label>
                                 <input
                                     type="number"
                                     value={inputs.legacy_maintenance_cost}
@@ -212,7 +216,7 @@ const ROICalculator: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Downtime Hours / Year</label>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.downtimeHours')}</label>
                                 <input
                                     type="number"
                                     value={inputs.downtime_hours_year}
@@ -227,7 +231,7 @@ const ROICalculator: React.FC = () => {
                     {mode === 'carbon' && (
                         <>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Number of Suppliers</label>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.supplierCount')}</label>
                                 <input
                                     type="number"
                                     value={inputs.supplier_count}
@@ -237,7 +241,7 @@ const ROICalculator: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Manual Hours/Year/Supplier</label>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.manualHours')}</label>
                                 <input
                                     type="number"
                                     value={inputs.manual_hours_per_supplier}
@@ -258,10 +262,10 @@ const ROICalculator: React.FC = () => {
                     {loading ? (
                         <span className="flex items-center gap-2">
                             <Loader2 size={20} className="animate-spin" />
-                            Calculating...
+                            {t('roiCalculator.cta.calculating')}
                         </span>
                     ) : (
-                        <><Calculator size={20} /> Calculate Savings</>
+                        <><Calculator size={20} /> {t('roiCalculator.cta.calculate')}</>
                     )}
                 </button>
 
@@ -269,18 +273,18 @@ const ROICalculator: React.FC = () => {
                 {result && (
                     <div className="mt-8 animate-fade-in">
                         <div className="bg-emerald-50 dark:bg-emerald-900/20 p-6 rounded-xl border border-emerald-200 dark:border-emerald-700 text-center mb-6">
-                            <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">Potential Annual Savings</div>
+                            <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">{t('roiCalculator.results.title')}</div>
                             <div className="text-5xl font-bold text-slate-900 dark:text-white mb-2">{formatCurrency(result.total_annual_savings)}</div>
                             <div className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
                                 <CheckCircle2 size={16} className="text-emerald-500" />
-                                {result.confidence_score}% Confidence Score
+                                {result.confidence_score}% {t('roiCalculator.results.confidence')}
                             </div>
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-4">
                                 <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                    <TrendingDown size={18} /> Breakdown
+                                    <TrendingDown size={18} /> {t('roiCalculator.results.breakdown')}
                                 </h4>
                                 {Object.entries(result.breakdown).map(([key, val]) => (
                                     <div key={key} className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg flex justify-between items-center">
@@ -295,13 +299,13 @@ const ROICalculator: React.FC = () => {
 
                             <div className="space-y-4">
                                 <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                    <ExternalLink size={18} /> Similar Case Study
+                                    <ExternalLink size={18} /> {t('roiCalculator.results.similarCaseStudy')}
                                 </h4>
                                 {result.relevant_case_studies.map((study, idx) => (
                                     <div key={idx} className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
                                         <div className="font-bold text-slate-900 dark:text-white">{study.client}</div>
                                         <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">{study.outcome}</div>
-                                        <a href={study.link} className="text-emerald-600 text-sm font-bold hover:underline">Read Case Study →</a>
+                                        <a href={study.link} className="text-emerald-600 text-sm font-bold hover:underline">{t('roiCalculator.results.readCaseStudy')} →</a>
                                     </div>
                                 ))}
                             </div>
