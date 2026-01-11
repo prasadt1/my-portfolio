@@ -12,13 +12,52 @@ import {
     Target,
     Users,
     Zap,
-    ChevronDown,
-    FileText,
-    Download
+    FileSearch,
+    Cloud,
+    Layout
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
 import { caseStudies } from '../data/caseStudies';
+
+const services = [
+  {
+    id: 'due-diligence',
+    icon: FileSearch,
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-100 dark:bg-blue-900/30',
+    titleKey: 'services.dueDiligence.title',
+    subtitleKey: 'services.dueDiligence.subtitle',
+    timelineKey: 'services.dueDiligence.timeline',
+    priceKey: 'services.dueDiligence.price',
+    forKey: 'services.dueDiligence.for',
+    deliverablesKey: 'services.dueDiligence.deliverables'
+  },
+  {
+    id: 'cloud-migration',
+    icon: Cloud,
+    iconColor: 'text-emerald-600',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    titleKey: 'services.cloudMigration.title',
+    subtitleKey: 'services.cloudMigration.subtitle',
+    timelineKey: 'services.cloudMigration.timeline',
+    priceKey: 'services.cloudMigration.price',
+    forKey: 'services.cloudMigration.for',
+    deliverablesKey: 'services.cloudMigration.deliverables'
+  },
+  {
+    id: 'platform-evaluation',
+    icon: Layout,
+    iconColor: 'text-purple-600',
+    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    titleKey: 'services.platformEvaluation.title',
+    subtitleKey: 'services.platformEvaluation.subtitle',
+    timelineKey: 'services.platformEvaluation.timeline',
+    priceKey: 'services.platformEvaluation.price',
+    forKey: 'services.platformEvaluation.for',
+    deliverablesKey: 'services.platformEvaluation.deliverables'
+  }
+];
 
 const HomePageMultiDomain: React.FC = () => {
     const { t } = useTranslation();
@@ -26,9 +65,9 @@ const HomePageMultiDomain: React.FC = () => {
     return (
         <>
             <SEO
-                title="Prasad Tilloo | Business-Focused Enterprise Architect & Problem Solver"
-                description="15+ years driving business outcomes through innovative technical solutions. $1M+ savings, 20% revenue increases. React, Java, AWS, Azure, Kubernetes. Healthcare, Pharma, E-commerce, Climate Tech."
-                keywords="enterprise architect, business problem solver, full-stack architect, cloud migration, HIPAA compliance, GDPR, React, Next.js, Java Spring Boot, AWS, Azure, Kubernetes, digital transformation, servant leadership, innovation"
+                title="Prasad Tilloo | Independent Architecture Consultant"
+                description="Independent architecture assessments for EU mid-market companies. Validate cloud migration, platform modernization, and architecture decisions before committing to the wrong path."
+                keywords="architecture consultant, architecture assessment, technical due diligence, cloud migration readiness, platform evaluation, enterprise architect, AWS, Azure, GCP"
                 type="website"
             />
 
@@ -52,7 +91,7 @@ const HomePageMultiDomain: React.FC = () => {
                             {/* Pre-headline */}
                             <div className="inline-block bg-emerald-500/20 backdrop-blur-sm border border-emerald-500/30 px-6 py-3 rounded-full mb-8">
                                 <span className="text-emerald-300 font-semibold">
-                                    Business-Focused Problem Solver & Enterprise Architect
+                                    Independent Architecture Consultant
                                 </span>
                             </div>
 
@@ -144,44 +183,8 @@ const HomePageMultiDomain: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Recruiter / Executive CTA Bar */}
-                            <div className="mb-12 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-6 max-w-4xl mx-auto">
-                                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                                    <div className="text-left flex-1">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-                                                {t('hero.recruiter.badge')}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-lg font-bold text-white mb-1">
-                                            {t('hero.recruiter.title')}
-                                        </h3>
-                                        <p className="text-sm text-slate-300">
-                                            {t('hero.recruiter.desc')}
-                                        </p>
-                                    </div>
 
-                                    <div className="flex gap-4">
-                                        <a
-                                            href="/resume.pdf"
-                                            download
-                                            className="flex items-center gap-2 bg-white text-slate-900 px-5 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-colors text-sm"
-                                        >
-                                            <Download size={18} />
-                                            {t('hero.recruiter.download')}
-                                        </a>
-                                        <Link
-                                            to="/projects"
-                                            className="flex items-center gap-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-5 py-3 rounded-lg font-bold transition-all text-sm"
-                                        >
-                                            <FileText size={18} />
-                                            {t('hero.recruiter.portfolio')}
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Dual CTA */}
+                            {/* Primary CTA */}
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                                 <a
                                     href="https://calendly.com/prasadtilloo/30min"
@@ -189,17 +192,17 @@ const HomePageMultiDomain: React.FC = () => {
                                     rel="noopener noreferrer"
                                     className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
                                 >
-                                    Let's Solve Your Challenge
+                                    {t('hero.cta')}
                                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
                                 </a>
 
-                                <a
-                                    href="#how-i-work"
+                                <Link
+                                    to="/services"
                                     className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 flex items-center gap-3"
                                 >
-                                    See How I Work
-                                    <ChevronDown className="group-hover:translate-y-1 transition-transform" size={24} />
-                                </a>
+                                    View Services
+                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
+                                </Link>
                             </div>
                         </motion.div>
                     </div>
@@ -515,282 +518,91 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
 
+                {/* SERVICES SECTION */}
                 <section className="py-32 bg-slate-50 dark:bg-slate-900">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
-                                {t('home.whatICanHelpWith.title')}
+                                Architecture Assessment Services
                             </h2>
-                            <p className="text-xl text-slate-600 dark:text-slate-300">
-                                {t('home.whatICanHelpWith.subtitle')}
+                            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                                Independent architecture assessments for EU mid-market companies. Validate decisions before committing to the wrong path.
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {/* Pillar 1: Enterprise Transformation */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-500"
-                            >
-                                <div className="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                                    <Building2 className="text-blue-600" size={32} />
-                                </div>
+                        <div className="grid md:grid-cols-3 gap-8 mb-12">
+                            {services.map((service, idx) => {
+                            const Icon = service.icon;
+                            const deliverables = t(service.deliverablesKey, { returnObjects: true }) as string[];
 
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                    {t('pillars.architecture.title')}
-                                </h3>
+                            return (
+                                <motion.div
+                                    key={service.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                                >
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`} />
 
-                                <p className="text-slate-600 dark:text-slate-300 mb-6">
-                                    {t('pillars.architecture.desc')}
-                                </p>
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${service.iconBg} transition-transform group-hover:scale-110 duration-300`}>
+                                            <Icon className={service.iconColor} size={32} />
+                                        </div>
 
-                                <div className="space-y-3 mb-6">
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                E-Commerce Modernization
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                            {t(service.titleKey)}
+                                        </h3>
+                                        <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                                            {t(service.subtitleKey)}
+                                        </p>
+
+                                        <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-3">
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                                                    {t('servicesPage.timeline')}
+                                                </div>
+                                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                                    {t(service.timelineKey)}
+                                                </div>
                                             </div>
-                                            <div className="text-sm text-slate-500">
-                                                BRITA: 6 EMEA markets migrated
+
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                                                    {t('servicesPage.price')}
+                                                </div>
+                                                <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                                                    {t(service.priceKey)}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                Cloud-Native Platforms
+                                        <div className="mb-6">
+                                            <div className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
+                                                {t('servicesPage.deliverables')}
                                             </div>
-                                            <div className="text-sm text-slate-500">
-                                                Boehringer: €500K AI/ML Data Lake
-                                            </div>
+                                            <ul className="space-y-2">
+                                                {Array.isArray(deliverables) && deliverables.slice(0, 3).map((deliverable, dIdx) => (
+                                                    <li key={dIdx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                        <CheckCircle2 className={`flex-shrink-0 mt-0.5 ${service.iconColor}`} size={16} />
+                                                        <span>{deliverable}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
+
+                                        <Link
+                                            to="/services"
+                                            className={`w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1`}
+                                        >
+                                            Learn More
+                                            <ArrowRight size={18} />
+                                        </Link>
                                     </div>
-
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                High-Scale APIs
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                Delivery Hero: 5M+ daily transactions
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6">
-                                    <div className="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-2">
-                                        Business Impact:
-                                    </div>
-                                    <div className="text-2xl font-bold text-blue-600">
-                                        20% revenue increase
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-3">
-                                    <Link
-                                        to="/projects?category=architecture"
-                                        className="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-semibold transition-all"
-                                    >
-                                        View Projects
-                                    </Link>
-                                    <Link
-                                        to="/products?category=blueprints"
-                                        className="flex-1 text-center bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-4 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all"
-                                    >
-                                        Buy Blueprints
-                                    </Link>
-                                </div>
-
-                                <div className="mt-4 text-center text-sm text-slate-500">
-                                    Tech: React, Next.js, Java, AWS, Azure, Kubernetes
-                                </div>
-                            </motion.div>
-
-
-                            {/* Pillar 2: Compliance-First Migration */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
-                                className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-violet-500"
-                            >
-                                <div className="bg-violet-100 dark:bg-violet-900/30 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                                    <Shield className="text-violet-600" size={32} />
-                                </div>
-
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                    {t('pillars.compliance.title')}
-                                </h3>
-
-                                <p className="text-slate-600 dark:text-slate-300 mb-6">
-                                    {t('pillars.compliance.desc')}
-                                </p>
-
-                                <div className="space-y-3 mb-6">
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-violet-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                Healthcare (HIPAA/FHIR)
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                PwC: $650K migration, $500K savings
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-violet-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                Pharma (GDPR/GxP)
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                Boehringer: Marketing & Sales compliance
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-violet-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                E-Commerce (PCI-DSS)
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                BRITA: Multi-tenant GDPR compliance
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-violet-50 dark:bg-violet-900/20 rounded-lg p-4 mb-6">
-                                    <div className="text-sm font-semibold text-violet-900 dark:text-violet-300 mb-2">
-                                        Track Record:
-                                    </div>
-                                    <div className="text-2xl font-bold text-violet-600">
-                                        12+ migrations, zero breaches
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-3">
-                                    <Link
-                                        to="/projects?category=compliance"
-                                        className="flex-1 text-center bg-violet-600 hover:bg-violet-700 text-white px-4 py-3 rounded-lg font-semibold transition-all"
-                                    >
-                                        View Projects
-                                    </Link>
-                                    <Link
-                                        to="/products/hipaa-migration-kit"
-                                        className="flex-1 text-center bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-4 py-3 rounded-lg font-semibold border-2 border-violet-600 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-all"
-                                    >
-                                        Buy Kit
-                                    </Link>
-                                </div>
-
-                                <div className="mt-4 text-center text-sm text-slate-500">
-                                    Industries: Healthcare, Pharma, Finance, Retail
-                                </div>
-                            </motion.div>
-
-                            {/* Pillar 3: Sustainability & Ecosystem */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-emerald-500 relative"
-                            >
-                                <div className="absolute -top-3 -right-3 bg-amber-400 text-slate-900 px-4 py-2 rounded-full text-xs font-bold shadow-lg animate-pulse">
-                                    ⭐ UNIQUE
-                                </div>
-
-                                <div className="bg-emerald-100 dark:bg-emerald-900/30 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                                    <Leaf className="text-emerald-600" size={32} />
-                                </div>
-
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                    {t('pillars.ecosystem.title')}
-                                </h3>
-
-                                <p className="text-slate-600 dark:text-slate-300 mb-6">
-                                    {t('pillars.ecosystem.desc')}
-                                </p>
-
-                                <div className="space-y-3 mb-6">
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                Global Standard Author
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                PACT Tech Spec & API definition
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                Platform Implementation
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                Designed & built PACT Online Catalog
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start gap-2">
-                                        <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
-                                        <div>
-                                            <div className="font-semibold text-slate-900 dark:text-white">
-                                                Ecosystem Facilitation
-                                            </div>
-                                            <div className="text-sm text-slate-500">
-                                                Aligned Microsoft, SAP, Siemens, 100+ cos
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-4 mb-6">
-                                    <div className="text-sm font-semibold text-emerald-900 dark:text-emerald-300 mb-2">
-                                        Impact:
-                                    </div>
-                                    <div className="text-2xl font-bold text-emerald-600">
-                                        100+ companies adopted
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-3">
-                                    <Link
-                                        to="/projects/pact-protocol"
-                                        className="flex-1 text-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-lg font-semibold transition-all"
-                                    >
-                                        View Project
-                                    </Link>
-                                    <Link
-                                        to="/consultation"
-                                        className="flex-1 text-center bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 px-4 py-3 rounded-lg font-semibold border-2 border-emerald-600 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-all"
-                                    >
-                                        Get Consulting
-                                    </Link>
-                                </div>
-
-                                <div className="mt-4 text-center text-sm text-slate-500">
-                                    Tech: Next.js, Java Spring Boot, Azure, Kubernetes
-                                </div>
-                            </motion.div>
+                                </motion.div>
+                            );
+                        })}
                         </div>
 
                         {/* NEW: Featured Projects Section (Dynamic) */}

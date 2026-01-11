@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Mail, MapPin, Linkedin, Github, Award, Briefcase,
-  GraduationCap, Target, Users, Lightbulb, ArrowRight, Package, CheckCircle2, Zap, Building2
+  Mail, Linkedin, Github, Award,
+  GraduationCap, Target, Users, Lightbulb, Zap, Building2, CheckCircle2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,9 @@ import profilepic from '../assets/images/profilepic.png';
 import TechChips from '../components/TechChips';
 import SEO from '../components/SEO';
 import QuickStats from '../components/QuickStats';
+import RecommendationsCarousel from '../components/RecommendationsCarousel';
+import AboutSection from '../components/about/AboutSection';
+import ExperienceTimeline from '../components/about/ExperienceTimeline';
 
 const AboutPage: React.FC = () => {
   const { t } = useTranslation();
@@ -136,7 +139,7 @@ const AboutPage: React.FC = () => {
         type="profile"
       />
 
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 overflow-x-hidden">
 
         {/* HERO SECTION - Matching HomePage Aesthetic */}
         <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 overflow-hidden">
@@ -237,72 +240,71 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
 
-        {/* NEW SECTION: Leadership Philosophy */}
-        <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-900/10 dark:to-blue-900/10">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-center mb-12 text-slate-900 dark:text-white">
+        {/* Leadership Philosophy - Compact Grid */}
+        <AboutSection background="muted">
+            <h2 className="text-3xl font-serif font-bold text-center mb-8 md:mb-10 text-slate-900 dark:text-white">
               {t('about.philosophy.title')}
             </h2>
 
-            <div className="space-y-8">
-              <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="bg-emerald-100 dark:bg-emerald-900/30 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Target className="text-emerald-600" size={24} />
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-emerald-100 dark:bg-emerald-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Target className="text-emerald-600" size={20} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                       {t('about.philosophy.outcomes.title')}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {t('about.philosophy.outcomes.desc')}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 dark:bg-blue-900/30 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Lightbulb className="text-blue-600" size={24} />
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-blue-100 dark:bg-blue-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Lightbulb className="text-blue-600" size={20} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                       {t('about.philosophy.innovation.title')}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {t('about.philosophy.innovation.desc')}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="bg-violet-100 dark:bg-violet-900/30 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Users className="text-violet-600" size={24} />
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-violet-100 dark:bg-violet-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="text-violet-600" size={20} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                       {t('about.philosophy.leadership.title')}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {t('about.philosophy.leadership.desc')}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="bg-orange-100 dark:bg-orange-900/30 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Zap className="text-orange-600" size={24} />
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-orange-100 dark:bg-orange-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Zap className="text-orange-600" size={20} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                       {t('about.philosophy.execution.title')}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {t('about.philosophy.execution.desc')}
                     </p>
                   </div>
@@ -310,30 +312,29 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-12 text-center">
-              <blockquote className="text-2xl font-serif italic text-slate-700 dark:text-slate-300">
+            <div className="text-center">
+              <blockquote className="text-lg font-serif italic text-slate-700 dark:text-slate-300 max-w-prose mx-auto">
                 "{t('about.philosophy.quote')}"
               </blockquote>
-              <p className="text-slate-500 dark:text-slate-400 mt-4">
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
                 {t('about.philosophy.attribution')}
               </p>
             </div>
-          </div>
-        </section>
+        </AboutSection>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12">
+        <AboutSection background="default">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 md:gap-10">
 
             {/* LEFT COLUMN: Main Content */}
-            <div className="space-y-16">
+            <div className="space-y-10 md:space-y-12 min-w-0">
 
               {/* Professional Summary */}
               <section>
-                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
                   <span className="w-8 h-1 bg-emerald-500 rounded-full"></span>
                   {t('about.proof.title')}
                 </h2>
-                <div className="prose prose-lg text-slate-600 dark:text-slate-300 max-w-none leading-relaxed">
+                <div className="prose prose-lg text-slate-600 dark:text-slate-300 max-w-prose leading-relaxed">
                   <p className="mb-6">
                     {t('about.proof.p1')}
                   </p>
@@ -347,7 +348,7 @@ const AboutPage: React.FC = () => {
               </section>
 
               {/* Consulting Highlights - PwC Focus */}
-              <section className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+              <section className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
                 <h2 className="text-2xl font-serif font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                   <Building2 className="text-emerald-600 dark:text-emerald-500" size={24} />
                   {t('about.consulting.title')}
@@ -355,14 +356,14 @@ const AboutPage: React.FC = () => {
                 <div className="space-y-6">
                   <div>
                     <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2">{t('about.consulting.role')}</h3>
-                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed max-w-prose">
                       {t('about.consulting.desc')}
                     </p>
                     <ul className="grid sm:grid-cols-2 gap-4 text-sm text-slate-700 dark:text-slate-300">
                       {(t('about.consulting.highlights', { returnObjects: true }) as string[]).map((highlight, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                          <span>{highlight}</span>
+                          <span className="leading-relaxed">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -371,108 +372,45 @@ const AboutPage: React.FC = () => {
               </section>
 
               {/* Experience Timeline */}
+              <ExperienceTimeline
+                experiences={experiences}
+                title={t('about.journey.title')}
+                challengeLabel={t('about.journey.challenge')}
+                deliveredLabel={t('about.journey.delivered')}
+                viewCaseStudyLabel={t('about.journey.viewCaseStudy')}
+                buyBlueprintLabel={t('about.journey.buyBlueprint')}
+              />
+
+              {/* Recommendations Carousel */}
               <section>
-                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
-                  <Briefcase className="text-emerald-600 dark:text-emerald-500" size={28} />
-                  {t('about.journey.title')}
+                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
+                  <Users className="text-emerald-600 dark:text-emerald-500" size={28} />
+                  Recommendations
                 </h2>
-
-                <div className="space-y-12 pb-4">
-                  {experiences.map((exp, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 }}
-                      className="border-l-4 border-emerald-500 pl-6 mb-12"
-                    >
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{exp.role}</h3>
-                          <div className="text-lg text-slate-600 dark:text-slate-400">{exp.company}</div>
-                        </div>
-                        <div className="text-right hidden sm:block">
-                          <div className="font-semibold text-slate-900 dark:text-white">{exp.period}</div>
-                          <div className="text-sm text-slate-500 flex items-center justify-end gap-1">
-                            <MapPin size={12} /> {exp.location}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="sm:hidden mb-4 text-sm text-slate-500">
-                        <div>{exp.period}</div>
-                        <div>{exp.location}</div>
-                      </div>
-
-                      {/* Business Context */}
-                      <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-4 mb-4">
-                        <div className="font-semibold text-emerald-900 dark:text-emerald-300 mb-2">
-                          {t('about.journey.challenge')}
-                        </div>
-                        <p className="text-slate-700 dark:text-slate-300">
-                          {exp.businessChallenge}
-                        </p>
-                      </div>
-
-                      {/* What I Did */}
-                      <div className="mb-4">
-                        <div className="font-semibold text-slate-900 dark:text-white mb-2">
-                          {t('about.journey.delivered')}
-                        </div>
-                        <ul className="space-y-2">
-                          {exp.deliverables.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-1" size={16} />
-                              <span className="text-slate-600 dark:text-slate-300">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Business Outcomes */}
-                      <div className="grid md:grid-cols-3 gap-4 mb-4">
-                        {exp.outcomes.map((outcome, i) => (
-                          <div key={i} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
-                            <div className="text-2xl font-bold text-emerald-600">{outcome.value}</div>
-                            <div className="text-sm text-slate-600 dark:text-slate-400">{outcome.label}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="flex flex-wrap gap-3">
-                        {exp.links?.caseStudy && (
-                          <Link to={exp.links.caseStudy} className="text-emerald-600 font-semibold flex items-center gap-2 hover:underline">
-                            {t('about.journey.viewCaseStudy')} <ArrowRight size={16} />
-                          </Link>
-                        )}
-                        {exp.links?.product && (
-                          <Link to={exp.links.product} className="text-emerald-600 font-semibold flex items-center gap-2 hover:underline">
-                            {t('about.journey.buyBlueprint')} <Package size={16} />
-                          </Link>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                <RecommendationsCarousel />
               </section>
 
-              {/* Certifications Grid */}
+              {/* Certifications - Compact List */}
               <section>
-                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
                   <Award className="text-emerald-600 dark:text-emerald-500" size={28} />
                   {t('about.certifications.title')}
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 divide-y divide-slate-200 dark:divide-slate-700 overflow-hidden">
                   {certifications.map((cert, idx) => (
-                    <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-start gap-4 hover:border-emerald-500 transition-colors shadow-sm">
-                      <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-lg text-emerald-600 dark:text-emerald-400">
-                        <Award size={24} />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">{cert.title}</h4>
-                        <div className="text-slate-500 dark:text-slate-400 text-sm mb-2">{cert.issuer}</div>
-                        <div className="text-xs font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded inline-block">
+                    <div key={idx} className="p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-3 flex-1">
+                          <div className="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-lg text-emerald-600 dark:text-emerald-400 flex-shrink-0">
+                            <Award size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-slate-900 dark:text-white mb-1">{cert.title}</h4>
+                            <div className="text-sm text-slate-500 dark:text-slate-400">{cert.issuer}</div>
+                          </div>
+                        </div>
+                        <div className="text-xs font-mono text-slate-400 dark:text-slate-500 flex-shrink-0">
                           {cert.date}
                         </div>
                       </div>
@@ -484,7 +422,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             {/* RIGHT COLUMN: Sidebar (Sticky) */}
-            <aside className="lg:sticky lg:top-24 lg:h-fit space-y-8">
+            <aside className="lg:sticky lg:top-24 lg:h-fit space-y-8 min-w-0 w-full lg:w-auto">
 
               {/* Quick Stats Widget */}
               <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -502,7 +440,7 @@ const AboutPage: React.FC = () => {
 
               {/* FOR TEAMS / RECRUITERS TEASER */}
               <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
-                <div className="max-w-4xl mx-auto">
+                <div className="w-full max-w-full">
                   <div className="bg-slate-900 dark:bg-slate-800 rounded-3xl p-12 relative overflow-hidden text-center">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
 
@@ -540,7 +478,7 @@ const AboutPage: React.FC = () => {
               </div>
             </aside>
           </div>
-        </div>
+        </AboutSection>
 
         {/* Global CTA */}
         <div className="bg-slate-100 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 py-20">

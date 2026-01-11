@@ -12,6 +12,7 @@
     },
     "nav": {
         "home": "Home",
+        "services": "Services",
         "frameworks": "Frameworks",
         "about": "About",
         "projects": "Projects",
@@ -23,9 +24,9 @@
         "toggleTheme": "Toggle Theme"
     },
     "hero": {
-        "title": "Business-First Architecture & AI Enablement",
-        "subtitle": "I help teams modernize platforms and prepare for AI adoption through architecture blueprints, decision support, and delivery leadership.",
-        "cta": "Explore My Work",
+        "title": "Independent Architecture Assessments for EU Mid-Market Companies",
+        "subtitle": "I help CTOs and engineering leaders validate cloud migration, platform modernization, and architecture decisions—before committing to the wrong path.",
+        "cta": "Book Discovery Call",
         "carousel": "Trusted by Fortune 500 Leaders",
         "stats": {
             "savings": {
@@ -649,24 +650,6 @@
             "readCaseStudy": "Read Case Study"
         }
     },
-    "fitCheck": {
-        "title": "Project Fit Assessment",
-        "beta": "Beta",
-        "subtitle": "Describe your architecture challenge or project below. My AI Agent will analyze it against my 15+ years of experience and give you an honest Fit Score and custom pitch.",
-        "inputLabel": "Describe Architecture Challenge / Project",
-        "placeholder": "Paste the full job description here...",
-        "analyzeButton": "Analyze Fit",
-        "analyzing": "Analyzing Match...",
-        "results": {
-            "placeholderTitle": "Analysis results will appear here",
-            "matchScore": "Match Score",
-            "highAlignment": "High Alignment",
-            "potentialMatch": "Potential Match",
-            "topMatches": "Top Matches",
-            "missingGaps": "Missing / Gaps",
-            "generatedPitch": "AI-Generated Pitch"
-        }
-    },
     "quickStats": {
         "title": "At a Glance",
         "available": "Independent Consultant",
@@ -719,6 +702,59 @@
         "readyToTransform": {
             "title": "Ready to Transform?",
             "cta": "Choose Your Path"
+        }
+    },
+    "servicesPage": {
+        "title": "Architecture Assessment Services",
+        "subtitle": "Independent architecture assessments for EU mid-market companies. Validate cloud migration, platform modernization, and architecture decisions before committing to the wrong path.",
+        "timeline": "Timeline",
+        "price": "Price",
+        "for": "For",
+        "deliverables": "Deliverables",
+        "bookCall": "Book Discovery Call",
+        "ctaTitle": "Ready to Validate Your Architecture Decisions?",
+        "ctaSubtitle": "Book a free discovery call to discuss your specific challenge and how I can help.",
+        "bookDiscoveryCall": "Book Discovery Call"
+    },
+    "services": {
+        "dueDiligence": {
+            "title": "Technical Due Diligence Assessment",
+            "subtitle": "Comprehensive architecture review for M&A, investments, or acquisitions. Identify technical risks, debt, and compliance gaps before you commit.",
+            "timeline": "2 weeks",
+            "price": "€4,000 – €7,000",
+            "for": "PE firms, investors, acquiring company CTOs",
+            "deliverables": [
+                "Architecture review",
+                "Risks & technical debt register",
+                "Security/compliance gaps (high level)",
+                "30/60/90 day recommendations"
+            ]
+        },
+        "cloudMigration": {
+            "title": "Cloud Migration Readiness Review",
+            "subtitle": "Evaluate your readiness for AWS/Azure/GCP migration. Understand risks, sequencing, and create a practical roadmap.",
+            "timeline": "3 weeks",
+            "price": "€5,000 – €9,000",
+            "for": "Companies planning AWS/Azure/GCP migration",
+            "deliverables": [
+                "Current state mapping",
+                "Migration risks + sequencing",
+                "Target reference architecture",
+                "Practical migration roadmap"
+            ]
+        },
+        "platformEvaluation": {
+            "title": "Platform Evaluation Assessment",
+            "subtitle": "Make informed platform modernization decisions. Evaluate options, tradeoffs, and get architecture blueprints for your chosen path.",
+            "timeline": "2 weeks",
+            "price": "€4,000 – €7,000",
+            "for": "Platform modernization choices (Shopware→Shopify, CMS, API gateway, etc.)",
+            "deliverables": [
+                "Decision matrix",
+                "Options & tradeoffs",
+                "Go/no-go recommendation",
+                "Architecture blueprint draft"
+            ]
         }
     }
 }

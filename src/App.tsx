@@ -17,8 +17,8 @@ import './i18n';
 const HomePage = lazy(() => import('./pages/HomePageMultiDomain'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ClimateTechPage = lazy(() => import('./pages/ClimateTechPage'));
-const FitCheckPage = lazy(() => import('./pages/FitCheckPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
@@ -63,8 +63,8 @@ const App: React.FC = () => {
                 <Route index element={<HomePage />} />
                 <Route path="products" element={<ProductsPage />} />
                 <Route path="products/:slug" element={<ProductDetailPage />} />
+                <Route path="services" element={<ServicesPage />} />
                 <Route path="climate-tech" element={<ClimateTechPage />} />
-                <Route path="fit-check" element={<FitCheckPage />} />
                 <Route path="about" element={<AboutPage />} />
                 <Route path="projects" element={<ProjectsPage />} />
                 <Route path="projects/:slug" element={<CaseStudyPage />} />
