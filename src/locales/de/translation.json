@@ -18,23 +18,23 @@
         "engagement": "Zusammenarbeit",
         "contact": "Kontakt",
         "consulting": "Beratung",
-        "architectureEngine": "Architecture Engine",
+        "architectureEngine": "Architektur-Assistent (Beta)",
         "toggleLanguage": "Sprache wechseln",
         "toggleTheme": "Design wechseln"
     },
     "hero": {
-        "title": "Business-First AI Engineering",
-        "subtitle": "Ich überbrücke die Lücke zwischen Enterprise Architecture und modernster KI – für skalierbare Lösungen, die echten Umsatz generieren.",
+        "title": "Business-First Architektur & KI-Enablement",
+        "subtitle": "Ich helfe Teams dabei, Plattformen zu modernisieren und sich auf die KI-Adoption vorzubereiten – durch Architektur-Blueprints, Entscheidungsunterstützung und Delivery Leadership.",
         "cta": "Meine Arbeit entdecken",
         "carousel": "Vertraut von Fortune 500 Führungskräften",
         "stats": {
             "savings": {
                 "value": "1M$+",
-                "label": "Kosteneinsparungen"
+                "label": "Kosteneinsparungen (Programmauswirkung)"
             },
             "revenue": {
                 "value": "20%",
-                "label": "Umsatzsteigerung"
+                "label": "Geschäftsauswirkung erzielt"
             },
             "efficiency": {
                 "value": "30%",
@@ -653,10 +653,10 @@
         }
     },
     "fitCheck": {
-        "title": "Passe ich in Ihre Rolle?",
+        "title": "Projekt-Fit-Bewertung",
         "beta": "Beta",
-        "subtitle": "Fügen Sie Ihre Stellenbeschreibung unten ein. Mein KI-Agent analysiert sie anhand meiner 15+ Jahre Erfahrung und gibt Ihnen einen ehrlichen Fit-Score und einen individuellen Pitch.",
-        "inputLabel": "Stellenbeschreibung / RFP einfügen",
+        "subtitle": "Beschreiben Sie Ihre Architektur-Herausforderung oder Ihr Projekt unten. Mein KI-Agent analysiert sie anhand meiner 15+ Jahre Erfahrung und gibt Ihnen einen ehrlichen Fit-Score und einen individuellen Pitch.",
+        "inputLabel": "Architektur-Herausforderung / Projekt beschreiben",
         "placeholder": "Fügen Sie die vollständige Stellenbeschreibung hier ein...",
         "analyzeButton": "Fit analysieren",
         "analyzing": "Analysiere Übereinstimmung...",
@@ -672,7 +672,7 @@
     },
     "quickStats": {
         "title": "Auf einen Blick",
-        "available": "Verfügbar ab sofort",
+        "available": "Unabhängiger Berater",
         "schedule": "Interview vereinbaren",
         "resume": "Lebenslauf herunterladen",
         "labels": {

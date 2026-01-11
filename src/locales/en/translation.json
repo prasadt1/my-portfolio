@@ -18,23 +18,23 @@
         "engagement": "Engagement",
         "contact": "Contact",
         "consulting": "Consulting",
-        "architectureEngine": "Architecture Engine",
+        "architectureEngine": "Architecture Assistant (Beta)",
         "toggleLanguage": "Toggle Language",
         "toggleTheme": "Toggle Theme"
     },
     "hero": {
-        "title": "Business-First AI Engineering",
-        "subtitle": "I bridge the gap between Enterprise Architecture and Modern AI, delivering scalable solutions that drive real revenue.",
+        "title": "Business-First Architecture & AI Enablement",
+        "subtitle": "I help teams modernize platforms and prepare for AI adoption through architecture blueprints, decision support, and delivery leadership.",
         "cta": "Explore My Work",
         "carousel": "Trusted by Fortune 500 Leaders",
         "stats": {
             "savings": {
                 "value": "$1M+",
-                "label": "Cost Savings Delivered"
+                "label": "Cost Savings (Program Impact)"
             },
             "revenue": {
                 "value": "20%",
-                "label": "Revenue Increases"
+                "label": "Business Impact Delivered"
             },
             "efficiency": {
                 "value": "30%",
@@ -650,10 +650,10 @@
         }
     },
     "fitCheck": {
-        "title": "Will I Fit Your Role?",
+        "title": "Project Fit Assessment",
         "beta": "Beta",
-        "subtitle": "Paste your Job Description below. My AI Agent will analyze it against my 15+ years of experience and give you an honest Fit Score and custom pitch.",
-        "inputLabel": "Paste Job Description / RFP",
+        "subtitle": "Describe your architecture challenge or project below. My AI Agent will analyze it against my 15+ years of experience and give you an honest Fit Score and custom pitch.",
+        "inputLabel": "Describe Architecture Challenge / Project",
         "placeholder": "Paste the full job description here...",
         "analyzeButton": "Analyze Fit",
         "analyzing": "Analyzing Match...",
@@ -669,7 +669,7 @@
     },
     "quickStats": {
         "title": "At a Glance",
-        "available": "Available Now",
+        "available": "Independent Consultant",
         "schedule": "Schedule Interview",
         "resume": "Download Resume",
         "labels": {

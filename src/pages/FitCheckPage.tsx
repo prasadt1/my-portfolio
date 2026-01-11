@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { generateFitCheck } from '../services/fitCheckService';
 import { Briefcase, CheckCircle, AlertTriangle, FileText, Loader2, ArrowRight, Copy } from 'lucide-react';
@@ -27,7 +28,7 @@ const FitCheckPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4">
-            <SEO title="AI Fit Check | Prasad Tilloo" description="Instant AI analysis of your Job Description against my portfolio." />
+            <SEO title="Project Fit Assessment | Prasad Tilloo" description="Evaluate if your architecture challenge or project aligns with my consulting expertise." />
 
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
@@ -39,6 +40,14 @@ const FitCheckPage: React.FC = () => {
                     </div>
                     <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                         {t('fitCheck.subtitle')}
+                    </p>
+                </div>
+
+                {/* Consulting Disclaimer */}
+                <div className="bg-blue-900/20 border border-blue-700/50 rounded-lg p-4 mb-6">
+                    <p className="text-sm text-slate-300">
+                        This tool helps evaluate if your project aligns with my consulting expertise. 
+                        For job opportunities, please use <Link to="/contact" className="text-emerald-400 hover:underline">the contact form</Link> instead.
                     </p>
                 </div>
 
