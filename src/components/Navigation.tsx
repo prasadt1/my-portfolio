@@ -23,13 +23,11 @@ const Navigation: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  // Simplified navigation - core pages only
   const navLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
-    { path: '/products', label: t('nav.frameworks') },
     { path: '/projects', label: t('nav.projects') },
-    { path: '/climate-tech', label: 'Climate Tech' },
-    { path: '/fit-check', label: t('nav.engagement') },
     { path: '/contact', label: t('nav.contact') }
   ];
 
