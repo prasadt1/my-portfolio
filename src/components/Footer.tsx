@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-24 md:pb-16 font-sans">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-1">
                         <Link to="/" className="flex items-center gap-2 mb-4">
@@ -59,8 +59,18 @@ const Footer: React.FC = () => {
                         <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                             <li><Link to="/about" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.about')} me</Link></li>
                             <li><Link to="/projects" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.projects')}</Link></li>
-                            <li><Link to="/products" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.frameworks')}</Link></li>
+                            <li><Link to="/contact" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.contact')}</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Tools & Resources */}
+                    <div>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">Tools & Resources</h3>
+                        <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                             <li><Link to="/architecture-engine" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.architectureEngine')}</Link></li>
+                            <li><Link to="/products" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.frameworks')}</Link></li>
+                            <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
+                            <li><Link to="/fit-check" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.engagement')}</Link></li>
                         </ul>
                     </div>
 

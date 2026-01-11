@@ -867,55 +867,6 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
 
-                {/* LEADERSHIP VALUES BANNER */}
-                <section className="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-emerald-900 text-white" >
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold mb-4">{t('home.whyWorkWithMe.title')}</h2>
-                            <p className="text-xl text-slate-200">
-                                {t('home.whyWorkWithMe.subtitle')}
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-4 gap-6">
-                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
-                                <Building2 className="text-emerald-400 mb-4" size={32} />
-                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.businessFirst.title')}</h3>
-                                <p className="text-slate-300">
-                                    {t('home.whyWorkWithMe.values.businessFirst.desc')}
-                                </p>
-                            </div>
-                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
-                                <Lightbulb className="text-emerald-400 mb-4" size={32} />
-                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.innovation.title')}</h3>
-                                <p className="text-slate-300">
-                                    {t('home.whyWorkWithMe.values.innovation.desc')}
-                                </p>
-                            </div>
-                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
-                                <Users className="text-emerald-400 mb-4" size={32} />
-                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.servantLeader.title')}</h3>
-                                <p className="text-slate-300">
-                                    {t('home.whyWorkWithMe.values.servantLeader.desc')}
-                                </p>
-                            </div>
-                            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
-                                <Zap className="text-emerald-400 mb-4" size={32} />
-                                <h3 className="text-xl font-bold mb-2">{t('home.whyWorkWithMe.values.handsOn.title')}</h3>
-                                <p className="text-slate-300">
-                                    {t('home.whyWorkWithMe.values.handsOn.desc')}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-16 text-center max-w-4xl mx-auto">
-                            <blockquote className="text-2xl md:text-3xl font-serif italic text-emerald-200">
-                                {t('home.whyWorkWithMe.quote')}
-                            </blockquote>
-                        </div>
-                    </div>
-                </section>
-
                 {/* FINAL CTA - Simplified */}
                 <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center" >
                     <div className="max-w-4xl mx-auto text-center">
