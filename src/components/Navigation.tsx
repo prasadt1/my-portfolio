@@ -168,7 +168,7 @@ const Navigation: React.FC = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-3 bg-emerald-600 text-white rounded-lg text-center font-semibold text-base shadow-sm active:scale-95 transition-transform"
               >
-                Architecture Engine
+                {t('nav.architectureEngine')}
               </Link>
             </div>
           </motion.div>

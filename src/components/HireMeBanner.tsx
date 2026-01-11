@@ -7,9 +7,9 @@ const HireMeBanner = () => {
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
                 <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-300 dark:bg-emerald-400 rounded-full animate-pulse" />
-                    <span className="font-semibold">Available for Opportunities</span>
+                    <span className="font-semibold">Independent Consultant</span>
                     <span className="text-emerald-100 dark:text-slate-400 text-sm hidden sm:inline">
-                        | Freelance, Contract, Full-time
+                        | Architecture Assessment & Advisory
                     </span>
                 </div>
 

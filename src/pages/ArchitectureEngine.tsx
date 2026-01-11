@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Activity, CreditCard, ShoppingCart, Cpu, ArrowLeft, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Activity, CreditCard, ShoppingCart, Cpu, ArrowLeft, CheckCircle2, AlertTriangle, AlertCircle } from 'lucide-react';
 import { generateArchitecture } from '../services/architectureGenerator';
 import type { ArchitectureRequest, ArchitectureResult } from '../types';
 import ArchitectureDiagram from '../components/ArchitectureDiagram';
 import SEO from '../components/SEO';
 import LoadingState from '../components/LoadingState';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 type IndustryType = 'healthcare' | 'financial' | 'ecommerce' | 'aiml';
 
@@ -124,21 +125,48 @@ const ArchitectureEngine: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
       <SEO
-        title="AI Architecture Decision Engine | Prasad Tilloo"
-        description="Interactive AI-powered architectural blueprint generator. Describe your challenge and receive an enterprise-grade solution design instantly."
-        keywords="architecture engine, AI architecture, system design, cloud architecture, solution blueprint"
+        title="Architecture Assistant (Beta) | Prasad Tilloo"
+        description="Experimental AI-assisted architecture exploration tool. Generates draft options and tradeoffs for review—not final production designs."
+        keywords="architecture assistant, AI-assisted architecture, system design, cloud architecture, architecture exploration"
       />
 
       {/* Header */}
       <div className="text-center mb-12 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6">
-          AI-Powered Architecture Decision Engine
-        </h1>
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white">
+            AI-Assisted Architecture Assistant
+          </h1>
+          <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800">Beta</span>
+        </div>
         <p className="text-xl text-slate-600 dark:text-slate-400">
-          Get expert architecture recommendations based on 15+ years of enterprise experience
-          across Healthcare, Financial Services, eCommerce, and AI/ML.
+          Explore architecture options and tradeoffs based on enterprise patterns and my experience. Outputs are drafts intended for discussion—not final production designs.
         </p>
       </div>
+
+      {/* Disclaimer Section */}
+      <section className="max-w-4xl mx-auto px-4 py-8 bg-slate-800/50 dark:bg-slate-800/50 rounded-xl border border-slate-700 mb-12">
+        <h3 className="text-xl font-bold mb-4 text-slate-200">
+          How to Use This Tool
+        </h3>
+        <ul className="space-y-2 text-slate-300">
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Draft only</strong> - All outputs are starting points for discussion, not production-ready designs</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Validation required</strong> - Verify all security, compliance, and scalability constraints separately</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Use for ideation</strong> - Best used to explore options and tradeoffs before detailed planning</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Need a full assessment?</strong> - <Link to="/contact" className="text-emerald-400 hover:underline">Contact me</Link> for comprehensive architecture consulting</span>
+          </li>
+        </ul>
+      </section>
 
       <div className="max-w-7xl mx-auto">
 
@@ -229,7 +257,7 @@ const ArchitectureEngine: React.FC = () => {
                     : 'bg-slate-200 dark:bg-slate-700 text-slate-400 cursor-not-allowed'}
                 `}
               >
-                Generate Architecture Blueprint
+                Generate Draft Blueprint
               </button>
             </div>
           </motion.div>
@@ -265,7 +293,7 @@ const ArchitectureEngine: React.FC = () => {
 
               {/* Recommendations */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Recommendations</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Draft Recommendations</h2>
                 <ul className="space-y-4">
                   {result.recommendations.map((rec, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
@@ -325,7 +353,7 @@ const ArchitectureEngine: React.FC = () => {
 
               {/* Tech Stack */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Recommended Tech Stack</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Suggested Tech Stack</h2>
                 <div className="grid gap-4">
                   {result.stack.map((item, idx) => (
                     <div key={idx} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border-l-4 border-emerald-500">
