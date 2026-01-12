@@ -3,6 +3,7 @@ import { Linkedin, Mail, Calendar, MessageSquare, ArrowRight } from 'lucide-reac
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
+import { PageShell, PageHeader, Container } from '../components/layout';
 
 const ContactPage: React.FC = () => {
   const { t } = useTranslation();
@@ -36,22 +37,14 @@ const ContactPage: React.FC = () => {
         description="Partner with Prasad to solve complex business challenges through enterprise architecture and innovation. Book a consultation today."
       />
 
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+      <PageShell background="muted" containerMaxWidth="7xl" className="pt-24">
+        <PageHeader
+          title={t('contactPage.title')}
+          subtitle={t('contactPage.subtitle')}
+        />
 
-        <div className="max-w-7xl mx-auto mb-16 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6"
-          >
-            {t('contactPage.title')}
-          </motion.h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {t('contactPage.subtitle')}
-          </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24">
+        <Container maxWidth="6xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
 
           {/* LEFT: Direct Options */}
           <motion.div
@@ -194,7 +187,8 @@ const ContactPage: React.FC = () => {
             </form>
           </motion.div>
         </div>
-      </div>
+        </Container>
+      </PageShell>
     </>
   );
 };

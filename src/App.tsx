@@ -1,25 +1,25 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
-import ChatAssistant from './components/ChatAssistant';
 import { AnalyticsProvider } from './components/AnalyticsProvider';
-import HireMeBanner from './components/HireMeBanner';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { Loader2 } from 'lucide-react';
-import CommandPalette from './components/CommandPalette';
-import ExitIntentPopup from './components/ExitIntentPopup';
 import './i18n';
+
+// Lazy load optional components for performance
+const ChatAssistant = lazy(() => import('./components/ChatAssistant'));
+const CommandPalette = lazy(() => import('./components/CommandPalette'));
+const ExitIntentPopup = lazy(() => import('./components/ExitIntentPopup'));
+const HireMeBanner = lazy(() => import('./components/HireMeBanner'));
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import('./pages/HomePageMultiDomain'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ClimateTechPage = lazy(() => import('./pages/ClimateTechPage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage/index'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
 const ArchitectureEngine = lazy(() => import('./pages/ArchitectureEngine'));
@@ -28,9 +28,16 @@ const ConsultationPage = lazy(() => import('./pages/ConsultationPage'));
 
 // Layout Component
 const Layout: React.FC = () => {
+  const location = useLocation();
+  
+  // Conditionally show ChatAssistant only on specific pages
+  const showChatAssistant = ['/', '/services', '/contact'].includes(location.pathname);
+  
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
-      <CommandPalette />
+      <Suspense fallback={null}>
+        <CommandPalette />
+      </Suspense>
       <Navigation />
       <main className="pt-20">
         <ErrorBoundary>
@@ -46,8 +53,14 @@ const Layout: React.FC = () => {
         </ErrorBoundary>
       </main>
       <Footer />
-      <ChatAssistant />
-      <HireMeBanner />
+      {showChatAssistant && (
+        <Suspense fallback={null}>
+          <ChatAssistant />
+        </Suspense>
+      )}
+      <Suspense fallback={null}>
+        <HireMeBanner />
+      </Suspense>
     </div>
   );
 };
@@ -61,8 +74,6 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
-                <Route path="products" element={<ProductsPage />} />
-                <Route path="products/:slug" element={<ProductDetailPage />} />
                 <Route path="services" element={<ServicesPage />} />
                 <Route path="climate-tech" element={<ClimateTechPage />} />
                 <Route path="about" element={<AboutPage />} />
@@ -73,7 +84,9 @@ const App: React.FC = () => {
                 <Route path="consultation" element={<ConsultationPage />} />
               </Route>
             </Routes>
-            <ExitIntentPopup />
+            <Suspense fallback={null}>
+              <ExitIntentPopup />
+            </Suspense>
           </AnalyticsProvider>
         </BrowserRouter>
       </ThemeProvider>

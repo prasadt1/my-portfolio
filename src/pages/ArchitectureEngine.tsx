@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import LoadingState from '../components/LoadingState';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 type IndustryType = 'healthcare' | 'financial' | 'ecommerce' | 'aiml';
 
@@ -67,11 +68,58 @@ const EXAMPLE_PROMPTS: Record<IndustryType, string> = {
 };
 
 const ArchitectureEngine: React.FC = () => {
+  const { t } = useTranslation();
   const [step, setStep] = useState<'industry' | 'input' | 'generating' | 'result'>('industry');
   const [selectedIndustry, setSelectedIndustry] = useState<IndustryType | null>(null);
   const [challenge, setChallenge] = useState('');
   const [result, setResult] = useState<ArchitectureResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const INDUSTRIES: Industry[] = [
+    {
+      id: 'healthcare',
+      title: t('architectureEngine.industrySelection.healthcare'),
+      icon: <Activity size={32} />,
+      compliance: ['HIPAA', 'FHIR', 'HL7', 'GDPR'],
+      colorClass: 'text-blue-600 dark:text-blue-400',
+      bgClass: 'bg-blue-50 dark:bg-blue-900/20',
+      borderClass: 'border-blue-200 dark:border-blue-800 hover:border-blue-500'
+    },
+    {
+      id: 'financial',
+      title: t('architectureEngine.industrySelection.financial'),
+      icon: <CreditCard size={32} />,
+      compliance: ['PCI-DSS', 'SOC2', 'KYC', 'AML'],
+      colorClass: 'text-emerald-600 dark:text-emerald-400',
+      bgClass: 'bg-emerald-50 dark:bg-emerald-900/20',
+      borderClass: 'border-emerald-200 dark:border-emerald-800 hover:border-emerald-500'
+    },
+    {
+      id: 'ecommerce',
+      title: t('architectureEngine.industrySelection.ecommerce'),
+      icon: <ShoppingCart size={32} />,
+      compliance: ['PCI-DSS', 'GDPR', 'Multi-tenant'],
+      colorClass: 'text-orange-600 dark:text-orange-400',
+      bgClass: 'bg-orange-50 dark:bg-orange-900/20',
+      borderClass: 'border-orange-200 dark:border-orange-800 hover:border-orange-500'
+    },
+    {
+      id: 'aiml',
+      title: t('architectureEngine.industrySelection.aiml'),
+      icon: <Cpu size={32} />,
+      compliance: ['Ethical AI', 'Data Privacy', 'MLOps'],
+      colorClass: 'text-purple-600 dark:text-purple-400',
+      bgClass: 'bg-purple-50 dark:bg-purple-900/20',
+      borderClass: 'border-purple-200 dark:border-purple-800 hover:border-purple-500'
+    }
+  ];
+
+  const EXAMPLE_PROMPTS: Record<IndustryType, string> = {
+    healthcare: t('architectureEngine.examplePrompts.healthcare'),
+    financial: t('architectureEngine.examplePrompts.financial'),
+    ecommerce: t('architectureEngine.examplePrompts.ecommerce'),
+    aiml: t('architectureEngine.examplePrompts.aiml')
+  };
 
   const handleIndustrySelect = (industry: IndustryType) => {
     setSelectedIndustry(industry);
@@ -109,7 +157,39 @@ const ArchitectureEngine: React.FC = () => {
       setResult(architectureResult);
       setStep('result');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to generate architecture');
+      let errorMessage = t('architectureEngine.errors.unknown');
+      
+      if (err instanceof Error) {
+        const errorCode = err.message;
+        if (errorCode === 'API_QUOTA_EXCEEDED') {
+          errorMessage = t('architectureEngine.errors.quotaExceeded');
+        } else if (errorCode === 'SERVER_ERROR') {
+          errorMessage = t('architectureEngine.errors.serverError');
+        } else if (errorCode === 'NETWORK_ERROR') {
+          errorMessage = t('architectureEngine.errors.networkError');
+        } else if (errorCode === 'API_CONFIG_ERROR') {
+          errorMessage = t('architectureEngine.errors.configError');
+        } else {
+          // Only show user-friendly messages, filter out technical details
+          const technicalPatterns = [
+            'GoogleGenerativeAI',
+            'generativelanguage.googleapis.com',
+            'QuotaFailure',
+            'RetryInfo',
+            '429 Too Many Requests',
+            'quota exceeded for metric'
+          ];
+          const isTechnicalError = technicalPatterns.some(pattern => 
+            errorCode.toLowerCase().includes(pattern.toLowerCase())
+          );
+          
+          if (!isTechnicalError && errorCode.length < 200) {
+            errorMessage = errorCode;
+          }
+        }
+      }
+      
+      setError(errorMessage);
       setStep('input');
     }
   };
@@ -134,36 +214,38 @@ const ArchitectureEngine: React.FC = () => {
       <div className="text-center mb-12 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-3 mb-6">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white">
-            AI-Assisted Architecture Assistant
+            {t('architectureEngine.title')}
           </h1>
-          <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800">Beta</span>
+          <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800">{t('architectureEngine.beta')}</span>
         </div>
         <p className="text-xl text-slate-600 dark:text-slate-400">
-          Explore architecture options and tradeoffs based on enterprise patterns and my experience. Outputs are drafts intended for discussion—not final production designs.
+          {t('architectureEngine.subtitle')}
         </p>
       </div>
 
       {/* Disclaimer Section */}
       <section className="max-w-4xl mx-auto px-4 py-8 bg-slate-800/50 dark:bg-slate-800/50 rounded-xl border border-slate-700 mb-12">
         <h3 className="text-xl font-bold mb-4 text-slate-200">
-          How to Use This Tool
+          {t('architectureEngine.disclaimer.title')}
         </h3>
         <ul className="space-y-2 text-slate-300">
           <li className="flex items-start gap-2">
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Draft only</strong> - All outputs are starting points for discussion, not production-ready designs</span>
+            <span>{t('architectureEngine.disclaimer.draftOnly')}</span>
           </li>
           <li className="flex items-start gap-2">
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Validation required</strong> - Verify all security, compliance, and scalability constraints separately</span>
+            <span>{t('architectureEngine.disclaimer.validationRequired')}</span>
           </li>
           <li className="flex items-start gap-2">
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Use for ideation</strong> - Best used to explore options and tradeoffs before detailed planning</span>
+            <span>{t('architectureEngine.disclaimer.useForIdeation')}</span>
           </li>
           <li className="flex items-start gap-2">
             <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Need a full assessment?</strong> - <Link to="/contact" className="text-emerald-400 hover:underline">Contact me</Link> for comprehensive architecture consulting</span>
+            <span>
+              {t('architectureEngine.disclaimer.needFullAssessment')} - <Link to="/contact" className="text-emerald-400 hover:underline">{t('architectureEngine.disclaimer.contactLink')}</Link> {t('architectureEngine.disclaimer.needFullAssessmentSuffix')}
+            </span>
           </li>
         </ul>
       </section>
@@ -177,7 +259,7 @@ const ArchitectureEngine: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <h2 className="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">
-              Select Your Industry Domain
+              {t('architectureEngine.industrySelection.title')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {INDUSTRIES.map((industry) => (
@@ -225,18 +307,18 @@ const ArchitectureEngine: React.FC = () => {
               className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors mb-8 group"
             >
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              Back to Industries
+              {t('architectureEngine.input.back')}
             </button>
 
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                Describe Your Challenge
+                {t('architectureEngine.input.title')}
               </h2>
 
               <textarea
                 value={challenge}
                 onChange={(e) => setChallenge(e.target.value)}
-                placeholder="Describe your technical challenge or system requirements..."
+                placeholder={t('architectureEngine.input.placeholder')}
                 className="w-full h-48 p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-y mb-6 transition-shadow"
               />
 
@@ -257,7 +339,7 @@ const ArchitectureEngine: React.FC = () => {
                     : 'bg-slate-200 dark:bg-slate-700 text-slate-400 cursor-not-allowed'}
                 `}
               >
-                Generate Draft Blueprint
+                {t('architectureEngine.input.generate')}
               </button>
             </div>
           </motion.div>
@@ -266,7 +348,7 @@ const ArchitectureEngine: React.FC = () => {
         {/* Step 3: Generating */}
         {step === 'generating' && (
           <div className="flex justify-center py-20">
-            <LoadingState variant="spinner" text="Architecting Solution... Analyzing requirements against enterprise patterns." />
+            <LoadingState variant="spinner" text={t('architectureEngine.generating.text')} />
           </div>
         )}
 
@@ -281,19 +363,19 @@ const ArchitectureEngine: React.FC = () => {
               className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors mb-8 group"
             >
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              Start New Analysis
+              {t('architectureEngine.result.back')}
             </button>
 
             <div className="grid gap-8">
               {/* Executive Summary */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Executive Summary</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{t('architectureEngine.result.executiveSummary')}</h2>
                 <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{result.summary}</p>
               </div>
 
               {/* Recommendations */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Draft Recommendations</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{t('architectureEngine.result.draftRecommendations')}</h2>
                 <ul className="space-y-4">
                   {result.recommendations.map((rec, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
@@ -307,20 +389,20 @@ const ArchitectureEngine: React.FC = () => {
               {/* Timeline & Budget */}
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Estimated Timeline</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">{t('architectureEngine.result.estimatedTimeline')}</h3>
                   <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{result.timeline}</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Estimated Budget</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">{t('architectureEngine.result.estimatedBudget')}</h3>
                   <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{result.budget}</p>
                 </div>
               </div>
 
               {/* Interactive Architecture Diagram */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Architecture Blueprint</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{t('architectureEngine.result.architectureBlueprint')}</h2>
                 <p className="text-slate-500 dark:text-slate-400 mb-6">
-                  Interactive diagram showing {result.diagram.nodes.length} components. Click nodes to see details.
+                  {t('architectureEngine.result.blueprintDescription', { count: result.diagram.nodes.length })}
                 </p>
                 <div className="h-[600px] border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 mb-6">
                   <ArchitectureDiagram
@@ -331,7 +413,7 @@ const ArchitectureEngine: React.FC = () => {
 
                 {/* Component Details Table (Simplified vs Details Element) */}
                 <div className="space-y-4">
-                  <h3 className="font-bold text-slate-900 dark:text-white">Component Breakdown</h3>
+                  <h3 className="font-bold text-slate-900 dark:text-white">{t('architectureEngine.result.componentBreakdown')}</h3>
                   <div className="grid gap-4 md:grid-cols-2">
                     {result.diagram.nodes.map((node) => (
                       <div key={node.id} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
@@ -353,7 +435,7 @@ const ArchitectureEngine: React.FC = () => {
 
               {/* Tech Stack */}
               <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Suggested Tech Stack</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{t('architectureEngine.result.suggestedTechStack')}</h2>
                 <div className="grid gap-4">
                   {result.stack.map((item, idx) => (
                     <div key={idx} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border-l-4 border-emerald-500">
@@ -371,7 +453,7 @@ const ArchitectureEngine: React.FC = () => {
                 {/* Compliance */}
                 {result.compliance.length > 0 && (
                   <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Compliance Standards</h2>
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">{t('architectureEngine.result.complianceStandards')}</h2>
                     <div className="flex flex-wrap gap-3">
                       {result.compliance.map((comp, idx) => (
                         <span
@@ -388,7 +470,7 @@ const ArchitectureEngine: React.FC = () => {
                 {/* Risks */}
                 {result.risks.length > 0 && (
                   <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Risk Assessment</h2>
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">{t('architectureEngine.result.riskAssessment')}</h2>
                     <div className="space-y-3">
                       {result.risks.map((risk, idx) => (
                         <div

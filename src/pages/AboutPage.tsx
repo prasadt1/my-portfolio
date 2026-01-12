@@ -167,10 +167,6 @@ const AboutPage: React.FC = () => {
                     />
                   </div>
                 </div>
-                {/* Status Badge */}
-                <div className="absolute bottom-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-white/20">
-                  OPEN TO WORK
-                </div>
               </motion.div>
 
               <motion.div
@@ -378,7 +374,6 @@ const AboutPage: React.FC = () => {
                 challengeLabel={t('about.journey.challenge')}
                 deliveredLabel={t('about.journey.delivered')}
                 viewCaseStudyLabel={t('about.journey.viewCaseStudy')}
-                buyBlueprintLabel={t('about.journey.buyBlueprint')}
               />
 
               {/* Recommendations Carousel */}
@@ -438,32 +433,6 @@ const AboutPage: React.FC = () => {
                 <TechChips categories={techCategories} />
               </div>
 
-              {/* FOR TEAMS / RECRUITERS TEASER */}
-              <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
-                <div className="w-full max-w-full">
-                  <div className="bg-slate-900 dark:bg-slate-800 rounded-3xl p-12 relative overflow-hidden text-center">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-
-                    <div className="relative z-10">
-                      <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-                        {t('about.forTeams.badge')}
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                        {t('about.forTeams.title')}
-                      </h2>
-                      <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                        {t('about.forTeams.desc')}
-                      </p>
-                      <a
-                        href="/products"
-                        className="inline-flex bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105"
-                      >
-                        {t('about.forTeams.cta')}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </section>
               {/* Education Widget */}
               <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
                 <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white mb-6 flex items-center gap-2">
