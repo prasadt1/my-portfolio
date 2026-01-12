@@ -20,6 +20,8 @@
         "contact": "Contact",
         "consulting": "Consulting",
         "architectureEngine": "Architecture Assistant (Beta)",
+        "labs": "Labs",
+        "bookDiscoveryCall": "Book Discovery Call",
         "toggleLanguage": "Toggle Language",
         "toggleTheme": "Toggle Theme"
     },

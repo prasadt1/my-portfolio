@@ -20,6 +20,8 @@
         "contact": "Kontakt",
         "consulting": "Beratung",
         "architectureEngine": "Architektur-Assistent (Beta)",
+        "labs": "Labs",
+        "bookDiscoveryCall": "Discovery Call buchen",
         "toggleLanguage": "Sprache wechseln",
         "toggleTheme": "Design wechseln"
     },
@@ -27,6 +29,7 @@
         "title": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU",
         "subtitle": "Ich helfe CTOs und Engineering-Leadern dabei, Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen zu validieren – bevor sie den falschen Weg einschlagen.",
         "cta": "Meine Arbeit entdecken",
+        "ctaSecondary": "Services ansehen",
         "carousel": "Vertraut von Fortune 500 Führungskräften",
         "stats": {
             "savings": {
@@ -311,6 +314,29 @@
             "title": "Beratung buchen",
             "desc": "Überspringen Sie den E-Mail-Verkehr. Vereinbaren Sie ein kostenloses 30-minütiges Discovery-Gespräch.",
             "cta": "Verfügbarkeit prüfen"
+        },
+        "whatToExpect": {
+            "title": "Was Sie erwartet",
+            "duration": {
+                "label": "Dauer",
+                "value": "30 Minuten"
+            },
+            "bring": {
+                "label": "Was Sie mitbringen sollten",
+                "items": [
+                    "Ihre Architektur-Herausforderung oder Frage",
+                    "Kontext zu Ihrem aktuellen System/Team",
+                    "Geschäftsziele und Einschränkungen"
+                ]
+            },
+            "get": {
+                "label": "Was Sie erhalten",
+                "items": [
+                    "Erste Einschätzung Ihrer Herausforderung",
+                    "Empfohlene nächste Schritte",
+                    "Klares Verständnis, wie ich helfen kann"
+                ]
+            }
         },
         "email": {
             "title": "E-Mail schreiben",

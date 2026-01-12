@@ -103,7 +103,7 @@ const Navigation: React.FC = () => {
               to="/architecture-engine"
               className="px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-medium rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 transition-all whitespace-nowrap"
             >
-              Labs
+              {t('nav.labs')}
             </Link>
 
             {/* Primary CTA - Book Discovery Call */}
@@ -111,7 +111,7 @@ const Navigation: React.FC = () => {
               to="/contact"
               className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap"
             >
-              Book Discovery Call
+              {t('nav.bookDiscoveryCall')}
             </Link>
           </div>
 
@@ -176,14 +176,14 @@ const Navigation: React.FC = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-center font-medium text-base hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
-                Labs
+                {t('nav.labs')}
               </Link>
               <Link
                 to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-3 bg-emerald-600 text-white rounded-lg text-center font-semibold text-base shadow-sm active:scale-95 transition-transform"
               >
-                Book Discovery Call
+                {t('nav.bookDiscoveryCall')}
               </Link>
             </div>
           </motion.div>

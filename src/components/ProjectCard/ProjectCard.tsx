@@ -101,7 +101,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         to={`/projects/${project.slug}`}
                         className={`flex-1 text-center py-2.5 px-4 rounded-lg bg-${theme.color}-600 hover:bg-${theme.color}-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5`}
                     >
-                        {t(`${project.id}.cta.primary`, { defaultValue: project.cta.primary?.text || 'View Case Study' })}
+                        {t(`${project.id}.cta.primary`, { defaultValue: project.cta.primary?.text || 'View Case Study', ns: 'projects' })}
                         <ArrowRight size={14} />
                     </Link>
                     {project.cta.secondary && (
@@ -111,7 +111,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                             rel="noopener noreferrer"
                             className={`flex-1 text-center py-2.5 px-4 rounded-lg border-2 border-${theme.color}-600 text-${theme.color}-600 dark:text-${theme.color}-400 hover:bg-${theme.color}-50 dark:hover:bg-${theme.color}-900/20 font-medium text-sm transition-colors`}
                         >
-                            {t(`${project.id}.cta.secondary`, { defaultValue: project.cta.secondary.text })}
+                            {t(`${project.id}.cta.secondary`, { defaultValue: project.cta.secondary.text, ns: 'projects' })}
                         </a>
                     )}
                 </div>
