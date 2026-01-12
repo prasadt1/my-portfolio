@@ -24,9 +24,10 @@
         "toggleTheme": "Toggle Theme"
     },
     "hero": {
-        "title": "Independent Architecture Assessments for EU Mid-Market Companies",
-        "subtitle": "I help CTOs and engineering leaders validate cloud migration, platform modernization, and architecture decisions—before committing to the wrong path.",
+        "title": "Digital Transformation, Architected. Delivered.",
+        "subtitle": "I help CTOs and engineering leaders modernize cloud platforms and integration landscapes — combining architecture clarity with execution-ready roadmaps and delivery leadership. AI enablement discovery available.",
         "cta": "Book Discovery Call",
+        "ctaSecondary": "View Services",
         "carousel": "Trusted by Fortune 500 Leaders",
         "stats": {
             "savings": {
@@ -305,7 +306,7 @@
         }
     },
     "footer": {
-        "tagline": "Strategic Enterprise Architect & Business Problem Solver.",
+        "tagline": "Independent Architecture & Transformation Consultant",
         "explore": "Explore",
         "expertise": "Expertise",
         "contact": "Get in Touch",
@@ -704,43 +705,53 @@
         "bookDiscoveryCall": "Book Discovery Call"
     },
     "services": {
-        "dueDiligence": {
-            "title": "Technical Due Diligence Assessment",
-            "subtitle": "Comprehensive architecture review for M&A, investments, or acquisitions. Identify technical risks, debt, and compliance gaps before you commit.",
-            "timeline": "2 weeks",
-            "price": "€4,000 – €7,000",
-            "for": "PE firms, investors, acquiring company CTOs",
+        "blueprintSprint": {
+            "title": "Architecture & Transformation Blueprint Sprint",
+            "subtitle": "Get a comprehensive architecture blueprint combining current and target state, integration patterns, risk assessment, and a 90-day execution roadmap.",
+            "timeline": "2–3 weeks",
+            "price": "Contact for pricing",
+            "for": "Companies planning major transformations, platform modernization, or cloud migrations",
             "deliverables": [
-                "Architecture review",
-                "Risks & technical debt register",
-                "Security/compliance gaps (high level)",
-                "30/60/90 day recommendations"
-            ]
+                "Current → target architecture blueprint",
+                "Integration + platform architecture",
+                "Risk register",
+                "90-day execution roadmap"
+            ],
+            "notIncluded": "Implementation is not included (available separately)."
         },
-        "cloudMigration": {
-            "title": "Cloud Migration Readiness Review",
-            "subtitle": "Evaluate your readiness for AWS/Azure/GCP migration. Understand risks, sequencing, and create a practical roadmap.",
-            "timeline": "3 weeks",
-            "price": "€5,000 – €9,000",
-            "for": "Companies planning AWS/Azure/GCP migration",
+        "fractionalLead": {
+            "title": "Fractional Transformation Lead",
+            "subtitle": "Ongoing architecture governance and delivery leadership. Program steering, stakeholder alignment, and hands-on execution support.",
+            "timeline": "1–2 days/week",
+            "price": "Contact for pricing",
+            "for": "Companies needing ongoing architecture leadership without full-time commitment",
             "deliverables": [
-                "Current state mapping",
-                "Migration risks + sequencing",
-                "Target reference architecture",
-                "Practical migration roadmap"
-            ]
+                "Program steering & stakeholder alignment",
+                "Architecture governance",
+                "Unblock delivery execution"
+            ],
+            "notIncluded": "Implementation is not included (available separately)."
         },
-        "platformEvaluation": {
-            "title": "Platform Evaluation Assessment",
-            "subtitle": "Make informed platform modernization decisions. Evaluate options, tradeoffs, and get architecture blueprints for your chosen path.",
-            "timeline": "2 weeks",
-            "price": "€4,000 – €7,000",
-            "for": "Platform modernization choices (Shopware→Shopify, CMS, API gateway, etc.)",
+        "aiDiscovery": {
+            "title": "AI Enablement Discovery",
+            "subtitle": "Early-stage AI strategy and readiness assessment. Identify use cases, assess data readiness, integration gaps, and create a next-step roadmap.",
+            "timeline": "1–2 weeks",
+            "price": "Contact for pricing",
+            "for": "Companies exploring AI/ML capabilities or beginning AI initiatives",
             "deliverables": [
-                "Decision matrix",
-                "Options & tradeoffs",
-                "Go/no-go recommendation",
-                "Architecture blueprint draft"
+                "Use cases + prioritization",
+                "Data readiness + integration gaps",
+                "Governance & security checklist",
+                "Next-step roadmap"
+            ],
+            "notIncluded": "Implementation is not included (available separately)."
+        },
+        "whatHappensNext": {
+            "title": "What Happens Next",
+            "steps": [
+                "Discovery call",
+                "Artifact review",
+                "Next steps within 48 hours"
             ]
         }
     },
@@ -812,6 +823,29 @@
             "title": "Book a Discovery Call",
             "desc": "Schedule a 30-minute call to discuss your architecture challenges and explore how I can help.",
             "cta": "Book Now"
+        },
+        "whatToExpect": {
+            "title": "What to Expect",
+            "duration": {
+                "label": "Duration",
+                "value": "30 minutes"
+            },
+            "bring": {
+                "label": "What to Bring",
+                "items": [
+                    "Your architecture challenge or question",
+                    "Context about your current system/team",
+                    "Business goals and constraints"
+                ]
+            },
+            "get": {
+                "label": "What You'll Get",
+                "items": [
+                    "Initial assessment of your challenge",
+                    "Recommended next steps",
+                    "Clear understanding of how I can help"
+                ]
+            }
         },
         "email": {
             "title": "Send an Email",

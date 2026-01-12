@@ -400,7 +400,7 @@
         }
     },
     "footer": {
-        "tagline": "Strategischer Enterprise Architect & Problemlöser.",
+        "tagline": "Unabhängiger Architektur- & Transformationsberater",
         "explore": "Entdecken",
         "expertise": "Expertise",
         "contact": "Kontakt aufnehmen",
@@ -768,43 +768,53 @@
         "bookDiscoveryCall": "Kostenloses Erstgespräch buchen"
     },
     "services": {
-        "dueDiligence": {
-            "title": "Technische Due-Diligence-Prüfung",
-            "subtitle": "Umfassende Architekturprüfung für M&A, Investitionen oder Übernahmen. Identifizieren Sie technische Risiken, Schulden und Compliance-Lücken, bevor Sie sich festlegen.",
-            "timeline": "2 Wochen",
-            "price": "€4.000 – €7.000",
-            "for": "PE-Firmen, Investoren, CTOs von übernehmenden Unternehmen",
+        "blueprintSprint": {
+            "title": "Architektur- & Transformations-Blueprint Sprint",
+            "subtitle": "Erhalten Sie einen umfassenden Architektur-Blueprint mit Ist- und Ziel-Zustand, Integrationsmustern, Risikobewertung und einer 90-Tage-Umsetzungs-Roadmap.",
+            "timeline": "2–3 Wochen",
+            "price": "Preis auf Anfrage",
+            "for": "Unternehmen, die große Transformationen, Plattform-Modernisierung oder Cloud-Migrationen planen",
             "deliverables": [
-                "Architekturprüfung",
-                "Risiken & Technische-Schulden-Register",
-                "Sicherheits-/Compliance-Lücken (übergeordnet)",
-                "30/60/90-Tage-Empfehlungen"
-            ]
+                "Ist- → Ziel-Architektur-Blueprint",
+                "Integrations- + Plattform-Architektur",
+                "Risikoregister",
+                "90-Tage-Umsetzungs-Roadmap"
+            ],
+            "notIncluded": "Umsetzung ist nicht enthalten (separat verfügbar)."
         },
-        "cloudMigration": {
-            "title": "Cloud-Migrationsbereitschaftsprüfung",
-            "subtitle": "Bewerten Sie Ihre Bereitschaft für AWS/Azure/GCP-Migration. Verstehen Sie Risiken, Sequenzierung und erstellen Sie eine praktische Roadmap.",
-            "timeline": "3 Wochen",
-            "price": "€5.000 – €9.000",
-            "for": "Unternehmen, die eine AWS/Azure/GCP-Migration planen",
+        "fractionalLead": {
+            "title": "Fractional Transformation Lead",
+            "subtitle": "Laufende Architektur-Governance und Delivery-Leadership. Program Steering, Stakeholder-Abstimmung und hands-on Umsetzungsunterstützung.",
+            "timeline": "1–2 Tage/Woche",
+            "price": "Preis auf Anfrage",
+            "for": "Unternehmen, die laufende Architektur-Führung ohne Vollzeit-Verpflichtung benötigen",
             "deliverables": [
-                "Ist-Zustands-Mapping",
-                "Migrationsrisiken + Sequenzierung",
-                "Ziel-Referenzarchitektur",
-                "Praktische Migrations-Roadmap"
-            ]
+                "Program Steering & Stakeholder-Abstimmung",
+                "Architektur-Governance",
+                "Entblockierung der Umsetzung"
+            ],
+            "notIncluded": "Umsetzung ist nicht enthalten (separat verfügbar)."
         },
-        "platformEvaluation": {
-            "title": "Plattform-Bewertungsprüfung",
-            "subtitle": "Treffen Sie fundierte Entscheidungen zur Plattform-Modernisierung. Bewerten Sie Optionen, Kompromisse und erhalten Sie Architektur-Blueprints für Ihren gewählten Weg.",
-            "timeline": "2 Wochen",
-            "price": "€4.000 – €7.000",
-            "for": "Plattform-Modernisierungsentscheidungen (Shopware→Shopify, CMS, API-Gateway, etc.)",
+        "aiDiscovery": {
+            "title": "KI-Enablement-Discovery",
+            "subtitle": "Frühphasen-KI-Strategie- und Bereitschaftsbewertung. Identifizieren Sie Use Cases, bewerten Sie Datenbereitschaft, Integrationslücken und erstellen Sie eine nächste-Schritte-Roadmap.",
+            "timeline": "1–2 Wochen",
+            "price": "Preis auf Anfrage",
+            "for": "Unternehmen, die KI/ML-Fähigkeiten erkunden oder KI-Initiativen starten",
             "deliverables": [
-                "Entscheidungsmatrix",
-                "Optionen & Kompromisse",
-                "Go/No-Go-Empfehlung",
-                "Architektur-Blueprint-Entwurf"
+                "Use Cases + Priorisierung",
+                "Datenbereitschaft + Integrationslücken",
+                "Governance- & Sicherheits-Checkliste",
+                "Nächste-Schritte-Roadmap"
+            ],
+            "notIncluded": "Umsetzung ist nicht enthalten (separat verfügbar)."
+        },
+        "whatHappensNext": {
+            "title": "Wie geht es weiter",
+            "steps": [
+                "Discovery Call",
+                "Artefakt-Review",
+                "Nächste Schritte innerhalb von 48 Stunden"
             ]
         }
     }

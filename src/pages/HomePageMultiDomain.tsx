@@ -12,9 +12,8 @@ import {
     Target,
     Users,
     Zap,
-    FileSearch,
-    Cloud,
-    Layout
+    Layers,
+    Cpu
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
@@ -22,40 +21,40 @@ import { caseStudies } from '../data/caseStudies';
 
 const services = [
   {
-    id: 'due-diligence',
-    icon: FileSearch,
+    id: 'blueprint-sprint',
+    icon: Layers,
     iconColor: 'text-blue-600',
     iconBg: 'bg-blue-100 dark:bg-blue-900/30',
-    titleKey: 'services.dueDiligence.title',
-    subtitleKey: 'services.dueDiligence.subtitle',
-    timelineKey: 'services.dueDiligence.timeline',
-    priceKey: 'services.dueDiligence.price',
-    forKey: 'services.dueDiligence.for',
-    deliverablesKey: 'services.dueDiligence.deliverables'
+    titleKey: 'services.blueprintSprint.title',
+    subtitleKey: 'services.blueprintSprint.subtitle',
+    timelineKey: 'services.blueprintSprint.timeline',
+    priceKey: 'services.blueprintSprint.price',
+    forKey: 'services.blueprintSprint.for',
+    deliverablesKey: 'services.blueprintSprint.deliverables'
   },
   {
-    id: 'cloud-migration',
-    icon: Cloud,
+    id: 'fractional-lead',
+    icon: Users,
     iconColor: 'text-emerald-600',
     iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
-    titleKey: 'services.cloudMigration.title',
-    subtitleKey: 'services.cloudMigration.subtitle',
-    timelineKey: 'services.cloudMigration.timeline',
-    priceKey: 'services.cloudMigration.price',
-    forKey: 'services.cloudMigration.for',
-    deliverablesKey: 'services.cloudMigration.deliverables'
+    titleKey: 'services.fractionalLead.title',
+    subtitleKey: 'services.fractionalLead.subtitle',
+    timelineKey: 'services.fractionalLead.timeline',
+    priceKey: 'services.fractionalLead.price',
+    forKey: 'services.fractionalLead.for',
+    deliverablesKey: 'services.fractionalLead.deliverables'
   },
   {
-    id: 'platform-evaluation',
-    icon: Layout,
+    id: 'ai-discovery',
+    icon: Cpu,
     iconColor: 'text-purple-600',
     iconBg: 'bg-purple-100 dark:bg-purple-900/30',
-    titleKey: 'services.platformEvaluation.title',
-    subtitleKey: 'services.platformEvaluation.subtitle',
-    timelineKey: 'services.platformEvaluation.timeline',
-    priceKey: 'services.platformEvaluation.price',
-    forKey: 'services.platformEvaluation.for',
-    deliverablesKey: 'services.platformEvaluation.deliverables'
+    titleKey: 'services.aiDiscovery.title',
+    subtitleKey: 'services.aiDiscovery.subtitle',
+    timelineKey: 'services.aiDiscovery.timeline',
+    priceKey: 'services.aiDiscovery.price',
+    forKey: 'services.aiDiscovery.for',
+    deliverablesKey: 'services.aiDiscovery.deliverables'
   }
 ];
 
@@ -72,8 +71,8 @@ const HomePageMultiDomain: React.FC = () => {
             />
 
             <div className="min-h-screen font-sans">
-                {/* HERO SECTION - Simplified & Larger Typography */}
-                <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-32 md:py-48 overflow-hidden">
+                {/* HERO SECTION - Updated Positioning */}
+                <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 lg:py-48 overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0" style={{
                             backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
@@ -81,7 +80,7 @@ const HomePageMultiDomain: React.FC = () => {
                         }} />
                     </div>
 
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -96,12 +95,12 @@ const HomePageMultiDomain: React.FC = () => {
                             </div>
 
                             {/* Main Headline */}
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-5xl mx-auto">
                                 {t('hero.title')}
                             </h1>
 
                             {/* Subheadline */}
-                            <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-4xl mx-auto leading-relaxed">
+                            <p className="text-lg md:text-xl text-slate-200 mb-12 max-w-2xl mx-auto leading-relaxed">
                                 {t('hero.subtitle')}
                             </p>
 
@@ -200,7 +199,7 @@ const HomePageMultiDomain: React.FC = () => {
                                     to="/services"
                                     className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 flex items-center gap-3"
                                 >
-                                    View Services
+                                    {t('hero.ctaSecondary')}
                                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
                                 </Link>
                             </div>
