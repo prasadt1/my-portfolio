@@ -782,8 +782,8 @@
         }
     },
     "servicesPage": {
-        "title": "Architektur-Bewertungsdienstleistungen",
-        "subtitle": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU. Validieren Sie Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen, bevor Sie den falschen Weg einschlagen.",
+        "title": "Architektur- & Transformationsberatung",
+        "subtitle": "Unabhängige Assessments, Modernisierungs-Roadmaps und Umsetzungsbegleitung für Cloud, Integration und AI Enablement Discovery – mit Fokus auf EU-Mid-Market-Unternehmen.",
         "timeline": "Zeitraum",
         "price": "Preis",
         "for": "Für",
@@ -796,51 +796,51 @@
     "services": {
         "blueprintSprint": {
             "title": "Architektur- & Transformations-Blueprint Sprint",
-            "subtitle": "Erhalten Sie einen umfassenden Architektur-Blueprint mit Ist- und Ziel-Zustand, Integrationsmustern, Risikobewertung und einer 90-Tage-Umsetzungs-Roadmap.",
+            "subtitle": "Ein strukturierter Blueprint aus Ist- und Zielbild, Integrationsmustern, Risikoanalyse und einer 90-Tage-Umsetzungsroadmap.",
             "timeline": "2–3 Wochen",
             "price": "Preis auf Anfrage",
-            "for": "Unternehmen, die große Transformationen, Plattform-Modernisierung oder Cloud-Migrationen planen",
+            "for": "Unternehmen mit größeren Transformationen, Plattform-Modernisierung oder Cloud-Migrationen",
             "deliverables": [
-                "Ist- → Ziel-Architektur-Blueprint",
-                "Integrations- + Plattform-Architektur",
-                "Risikoregister",
-                "90-Tage-Umsetzungs-Roadmap"
+                "Ist- → Zielarchitektur-Blueprint",
+                "Integrations- & Plattformarchitektur",
+                "Risiko-Register",
+                "90-Tage-Umsetzungsroadmap"
             ],
-            "notIncluded": "Umsetzung ist nicht enthalten (separat verfügbar)."
+            "notIncluded": "Implementierung ist nicht enthalten (separat möglich)."
         },
         "fractionalLead": {
             "title": "Fractional Transformation Lead",
-            "subtitle": "Laufende Architektur-Governance und Delivery-Leadership. Program Steering, Stakeholder-Abstimmung und hands-on Umsetzungsunterstützung.",
+            "subtitle": "Kontinuierliche Architektur-Governance und Delivery Leadership: Programmsteuerung, Stakeholder-Alignment und pragmatische Umsetzungsunterstützung.",
             "timeline": "1–2 Tage/Woche",
             "price": "Preis auf Anfrage",
-            "for": "Unternehmen, die laufende Architektur-Führung ohne Vollzeit-Verpflichtung benötigen",
+            "for": "Unternehmen, die Architektur-Leadership ohne Vollzeitbindung benötigen",
             "deliverables": [
-                "Program Steering & Stakeholder-Abstimmung",
+                "Programmsteuerung & Stakeholder-Alignment",
                 "Architektur-Governance",
-                "Entblockierung der Umsetzung"
+                "Delivery-Unblock / Execution Support"
             ],
-            "notIncluded": "Umsetzung ist nicht enthalten (separat verfügbar)."
+            "notIncluded": "Implementierung ist nicht enthalten (separat möglich)."
         },
         "aiDiscovery": {
-            "title": "KI-Enablement-Discovery",
-            "subtitle": "Frühphasen-KI-Strategie- und Bereitschaftsbewertung. Identifizieren Sie Use Cases, bewerten Sie Datenbereitschaft, Integrationslücken und erstellen Sie eine nächste-Schritte-Roadmap.",
+            "title": "AI Enablement Discovery",
+            "subtitle": "Frühe AI-Discovery und Enablement-Planung: Use Cases identifizieren, Daten-Readiness und Integrationslücken bewerten sowie eine Next-Step-Roadmap erstellen.",
             "timeline": "1–2 Wochen",
             "price": "Preis auf Anfrage",
-            "for": "Unternehmen, die KI/ML-Fähigkeiten erkunden oder KI-Initiativen starten",
+            "for": "Unternehmen, die AI/ML evaluieren oder erste AI-Initiativen starten",
             "deliverables": [
-                "Use Cases + Priorisierung",
-                "Datenbereitschaft + Integrationslücken",
-                "Governance- & Sicherheits-Checkliste",
-                "Nächste-Schritte-Roadmap"
+                "Use Cases & Priorisierung",
+                "Daten-Readiness & Integrationslücken",
+                "Governance- & Security-Checkliste",
+                "Next-Step-Roadmap"
             ],
-            "notIncluded": "Umsetzung ist nicht enthalten (separat verfügbar)."
+            "notIncluded": "Implementierung ist nicht enthalten (separat möglich)."
         },
         "whatHappensNext": {
-            "title": "Wie geht es weiter",
+            "title": "Nächste Schritte",
             "steps": [
-                "Discovery Call",
-                "Artefakt-Review",
-                "Nächste Schritte innerhalb von 48 Stunden"
+                "30-minütigen Discovery Call buchen",
+                "2–3 relevante Artefakte teilen (Architekturdiagramme, Doku, Constraints)",
+                "Zusammenfassung + empfohlene nächste Schritte innerhalb von 48 Stunden"
             ]
         }
     },
