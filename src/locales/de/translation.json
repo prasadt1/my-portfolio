@@ -63,13 +63,6 @@
                 "title": "Full-Stack",
                 "desc": "Vom Design bis zum Deployment"
             }
-        },
-        "recruiter": {
-            "badge": "Für Recruiter",
-            "title": "Suchen Sie einen Enterprise Architect?",
-            "desc": "Holen Sie sich die Zusammenfassung meiner 15+ Jahre Erfahrung.",
-            "download": "Lebenslauf herunterladen",
-            "portfolio": "Portfolio ansehen"
         }
     },
     "howItWork": {
@@ -231,12 +224,6 @@
                 }
             }
         },
-        "forTeams": {
-            "title": "Brauchen Sie bewährte Frameworks?",
-            "badge": "Für Teams",
-            "desc": "Erfinden Sie das Rad nicht neu. Beschleunigen Sie Ihre Roadmap mit meinen kampferprobten Toolkits.",
-            "cta": "Toolkits durchsuchen"
-        },
         "certifications": {
             "title": "Zertifizierungen"
         },
@@ -254,6 +241,67 @@
             "subtitle": "Ob Sie einen Hands-on-Architekten für eine Migration oder einen strategischen Leiter für Ihr Engineering-Team benötigen, lassen Sie uns sprechen.",
             "schedule": "Beratung vereinbaren",
             "viewWork": "Architekturarbeiten ansehen"
+        }
+    },
+    "architectureEngine": {
+        "title": "KI-unterstützter Architektur-Assistent",
+        "subtitle": "Erkunden Sie Architektur-Optionen und Kompromisse basierend auf Enterprise-Mustern und meiner Erfahrung. Ausgaben sind Entwürfe zur Diskussion – keine finalen Produktionsdesigns.",
+        "beta": "Beta",
+        "disclaimer": {
+            "title": "So verwenden Sie dieses Tool",
+            "draftOnly": "Nur Entwurf - Alle Ausgaben sind Ausgangspunkte für Diskussionen, keine produktionsreifen Designs",
+            "validationRequired": "Validierung erforderlich - Überprüfen Sie alle Sicherheits-, Compliance- und Skalierbarkeitsanforderungen separat",
+            "useForIdeation": "Für Ideenfindung verwenden - Am besten geeignet, um Optionen und Kompromisse vor detaillierter Planung zu erkunden",
+            "needFullAssessment": "Benötigen Sie eine vollständige Bewertung?",
+            "needFullAssessmentSuffix": "für umfassende Architekturberatung",
+            "contactLink": "Kontaktieren Sie mich"
+        },
+        "industrySelection": {
+            "title": "Wählen Sie Ihre Branche",
+            "healthcare": "Gesundheitswesen & Pharma",
+            "financial": "Finanzdienstleistungen",
+            "ecommerce": "E-Commerce & Einzelhandel",
+            "aiml": "KI & Maschinelles Lernen"
+        },
+        "examplePrompts": {
+            "healthcare": "Modernisieren Sie ein 20 Jahre altes Patientendatensystem unter Beibehaltung der HIPAA-Compliance. Budget: 500.000 $, Zeitrahmen: 12 Monate.",
+            "financial": "Erstellen Sie Echtzeit-Zahlungsabwicklung für 1M+ Transaktionen/Tag. PCI-DSS Level 1 Compliance erforderlich.",
+            "ecommerce": "Multi-Tenant-SaaS-Plattform für 50K+ Händler. 99,99% Verfügbarkeit und globale Skalierbarkeit erforderlich.",
+            "aiml": "Erstellen Sie eine RAG-Pipeline zur Analyse von Rechtsdokumenten. Verarbeiten Sie 10TB+ PDFs, liefern Sie Antworten in Echtzeit."
+        },
+        "input": {
+            "back": "Zurück zu Branchen",
+            "title": "Beschreiben Sie Ihre Herausforderung",
+            "placeholder": "Beschreiben Sie Ihre technische Herausforderung oder Systemanforderungen...",
+            "generate": "Entwurfs-Blueprint generieren"
+        },
+        "generating": {
+            "text": "Lösung wird erstellt... Analysiere Anforderungen anhand von Enterprise-Mustern."
+        },
+        "result": {
+            "back": "Neue Analyse starten",
+            "executiveSummary": "Executive Summary",
+            "draftRecommendations": "Entwurfs-Empfehlungen",
+            "estimatedTimeline": "Geschätzter Zeitrahmen",
+            "estimatedBudget": "Geschätztes Budget",
+            "architectureBlueprint": "Architektur-Blueprint",
+            "blueprintDescription": "Interaktives Diagramm mit {count} Komponenten. Klicken Sie auf Knoten, um Details zu sehen.",
+            "componentBreakdown": "Komponenten-Aufschlüsselung",
+            "suggestedTechStack": "Vorgeschlagener Tech-Stack",
+            "complianceStandards": "Compliance-Standards",
+            "riskAssessment": "Risikobewertung",
+            "riskLevel": {
+                "high": "HOCHES RISIKO",
+                "medium": "MITTELES RISIKO",
+                "low": "NIEDRIGES RISIKO"
+            }
+        },
+        "errors": {
+            "quotaExceeded": "Das KI-Service-Kontingent wurde überschritten. Bitte versuchen Sie es später erneut oder kontaktieren Sie mich für eine vollständige Bewertung.",
+            "serverError": "Ein Serverfehler ist aufgetreten. Bitte versuchen Sie es in wenigen Augenblicken erneut.",
+            "networkError": "Verbindung zum Server nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+            "configError": "Service-Konfigurationsfehler. Bitte kontaktieren Sie den Support.",
+            "unknown": "Beim Generieren der Architektur ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
         }
     },
     "contactPage": {

@@ -31,7 +31,7 @@ const CaseStudyPage: React.FC = () => {
             const newText = await rewriteContent({
                 currentText: study.challenge.situation,
                 sectionType: 'executive_summary', // Simplification for demo
-                persona: persona as any
+                persona: persona
             });
             setRewrittenSummary(newText);
             setRewriting(false);

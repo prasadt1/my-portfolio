@@ -7,7 +7,7 @@ const PROJECT_CONTEXT = projects.map(p => ({
     slug: p.slug,
     title: p.header.title,
     technologies: p.technical.after?.stack || [],
-    outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m: any) => m.value + ' ' + m.label)],
+    outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m: { value: string; label: string }) => m.value + ' ' + m.label)],
     summary: p.challenge.situation
 })).map(p => JSON.stringify(p)).join('\n');
 

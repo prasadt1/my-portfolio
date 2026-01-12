@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import type { AnalyticsEvent, UserTraits } from '../types/analytics';
 
 interface AnalyticsContextType {
-    trackEvent: (eventName: string, properties?: Record<string, any>) => void;
-    identifyUser: (userId: string, traits?: Record<string, any>) => void;
+    trackEvent: (event: AnalyticsEvent) => void;
+    identifyUser: (userId: string, traits?: UserTraits) => void;
 }
 
 const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined);
@@ -30,10 +31,10 @@ export const AnalyticsProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         setSessionId(sid);
     }, []);
 
-    const trackEvent = (eventName: string, properties?: Record<string, any>) => {
+    const trackEvent = (event: AnalyticsEvent) => {
         const eventData = {
-            eventName,
-            properties,
+            eventName: event.name,
+            properties: 'properties' in event ? event.properties : undefined,
             timestamp: new Date().toISOString(),
             path: window.location.pathname,
             sessionId
@@ -43,18 +44,18 @@ export const AnalyticsProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         console.log('📊 Analytics Event:', eventData);
 
         // Mock: scoring lead
-        if (eventName === 'download_case_study' || eventName === 'calculate_roi') {
+        if (event.name === 'download_case_study' || event.name === 'calculate_roi') {
             console.log('🔥 Lead Score Increased +10');
         }
     };
 
-    const identifyUser = (userId: string, traits?: Record<string, any>) => {
+    const identifyUser = (userId: string, traits?: UserTraits) => {
         console.log('👤 Identify User:', { userId, traits });
     };
 
     // Track Page Views
     useEffect(() => {
-        trackEvent('page_view', { path: location.pathname });
+        trackEvent({ name: 'page_view', properties: { path: location.pathname } });
     }, [location]);
 
     return (

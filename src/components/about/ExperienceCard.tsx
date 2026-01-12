@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, ArrowRight, Package, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, ArrowRight, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import StatsBadges from './StatsBadges';
 
@@ -23,7 +23,6 @@ interface ExperienceCardProps {
   challengeLabel: string;
   deliveredLabel: string;
   viewCaseStudyLabel: string;
-  buyBlueprintLabel: string;
   index?: number;
 }
 
@@ -32,7 +31,6 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
   challengeLabel,
   deliveredLabel,
   viewCaseStudyLabel,
-  buyBlueprintLabel,
   index = 0
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -137,24 +135,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
       </div>
 
       {/* Links */}
-      {(experience.links?.caseStudy || experience.links?.product) && (
+      {experience.links?.caseStudy && (
         <div className="flex flex-wrap gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-          {experience.links?.caseStudy && (
-            <Link
-              to={experience.links.caseStudy}
-              className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-2 hover:underline text-sm"
-            >
-              {viewCaseStudyLabel} <ArrowRight size={16} />
-            </Link>
-          )}
-          {experience.links?.product && (
-            <Link
-              to={experience.links.product}
-              className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-2 hover:underline text-sm"
-            >
-              {buyBlueprintLabel} <Package size={16} />
-            </Link>
-          )}
+          <Link
+            to={experience.links.caseStudy}
+            className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-2 hover:underline text-sm"
+          >
+            {viewCaseStudyLabel} <ArrowRight size={16} />
+          </Link>
         </div>
       )}
     </motion.div>

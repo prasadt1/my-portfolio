@@ -22,7 +22,6 @@ interface ExperienceTimelineProps {
   challengeLabel: string;
   deliveredLabel: string;
   viewCaseStudyLabel: string;
-  buyBlueprintLabel: string;
 }
 
 const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
@@ -30,8 +29,7 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
   title,
   challengeLabel,
   deliveredLabel,
-  viewCaseStudyLabel,
-  buyBlueprintLabel
+  viewCaseStudyLabel
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -71,29 +69,27 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
 
         {/* Right: Selected Experience Detail */}
         <div className="min-w-0">
-          <ExperienceCard
-            experience={experiences[selectedIndex]}
-            challengeLabel={challengeLabel}
-            deliveredLabel={deliveredLabel}
-            viewCaseStudyLabel={viewCaseStudyLabel}
-            buyBlueprintLabel={buyBlueprintLabel}
-            index={selectedIndex}
-          />
+              <ExperienceCard
+                experience={experiences[selectedIndex]}
+                challengeLabel={challengeLabel}
+                deliveredLabel={deliveredLabel}
+                viewCaseStudyLabel={viewCaseStudyLabel}
+                index={selectedIndex}
+              />
         </div>
       </div>
 
       {/* Mobile: Single column stack */}
       <div className="lg:hidden space-y-6 md:space-y-8">
         {experiences.map((exp, idx) => (
-          <ExperienceCard
-            key={idx}
-            experience={exp}
-            challengeLabel={challengeLabel}
-            deliveredLabel={deliveredLabel}
-            viewCaseStudyLabel={viewCaseStudyLabel}
-            buyBlueprintLabel={buyBlueprintLabel}
-            index={idx}
-          />
+              <ExperienceCard
+                key={idx}
+                experience={exp}
+                challengeLabel={challengeLabel}
+                deliveredLabel={deliveredLabel}
+                viewCaseStudyLabel={viewCaseStudyLabel}
+                index={idx}
+              />
         ))}
       </div>
     </section>

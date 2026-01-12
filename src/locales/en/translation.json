@@ -63,13 +63,6 @@
                 "title": "Full-Stack",
                 "desc": "Design to deployment to leadership"
             }
-        },
-        "recruiter": {
-            "badge": "For Recruiters",
-            "title": "Hiring an Enterprise Architect?",
-            "desc": "Get the executive summary of my 15+ years experience.",
-            "download": "Download Resume",
-            "portfolio": "View Portfolio"
         }
     },
     "howItWork": {
@@ -231,12 +224,6 @@
                     }
                 }
             }
-        },
-        "forTeams": {
-            "title": "Need proven frameworks?",
-            "badge": "For Teams",
-            "desc": "Don't reinvent the wheel. Accelerate your roadmap with my battle-tested toolkits.",
-            "cta": "Browse Toolkits"
         },
         "certifications": {
             "title": "Certifications"
@@ -755,6 +742,67 @@
                 "Go/no-go recommendation",
                 "Architecture blueprint draft"
             ]
+        }
+    },
+    "architectureEngine": {
+        "title": "AI-Assisted Architecture Assistant",
+        "subtitle": "Explore architecture options and tradeoffs based on enterprise patterns and my experience. Outputs are drafts intended for discussion—not final production designs.",
+        "beta": "Beta",
+        "disclaimer": {
+            "title": "How to Use This Tool",
+            "draftOnly": "Draft only - All outputs are starting points for discussion, not production-ready designs",
+            "validationRequired": "Validation required - Verify all security, compliance, and scalability constraints separately",
+            "useForIdeation": "Use for ideation - Best used to explore options and tradeoffs before detailed planning",
+            "needFullAssessment": "Need a full assessment?",
+            "needFullAssessmentSuffix": "for comprehensive architecture consulting",
+            "contactLink": "Contact me"
+        },
+        "industrySelection": {
+            "title": "Select Your Industry Domain",
+            "healthcare": "Healthcare & Pharma",
+            "financial": "Financial Services",
+            "ecommerce": "eCommerce & Retail",
+            "aiml": "AI & Machine Learning"
+        },
+        "examplePrompts": {
+            "healthcare": "Modernize a 20-year-old patient records system while maintaining HIPAA compliance. Budget: $500K, Timeline: 12 months.",
+            "financial": "Build real-time payment processing for 1M+ transactions/day. Need PCI-DSS Level 1 compliance.",
+            "ecommerce": "Multi-tenant SaaS platform for 50K+ merchants. Need 99.99% uptime and global scalability.",
+            "aiml": "Build RAG pipeline for legal document analysis. Process 10TB+ PDFs, serve answers in real-time."
+        },
+        "input": {
+            "back": "Back to Industries",
+            "title": "Describe Your Challenge",
+            "placeholder": "Describe your technical challenge or system requirements...",
+            "generate": "Generate Draft Blueprint"
+        },
+        "generating": {
+            "text": "Architecting Solution... Analyzing requirements against enterprise patterns."
+        },
+        "result": {
+            "back": "Start New Analysis",
+            "executiveSummary": "Executive Summary",
+            "draftRecommendations": "Draft Recommendations",
+            "estimatedTimeline": "Estimated Timeline",
+            "estimatedBudget": "Estimated Budget",
+            "architectureBlueprint": "Architecture Blueprint",
+            "blueprintDescription": "Interactive diagram showing {count} components. Click nodes to see details.",
+            "componentBreakdown": "Component Breakdown",
+            "suggestedTechStack": "Suggested Tech Stack",
+            "complianceStandards": "Compliance Standards",
+            "riskAssessment": "Risk Assessment",
+            "riskLevel": {
+                "high": "HIGH RISK",
+                "medium": "MEDIUM RISK",
+                "low": "LOW RISK"
+            }
+        },
+        "errors": {
+            "quotaExceeded": "The AI service quota has been exceeded. Please try again later or contact me for a full assessment.",
+            "serverError": "A server error occurred. Please try again in a few moments.",
+            "networkError": "Unable to connect to the server. Please check your internet connection and try again.",
+            "configError": "Service configuration error. Please contact support.",
+            "unknown": "An error occurred while generating the architecture. Please try again."
         }
     },
     "contactPage": {

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { CheckCircle2, ArrowRight, FileSearch, Cloud, Layout } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
+import { PageShell, PageHeader, Container } from '../components/layout';
 
 const services = [
   {
@@ -56,22 +57,13 @@ const ServicesPage: React.FC = () => {
                 title="Architecture Assessment Services | Prasad Tilloo"
                 description="Independent architecture assessments for EU mid-market companies. Technical due diligence, cloud migration readiness, and platform evaluation."
             />
-            <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-16"
-                    >
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
-                            {t('servicesPage.title')}
-                        </h1>
-                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-                            {t('servicesPage.subtitle')}
-                        </p>
-                    </motion.div>
+            <PageShell background="muted" containerMaxWidth="7xl" className="pt-24">
+                <PageHeader
+                    title={t('services.title')}
+                    subtitle={t('services.subtitle')}
+                />
 
+                <Container maxWidth="7xl">
                     <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                         {services.map((service, idx) => {
                             const Icon = service.icon;
@@ -103,7 +95,7 @@ const ServicesPage: React.FC = () => {
                                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-4">
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                                                    {t('servicesPage.timeline')}
+                                                    Timeline
                                                 </div>
                                                 <div className="text-lg font-bold text-slate-900 dark:text-white">
                                                     {t(service.timelineKey)}
@@ -112,7 +104,7 @@ const ServicesPage: React.FC = () => {
 
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                                                    {t('servicesPage.price')}
+                                                    Price
                                                 </div>
                                                 <div className="text-2xl font-bold text-slate-900 dark:text-white">
                                                     {t(service.priceKey)}
@@ -121,7 +113,7 @@ const ServicesPage: React.FC = () => {
 
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                                    {t('servicesPage.for')}
+                                                    For
                                                 </div>
                                                 <div className="text-sm text-slate-700 dark:text-slate-300">
                                                     {t(service.forKey)}
@@ -131,7 +123,7 @@ const ServicesPage: React.FC = () => {
 
                                         <div className="mb-8">
                                             <div className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
-                                                {t('servicesPage.deliverables')}
+                                                Deliverables
                                             </div>
                                             <ul className="space-y-2">
                                                 {Array.isArray(deliverables) && deliverables.map((deliverable, dIdx) => (
@@ -147,7 +139,7 @@ const ServicesPage: React.FC = () => {
                                             to="/contact"
                                             className={`w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1`}
                                         >
-                                            {t('servicesPage.bookCall')}
+                                            {t('services.bookCall')}
                                             <ArrowRight size={18} />
                                         </Link>
                                     </div>
@@ -164,21 +156,21 @@ const ServicesPage: React.FC = () => {
                         className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-12 text-center"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">
-                            {t('servicesPage.ctaTitle')}
+                            Ready to Get Started?
                         </h2>
                         <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                            {t('servicesPage.ctaSubtitle')}
+                            Book a discovery call to discuss your architecture challenges.
                         </p>
                         <Link
                             to="/contact"
                             className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
                         >
-                            {t('servicesPage.bookDiscoveryCall')}
+                            {t('services.bookCall')}
                             <ArrowRight size={20} />
                         </Link>
                     </motion.div>
-                </div>
-            </div>
+                </Container>
+            </PageShell>
         </>
     );
 };

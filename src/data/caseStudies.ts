@@ -201,7 +201,7 @@ export const caseStudies: CaseStudy[] = [
         },
         cta: {
             primary: { text: 'Modernize Your eComm', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Move to Headless.' },
-            secondary: { text: 'See Architecture', action: '/products?category=ecommerce' }
+            secondary: { text: 'View Case Study', action: '/projects/brita-ecommerce' }
         }
     },
     {

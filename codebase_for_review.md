@@ -1,0 +1,14216 @@
+# Portfolio Codebase - For AI Review
+Generated on: Mon Jan 12 08:32:42 IST 2026
+
+## Project Overview
+React/TypeScript portfolio for an independent architecture consultant.
+Recent changes: Repositioned from AI product to consulting-focused site.
+
+
+## File: ./README.md
+```md
+# Prasad Tilloo Portfolio - Architecture Engine
+
+A professional portfolio website featuring an AI-powered Architecture Decision Engine built with React, TypeScript, Vite, and Google Gemini AI.
+
+## ✨ Features
+
+- 🎯 **AI-Powered Architecture Engine** - Get expert recommendations based on 15+ years of experience
+- 🏥 **Multi-Industry Support** - Healthcare, Financial Services, eCommerce, AI/ML
+- 📱 **Fully Responsive** - Works on desktop, tablet, and mobile
+- ⚡ **Fast & Modern** - Built with Vite for lightning-fast development
+- 🎨 **Professional Design** - Clean, sophisticated UI
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ installed
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com)
+
+### Installation
+
+1. **Extract/Clone the project**
+   ```bash
+   cd portfolio-clean-slate
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   # Copy the example file
+   cp .env.local.example .env.local
+   
+   # Edit .env.local and add your Gemini API key
+   # VITE_GEMINI_API_KEY=your_actual_api_key_here
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   ```
+   http://localhost:5173
+   ```
+
+## 🔑 Getting a Gemini API Key
+
+1. Go to [Google AI Studio](https://aistudio.google.com)
+2. Sign in with your Google account
+3. Click "Get API Key" in the top right
+4. Create a new API key
+5. Copy the key and paste it in your `.env.local` file
+
+## 📁 Project Structure
+
+```
+portfolio-clean-slate/
+├── src/
+│   ├── components/
+│   │   └── Navigation.tsx          # Navigation bar
+│   ├── pages/
+│   │   ├── HomePage.tsx            # Landing page
+│   │   └── ArchitectureEngine.tsx  # Main feature
+│   ├── services/
+│   │   └── architectureGenerator.ts # Gemini API integration
+│   ├── types/
+│   │   └── index.ts                # TypeScript types
+│   ├── App.tsx                     # Main app component
+│   ├── main.tsx                    # Entry point
+│   ├── index.css                   # Global styles
+│   └── vite-env.d.ts              # Environment types
+├── index.html                      # HTML template
+├── package.json                    # Dependencies
+├── vite.config.ts                 # Vite configuration
+├── tsconfig.json                  # TypeScript config
+└── .env.local                     # Environment variables (create this)
+```
+
+# 🛠️ Available Scripts
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 🎨 Customization
+
+### Update Your Information
+
+Edit `src/pages/HomePage.tsx` to update:
+- Your name and title
+- Metrics (years, industries, etc.)
+- Industry expertise
+- Project counts
+
+### Add Projects
+
+Create project data in a new file or update the placeholders in the code.
+
+### Styling
+
+All styles are inline for simplicity. You can:
+- Modify colors directly in the components
+- Add Tailwind CSS for utility classes
+- Create a separate CSS file
+
+## 🧪 Testing the Architecture Engine
+
+1. Navigate to the Architecture Engine page
+2. Select an industry (Healthcare, Financial, eCommerce, or AI/ML)
+3. Use the pre-filled example or write your own challenge
+4. Click "Generate Architecture"
+5. Wait 10-20 seconds for AI to analyze
+6. View the comprehensive recommendations
+
+## 📝 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_GEMINI_API_KEY` | Your Google Gemini API key | Yes |
+| `OPENAI_API_KEY` | (Removed) Previously used for a local RAG scaffold (feature reverted) | No |
+
+## 🚨 Troubleshooting
+
+### "VITE_GEMINI_API_KEY not configured"
+- Make sure you created `.env.local` in the root directory
+- Verify the API key is correct
+- Restart the dev server after adding the key
+
+### "Failed to generate architecture"
+- Check your internet connection
+- Verify API key is valid
+- Check Gemini API quota at [Google AI Studio](https://aistudio.google.com)
+
+### Port already in use
+```bash
+# Kill the process using port 5173
+npx kill-port 5173
+
+# Or use a different port
+npm run dev -- --port 3000
+```
+
+### Module not found errors
+```bash
+# Clear node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
+
+## 🔒 Security Notes
+
+- Never commit `.env.local` to version control
+- Keep your API key secret
+- The `.gitignore` file is configured to exclude sensitive files
+- API key is only used client-side (consider adding a backend for production)
+
+## 📦 Dependencies
+
+### Core
+- React 18.2.0
+- React Router DOM 6.22.3
+- TypeScript 5.3.0
+- Vite 5.0.0
+
+### UI
+- Lucide React (icons)
+- Framer Motion (animations)
+
+### AI
+- @google/generative-ai (Gemini API)
+
+### Optional (for future enhancements)
+- @xyflow/react (interactive diagrams)
+- dagre (graph layout)
+
+## 🚀 Deployment
+
+### Build for production
+```bash
+npm run build
+```
+
+This creates a `dist/` folder with optimized static files.
+
+### Deploy to:
+- **Vercel**: `vercel deploy`
+- **Netlify**: Drag & drop `dist/` folder
+- **Google Cloud Run**: See documentation
+- **GitHub Pages**: Enable in repository settings
+
+Remember to set `VITE_GEMINI_API_KEY` in your hosting platform's environment variables!
+
+## 📄 License
+
+This is a personal portfolio project. Feel free to use it as inspiration for your own portfolio!
+
+## 🤝 Support
+
+For issues or questions:
+1. Check the Troubleshooting section above
+2. Review the code comments
+3. Consult the [Vite documentation](https://vitejs.dev)
+4. Check [Gemini API docs](https://ai.google.dev/docs)
+
+## 🎯 Next Steps
+
+After getting the basic portfolio working, you can:
+1. Add React Flow for interactive architecture diagrams
+2. Implement the full homepage with animations
+3. Add About and Projects pages
+4. Create a blog section
+5. Add more industries and frameworks
+6. Implement user authentication
+7. Add analytics
+
+---
+
+**Built with ❤️ by Prasad Tilloo**
+
+```
+
+## File: ./SETUP.md
+```md
+# 🚀 SETUP INSTRUCTIONS - CLEAN SLATE PORTFOLIO
+
+## ✅ What You're Getting
+
+A **complete, working** portfolio with:
+- ✅ Proper Vite + React 18 setup (no CDN conflicts!)
+- ✅ Working Navigation
+- ✅ Professional HomePage
+- ✅ Full Architecture Engine with Gemini API
+- ✅ TypeScript types
+- ✅ All configuration files
+- ✅ Zero errors, ready to run
+
+---
+
+## 📋 Step-by-Step Setup
+
+### Step 1: Extract the Project
+
+Extract `portfolio-clean-slate.zip` to your desired location.
+
+```bash
+# Navigate to the extracted folder
+cd portfolio-clean-slate
+```
+
+### Step 2: Install Dependencies
+
+```bash
+npm install
+```
+
+**What this does:** Installs React, TypeScript, Vite, Gemini AI, and all other dependencies.
+
+**Expected time:** 1-2 minutes
+
+### Step 3: Get Your Gemini API Key
+
+1. Open [Google AI Studio](https://aistudio.google.com)
+2. Sign in with your Google account
+3. Click **"Get API Key"** button (top right)
+4. Click **"Create API key in new project"**
+5. **Copy the API key** (starts with `AIza...`)
+
+### Step 4: Create Environment File
+
+```bash
+# Copy the example file
+cp .env.local.example .env.local
+```
+
+Now open `.env.local` in your text editor and paste your API key:
+
+```bash
+VITE_GEMINI_API_KEY=AIzaSy...your_actual_key_here
+```
+
+**IMPORTANT:** Make sure there's no space before or after the `=` sign!
+
+### Step 5: Start the Development Server
+
+```bash
+npm run dev
+```
+
+**You should see:**
+```
+  VITE v5.0.0  ready in 500 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+```
+
+### Step 6: Open in Browser
+
+Open your browser to:
+```
+http://localhost:5173
+```
+
+**You should see:**
+- ✅ Navigation bar at the top
+- ✅ "Prasad Tilloo" as the heading
+- ✅ Metrics cards (15+ years, 8 industries, etc.)
+- ✅ Industry cards
+- ✅ No errors in the browser console (F12 → Console)
+
+---
+
+## 🧪 Testing the Architecture Engine
+
+1. **Click "Architecture Engine"** in the navigation (or the green button)
+2. **Select an industry** (e.g., Healthcare)
+3. **You'll see a pre-filled example** - you can edit it or use as-is
+4. **Click "Generate Architecture"**
+5. **Wait 10-20 seconds** (Gemini AI is analyzing)
+6. **View the results:**
+   - Executive Summary
+   - Recommendations
+   - Timeline & Budget
+   - Tech Stack
+   - Risks
+   - Architecture Components
+
+---
+
+## ✅ Success Checklist
+
+After setup, verify:
+
+- [ ] `npm install` completed without errors
+- [ ] `.env.local` file created with your API key
+- [ ] `npm run dev` starts successfully
+- [ ] Browser opens to `http://localhost:5173`
+- [ ] Homepage displays correctly
+- [ ] Navigation works (can click links)
+- [ ] Architecture Engine page loads
+- [ ] Can select an industry
+- [ ] Can click "Generate Architecture"
+- [ ] Results appear after 10-20 seconds
+- [ ] No errors in browser console (F12)
+
+---
+
+## 🚨 Troubleshooting
+
+### Problem: `npm install` fails
+
+**Solution:**
+```bash
+# Clear npm cache
+npm cache clean --force
+
+# Delete node_modules if exists
+rm -rf node_modules package-lock.json
+
+# Try again
+npm install
+```
+
+### Problem: "VITE_GEMINI_API_KEY not configured"
+
+**Solutions:**
+1. Make sure `.env.local` exists in the root directory (same level as `package.json`)
+2. Verify the file content: `VITE_GEMINI_API_KEY=your_key_here`
+3. No quotes needed around the key
+4. **Restart the dev server** after creating/editing `.env.local`
+
+### Problem: "Failed to generate architecture"
+
+**Possible causes:**
+1. **Invalid API key** → Get a new one from AI Studio
+2. **No internet connection** → Check your network
+3. **API quota exceeded** → Check usage at [aistudio.google.com](https://aistudio.google.com)
+4. **API key restrictions** → Make sure the key has no IP restrictions
+
+### Problem: Port 5173 already in use
+
+**Solution:**
+```bash
+# Option 1: Kill the process
+npx kill-port 5173
+
+# Option 2: Use a different port
+npm run dev -- --port 3000
+```
+
+### Problem: Blank page / Nothing displays
+
+**Debug steps:**
+1. Open browser console (F12 → Console tab)
+2. Look for red errors
+3. Common causes:
+   - Files not saved
+   - Syntax error in a file
+   - Missing import
+
+**Solution:**
+```bash
+# Stop the server (Ctrl+C)
+# Clear the cache
+rm -rf node_modules/.vite
+
+# Restart
+npm run dev
+```
+
+### Problem: "Module not found" errors
+
+**Solution:**
+```bash
+# Reinstall dependencies
+rm -rf node_modules package-lock.json
+npm install
+```
+
+---
+
+## 📂 Project Structure Explained
+
+```
+portfolio-clean-slate/
+│
+├── src/                          # Source code
+│   ├── components/               # Reusable components
+│   │   └── Navigation.tsx        # Top navigation bar
+│   ├── pages/                    # Page components
+│   │   ├── HomePage.tsx          # Landing page
+│   │   └── ArchitectureEngine.tsx # AI feature
+│   ├── services/                 # External services
+│   │   └── architectureGenerator.ts # Gemini API calls
+│   ├── types/                    # TypeScript types
+│   │   └── index.ts
+│   ├── App.tsx                   # Main app with routing
+│   ├── main.tsx                  # Entry point
+│   ├── index.css                 # Global styles
+│   └── vite-env.d.ts            # Environment types
+│
+├── index.html                    # HTML template
+├── package.json                  # Dependencies
+├── vite.config.ts               # Vite configuration
+├── tsconfig.json                # TypeScript config
+├── .env.local                   # YOUR API KEY (create this!)
+└── README.md                    # Documentation
+```
+
+---
+
+## 🎨 Next Steps After Setup Works
+
+### 1. Customize Your Information
+
+**Edit `src/pages/HomePage.tsx`:**
+- Change name, title, tagline
+- Update metrics (years, industries)
+- Modify industry list
+- Add your photo
+
+### 2. Add Your Projects
+
+Create a new file `src/data/projects.ts` with your actual projects, then import and display them.
+
+### 3. Add More Pages
+
+**About Page:**
+```tsx
+// src/pages/AboutPage.tsx
+import React from 'react';
+
+const AboutPage: React.FC = () => {
+  return (
+    <div>
+      {/* Your about content */}
+    </div>
+  );
+};
+
+export default AboutPage;
+```
+
+Then add to `App.tsx`:
+```tsx
+import AboutPage from './pages/AboutPage';
+// In routes:
+<Route path="about" element={<AboutPage />} />
+```
+
+### 4. Add React Flow Diagrams
+
+Install React Flow:
+```bash
+npm install @xyflow/react dagre @types/dagre
+```
+
+Create a diagram component (we can provide this code later).
+
+### 5. Deploy Your Portfolio
+
+**Option A: Vercel (Recommended)**
+```bash
+npm install -g vercel
+vercel login
+vercel
+```
+
+**Option B: Netlify**
+```bash
+npm run build
+# Drag & drop the 'dist' folder to netlify.com/drop
+```
+
+**Option C: GitHub Pages**
+1. Push code to GitHub
+2. Enable Pages in repository settings
+3. Select `/dist` as source
+
+**IMPORTANT:** Remember to add `VITE_GEMINI_API_KEY` as an environment variable in your hosting platform!
+
+---
+
+## 🔐 Security Best Practices
+
+1. ✅ **Never commit `.env.local`** to Git
+   - It's already in `.gitignore`
+   
+2. ✅ **Keep your API key secret**
+   - Don't share it publicly
+   - Don't hardcode it in the source
+   
+3. ⚠️ **Client-side API key exposure**
+   - Current setup: API key is in client-side code
+   - For production: Consider adding a backend proxy
+   
+4. ✅ **Restrict your API key** (optional but recommended)
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Add HTTP referrer restrictions
+   - Limit to your domain only
+
+---
+
+## 📚 Learn More
+
+- [Vite Documentation](https://vitejs.dev)
+- [React Documentation](https://react.dev)
+- [TypeScript Documentation](https://www.typescriptlang.org)
+- [Gemini API Documentation](https://ai.google.dev/docs)
+- [React Router Documentation](https://reactrouter.com)
+
+---
+
+## 💬 Need Help?
+
+If you're still stuck after following these instructions:
+
+1. **Check the console for errors** (F12 → Console)
+2. **Verify all files are present** (compare with structure above)
+3. **Make sure Node.js is updated** (v18+)
+4. **Try in a different browser** (Chrome recommended)
+5. **Clear browser cache** (Ctrl+Shift+Delete)
+
+---
+
+## 🎉 You're Done!
+
+If you've completed the setup and the app is running, **congratulations!** 
+
+You now have a fully working, professional portfolio with an AI-powered Architecture Engine.
+
+**What's different from before:**
+- ✅ No more CDN import conflicts
+- ✅ No more React version issues
+- ✅ Proper build system (Vite)
+- ✅ Working Gemini API integration
+- ✅ Clean, maintainable code
+- ✅ Easy to customize and extend
+
+**Start customizing and make it your own!** 🚀
+
+```
+
+## File: ./index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prasad Tilloo - Enterprise Architect Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+```
+
+## File: ./package.json
+```json
+{
+  "name": "prasad-tilloo-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"cd server && npm start\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@xyflow/react": "^12.0.0",
+    "dagre": "^0.8.5",
+    "framer-motion": "^11.0.24",
+    "i18next": "^25.7.4",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "lucide-react": "^0.363.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
+    "react-i18next": "^16.5.1",
+    "react-router-dom": "^6.22.3",
+    "simple-icons": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/dagre": "^0.7.52",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "autoprefixer": "^10.4.23",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0"
+  }
+}
+
+```
+
+## File: ./postcss.config.js
+```js
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+```
+
+## File: ./server/README.md
+```md
+This server has been disabled as part of reverting the ChatAssistant and RAG features. A backup of the original files is stored in `.reverts/chatassistant_backup`.
+
+```
+
+## File: ./server/context.js
+```js
+export const contextData = `
+You are an AI assistant for Prasad Tilloo's portfolio website. Your goal is to answer questions about Prasad's experience, skills, and background professionally and accurately based ONLY on the information below.
+
+PROFILE:
+Name: Prasad Tilloo
+Role: Senior IT Leader | AI & Cloud Enabler | Digital & Sustainable Transformation Expert
+Highlights: 15+ years experience, $1M+ cost savings delivered, 99.99% SLA achieved.
+Location: Frankfurt, Germany (Open to relocation/remote).
+
+PROFESSIONAL SUMMARY:
+Results-driven Senior Architect & Engineering Leader with 15+ years of cross-industry expertise (Banking, Telecom, e-Commerce, Healthcare, AdTech).
+Specializes in cloud-first digital transformation and AI-driven automation (Azure/AWS/GCP).
+Led teams for Fortune 100 clients (Microsoft, SAP, Siemens).
+
+EXPERIENCE:
+
+1. BRITA (May 2025 – Nov 2025) | Frankfurt, Germany
+   - Role: Solution Architect (DTC e-Commerce)
+   - Led Shopware-to-Shopify Plus discovery for 6 EMEA markets.
+   - Designed headless architecture (Vue.js/Nuxt.js + Azure).
+   - Prototyped AI-driven search optimization.
+
+2. SINE Foundation e.V. (Oct 2022 – Jun 2024) | Berlin, Germany
+   - Role: Senior Technical Project Manager / Lead Architect
+   - Established global Product Carbon Footprint (PCF) data exchange standard.
+   - Led the PACT Tech Spec (Spec v2, API) and Conformance Testing Process.
+   - Built and launched the PACT Online Catalog (Beta) and Conformance Testing Suite (Testbed).
+   - Hosted 10+ ecosystem webinars and hackathons.
+   - GitHub Repos: wbcsd/pact-conformance-testing, wbcsd/pact-api-testbed, wbcsd/pact-catalog.
+
+3. Delivery Hero SE (Mar 2022 – Sept 2022) | Berlin, Germany
+   - Role: Senior Engineering Manager (Freelance)
+   - Increased revenue by 20% with Display Ads product.
+   - Scaled to 5M+ daily transactions.
+
+4. Boehringer Ingelheim (Nov 2020 - Feb 2022)
+   - Role: Lead Architect
+   - Accelerated AI/ML insights by 50% with Enterprise Data Lake.
+
+5. PwC (Mar 2015 – Oct 2020) | Chicago, USA
+   - Role: Senior Manager
+   - Led $650K cloud modernization program.
+
+SKILLS:
+- Leadership: Agile, SAFe, TOGAF, Team Building, Strategic Planning.
+- Cloud: AWS, Azure, GCP, Kubernetes, Docker, Terraform.
+- Tech Stack: JavaScript/TypeScript, React, Next.js, Java, Python, C#, Node.js.
+- Data: Kafka, Spark, MongoDB, PostgreSQL.
+- Compliance: GDPR, HIPAA, SOC 2, ISO 27001.
+- Languages: English (Native/C2), German (B1 - Deutsch-Test für Zuwanderer).
+
+CERTIFICATIONS:
+- AI Agents Intensive (Google/Kaggle, 2025)
+- AI Engineering Cohort (ByteByteGo, 2025)
+- Deutsch-Test für Zuwanderer B1 (GAST e.V., 2025)
+- Artificial Intelligence Foundations (LinkedIn, 2020)
+- Certified SAFe 4 DevOps Practitioner (2019)
+- Digital Accelerator (PwC, 2019)
+- Axelta Certified IoT Professional (2016)
+- Cybersecurity Profile (MIT, 2016)
+
+CONTACT:
+Email: prasad.sgsits@gmail.com
+LinkedIn: linkedin.com/in/prasadtilloo
+GitHub: github.com/prasadt1
+
+TONE:
+Professional, confident, helpful, and concise. Act as if you are Prasad's digital representative.
+If asked about something not not in this context (like his favorite food, or political views), politely state that you can only answer questions about his professional background.
+`;
+
+```
+
+## File: ./server/debug.js
+```js
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Load env vars
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, '../.env.local') });
+
+const apiKey = process.env.VITE_GEMINI_API_KEY;
+console.log("Checking API Key:", apiKey ? "Present (" + apiKey.substring(0, 5) + "...)" : "MISSING");
+
+const genAI = new GoogleGenerativeAI(apiKey);
+
+const modelsToTest = [
+    "gemini-1.5-flash",
+    "gemini-2.0-flash-exp",
+    "gemini-1.5-pro",
+    "gemini-pro"
+];
+
+async function test() {
+    for (const modelName of modelsToTest) {
+        console.log(`Testing model: ${modelName}...`);
+        try {
+            const model = genAI.getGenerativeModel({ model: modelName });
+            const result = await model.generateContent("Hello, are you there?");
+            const response = await result.response;
+            console.log(`✅ SUCCESS: ${modelName} responded:`, response.text().substring(0, 50) + "...");
+            return; // Exit on first success
+        } catch (e) {
+            console.log(`❌ FAILED: ${modelName} - ${e.message.split('\n')[0]}`);
+        }
+    }
+}
+
+test();
+
+```
+
+## File: ./server/index.js
+```js
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { contextData } from './context.js';
+
+dotenv.config({ path: '../.env.local' });
+
+const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+
+// Initialize Gemini API
+const apiKey = process.env.VITE_GEMINI_API_KEY;
+console.log('----------------------------------------');
+console.log('Server Context:', {
+    cwd: process.cwd(),
+    apiKeyLength: apiKey ? apiKey.length : 0,
+    hasApiKey: !!apiKey
+});
+console.log('----------------------------------------');
+console.log('Loading API Key from env:', apiKey ? 'Found (Starts with ' + apiKey.substring(0, 4) + '...)' : 'Not Found');
+
+const genAI = new GoogleGenerativeAI(apiKey || '');
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+
+
+app.post('/api/chat', async (req, res) => {
+    try {
+        const { message, history } = req.body;
+
+        if (!process.env.VITE_GEMINI_API_KEY) {
+            return res.status(500).json({ error: 'API Key not configured' });
+        }
+
+        // Construct the chat session
+        const chat = model.startChat({
+            history: [
+                {
+                    role: "user",
+                    parts: [{ text: `System Instruction: ${contextData}` }],
+                },
+                {
+                    role: "model",
+                    parts: [{ text: "Understood. I am ready to answer questions about Prasad Tilloo based on the provided profile." }],
+                },
+                ...history.map(msg => ({
+                    role: msg.role === 'user' ? 'user' : 'model',
+                    parts: [{ text: msg.content }]
+                }))
+            ],
+            generationConfig: {
+                maxOutputTokens: 500,
+            },
+        });
+
+        const result = await chat.sendMessage(message);
+        const response = await result.response;
+        const text = response.text();
+
+        res.json({ response: text });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Failed to generate response' });
+    }
+});
+
+// Serve static files from the React app
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from the dist directory (one level up from server)
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
+
+```
+
+## File: ./server/kb.json
+```json
+[]
+```
+
+## File: ./server/package.json
+```json
+{
+  "name": "portfolio-server",
+  "version": "1.0.0",
+  "description": "Backend for Portfolio Chat Assistant",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "@google/generative-ai": "^0.21.0"
+  }
+}
+```
+
+## File: ./src/App.tsx
+```tsx
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import Navigation from './components/Navigation';
+import ChatAssistant from './components/ChatAssistant';
+import { AnalyticsProvider } from './components/AnalyticsProvider';
+import HireMeBanner from './components/HireMeBanner';
+import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
+import { ThemeProvider } from './context/ThemeContext';
+import { Loader2 } from 'lucide-react';
+import CommandPalette from './components/CommandPalette';
+import ExitIntentPopup from './components/ExitIntentPopup';
+import './i18n';
+
+// Lazy load pages for performance
+const HomePage = lazy(() => import('./pages/HomePageMultiDomain'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const ClimateTechPage = lazy(() => import('./pages/ClimateTechPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
+const ArchitectureEngine = lazy(() => import('./pages/ArchitectureEngine'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const ConsultationPage = lazy(() => import('./pages/ConsultationPage'));
+
+// Layout Component
+const Layout: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+      <CommandPalette />
+      <Navigation />
+      <main className="pt-20">
+        <ErrorBoundary>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center min-h-[50vh]">
+                <Loader2 className="animate-spin text-emerald-600" size={32} />
+              </div>
+            }
+          >
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
+      </main>
+      <Footer />
+      <ChatAssistant />
+      <HireMeBanner />
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <HelmetProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <AnalyticsProvider>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route path="products" element={<ProductsPage />} />
+                <Route path="products/:slug" element={<ProductDetailPage />} />
+                <Route path="services" element={<ServicesPage />} />
+                <Route path="climate-tech" element={<ClimateTechPage />} />
+                <Route path="about" element={<AboutPage />} />
+                <Route path="projects" element={<ProjectsPage />} />
+                <Route path="projects/:slug" element={<CaseStudyPage />} />
+                <Route path="architecture-engine" element={<ArchitectureEngine />} />
+                <Route path="contact" element={<ContactPage />} />
+                <Route path="consultation" element={<ConsultationPage />} />
+              </Route>
+            </Routes>
+            <ExitIntentPopup />
+          </AnalyticsProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </HelmetProvider>
+  );
+};
+
+export default App;
+
+
+```
+
+## File: ./src/components/AnalyticsProvider.tsx
+```tsx
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+interface AnalyticsContextType {
+    trackEvent: (eventName: string, properties?: Record<string, any>) => void;
+    identifyUser: (userId: string, traits?: Record<string, any>) => void;
+}
+
+const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined);
+
+export const useAnalytics = () => {
+    const context = useContext(AnalyticsContext);
+    if (!context) {
+        throw new Error('useAnalytics must be used within an AnalyticsProvider');
+    }
+    return context;
+};
+
+export const AnalyticsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const location = useLocation();
+    const [sessionId, setSessionId] = useState<string>('');
+
+    useEffect(() => {
+        // Generate session ID if not exists
+        let sid = sessionStorage.getItem('analytics_session_id');
+        if (!sid) {
+            sid = Math.random().toString(36).substring(2, 15);
+            sessionStorage.setItem('analytics_session_id', sid);
+        }
+        setSessionId(sid);
+    }, []);
+
+    const trackEvent = (eventName: string, properties?: Record<string, any>) => {
+        const eventData = {
+            eventName,
+            properties,
+            timestamp: new Date().toISOString(),
+            path: window.location.pathname,
+            sessionId
+        };
+
+        // In a real app, send to Segment/Mixpanel/Google Analytics
+        console.log('📊 Analytics Event:', eventData);
+
+        // Mock: scoring lead
+        if (eventName === 'download_case_study' || eventName === 'calculate_roi') {
+            console.log('🔥 Lead Score Increased +10');
+        }
+    };
+
+    const identifyUser = (userId: string, traits?: Record<string, any>) => {
+        console.log('👤 Identify User:', { userId, traits });
+    };
+
+    // Track Page Views
+    useEffect(() => {
+        trackEvent('page_view', { path: location.pathname });
+    }, [location]);
+
+    return (
+        <AnalyticsContext.Provider value={{ trackEvent, identifyUser }}>
+            {children}
+        </AnalyticsContext.Provider>
+    );
+};
+
+```
+
+## File: ./src/components/ArchitectureDiagram.tsx
+```tsx
+import '@xyflow/react/dist/style.css';
+import React, { useEffect, useCallback, useState } from 'react';
+import {
+  ReactFlow,
+  useNodesState,
+  useEdgesState,
+  Controls,
+  MiniMap,
+  Background,
+  Node,
+  Edge,
+  Position,
+  MarkerType
+} from '@xyflow/react';
+import dagre from 'dagre';
+import { X, Info, Cpu, AlertTriangle } from 'lucide-react';
+
+interface ArchitectureDiagramProps {
+  nodes: Array<{
+    id: string;
+    label: string;
+    type: 'frontend' | 'service' | 'database' | 'security' | 'external';
+    description: string;
+    technologies: string[];
+    risks: string[];
+  }>;
+  edges: Array<{
+    source: string;
+    target: string;
+  }>;
+}
+
+// Auto-layout using dagre
+const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
+  const dagreGraph = new dagre.graphlib.Graph();
+  dagreGraph.setDefaultEdgeLabel(() => ({}));
+  dagreGraph.setGraph({ rankdir: 'TB', ranksep: 100, nodesep: 150 });
+
+  const nodeWidth = 200;
+  const nodeHeight = 100;
+
+  nodes.forEach((node) => {
+    dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
+  });
+
+  edges.forEach((edge) => {
+    dagreGraph.setEdge(edge.source, edge.target);
+  });
+
+  dagre.layout(dagreGraph);
+
+  const layoutedNodes = nodes.map((node) => {
+    const nodeWithPosition = dagreGraph.node(node.id);
+    return {
+      ...node,
+      targetPosition: Position.Top,
+      sourcePosition: Position.Bottom,
+      position: {
+        x: nodeWithPosition.x - nodeWidth / 2,
+        y: nodeWithPosition.y - nodeHeight / 2,
+      },
+    };
+  });
+
+  return { nodes: layoutedNodes, edges };
+};
+
+// Get color based on node type
+const getNodeColor = (type: string) => {
+  switch (type) {
+    case 'frontend':
+      return '#a855f7'; // Purple
+    case 'service':
+      return '#3b82f6'; // Blue
+    case 'database':
+      return '#10b981'; // Green
+    case 'security':
+      return '#ef4444'; // Red
+    case 'external':
+      return '#f97316'; // Orange
+    default:
+      return '#64748b'; // Gray
+  }
+};
+
+const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({ nodes: initialNodes, edges: initialEdges }) => {
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const [selectedNode, setSelectedNode] = useState<typeof initialNodes[0] | null>(null);
+
+  useEffect(() => {
+    if (!initialNodes || !initialEdges) {
+      console.log('No nodes or edges provided');
+      return;
+    }
+
+    console.log('Initializing diagram with:', { initialNodes, initialEdges });
+
+    // Convert to React Flow format
+    const rfNodes: Node[] = initialNodes.map((node) => ({
+      id: node.id,
+      type: 'default',
+      data: {
+        label: (
+          <div style={{ padding: '8px', textAlign: 'center' }}>
+            <div style={{
+              fontSize: '10px',
+              textTransform: 'uppercase',
+              fontWeight: 'bold',
+              marginBottom: '4px',
+              opacity: 0.7
+            }}>
+              {node.type}
+            </div>
+            <div style={{ fontWeight: 600, fontSize: '14px' }}>
+              {node.label}
+            </div>
+            {node.risks && node.risks.length > 0 && (
+              <div style={{
+                marginTop: '4px',
+                fontSize: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '4px'
+              }}>
+                <AlertTriangle size={12} />
+                {node.risks.length} risk{node.risks.length > 1 ? 's' : ''}
+              </div>
+            )}
+          </div>
+        ),
+        originalNode: node
+      },
+      position: { x: 0, y: 0 },
+      style: {
+        background: getNodeColor(node.type),
+        color: 'white',
+        border: '2px solid rgba(255, 255, 255, 0.3)',
+        borderRadius: '12px',
+        padding: 0,
+        width: 200,
+        fontSize: '12px',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
+        cursor: 'pointer'
+      }
+    }));
+
+    const rfEdges: Edge[] = initialEdges.map((edge, idx) => ({
+      id: `e-${idx}`,
+      source: edge.source,
+      target: edge.target,
+      type: 'smoothstep',
+      animated: true,
+      style: {
+        stroke: '#94a3b8',
+        strokeWidth: 2
+      },
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+        color: '#94a3b8',
+        width: 20,
+        height: 20
+      }
+    }));
+
+    // Apply layout
+    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(rfNodes, rfEdges);
+
+    console.log('Setting nodes and edges:', { layoutedNodes, layoutedEdges });
+
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
+  }, [initialNodes, initialEdges, setNodes, setEdges]);
+
+  const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
+    console.log('Node clicked:', node);
+    const originalNode = (node.data as any).originalNode;
+    setSelectedNode(originalNode);
+  }, []);
+
+  const onPaneClick = useCallback(() => {
+    setSelectedNode(null);
+  }, []);
+
+  console.log('Current render state:', { nodes, edges, selectedNode });
+
+  return (
+    <div style={{ width: '100%', height: '100%', background: '#f8fafc', position: 'relative' }}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onNodeClick={onNodeClick}
+        onPaneClick={onPaneClick}
+        fitView
+        fitViewOptions={{ padding: 0.2 }}
+        minZoom={0.5}
+        maxZoom={1.5}
+        defaultEdgeOptions={{
+          animated: true,
+          style: { strokeWidth: 2 }
+        }}
+      >
+        <Background
+          color="#cbd5e1"
+          gap={16}
+          size={1}
+        />
+        <Controls
+          style={{
+            background: 'white',
+            border: '1px solid #e2e8f0',
+            borderRadius: '8px'
+          }}
+        />
+        <MiniMap
+          nodeColor={(node) => {
+            const originalNode = (node.data as any).originalNode;
+            return getNodeColor(originalNode?.type || 'service');
+          }}
+          style={{
+            background: 'white',
+            border: '1px solid #e2e8f0',
+            borderRadius: '8px'
+          }}
+        />
+      </ReactFlow>
+
+      {/* Node Details Panel */}
+      {selectedNode && (
+        <div style={{
+          position: 'absolute',
+          top: '1rem',
+          right: '1rem',
+          width: '320px',
+          maxHeight: 'calc(100% - 2rem)',
+          overflowY: 'auto',
+          background: 'white',
+          padding: '1.5rem',
+          borderRadius: '0.75rem',
+          boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)',
+          border: '1px solid #e2e8f0',
+          zIndex: 10
+        }}>
+          {/* Close button */}
+          <button
+            onClick={() => setSelectedNode(null)}
+            aria-label="Close details"
+            style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
+              padding: '0.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#64748b',
+              borderRadius: '0.375rem'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#f1f5f9';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+            }}
+          >
+            <X size={20} />
+          </button>
+
+          {/* Type badge */}
+          <div style={{ marginBottom: '0.75rem' }}>
+            <span style={{
+              display: 'inline-block',
+              padding: '0.375rem 0.75rem',
+              backgroundColor: getNodeColor(selectedNode.type),
+              color: 'white',
+              borderRadius: '0.375rem',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              {selectedNode.type}
+            </span>
+          </div>
+
+          {/* Node name */}
+          <h3 style={{
+            fontSize: '1.25rem',
+            fontWeight: 700,
+            marginBottom: '0.75rem',
+            paddingRight: '2rem',
+            color: '#0f172a'
+          }}>
+            {selectedNode.label}
+          </h3>
+
+          {/* Description */}
+          <div style={{
+            padding: '1rem',
+            backgroundColor: '#f8fafc',
+            borderRadius: '0.5rem',
+            marginBottom: '1rem',
+            border: '1px solid #e2e8f0'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginBottom: '0.5rem',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              color: '#64748b',
+              letterSpacing: '0.05em'
+            }}>
+              <Info size={14} />
+              Description
+            </div>
+            <p style={{
+              fontSize: '0.9375rem',
+              color: '#475569',
+              lineHeight: 1.6,
+              margin: 0
+            }}>
+              {selectedNode.description}
+            </p>
+          </div>
+
+          {/* Technologies */}
+          {selectedNode.technologies && selectedNode.technologies.length > 0 && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                marginBottom: '0.75rem',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                color: '#64748b',
+                letterSpacing: '0.05em'
+              }}>
+                <Cpu size={14} />
+                Technologies
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {selectedNode.technologies.map((tech, idx) => (
+                  <span key={idx} style={{
+                    padding: '0.375rem 0.75rem',
+                    background: '#eff6ff',
+                    border: '1px solid #bfdbfe',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.8125rem',
+                    fontWeight: 500,
+                    color: '#1e40af'
+                  }}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Risks */}
+          {selectedNode.risks && selectedNode.risks.length > 0 && (
+            <div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                marginBottom: '0.75rem',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                color: '#dc2626',
+                letterSpacing: '0.05em'
+              }}>
+                <AlertTriangle size={14} />
+                Risks ({selectedNode.risks.length})
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {selectedNode.risks.map((risk, idx) => (
+                  <div key={idx} style={{
+                    padding: '0.75rem',
+                    background: '#fef2f2',
+                    border: '1px solid #fecaca',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.8125rem',
+                    color: '#991b1b',
+                    lineHeight: 1.5
+                  }}>
+                    {risk}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ArchitectureDiagram;
+```
+
+## File: ./src/components/ChatAssistant.tsx
+```tsx
+import React, { useState, useRef, useEffect } from 'react';
+import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
+import LoadingState from './LoadingState';
+import { motion, AnimatePresence } from 'framer-motion';
+import { chatWithPrasad } from '../services/chatService';
+
+interface Message {
+    role: 'user' | 'model';
+    content: string;
+}
+
+const ChatAssistant: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [input, setInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // Load history from local storage on mount
+    useEffect(() => {
+        const saved = localStorage.getItem('chat_history');
+        if (saved) {
+            setMessages(JSON.parse(saved));
+        } else {
+            setMessages([{ role: 'model', content: "Hello! I'm Prasad's Digital Assistant. I can answer questions about his architectural experience, leadership style, and technical skills. How can I help you today?" }]);
+        }
+    }, []);
+
+    // Save history to local storage whenever messages change
+    useEffect(() => {
+        if (messages.length > 0) {
+            localStorage.setItem('chat_history', JSON.stringify(messages));
+        }
+    }, [messages]);
+
+    const suggestedQuestions = [
+        "What is Prasad's experience with Cloud Architecture?",
+        "Tell me about his cost savings achievements.",
+        "What industries has he worked in?",
+        "Does he have experience with AI/ML?",
+        "What is his leadership philosophy?"
+    ];
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, isOpen]);
+
+    const handleSendMessage = async (text: string) => {
+        if (!text.trim() || isLoading) return;
+
+        const userMessage = { role: 'user' as const, content: text };
+        setMessages(prev => [...prev, userMessage]);
+        setInput('');
+        setIsLoading(true);
+
+        try {
+            // Get history (excluding the first greeting message from the UI state if needed, 
+            // but the service handles system prompt. We just pass the relevant history).
+            const history = messages.slice(1).map(m => ({
+                role: m.role as 'user' | 'model',
+                content: m.content
+            }));
+
+            const responseText = await chatWithPrasad(history, text);
+            setMessages(prev => [...prev, { role: 'model', content: responseText }]);
+        } catch (error) {
+            console.error('Chat Error:', error);
+            setMessages(prev => [...prev, {
+                role: 'model',
+                content: "I'm having trouble connecting to my brain. Please try again in a moment."
+            }]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        handleSendMessage(input);
+    };
+
+    return (
+        <>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                        className="fixed bottom-44 right-4 md:right-8 w-[90vw] md:w-[400px] h-[600px] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden z-[100] flex flex-col font-sans"
+                    >
+                        {/* Header */}
+                        <div className="bg-slate-900 dark:bg-slate-950 p-4 flex justify-between items-center text-white shrink-0">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center border-2 border-slate-800 shadow-sm relative">
+                                    {/* Online Indicator */}
+                                    <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full"></span>
+                                    <span className="font-serif font-bold text-lg">PT</span>
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold text-base">Prasad's Digital Agent</h3>
+                                    <div className="text-xs text-slate-400 flex items-center gap-1">
+                                        Powered by Gemini 2.0 Flash
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="p-2 hover:bg-slate-800 rounded-full transition-colors"
+                                aria-label="Close chat"
+                            >
+                                <X size={20} className="text-slate-400 hover:text-white" />
+                            </button>
+                        </div>
+
+                        {/* Messages Area */}
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 dark:bg-slate-950 scroll-smooth">
+                            {messages.map((msg, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                                >
+                                    {msg.role === 'model' && (
+                                        <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mr-2 mt-1 shrink-0">
+                                            <Sparkles size={14} className="text-emerald-600 dark:text-emerald-400" />
+                                        </div>
+                                    )}
+                                    <div
+                                        className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${msg.role === 'user'
+                                            ? 'bg-emerald-600 text-white rounded-br-none'
+                                            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-bl-none'
+                                            }`}
+                                    >
+                                        {msg.content}
+                                    </div>
+                                </div>
+                            ))}
+
+                            {isLoading && (
+                                <div className="flex justify-start">
+                                    <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mr-2 mt-1 shrink-0">
+                                        <Sparkles size={14} className="text-emerald-600 dark:text-emerald-400" />
+                                    </div>
+                                    <div className="bg-white dark:bg-slate-800 px-4 py-3 rounded-2xl rounded-bl-none shadow-sm border border-slate-200 dark:border-slate-700">
+                                        <LoadingState variant="dots" text="Thinking..." className="py-1" />
+                                    </div>
+                                </div>
+                            )}
+
+                            <div ref={messagesEndRef} />
+                        </div>
+
+                        {/* Suggestions & Input Area */}
+                        <div className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 shrink-0">
+                            {/* Persistent Horizontal Scrollable Suggestions */}
+                            <div className="px-4 py-3 overflow-x-auto flex gap-2 no-scrollbar border-b border-slate-100 dark:border-slate-800">
+                                {suggestedQuestions.map((q, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => handleSendMessage(q)}
+                                        disabled={isLoading}
+                                        className="whitespace-nowrap flex-shrink-0 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-500/30 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400 transition-all disabled:opacity-50"
+                                    >
+                                        {q}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Input Form */}
+                            <form onSubmit={handleSubmit} className="p-3">
+                                <div className="flex gap-2 relative">
+                                    <input
+                                        type="text"
+                                        value={input}
+                                        onChange={(e) => setInput(e.target.value)}
+                                        placeholder="Ask a question..."
+                                        className="flex-1 pl-4 pr-12 py-3 bg-slate-100 dark:bg-slate-800 border border-transparent rounded-xl focus:bg-white dark:focus:bg-slate-900 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-sm dark:text-white transition-all placeholder:text-slate-400"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={!input.trim() || isLoading}
+                                        aria-label="Send message"
+                                        className="absolute right-2 top-1.5 p-1.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
+                                    >
+                                        <Send size={16} />
+                                    </button>
+                                </div>
+                                <div className="text-center mt-2">
+                                    <p className="text-[10px] text-slate-400 dark:text-slate-500">
+                                        AI responses may vary.
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
+                className="fixed bottom-24 right-4 md:right-8 p-0 w-14 h-14 bg-slate-900 dark:bg-emerald-600 text-white rounded-full 
+                   shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:shadow-emerald-900/40 
+                   transition-all z-50 group flex items-center justify-center border-2 border-white/10"
+            >
+                {isOpen ? <X size={24} /> : <MessageSquare size={24} className="group-hover:scale-110 transition-transform" />}
+            </motion.button>
+        </>
+    );
+};
+
+export default ChatAssistant;
+
+```
+
+## File: ./src/components/CommandPalette.tsx
+```tsx
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Command, X, ArrowRight, Loader2, Sparkles } from 'lucide-react';
+import { semanticSearch } from '../services/semanticSearch';
+
+const CommandPalette: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    // Toggle with Cmd+K
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                setIsOpen((prev) => !prev);
+            }
+            if (e.key === 'Escape') {
+                setIsOpen(false);
+            }
+        };
+        const handleOpenEvent = () => setIsOpen(true);
+
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('open-command-palette', handleOpenEvent);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('open-command-palette', handleOpenEvent);
+        };
+    }, []);
+
+    // Debounced Search
+    useEffect(() => {
+        const timer = setTimeout(async () => {
+            if (query.trim().length > 2) {
+                setLoading(true);
+                const hits = await semanticSearch(query);
+                setResults(hits);
+                setLoading(false);
+            } else {
+                setResults([]);
+            }
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [query]);
+
+    const handleSelect = (slug: string) => {
+        setIsOpen(false);
+        navigate(`/projects/${slug}`);
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <AnimatePresence>
+            <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] px-4">
+                {/* Backdrop */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setIsOpen(false)}
+                    className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                />
+
+                {/* Modal */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800"
+                >
+                    {/* Search Input */}
+                    <div className="flex items-center border-b border-slate-200 dark:border-slate-800 p-4">
+                        <Search className="text-slate-400 mr-3" size={20} />
+                        <input
+                            autoFocus
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder="Ask me anything... (e.g., 'Show projects with HIPAA compliance')"
+                            className="flex-1 bg-transparent outline-none text-lg text-slate-900 dark:text-white placeholder:text-slate-400"
+                        />
+                        <div className="flex items-center gap-2">
+                            {loading && <Loader2 className="animate-spin text-emerald-500" size={18} />}
+                            <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600">
+                                <X size={20} />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Results Area */}
+                    <div className="max-h-[60vh] overflow-y-auto p-2">
+                        {query.length < 3 && (
+                            <div className="p-8 text-center text-slate-500">
+                                <Command size={32} className="mx-auto mb-3 opacity-20" />
+                                <p>Type to search projects, skills, or ask questions.</p>
+                            </div>
+                        )}
+
+                        {results.length > 0 && (
+                            <div className="space-y-1">
+                                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 py-2">AI Results</h3>
+                                {results.map((hit) => (
+                                    <button
+                                        key={hit.slug}
+                                        onClick={() => handleSelect(hit.slug)}
+                                        className="w-full text-left p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex items-start gap-4 transition-colors group"
+                                    >
+                                        <div className="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded text-emerald-600 dark:text-emerald-400 mt-0.5">
+                                            <Sparkles size={16} />
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="flex justify-between items-center mb-1">
+                                                <span className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">
+                                                    {hit.title}
+                                                </span>
+                                                <span className="text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-bold">
+                                                    {hit.score}% Match
+                                                </span>
+                                            </div>
+                                            <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
+                                                {hit.relevance}
+                                            </p>
+                                        </div>
+                                        <ArrowRight className="text-slate-300 group-hover:text-emerald-500 opacity-0 group-hover:opacity-100 transition-all self-center" size={18} />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        {query.length > 3 && results.length === 0 && !loading && (
+                            <div className="p-8 text-center text-slate-500">
+                                <p>No matching projects found.</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="bg-slate-50 dark:bg-slate-800/50 p-2 text-xs text-slate-400 flex justify-between px-4">
+                        <span>Pro Tip: You can ask natural questions.</span>
+                        <div className="flex gap-2">
+                            <span className="bg-slate-200 dark:bg-slate-700 px-1.5 rounded text-[10px]">↑↓</span> to navigate
+                            <span className="bg-slate-200 dark:bg-slate-700 px-1.5 rounded text-[10px]">↵</span> to select
+                            <span className="bg-slate-200 dark:bg-slate-700 px-1.5 rounded text-[10px]">esc</span> to close
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+        </AnimatePresence>
+    );
+};
+
+export default CommandPalette;
+
+```
+
+## File: ./src/components/DomainFilter.tsx
+```tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+
+interface DomainFilterProps {
+    activeDomain: string;
+    onSelectDomain: (domain: string) => void;
+    domains: string[];
+}
+
+const DomainFilter: React.FC<DomainFilterProps> = ({ activeDomain, onSelectDomain, domains }) => {
+    return (
+        <div className="flex overflow-x-auto pb-4 gap-2 no-scrollbar w-full justify-start md:justify-center">
+            {domains.map((domain) => (
+                <motion.button
+                    key={domain}
+                    onClick={() => onSelectDomain(domain)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`
+            px-5 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap border
+            ${activeDomain === domain
+                            ? 'bg-slate-900 border-slate-900 text-white dark:bg-emerald-600 dark:border-emerald-600 shadow-lg shadow-emerald-900/10'
+                            : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700'
+                        }
+          `}
+                >
+                    {domain}
+                </motion.button>
+            ))}
+        </div>
+    );
+};
+
+export default DomainFilter;
+
+```
+
+## File: ./src/components/ErrorBoundary.tsx
+```tsx
+import React, { Component, ReactNode } from 'react';
+import { AlertTriangle } from 'lucide-react';
+
+interface Props {
+    children: ReactNode;
+}
+
+interface State {
+    hasError: boolean;
+    error?: Error;
+}
+
+class ErrorBoundary extends Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(error: Error): State {
+        return { hasError: true, error };
+    }
+
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+        console.error('Error caught by boundary:', error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+                    <div className="max-w-md w-full bg-white rounded-xl shadow-xl p-8 text-center">
+                        <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                        <h1 className="text-2xl font-bold text-slate-900 mb-2">
+                            Something went wrong
+                        </h1>
+                        <p className="text-slate-600 mb-6">
+                            We're sorry, but something unexpected happened. Please try refreshing the page.
+                        </p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-all"
+                        >
+                            Refresh Page
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        return this.props.children;
+    }
+}
+
+export default ErrorBoundary;
+
+```
+
+## File: ./src/components/ExitIntentPopup.tsx
+```tsx
+import React, { useState, useEffect } from 'react';
+import { X, ArrowRight, Gift } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const ExitIntentPopup: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [hasBeenShown, setHasBeenShown] = useState(false);
+
+    useEffect(() => {
+        const handleMouseLeave = (e: MouseEvent) => {
+            // Check if mouse leaves top of viewport (classic exit intent)
+            if (e.clientY <= 0 && !hasBeenShown) {
+                // Check local storage so we don't annoy users
+                const alreadyShown = sessionStorage.getItem('exit_popup_shown');
+                if (!alreadyShown) {
+                    setIsVisible(true);
+                    setHasBeenShown(true);
+                    sessionStorage.setItem('exit_popup_shown', 'true');
+                }
+            }
+        };
+
+        document.addEventListener('mouseleave', handleMouseLeave);
+        return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    }, [hasBeenShown]);
+
+    const closePopup = () => setIsVisible(false);
+
+    return (
+        <AnimatePresence>
+            {isVisible && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"
+                >
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                        className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden relative border border-slate-200 dark:border-slate-700"
+                    >
+                        <button
+                            onClick={closePopup}
+                            className="absolute top-4 right-4 p-2 bg-slate-100 dark:bg-slate-700 rounded-full text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+                        >
+                            <X size={20} />
+                        </button>
+
+                        <div className="p-8 text-center">
+                            <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Gift size={32} />
+                            </div>
+
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                Before You Go...
+                            </h2>
+
+                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
+                                Don't leave empty-handed. Get my free <strong>Enterprise Transformation Checklist</strong> used by Fortune 500 teams.
+                            </p>
+
+                            <div className="space-y-4">
+                                <a
+                                    href="/products/industry40-toolkit"
+                                    className="block w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-emerald-500/30 flex items-center justify-center gap-2"
+                                    onClick={closePopup}
+                                >
+                                    Get Free Checklist <ArrowRight size={20} />
+                                </a>
+
+                                <button
+                                    onClick={closePopup}
+                                    className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium text-sm"
+                                >
+                                    No thanks, I'll figure it out myself
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-4 text-center border-t border-slate-100 dark:border-slate-800">
+                            <p className="text-xs text-slate-400">
+                                Limited time offer. No spam, ever.
+                            </p>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+};
+
+export default ExitIntentPopup;
+
+```
+
+## File: ./src/components/Footer.tsx
+```tsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+const Footer: React.FC = () => {
+    const currentYear = new Date().getFullYear();
+    const { t } = useTranslation();
+
+    return (
+        <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-24 md:pb-16 font-sans">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+                    {/* Brand Column */}
+                    <div className="col-span-1 md:col-span-1">
+                        <Link to="/" className="flex items-center gap-2 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-slate-900 dark:bg-emerald-500 flex items-center justify-center text-white font-serif font-bold text-sm shadow-md">
+                                PT
+                            </div>
+                            <span className="text-xl font-serif font-bold text-slate-900 dark:text-white">
+                                Prasad Tilloo
+                            </span>
+                        </Link>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                            {t('footer.tagline')}
+                        </p>
+                        <div className="flex gap-4">
+                            <a
+                                href="https://linkedin.com/in/prasadtilloo"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                aria-label="LinkedIn"
+                            >
+                                <Linkedin size={20} />
+                            </a>
+                            <a
+                                href="https://github.com/prasadt1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                aria-label="GitHub"
+                            >
+                                <Github size={20} />
+                            </a>
+                            <a
+                                href="mailto:contact@prasadtilloo.com"
+                                className="text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                aria-label="Email"
+                            >
+                                <Mail size={20} />
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.explore')}</h3>
+                        <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                            <li><Link to="/about" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.about')} me</Link></li>
+                            <li><Link to="/projects" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.projects')}</Link></li>
+                            <li><Link to="/contact" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.contact')}</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Tools & Resources */}
+                    <div>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">Tools & Resources</h3>
+                        <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                            <li><Link to="/architecture-engine" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.architectureEngine')}</Link></li>
+                            <li><Link to="/services" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.services')}</Link></li>
+                            <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Expertise */}
+                    <div>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.expertise')}</h3>
+                        <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                            <li><Link to="/projects?tag=Cloud" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Cloud Migration</Link></li>
+                            <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
+                            <li><Link to="/products?category=compliance" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">HIPAA Compliance</Link></li>
+                            <li><Link to="/projects?tag=AI" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">AI & Data Mesh</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact CTA */}
+                    <div>
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.contact')}</h3>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                            Ready to transform your business or solve a complex architectural challenge?
+                        </p>
+                        <a
+                            href="https://calendly.com/prasad-sgsits/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                        >
+                            Schedule Consultation
+                        </a>
+                    </div>
+                </div>
+
+                <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-slate-500 text-sm text-center md:text-left">
+                        © {currentYear} Prasad Tilloo. {t('footer.rights')}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-slate-400">
+                        <span>{t('footer.builtWith')}</span>
+                        <span className="w-1 h-1 bg-slate-400 rounded-full" />
+                        <span>React & Tailwind</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;
+
+```
+
+## File: ./src/components/HireMeBanner.tsx
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Download, Calendar, X } from 'lucide-react';
+
+const HireMeBanner = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Check if user has dismissed the banner
+        const isDismissed = localStorage.getItem('hireMeBannerDismissed');
+        if (!isDismissed) {
+            setIsVisible(true);
+        }
+    }, []);
+
+    const handleDismiss = () => {
+        setIsVisible(false);
+        localStorage.setItem('hireMeBannerDismissed', 'true');
+    };
+
+    if (!isVisible) return null;
+
+    return (
+        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-emerald-600 to-emerald-500 dark:from-slate-900 dark:to-slate-900 dark:border-t dark:border-emerald-500/30 text-white shadow-2xl z-50 animate-slide-up">
+            <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3 relative">
+                <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-300 dark:bg-emerald-400 rounded-full animate-pulse" />
+                    <span className="font-semibold">Independent Consultant</span>
+                    <span className="text-emerald-100 dark:text-slate-400 text-sm hidden sm:inline">
+                        | Architecture Assessment & Advisory
+                    </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <a
+                        href="https://calendly.com/prasad-sgsits/30min"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white dark:bg-emerald-600 text-emerald-600 dark:text-white px-4 py-2 rounded-lg font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-500 transition-all flex items-center gap-2 text-sm"
+                    >
+                        <Calendar size={16} />
+                        Book Discovery Call
+                    </a>
+
+                    <button
+                        onClick={handleDismiss}
+                        className="p-1.5 hover:bg-white/20 rounded-full transition-colors ml-1"
+                        aria-label="Dismiss banner"
+                    >
+                        <X size={18} />
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default HireMeBanner;
+
+```
+
+## File: ./src/components/LanguageSwitcher.tsx
+```tsx
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Globe } from 'lucide-react';
+
+const LanguageSwitcher: React.FC = () => {
+    const { i18n, t } = useTranslation();
+
+    const toggleLanguage = () => {
+        const newLang = i18n.language === 'en' ? 'de' : 'en';
+        i18n.changeLanguage(newLang);
+    };
+
+    return (
+        <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-sm font-medium text-slate-700 dark:text-slate-300"
+            aria-label={t('nav.toggleLanguage')}
+        >
+            <Globe size={16} />
+            {i18n.language === 'en' ? 'DE' : 'EN'}
+        </button>
+    );
+};
+
+export default LanguageSwitcher;
+
+```
+
+## File: ./src/components/LazyImage.tsx
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+
+interface LazyImageProps {
+    src: string;
+    alt: string;
+    className?: string;
+}
+
+const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [isInView, setIsInView] = useState(false);
+    const imgRef = useRef<HTMLImageElement>(null);
+
+    useEffect(() => {
+        if (!imgRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        observer.observe(imgRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <img
+            ref={imgRef}
+            src={isInView ? src : ''}
+            alt={alt}
+            className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+            onLoad={() => setIsLoaded(true)}
+        />
+    );
+};
+
+export default LazyImage;
+
+```
+
+## File: ./src/components/LeadQualificationQuiz.tsx
+```tsx
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+    ArrowRight,
+    ArrowLeft,
+    X,
+    Briefcase,
+    Users,
+    ClipboardList,
+    Settings,
+    CloudLightning,
+    ShieldAlert,
+    Clock,
+    Calendar,
+    Search,
+    DollarSign,
+    AlertCircle
+} from 'lucide-react';
+
+interface QuizStep {
+    id: string;
+    question: string;
+    options: Array<{ value: string; label: string; icon?: React.ReactNode }>;
+    helper_text?: string;
+}
+
+interface QualificationResult {
+    score: number;
+    status: 'excellent_fit' | 'good_fit' | 'possible_fit' | 'not_a_fit';
+    message: string;
+    next_steps: {
+        primary: { text: string; action: string; urgency?: string };
+        secondary?: { text: string; action: string };
+        alternative?: { text: string; action: string };
+    };
+    reasoning: string[];
+    referrals?: Array<{ name: string; expertise: string; why: string }>;
+}
+
+const steps: QuizStep[] = [
+    {
+        id: 'role',
+        question: "What's your role?",
+        options: [
+            { value: 'hiring_manager', label: 'Hiring Manager / CTO', icon: <Briefcase size={20} /> },
+            { value: 'recruiter', label: 'Recruiter / HR', icon: <Users size={20} /> },
+            { value: 'procurement', label: 'Procurement / Vendor Management', icon: <ClipboardList size={20} /> },
+            { value: 'engineering', label: 'Engineering Leader', icon: <Settings size={20} /> }
+        ],
+        helper_text: "This helps me tailor recommendations"
+    },
+    {
+        id: 'challenge',
+        question: "What's your biggest challenge?",
+        options: [
+            { value: 'cloud_migration', label: 'Cloud Migration (HIPAA compliance)', icon: <CloudLightning size={20} /> },
+            { value: 'cost_optimization', label: 'Cost Optimization', icon: <DollarSign size={20} /> },
+            { value: 'compliance', label: 'Compliance / Audit Failures', icon: <ShieldAlert size={20} /> },
+            { value: 'legacy', label: 'Legacy System Modernization', icon: <Settings size={20} /> },
+            { value: 'performance', label: 'Performance / Scalability', icon: <CloudLightning size={20} /> },
+            { value: 'security', label: 'Security / Data Breaches', icon: <ShieldAlert size={20} /> }
+        ]
+    },
+    {
+        id: 'timeline',
+        question: "What's your timeline?",
+        options: [
+            { value: 'urgent', label: 'Urgent (< 1 month)', icon: <ArrowRight className="text-red-500" size={20} /> },
+            { value: '1-3mo', label: '1-3 months', icon: <Clock size={20} /> },
+            { value: '3-6mo', label: '3-6 months', icon: <Calendar size={20} /> },
+            { value: 'planning', label: 'Exploratory / Planning', icon: <Search size={20} /> }
+        ]
+    },
+    {
+        id: 'budget',
+        question: "What's your budget range?",
+        options: [
+            { value: '<100k', label: '< €100K' },
+            { value: '100k-500k', label: '€100K - €500K' },
+            { value: '500k-2m', label: '€500K - €2M' },
+            { value: '>2m', label: '> €2M' },
+            { value: 'unsure', label: 'Not Sure Yet' }
+        ]
+    }
+];
+
+const calculateQualification = (answers: Record<string, string>): QualificationResult => {
+    let score = 50; // Base score
+    const reasons: string[] = [];
+
+    // Role scoring
+    if (answers.role === 'hiring_manager' || answers.role === 'engineering') {
+        score += 15;
+        reasons.push("Decision-maker role (+15)");
+    }
+
+    // Challenge scoring
+    if (['cloud_migration', 'compliance', 'security'].includes(answers.challenge)) {
+        score += 20;
+        reasons.push("Core expertise area (+20)");
+    }
+
+    // Timeline scoring
+    if (answers.timeline === 'urgent' || answers.timeline === '1-3mo') {
+        score += 10;
+        reasons.push("Ready to move forward (+10)");
+    }
+
+    // Budget scoring
+    if (['100k-500k', '500k-2m', '>2m'].includes(answers.budget)) {
+        score += 15;
+        reasons.push("Budget aligns with typical engagement (+15)");
+    } else if (answers.budget === '<100k') {
+        score -= 10;
+        reasons.push("Budget below typical project scope (-10)");
+    }
+
+    // Determine status and message
+    if (score >= 85) {
+        return {
+            score,
+            status: 'excellent_fit',
+            message: "🎯 Perfect match! You're exactly the type of client I specialize in.",
+            next_steps: {
+                primary: {
+                    text: "Book 30-Min Strategy Call",
+                    action: "https://calendly.com/prasad-sgsits/30min",
+                    urgency: "I have 2 consultation slots available this week"
+                },
+                secondary: {
+                    text: "View Relevant Case Studies",
+                    action: "/projects?filter=healthcare"
+                }
+            },
+            reasoning: reasons
+        };
+    } else if (score >= 70) {
+        return {
+            score,
+            status: 'good_fit',
+            message: "✅ Strong potential fit. Let's discuss your specific needs.",
+            next_steps: {
+                primary: {
+                    text: "Request Detailed Proposal",
+                    action: "/contact?type=proposal"
+                },
+                secondary: {
+                    text: "15-Min Discovery Call",
+                    action: "https://calendly.com/prasad-sgsits/30min"
+                }
+            },
+            reasoning: reasons
+        };
+    } else if (score >= 50) {
+        return {
+            score,
+            status: 'possible_fit',
+            message: "🤔 I might be able to help, but let's validate the fit first.",
+            next_steps: {
+                primary: {
+                    text: "15-Min Discovery Call",
+                    action: "https://calendly.com/prasad-sgsits/30min"
+                },
+                alternative: {
+                    text: "View Specialist Referrals",
+                    action: "#referrals"
+                }
+            },
+            reasoning: reasons,
+            referrals: [
+                {
+                    name: "AWS Partner Network",
+                    expertise: "Smaller cloud migrations (<€100K)",
+                    why: "Better fit for your budget and scope"
+                },
+                {
+                    name: "Healthcare IT Consulting Firms",
+                    expertise: "General healthcare IT consulting",
+                    why: "Broader service offering if you're still exploring"
+                }
+            ]
+        };
+    } else {
+        return {
+            score,
+            status: 'not_a_fit',
+            message: "Based on your needs, I'm not the best fit. Here's why:",
+            next_steps: {
+                primary: {
+                    text: "Get Free HIPAA Checklist",
+                    action: "/contact?resource=hipaa-checklist"
+                }
+            },
+            reasoning: reasons,
+            referrals: [
+                {
+                    name: "General AWS Consultants",
+                    expertise: "Cost optimization, general cloud",
+                    why: "Better match for non-compliance-focused projects"
+                },
+                {
+                    name: "Small Business IT Support",
+                    expertise: "< €100K projects, ongoing support",
+                    why: "Better fit for budget and scope"
+                }
+            ]
+        };
+    }
+};
+
+const LeadQualificationQuiz: React.FC<{
+    isOpen: boolean;
+    onClose: () => void;
+}> = ({ isOpen, onClose }) => {
+    const [currentStep, setCurrentStep] = useState(0);
+    const [answers, setAnswers] = useState<Record<string, string>>({});
+    const [result, setResult] = useState<QualificationResult | null>(null);
+
+    if (!isOpen) return null;
+
+    const handleOptionSelect = (optionValue: string) => {
+        const step = steps[currentStep];
+        const newAnswers = { ...answers, [step.id]: optionValue };
+        setAnswers(newAnswers);
+
+        if (currentStep < steps.length - 1) {
+            setTimeout(() => setCurrentStep(curr => curr + 1), 250);
+        } else {
+            // Calculate results
+            const qualification = calculateQualification(newAnswers);
+            setTimeout(() => setResult(qualification), 400);
+        }
+    };
+
+    const handleBack = () => {
+        if (currentStep > 0) {
+            setResult(null);
+            setCurrentStep(curr => curr - 1);
+        }
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white dark:bg-slate-800 rounded-2xl w-full max-w-2xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden"
+            >
+                {/* Header */}
+                <div className="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 p-4 flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                        {currentStep > 0 && !result && (
+                            <button onClick={handleBack} className="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors">
+                                <ArrowLeft size={20} />
+                            </button>
+                        )}
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+                            Project Fit Assessment
+                        </h2>
+                    </div>
+                    <button onClick={onClose} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                        <X size={24} />
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 md:p-8">
+                    {!result ? (
+                        <div className="space-y-6">
+                            {/* Progress Bar */}
+                            <div className="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                <motion.div
+                                    className="h-full bg-emerald-500"
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${((currentStep) / steps.length) * 100}%` }}
+                                />
+                            </div>
+
+                            <div className="min-h-[300px]">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={currentStep}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                                            {steps[currentStep].question}
+                                        </h3>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            {steps[currentStep].options.map((option) => (
+                                                <button
+                                                    key={option.value}
+                                                    onClick={() => handleOptionSelect(option.value)}
+                                                    className="flex items-center gap-4 p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-all text-left group"
+                                                >
+                                                    {option.icon && (
+                                                        <div className="text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                                                            {option.icon}
+                                                        </div>
+                                                    )}
+                                                    <span className="font-semibold text-slate-700 dark:text-slate-300 group-hover:text-emerald-800 dark:group-hover:text-emerald-200">
+                                                        {option.label}
+                                                    </span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                        {steps[currentStep].helper_text && (
+                                            <p className="mt-4 text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                                <AlertCircle size={16} />
+                                                {steps[currentStep].helper_text}
+                                            </p>
+                                        )}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+                        </div>
+                    ) : (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="text-center space-y-8"
+                        >
+                            {/* Score Indicator */}
+                            <div className="inline-flex items-center justify-center relative w-24 h-24">
+                                <svg className="w-full h-full -rotate-90">
+                                    <circle
+                                        cx="48"
+                                        cy="48"
+                                        r="40"
+                                        stroke="currentColor"
+                                        strokeWidth="8"
+                                        fill="transparent"
+                                        className="text-slate-100 dark:text-slate-700"
+                                    />
+                                    <circle
+                                        cx="48"
+                                        cy="48"
+                                        r="40"
+                                        stroke="currentColor"
+                                        strokeWidth="8"
+                                        fill="transparent"
+                                        strokeDasharray={251.2}
+                                        strokeDashoffset={251.2 - (251.2 * result.score) / 100}
+                                        className={`${result.score >= 85 ? 'text-emerald-500' :
+                                            result.score >= 50 ? 'text-amber-500' : 'text-slate-400'
+                                            }`}
+                                    />
+                                </svg>
+                                <div className="absolute inset-0 flex items-center justify-center text-xl font-bold text-slate-900 dark:text-white">
+                                    {result.score}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                    {result.message}
+                                </h3>
+                                <div className="flex flex-wrap justify-center gap-2 mt-4">
+                                    {result.reasoning.map((reason, idx) => (
+                                        <span key={idx} className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-sm rounded-full">
+                                            {reason}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                                <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                                    Recommended Next Steps
+                                </h4>
+
+                                <div className="flex flex-col gap-3">
+                                    <a
+                                        href={result.next_steps.primary.action}
+                                        target={result.next_steps.primary.action.startsWith('http') ? '_blank' : '_self'}
+                                        rel="noopener noreferrer"
+                                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                                    >
+                                        {result.next_steps.primary.text}
+                                        <ArrowRight size={18} />
+                                    </a>
+
+                                    {result.next_steps.primary.urgency && (
+                                        <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                                            {result.next_steps.primary.urgency}
+                                        </p>
+                                    )}
+
+                                    {result.next_steps.secondary && (
+                                        <a
+                                            href={result.next_steps.secondary.action}
+                                            className="w-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 px-6 py-3 rounded-lg font-semibold transition-all"
+                                        >
+                                            {result.next_steps.secondary.text}
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+
+                            {result.referrals && (
+                                <div className="text-left bg-slate-50 dark:bg-slate-900/50 rounded-lg p-4">
+                                    <h5 className="font-semibold text-slate-900 dark:text-white text-sm mb-2">Alternatively, consider these partners:</h5>
+                                    <ul className="space-y-2">
+                                        {result.referrals.map((ref, idx) => (
+                                            <li key={idx} className="text-sm text-slate-600 dark:text-slate-400">
+                                                <strong className="text-slate-800 dark:text-slate-200">{ref.name}:</strong> {ref.expertise}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </motion.div>
+                    )}
+                </div>
+            </motion.div>
+        </div>
+    );
+};
+
+export default LeadQualificationQuiz;
+
+```
+
+## File: ./src/components/LoadingState.tsx
+```tsx
+import React from 'react';
+import { Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+interface LoadingStateProps {
+    variant?: 'spinner' | 'dots' | 'skeleton';
+    text?: string;
+    className?: string;
+}
+
+const LoadingState: React.FC<LoadingStateProps> = ({ variant = 'spinner', text, className = '' }) => {
+    const { t } = useTranslation();
+    const defaultText = t('common.loading');
+
+    if (variant === 'skeleton') {
+        return (
+            <div className={`animate-pulse space-y-4 ${className}`}>
+                <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
+                <div className="space-y-2">
+                    <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded"></div>
+                    <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-5/6"></div>
+                </div>
+            </div>
+        );
+    }
+
+    if (variant === 'dots') {
+        return (
+            <div className={`flex items-center gap-1 ${className}`}>
+                {[0, 1, 2].map((i) => (
+                    <div
+                        key={i}
+                        className="w-2 h-2 bg-emerald-600 rounded-full animate-bounce"
+                        style={{ animationDelay: `${i * 0.1}s` }}
+                    />
+                ))}
+                {text && <span className="ml-2 text-sm text-slate-500">{text}</span>}
+            </div>
+        );
+    }
+
+    // Default Spinner
+    return (
+        <div className={`flex flex-col items-center justify-center p-8 ${className}`}>
+            <Loader2 className="w-10 h-10 text-emerald-600 animate-spin mb-4" />
+            <p className="text-slate-600 dark:text-slate-300 font-medium animate-pulse">
+                {text || defaultText}
+            </p>
+        </div>
+    );
+};
+
+export default LoadingState;
+
+```
+
+## File: ./src/components/LogoCarousel.tsx
+```tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const logos = [
+    { src: "/assets/logos/PG.svg", alt: "P&G", className: "h-12 md:h-14" },
+    { src: "/assets/logos/Unilever.svg", alt: "Unilever", className: "h-8 md:h-10" },
+    { src: "/assets/logos/Siemens-logo.svg", alt: "Siemens", className: "h-5 md:h-6" },
+    { src: "/assets/logos/Mercedes-Logo.svg", alt: "Mercedes", className: "h-12 md:h-14" },
+    { src: "/assets/logos/Brita_(Unternehmen)_logo.svg", alt: "Brita", className: "h-6 md:h-8" },
+    { src: "/assets/logos/Delivery-Hero-Logo-Red.png", alt: "Delivery Hero", className: "h-10 md:h-12" }, // Special handling for colored PNG
+    { src: "/assets/logos/Comcast.svg", alt: "Comcast", className: "h-5 md:h-6" },
+    { src: "/assets/logos/KP_logo.svg", alt: "Kaiser Permanente", className: "h-5 md:h-6" },
+    { src: "/assets/logos/AmeriHealth.svg", alt: "AmeriHealth", className: "h-6 md:h-8" },
+    { src: "/assets/logos/PMI.svg", alt: "PMI", className: "h-10 md:h-12" },
+    { src: "/assets/logos/DaVita_logo.svg", alt: "DaVita", className: "h-6 md:h-8" },
+    { src: "/assets/logos/Ameritas-01.svg", alt: "Ameritas", className: "h-12 md:h-14" },
+    { src: "/assets/logos/Anthem.svg", alt: "Anthem", className: "h-6 md:h-8" },
+    { src: "/assets/logos/blue-cross-blue-shield-1.svg", alt: "BCBS", className: "h-8 md:h-10" },
+    { src: "/assets/logos/ecovadis-vector-logo.svg", alt: "EcoVadis", className: "h-5 md:h-6" }
+];
+
+const LogoCarousel: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <div className="w-full overflow-hidden bg-slate-50/50 dark:bg-slate-200 py-10 border-y border-slate-200 dark:border-slate-300">
+            <div className="max-w-7xl mx-auto px-4 mb-6">
+                <p className="text-center text-sm uppercase tracking-widest text-slate-500 dark:text-slate-700 font-semibold">
+                    {t('hero.carousel')}
+                </p>
+            </div>
+
+            <div className="relative flex overflow-hidden group">
+                {/* Single animating track containing duplicate sets */}
+                <div className="flex animate-scroll hover:pause">
+                    {/* First Set */}
+                    <div className="flex shrink-0 gap-16 px-8 items-center min-w-full justify-around">
+                        {logos.map((logo, idx) => (
+                            <img
+                                key={`logo-1-${idx}`}
+                                src={logo.src}
+                                alt={logo.alt}
+                                className={`${logo.className} w-auto object-contain transition-all duration-300 hover:scale-110`}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Second Set (Duplicate for seamless loop) */}
+                    <div className="flex shrink-0 gap-16 px-8 items-center min-w-full justify-around">
+                        {logos.map((logo, idx) => (
+                            <img
+                                key={`logo-2-${idx}`}
+                                src={logo.src}
+                                alt={logo.alt}
+                                className={`${logo.className} w-auto object-contain transition-all duration-300 hover:scale-110`}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default LogoCarousel;
+
+```
+
+## File: ./src/components/Navigation.tsx
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Sun, Moon, Search } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '../context/ThemeContext';
+import LanguageSwitcher from './LanguageSwitcher';
+
+const Navigation: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isActive = (path: string) => location.pathname === path;
+
+  // Simplified navigation - core pages only
+  const navLinks = [
+    { path: '/', label: t('nav.home') },
+    { path: '/services', label: t('nav.services') },
+    { path: '/projects', label: t('nav.projects') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/contact', label: t('nav.contact') }
+  ];
+
+  return (
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
+          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-slate-200 dark:border-slate-800 shadow-sm'
+          : 'bg-transparent border-transparent'
+          }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex-shrink-0 flex items-center gap-3 text-slate-900 dark:text-slate-100 hover:opacity-80 transition-opacity whitespace-nowrap"
+          >
+            <div className="w-10 h-10 rounded-full bg-slate-900 dark:bg-emerald-500 flex items-center justify-center text-white font-serif font-bold text-lg shadow-md">
+              PT
+            </div>
+            <span className="text-xl font-serif font-semibold tracking-tight">
+              Prasad Tilloo
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden xl:flex items-center gap-6 2xl:gap-8 ml-12">
+            <div className="flex gap-4 2xl:gap-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-sm font-medium transition-colors relative py-1 whitespace-nowrap ${isActive(link.path)
+                    ? 'text-slate-900 dark:text-white'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                >
+                  {link.label}
+                  {isActive(link.path) && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500"
+                    />
+                  )}
+                </Link>
+              ))}
+            </div>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
+            {/* Search Trigger */}
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-command-palette'))}
+              className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors tooltip"
+              title="Search (Cmd+K)"
+            >
+              <Search size={20} />
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />}
+            </button>
+
+            {/* Architecture Engine CTA */}
+            <Link
+              to="/architecture-engine"
+              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap"
+            >
+              {t('nav.architectureEngine')}
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-4 xl:hidden">
+            <LanguageSwitcher />
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="fixed top-20 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg z-40 xl:hidden overflow-hidden transition-colors"
+          >
+            <div className="p-4 flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`p-3 rounded-lg text-base font-medium transition-colors ${isActive(link.path)
+                    ? 'bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white'
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.dispatchEvent(new CustomEvent('open-command-palette'));
+                }}
+                className="w-full text-left p-3 rounded-lg text-base font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white flex items-center gap-2"
+              >
+                <Search size={20} />
+                <span>Search...</span>
+              </button>
+              <Link
+                to="/architecture-engine"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 bg-emerald-600 text-white rounded-lg text-center font-semibold text-base shadow-sm active:scale-95 transition-transform"
+              >
+                {t('nav.architectureEngine')}
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+export default Navigation;
+
+```
+
+## File: ./src/components/ProjectCard/ProjectCard.tsx
+```tsx
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { CaseStudy } from '../../types/CaseStudy';
+import ProjectCardHeader from './ProjectCardHeader';
+import ProjectCardTechStack from './ProjectCardTechStack';
+
+interface ProjectCardProps {
+    project: CaseStudy;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+    const { t } = useTranslation('projects');
+    const [imageError, setImageError] = useState(false);
+
+    const theme = project.theme || {
+        color: 'emerald',
+        gradient: 'from-slate-800 to-emerald-600 dark:from-slate-700 dark:to-emerald-500',
+        iconBg: 'text-emerald-600 dark:text-emerald-400'
+    };
+
+    const getBackgroundImage = () => {
+        if (imageError || !theme.backgroundImage) {
+            return '/assets/bg/card-default.jpg';
+        }
+        return theme.backgroundImage;
+    };
+
+    const handleImageError = () => {
+        setImageError(true);
+    };
+
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+            className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden"
+        >
+            {/* Backgrounds */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
+            <div
+                className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                style={{ backgroundImage: `url(${getBackgroundImage()})` }}
+                onError={handleImageError}
+            />
+            <img src={theme.backgroundImage || '/assets/bg/card-default.jpg'} alt="" className="hidden" onError={handleImageError} />
+            <div className={`h-2 bg-gradient-to-r ${theme.gradient}`}></div>
+
+            <div className="p-6 flex flex-col flex-1 relative z-10">
+                <ProjectCardHeader project={project} color={theme.color} iconBg={theme.iconBg} />
+
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-1">
+                    {t(`${project.id}.challenge.situation`, { defaultValue: project.challenge.situation })}
+                </p>
+
+                <ProjectCardTechStack project={project} />
+
+                {/* CTAs */}
+                <div className="flex gap-2 pt-4 border-t border-slate-100 dark:border-slate-700 mt-4">
+                    <Link
+                        to={`/projects/${project.slug}`}
+                        className={`flex-1 text-center py-2.5 px-4 rounded-lg bg-${theme.color}-600 hover:bg-${theme.color}-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5`}
+                    >
+                        {t(`${project.id}.cta.primary`, { defaultValue: project.cta.primary?.text || 'View Case Study' })}
+                        <ArrowRight size={14} />
+                    </Link>
+                    {project.cta.secondary && (
+                        <a
+                            href={project.cta.secondary.action}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex-1 text-center py-2.5 px-4 rounded-lg border-2 border-${theme.color}-600 text-${theme.color}-600 dark:text-${theme.color}-400 hover:bg-${theme.color}-50 dark:hover:bg-${theme.color}-900/20 font-medium text-sm transition-colors`}
+                        >
+                            {t(`${project.id}.cta.secondary`, { defaultValue: project.cta.secondary.text })}
+                        </a>
+                    )}
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
+export default React.memo(ProjectCard);
+
+```
+
+## File: ./src/components/ProjectCard/ProjectCardHeader.tsx
+```tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Building2, Layers } from 'lucide-react';
+import { CaseStudy } from '../../types/CaseStudy';
+
+interface ProjectCardHeaderProps {
+    project: CaseStudy;
+    color: string;
+    iconBg: string;
+}
+
+const ProjectCardHeader: React.FC<ProjectCardHeaderProps> = ({ project, color, iconBg }) => {
+    const { t } = useTranslation('projects');
+
+    return (
+        <div className="flex justify-between items-start mb-4">
+            <div>
+                <div className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-2 text-${color}-600 dark:text-${color}-400`}>
+                    <Building2 size={12} />
+                    {t(`${project.id}.header.eyebrow`, { defaultValue: project.header.eyebrow })}
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                    {t(`${project.id}.header.title`, { defaultValue: project.header.title })}
+                </h3>
+            </div>
+            <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-${color}-100 dark:bg-${color}-900/30 ${iconBg} flex-shrink-0`}>
+                <Layers size={18} />
+            </div>
+        </div>
+    );
+};
+
+export default React.memo(ProjectCardHeader);
+
+```
+
+## File: ./src/components/ProjectCard/ProjectCardTechStack.tsx
+```tsx
+import React from 'react';
+import { Layers } from 'lucide-react';
+import { CaseStudy } from '../../types/CaseStudy';
+
+interface ProjectCardTechStackProps {
+    project: CaseStudy;
+}
+
+const ProjectCardTechStack: React.FC<ProjectCardTechStackProps> = ({ project }) => {
+    if (!project.technical.after?.stack) return null;
+
+    return (
+        <div className="border-t border-slate-100 dark:border-slate-700 pt-4 mt-auto">
+            <div className="flex items-center gap-2 mb-3 text-xs font-medium text-slate-400 dark:text-slate-500">
+                <Layers size={14} /> Technology Stack
+            </div>
+            <div className="flex flex-wrap gap-2">
+                {project.technical.after.stack.slice(0, 5).map((tech) => (
+                    <span key={tech} className="px-2.5 py-1 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200/50 dark:border-slate-600/50">
+                        {tech}
+                    </span>
+                ))}
+                {project.technical.after.stack.length > 5 && (
+                    <span className="px-2 py-1 text-[10px] text-slate-400 dark:text-slate-500">+ {project.technical.after.stack.length - 5} more</span>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default React.memo(ProjectCardTechStack);
+
+```
+
+## File: ./src/components/ProjectCard/index.ts
+```ts
+export { default } from './ProjectCard';
+
+```
+
+## File: ./src/components/QuickStats.tsx
+```tsx
+import { Zap, Clock, Users, Building, Euro, Cloud, Download } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+const QuickStats: React.FC = () => {
+    const { t } = useTranslation();
+
+    const stats = [
+        { icon: <Clock className="text-emerald-500" />, value: '15+', label: t('quickStats.labels.experience') },
+        { icon: <Building className="text-blue-500" />, value: '25+', label: t('quickStats.labels.projects') },
+        { icon: <Euro className="text-amber-500" />, value: '€2M+', label: t('quickStats.labels.savings') },
+        { icon: <Users className="text-purple-500" />, value: '30+', label: t('quickStats.labels.teamSize') },
+        { icon: <Cloud className="text-sky-500" />, value: '8+', label: t('quickStats.labels.industries') },
+        { icon: <Zap className="text-rose-500" />, value: '5+', label: t('quickStats.labels.certifications') }
+    ];
+
+    return (
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 border border-slate-100 dark:border-slate-700">
+            <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">
+                {t('quickStats.title')}
+            </h3>
+            <div className="flex items-center gap-2 mb-6">
+                <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{t('quickStats.available')}</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, idx) => (
+                    <div key={idx} className="text-center p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-100 dark:border-slate-700">
+                        <div className="text-2xl mb-1 flex justify-center">{stat.icon}</div>
+                        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                            {stat.value}
+                        </div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                            {stat.label}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                <div className="space-y-2">
+                    <a
+                        href="https://calendly.com/prasad-sgsits/30min"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-sm"
+                    >
+                        {t('quickStats.schedule')}
+                    </a>
+
+                    <a
+                        href="/resume.pdf"
+                        download
+                        className="block w-full text-center bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-lg font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-all"
+                    >
+                        <div className="flex items-center justify-center gap-2">
+                            <Download size={16} />
+                            {t('quickStats.resume')}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default QuickStats;
+
+```
+
+## File: ./src/components/ROICalculator.tsx
+```tsx
+import React, { useState } from 'react';
+import { Calculator, TrendingDown, CheckCircle2, ExternalLink, Cloud, Database, Leaf, Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+interface ROIInputs {
+    // Common
+    company_size: string;
+
+    // Cloud Migration
+    cloud_monthly_spend?: string;
+    patient_records?: string;
+    compliance_status?: string;
+
+    // Legacy Mod
+    legacy_maintenance_cost?: string; // Annual
+    downtime_hours_year?: string;
+    dev_team_size?: string;
+
+    // Carbon
+    supplier_count?: string;
+    manual_hours_per_supplier?: string; // Annual hours spent collecting data per supplier
+    audit_costs?: string; // Annual ESG audit costs
+}
+
+type CalculatorMode = 'cloud' | 'legacy' | 'carbon';
+
+interface ROIResult {
+    total_annual_savings: number;
+    confidence_score: number;
+    breakdown: Record<string, { amount: number; description: string }>;
+    timeline_phases: Record<string, { duration: string; focus: string; savings: string }>;
+    relevant_case_studies: Array<{ client: string; outcome: string; link: string }>;
+}
+
+const ROICalculator: React.FC = () => {
+    const { t } = useTranslation();
+    const [mode, setMode] = useState<CalculatorMode>('cloud');
+    const [inputs, setInputs] = useState<ROIInputs>({
+        company_size: '',
+        cloud_monthly_spend: '',
+        patient_records: '',
+        compliance_status: '',
+        legacy_maintenance_cost: '',
+        downtime_hours_year: '',
+        dev_team_size: '',
+        supplier_count: '',
+        manual_hours_per_supplier: '',
+        audit_costs: ''
+    });
+
+    const [result, setResult] = useState<ROIResult | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    const formatCurrency = (amount: number) => '€' + amount.toLocaleString('de-DE', { maximumFractionDigits: 0 });
+
+    const calculateROI = () => {
+        setLoading(true);
+        setTimeout(() => {
+            let res: ROIResult | null = null;
+
+            if (mode === 'cloud') {
+                const spend = parseFloat(inputs.cloud_monthly_spend || '0');
+                const riskSavings = spend * 12 * 0.4;
+                const infraSavings = spend * 12 * 0.3;
+                res = {
+                    total_annual_savings: riskSavings + infraSavings + 50000,
+                    confidence_score: 85,
+                    breakdown: {
+                        compliance_risk: { amount: riskSavings, description: 'Avoided audit penalties & remediation' },
+                        infra_optimization: { amount: infraSavings, description: 'Right-sized resources & reserved instances' },
+                        operational_efficiency: { amount: 50000, description: 'Reduced manual compliance checks' }
+                    },
+                    timeline_phases: {
+                        phase1: { duration: '4 weeks', focus: 'Audit & Landing Zone', savings: '€10k' },
+                        phase2: { duration: '12 weeks', focus: 'Migration', savings: '€150k/yr' }
+                    },
+                    relevant_case_studies: [{ client: 'PwC Healthcare', outcome: '$500k savings', link: '/projects/pwc-healthcare' }]
+                };
+            } else if (mode === 'legacy') {
+                const maintenance = parseFloat(inputs.legacy_maintenance_cost || '0');
+                const downtime = parseFloat(inputs.downtime_hours_year || '0');
+                const downtimeCost = downtime * 5000; // Assume €5k/hr cost
+                res = {
+                    total_annual_savings: (maintenance * 0.6) + (downtimeCost * 0.9),
+                    confidence_score: 80,
+                    breakdown: {
+                        maintenance_reduction: { amount: maintenance * 0.6, description: 'Eliminated legacy licensing & support' },
+                        downtime_avoidance: { amount: downtimeCost * 0.9, description: '99.99% uptime with modern stack' },
+                        productivity: { amount: 100000, description: 'Faster release cycles' }
+                    },
+                    timeline_phases: {
+                        phase1: { duration: '6 weeks', focus: 'Strangler Fig Setup', savings: '€20k' },
+                        phase2: { duration: '6 months', focus: 'Core Migration', savings: '€200k/yr' }
+                    },
+                    relevant_case_studies: [{ client: 'Delivery Hero', outcome: 'Scale to 5M transactions', link: '/projects/delivery-hero-adtech' }]
+                };
+            } else {
+                // Carbon
+                const suppliers = parseFloat(inputs.supplier_count || '0');
+                const hours = parseFloat(inputs.manual_hours_per_supplier || '0');
+                const audits = parseFloat(inputs.audit_costs || '0');
+                const manualCost = suppliers * hours * 100; // €100/hr internal cost
+                res = {
+                    total_annual_savings: (manualCost * 0.9) + (audits * 0.5),
+                    confidence_score: 90,
+                    breakdown: {
+                        automation: { amount: manualCost * 0.9, description: 'Automated PACT data exchange' },
+                        audit_efficiency: { amount: audits * 0.5, description: 'Audit-ready data logs' }
+                    },
+                    timeline_phases: {
+                        phase1: { duration: '4 weeks', focus: 'API Gateway', savings: '€5k' },
+                        phase2: { duration: '8 weeks', focus: 'Supplier Onboarding', savings: '€50k/yr' }
+                    },
+                    relevant_case_studies: [{ client: 'WBCSD PACT', outcome: 'Global Standard', link: '/projects/pact-carbon-transparency' }]
+                };
+            }
+
+            setResult(res);
+            setLoading(false);
+        }, 800);
+    };
+
+    return (
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+            {/* Tabs */}
+            <div className="flex border-b border-slate-200 dark:border-slate-700">
+                <button
+                    onClick={() => { setMode('cloud'); setResult(null); }}
+                    className={`flex-1 p-4 font-bold flex items-center justify-center gap-2 transition-colors ${mode === 'cloud' ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                >
+                    <Cloud size={20} /> {t('roiCalculator.tabs.cloud')}
+                </button>
+                <button
+                    onClick={() => { setMode('legacy'); setResult(null); }}
+                    className={`flex-1 p-4 font-bold flex items-center justify-center gap-2 transition-colors ${mode === 'legacy' ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-b-2 border-blue-500' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                >
+                    <Database size={20} /> {t('roiCalculator.tabs.legacy')}
+                </button>
+                <button
+                    onClick={() => { setMode('carbon'); setResult(null); }}
+                    className={`flex-1 p-4 font-bold flex items-center justify-center gap-2 transition-colors ${mode === 'carbon' ? 'bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 border-b-2 border-teal-500' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                >
+                    <Leaf size={20} /> {t('roiCalculator.tabs.carbon')}
+                </button>
+            </div>
+
+            <div className="p-8">
+                <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                        {mode === 'cloud' && t('roiCalculator.title.cloud')}
+                        {mode === 'legacy' && t('roiCalculator.title.legacy')}
+                        {mode === 'carbon' && t('roiCalculator.title.carbon')}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                        {mode === 'cloud' && t('roiCalculator.description.cloud')}
+                        {mode === 'legacy' && t('roiCalculator.description.legacy')}
+                        {mode === 'carbon' && t('roiCalculator.description.carbon')}
+                    </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    {/* Common Input */}
+                    <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.companySize')}</label>
+                        <select
+                            value={inputs.company_size}
+                            onChange={(e) => setInputs({ ...inputs, company_size: e.target.value })}
+                            className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                        >
+                            <option value="">{t('roiCalculator.inputs.select')}</option>
+                            <option value="small">{t('roiCalculator.inputs.sizes.small')}</option>
+                            <option value="medium">{t('roiCalculator.inputs.sizes.medium')}</option>
+                            <option value="large">{t('roiCalculator.inputs.sizes.large')}</option>
+                        </select>
+                    </div>
+
+                    {/* Mode Specific Inputs */}
+                    {mode === 'cloud' && (
+                        <>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.cloudMonthlySpend')}</label>
+                                <input
+                                    type="number"
+                                    value={inputs.cloud_monthly_spend}
+                                    onChange={(e) => setInputs({ ...inputs, cloud_monthly_spend: e.target.value })}
+                                    className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                    placeholder="50000"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.complianceStatus')}</label>
+                                <select
+                                    value={inputs.compliance_status}
+                                    onChange={(e) => setInputs({ ...inputs, compliance_status: e.target.value })}
+                                    className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                >
+                                    <option value="">{t('roiCalculator.inputs.select')}</option>
+                                    <option value="non_compliant">{t('roiCalculator.inputs.complianceOptions.non_compliant')}</option>
+                                    <option value="partially">{t('roiCalculator.inputs.complianceOptions.partially')}</option>
+                                    <option value="compliant">{t('roiCalculator.inputs.complianceOptions.compliant')}</option>
+                                </select>
+                            </div>
+                        </>
+                    )}
+
+                    {mode === 'legacy' && (
+                        <>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.annualMaintenance')}</label>
+                                <input
+                                    type="number"
+                                    value={inputs.legacy_maintenance_cost}
+                                    onChange={(e) => setInputs({ ...inputs, legacy_maintenance_cost: e.target.value })}
+                                    className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                    placeholder="200000"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.downtimeHours')}</label>
+                                <input
+                                    type="number"
+                                    value={inputs.downtime_hours_year}
+                                    onChange={(e) => setInputs({ ...inputs, downtime_hours_year: e.target.value })}
+                                    className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                    placeholder="24"
+                                />
+                            </div>
+                        </>
+                    )}
+
+                    {mode === 'carbon' && (
+                        <>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.supplierCount')}</label>
+                                <input
+                                    type="number"
+                                    value={inputs.supplier_count}
+                                    onChange={(e) => setInputs({ ...inputs, supplier_count: e.target.value })}
+                                    className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                    placeholder="100"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t('roiCalculator.inputs.manualHours')}</label>
+                                <input
+                                    type="number"
+                                    value={inputs.manual_hours_per_supplier}
+                                    onChange={(e) => setInputs({ ...inputs, manual_hours_per_supplier: e.target.value })}
+                                    className="w-full px-4 py-3 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                                    placeholder="10"
+                                />
+                            </div>
+                        </>
+                    )}
+                </div>
+
+                <button
+                    onClick={calculateROI}
+                    disabled={loading}
+                    className="w-full bg-slate-900 dark:bg-emerald-600 text-white font-bold py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                >
+                    {loading ? (
+                        <span className="flex items-center gap-2">
+                            <Loader2 size={20} className="animate-spin" />
+                            {t('roiCalculator.cta.calculating')}
+                        </span>
+                    ) : (
+                        <><Calculator size={20} /> {t('roiCalculator.cta.calculate')}</>
+                    )}
+                </button>
+
+                {/* Results Section */}
+                {result && (
+                    <div className="mt-8 animate-fade-in">
+                        <div className="bg-emerald-50 dark:bg-emerald-900/20 p-6 rounded-xl border border-emerald-200 dark:border-emerald-700 text-center mb-6">
+                            <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">{t('roiCalculator.results.title')}</div>
+                            <div className="text-5xl font-bold text-slate-900 dark:text-white mb-2">{formatCurrency(result.total_annual_savings)}</div>
+                            <div className="text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
+                                <CheckCircle2 size={16} className="text-emerald-500" />
+                                {result.confidence_score}% {t('roiCalculator.results.confidence')}
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="space-y-4">
+                                <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <TrendingDown size={18} /> {t('roiCalculator.results.breakdown')}
+                                </h4>
+                                {Object.entries(result.breakdown).map(([key, val]) => (
+                                    <div key={key} className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg flex justify-between items-center">
+                                        <div>
+                                            <div className="font-semibold text-slate-900 dark:text-white capitalize">{key.replace('_', ' ')}</div>
+                                            <div className="text-xs text-slate-500 dark:text-slate-400">{val.description}</div>
+                                        </div>
+                                        <div className="font-bold text-emerald-600">{formatCurrency(val.amount)}</div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="space-y-4">
+                                <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <ExternalLink size={18} /> {t('roiCalculator.results.similarCaseStudy')}
+                                </h4>
+                                {result.relevant_case_studies.map((study, idx) => (
+                                    <div key={idx} className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                                        <div className="font-bold text-slate-900 dark:text-white">{study.client}</div>
+                                        <div className="text-sm text-slate-600 dark:text-slate-400 mb-2">{study.outcome}</div>
+                                        <a href={study.link} className="text-emerald-600 text-sm font-bold hover:underline">{t('roiCalculator.results.readCaseStudy')} →</a>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default ROICalculator;
+
+```
+
+## File: ./src/components/Recommendations.tsx
+```tsx
+import React, { useEffect, useRef, useState } from 'react';
+
+type Rec = {
+  name: string;
+  title: string;
+  date: string;
+  relation?: string;
+  text: string;
+  avatarUrl?: string;
+  profileUrl?: string;
+};
+
+const RECOMMENDATIONS: Rec[] = [
+  {
+    name: 'Steven Li',
+    title: 'Product @ KP',
+    date: 'April 14, 2021',
+    relation: 'Worked with Prasad (different teams)',
+    text: `Prasad tackles the most difficult problems head-on. He was an awesome partner at KP, solution architecting our largest initiatives to transform the digital pharmacy experience on the mobile app. He left no loose ends with any initiative.`,
+    profileUrl: 'https://www.linkedin.com/in/stevenli395/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Steven+Li&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Edward Elfreth',
+    title: 'Principal Software Engineer',
+    date: 'August 12, 2015',
+    relation: 'Managed Prasad directly',
+    text: `I am currently working with Prasad at a HealthCare client. Prasad is a very skilled developer that needs minimal supervision to get things done. He works very well in the team environment and has all the latest concepts/technologies in his toolbox. I enjoy working with Prasad because he delivers quality code in a timely manner.`,
+    profileUrl: 'https://www.linkedin.com/in/edward-elfreth/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Edward+Elfreth&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'April Elias',
+    title: 'AI Transformation Partner',
+    date: 'May 13, 2015',
+    relation: 'Worked with Prasad (different companies)',
+    text: `Prasad demonstrated immediately and consistently he is an exceptional Sr. Level Developer. He is organized and works well under pressure. Almost without exception, he put the customer first. I have no hesitation in recommending Prasad.`,
+    profileUrl: 'https://www.linkedin.com/in/aprilelias/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=April+Elias&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Sarang Nandedkar',
+    title: 'Assistant Registrar, IIT Kanpur',
+    date: 'March 2, 2015',
+    relation: 'Studied together',
+    text: `Prasad has been a dear friend whom I have known since year 2000. Honesty, openness, ethics and a sincere ongoing effort to keep oneself attuned with positivity and development is what I have always witnessed in him.`,
+    profileUrl: 'https://www.linkedin.com/in/sarangnandedkar/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Sarang+Nandedkar&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Shazi Makhdoom',
+    title: 'Senior Software Engineering Manager at Jack Henry',
+    date: 'October 7, 2014',
+    relation: 'Managed Prasad directly',
+    text: `I worked with Prasad at HealthTronics and he was an integral part of our Scrum Team. He is team player, who is always very detailed oriented and accountable for his work.`,
+    profileUrl: 'https://www.linkedin.com/in/shazi-makhdoom-b9319311/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Shazi+Makhdoom&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Laura Caruso',
+    title: 'Lead Business Analyst at World Wide Technology',
+    date: 'September 16, 2014',
+    relation: 'Worked on same team',
+    text: `Prasad and I have worked on the same project for about the past 18 months. I find Prasad's work to be of very high quality and very reliable. He asks the right questions, and he is quick to step in and help.`,
+    profileUrl: 'https://www.linkedin.com/in/laura-caruso-4250117/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Laura+Caruso&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Vikas Sharma',
+    title: 'Product @ Meta | Wearables',
+    date: 'August 20, 2013',
+    relation: 'Worked on same team',
+    text: `I have worked in the same group as Prasad for two years. I found Prasad very insightful, hard-working and resourceful person. It was a joy working with him.`,
+    profileUrl: 'https://www.linkedin.com/in/vikas-sharma-06849b12/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Vikas+Sharma&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Robert Carducci',
+    title: 'Remote Technical Lead / Software Architect',
+    date: 'August 27, 2012',
+    relation: 'Worked on same team',
+    text: `Prasad is technically savvy yet easy to work with. He has applied his coding experience to cutting-edge industry standards, creating detailed self-explanatory documents. I highly recommend Prasad.`,
+    profileUrl: 'https://www.linkedin.com/in/robertacarducci/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Robert+Carducci&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Daniel Joy',
+    title: 'Senior Application Developer',
+    date: 'March 16, 2012',
+    relation: 'Worked on same project',
+    text: `I worked with Prasad directly for about 6-7 months on the same project. He is a good developer and dedicated to his job.`,
+    profileUrl: 'https://www.linkedin.com/in/daniel-joy-265352/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Daniel+Joy&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Allwyn Costa',
+    title: 'Entrepreneur | Advisor',
+    date: 'March 14, 2011',
+    relation: 'Senior to Prasad',
+    text: `Prasad has an awesome personality coupled with a strong technical background. He is a top notch candidate and I would rate him in the top 10% of the IT industry.`,
+    profileUrl: 'https://www.linkedin.com/in/allwyncosta',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Allwyn+Costa&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Akshay Joshi',
+    title: 'Verint - Customer Experience Automation',
+    date: 'February 9, 2011',
+    relation: 'Worked on same team',
+    text: `In addition to hard work and a positive attitude, Prasad has a real talent for problem solving. You could always count on him if a problem arises.`,
+    profileUrl: 'https://www.linkedin.com/in/akshayjo/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Akshay+Joshi&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Neeraj Salpekar',
+    title: 'Engineering Squad Lead',
+    date: 'February 7, 2011',
+    relation: 'Worked on same team',
+    text: `Prasad is one of most committed people I have worked with. He is technically very sound and has a great ability to motivate his team members.`,
+    profileUrl: 'https://www.linkedin.com/in/neeraj-salpekar/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Neeraj+Salpekar&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Gaurav Vakharia',
+    title: 'Director of Marketing | AI Enthusiast',
+    date: 'February 7, 2011',
+    relation: 'Studied together',
+    text: `Prasad is a terrific guy, self motivated, problem solver and maintains his poise and resilience continuously.`,
+    profileUrl: 'https://www.linkedin.com/in/gauravvakharia/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Gaurav+Vakharia&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Val Kleyer',
+    title: 'Executive Director at NYC Department of Education',
+    date: 'July 21, 2009',
+    relation: 'Senior to Prasad',
+    text: `Prasad was working on development of a new system for City of New York. He was able to complete all tasks assigned to him on time and with a very good quality of code. Prasad will be a very good asset to any development team.`,
+    profileUrl: 'https://www.linkedin.com/in/val-kleyer-779759/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Val+Kleyer&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Alex Begun',
+    title: 'Solutions Architect',
+    date: 'June 14, 2009',
+    relation: 'Senior to Prasad',
+    text: `Prasad is a brilliant developer, possessing a unique ability to quickly identify and solve complex business problems.`,
+    profileUrl: 'https://www.linkedin.com/in/alex-begun-69b86a9/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Alex+Begun&background=0f172a&color=fff&size=128'
+  }
+];
+
+type RecommendationsProps = {
+  mode?: 'carousel' | 'scroll'
+}
+
+const Recommendations: React.FC<RecommendationsProps> = ({ mode = 'carousel' }) => {
+  const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [autoplay, setAutoplay] = useState(true);
+  const [intervalSecs, setIntervalSecs] = useState(4);
+  const [itemsPerView, setItemsPerView] = useState(1);
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({});
+  const intervalRef = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const length = RECOMMENDATIONS.length;
+
+  // responsive items per view
+  useEffect(() => {
+    const calc = () => {
+      const w = window.innerWidth;
+      if (w >= 1200) setItemsPerView(3);
+      else if (w >= 768) setItemsPerView(2);
+      else setItemsPerView(1);
+    };
+    calc();
+    window.addEventListener('resize', calc);
+    return () => window.removeEventListener('resize', calc);
+  }, []);
+
+  // auto-advance
+  useEffect(() => {
+    if (!autoplay || isPaused) return;
+    intervalRef.current = window.setInterval(() => {
+      setIndex((i) => (i + 1) % Math.ceil(length));
+    }, Math.max(500, intervalSecs * 1000));
+    return () => {
+      if (intervalRef.current) window.clearInterval(intervalRef.current);
+    };
+  }, [autoplay, isPaused, intervalSecs, length]);
+
+  const goPrev = () => setIndex((i) => Math.max(0, i - 1));
+  const goNext = () => setIndex((i) => Math.min(Math.ceil(length / itemsPerView) - 1, i + 1));
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current == null) return;
+    const delta = (e.changedTouches[0].clientX - touchStartX.current);
+    const SWIPE_THRESHOLD = 50;
+    if (delta > SWIPE_THRESHOLD) goPrev();
+    else if (delta < -SWIPE_THRESHOLD) goNext();
+    touchStartX.current = null;
+  };
+
+  // number of pages
+  const pages = Math.ceil(length / itemsPerView);
+
+  
+
+  // scroll mode: an alternative layout optimized for narrow sidebars
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [scrollIdx, setScrollIdx] = useState(0);
+
+  useEffect(() => {
+    if (mode !== 'scroll' || !autoplay || isPaused) return;
+    const interval = window.setInterval(() => {
+      setScrollIdx((i) => (i + 1) % Math.ceil(length));
+    }, Math.max(500, intervalSecs * 1000));
+    return () => window.clearInterval(interval);
+  }, [mode, autoplay, isPaused, intervalSecs, length]);
+
+  useEffect(() => {
+    if (mode !== 'scroll' || !scrollRef.current) return;
+    const container = scrollRef.current;
+    const child = container.children[scrollIdx] as HTMLElement | undefined;
+    if (child) {
+      container.scrollTo({ left: child.offsetLeft - 8, behavior: 'smooth' });
+    }
+  }, [scrollIdx, mode]);
+
+  return (
+    <section style={{ marginBottom: '1.5rem', maxWidth: '100%', overflowX: 'hidden', boxSizing: 'border-box' }} aria-label="Recommendations" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
+        <h2 style={{ fontSize: '1.75rem', fontFamily: 'Crimson Text, serif' }}>Recommendations</h2>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <label style={{ fontSize: '0.85rem', color: '#64748b' }}>
+            <input type="checkbox" checked={autoplay} onChange={(e) => setAutoplay(e.target.checked)} style={{ marginRight: 6 }} /> Autoplay
+          </label>
+          <label style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+            <span style={{ color: '#94a3b8' }}>Interval</span>
+            <input type="number" value={intervalSecs} min={1} onChange={(e) => setIntervalSecs(Number(e.target.value) || 1)} style={{ width: 48, padding: '0.15rem', borderRadius: 4, border: '1px solid #e2e8f0' }} />s
+          </label>
+        </div>
+      </div>
+
+      {mode === 'carousel' ? (
+        <div style={{ position: 'relative', overflow: 'hidden' }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <div style={{ display: 'flex', transition: 'transform 500ms ease', transform: `translateX(-${index * (100)}%)` }}>
+          {RECOMMENDATIONS.map((r, idx) => (
+            <div key={idx} style={{ width: `${100 / itemsPerView}%`, boxSizing: 'border-box', padding: '0.5rem' }}>
+              <div style={{ padding: '0.75rem', backgroundColor: 'white', borderRadius: '0.75rem', border: '1px solid #e2e8f0', minHeight: '150px', display: 'flex', gap: '0.75rem', alignItems: 'stretch', flexDirection: 'row' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', backgroundColor: '#0f172a', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.95rem', flexShrink: 0, marginTop: 4 }}>
+                  {r.avatarUrl ? <img src={r.avatarUrl} alt={`${r.name} avatar`} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} /> : r.name.split(' ').map(n => n[0]).slice(0,2).join('').toUpperCase()}
+                </div>
+
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '0.5rem' }}>
+                      <div>
+                        <div style={{ fontWeight: 700 }}>{r.name}</div>
+                        <div style={{ fontSize: '0.875rem', color: '#64748b' }}>{r.title} · <span style={{ color: '#94a3b8' }}>{r.date}</span></div>
+                      </div>
+                      {r.relation && <div style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 600 }}>{r.relation}</div>}
+                    </div>
+
+                    <p style={{ marginTop: '0.5rem', color: '#475569', lineHeight: 1.5, display: '-webkit-box', WebkitLineClamp: expanded[idx] ? 'none' : 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                      {r.text}
+                    </p>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
+                    <div>
+                      {r.text.length > 220 && (
+                        <button onClick={() => setExpanded((s) => ({ ...s, [idx]: !s[idx] }))} style={{ background: 'none', border: 'none', color: '#16a34a', cursor: 'pointer', fontWeight: 600 }}>
+                          {expanded[idx] ? 'Show less' : 'Read more'}
+                        </button>
+                      )}
+                    </div>
+
+                    <div>
+                      {r.profileUrl ? (
+                        <a href={r.profileUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', color: '#0f172a', fontWeight: 700, textDecoration: 'none', border: '1px solid #e2e8f0', padding: '0.35rem 0.6rem', borderRadius: 6 }}>
+                          View on LinkedIn
+                        </a>
+                      ) : (
+                        <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>No profile</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          </div>
+
+          {/* Controls */}
+          <button onClick={goPrev} aria-label="Previous" style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', background: 'rgba(15,23,42,0.9)', color: 'white', border: 'none', padding: '0.4rem 0.5rem', borderRadius: '999px', cursor: 'pointer', boxShadow: '0 2px 6px rgba(2,6,23,0.12)', zIndex: 20 }}>◀</button>
+          <button onClick={goNext} aria-label="Next" style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', background: 'rgba(15,23,42,0.9)', color: 'white', border: 'none', padding: '0.4rem 0.5rem', borderRadius: '999px', cursor: 'pointer', boxShadow: '0 2px 6px rgba(2,6,23,0.12)', zIndex: 20 }}>▶</button>
+
+          {/* Indicators */}
+          <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', bottom: 8, display: 'flex', gap: '0.5rem' }}>
+            {Array.from({ length: pages }).map((_, i) => (
+              <button key={i} onClick={() => setIndex(i)} aria-label={`Go to recommendation ${i+1}`} style={{ width: 8, height: 8, borderRadius: 4, border: 'none', background: i === index ? '#16a34a' : '#cbd5e1', padding: 0, cursor: 'pointer' }} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        /* scroll mode: horizontal scrollable list optimized for sidebar width */
+        <>
+        <div ref={scrollRef} onScroll={() => {
+            if (!scrollRef.current) return;
+            const container = scrollRef.current;
+            const idx = Math.round(container.scrollLeft / container.clientWidth);
+            setScrollIdx(idx);
+          }} style={{ display: 'flex', gap: 12, overflowX: 'auto', scrollBehavior: 'smooth', padding: '0.5rem 0', maxWidth: '100%', scrollSnapType: 'x mandatory' }}>
+          {RECOMMENDATIONS.map((r, idx) => (
+            <div key={idx} style={{ minWidth: '100%', flex: '0 0 100%', boxSizing: 'border-box', scrollSnapAlign: 'start' }}>
+              <div style={{ padding: '0.75rem', backgroundColor: 'white', borderRadius: '0.75rem', border: '1px solid #e2e8f0', minHeight: '120px', display: 'flex', gap: '0.75rem', alignItems: 'stretch', flexDirection: 'column', boxSizing: 'border-box' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <div style={{ width: 40, height: 40, borderRadius: '50%', backgroundColor: '#0f172a', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.9rem', flexShrink: 0 }}>
+                      {r.avatarUrl ? <img loading="lazy" src={r.avatarUrl} alt={`${r.name} avatar`} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} /> : r.name.split(' ').map(n => n[0]).slice(0,2).join('').toUpperCase()}
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 700 }}>{r.name}</div>
+                      <div style={{ fontSize: '0.8rem', color: '#64748b' }}>{r.title}</div>
+                    </div>
+                  </div>
+                  {r.profileUrl && (
+                    <a href={r.profileUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#0f172a', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>LinkedIn</a>
+                  )}
+                </div>
+                <div style={{ marginTop: 8, color: '#475569', fontSize: '0.9rem', lineHeight: 1.4, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>
+                  {r.text}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 8 }}>
+          {RECOMMENDATIONS.map((_, i) => (
+            <button key={i} onClick={() => {
+              if (!scrollRef.current) return;
+              const container = scrollRef.current;
+              const child = container.children[i] as HTMLElement | undefined;
+              if (child) container.scrollTo({ left: child.offsetLeft - 8, behavior: 'smooth' });
+            }} aria-label={`Go to recommendation ${i+1}`} style={{ width: 8, height: 8, borderRadius: 4, border: 'none', background: i === scrollIdx ? '#16a34a' : '#cbd5e1', padding: 0, cursor: 'pointer' }} />
+          ))}
+        </div>
+        </>
+      )}
+    </section>
+  );
+};
+
+export default Recommendations;
+
+```
+
+## File: ./src/components/RecommendationsCarousel.tsx
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
+
+type Rec = {
+  name: string;
+  title: string;
+  date: string;
+  relation?: string;
+  text: string;
+  avatarUrl?: string;
+  profileUrl?: string;
+};
+
+const RECOMMENDATIONS: Rec[] = [
+  {
+    name: 'Steven Li',
+    title: 'Product @ KP',
+    date: 'April 14, 2021',
+    relation: 'Worked with Prasad (different teams)',
+    text: `Prasad tackles the most difficult problems head-on. He was an awesome partner at KP, solution architecting our largest initiatives to transform the digital pharmacy experience on the mobile app. He left no loose ends with any initiative.`,
+    profileUrl: 'https://www.linkedin.com/in/stevenli395/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Steven+Li&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Edward Elfreth',
+    title: 'Principal Software Engineer',
+    date: 'August 12, 2015',
+    relation: 'Managed Prasad directly',
+    text: `I am currently working with Prasad at a HealthCare client. Prasad is a very skilled developer that needs minimal supervision to get things done. He works very well in the team environment and has all the latest concepts/technologies in his toolbox. I enjoy working with Prasad because he delivers quality code in a timely manner.`,
+    profileUrl: 'https://www.linkedin.com/in/edward-elfreth/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Edward+Elfreth&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'April Elias',
+    title: 'AI Transformation Partner',
+    date: 'May 13, 2015',
+    relation: 'Worked with Prasad (different companies)',
+    text: `Prasad demonstrated immediately and consistently he is an exceptional Sr. Level Developer. He is organized and works well under pressure. Almost without exception, he put the customer first. I have no hesitation in recommending Prasad.`,
+    profileUrl: 'https://www.linkedin.com/in/aprilelias/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=April+Elias&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Sarang Nandedkar',
+    title: 'Assistant Registrar, IIT Kanpur',
+    date: 'March 2, 2015',
+    relation: 'Studied together',
+    text: `Prasad has been a dear friend whom I have known since year 2000. Honesty, openness, ethics and a sincere ongoing effort to keep oneself attuned with positivity and development is what I have always witnessed in him.`,
+    profileUrl: 'https://www.linkedin.com/in/sarangnandedkar/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Sarang+Nandedkar&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Shazi Makhdoom',
+    title: 'Senior Software Engineering Manager at Jack Henry',
+    date: 'October 7, 2014',
+    relation: 'Managed Prasad directly',
+    text: `I worked with Prasad at HealthTronics and he was an integral part of our Scrum Team. He is team player, who is always very detailed oriented and accountable for his work.`,
+    profileUrl: 'https://www.linkedin.com/in/shazi-makhdoom-b9319311/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Shazi+Makhdoom&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Laura Caruso',
+    title: 'Lead Business Analyst at World Wide Technology',
+    date: 'September 16, 2014',
+    relation: 'Worked on same team',
+    text: `Prasad and I have worked on the same project for about the past 18 months. I find Prasad's work to be of very high quality and very reliable. He asks the right questions, and he is quick to step in and help.`,
+    profileUrl: 'https://www.linkedin.com/in/laura-caruso-4250117/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Laura+Caruso&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Vikas Sharma',
+    title: 'Product @ Meta | Wearables',
+    date: 'August 20, 2013',
+    relation: 'Worked on same team',
+    text: `I have worked in the same group as Prasad for two years. I found Prasad very insightful, hard-working and resourceful person. It was a joy working with him.`,
+    profileUrl: 'https://www.linkedin.com/in/vikas-sharma-06849b12/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Vikas+Sharma&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Robert Carducci',
+    title: 'Remote Technical Lead / Software Architect',
+    date: 'August 27, 2012',
+    relation: 'Worked on same team',
+    text: `Prasad is technically savvy yet easy to work with. He has applied his coding experience to cutting-edge industry standards, creating detailed self-explanatory documents. I highly recommend Prasad.`,
+    profileUrl: 'https://www.linkedin.com/in/robertacarducci/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Robert+Carducci&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Daniel Joy',
+    title: 'Senior Application Developer',
+    date: 'March 16, 2012',
+    relation: 'Worked on same project',
+    text: `I worked with Prasad directly for about 6-7 months on the same project. He is a good developer and dedicated to his job.`,
+    profileUrl: 'https://www.linkedin.com/in/daniel-joy-265352/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Daniel+Joy&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Allwyn Costa',
+    title: 'Entrepreneur | Advisor',
+    date: 'March 14, 2011',
+    relation: 'Senior to Prasad',
+    text: `Prasad has an awesome personality coupled with a strong technical background. He is a top notch candidate and I would rate him in the top 10% of the IT industry.`,
+    profileUrl: 'https://www.linkedin.com/in/allwyncosta',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Allwyn+Costa&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Akshay Joshi',
+    title: 'Verint - Customer Experience Automation',
+    date: 'February 9, 2011',
+    relation: 'Worked on same team',
+    text: `In addition to hard work and a positive attitude, Prasad has a real talent for problem solving. You could always count on him if a problem arises.`,
+    profileUrl: 'https://www.linkedin.com/in/akshayjo/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Akshay+Joshi&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Neeraj Salpekar',
+    title: 'Engineering Squad Lead',
+    date: 'February 7, 2011',
+    relation: 'Worked on same team',
+    text: `Prasad is one of most committed people I have worked with. He is technically very sound and has a great ability to motivate his team members.`,
+    profileUrl: 'https://www.linkedin.com/in/neeraj-salpekar/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Neeraj+Salpekar&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Gaurav Vakharia',
+    title: 'Director of Marketing | AI Enthusiast',
+    date: 'February 7, 2011',
+    relation: 'Studied together',
+    text: `Prasad is a terrific guy, self motivated, problem solver and maintains his poise and resilience continuously.`,
+    profileUrl: 'https://www.linkedin.com/in/gauravvakharia/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Gaurav+Vakharia&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Val Kleyer',
+    title: 'Executive Director at NYC Department of Education',
+    date: 'July 21, 2009',
+    relation: 'Senior to Prasad',
+    text: `Prasad was working on development of a new system for City of New York. He was able to complete all tasks assigned to him on time and with a very good quality of code. Prasad will be a very good asset to any development team.`,
+    profileUrl: 'https://www.linkedin.com/in/val-kleyer-779759/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Val+Kleyer&background=0f172a&color=fff&size=128'
+  },
+  {
+    name: 'Alex Begun',
+    title: 'Solutions Architect',
+    date: 'June 14, 2009',
+    relation: 'Senior to Prasad',
+    text: `Prasad is a brilliant developer, possessing a unique ability to quickly identify and solve complex business problems.`,
+    profileUrl: 'https://www.linkedin.com/in/alex-begun-69b86a9/',
+    avatarUrl: 'https://ui-avatars.com/api/?name=Alex+Begun&background=0f172a&color=fff&size=128'
+  }
+];
+
+const RecommendationsCarousel: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [itemsPerView, setItemsPerView] = useState(1);
+  const intervalRef = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+
+  // Responsive items per view
+  useEffect(() => {
+    const calc = () => {
+      const w = window.innerWidth;
+      if (w >= 1280) setItemsPerView(3);
+      else if (w >= 768) setItemsPerView(2);
+      else setItemsPerView(1);
+    };
+    calc();
+    window.addEventListener('resize', calc);
+    return () => window.removeEventListener('resize', calc);
+  }, []);
+
+  // Auto-advance
+  useEffect(() => {
+    if (isPaused) return;
+    const maxIndex = Math.ceil(RECOMMENDATIONS.length / itemsPerView) - 1;
+    intervalRef.current = window.setInterval(() => {
+      setCurrentIndex((i) => (i + 1) % (maxIndex + 1));
+    }, 5000);
+    return () => {
+      if (intervalRef.current) window.clearInterval(intervalRef.current);
+    };
+  }, [isPaused, itemsPerView]);
+
+  const maxIndex = Math.ceil(RECOMMENDATIONS.length / itemsPerView) - 1;
+
+  const goPrev = () => setCurrentIndex((i) => Math.max(0, i - 1));
+  const goNext = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current == null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) goPrev();
+      else goNext();
+    }
+    touchStartX.current = null;
+  };
+
+  return (
+    <div 
+      className="relative overflow-hidden w-full"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      <div 
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {RECOMMENDATIONS.map((rec, idx) => (
+          <div
+            key={idx}
+            className="flex-shrink-0"
+            style={{ width: `calc(100% / ${itemsPerView})`, padding: '0 0.5rem', boxSizing: 'border-box' }}
+          >
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-5 h-full flex flex-col">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="w-12 h-12 rounded-full bg-slate-900 dark:bg-slate-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {rec.avatarUrl ? (
+                    <img 
+                      src={rec.avatarUrl} 
+                      alt={`${rec.name} avatar`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-white font-bold text-sm">
+                      {rec.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()}
+                    </span>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-slate-900 dark:text-white text-sm">{rec.name}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400">{rec.title}</div>
+                    </div>
+                    {rec.profileUrl && (
+                      <a
+                        href={rec.profileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex-shrink-0"
+                        aria-label={`${rec.name} on LinkedIn`}
+                      >
+                        <Linkedin size={16} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <p 
+                className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1"
+                style={{
+                  display: '-webkit-box',
+                  WebkitLineClamp: 4,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }}
+              >
+                {rec.text}
+              </p>
+              <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                <span className="text-xs text-slate-400 dark:text-slate-500">{rec.date}</span>
+                {rec.relation && (
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                    {rec.relation}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Buttons */}
+      {maxIndex > 0 && (
+        <>
+          <button
+            onClick={goPrev}
+            disabled={currentIndex === 0}
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-full p-2 shadow-lg hover:bg-white dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all z-10"
+            aria-label="Previous recommendation"
+          >
+            <ChevronLeft size={20} className="text-slate-600 dark:text-slate-300" />
+          </button>
+          <button
+            onClick={goNext}
+            disabled={currentIndex >= maxIndex}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-full p-2 shadow-lg hover:bg-white dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all z-10"
+            aria-label="Next recommendation"
+          >
+            <ChevronRight size={20} className="text-slate-600 dark:text-slate-300" />
+          </button>
+        </>
+      )}
+
+      {/* Indicators */}
+      {maxIndex > 0 && (
+        <div className="flex justify-center gap-2 mt-4">
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-2 rounded-full transition-all ${
+                i === currentIndex
+                  ? 'bg-emerald-600 dark:bg-emerald-500 w-8'
+                  : 'bg-slate-300 dark:bg-slate-600 w-2 hover:bg-slate-400 dark:hover:bg-slate-500'
+              }`}
+              aria-label={`Go to recommendation ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default RecommendationsCarousel;
+
+```
+
+## File: ./src/components/SEO.tsx
+```tsx
+
+import { Helmet } from 'react-helmet-async';
+
+interface SEOProps {
+    title: string;
+    description: string;
+    keywords?: string;
+    canonical?: string;
+    ogImage?: string;
+    type?: 'website' | 'profile' | 'article';
+}
+
+const SEO: React.FC<SEOProps> = ({
+    title,
+    description,
+    keywords,
+    canonical,
+    ogImage = '/og-image.jpg',
+    type = 'website'
+}) => {
+    const fullTitle = `${title} | Prasad Tilloo - Enterprise Architect`;
+    const siteUrl = 'https://prasadtilloo.com'; // Update with your domain
+
+    return (
+        <Helmet>
+            {/* Basic Meta */}
+            <title>{fullTitle}</title>
+            <meta name="description" content={description} />
+            {keywords && <meta name="keywords" content={keywords} />}
+            <link rel="canonical" href={canonical || siteUrl} />
+
+            {/* Open Graph */}
+            <meta property="og:title" content={fullTitle} />
+            <meta property="og:description" content={description} />
+            <meta property="og:type" content={type} />
+            <meta property="og:url" content={canonical || siteUrl} />
+            <meta property="og:image" content={ogImage} />
+
+            {/* Twitter Card */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={fullTitle} />
+            <meta name="twitter:description" content={description} />
+            <meta name="twitter:image" content={ogImage} />
+
+            {/* JSON-LD Structured Data */}
+            <script type="application/ld+json">
+                {JSON.stringify([
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "Person",
+                        "name": "Prasad Tilloo",
+                        "jobTitle": "Senior IT Leader & Enterprise Architect",
+                        "description": description,
+                        "url": siteUrl,
+                        "sameAs": [
+                            "https://linkedin.com/in/prasadtilloo",
+                            "https://github.com/prasadt1"
+                        ],
+                        "knowsAbout": [
+                            "Cloud Architecture",
+                            "AI/ML Engineering",
+                            "Enterprise Architecture",
+                            "HIPAA Compliance",
+                            "PCI-DSS",
+                            "AWS",
+                            "Azure"
+                        ]
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "ProfessionalService",
+                        "name": "Prasad Tilloo Consulting",
+                        "description": "Enterprise Architecture & Digital Transformation Services",
+                        "priceRange": "€300 - €15000",
+                        "url": siteUrl,
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Consulting Services",
+                            "itemListElement": [
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Migration" } },
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PACT Sustainability Implementation" } },
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Industry 4.0 Digital Transformation" } },
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fractional CTO/Architect" } }
+                            ]
+                        }
+                    }
+                ])}
+            </script>
+        </Helmet>
+    );
+};
+
+export default SEO;
+
+```
+
+## File: ./src/components/SkeletonLoader.tsx
+```tsx
+
+export const ProjectCardSkeleton = () => (
+    <div className="bg-white rounded-xl p-6 border border-slate-200 animate-pulse">
+        <div className="h-6 bg-slate-200 rounded w-3/4 mb-4" />
+        <div className="h-4 bg-slate-200 rounded w-1/2 mb-4" />
+        <div className="space-y-2 mb-4">
+            <div className="h-3 bg-slate-200 rounded" />
+            <div className="h-3 bg-slate-200 rounded w-5/6" />
+        </div>
+        <div className="flex gap-2">
+            <div className="h-6 bg-slate-200 rounded w-16" />
+            <div className="h-6 bg-slate-200 rounded w-16" />
+            <div className="h-6 bg-slate-200 rounded w-16" />
+        </div>
+    </div>
+);
+
+export const TimelineSkeleton = () => (
+    <div className="space-y-6 animate-pulse">
+        {[1, 2, 3].map((i) => (
+            <div key={i} className="bg-white rounded-xl p-6 border border-slate-200">
+                <div className="h-6 bg-slate-200 rounded w-1/2 mb-3" />
+                <div className="h-4 bg-slate-200 rounded w-1/3 mb-4" />
+                <div className="space-y-2">
+                    <div className="h-3 bg-slate-200 rounded" />
+                    <div className="h-3 bg-slate-200 rounded w-4/5" />
+                </div>
+            </div>
+        ))}
+    </div>
+);
+
+```
+
+## File: ./src/components/SkillsMatcher.tsx
+```tsx
+
+import { useState } from 'react';
+import { Search, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { analyzeJobMatch, type SkillsAnalysis } from '../services/skillsMatcher';
+
+const SkillsMatcher = () => {
+    const [jobDescription, setJobDescription] = useState('');
+    const [analysis, setAnalysis] = useState<SkillsAnalysis | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleCalculateMatch = async () => {
+        if (!jobDescription.trim()) return;
+
+        setLoading(true);
+        setError(null);
+        setAnalysis(null);
+
+        try {
+            const result = await analyzeJobMatch(jobDescription);
+            setAnalysis(result);
+        } catch (err) {
+            console.error(err);
+            setError(err instanceof Error ? err.message : 'Failed to analyze. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-slate-800 dark:to-slate-900 rounded-xl p-6 border border-emerald-200 dark:border-slate-700 shadow-sm relative overflow-hidden transition-colors">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200 dark:bg-emerald-900/20 rounded-full blur-3xl opacity-20 -mr-16 -mt-16 pointer-events-none" />
+
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 relative z-10 text-slate-900 dark:text-white">
+                <Search className="text-emerald-600 dark:text-emerald-400" />
+                AI Fit Analyzer
+            </h3>
+
+            <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm relative z-10">
+                Paste a job description to see how Prasad's skills match using Gemini AI.
+            </p>
+
+            <textarea
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
+                placeholder="Paste job description here..."
+                className="w-full h-32 p-3 border border-slate-300 dark:border-slate-600 rounded-lg mb-3 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white/80 dark:bg-slate-950/50 backdrop-blur-sm text-slate-900 dark:text-white placeholder:text-slate-400 transition-colors"
+            />
+
+            <button
+                onClick={handleCalculateMatch}
+                disabled={loading || !jobDescription.trim()}
+                className="w-full bg-emerald-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
+            >
+                {loading ? (
+                    <>
+                        <Loader2 className="animate-spin" size={20} />
+                        Analyzing...
+                    </>
+                ) : (
+                    'Analyze Match'
+                )}
+            </button>
+
+            {error && (
+                <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg border border-red-100 dark:border-red-900/30 flex items-center gap-2 text-sm">
+                    <AlertCircle size={16} />
+                    {error}
+                </div>
+            )}
+
+            {analysis && (
+                <div className="mt-6 p-5 bg-white dark:bg-slate-800 rounded-xl border-2 border-emerald-100 dark:border-slate-700 shadow-sm animate-fade-in">
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Match Score</div>
+                            <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400">{analysis.matchScore}%</div>
+                        </div>
+                        <div className={`
+              px-3 py-1 rounded-full text-sm font-bold border
+              ${analysis.matchLevel === 'High' || analysis.matchLevel === 'Perfect' ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' :
+                                analysis.matchLevel === 'Medium' ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800' :
+                                    'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800'}
+            `}>
+                            {analysis.matchLevel} Fit
+                        </div>
+                    </div>
+
+                    <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5 mb-6">
+                        <div
+                            className={`h-2.5 rounded-full transition-all duration-1000 ${analysis.matchScore > 70 ? 'bg-emerald-500' :
+                                analysis.matchScore > 40 ? 'bg-amber-500' : 'bg-red-500'
+                                }`}
+                            style={{ width: `${analysis.matchScore}%` }}
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Analysis</h4>
+                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            {analysis.explanation}
+                        </p>
+                    </div>
+
+                    {analysis.matchingSkills.length > 0 && (
+                        <div className="mb-4">
+                            <h4 className="font-semibold text-emerald-700 dark:text-emerald-400 mb-2 text-sm flex items-center gap-1">
+                                <CheckCircle2 size={14} /> Matching Skills
+                            </h4>
+                            <div className="flex flex-wrap gap-1.5">
+                                {analysis.matchingSkills.map((skill, i) => (
+                                    <span key={i} className="px-2 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded border border-emerald-100 dark:border-emerald-800">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {analysis.matchScore > 80 && (
+                        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 text-center">
+                            <p className="text-sm font-medium text-emerald-800 dark:text-emerald-300 mb-2">
+                                Great fit! Let's discuss this role.
+                            </p>
+                            <a
+                                href="https://calendly.com/prasad-sgsits/30min"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 transition"
+                            >
+                                Schedule Interview
+                            </a>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default SkillsMatcher;
+
+```
+
+## File: ./src/components/SmartProjectFilter.tsx
+```tsx
+
+import React, { useState } from 'react';
+import { Search, Loader2 } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Initialize Gemini
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey || '');
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+interface SmartFiltersProps {
+    onFilter: (tags: string[]) => void;
+    availableTags: string[];
+}
+
+const SmartProjectFilter: React.FC<SmartFiltersProps> = ({ onFilter, availableTags }) => {
+    const [query, setQuery] = useState('');
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+    const handleSmartSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!query.trim()) return;
+
+        setIsAnalyzing(true);
+        try {
+            const prompt = `
+        User Query: "${query}"
+        Available Tags: ${JSON.stringify(availableTags)}
+        
+        TASK:
+        Identify which tags from the list are relevant to the user's query.
+        Return ONLY a JSON array of strings. Even if only one tag matches, return an array.
+        If no tags match, return an empty array [].
+      `;
+
+            const result = await model.generateContent({
+                contents: [{ role: 'user', parts: [{ text: prompt }] }],
+                generationConfig: { responseMimeType: 'application/json' }
+            });
+
+            const response = result.response.text();
+            const tags = JSON.parse(response);
+
+            if (Array.isArray(tags)) {
+                onFilter(tags);
+            }
+        } catch (error) {
+            console.error('Smart Search Error:', error);
+        } finally {
+            setIsAnalyzing(false);
+        }
+    };
+
+    return (
+        <div className="w-full max-w-2xl mx-auto mb-10">
+            <form onSubmit={handleSmartSearch} className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative flex items-center bg-white rounded-xl shadow-lg border border-slate-200 p-1">
+                    <Search className="ml-4 text-emerald-500" size={20} />
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Ask me: 'Show me projects with AI and Cloud'..."
+                        className="flex-1 px-4 py-3 bg-transparent border-none focus:outline-none text-slate-700 placeholder:text-slate-400 font-sans"
+                    />
+                    <button
+                        type="submit"
+                        disabled={isAnalyzing || !query.trim()}
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all disabled:opacity-70 flex items-center gap-2"
+                    >
+                        {isAnalyzing ? <Loader2 className="animate-spin" size={18} /> : 'Ask AI'}
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default SmartProjectFilter;
+
+```
+
+## File: ./src/components/TechChips.tsx
+```tsx
+import React, { useMemo, useState } from 'react';
+
+type Props = {
+  categories: Record<string, string[]>;
+};
+
+const TechChips: React.FC<Props> = ({ categories }) => {
+  const [activeCategories, setActiveCategories] = useState<Record<string, boolean>>({});
+  const [selected, setSelected] = useState<Record<string, boolean>>({});
+  const [query, setQuery] = useState<string>('');
+
+  // Initialize selected from localStorage
+  React.useEffect(() => {
+    try {
+      const raw = localStorage.getItem('selectedTechs');
+      if (raw) {
+        const arr: string[] = JSON.parse(raw);
+        const map: Record<string, boolean> = {};
+        arr.forEach((t) => (map[t] = true));
+        setSelected(map);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  // Persist selected to localStorage and broadcast change
+  React.useEffect(() => {
+    const selectedArray = Object.keys(selected).filter((k) => selected[k]);
+    try {
+      localStorage.setItem('selectedTechs', JSON.stringify(selectedArray));
+    } catch (e) {
+      // ignore
+    }
+    // dispatch custom event for same-tab listeners
+    window.dispatchEvent(new CustomEvent('techSelectionChanged', { detail: { selected: selectedArray } }));
+  }, [selected]);
+
+  const allTechs = useMemo(() => {
+    const set = new Set<string>();
+    Object.values(categories).forEach((arr) => arr.forEach((t) => set.add(t)));
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [categories]);
+
+  const categoriesList = useMemo(() => ['All', ...Object.keys(categories)], [categories]);
+
+  const toggleCategory = (cat: string) => {
+    if (cat === 'All') {
+      setActiveCategories({});
+      return;
+    }
+    setActiveCategories((s) => ({ ...s, [cat]: !s[cat] }));
+  };
+
+  const techsForActive = useMemo(() => {
+    const activeKeys = Object.keys(activeCategories).filter((k) => activeCategories[k]);
+    if (activeKeys.length === 0) return allTechs;
+    const set = new Set<string>();
+    activeKeys.forEach((k) => {
+      (categories[k] || []).forEach((t) => set.add(t));
+    });
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [activeCategories, categories, allTechs]);
+
+  const techsToShow = useMemo(() => {
+    const list = techsForActive.filter((t) => t.toLowerCase().includes(query.toLowerCase()));
+    return list;
+  }, [techsForActive, query]);
+
+  const toggleSelect = (tech: string) => {
+    setSelected((s) => ({ ...s, [tech]: !s[tech] }));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap gap-2">
+        {categoriesList.map((cat) => {
+          const active = cat !== 'All' && !!activeCategories[cat];
+          return (
+            <button
+              key={cat}
+              onClick={() => toggleCategory(cat)}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${cat === 'All'
+                ? 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600'
+                : active
+                  ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800'
+                  : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600'
+                }`}
+            >
+              {cat}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          aria-label="Filter techs"
+          placeholder="Search tech..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-shadow"
+        />
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {techsToShow.map((tech) => {
+          const cats = Object.keys(categories).filter((k) => categories[k].includes(tech));
+          return (
+            <button
+              key={tech}
+              onClick={() => toggleSelect(tech)}
+              title={cats.length ? `Categories: ${cats.join(', ')}` : ''}
+              aria-label={tech}
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors border ${selected[tech]
+                ? 'bg-emerald-600 border-emerald-600 text-white shadow-sm hover:bg-emerald-700'
+                : 'bg-slate-50 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600 hover:border-slate-300 dark:hover:border-slate-500'
+                }`}
+            >
+              {tech}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default TechChips;
+
+```
+
+## File: ./src/components/about/AboutSection.tsx
+```tsx
+import React from 'react';
+
+interface AboutSectionProps {
+  children: React.ReactNode;
+  className?: string;
+  background?: 'default' | 'muted';
+}
+
+const AboutSection: React.FC<AboutSectionProps> = ({
+  children,
+  className = '',
+  background = 'default'
+}) => {
+  const bgClass =
+    background === 'muted'
+      ? 'bg-slate-50 dark:bg-slate-800/50'
+      : 'bg-white dark:bg-slate-900';
+
+  return (
+    <section className={`${bgClass} py-12 md:py-16 ${className}`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+      </div>
+    </section>
+  );
+};
+
+export default AboutSection;
+
+```
+
+## File: ./src/components/about/ExperienceCard.tsx
+```tsx
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { MapPin, ArrowRight, Package, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import StatsBadges from './StatsBadges';
+
+interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  businessChallenge: string;
+  deliverables: string[];
+  outcomes: Array<{ value: string; label: string }>;
+  links?: {
+    caseStudy?: string;
+    product?: string;
+  };
+}
+
+interface ExperienceCardProps {
+  experience: Experience;
+  challengeLabel: string;
+  deliveredLabel: string;
+  viewCaseStudyLabel: string;
+  buyBlueprintLabel: string;
+  index?: number;
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({
+  experience,
+  challengeLabel,
+  deliveredLabel,
+  viewCaseStudyLabel,
+  buyBlueprintLabel,
+  index = 0
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const INITIAL_BULLETS = 4;
+  const hasMoreBullets = experience.deliverables.length > INITIAL_BULLETS;
+  const visibleDeliverables = isExpanded
+    ? experience.deliverables
+    : experience.deliverables.slice(0, INITIAL_BULLETS);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow"
+    >
+      {/* Header: Role + Company + Dates */}
+      <div className="mb-6 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1 break-words">
+              {experience.role}
+            </h3>
+            <div className="text-lg text-slate-600 dark:text-slate-400 font-medium break-words">
+              {experience.company}
+            </div>
+          </div>
+          <div className="text-left sm:text-right flex-shrink-0">
+            <div className="font-semibold text-slate-900 dark:text-white text-sm md:text-base whitespace-nowrap">
+              {experience.period}
+            </div>
+            <div className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-1 sm:justify-end">
+              <MapPin size={14} className="flex-shrink-0" />
+              <span className="break-words">{experience.location}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Business Challenge */}
+      <div className="mb-6">
+        <div className="font-semibold text-emerald-700 dark:text-emerald-400 mb-2 text-sm uppercase tracking-wide">
+          {challengeLabel}
+        </div>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed max-w-prose">
+          {experience.businessChallenge}
+        </p>
+      </div>
+
+      {/* What I Delivered */}
+      <div className="mb-6">
+        <div className="font-semibold text-slate-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+          {deliveredLabel}
+        </div>
+        <ul className="space-y-2">
+          <AnimatePresence>
+            {visibleDeliverables.map((item, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-start gap-3"
+              >
+                <CheckCircle2
+                  className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5"
+                  size={18}
+                />
+                <span className="text-slate-600 dark:text-slate-300 leading-relaxed flex-1">
+                  {item}
+                </span>
+              </motion.li>
+            ))}
+          </AnimatePresence>
+        </ul>
+        {hasMoreBullets && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-3 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold text-sm flex items-center gap-1 transition-colors"
+            aria-expanded={isExpanded}
+            aria-label={isExpanded ? 'Show less' : 'Show more'}
+          >
+            {isExpanded ? (
+              <>
+                Show less <ChevronUp size={16} />
+              </>
+            ) : (
+              <>
+                Show more ({experience.deliverables.length - INITIAL_BULLETS} more)
+                <ChevronDown size={16} />
+              </>
+            )}
+          </button>
+        )}
+      </div>
+
+      {/* Outcomes - Using StatsBadges component */}
+      <div className="mb-6">
+        <StatsBadges outcomes={experience.outcomes} />
+      </div>
+
+      {/* Links */}
+      {(experience.links?.caseStudy || experience.links?.product) && (
+        <div className="flex flex-wrap gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+          {experience.links?.caseStudy && (
+            <Link
+              to={experience.links.caseStudy}
+              className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-2 hover:underline text-sm"
+            >
+              {viewCaseStudyLabel} <ArrowRight size={16} />
+            </Link>
+          )}
+          {experience.links?.product && (
+            <Link
+              to={experience.links.product}
+              className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-2 hover:underline text-sm"
+            >
+              {buyBlueprintLabel} <Package size={16} />
+            </Link>
+          )}
+        </div>
+      )}
+    </motion.div>
+  );
+};
+
+export default ExperienceCard;
+
+```
+
+## File: ./src/components/about/ExperienceTimeline.tsx
+```tsx
+import React, { useState } from 'react';
+import { Briefcase } from 'lucide-react';
+import ExperienceCard from './ExperienceCard';
+
+interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  businessChallenge: string;
+  deliverables: string[];
+  outcomes: Array<{ value: string; label: string }>;
+  links?: {
+    caseStudy?: string;
+    product?: string;
+  };
+}
+
+interface ExperienceTimelineProps {
+  experiences: Experience[];
+  title: string;
+  challengeLabel: string;
+  deliveredLabel: string;
+  viewCaseStudyLabel: string;
+  buyBlueprintLabel: string;
+}
+
+const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
+  experiences,
+  title,
+  challengeLabel,
+  deliveredLabel,
+  viewCaseStudyLabel,
+  buyBlueprintLabel
+}) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  return (
+    <section>
+      <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-8 md:mb-10 flex items-center gap-3">
+        <Briefcase className="text-emerald-600 dark:text-emerald-500" size={28} />
+        {title}
+      </h2>
+
+      {/* Desktop: 2-column layout */}
+      <div className="hidden lg:grid lg:grid-cols-[280px_1fr] gap-6 lg:gap-8">
+        {/* Left: Timeline Navigation */}
+        <div className="space-y-2 min-w-0">
+          {experiences.map((exp, idx) => (
+            <button
+              key={idx}
+              onClick={() => setSelectedIndex(idx)}
+              className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                selectedIndex === idx
+                  ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 shadow-sm'
+                  : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
+              }`}
+            >
+              <div className="font-bold text-slate-900 dark:text-white text-sm mb-1">
+                {exp.company}
+              </div>
+              <div className="text-xs text-slate-600 dark:text-slate-400 mb-2">
+                {exp.role}
+              </div>
+              <div className="text-xs text-slate-500 dark:text-slate-500 font-mono">
+                {exp.period}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Right: Selected Experience Detail */}
+        <div className="min-w-0">
+          <ExperienceCard
+            experience={experiences[selectedIndex]}
+            challengeLabel={challengeLabel}
+            deliveredLabel={deliveredLabel}
+            viewCaseStudyLabel={viewCaseStudyLabel}
+            buyBlueprintLabel={buyBlueprintLabel}
+            index={selectedIndex}
+          />
+        </div>
+      </div>
+
+      {/* Mobile: Single column stack */}
+      <div className="lg:hidden space-y-6 md:space-y-8">
+        {experiences.map((exp, idx) => (
+          <ExperienceCard
+            key={idx}
+            experience={exp}
+            challengeLabel={challengeLabel}
+            deliveredLabel={deliveredLabel}
+            viewCaseStudyLabel={viewCaseStudyLabel}
+            buyBlueprintLabel={buyBlueprintLabel}
+            index={idx}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default ExperienceTimeline;
+
+```
+
+## File: ./src/components/about/StatsBadges.tsx
+```tsx
+import React from 'react';
+
+interface Outcome {
+  value: string;
+  label: string;
+}
+
+interface StatsBadgesProps {
+  outcomes: Outcome[];
+  className?: string;
+}
+
+const StatsBadges: React.FC<StatsBadgesProps> = ({ outcomes, className = '' }) => {
+  // Use 2-column grid for better width utilization
+  return (
+    <div className={`grid grid-cols-2 gap-3 ${className}`}>
+      {outcomes.map((outcome, i) => (
+        <div
+          key={i}
+          className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg px-4 py-3 flex flex-col items-center text-center"
+        >
+          <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">
+            {outcome.value}
+          </div>
+          <div className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+            {outcome.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default StatsBadges;
+
+```
+
+## File: ./src/context/ThemeContext.tsx
+```tsx
+import React, { createContext, useContext, useEffect, useState } from 'react';
+
+type Theme = 'light' | 'dark';
+
+interface ThemeContextType {
+    theme: Theme;
+    toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [theme, setTheme] = useState<Theme>(() => {
+        // Check local storage or system preference
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                return savedTheme;
+            }
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+        }
+        return 'light';
+    });
+
+    useEffect(() => {
+        const root = window.document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    };
+
+    return (
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            {children}
+        </ThemeContext.Provider>
+    );
+};
+
+export const useTheme = () => {
+    const context = useContext(ThemeContext);
+    if (context === undefined) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+    }
+    return context;
+};
+
+```
+
+## File: ./src/data/caseStudies.ts
+```ts
+import { CaseStudy } from "../types/CaseStudy";
+
+export const caseStudies: CaseStudy[] = [
+    {
+        id: 'photography-coach-ai',
+        slug: 'photography-coach-ai',
+        domains: ['AI & GenAI', 'Product Engineering', 'Cost Optimization'],
+        projectType: 'product',
+        seoTags: ['Gemini 3 Pro', 'React', 'Context Caching', 'AI Vision', 'Google DeepMind'],
+        header: {
+            eyebrow: 'GOOGLE DEEPMIND COMPETITION PROJECT',
+            title: 'Photography Coach AI: Productionizing Gemini 3 Pro with Context Caching',
+            client: {
+                type: 'Competition Entry',
+                size: 'Global',
+                industry: 'Artificial Intelligence'
+            }
+        },
+        challenge: {
+            situation: 'Most AI tools are black boxes—giving scores without explaining "why." Photographers needed transparent, actionable coaching. The technical challenge was productionizing Gemini 3 Pro’s multimodal vision capabilities while keeping token costs viable for a consumer app.',
+            pain_points: [
+                {
+                    icon: '💸',
+                    title: 'High Inference Costs',
+                    description: 'Vision API calls cost ~$2.00 per 1k images without optimization',
+                    impact: 'Unviable unit economics'
+                },
+                {
+                    icon: '📦',
+                    title: 'Black Box Problem',
+                    description: 'Users distrust AI scores that lack visible reasoning',
+                    impact: 'Low engagement/trust'
+                },
+                {
+                    icon: '🤖',
+                    title: 'Generic Feedback',
+                    description: 'Standard LLMs give vague advice like "improve lighting"',
+                    impact: 'Low utility'
+                }
+            ],
+            urgency: 'Built for the Google DeepMind "Vibe Code" Competition',
+            why_prasad: 'Ability to combine advanced AI engineering (Caching, Structured Output) with polished UX'
+        },
+        approach: {
+            methodology: 'Transparent AI Architecture',
+            phases: [
+                {
+                    number: 1,
+                    title: 'Extended Thinking Extraction',
+                    duration: 'Sprint 1',
+                    activities: ['Implemented stream parsing to capture "Thinking Process"', 'Visualized reasoning steps via JSON'],
+                    deliverable: 'Glass-Box Reasoning UI',
+                    outcome: 'Users see exactly HOW the AI judges photos'
+                },
+                {
+                    number: 2,
+                    title: 'Context Caching Strategy',
+                    duration: 'Sprint 2',
+                    activities: ['Cached 32KB of photography principles', 'Implemented token usage tracking'],
+                    deliverable: 'Cost-Optimized Backend',
+                    outcome: 'Simulated 75% cost reduction at scale'
+                },
+                {
+                    number: 3,
+                    title: 'Spatial Feedback Engine',
+                    duration: 'Sprint 3',
+                    activities: ['Built canvas overlay for bounding boxes', 'Multi-turn mentor chat state management'],
+                    deliverable: 'Interactive Feedback Loop',
+                    outcome: 'High-fidelity visual critique'
+                }
+            ],
+            unique_differentiator: 'Implemented "Context Caching" to demonstrate widely overlooked production economics of Large Language Models.'
+        },
+        outcomes: {
+            hero_metric: { value: '75%', label: 'Cost Reduction (Simulated)', icon: '💰' },
+            secondary_metrics: [
+                { value: '2.5s', label: 'Analysis Speed', icon: '⚡' },
+                { value: '5', label: 'Dimensions Scored', icon: '📊' },
+                { value: '100%', label: 'Transparent Logic', icon: '🧠' }
+            ],
+            compliance: [],
+            timeline: { planned: '3 Weeks', actual: '2.5 Weeks', variance: 'Ahead of schedule' },
+            business_impact: {
+                efficiency: 'Context Caching strategy reduces input token costs by ~75% for high-volume usage',
+                innovation: 'First-of-kind "Glass Box" interface builds user trust by exposing AI reasoning'
+            }
+        },
+        testimonial: {
+            quote: 'This project demonstrates not just technical skill, but a deep understanding of production constraints like cost and user trust.',
+            author: { name: 'Competition Judge', role: 'Reviewer', company: 'Google DeepMind Hackathon' }
+        },
+        technical: {
+            before: { stack: ['Standard LLM API'], infrastructure: 'Stateless Requests', issues: ['High Cost', 'No Memory'] },
+            after: { stack: ['Gemini 3 Pro', 'React + Vite', 'Tailwind', 'Recharts'], infrastructure: 'Context-Aware Caching', improvements: ['Structured JSON', 'Spatial Overlays', 'Streaming Responses'] },
+            migration_strategy: 'Greenfield development using Vibe Coding principals'
+        },
+        cta: {
+            primary: { text: 'Try Live Demo', action: 'https://aistudio.google.com/app/apikey', context: 'See it in action.' },
+            secondary: { text: 'View Code', action: 'https://github.com/prasadt1/photography-coach-ai' }
+        }
+    },
+    {
+        id: 'brita-ecommerce',
+        slug: 'brita-ecommerce',
+        domains: ['eCommerce', 'Architecture', 'Cloud'],
+        projectType: 'migration',
+        seoTags: ['Shopify Plus', 'Headless Commerce', 'Vue.js', 'Azure', 'Global Rollout'],
+        header: {
+            eyebrow: 'GLOBAL D2C TRANSFORMATION',
+            title: 'Modernizing BRITA’s Global eCommerce Landscape with Headless Shopify Plus',
+            client: {
+                type: 'Global Consumer Goods',
+                size: '€600M+ Revenue',
+                industry: 'Consumer Goods (Water Filtration)'
+            }
+        },
+        challenge: {
+            situation: 'BRITA’s D2C business across 6 European markets was running on a legacy, on-premise Shopware instance. The system was fragile, hard to update, and struggling with peak traffic. A failed migration could cost millions in lost revenue.',
+            pain_points: [
+                {
+                    icon: '🕸️',
+                    title: 'Legacy Monolith',
+                    description: 'Outdated Shopware version with accumulated technical debt',
+                    impact: 'High maintenance costs'
+                },
+                {
+                    icon: '😰',
+                    title: 'Risk of Downtime',
+                    description: 'Fragile infrastructure prone to crashes during campaigns',
+                    impact: 'Revenue risk'
+                },
+                {
+                    icon: '🌍',
+                    title: 'Scalability Limits',
+                    description: 'Difficult to roll out new markets or features quickly',
+                    impact: 'Stalled growth'
+                }
+            ],
+            urgency: 'Strategic mandate to double D2C revenue by moving to a scalable SaaS foundation',
+            why_prasad: 'Expertise in complex, multi-market headless commerce architectures'
+        },
+        approach: {
+            methodology: 'Headless / Composable Commerce',
+            phases: [
+                {
+                    number: 1,
+                    title: 'Discovery & POC',
+                    duration: '2 months',
+                    activities: ['Evaluated Shopify Plus vs. Adobe Commerce', 'Built POC with Vue/Nuxt frontend', 'Defined data migration strategy'],
+                    deliverable: 'Architecture Decision Record',
+                    outcome: 'Selected Shopify Plus & Headless Architecture'
+                },
+                {
+                    number: 2,
+                    title: 'Architecture Design',
+                    duration: '6 weeks',
+                    activities: ['Designed Azure middleware', 'Defined multi-tenant governance', 'Integration planning (SAP, CRM)'],
+                    deliverable: 'Technical Blueprint',
+                    outcome: 'Approved scalable architecture'
+                },
+                {
+                    number: 3,
+                    title: 'Implementation & Rollout',
+                    duration: '6 months',
+                    activities: ['Developed Nuxt.js storefront', 'Built Azure integration layer', 'Migrated 6 markets iteratively'],
+                    deliverable: 'Launched Global Platform',
+                    outcome: 'Successful go-live in 6 core markets'
+                }
+            ],
+            unique_differentiator: 'Designed a "White Label" core architecture that allows deploying new market storefronts in weeks instead of months.'
+        },
+        outcomes: {
+            hero_metric: { value: '6', label: 'Markets Migrated', icon: '🌍' },
+            secondary_metrics: [
+                { value: 'Zero', label: 'Downtime', icon: '✅' },
+                { value: '100%', label: 'SaaS Native', icon: '☁️' },
+                { value: '2x', label: 'Faster Deployments', icon: '🚀' }
+            ],
+            compliance: [
+                {
+                    standard: 'GDPR',
+                    result: 'Compliant',
+                    details: 'Implemented rigorous cookie consent and data retention policies'
+                }
+            ],
+            timeline: { planned: '9 months', actual: '9 months', variance: 'On Time' },
+            business_impact: {
+                revenue: 'Enabled growth strategy for next 5 years',
+                savings: 'Reduced operational overhead by moving to SaaS',
+                efficiency: 'Unified 6 disparate markets onto one code base'
+            }
+        },
+        testimonial: {
+            quote: 'Prasad’s architectural leadership was crucial. He navigated the complexity of our legacy systems and guided us to a modern, future-proof headless solution.',
+            author: { name: 'eCommerce Lead', role: 'Head of Digital', company: 'BRITA' }
+        },
+        technical: {
+            before: { stack: ['Shopware (Monolith)', 'On-premise Hosting', 'PHP'], infrastructure: 'Legacy Datacenter', issues: ['Scaling limits', 'High maintenance'] },
+            after: { stack: ['Shopify Plus', 'Vue.js / Nuxt', 'Azure Functions', 'Magnolia CMS'], infrastructure: 'SaaS / Cloud Native', improvements: ['Auto-scaling', 'Headless flexibility', 'Modern DX'] },
+            migration_strategy: 'Phased rollout market-by-market'
+        },
+        cta: {
+            primary: { text: 'Modernize Your eComm', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Move to Headless.' },
+            secondary: { text: 'See Architecture', action: '/products?category=ecommerce' }
+        }
+    },
+    {
+        id: 'pact-carbon-transparency',
+        slug: 'pact-protocol',
+        domains: ['Sustainability', 'Supply Chain', 'Standards'],
+        projectType: 'standard',
+        seoTags: ['Carbon Transparency', 'WBCSD', 'Scope 3', 'Sustainability', 'PACT'],
+        header: {
+            eyebrow: 'GLOBAL STANDARD',
+            title: 'Developing the PACT Protocol: The Global Standard for Carbon Data Exchange',
+            client: {
+                type: 'Non-Profit Consortium',
+                size: 'WBCSD Member Companies',
+                industry: 'Sustainability Tech'
+            }
+        },
+        challenge: {
+            situation: 'Scope 3 emissions tracking was failing because every supplier used different data formats. There was no standard way for a tire manufacturer to tell a car brand the exact carbon footprint of a specific batch of tires.',
+            pain_points: [
+                {
+                    icon: '📉',
+                    title: 'Data Incompatibility',
+                    description: 'Thousands of proprietary formats preventing automation',
+                    impact: 'Manual data entry for ESG reporting'
+                },
+                {
+                    icon: '🔒',
+                    title: 'Trust & Privacy',
+                    description: 'Suppliers refused to share detailed BOMs',
+                    impact: 'Supply chain opacity'
+                }
+            ],
+            urgency: 'EU Regulations (CSRD) requiring audit-grade Scope 3 data by 2025',
+            why_prasad: 'Unique blend of API design expertise and sustainability domain knowledge'
+        },
+        approach: {
+            methodology: 'Open Source Standard Development',
+            phases: [
+                {
+                    number: 1,
+                    title: 'Technical Specification',
+                    duration: '3 months',
+                    activities: ['Defined JSON-LD Schema', 'Created API Swagger/OpenAPI specs'],
+                    deliverable: 'PACT Data Model v1.0',
+                    outcome: 'Adopted by 50+ major pilots'
+                },
+                {
+                    number: 2,
+                    title: 'Reference Implementation',
+                    duration: '4 months',
+                    activities: ['Built Pathfinder Network', 'Open-source connector SDKs'],
+                    deliverable: 'Working Prototype',
+                    outcome: 'Successful data exchange between IBM, SAP, and Siemens'
+                }
+            ],
+            unique_differentiator: 'Designed a "Peer-to-Peer" architecture that keeps data ownership with the supplier, solving the trust issue.'
+        },
+        outcomes: {
+            hero_metric: { value: '2,500+', label: 'Organizations Adopting', icon: '🌍' },
+            secondary_metrics: [
+                { value: '1st', label: 'Global Standard', icon: '🏆' },
+                { value: '100%', label: 'Open Source', icon: '🔓' }
+            ],
+            compliance: [
+                {
+                    standard: 'WBCSD',
+                    result: 'Official Standard',
+                    details: 'Endorsed by World Business Council for Sustainable Development'
+                }
+            ],
+            timeline: { planned: '12 months', actual: '10 months', variance: 'Ahead of schedule' },
+            business_impact: {
+                efficiency: 'Eliminated manual data entry for carbon reporting',
+                risk_reduction: 'Ensured compliance with CSRD regulations'
+            }
+        },
+        testimonial: {
+            quote: 'The PACT standard is the HTTP of carbon data. It simply works.',
+            author: { name: 'Executive Director', role: 'Innovation Lead', company: 'SINE Foundation' }
+        },
+        technical: {
+            before: { stack: ['Excel', 'Email'], infrastructure: 'Manual', issues: [] },
+            after: { stack: ['JSON-LD', 'OpenAPI', 'AsyncAPI', 'Verifiable Credentials'], infrastructure: 'Decentralized Network', improvements: [] },
+            migration_strategy: 'Greenfield standard creation'
+        },
+        cta: {
+            primary: { text: 'Adopt PACT', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Implement the standard.' },
+            secondary: { text: 'View on GitHub', action: 'https://github.com/wbcsd/pact-catalog' }
+        }
+    },
+    {
+        id: 'delivery-hero',
+        slug: 'delivery-hero-adtech',
+        domains: ['eCommerce', 'High Scale', 'DevOps'],
+        projectType: 'devops',
+        seoTags: ['Golang', 'Kubernetes', 'High Scale', 'AdTech'],
+        header: {
+            eyebrow: '$20M REVENUE UPLIFT',
+            title: 'Scaling Display Ads Platform to 5M+ Daily Transactions',
+            client: {
+                type: 'Global Food Delivery',
+                size: 'DAX Listed',
+                industry: 'E-commerce'
+            }
+        },
+        challenge: {
+            situation: 'Existing ad server crashed during peak lunch hours. Latency > 200ms caused lost impressions and revenue.',
+            pain_points: [
+                { icon: '🐢', title: 'High Latency', description: '>200ms response time', impact: 'Lost ad impressions' },
+                { icon: '💥', title: 'Instability', description: 'Crashes during peak loads', impact: 'Direct revenue loss' }
+            ],
+            urgency: 'Black Friday approaching',
+            why_prasad: 'High-scale distributed systems expertise'
+        },
+        approach: {
+            methodology: 'Event-Driven Architecture',
+            phases: [
+                { number: 1, title: 'Re-architecture', duration: '6 weeks', activities: ['Moved to Go + Redis', 'Implemented exact-once processing'], deliverable: 'New Ad Engine', outcome: '< 20ms latency' }
+            ],
+            unique_differentiator: 'Custom RTB (Real-Time Bidding) engine'
+        },
+        outcomes: {
+            hero_metric: { value: '20%', label: 'Revenue Increase', icon: '📈' },
+            secondary_metrics: [
+                { value: '5M+', label: 'Daily Transactions', icon: '🔢' },
+                { value: '<20ms', label: 'Latency', icon: '⚡' }
+            ],
+            compliance: [],
+            timeline: { planned: '3 months', actual: '3 months', variance: 'On time' },
+            business_impact: {
+                revenue: '$20M projected annual uplift from increased impression yield',
+                efficiency: 'Reduced server costs via Go optimization'
+            }
+        },
+        testimonial: {
+            quote: 'Scaled seamlessly to 5M transactions. Rock solid stability.',
+            author: { name: 'Engineering Lead', role: 'Staff Engineer', company: 'Delivery Hero' }
+        },
+        technical: {
+            before: { stack: ['PHP', 'MySQL'], infrastructure: '', issues: [] },
+            after: { stack: ['Go', 'Redis', 'Kafka', 'Kubernetes'], infrastructure: 'Global K8s Cluster', improvements: [] },
+            migration_strategy: 'Strangler Fig pattern'
+        },
+        cta: {
+            primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
+            secondary: { text: 'View Architecture', action: '/architecture-engine' }
+        }
+    },
+    {
+        id: 'boehringer-aiml',
+        slug: 'bi-data-lake',
+        domains: ['Pharma', 'Data & ML', 'Governance'],
+        projectType: 'data-platform',
+        seoTags: ['Data Mesh', 'GDPR', 'Pharma', 'AI'],
+        header: {
+            eyebrow: '50% FASTER INSIGHTS',
+            title: 'Building a GDPR-Compliant Data Mesh for Pharmaceutical R&D',
+            client: {
+                type: 'Global Pharmaceutical',
+                size: '€20B+ revenue',
+                industry: 'Pharmaceutical'
+            }
+        },
+        challenge: {
+            situation: 'R&D data was siloed across 15+ systems, making cross-study analysis impossible. Researchers spent 80% of time gathering data and 20% analyzing it. Privacy (GDPR) concerns paralyzed previous cloud attempts.',
+            pain_points: [
+                { icon: '📉', title: 'Data Silos', description: '15+ disconnected data sources', impact: 'Slow R&D cycles' },
+                { icon: '🔒', title: 'GDPR Paralysis', description: 'Fear of compliance breaches', impact: 'Blocked innovation' }
+            ],
+            urgency: 'Competitors bringing drugs to market 18 months faster using AI',
+            why_prasad: 'Deep expertise in Regulatory Compliance and Data Architectures'
+        },
+        approach: {
+            methodology: 'Data Mesh Implementation',
+            phases: [
+                { number: 1, title: 'Governance Framework', duration: '4 weeks', activities: ['Defined GDPR data controls'], deliverable: 'Governance Charter', outcome: 'Legal & Compliance sign-off' },
+                { number: 2, title: 'Platform Build', duration: '10 weeks', activities: ['AWS Lake Formation setup'], deliverable: 'Production Data Platform', outcome: 'Centralized access' }
+            ],
+            unique_differentiator: 'Automated PII detection and masking pipeline that satisfied strict German Works Council requirements'
+        },
+        outcomes: {
+            hero_metric: { value: '50%', label: 'Faster Time-to-Insight', icon: '⚡' },
+            secondary_metrics: [
+                { value: '€2M', label: 'Infra Savings', icon: '💰' },
+                { value: '100%', label: 'GDPR Compliant', icon: '🛡️' }
+            ],
+            compliance: [],
+            timeline: { planned: '6 months', actual: '6 months', variance: 'On time' },
+            business_impact: {
+                savings: '€2M reduction in legacy infrastructure costs',
+                risk_reduction: 'Zero compliance breaches via automated governance'
+            }
+        },
+        testimonial: {
+            quote: 'The automated governance Prasad built allowed us to unlock 10 years of R&D data safely. It’s a game changer.',
+            author: { name: 'Head of Data Science', role: 'Director', company: 'Boehringer Ingelheim' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['AWS Lake Formation', 'Glue', 'Athena', 'Sagemaker'], infrastructure: 'Serverless Data Mesh', improvements: [] },
+            migration_strategy: 'Domain-oriented decomposition'
+        },
+        cta: {
+            primary: { text: 'Discuss Data Strategy', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Build your data mesh.' },
+            secondary: { text: 'More AI Projects', action: '/projects?tag=AI' }
+        }
+    },
+    {
+        id: 'pwc-healthcare',
+        slug: 'pwc-hipaa-cloud',
+        domains: ['Healthcare', 'Cloud Migration', 'Compliance'],
+        projectType: 'migration',
+        seoTags: ['HIPAA', 'AWS', 'Healthcare', 'Compliance'],
+        header: {
+            eyebrow: '$500K SAVED ANNUALLY',
+            title: 'Modernizing Legacy Healthcare System to HIPAA-Compliant Cloud',
+            client: {
+                type: 'Fortune 500 Professional Services',
+                size: '€50B+ revenue',
+                industry: 'Healthcare IT'
+            }
+        },
+        challenge: {
+            situation: '15-year-old e-commerce and healthcare management platform facing compliance audit failures, performance issues, and escalating maintenance costs. Board deadline: 6 months to achieve compliance.',
+            pain_points: [
+                { icon: '💸', title: 'Audit Failures', description: 'Monthly audit findings costing €50K', impact: '€600K annual burden' },
+                { icon: '🐌', title: 'Legacy EOL', description: 'Vendor end-of-support imminent', impact: 'Operational risk' }
+            ],
+            urgency: 'Board mandate: Achieve compliance within 6 months',
+            why_prasad: 'Proven HIPAA expertise and zero-downtime migration experience'
+        },
+        approach: {
+            methodology: 'Compliance-First Migration',
+            phases: [
+                { number: 1, title: 'Compliance Audit', duration: '3 weeks', activities: ['HIPAA gap analysis'], deliverable: 'Architecture Plan', outcome: 'Board approval' },
+                { number: 2, title: 'Migration', duration: '8 weeks', activities: ['AWS setup', 'Data migration'], deliverable: 'Production Cloud', outcome: 'Zero downtime' }
+            ],
+            unique_differentiator: 'Proposed and built a pharmacy mobile app addition that became the top revenue driver.'
+        },
+        outcomes: {
+            hero_metric: { value: '$500K', label: 'Annual Savings', icon: '💰' },
+            secondary_metrics: [
+                { value: 'Zero', label: 'Audit Findings', icon: '✅' },
+                { value: '70%', label: 'Traffic Boost', icon: '📈' }
+            ],
+            compliance: [
+                { standard: 'HIPAA', result: '100% Compliant', details: 'Zero findings in independent audit' }
+            ],
+            timeline: { planned: '6 months', actual: '5 months', variance: '4 weeks early' },
+            business_impact: {
+                savings: '$500K annual reduction in maintenance and audit costs',
+                revenue: '70% increase in mobile engagement via new pharmacy app'
+            }
+        },
+        testimonial: {
+            quote: 'Prasad didn’t just migrate our system—he transformed it. The mobile app he suggested became our #1 revenue driver.',
+            author: { name: 'Healthcare Practice Lead', role: 'VP of Technology', company: 'PwC' }
+        },
+        technical: {
+            before: { stack: ['Java 8', 'Oracle', 'On-premise'], infrastructure: 'Legacy DC', issues: [] },
+            after: { stack: ['Java SpringBoot', 'AWS RDS', 'ECS', 'React Native'], infrastructure: 'AWS Multi-Region', improvements: [] },
+            migration_strategy: 'Blue-green deployment'
+        },
+        cta: {
+            primary: { text: 'Ensure Compliance', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Audit-proof your cloud.' },
+            secondary: { text: 'See Healthcare Projects', action: '/projects?industry=healthcare' }
+        }
+    }
+];
+
+```
+
+## File: ./src/data/domains.ts
+```ts
+export const DOMAINS = [
+    { id: 'ecommerce', label: 'eCommerce' },
+    { id: 'healthcare', label: 'Healthcare' },
+    { id: 'finserv', label: 'FinServ' },
+    { id: 'telecom', label: 'Telecom' },
+    { id: 'pharma', label: 'Pharma' },
+    { id: 'climate-tech', label: 'Climate Tech' },
+    { id: 'manufacturing', label: 'Manufacturing' },
+    { id: 'adtech', label: 'AdTech' }
+] as const;
+
+export const PROJECT_TYPES = [
+    { id: 'product', label: 'Products' },
+    { id: 'framework', label: 'Frameworks' },
+    { id: 'migration', label: 'Migrations' },
+    { id: 'standard', label: 'Standards' },
+    { id: 'data-platform', label: 'Data Platforms' },
+    { id: 'devops', label: 'DevOps' },
+    { id: 'compliance', label: 'Compliance' },
+    { id: 'ai-ml', label: 'AI/ML' },
+    { id: 'consulting', label: 'Consulting' }
+] as const;
+
+export type DomainId = typeof DOMAINS[number]['id'];
+export type ProjectTypeId = typeof PROJECT_TYPES[number]['id'];
+
+```
+
+## File: ./src/data/knowledgeBase.ts
+```ts
+export type KBItem = { id: string; title: string; text: string };
+
+export const KNOWLEDGE_BASE: KBItem[] = [
+  {
+    id: 'summary',
+    title: 'Professional Summary',
+    text: `Results-driven, hands-on Senior Architect & Engineering Leader with 15+ years of cross-industry expertise spanning banking, telecom, e-commerce, retail, healthcare, and AdTech. Specializes in cloud-first digital transformation, AI-driven automation, compliance (GDPR, HIPAA, PCI), and building enterprise-scale systems.`
+  },
+  {
+    id: 'skills',
+    title: 'Core Skills & Expertise',
+    text: `Cloud: AWS, Azure, GCP; DevOps: Docker, Kubernetes, Terraform, Jenkins, GitHub Actions; Languages & Frameworks: Java, C#, JavaScript/TypeScript, React, Spring Boot, Node.js; Data: Spark, Kafka, Elasticsearch; Architecture: TOGAF, event-driven microservices, data pipelines, FHIR/HIPAA compliance, ML enablement.`
+  },
+  {
+    id: 'pwc',
+    title: 'PwC — Senior Manager (Mar 2015 – Oct 2020)',
+    text: `Led a $650K cloud modernization program for e-commerce and healthcare systems, achieving $500K in annual savings and ensuring HIPAA/FHIR/PCI compliance. Designed and deployed a pharmacy mobile app module (70% traffic increase) and co-developed an Enterprise Data Lake accelerating AI/ML insights by 50%.`
+  },
+  {
+    id: 'innova',
+    title: 'Innova Solutions — Tech Lead / Engineering Manager (Jun 2009 - Feb 2015)',
+    text: `Improved insurance client website performance by 80% via a scalable data pipeline and ensured PCI/HIPAA compliance. Built an asynchronous account data ingestion system using Docker and Jenkins, improving operational efficiency by 20%.`
+  },
+  {
+    id: 'certifications',
+    title: 'Certifications & Licenses',
+    text: `AI Engineering - ByteByteAI; AWS Certified Developer; Certified SAFe 4 DevOps Practitioner; Multiple specialized AI and language certifications (ByteByteAI, Kaggle, Goethe-Institut).`
+  },
+  {
+    id: 'projects',
+    title: 'Projects & Achievements',
+    text: `Worked on large-scale cloud migrations, enterprise digital transformations, and AI/ML enablement projects. Delivered measurable impacts such as cost savings, faster deployments, and improved operational efficiency.`
+  }
+];
+
+```
+
+## File: ./src/data/products.ts
+```ts
+// import { LucideIcon } from 'lucide-react';
+
+export interface Product {
+    id: string;
+    slug: string;
+    // title & description will be pulled from i18n
+    price: number;
+    icon: string; // Lucide icon name
+    // features will be pulled from i18n
+    category: 'industry40' | 'compliance' | 'consulting' | 'carbon' | 'ecommerce' | 'architecture' | 'data';
+    ctaLink: string;
+    theme: {
+        color: string; // e.g. "blue", "emerald", "orange", "purple", "rose", "cyan"
+        gradient: string; // Tailwinc classes
+        iconBg: string;
+        backgroundImage?: string; // path to image
+    }
+}
+
+export const products: Product[] = [
+    {
+        id: 'ecommerce-blueprint',
+        slug: 'ecommerce-blueprint',
+        price: 15000,
+        icon: 'ShoppingBag',
+        category: 'ecommerce',
+        ctaLink: '#',
+        theme: {
+            color: 'orange',
+            gradient: 'from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10',
+            iconBg: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
+        }
+    },
+    {
+        id: 'pact-starter-kit',
+        slug: 'pact-starter-kit',
+        price: 9500,
+        icon: 'Leaf',
+        category: 'carbon',
+        ctaLink: '#',
+        theme: {
+            color: 'emerald',
+            gradient: 'from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/10',
+            iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
+            backgroundImage: '/assets/bg/bg-eco.png'
+        }
+    },
+    {
+        id: 'data-lake-architecture',
+        slug: 'data-lake-architecture',
+        price: 18000,
+        icon: 'Database',
+        category: 'data',
+        ctaLink: '#',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+        }
+    },
+    {
+        id: 'display-ads-architecture',
+        slug: 'display-ads-architecture',
+        price: 12000,
+        icon: 'Zap',
+        category: 'architecture',
+        ctaLink: '#',
+        theme: {
+            color: 'purple',
+            gradient: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/10',
+            iconBg: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
+        }
+    },
+    {
+        id: 'hipaa-compliance-package',
+        slug: 'hipaa-compliance-package',
+        price: 8000,
+        icon: 'Shield',
+        category: 'compliance',
+        ctaLink: '#',
+        theme: {
+            color: 'red',
+            gradient: 'from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/10',
+            iconBg: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
+        }
+    },
+    {
+        id: 'industry40-toolkit',
+        slug: 'industry40-toolkit',
+        price: 12000,
+        icon: 'Factory',
+        category: 'industry40',
+        ctaLink: '#',
+        theme: {
+            color: 'cyan',
+            gradient: 'from-cyan-50 to-sky-50 dark:from-cyan-900/20 dark:to-sky-900/10',
+            iconBg: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400'
+        }
+    },
+    {
+        id: 'it-effectiveness-assessment',
+        slug: 'it-effectiveness-assessment',
+        price: 5000,
+        icon: 'BarChart',
+        category: 'consulting',
+        ctaLink: '#',
+        theme: {
+            color: 'slate',
+            gradient: 'from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-900',
+            iconBg: 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+        }
+    },
+    {
+        id: 'devops-maturity-assessment',
+        slug: 'devops-maturity-assessment',
+        price: 8000,
+        icon: 'Loop', // Will need to map to Infinity/Loop symbol
+        category: 'consulting',
+        ctaLink: '#',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+            backgroundImage: '/assets/bg/bg-devops.png'
+        }
+    },
+    {
+        id: 'architecture-assessment',
+        slug: 'architecture-assessment',
+        price: 15000,
+        icon: 'Structure', // Will need to map to Layout/Building
+        category: 'architecture',
+        ctaLink: '#',
+        theme: {
+            color: 'indigo',
+            gradient: 'from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/10',
+            iconBg: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400',
+            backgroundImage: '/assets/bg/bg-architecture.png'
+        }
+    },
+    {
+        id: 'agile-maturity-assessment',
+        slug: 'agile-maturity-assessment',
+        price: 6000,
+        icon: 'Users',
+        category: 'consulting',
+        ctaLink: '#',
+        theme: {
+            color: 'lime',
+            gradient: 'from-lime-50 to-green-50 dark:from-lime-900/20 dark:to-green-900/10',
+            iconBg: 'bg-lime-100 dark:bg-lime-900/30 text-lime-600 dark:text-lime-400'
+        }
+    }
+];
+
+```
+
+## File: ./src/data/projects.ts
+```ts
+import { CaseStudy } from "../types/CaseStudy";
+
+export const projects: CaseStudy[] = [
+    {
+        id: 'photography-coach-ai',
+        slug: 'photography-coach-ai',
+        theme: {
+            color: 'purple',
+            gradient: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/10',
+            iconBg: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
+            backgroundImage: '/assets/bg/bg-ai.png'
+        },
+        domains: ['AI & GenAI', 'Product Engineering', 'Cost Optimization'],
+        projectType: 'product',
+        seoTags: ['Gemini 3 Pro', 'React', 'Context Caching', 'AI Vision', 'Google DeepMind'],
+        header: {
+            eyebrow: 'GOOGLE DEEPMIND COMPETITION PROJECT',
+            title: 'Photography Coach AI: Productionizing Gemini 3 Pro',
+            client: {
+                type: 'Competition Entry',
+                size: 'Global',
+                industry: 'Artificial Intelligence'
+            }
+        },
+        challenge: {
+            situation: 'Most AI tools are black boxes. Photographers needed transparent, actionable coaching. The technical challenge was productionizing Gemini 3 Pro while keeping token costs viable.',
+            pain_points: [
+                { icon: '💸', title: 'High Inference Costs', description: 'Vision API calls cost ~$2.00 per 1k images', impact: 'Unviable unit economics' },
+                { icon: '📦', title: 'Black Box Problem', description: 'Users distrust AI scores', impact: 'Low engagement' }
+            ],
+            urgency: 'Built for Google DeepMind Competition',
+            why_prasad: 'AI Engineering + UX'
+        },
+        approach: {
+            methodology: 'Transparent AI Architecture',
+            phases: [
+                { number: 1, title: 'Context Caching', duration: 'Sprint 2', activities: ['Cached 32KB system prompt'], deliverable: 'Cost-Optimized Backend', outcome: '75% Cost Reduction' }
+            ],
+            unique_differentiator: 'Glass-Box Reasoning UI'
+        },
+        outcomes: {
+            hero_metric: { value: '75%', label: 'Cost Reduction', icon: '💰' },
+            secondary_metrics: [
+                { value: '2.5s', label: 'Analysis Speed', icon: '⚡' },
+                { value: '100%', label: 'Observability', icon: '👁️' }
+            ],
+            compliance: [],
+            timeline: { planned: '3 Weeks', actual: '2.5 Weeks', variance: 'Ahead' },
+            business_impact: {
+                efficiency: 'Context Caching strategy reduces input token costs by ~75%',
+                innovation: 'First-of-kind "Glass Box" interface'
+            }
+        },
+        technical: {
+            before: { stack: ['Standard LLM'], infrastructure: 'Stateless', issues: [] },
+            after: { stack: ['Gemini 3 Pro', 'React', 'Tailwind', 'Recharts'], infrastructure: 'Context-Aware', improvements: ['Structured JSON', 'Spatial Overlays'] },
+            migration_strategy: 'Greenfield'
+        },
+        cta: {
+            primary: { text: 'Try Live Demo', action: 'https://aistudio.google.com/app/apikey', context: 'See it in action.' },
+            secondary: { text: 'View Code', action: 'https://github.com/prasadt1/photography-coach-ai' }
+        }
+    },
+    // --- TIER 1: FLAGSHIP ---
+    {
+        id: 'pact-pcf-network',
+        slug: 'pact-pcf-data-exchange-network',
+        theme: {
+            color: 'emerald',
+            gradient: 'from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/10',
+            iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
+            backgroundImage: '/assets/bg/bg-eco.png'
+        },
+        domains: ['Climate Tech', 'Standards Development'],
+        projectType: 'standard',
+        seoTags: ['Carbon Accounting', 'Scope 3 Emissions', 'ESG Technology', 'Product Carbon Footprint', 'Climate Action', 'Sustainability Standards'],
+        header: {
+            eyebrow: 'GLOBAL STANDARD ADOPTION',
+            title: 'Architecting the Global Product Carbon Footprint (PCF) Data Exchange Network',
+            client: {
+                type: 'Global Non-Profit / Standards Body',
+                size: 'Fortune 100 Consortium',
+                industry: 'Climate Tech / Sustainability'
+            }
+        },
+        challenge: {
+            situation: 'Global supply chains lacked a standardized way to exchange Product Carbon Footprint (PCF) data, making Scope 3 emissions tracking impossible. Major corporations (Microsoft, SAP, Siemens) needed a unified language and protocol.',
+            pain_points: [
+                {
+                    icon: '🌍',
+                    title: 'Data Silos',
+                    description: 'No interoperability between carbon accounting platforms',
+                    impact: 'Blocked Scope 3 transparency'
+                },
+                {
+                    icon: '📉',
+                    title: 'Integration Costs',
+                    description: 'Custom integrations for every supplier',
+                    impact: 'High cost of compliance'
+                }
+            ],
+            urgency: 'Net-zero commitments requiring immediate supply chain transparency',
+            why_prasad: 'Unique blend of Enterprise Architecture, Standards Development, and Climate Tech expertise'
+        },
+        approach: {
+            methodology: 'Open Standards Development & Ecosystem Engineering',
+            phases: [
+                {
+                    number: 1,
+                    title: 'Technical Specification',
+                    duration: '6 months',
+                    activities: ['API Design (OpenAPI)', 'Data Model Definition', 'Security Protocol Design'],
+                    deliverable: 'PACT Tech Spec v2.0',
+                    outcome: 'Global consensus achieved'
+                },
+                {
+                    number: 2,
+                    title: 'Conformance Testing',
+                    duration: '4 months',
+                    activities: ['Testbed Development', 'Automated Testing Suite', 'Certification Process'],
+                    deliverable: 'Open Source Testkit',
+                    outcome: 'Streamlined vendor onboarding'
+                }
+            ],
+            unique_differentiator: 'Created a decentralized, sovereignty-preserving network architecture rather than a central database'
+        },
+        outcomes: {
+            hero_metric: { value: '60%', label: 'Integration Time Reduction', icon: '⚡' },
+            secondary_metrics: [
+                { value: '25%', label: 'Adoption Increase', icon: '📈' },
+                { value: '90+', label: 'Fortune 100 Adopters', icon: '🏢' }
+            ],
+            compliance: [],
+            timeline: { planned: '18 months', actual: '18 months', variance: 'On Track' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: 'Fragmented manual emails/spreadsheets', issues: ['No API standard', 'Inconsistent data'] },
+            after: { stack: ['Next.js', 'React', 'Java Spring Boot', 'TypeScript', 'Docker', 'Kubernetes', 'Azure', 'Kafka'], infrastructure: 'Decentralized Data Space', improvements: ['Standardized API', 'Automated Verification'] },
+            migration_strategy: 'Greenfield standards development'
+        },
+        cta: {
+            primary: { text: 'View Ecosystem', action: 'https://carbon-transparency.org/network', context: 'See the live network.' },
+            secondary: { text: 'GitHub Repo', action: 'https://github.com/wbcsd/pact-conformance-testing' }
+        }
+    },
+    {
+        id: 'brita-ecommerce',
+        slug: 'brita-ecommerce-modernization',
+        theme: {
+            color: 'orange',
+            gradient: 'from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10',
+            iconBg: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
+        },
+        domains: ['eCommerce', 'Digital Transformation'],
+        projectType: 'migration',
+        seoTags: ['Headless Commerce', 'Sustainable Ecommerce', 'Cloud Optimization', 'Green IT'],
+        header: {
+            eyebrow: 'MULTI-MARKET ROLLOUT',
+            title: 'Modernizing Global eCommerce: From Monolith to Headless Architecture',
+            client: {
+                type: 'Global Consumer Goods',
+                size: '€600M+ Revenue',
+                industry: 'Manufacturing / Retail'
+            }
+        },
+        challenge: {
+            situation: 'Legacy Shopware platform could not support rapid global expansion. Managing 15+ markets with monolithic architecture was slow and costly.',
+            pain_points: [
+                { icon: '🐌', title: 'Slow Time-to-Market', description: 'Months to launch new regions', impact: 'Lost revenue opportunities' },
+                { icon: '🔗', title: 'Tightly Coupled', description: 'Frontend changes risked backend stability', impact: 'High regression risk' }
+            ],
+            urgency: 'Strategic goal to double D2C revenue',
+            why_prasad: 'Proven track record in headless commerce and cloud migration'
+        },
+        approach: {
+            methodology: 'Headless Transformation Strategy',
+            phases: [
+                { number: 1, title: 'Discovery & POC', duration: '2 months', activities: ['Platform Selection (Shopify Plus)', 'Headless Architecture Design'], deliverable: 'Proof of Concept', outcome: 'Validated architecture' },
+                { number: 2, title: 'Migration & Rollout', duration: '8 months', activities: ['Data Migration', 'Frontend Build (Vue.js)', 'Multi-tenant Setup'], deliverable: 'Live in 6 Markets', outcome: 'Zero downtime launch' }
+            ],
+            unique_differentiator: 'Implemented a multi-tenant governance model allowing centralized core with local market flexibility'
+        },
+        outcomes: {
+            hero_metric: { value: '15+', label: 'Markets Supported', icon: '🌍' },
+            secondary_metrics: [
+                { value: '30%', label: 'Faster Deployments', icon: '🚀' },
+                { value: 'Zero', label: 'Downtime Migration', icon: '✅' }
+            ],
+            compliance: [{ standard: 'GDPR', result: 'Compliant', details: 'Full EU compliance' }],
+            timeline: { planned: '12 months', actual: '10 months', variance: '2 months early' }
+        },
+        technical: {
+            before: { stack: ['Shopware', 'Monolithic'], infrastructure: 'On-premise', issues: ['Scalability limits', 'High maintenance'] },
+            after: { stack: ['Shopify Plus', 'Vue.js', 'Nuxt.js', 'Azure', 'Varnish', 'Redis'], infrastructure: 'Cloud-native Headless', improvements: ['Global scalability', 'Decoupled frontend'] },
+            migration_strategy: 'Strangler Fig Pattern'
+        },
+        cta: {
+            primary: { text: 'Book Consultation', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Discuss your migration.' },
+            secondary: { text: 'View Architecture', action: '#' }
+        }
+    },
+    {
+        id: 'delivery-hero',
+        slug: 'delivery-hero-adtech',
+        theme: {
+            color: 'rose',
+            gradient: 'from-rose-50 to-red-50 dark:from-rose-900/20 dark:to-red-900/10',
+            iconBg: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400'
+        },
+        domains: ['AdTech', 'eCommerce', 'High-Scale'],
+        projectType: 'product',
+        seoTags: ['AdTech', 'High Scale', 'Go', 'Kubernetes', 'Revenue Growth'],
+        header: {
+            eyebrow: '$20M REVENUE UPLIFT',
+            title: 'Scaling Display Ads Platform to 5M+ Daily Transactions',
+            client: {
+                type: 'Global Food Delivery',
+                size: 'DAX Listed',
+                industry: 'E-commerce'
+            }
+        },
+        challenge: {
+            situation: 'Existing ad server crashed during peak lunch hours. Latency > 200ms caused lost impressions and revenue.',
+            pain_points: [],
+            urgency: 'Black Friday approaching',
+            why_prasad: 'High-scale distributed systems expertise'
+        },
+        approach: {
+            methodology: 'Event-Driven Architecture',
+            phases: [
+                { number: 1, title: 'Re-architecture', duration: '6 weeks', activities: ['Moved to Go + Redis', 'Implemented exact-once processing'], deliverable: 'New Ad Engine', outcome: '< 20ms latency' }
+            ],
+            unique_differentiator: 'Custom RTB (Real-Time Bidding) engine'
+        },
+        outcomes: {
+            hero_metric: { value: '20%', label: 'Revenue Increase', icon: '📈' },
+            secondary_metrics: [
+                { value: '5M+', label: 'Daily Transactions', icon: '🔢' },
+                { value: '99.99%', label: 'SLA Achieved', icon: '🛡️' }
+            ],
+            compliance: [{ standard: 'GDPR', result: 'Compliant', details: 'Privacy-first ad serving' }],
+            timeline: { planned: '3 months', actual: '3 months', variance: 'On time' }
+        },
+        technical: {
+            before: { stack: ['PHP', 'MySQL'], infrastructure: '', issues: [] },
+            after: { stack: ['Go', 'Redis', 'Kafka', 'Kubernetes', 'Terraform'], infrastructure: 'Global K8s Cluster', improvements: ['<20ms latency', 'Auto-scaling'] },
+            migration_strategy: 'Strangler Fig pattern'
+        },
+        cta: {
+            primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
+            secondary: { text: 'View Architecture', action: '#' }
+        }
+    },
+    {
+        id: 'ai-photography-coach',
+        slug: 'ai-photography-coach',
+        theme: {
+            color: 'indigo',
+            gradient: 'from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/10',
+            iconBg: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400',
+            backgroundImage: '/assets/bg/bg-ai.png'
+        },
+        domains: ['AI/ML', 'Innovation'],
+        projectType: 'product',
+        seoTags: ['Green AI', 'Responsible AI', 'AIOptimization', 'Sustainable AI', 'Agentic AI'],
+        header: {
+            eyebrow: 'PRODUCTION AI ENGINEERING',
+            title: 'Building an Agentic AI Photography Coach with Full Observability',
+            client: {
+                type: 'Personal Project / Product',
+                size: 'N/A',
+                industry: 'Consumer Tech'
+            }
+        },
+        challenge: {
+            situation: 'Most AI demos lack production readiness (observability, cost control, evaluation). Wanted to prove end-to-end engineering excellence.',
+            pain_points: [],
+            urgency: 'Personal innovation goal',
+            why_prasad: 'Passion for AI engineering rigor'
+        },
+        approach: {
+            methodology: 'Agentic Workflow Design',
+            phases: [
+                { number: 1, title: 'MVP Build', duration: '4 weeks', activities: ['Vision API integration', 'Streamlit UI'], deliverable: 'Working Prototype', outcome: 'Proof of capability' },
+                { number: 2, title: 'Production Engineering', duration: '4 weeks', activities: ['MCP Integration', 'LLM-as-Judge', 'Cost Tracking'], deliverable: 'Production-Ready App', outcome: 'Full observability' }
+            ],
+            unique_differentiator: 'Built-in "Green AI" metrics tracking carbon impact of inference'
+        },
+        outcomes: {
+            hero_metric: { value: '100%', label: 'Observability', icon: '👁️' },
+            secondary_metrics: [
+                { value: '<$5', label: 'Monthly Cost', icon: '💰' },
+                { value: 'P95', label: 'Latency Tracked', icon: '⏱️' }
+            ],
+            compliance: [],
+            timeline: { planned: '2 months', actual: '2 months', variance: 'On time' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['Gemini Vision', 'Streamlit', 'MCP', 'LangChain'], infrastructure: 'Cloud Run', improvements: ['Agentic Workflows', 'Structured Outputs'] },
+            migration_strategy: 'Iterative Product Development'
+        },
+        cta: {
+            primary: { text: 'Try Demo', action: '#', context: 'See the AI in action.' },
+            secondary: { text: 'GitHub Repo', action: '#' }
+        }
+    },
+
+    // --- TIER 2: CONSULTING FRAMEWORKS ---
+    {
+        id: 'devops-maturity',
+        slug: 'devops-maturity-framework',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+            backgroundImage: '/assets/bg/bg-devops.png'
+        },
+        domains: ['DevOps', 'Consulting'],
+        projectType: 'framework',
+        seoTags: ['DevOps Maturity', 'CICD', 'Infrastructure as Code', 'SRE'],
+        header: {
+            eyebrow: 'REUSABLE FRAMEWORK',
+            title: 'Enterprise DevOps Maturity Assessment & Transformation Model',
+            client: {
+                type: 'Multiple Fortune 500 Clients',
+                size: 'Global Enterprises',
+                industry: 'Cross-Industry'
+            }
+        },
+        challenge: {
+            situation: 'Many organizations claimed to do DevOps but lacked standardization, leading to "fragile agile" and unstable releases.',
+            pain_points: [],
+            urgency: 'Need for speed and stability',
+            why_prasad: 'Deep background in both dev and ops'
+        },
+        approach: {
+            methodology: '5-Level Maturity Model',
+            phases: [],
+            unique_differentiator: 'Assess culture, process, and technology holistically'
+        },
+        outcomes: {
+            hero_metric: { value: '10+', label: 'Clients Assessed', icon: '📋' },
+            secondary_metrics: [{ value: '30%', label: 'Release Velocity', icon: '🚀' }],
+            compliance: [],
+            timeline: { planned: 'ongoing', actual: 'ongoing', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['Jenkins', 'GitLab', 'Terraform', 'Kubernetes'], infrastructure: 'Modern DevOps Toolchain', improvements: [] },
+            migration_strategy: 'Assessment -> Roadmap -> Transformation'
+        },
+        cta: {
+            primary: { text: 'Assess Your Org', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Get a maturity score.' },
+            secondary: { text: 'View Framework', action: '#' }
+        }
+    },
+    {
+        id: 'app-rationalization',
+        slug: 'app-rationalization-cloud-readiness',
+        theme: {
+            color: 'slate',
+            gradient: 'from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-900',
+            iconBg: 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+        },
+        domains: ['Cloud Modernization', 'Consulting'],
+        projectType: 'framework',
+        seoTags: ['Cloud Migration', '6R Strategy', 'App Portfolio Management'],
+        header: {
+            eyebrow: 'STRATEGIC DECISION MAKING',
+            title: 'Application Rationalization & Cloud Readiness Framework',
+            client: {
+                type: 'Multiple Clients',
+                size: 'Enterprise',
+                industry: 'Cross-Industry'
+            }
+        },
+        challenge: {
+            situation: 'Enterprises with 1000+ apps struggled to decide what to move to cloud, leading to stalled migrations or "lift-and-shift" cost disasters.',
+            pain_points: [],
+            urgency: 'Data center exit mandates',
+            why_prasad: 'Systematic approach to portfolio analysis'
+        },
+        approach: {
+            methodology: '6R Analysis (Rehost, Replatform, etc.)',
+            phases: [],
+            unique_differentiator: 'Automated discovery combined with business value scoring'
+        },
+        outcomes: {
+            hero_metric: { value: '40%', label: 'Accellerated Timeline', icon: '⏩' },
+            secondary_metrics: [{ value: '60%', label: 'Retired/Replaced', icon: '🗑️' }],
+            compliance: [],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['AWS', 'Azure', 'Migration Tools'], infrastructure: 'Hybrid Cloud', improvements: [] },
+            migration_strategy: 'Discovery -> Rationalization -> Wave Planning'
+        },
+        cta: {
+            primary: { text: 'Plan Migration', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Avoid cloud cost traps.' },
+            secondary: { text: 'See Template', action: '#' }
+        }
+    },
+    {
+        id: 'mainframe-migration',
+        slug: 'mainframe-to-java-migration',
+        theme: {
+            color: 'amber',
+            gradient: 'from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/10',
+            iconBg: 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+        },
+        domains: ['Legacy Modernization', 'Consulting', 'FinServ'],
+        projectType: 'framework',
+        seoTags: ['Mainframe', 'COBOL', 'Java', 'Modernization'],
+        header: {
+            eyebrow: 'LEGACY TRANSFORMATION',
+            title: 'Mainframe-to-Java Migration Framework',
+            client: {
+                type: 'Insurance / Banking',
+                size: 'Large Enterprise',
+                industry: 'Financial Services'
+            }
+        },
+        challenge: {
+            situation: 'Critical core banking/insurance systems locked in COBOL/mainframes with retiring talent pool and exploding MIPS costs.',
+            pain_points: [],
+            urgency: 'Cost reduction and talent risk',
+            why_prasad: 'Proven pattern for risk-managed migration'
+        },
+        approach: {
+            methodology: 'Automated Refactoring & Replatforming',
+            phases: [],
+            unique_differentiator: 'Comprehensive testing strategy ensuring bit-level data parity'
+        },
+        outcomes: {
+            hero_metric: { value: '55%', label: 'Cost Reduction', icon: '💰' },
+            secondary_metrics: [{ value: 'Zero', label: 'Business Disruption', icon: '✅' }],
+            compliance: [],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: ['COBOL', 'CICS', 'DB2'], infrastructure: 'Mainframe', issues: [] },
+            after: { stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Kafka'], infrastructure: 'Cloud Native', improvements: [] },
+            migration_strategy: 'Automated Code Conversion + Manual Optimization'
+        },
+        cta: {
+            primary: { text: 'Modernize Legacy', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Reduce MIPS costs.' },
+            secondary: { text: 'View Approach', action: '#' }
+        }
+    },
+    {
+        id: 'healthcare-compliance',
+        slug: 'hipaa-fhir-compliance',
+        theme: {
+            color: 'teal',
+            gradient: 'from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/10',
+            iconBg: 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400'
+        },
+        domains: ['Healthcare', 'Compliance', 'Consulting'],
+        projectType: 'framework',
+        seoTags: ['HIPAA', 'FHIR', 'Compliance', 'HealthIT'],
+        header: {
+            eyebrow: 'REGULATORY GOVERNANCE',
+            title: 'HIPAA/FHIR/HL7 Compliance Governance Framework',
+            client: {
+                type: 'Multiple Healthcare Clients',
+                size: 'Enterprise',
+                industry: 'Healthcare'
+            }
+        },
+        challenge: {
+            situation: 'Healthcare orgs struggling to meet new interoperability rules (Cures Act) and secure patient data in the cloud.',
+            pain_points: [],
+            urgency: 'Regulatory deadlines',
+            why_prasad: 'Deep expertise in health data standards'
+        },
+        approach: {
+            methodology: 'Compliance-by-Design',
+            phases: [],
+            unique_differentiator: 'Integrated security, privacy, and interoperability into one governance model'
+        },
+        outcomes: {
+            hero_metric: { value: '15+', label: 'Engagements', icon: '🏥' },
+            secondary_metrics: [{ value: '100%', label: 'Audit Systems', icon: '🛡️' }],
+            compliance: [{ standard: 'HIPAA', result: 'Compliant', details: 'Full protection' }],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['FHIR', 'HL7', 'OAuth2', 'Encryption'], infrastructure: 'Compliant Cloud', improvements: [] },
+            migration_strategy: 'Assessment -> Remediation -> Governance'
+        },
+        cta: {
+            primary: { text: 'Secure Your Data', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Get HIPAA compliant.' },
+            secondary: { text: 'View Framework', action: '#' }
+        }
+    },
+
+    // --- TIER 3: OTHER NOTABLE PROJECTS ---
+    {
+        id: 'boehringer-aiml',
+        slug: 'boehringer-aiml-platform',
+        theme: {
+            color: 'cyan',
+            gradient: 'from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/10',
+            iconBg: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400'
+        },
+        domains: ['Pharma', 'AI/ML', 'Data Platforms'],
+        projectType: 'data-platform',
+        seoTags: ['Data Lake', 'BioBERT', 'Pharma R&D'],
+        header: {
+            eyebrow: '50% FASTER INSIGHTS',
+            title: 'Medical Research AI/ML Platform & Data Lake',
+            client: {
+                type: 'Boehringer Ingelheim',
+                size: '€20B+ Revenue',
+                industry: 'Pharma'
+            }
+        },
+        challenge: {
+            situation: 'R&D data siloed in PDFs and disparate systems. Researchers spent too much time searching.',
+            pain_points: [],
+            urgency: 'Need to accelerate drug discovery',
+            why_prasad: 'Data Architecture + Compliance'
+        },
+        approach: {
+            methodology: 'Data Mesh',
+            phases: [],
+            unique_differentiator: 'Semantic search using BioBERT specific to medical queries'
+        },
+        outcomes: {
+            hero_metric: { value: '50%', label: 'Faster Insights', icon: '⚡' },
+            secondary_metrics: [{ value: '€500K', label: 'Savings', icon: '💰' }],
+            compliance: [{ standard: 'GDPR', result: 'Compliant', details: 'PII Masking' }],
+            timeline: { planned: '6 months', actual: '6 months', variance: 'On time' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['AWS', 'Databricks', 'BioBERT', 'React'], infrastructure: 'Data Mesh', improvements: [] },
+            migration_strategy: 'Greenfield Build'
+        },
+        cta: {
+            primary: { text: 'Build Data Platform', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Unlock R&D data.' },
+            secondary: { text: 'View Details', action: '#' }
+        }
+    },
+    {
+        id: 'telecom-fpp',
+        slug: 'telecom-future-pricing-platform',
+        theme: {
+            color: 'violet',
+            gradient: 'from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/10',
+            iconBg: 'bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400'
+        },
+        domains: ['Telecom', 'Consulting'],
+        projectType: 'migration',
+        seoTags: ['Microservices', 'Event Driven', 'Telecom'],
+        header: {
+            eyebrow: 'EVENT-DRIVEN ARCHITECTURE',
+            title: 'Future Pricing Platform (FPP) Transformation',
+            client: {
+                type: 'Fortune 100 Telecom',
+                size: 'Enterprise',
+                industry: 'Telecom'
+            }
+        },
+        challenge: {
+            situation: 'Manual pricing updates took days/weeks. Needed real-time dynamic pricing.',
+            pain_points: [],
+            urgency: 'Competitive pressure',
+            why_prasad: 'Event-driven architecture expertise'
+        },
+        approach: {
+            methodology: 'Domain-Driven Design',
+            phases: [],
+            unique_differentiator: 'Seamless transition roadmap from manual to fully automated'
+        },
+        outcomes: {
+            hero_metric: { value: 'Real-time', label: 'Pricing Updates', icon: '⏱️' },
+            secondary_metrics: [],
+            compliance: [],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: ['Manual', 'Legacy'], infrastructure: '', issues: [] },
+            after: { stack: ['Microservices', 'Kafka', 'Java'], infrastructure: 'Cloud Native', improvements: [] },
+            migration_strategy: 'Phased Migration'
+        },
+        cta: {
+            primary: { text: 'Discuss Modernization', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Automate core processes.' },
+            secondary: { text: 'View Solution', action: '#' }
+        }
+    },
+    {
+        id: 'innova-claims',
+        slug: 'innova-claims-processing',
+        theme: {
+            color: 'sky',
+            gradient: 'from-sky-50 to-blue-50 dark:from-sky-900/20 dark:to-blue-900/10',
+            iconBg: 'bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400'
+        },
+        domains: ['FinServ', 'Insurance'],
+        projectType: 'data-platform',
+        seoTags: ['Claims Automation', 'Data Efficiency'],
+        header: {
+            eyebrow: '80% EFFICIENCY GAIN',
+            title: 'Claims Processing Data Platform',
+            client: {
+                type: 'Innova Solutions',
+                size: 'Enterprise Services',
+                industry: 'Insurance'
+            }
+        },
+        challenge: {
+            situation: 'Manual claims processing was slow and error-prone.',
+            pain_points: [],
+            urgency: 'Operational costs',
+            why_prasad: 'Data Engineering leadership'
+        },
+        approach: {
+            methodology: 'Automated Data Pipeline',
+            phases: [],
+            unique_differentiator: 'Integrated business rules engine'
+        },
+        outcomes: {
+            hero_metric: { value: '80%', label: 'Efficiency Gain', icon: '📈' },
+            secondary_metrics: [],
+            compliance: [],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: ['Manual'], infrastructure: '', issues: [] },
+            after: { stack: ['Data Pipelines', 'Reporting Tools'], infrastructure: '', improvements: [] },
+            migration_strategy: 'Automation'
+        },
+        cta: {
+            primary: { text: 'Automate Operations', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Reduce manual work.' },
+            secondary: { text: 'View Details', action: '#' }
+        }
+    },
+    {
+        id: 'bofa-account-opening',
+        slug: 'bofa-account-opening',
+        theme: {
+            color: 'red',
+            gradient: 'from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/10',
+            iconBg: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
+        },
+        domains: ['FinServ'],
+        projectType: 'product',
+        seoTags: ['FinTech', 'User Experience'],
+        header: {
+            eyebrow: 'PROCESS OPTIMIZATION',
+            title: 'Streamlined Account Opening for Financial Advisors',
+            client: {
+                type: 'Bank of America / Merrill Lynch',
+                size: 'Global Bank',
+                industry: 'Financial Services'
+            }
+        },
+        challenge: {
+            situation: 'Complex onboarding process frustrated advisors and clients.',
+            pain_points: [],
+            urgency: 'Client satisfaction',
+            why_prasad: 'Process optimization + UX focus'
+        },
+        approach: {
+            methodology: 'Workflow Automation',
+            phases: [],
+            unique_differentiator: 'Focus on advisor experience'
+        },
+        outcomes: {
+            hero_metric: { value: 'High', label: 'Advisor Satisfaction', icon: '😊' },
+            secondary_metrics: [],
+            compliance: [{ standard: 'FINRA', result: 'Compliant', details: '' }],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['Workflow Engine'], infrastructure: '', improvements: [] },
+            migration_strategy: 'Optimization'
+        },
+        cta: {
+            primary: { text: 'Improve UX', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Better onboarding.' },
+            secondary: { text: 'View Details', action: '#' }
+        }
+    },
+    {
+        id: 'ileap-logistics',
+        slug: 'ileap-logistics-emissions',
+        theme: {
+            color: 'emerald',
+            gradient: 'from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/10',
+            iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400'
+        },
+        domains: ['Climate Tech', 'Standards Development'],
+        projectType: 'standard',
+        seoTags: ['Logistics Emissions', 'Scope 3', 'Supply Chain'],
+        header: {
+            eyebrow: 'SUPPLY CHAIN DECARBONIZATION',
+            title: 'iLEAP: Logistics Emissions Integration Project',
+            client: {
+                type: 'SINE Foundation / SFC',
+                size: 'Non-Profit',
+                industry: 'Climate Tech'
+            }
+        },
+        challenge: {
+            situation: 'Up to 60% of product Scope 3 emissions come from logistics, but data was disconnected.',
+            pain_points: [],
+            urgency: 'Need for holistic view',
+            why_prasad: 'Standards expertise'
+        },
+        approach: {
+            methodology: 'Data Model Extension',
+            phases: [],
+            unique_differentiator: 'Integrating logistics data standard (GLEC) with product standard (PACT)'
+        },
+        outcomes: {
+            hero_metric: { value: '60%', label: 'Scope 3 Coverage', icon: '🚛' },
+            secondary_metrics: [],
+            compliance: [],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['Data Modeling', 'API Design'], infrastructure: '', improvements: [] },
+            migration_strategy: 'Standardization'
+        },
+        cta: {
+            primary: { text: 'Learn More', action: 'https://smart-freight-centre-media.s3.amazonaws.com/documents/iLEAP_-_project_charter.pdf', context: 'View Project Charter' },
+            secondary: { text: 'View Details', action: '#' }
+        }
+    },
+    {
+        id: 'pwc-healthcare-mod',
+        slug: 'pwc-healthcare-modernization',
+        theme: {
+            color: 'teal',
+            gradient: 'from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/10',
+            iconBg: 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400'
+        },
+        domains: ['Healthcare', 'Consulting'],
+        projectType: 'migration',
+        seoTags: ['Healthcare Modernization', 'Mobile App'],
+        header: {
+            eyebrow: '$500K SAVED',
+            title: 'Healthcare System Modernization & Mobile App',
+            client: {
+                type: 'PwC Client',
+                size: 'Enterprise',
+                industry: 'Healthcare'
+            }
+        },
+        challenge: {
+            situation: 'Legacy system needed modernization and mobile access.',
+            pain_points: [],
+            urgency: 'Cost and user demand',
+            why_prasad: 'Full stack leadership'
+        },
+        approach: {
+            methodology: 'Incremental Modernization',
+            phases: [],
+            unique_differentiator: 'Pharmacy module mobile app that drove 70% traffic increase'
+        },
+        outcomes: {
+            hero_metric: { value: '70%', label: 'Traffic Boost', icon: '📈' },
+            secondary_metrics: [{ value: '$500K', label: 'Annual Savings', icon: '💰' }],
+            compliance: [{ standard: 'HIPAA', result: 'Compliant', details: '' }],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: ['Legacy'], infrastructure: '', issues: [] },
+            after: { stack: ['Angular', 'Spring Boot', 'iOS', 'Android'], infrastructure: 'Cloud', improvements: [] },
+            migration_strategy: 'Modernization'
+        },
+        cta: {
+            primary: { text: 'Modernize Apps', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Go mobile.' },
+            secondary: { text: 'View Details', action: '#' }
+        }
+    },
+    {
+        id: 'voc-360',
+        slug: 'voice-of-customer-360',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+        },
+        domains: ['Consulting', 'FinServ'],
+        projectType: 'data-platform',
+        seoTags: ['Customer 360', 'Insurance', 'Analytics'],
+        header: {
+            eyebrow: 'CUSTOMER EXPERIENCE',
+            title: 'Voice of Customer (VoC) 360 Model',
+            client: {
+                type: 'Insurance Client',
+                size: 'Enterprise',
+                industry: 'Insurance'
+            }
+        },
+        challenge: {
+            situation: 'Call center agents lacked unified view of customer, leading to long calls and frustration.',
+            pain_points: [],
+            urgency: 'CX Impact',
+            why_prasad: 'Data integration expertise'
+        },
+        approach: {
+            methodology: '360 View Architecture',
+            phases: [],
+            unique_differentiator: 'Real-time aggregation of policy, claims, and interaction data'
+        },
+        outcomes: {
+            hero_metric: { value: 'Reduced', label: 'Call Handling Time', icon: '⏱️' },
+            secondary_metrics: [],
+            compliance: [],
+            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+        },
+        technical: {
+            before: { stack: [], infrastructure: '', issues: [] },
+            after: { stack: ['Integration Patterns'], infrastructure: '', improvements: [] },
+            migration_strategy: 'Integration'
+        },
+        cta: {
+            primary: { text: 'Improve CX', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Build 360 view.' },
+            secondary: { text: 'View Model', action: '#' }
+        }
+    }
+];
+
+```
+
+## File: ./src/i18n.ts
+```ts
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+import translationEN from './locales/en/translation.json';
+import translationDE from './locales/de/translation.json';
+import projectsEN from './locales/en/projects.json';
+import projectsDE from './locales/de/projects.json';
+
+// the translations
+const resources = {
+    en: {
+        translation: translationEN,
+        projects: projectsEN
+    },
+    de: {
+        translation: translationDE,
+        projects: projectsDE
+    }
+};
+
+i18n
+    .use(LanguageDetector)
+    .use(initReactI18next) // passes i18n down to react-i18next
+    .init({
+        resources,
+        fallbackLng: 'en', // use en if detected lng is not available
+        interpolation: {
+            escapeValue: false // react already safes from xss
+        },
+        react: {
+            useSuspense: false
+        },
+        detection: {
+            order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
+            caches: ['localStorage', 'cookie']
+        }
+    });
+
+export default i18n;
+
+```
+
+## File: ./src/index.css
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-slate-900 dark:text-white;
+  }
+}
+
+/* React Flow Styles */
+.react-flow__attribution {
+  display: none;
+}
+
+/* Marquee Animation - Continuous Scroll */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  min-width: 100%;
+  display: flex;
+}
+
+/* Pause animation on hover for better UX */
+.group:hover .animate-scroll {
+  animation-play-state: paused;
+}
+```
+
+## File: ./src/locales/de/projects.json
+```json
+{
+    "photography-coach-ai": {
+        "header": {
+            "eyebrow": "GOOGLE DEEPMIND WETTBEWERBSPROJEKT",
+            "title": "Photography Coach AI: Gemini 3 Pro in Produktion"
+        },
+        "challenge": {
+            "situation": "Die meisten KI-Tools sind Black Boxes. Fotografen benötigten transparentes, umsetzbares Coaching. Die technische Herausforderung bestand darin, Gemini 3 Pro produktionsreif zu machen und dabei die Token-Kosten tragfähig zu halten."
+        },
+        "cta": {
+            "primary": "Live-Demo testen",
+            "secondary": "Code ansehen"
+        }
+    },
+    "pact-pcf-data-exchange-network": {
+        "header": {
+            "eyebrow": "GLOBALE STANDARDADOPTION",
+            "title": "Architektur des Globalen Netzwerks für den Austausch von Product Carbon Footprint (PCF) Daten"
+        },
+        "challenge": {
+            "situation": "Globalen Lieferketten fehlte ein standardisierter Weg zum Austausch von Product Carbon Footprint (PCF) Daten, was die Verfolgung von Scope-3-Emissionen unmöglich machte. Großkonzerne (Microsoft, SAP, Siemens) benötigten eine einheitliche Sprache und ein Protokoll."
+        },
+        "cta": {
+            "primary": "Ökosystem ansehen",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "brita-ecommerce-modernization": {
+        "header": {
+            "eyebrow": "MULTI-MARKT ROLLOUT",
+            "title": "Modernisierung des globalen E-Commerce: Von Monolyth zu Headless-Architektur"
+        },
+        "challenge": {
+            "situation": "Die alte Shopware-Plattform konnte die schnelle globale Expansion nicht unterstützen. Die Verwaltung von 15+ Märkten mit monolithischer Architektur war langsam und kostspielig."
+        },
+        "cta": {
+            "primary": "Beratung buchen",
+            "secondary": "Architektur ansehen"
+        }
+    },
+    "delivery-hero-adtech": {
+        "header": {
+            "eyebrow": "$20M UMSATZSTEIGERUNG",
+            "title": "Skalierung der Display-Ads-Plattform auf 5M+ tägliche Transaktionen"
+        },
+        "challenge": {
+            "situation": "Der bestehende Ad-Server stürzte zu den Stoßzeiten beim Mittagessen ab. Latenz > 200ms führte zu verlorenen Impressionen und Umsatz."
+        },
+        "cta": {
+            "primary": "System skalieren",
+            "secondary": "Architektur ansehen"
+        }
+    },
+    "ai-photography-coach": {
+        "header": {
+            "eyebrow": "PRODUKTIONS-KI-ENGINEERING",
+            "title": "Aufbau eines agentenbasierten KI-Fotocoachs mit voller Observability"
+        },
+        "challenge": {
+            "situation": "Den meisten KI-Demos fehlt die Produktionsreife (Observability, Kostenkontrolle, Evaluierung). Ziel war es, End-to-End-Engineering-Exzellenz zu beweisen."
+        },
+        "cta": {
+            "primary": "Demo testen",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "devops-maturity-framework": {
+        "header": {
+            "eyebrow": "WIEDERVERWENDBARES RAHMENWERK",
+            "title": "Enterprise DevOps Reifegrad-Assessment & Transformationsmodell"
+        },
+        "challenge": {
+            "situation": "Viele Organisationen behaupteten, DevOps zu praktizieren, litten jedoch unter mangelnder Standardisierung, was zu \"zerbrechlichem Agile\" und instabilen Releases führte."
+        },
+        "cta": {
+            "primary": "Organisation bewerten",
+            "secondary": "Framework ansehen"
+        }
+    },
+    "app-rationalization-cloud-readiness": {
+        "header": {
+            "eyebrow": "STRATEGISCHE ENTSCHEIDUNGSFINDUNG",
+            "title": "Anwendungsrationalisierung & Cloud-Reifegrad-Framework"
+        },
+        "challenge": {
+            "situation": "Unternehmen mit 1000+ Apps taten sich schwer zu entscheiden, was in die Cloud verschoben werden soll, was zu gestoppten Migrationen oder \"Lift-and-Shift\"-Kostenfallen führte."
+        },
+        "cta": {
+            "primary": "Migration planen",
+            "secondary": "Vorlage ansehen"
+        }
+    },
+    "mainframe-to-java-migration": {
+        "header": {
+            "eyebrow": "LEGACY TRANSFORMATION",
+            "title": "Mainframe-zu-Java Migrations-Framework"
+        },
+        "challenge": {
+            "situation": "Kritische Kernbank-/Versicherungssysteme waren in COBOL/Mainframes gefangen, bei schwindendem Talentpool und explodierenden MIPS-Kosten."
+        },
+        "cta": {
+            "primary": "Legacy modernisieren",
+            "secondary": "Ansatz ansehen"
+        }
+    },
+    "hipaa-fhir-compliance": {
+        "header": {
+            "eyebrow": "REGULATORISCHE GOVERNANCE",
+            "title": "HIPAA/FHIR/HL7 Compliance Governance Framework"
+        },
+        "challenge": {
+            "situation": "Gesundheitsorganisationen kämpften damit, neue Interoperabilitätsregeln (Cures Act) zu erfüllen und Patientendaten in der Cloud zu sichern."
+        },
+        "cta": {
+            "primary": "Daten sichern",
+            "secondary": "Framework ansehen"
+        }
+    },
+    "boehringer-aiml-platform": {
+        "header": {
+            "eyebrow": "50% SCHNELLERE ERKENNTNISSE",
+            "title": "Medizinische Forschung KI/ML-Plattform & Data Lake"
+        },
+        "challenge": {
+            "situation": "Forschungsdaten waren in PDFs und unterschiedlichen Systemen isoliert. Forscher verbrachten zu viel Zeit mit Suchen."
+        },
+        "cta": {
+            "primary": "Datenplattform bauen",
+            "secondary": "Details ansehen"
+        }
+    },
+    "telecom-future-pricing-platform": {
+        "header": {
+            "eyebrow": "EVENT-DRIVEN ARCHITECTURE",
+            "title": "Transformation zur Future Pricing Platform (FPP)"
+        },
+        "challenge": {
+            "situation": "Manuelle Preisaktualisierungen dauerten Tage/Wochen. Echtzeit-Dynamic-Pricing war erforderlich."
+        },
+        "cta": {
+            "primary": "Modernisierung besprechen",
+            "secondary": "Lösung ansehen"
+        }
+    },
+    "innova-claims-processing": {
+        "header": {
+            "eyebrow": "80% EFFIZIENZGEWINN",
+            "title": "Schadensbearbeitungs-Datenplattform"
+        },
+        "challenge": {
+            "situation": "Manuelle Schadensbearbeitung war langsam und fehleranfällig."
+        },
+        "cta": {
+            "primary": "Betrieb automatisieren",
+            "secondary": "Details ansehen"
+        }
+    },
+    "bofa-account-opening": {
+        "header": {
+            "eyebrow": "PROZESSOPTIMIERUNG",
+            "title": "Optimierte Kontoeröffnung für Finanzberater"
+        },
+        "challenge": {
+            "situation": "Komplexer Onboarding-Prozess frustrierte Berater und Kunden."
+        },
+        "cta": {
+            "primary": "UX verbessern",
+            "secondary": "Details ansehen"
+        }
+    },
+    "ileap-logistics-emissions": {
+        "header": {
+            "eyebrow": "LIEFERKETTEN-DEKARBONISIERUNG",
+            "title": "iLEAP: Logistik-Emissions-Integrationsprojekt"
+        },
+        "challenge": {
+            "situation": "Bis zu 60% der produktbezogenen Scope-3-Emissionen stammen aus der Logistik, aber die Daten waren nicht verbunden."
+        },
+        "cta": {
+            "primary": "Mehr erfahren",
+            "secondary": "Details ansehen"
+        }
+    },
+    "pwc-healthcare-modernization": {
+        "header": {
+            "eyebrow": "$500K GESPART",
+            "title": "Gesundheitssystem-Modernisierung & Mobile App"
+        },
+        "challenge": {
+            "situation": "Veraltetes System benötigte Modernisierung und mobilen Zugriff."
+        },
+        "cta": {
+            "primary": "Apps modernisieren",
+            "secondary": "Details ansehen"
+        }
+    },
+    "voice-of-customer-360": {
+        "header": {
+            "eyebrow": "KUNDENERLEBNIS",
+            "title": "Voice of Customer (VoC) 360 Modell"
+        },
+        "challenge": {
+            "situation": "Versicherer hatten keine einheitliche Sicht auf die Kundenstimmung."
+        },
+        "cta": {
+            "primary": "360-Grad-Sicht aufbauen",
+            "secondary": "Details ansehen"
+        }
+    }
+}
+```
+
+## File: ./src/locales/de/translation.json
+```json
+{
+    "common": {
+        "loading": "Lädt...",
+        "error": "Ein Fehler ist aufgetreten",
+        "tryAgain": "Erneut versuchen",
+        "learnMore": "Mehr erfahren",
+        "viewMore": "Mehr ansehen",
+        "readMore": "Weiterlesen",
+        "close": "Schließen",
+        "viewProject": "Projekt ansehen",
+        "viewAllProjects": "Alle Projekte ansehen"
+    },
+    "nav": {
+        "home": "Startseite",
+        "services": "Services",
+        "frameworks": "Frameworks",
+        "about": "Über mich",
+        "projects": "Projekte",
+        "engagement": "Zusammenarbeit",
+        "contact": "Kontakt",
+        "consulting": "Beratung",
+        "architectureEngine": "Architektur-Assistent (Beta)",
+        "toggleLanguage": "Sprache wechseln",
+        "toggleTheme": "Design wechseln"
+    },
+    "hero": {
+        "title": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU",
+        "subtitle": "Ich helfe CTOs und Engineering-Leadern dabei, Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen zu validieren – bevor sie den falschen Weg einschlagen.",
+        "cta": "Meine Arbeit entdecken",
+        "carousel": "Vertraut von Fortune 500 Führungskräften",
+        "stats": {
+            "savings": {
+                "value": "1M$+",
+                "label": "Kosteneinsparungen (Programmauswirkung)"
+            },
+            "revenue": {
+                "value": "20%",
+                "label": "Geschäftsauswirkung erzielt"
+            },
+            "efficiency": {
+                "value": "30%",
+                "label": "Effizienzgewinne"
+            },
+            "impact": {
+                "value": "100+",
+                "label": "Unternehmen erreicht"
+            }
+        },
+        "values": {
+            "innovation": {
+                "title": "Innovationsgetrieben",
+                "desc": "Querdenken für komplexe Herausforderungen"
+            },
+            "business": {
+                "title": "Business-First",
+                "desc": "Fokus auf Umsatz, Kosten und Wirkung"
+            },
+            "leadership": {
+                "title": "Servant Leader",
+                "desc": "Empathischer, kollaborativer Ansatz"
+            },
+            "fullstack": {
+                "title": "Full-Stack",
+                "desc": "Vom Design bis zum Deployment"
+            }
+        },
+        "recruiter": {
+            "badge": "Für Recruiter",
+            "title": "Suchen Sie einen Enterprise Architect?",
+            "desc": "Holen Sie sich die Zusammenfassung meiner 15+ Jahre Erfahrung.",
+            "download": "Lebenslauf herunterladen",
+            "portfolio": "Portfolio ansehen"
+        }
+    },
+    "howItWork": {
+        "title": "Wie ich Probleme angehe",
+        "subtitle": "Nicht Technologie um der Technologie willen – sondern business-orientierte Innovation",
+        "resultTagline": "Ergebnis: Lösungen, die für Geschäft, Teams und Benutzer funktionieren",
+        "steps": {
+            "1": {
+                "title": "Business Impact zuerst",
+                "desc": "Ich starte mit: \"Welches Geschäftsproblem lösen wir?\" Nicht: \"Welche Technologie nutzen wir?\""
+            },
+            "2": {
+                "title": "Out-of-Box Denken",
+                "desc": "Ich hinterfrage Annahmen und finde kreative Lösungen. Innovation vor Konvention.",
+                "example": "BRITA: Prototyping von KI-gesteuerter Suchoptimierung zur Zukunftssicherung für Google AI-Ergebnisse"
+            },
+            "3": {
+                "title": "Empathische Führung",
+                "desc": "Ich führe durch Befähigung, nicht durch Befehl. Zusammenarbeit und Empathie vor Hierarchie.",
+                "example": "PACT: 100+ konkurrierende Unternehmen durch Moderation, nicht Zwang, ausgerichtet"
+            },
+            "4": {
+                "title": "Hands-On Umsetzung",
+                "desc": "Ich berate nicht nur – ich architekte, programmiere und deploye. Vom Entwurf bis zur Produktion.",
+                "example": "SINE: Entwurf UND Implementierung des PACT-Katalogs (Next.js, React, Java Spring Boot)"
+            }
+        }
+    },
+    "about": {
+        "title": "Prasad Tilloo",
+        "role": "Senior Engineering Leader & Enterprise Architect",
+        "description": "15+ Jahre Erfahrung in der Lieferung transformativer Ergebnisse in Cloud-Modernisierung, Legacy-System-Migration und KI/ML-Infrastruktur für Fortune-100-Kunden.",
+        "buttons": {
+            "contact": "Kontaktieren",
+            "linkedin": "LinkedIn",
+            "github": "GitHub"
+        },
+        "stats": {
+            "exp": "Jahre Erfahrung",
+            "value": "Projektwert",
+            "industries": "Branchen",
+            "delivery": "Lieferquote"
+        },
+        "philosophy": {
+            "title": "Meine Führungsphilosophie",
+            "quote": "Die besten Lösungen entstehen aus dem Verständnis sowohl des Geschäftsproblems ALS AUCH der Menschen, die es lösen.",
+            "attribution": "— Mein Ansatz für jedes Projekt",
+            "outcomes": {
+                "title": "Geschäftsergebnisse vor technischer Eleganz",
+                "desc": "Ich messe Erfolg am geschäftlichen Einfluss, nicht an der technischen Komplexität. Eine einfache Lösung, die Umsatz bringt, schlägt eine elegante, die es nicht tut."
+            },
+            "innovation": {
+                "title": "Innovation durch kreative Problemlösung",
+                "desc": "Ich hinterfrage Annahmen und denke quer. Wenn alle sagen 'es geht nicht', frage ich 'warum nicht?'"
+            },
+            "leadership": {
+                "title": "Servant Leadership & Empathie",
+                "desc": "Ich führe, indem ich andere befähige, nicht befehle. Meine Rolle ist es, Hindernisse zu beseitigen, Kontext zu geben und Teams zu stärken."
+            },
+            "execution": {
+                "title": "Hands-On Umsetzung",
+                "desc": "Ich strategiere nicht nur – ich setze um. Ich schreibe Code, entwerfe Architekturen und deploye in Produktion."
+            }
+        },
+        "proof": {
+            "title": "Der Beweis des Architekten",
+            "p1": "Ich entwerfe nicht nur Systeme; ich sichere ihr Überleben und ihre Skalierbarkeit in der realen Welt.",
+            "p2": "Meine Karriere ist definiert durch komplexe Transformationen – von der Migration von Legacy-Code bis zur Architektur globaler Standards.",
+            "quote": "Prasad kombiniert tiefes technisches Fachwissen mit der seltenen Fähigkeit, komplexe Architekturen C-Level-Stakeholdern zu erklären."
+        },
+        "consulting": {
+            "title": "Tier-1 Beratungshintergrund",
+            "role": "Managementberater bei PricewaterhouseCoopers (PwC)",
+            "desc": "Verbrachte 5+ Jahre mit der Leitung digitaler Transformationsinitiativen.",
+            "highlights": [
+                "Leitete $50M+ Pharma RFPs",
+                "Industrie 4.0 Strategieimplementierung",
+                "Cloud Center of Excellence (CCoE) Aufbau",
+                "Experte für regulatorische Compliance (GxP/HIPAA)"
+            ]
+        },
+        "journey": {
+            "title": "Karrierereise",
+            "challenge": "Geschäftliche Herausforderung:",
+            "delivered": "Was ich geliefert habe:",
+            "viewCaseStudy": "Vollständige Fallstudie ansehen",
+            "buyBlueprint": "Blueprint kaufen",
+            "items": {
+                "brita": {
+                    "role": "Solution Architect",
+                    "challenge": "6 EMEA-Märkte mit veraltetem Shopware-System. Modernisierung zu Shopify Plus ohne Störung von €XX Mio. Jahresumsatz notendig.",
+                    "deliverables": [
+                        "Leitete Shopware-zu-Shopify Plus Discovery und POC für 6 Märkte",
+                        "Entwarf Headless Referenzarchitektur (Shopify + Vue/Nuxt + Magnolia + Azure)",
+                        "Architektierte Mandantenfähiges Governance-Modell für White-Label-Betrieb",
+                        "Prototyping von KI-gesteuerter Suchoptimierung für zukünftige Google AI-Ergebnisse"
+                    ],
+                    "outcomes": {
+                        "markets": "Erfolgreich migriert",
+                        "downtime": "Ausfallzeit erreicht",
+                        "expansion": "Bereit für Marktexpansion"
+                    }
+                },
+                "sine": {
+                    "role": "Senior Technical Project Manager / Lead Architect",
+                    "challenge": "Scope 3 Emissionsverfolgung wegen Datensilos unmöglich. Globaler Standard für CO2-Datenaustausch benötigt.",
+                    "deliverables": [
+                        "Definierte globale Tech-Spezifikation für Product Carbon Footprint mit Microsoft, SAP, Siemens",
+                        "Baute PACT Online Catalog Cloud-Marktplatz von Grund auf neu",
+                        "Leitete WBCSD PACT Standard Adoption mit 20+ Fortune 100 Firmen"
+                    ],
+                    "outcomes": {
+                        "adopted": "Unternehmen haben adaptiert",
+                        "standard": "Standard erstellt",
+                        "boost": "Adoption-Boost"
+                    }
+                },
+                "deliveryHero": {
+                    "role": "Senior Engineering Manager (Freelance)",
+                    "challenge": "Ad-Server-Latenz kostete Umsatz zu Spitzenzeiten. Skalierung auf 5M+ tägliche Transaktionen nötig.",
+                    "deliverables": [
+                        "Re-Architektur auf Go + Redis für <20ms Latenz",
+                        "Implementierung von sekundengenauer Abrechnung und Exact-Once Processing",
+                        "Leitete 10-köpfiges cross-funktionales Team (iOS, Android, Golang)"
+                    ],
+                    "outcomes": {
+                        "revenue": "Umsatzsteigerung",
+                        "transactions": "Tägliche Transaktionen",
+                        "latency": "Latenz"
+                    }
+                },
+                "boehringer": {
+                    "role": "Lead Architect",
+                    "challenge": "F&E-Datensilos verlangsamten Medikamentenentwicklung. GDPR-konformes Data Mesh benötigt.",
+                    "deliverables": [
+                        "Baute Enterprise Data Lake, der KI/ML-Insights um 50% beschleunigte",
+                        "Etablierte Governance-Framework zur Zufriedenheit des deutschen Betriebsrats",
+                        "Automatisierte PII-Maskierung und Zugriffskontrollen"
+                    ],
+                    "outcomes": {
+                        "insights": "Schnellere Insights",
+                        "migration": "Cloud Migration",
+                        "gdpr": "GDPR-konform"
+                    }
+                },
+                "pwc": {
+                    "role": "Senior Manager",
+                    "challenge": "Gesundheitskunden standen vor Compliance-Audits und Legacy-System EOL.",
+                    "deliverables": [
+                        "Leitete $650K Cloud-Modernisierungsprogramm für E-Commerce und Gesundheitssysteme",
+                        "Entwarf Apotheken-Modul, das den App-Traffic um 70% steigerte",
+                        "Mitentwickelte Cloud-basierten Enterprise Data Lake und Domain-Driven Microservices"
+                    ],
+                    "outcomes": {
+                        "savings": "Jährliche Einsparungen",
+                        "traffic": "Traffic-Steigerung",
+                        "audit": "Audit-Feststellungen"
+                    }
+                }
+            }
+        },
+        "forTeams": {
+            "title": "Brauchen Sie bewährte Frameworks?",
+            "badge": "Für Teams",
+            "desc": "Erfinden Sie das Rad nicht neu. Beschleunigen Sie Ihre Roadmap mit meinen kampferprobten Toolkits.",
+            "cta": "Toolkits durchsuchen"
+        },
+        "certifications": {
+            "title": "Zertifizierungen"
+        },
+        "techStack": {
+            "title": "Tech Stack"
+        },
+        "education": {
+            "title": "Ausbildung",
+            "degree": "Bachelor of Engineering (B.E.)",
+            "major": "Informatik",
+            "school": "S.G.S.I.T.S, Indien"
+        },
+        "cta": {
+            "title": "Bereit, Ihr Unternehmen zu modernisieren?",
+            "subtitle": "Ob Sie einen Hands-on-Architekten für eine Migration oder einen strategischen Leiter für Ihr Engineering-Team benötigen, lassen Sie uns sprechen.",
+            "schedule": "Beratung vereinbaren",
+            "viewWork": "Architekturarbeiten ansehen"
+        }
+    },
+    "contactPage": {
+        "title": "Lassen Sie uns Ihr Geschäft transformieren",
+        "subtitle": "Ob Sie ein konkretes Projekt im Sinn haben oder einfach Möglichkeiten erkunden möchten, ich bin hier, um zu helfen.",
+        "book": {
+            "title": "Beratung buchen",
+            "desc": "Überspringen Sie den E-Mail-Verkehr. Vereinbaren Sie ein kostenloses 30-minütiges Discovery-Gespräch.",
+            "cta": "Verfügbarkeit prüfen"
+        },
+        "email": {
+            "title": "E-Mail schreiben",
+            "subtitle": "prasad.sgsits@gmail.com"
+        },
+        "linkedin": {
+            "title": "LinkedIn",
+            "subtitle": "Professionell vernetzen"
+        },
+        "form": {
+            "title": "Nachricht senden",
+            "interestedIn": "Ich interessiere mich für...",
+            "options": {
+                "consulting": "Beratungsprojekt",
+                "product": "Toolkit Kauf",
+                "speaking": "Vortrag / Training",
+                "other": "Sonstiges"
+            },
+            "name": "Name",
+            "email": "E-Mail",
+            "message": "Nachricht",
+            "placeholder": "Erzählen Sie mir von Ihren Projektanforderungen...",
+            "submit": "Nachricht senden",
+            "sending": "Senden...",
+            "sent": "Nachricht gesendet!",
+            "redirect": "Öffne E-Mail-Programm..."
+        }
+    },
+    "climateTech": {
+        "hero": {
+            "badge": "NACHHALTIGE DIGITALE INFRASTRUKTUR",
+            "title": "Dekarbonisierung von Lieferketten durch <0>Datentransparenz</0>",
+            "subtitle": "Förderung von Engagement und Gemeinschaft zur Gestaltung globaler Standards und digitaler Plattformen, die es Fortune-100-Unternehmen ermöglichen, Scope-3-Emissionsdaten sicher und skalierbar auszutauschen.",
+            "cta": {
+                "explore": "PACT Standard erkunden",
+                "discuss": "Strategie besprechen"
+            }
+        },
+        "stats": {
+            "scope": "CO2e Scope Abgedeckt",
+            "partners": "Fortune 100 Partner",
+            "body": "Globales Standardgremium",
+            "arch": "Protokollarchitektur"
+        },
+        "challenge": {
+            "title": "Das Scope-3-Datenproblem",
+            "desc": "90% des CO2-Fußabdrucks eines Unternehmens liegen in der Lieferkette (Scope 3). Dennoch verlassen sich die meisten Unternehmen auf vage Branchendurchschnitte, da sie keine <0>Primärdaten</0> von ihren tausenden Lieferanten erhalten können.",
+            "points": [
+                "Datensilos über inkompatible ERP-Systeme hinweg",
+                "Mangel an standardisierten Berechnungsmethoden",
+                "Sicherheitsbedenken beim Teilen sensibler Lieferantendaten"
+            ]
+        }
+    },
+    "pathSelector": {
+        "title": "Was brauchen Sie?",
+        "subtitle": "Wählen Sie Ihren Weg zum Start",
+        "consulting": {
+            "title": "Individuelle Beratung",
+            "desc": "Komplexe Transformation mit Hands-on Architektur-Expertise",
+            "cta": "Strategiegespräch buchen"
+        },
+        "products": {
+            "title": "Fertige Lösungen",
+            "desc": "Praxiserprobte Toolkits zur Beschleunigung Ihrer Transformation",
+            "cta": "Produkte ansehen",
+            "badge": "Beliebt"
+        },
+        "proof": {
+            "title": "Der Beweis",
+            "desc": "Entdecken Sie Fallstudien und echte Projektergebnisse",
+            "cta": "Fallstudien ansehen"
+        }
+    },
+    "pillars": {
+        "architecture": {
+            "title": "Enterprise Architecture",
+            "desc": "Full-Stack Lösungen von Architektur bis Deployment."
+        },
+        "compliance": {
+            "title": "Compliance-First Migration",
+            "desc": "Spezialisiert auf regulierte Branchen. Null Vorfälle."
+        },
+        "ecosystem": {
+            "title": "Sustainability Tech",
+            "desc": "PACT Protokoll Standardisierung. Globaler Ökosystem-Aufbau."
+        }
+    },
+    "footer": {
+        "tagline": "Strategischer Enterprise Architect & Problemlöser.",
+        "explore": "Entdecken",
+        "expertise": "Expertise",
+        "contact": "Kontakt aufnehmen",
+        "rights": "Alle Rechte vorbehalten.",
+        "builtWith": "Erstellt mit AI"
+    },
+    "productsPage": {
+        "title": "Marktführerschaft durch Technologie",
+        "subtitle": "Bewährte Frameworks und Architekturen aus über 15 Jahren Enterprise Consulting. Sparen Sie Monate an Arbeit und minimieren Sie Risiken.",
+        "price": "Preis",
+        "inquire": "Kaufanfrage stellen",
+        "consultingTitle": "Proprietäre Beratungsansätze",
+        "consultingSubtitle": "Exklusives geistiges Eigentum, verfügbar durch meine Beratungsmandate. Diese sind die Grundlage meiner exzellenten Lieferqualität."
+    },
+    "products": {
+        "ecommerce-blueprint": {
+            "title": "Global Headless eCommerce Blueprint",
+            "desc": "Die exakte Architektur für die Skalierung von BRITA in 15+ Märkte. Inklusive Azure Middleware Patterns und Nuxt.js Vorlagen.",
+            "features": [
+                "Headless Commerce Referenzarchitektur",
+                "Multi-Tenant Governance Modell",
+                "Azure Integration Logic Apps",
+                "Vue.js/Nuxt.js Storefront Boilerplate"
+            ]
+        },
+        "pact-starter-kit": {
+            "title": "PACT Carbon Transparency Starter Kit",
+            "desc": "Beschleunigen Sie den PCF-Datenaustausch. Verbinden Sie sich mit dem WBCSD-Netzwerk mit vorgefertigten Adaptern.",
+            "features": [
+                "API Implementierungs-Guide (OpenAPI)",
+                "Konformitäts-Test-Skripte",
+                "Datenmodell-Mapping-Vorlage",
+                "Inklusive 3 Std. Integrations-Workshop"
+            ]
+        },
+        "data-lake-architecture": {
+            "title": "GDPR-Konformes Data Mesh",
+            "desc": "Enterprise Data Lake Architektur mit automatischer PII-Maskierung und Governance. Validiert in der Pharma-Industrie.",
+            "features": [
+                "AWS Lake Formation Terraform Module",
+                "Automatisierte PII Maskierungs-Pipeline",
+                "Data Governance Charter Vorlage",
+                "Self-Service Portal Wireframes"
+            ]
+        },
+        "display-ads-architecture": {
+            "title": "High-Scale AdTech Architektur",
+            "desc": "Event-getriebene Architektur für Bidding-Systeme mit <20ms Latenz. Bewährt bei Delivery Hero.",
+            "features": [
+                "Golang & Redis Architektur Diagramme",
+                "Kubernetes Skalierungs-Policies",
+                "Exact-Once Processing Patterns",
+                "Lasttest Framework (k6)"
+            ]
+        },
+        "hipaa-compliance-package": {
+            "title": "HIPAA Cloud Migration Paket",
+            "desc": "Genutzt in 12 erfolgreichen Migrationen. Sichern Sie Null-Breach Cloud Architektur nach Audit-Standards.",
+            "features": [
+                "Gap Analyse Vorlage (Excel)",
+                "AWS Architektur Blueprints (HIPAA-Ready)",
+                "Sicherheits-Kontroll-Checkliste",
+                "Inklusive 2 Std. Implementierungs-Beratung"
+            ]
+        },
+        "industry40-toolkit": {
+            "title": "Industry 4.0 Digital Transformation",
+            "desc": "Basierend auf Lonza & AstraZeneca RFPs. Beschleunigen Sie die Digitalisierung der Fertigung und IoT-Adoption.",
+            "features": [
+                "IoT Assessment Framework",
+                "Smart Factory Roadmap",
+                "ROI Kalkulator (Fertigung)",
+                "Inklusive 2 Std. Beratung"
+            ]
+        },
+        "it-effectiveness-assessment": {
+            "title": "IT Effektivitäts-Assessment",
+            "desc": "Benchmarking gegen 100+ Unternehmen. Quantifizieren Sie IT-Wert und Reifegrad für Investoren oder Vorstände.",
+            "features": [
+                "50-Punkte Fragebogen",
+                "Automatisches Scoring & Benchmarking",
+                "Executive Summary Vorlage",
+                "Inklusive 1 Std. Beratung"
+            ]
+        }
+    },
+    "homeHealthcare": {
+        "hero": {
+            "title": "Stecken Sie in der <0>HIPAA-Compliance-Hölle</0>\nwährend der Cloud-Migration?",
+            "subtitle": "Ich habe erfolgreich <0>12 Gesundheitssysteme</0> zu AWS migriert, ohne eine einzige <1>HIPAA-Verletzung</1>, <2>Datenpanne</2> oder <3>Ausfallzeit</3>.",
+            "trustedBy": "Vertraut von Fortune 500 Healthcare & Pharma",
+            "cta": {
+                "primary": "Sehen Sie, wie ich es gemacht habe",
+                "secondary": "Berechnen Sie Ihre Einsparungen"
+            },
+            "stats": {
+                "migrations": {
+                    "value": "12",
+                    "label": "Healthcare Migrationen"
+                },
+                "compliance": {
+                    "value": "100%",
+                    "label": "HIPAA-konform"
+                },
+                "savings": {
+                    "value": "€2M+",
+                    "label": "Kosteneinsparungen"
+                },
+                "breaches": {
+                    "value": "Null",
+                    "label": "Datenpannen"
+                }
+            }
+        },
+        "problems": {
+            "title": "Kommt Ihnen das bekannt vor?",
+            "subtitle": "Dies sind die Top 3 Herausforderungen, denen sich Gesundheitsorganisationen bei der Cloud-Migration stellen müssen.",
+            "item1": {
+                "title": "Wir bestehen HIPAA-Audits nicht",
+                "desc": "Ihr On-Premise-System kann moderne Compliance-Anforderungen nicht erfüllen.",
+                "impact": "Jedes Audit ist ein Glücksspiel, das Sie €50K+ an Feststellungen kosten könnte."
+            },
+            "item2": {
+                "title": "Cloud-Migration scheint zu riskant",
+                "desc": "Sie haben es zweimal versucht. Beide Male wegen Bedenken hinsichtlich Datenpannen gestoppt.",
+                "impact": "Ihr Vorstand wird keinen weiteren gescheiterten Versuch genehmigen."
+            },
+            "item3": {
+                "title": "Uns läuft die Zeit davon",
+                "desc": "Neue HIPAA-Anforderungen in 6 Monaten. Legacy-Anbieter EOL in 12 Monaten.",
+                "impact": "Wenn Sie nicht bald migrieren, drohen Strafen UND Ausfallzeiten."
+            },
+            "solution": "Ich habe das 100 Mal gehört. Hier ist, wie wir es lösen."
+        },
+        "process": {
+            "title": "Der Null-Downtime, 100% konforme Migrationsprozess",
+            "subtitle": "Ein bewährter 4-Phasen-Ansatz, der 12 Mal ohne einen einzigen Vorfall funktioniert hat",
+            "phase1": {
+                "title": "Compliance Audit",
+                "duration": "2 Wochen",
+                "activities": [
+                    "Überprüfung aller HIPAA/FHIR-Kontrollen gegen das aktuelle System",
+                    "Identifizierung von Lücken und Migrationsblockern",
+                    "Erstellung eines konformen AWS-Architektur-Blueprints",
+                    "Definition von Sicherheitskontrollen (IAM, Verschlüsselung, Logging)"
+                ],
+                "deliverable": "20-seitiger Compliance-Bericht (Vorstandsreif)",
+                "outcome": "Klarer Fahrplan ohne Compliance-Risiko"
+            },
+            "phase2": {
+                "title": "AWS Architektur Design",
+                "duration": "2 Wochen",
+                "activities": [
+                    "Design der Produktionsinfrastruktur auf AWS",
+                    "Konfiguration von Sicherheitskontrollen und Monitoring",
+                    "Planung der Datenmigrationsstrategie (Risikominimierung)",
+                    "Erstellung von Rollback-Verfahren für jeden Schritt"
+                ],
+                "deliverable": "Technischer Migrationsplan + Disaster Recovery",
+                "outcome": "Vorstandsgenehmigung gesichert, Risiken gemindert"
+            },
+            "phase3": {
+                "title": "Migration Ausführung",
+                "duration": "8-12 Wochen",
+                "activities": [
+                    "Woche 1-4: Migration nicht-kritischer Systeme (Testprozess)",
+                    "Woche 5-8: Kernsysteme (validiert & überwacht)",
+                    "Woche 9-12: Patientendaten (nur am Wochenende, 24/7 Überwachung)",
+                    "Kontinuierliche Validierung bei jedem Schritt"
+                ],
+                "deliverable": "Vollständig migriertes, betriebsbereites System",
+                "outcome": "Null Ausfallzeit, alle Systeme laufen auf AWS"
+            },
+            "phase4": {
+                "title": "Optimierung & Validierung",
+                "duration": "4 Wochen",
+                "activities": [
+                    "Kostenoptimierung (Ziel 30% Einsparung)",
+                    "Performance-Tuning (3x schnellere Abfragen)",
+                    "Vollständige Compliance-Dokumentation",
+                    "Schulung Ihres Teams im AWS-Betrieb"
+                ],
+                "deliverable": "Optimiertes, dokumentiertes, konformes System",
+                "outcome": "30% Kostenreduktion + prüfungssichere Dokumentation"
+            },
+            "labels": {
+                "deliverable": "LIEFEROBJEKT",
+                "outcome": "ERGEBNIS",
+                "activities": "Aktivitäten:"
+            },
+            "stats": {
+                "migrations": "Erfolgreiche Migrationen",
+                "breaches": "Datenpannen",
+                "auditRate": "Audit-Bestehensquote",
+                "savings": "Kundeneinsparungen"
+            }
+        },
+        "roi": {
+            "title": "Berechnen Sie Ihre potenziellen Einsparungen",
+            "subtitle": "Sehen Sie, was Sie mit einer korrekt durchgeführten Healthcare-Cloud-Migration sparen könnten"
+        },
+        "proof": {
+            "title": "Echte Ergebnisse von echten Projekten",
+            "subtitle": "Nehmen Sie mich nicht beim Wort – hier ist der Beweis",
+            "cta": "Vollständige Fallstudie ansehen",
+            "seeAll": "Alle Projekte ansehen"
+        },
+        "faq": {
+            "title": "Häufige Fragen",
+            "subtitle": "Antworten auf Ihre Bedenken zur Cloud-Migration im Gesundheitswesen",
+            "q1": {
+                "q": "Was, wenn wir während der Migration eine Datenpanne haben?",
+                "a": "Null-Downtime-Strategie bedeutet, dass Ihr Produktionssystem nie offline geht. Daten werden während der Übertragung (TLS 1.3) und im Ruhezustand (AES-256) verschlüsselt. Wir migrieren in Phasen mit Rollback-Verfahren bei jedem Schritt. In 12 Migrationen hatten wir nie eine Panne. Jede Migration beinhaltet ein umfassendes Sicherheitsaudit vor, während und nach dem Prozess."
+            },
+            "q2": {
+                "q": "Wie lange werden wir offline sein?",
+                "a": "Null Ausfallzeit. Migrationen finden außerhalb der Geschäftszeiten statt, während parallele Systeme laufen. Benutzer bemerken keine Unterbrechung. Wir verwenden Blue-Green-Deployment-Strategien und können bei Bedarf sofort zurückrollen. Ihr Team arbeitet während des gesamten Prozesses normal weiter."
+            },
+            "q3": {
+                "q": "Was, wenn sich die HIPAA-Anforderungen während der Migration ändern?",
+                "a": "Die Architektur ist auf Compliance-Flexibilität ausgelegt. Wir überwachen regulatorische Änderungen kontinuierlich und passen den Plan proaktiv an. Ihr System wird aktuelle UND zukünftige Anforderungen erfüllen. Wir planen Pufferzeiten und Notfallpläne für regulatorische Updates ein."
+            },
+            "q4": {
+                "q": "Wir haben kein Budget dafür.",
+                "a": "Der durchschnittliche ROI beträgt 285% im ersten Jahr. Die meisten Kunden sparen genug, um das Projekt innerhalb von 8 Monaten allein durch Infrastrukturoptimierung zu bezahlen. Nutzen Sie den ROI-Rechner oben, um IHRE potenziellen Einsparungen zu sehen. Viele Organisationen stellen fest, dass sich die Migration durch vermiedene Audit-Strafen und reduzierte Betriebskosten selbst bezahlt."
+            },
+            "q5": {
+                "q": "Wie kann ich sicher sein, dass Sie uns nicht hängen lassen?",
+                "a": "Jedes Projekt beinhaltet 90 Tage Support nach der Migration und vollständige Dokumentation. Ich schule Ihr Team, damit es das neue System unabhängig betreiben kann. Sie erhalten Runbooks, Architekturdiagramme und Zugang zu mir für Fragen. Mehrere Kunden von vor 3+ Jahren melden sich gelegentlich immer noch – ich bin immer erreichbar."
+            }
+        },
+        "finalCta": {
+            "title": "Lassen Sie uns Ihre Migration besprechen",
+            "subtitle": "Wählen Sie den Weg, der am besten zu Ihnen passt",
+            "urgent": {
+                "title": "Ich brauche das jetzt",
+                "desc": "Für dringende Migrationen mit engen Fristen",
+                "cta": "30-Min Strategiegespräch buchen",
+                "note": "Verfügbar diese Woche: Di 14 Uhr, Do 10 Uhr, Fr 15 Uhr MEZ"
+            },
+            "research": {
+                "title": "Noch am Recherchieren",
+                "desc": "Holen Sie sich kostenlose Ressourcen, um Ihre Optionen zu bewerten",
+                "cta": "HIPAA-Compliance-Checkliste erhalten",
+                "note": "Kostenloses PDF + E-Mail-Nurture-Sequenz"
+            },
+            "riskReversal": {
+                "free": "Die ersten 30 Minuten sind kostenlos, unverbindlich",
+                "referral": "Wenn ich nicht helfen kann, verweise ich Sie an jemanden, der es kann"
+            }
+        }
+    },
+    "roiCalculator": {
+        "tabs": {
+            "cloud": "Cloud Migration",
+            "legacy": "Legacy Mod",
+            "carbon": "Carbon / ESG"
+        },
+        "title": {
+            "cloud": "ROI berechnen: Cloud Compliance",
+            "legacy": "ROI berechnen: Modernisierung",
+            "carbon": "ROI berechnen: Nachhaltigkeit"
+        },
+        "description": {
+            "cloud": "Schätzen Sie Einsparungen durch reduziertes Compliance-Risiko und Infrastrukturoptimierung.",
+            "legacy": "Quantifizieren Sie den Wert der Beseitigung technischer Schulden und der Verbesserung der Zuverlässigkeit.",
+            "carbon": "Sehen Sie, wie viel manuellen Aufwand Sie mit PACT-Automatisierung sparen können."
+        },
+        "inputs": {
+            "companySize": "Unternehmensgröße",
+            "select": "Auswählen...",
+            "sizes": {
+                "small": "Klein (< 50)",
+                "medium": "Mittel (50-500)",
+                "large": "Groß (> 500)"
+            },
+            "cloudMonthlySpend": "Monatliche Cloud-Ausgaben (€)",
+            "complianceStatus": "Compliance-Status",
+            "complianceOptions": {
+                "non_compliant": "Nicht konform",
+                "partially": "Teilweise konform",
+                "compliant": "Konform"
+            },
+            "annualMaintenance": "Jährliche Wartungskosten (€)",
+            "downtimeHours": "Ausfallstunden / Jahr",
+            "supplierCount": "Anzahl der Lieferanten",
+            "manualHours": "Manuelle Stunden/Jahr/Lieferant"
+        },
+        "cta": {
+            "calculate": "Einsparungen berechnen",
+            "calculating": "Berechne..."
+        },
+        "results": {
+            "title": "Potenzielle jährliche Einsparungen",
+            "confidence": "Konfidenz-Score",
+            "breakdown": "Aufschlüsselung",
+            "similarCaseStudy": "Ähnliche Fallstudie",
+            "readCaseStudy": "Fallstudie lesen"
+        }
+    },
+    "quickStats": {
+        "title": "Auf einen Blick",
+        "available": "Unabhängiger Berater",
+        "schedule": "Interview vereinbaren",
+        "resume": "Lebenslauf herunterladen",
+        "labels": {
+            "experience": "Jahre Erfahrung",
+            "projects": "Gelieferte Projekte",
+            "savings": "Kosteneinsparungen",
+            "teamSize": "Teamgröße geführt",
+            "industries": "Branchen",
+            "certifications": "Zertifizierungen"
+        }
+    },
+    "home": {
+        "whatICanHelpWith": {
+            "title": "Wobei ich Ihnen helfen kann",
+            "subtitle": "Drei Kernbereiche, in denen ich Geschäftsergebnisse erziele"
+        },
+        "featuredCaseStudies": {
+            "title": "Ausgewählte Fallstudien",
+            "viewAll": "Alle Projekte ansehen",
+            "new": "Neu",
+            "impact": "Wirkung",
+            "viewCaseStudy": "Fallstudie ansehen"
+        },
+        "whyWorkWithMe": {
+            "title": "Warum mit mir arbeiten",
+            "subtitle": "Mehr als technische Fähigkeiten – es geht um meine Arbeitsweise",
+            "quote": "\"Ich löse Geschäftsprobleme durch Menschen, Prozesse und Technologie – in dieser Reihenfolge.\"",
+            "values": {
+                "businessFirst": {
+                    "title": "Business-First",
+                    "desc": "Jede Entscheidung wird am geschäftlichen Einfluss gemessen, nicht am technischen Ego"
+                },
+                "innovation": {
+                    "title": "Innovationsgetrieben",
+                    "desc": "Kreative Problemlösung, wenn konventionelle Ansätze scheitern"
+                },
+                "servantLeader": {
+                    "title": "Servant Leader",
+                    "desc": "Empathischer, kollaborativer Ansatz, der Teams stärkt"
+                },
+                "handsOn": {
+                    "title": "Hands-On",
+                    "desc": "Von Strategie bis Code und Deployment – ich setze um, berate nicht nur"
+                }
+            }
+        },
+        "readyToTransform": {
+            "title": "Bereit für die Transformation?",
+            "cta": "Wählen Sie Ihren Weg"
+        }
+    },
+    "servicesPage": {
+        "title": "Architektur-Bewertungsdienstleistungen",
+        "subtitle": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU. Validieren Sie Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen, bevor Sie den falschen Weg einschlagen.",
+        "timeline": "Zeitraum",
+        "price": "Preis",
+        "for": "Für",
+        "deliverables": "Leistungen",
+        "bookCall": "Kostenloses Erstgespräch buchen",
+        "ctaTitle": "Bereit, Ihre Architektur-Entscheidungen zu validieren?",
+        "ctaSubtitle": "Buchen Sie ein kostenloses Erstgespräch, um Ihre spezifische Herausforderung zu besprechen.",
+        "bookDiscoveryCall": "Kostenloses Erstgespräch buchen"
+    },
+    "services": {
+        "dueDiligence": {
+            "title": "Technische Due-Diligence-Prüfung",
+            "subtitle": "Umfassende Architekturprüfung für M&A, Investitionen oder Übernahmen. Identifizieren Sie technische Risiken, Schulden und Compliance-Lücken, bevor Sie sich festlegen.",
+            "timeline": "2 Wochen",
+            "price": "€4.000 – €7.000",
+            "for": "PE-Firmen, Investoren, CTOs von übernehmenden Unternehmen",
+            "deliverables": [
+                "Architekturprüfung",
+                "Risiken & Technische-Schulden-Register",
+                "Sicherheits-/Compliance-Lücken (übergeordnet)",
+                "30/60/90-Tage-Empfehlungen"
+            ]
+        },
+        "cloudMigration": {
+            "title": "Cloud-Migrationsbereitschaftsprüfung",
+            "subtitle": "Bewerten Sie Ihre Bereitschaft für AWS/Azure/GCP-Migration. Verstehen Sie Risiken, Sequenzierung und erstellen Sie eine praktische Roadmap.",
+            "timeline": "3 Wochen",
+            "price": "€5.000 – €9.000",
+            "for": "Unternehmen, die eine AWS/Azure/GCP-Migration planen",
+            "deliverables": [
+                "Ist-Zustands-Mapping",
+                "Migrationsrisiken + Sequenzierung",
+                "Ziel-Referenzarchitektur",
+                "Praktische Migrations-Roadmap"
+            ]
+        },
+        "platformEvaluation": {
+            "title": "Plattform-Bewertungsprüfung",
+            "subtitle": "Treffen Sie fundierte Entscheidungen zur Plattform-Modernisierung. Bewerten Sie Optionen, Kompromisse und erhalten Sie Architektur-Blueprints für Ihren gewählten Weg.",
+            "timeline": "2 Wochen",
+            "price": "€4.000 – €7.000",
+            "for": "Plattform-Modernisierungsentscheidungen (Shopware→Shopify, CMS, API-Gateway, etc.)",
+            "deliverables": [
+                "Entscheidungsmatrix",
+                "Optionen & Kompromisse",
+                "Go/No-Go-Empfehlung",
+                "Architektur-Blueprint-Entwurf"
+            ]
+        }
+    }
+}
+```
+
+## File: ./src/locales/en/projects.json
+```json
+{
+    "photography-coach-ai": {
+        "header": {
+            "eyebrow": "GOOGLE DEEPMIND COMPETITION PROJECT",
+            "title": "Photography Coach AI: Productionizing Gemini 3 Pro"
+        },
+        "challenge": {
+            "situation": "Most AI tools are black boxes. Photographers needed transparent, actionable coaching. The technical challenge was productionizing Gemini 3 Pro while keeping token costs viable."
+        },
+        "cta": {
+            "primary": "Try Live Demo",
+            "secondary": "View Code"
+        }
+    },
+    "pact-pcf-data-exchange-network": {
+        "header": {
+            "eyebrow": "GLOBAL STANDARD ADOPTION",
+            "title": "Architecting the Global Product Carbon Footprint (PCF) Data Exchange Network"
+        },
+        "challenge": {
+            "situation": "Global supply chains lacked a standardized way to exchange Product Carbon Footprint (PCF) data, making Scope 3 emissions tracking impossible. Major corporations (Microsoft, SAP, Siemens) needed a unified language and protocol."
+        },
+        "cta": {
+            "primary": "View Ecosystem",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "brita-ecommerce-modernization": {
+        "header": {
+            "eyebrow": "MULTI-MARKET ROLLOUT",
+            "title": "Modernizing Global eCommerce: From Monolith to Headless Architecture"
+        },
+        "challenge": {
+            "situation": "Legacy Shopware platform could not support rapid global expansion. Managing 15+ markets with monolithic architecture was slow and costly."
+        },
+        "cta": {
+            "primary": "Book Consultation",
+            "secondary": "View Architecture"
+        }
+    },
+    "delivery-hero-adtech": {
+        "header": {
+            "eyebrow": "$20M REVENUE UPLIFT",
+            "title": "Scaling Display Ads Platform to 5M+ Daily Transactions"
+        },
+        "challenge": {
+            "situation": "Existing ad server crashed during peak lunch hours. Latency > 200ms caused lost impressions and revenue."
+        },
+        "cta": {
+            "primary": "Scale Your System",
+            "secondary": "View Architecture"
+        }
+    },
+    "ai-photography-coach": {
+        "header": {
+            "eyebrow": "PRODUCTION AI ENGINEERING",
+            "title": "Building an Agentic AI Photography Coach with Full Observability"
+        },
+        "challenge": {
+            "situation": "Most AI demos lack production readiness (observability, cost control, evaluation). Wanted to prove end-to-end engineering excellence."
+        },
+        "cta": {
+            "primary": "Try Demo",
+            "secondary": "GitHub Repo"
+        }
+    },
+    "devops-maturity-framework": {
+        "header": {
+            "eyebrow": "REUSABLE FRAMEWORK",
+            "title": "Enterprise DevOps Maturity Assessment & Transformation Model"
+        },
+        "challenge": {
+            "situation": "Many organizations claimed to do DevOps but lacked standardization, leading to \"fragile agile\" and unstable releases."
+        },
+        "cta": {
+            "primary": "Assess Your Org",
+            "secondary": "View Framework"
+        }
+    },
+    "app-rationalization-cloud-readiness": {
+        "header": {
+            "eyebrow": "STRATEGIC DECISION MAKING",
+            "title": "Application Rationalization & Cloud Readiness Framework"
+        },
+        "challenge": {
+            "situation": "Enterprises with 1000+ apps struggled to decide what to move to cloud, leading to stalled migrations or \"lift-and-shift\" cost disasters."
+        },
+        "cta": {
+            "primary": "Plan Migration",
+            "secondary": "See Template"
+        }
+    },
+    "mainframe-to-java-migration": {
+        "header": {
+            "eyebrow": "LEGACY TRANSFORMATION",
+            "title": "Mainframe-to-Java Migration Framework"
+        },
+        "challenge": {
+            "situation": "Critical core banking/insurance systems locked in COBOL/mainframes with retiring talent pool and exploding MIPS costs."
+        },
+        "cta": {
+            "primary": "Modernize Legacy",
+            "secondary": "View Approach"
+        }
+    },
+    "hipaa-fhir-compliance": {
+        "header": {
+            "eyebrow": "REGULATORY GOVERNANCE",
+            "title": "HIPAA/FHIR/HL7 Compliance Governance Framework"
+        },
+        "challenge": {
+            "situation": "Healthcare orgs struggling to meet new interoperability rules (Cures Act) and secure patient data in the cloud."
+        },
+        "cta": {
+            "primary": "Secure Your Data",
+            "secondary": "View Framework"
+        }
+    },
+    "boehringer-aiml-platform": {
+        "header": {
+            "eyebrow": "50% FASTER INSIGHTS",
+            "title": "Medical Research AI/ML Platform & Data Lake"
+        },
+        "challenge": {
+            "situation": "R&D data siloed in PDFs and disparate systems. Researchers spent too much time searching."
+        },
+        "cta": {
+            "primary": "Build Data Platform",
+            "secondary": "View Details"
+        }
+    },
+    "telecom-future-pricing-platform": {
+        "header": {
+            "eyebrow": "EVENT-DRIVEN ARCHITECTURE",
+            "title": "Future Pricing Platform (FPP) Transformation"
+        },
+        "challenge": {
+            "situation": "Manual pricing updates took days/weeks. Needed real-time dynamic pricing."
+        },
+        "cta": {
+            "primary": "Discuss Modernization",
+            "secondary": "View Solution"
+        }
+    },
+    "innova-claims-processing": {
+        "header": {
+            "eyebrow": "80% EFFICIENCY GAIN",
+            "title": "Claims Processing Data Platform"
+        },
+        "challenge": {
+            "situation": "Manual claims processing was slow and error-prone."
+        },
+        "cta": {
+            "primary": "Automate Operations",
+            "secondary": "View Details"
+        }
+    },
+    "bofa-account-opening": {
+        "header": {
+            "eyebrow": "PROCESS OPTIMIZATION",
+            "title": "Streamlined Account Opening for Financial Advisors"
+        },
+        "challenge": {
+            "situation": "Complex onboarding process frustrated advisors and clients."
+        },
+        "cta": {
+            "primary": "Improve UX",
+            "secondary": "View Details"
+        }
+    },
+    "ileap-logistics-emissions": {
+        "header": {
+            "eyebrow": "SUPPLY CHAIN DECARBONIZATION",
+            "title": "iLEAP: Logistics Emissions Integration Project"
+        },
+        "challenge": {
+            "situation": "Up to 60% of product Scope 3 emissions come from logistics, but data was disconnected."
+        },
+        "cta": {
+            "primary": "Learn More",
+            "secondary": "View Details"
+        }
+    },
+    "pwc-healthcare-modernization": {
+        "header": {
+            "eyebrow": "$500K SAVED",
+            "title": "Healthcare System Modernization & Mobile App"
+        },
+        "challenge": {
+            "situation": "Legacy system needed modernization and mobile access."
+        },
+        "cta": {
+            "primary": "Modernize Apps",
+            "secondary": "View Details"
+        }
+    },
+    "voice-of-customer-360": {
+        "header": {
+            "eyebrow": "CUSTOMER EXPERIENCE",
+            "title": "Voice of Customer (VoC) 360 Model"
+        },
+        "challenge": {
+            "situation": "Insurers had no single view of customer sentiment."
+        },
+        "cta": {
+            "primary": "Build 360 View",
+            "secondary": "View Details"
+        }
+    }
+}
+```
+
+## File: ./src/locales/en/translation.json
+```json
+{
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "tryAgain": "Try Again",
+        "learnMore": "Learn More",
+        "viewMore": "View More",
+        "readMore": "Read More",
+        "close": "Close",
+        "viewProject": "View Project",
+        "viewAllProjects": "View All Projects"
+    },
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "frameworks": "Frameworks",
+        "about": "About",
+        "projects": "Projects",
+        "engagement": "Engagement",
+        "contact": "Contact",
+        "consulting": "Consulting",
+        "architectureEngine": "Architecture Assistant (Beta)",
+        "toggleLanguage": "Toggle Language",
+        "toggleTheme": "Toggle Theme"
+    },
+    "hero": {
+        "title": "Independent Architecture Assessments for EU Mid-Market Companies",
+        "subtitle": "I help CTOs and engineering leaders validate cloud migration, platform modernization, and architecture decisions—before committing to the wrong path.",
+        "cta": "Book Discovery Call",
+        "carousel": "Trusted by Fortune 500 Leaders",
+        "stats": {
+            "savings": {
+                "value": "$1M+",
+                "label": "Cost Savings (Program Impact)"
+            },
+            "revenue": {
+                "value": "20%",
+                "label": "Business Impact Delivered"
+            },
+            "efficiency": {
+                "value": "30%",
+                "label": "Efficiency Gains"
+            },
+            "impact": {
+                "value": "100+",
+                "label": "Companies Impacted"
+            }
+        },
+        "values": {
+            "innovation": {
+                "title": "Innovation-Driven",
+                "desc": "Out-of-box thinking for complex challenges"
+            },
+            "business": {
+                "title": "Business-First",
+                "desc": "Revenue, cost, and impact focused"
+            },
+            "leadership": {
+                "title": "Servant Leader",
+                "desc": "Empathetic, collaborative approach"
+            },
+            "fullstack": {
+                "title": "Full-Stack",
+                "desc": "Design to deployment to leadership"
+            }
+        },
+        "recruiter": {
+            "badge": "For Recruiters",
+            "title": "Hiring an Enterprise Architect?",
+            "desc": "Get the executive summary of my 15+ years experience.",
+            "download": "Download Resume",
+            "portfolio": "View Portfolio"
+        }
+    },
+    "howItWork": {
+        "title": "How I Approach Problems",
+        "subtitle": "Not through technology for technology's sake—but through business-first, human-centered innovation",
+        "resultTagline": "Result: Solutions that work for business, teams, and users",
+        "steps": {
+            "1": {
+                "title": "Business Outcomes First",
+                "desc": "I start with: \"What business problem are we solving?\" Not: \"What technology should we use?\"",
+                "example": "Delivery Hero needed revenue growth → Display Ads platform → 20% revenue increase"
+            },
+            "2": {
+                "title": "Out-of-Box Thinking",
+                "desc": "I challenge assumptions and find creative solutions others miss. Innovation over convention.",
+                "example": "BRITA: Prototyped AI-driven search optimization to future-proof for Google AI results"
+            },
+            "3": {
+                "title": "Empathetic Leadership",
+                "desc": "I lead by enabling others, not commanding. Collaboration and empathy over hierarchy.",
+                "example": "PACT: Aligned 100+ competing companies through facilitation, not force"
+            },
+            "4": {
+                "title": "Hands-On Execution",
+                "desc": "I don't just advise—I architect, code, and deploy. From design to production.",
+                "example": "SINE: Designed AND implemented PACT Catalog (Next.js, React, Java Spring Boot)"
+            }
+        }
+    },
+    "about": {
+        "title": "Prasad Tilloo",
+        "role": "Senior Engineering Leader & Enterprise Architect",
+        "description": "15+ years delivering transformational outcomes across Cloud Modernization, Legacy System Migration, and AI/ML Infrastructure for Fortune 100 clients.",
+        "buttons": {
+            "contact": "Contact Me",
+            "linkedin": "LinkedIn",
+            "github": "GitHub"
+        },
+        "stats": {
+            "exp": "Years Experience",
+            "value": "Project Value",
+            "industries": "Industries",
+            "delivery": "Delivery Rate"
+        },
+        "philosophy": {
+            "title": "My Leadership Philosophy",
+            "quote": "The best solutions come from understanding both the business problem AND the people solving it.",
+            "attribution": "— My approach to every project",
+            "outcomes": {
+                "title": "Business Outcomes Over Technical Elegance",
+                "desc": "I measure success by business impact, not technical complexity. A simple solution that drives revenue beats an elegant one that doesn't."
+            },
+            "innovation": {
+                "title": "Innovation Through Creative Problem-Solving",
+                "desc": "I challenge assumptions and think outside the box. When everyone says 'it can't be done,' I ask 'why not?'"
+            },
+            "leadership": {
+                "title": "Servant Leadership & Empathy",
+                "desc": "I lead by enabling others, not commanding them. My role is to remove obstacles, provide context, and empower teams."
+            },
+            "execution": {
+                "title": "Hands-On Execution",
+                "desc": "I don't just strategize—I execute. I write code, design architectures, and deploy to production."
+            }
+        },
+        "proof": {
+            "title": "The Architect's Proof",
+            "p1": "I don't just design systems; I ensure their survival and scale in the real world.",
+            "p2": "My career has been defined by complex transformations—from migrating legacy code to architecting global standards.",
+            "quote": "Prasad combines deep technical expertise with a rare ability to explain complex architectures to C-level stakeholders."
+        },
+        "consulting": {
+            "title": "Tier-1 Consulting Pedigree",
+            "role": "PricewaterhouseCoopers (PwC) Management Consultant",
+            "desc": "Spent 5+ years leading high-stakes digital transformation initiatives.",
+            "highlights": [
+                "Led $50M+ Pharma RFPs",
+                "Industry 4.0 Strategy Implementation",
+                "Cloud Center of Excellence (CCoE) Setup",
+                "Regulatory Compliance (GxP/HIPAA) Expert"
+            ]
+        },
+        "journey": {
+            "title": "Career Journey",
+            "challenge": "Business Challenge:",
+            "delivered": "What I Delivered:",
+            "viewCaseStudy": "View Full Case Study",
+            "buyBlueprint": "Buy Blueprint",
+            "items": {
+                "brita": {
+                    "role": "Solution Architect",
+                    "challenge": "6 EMEA markets running on outdated Shopware. Needed to modernize to Shopify Plus without disrupting €XX million in annual e-commerce revenue.",
+                    "deliverables": [
+                        "Led Shopware-to-Shopify Plus discovery and POC across 6 markets",
+                        "Designed headless reference architecture (Shopify + Vue/Nuxt + Magnolia + Azure)",
+                        "Architected multi-tenant governance enabling white-label operations",
+                        "Prototyped AI-driven search optimization for future Google AI results"
+                    ],
+                    "outcomes": {
+                        "markets": "Successfully Migrated",
+                        "downtime": "Downtime Achieved",
+                        "expansion": "Market Expansion Ready"
+                    }
+                },
+                "sine": {
+                    "role": "Senior Technical Project Manager / Lead Architect",
+                    "challenge": "Scope 3 emissions tracking was impossible due to data silos. Need a global standard for carbon data exchange.",
+                    "deliverables": [
+                        "Defined global Tech Specification for Product Carbon Footprint with Microsoft, SAP, Siemens",
+                        "Built PACT Online Catalog cloud marketplace from scratch",
+                        "Led WBCSD PACT Standard adoption with 20+ Fortune 100 firms"
+                    ],
+                    "outcomes": {
+                        "adopted": "Companies Adopted",
+                        "standard": "Standard Created",
+                        "boost": "Adoption Boost"
+                    }
+                },
+                "deliveryHero": {
+                    "role": "Senior Engineering Manager (Freelance)",
+                    "challenge": "Ad server latency costing revenue during peak hours. Need to scale to 5M+ daily transactions.",
+                    "deliverables": [
+                        "Re-architected to Go + Redis for <20ms latency",
+                        "Implemented per-second billing and exact-once processing",
+                        "Led 10-member cross-functional team (iOS, Android, Golang)"
+                    ],
+                    "outcomes": {
+                        "revenue": "Revenue Increase",
+                        "transactions": "Daily Transactions",
+                        "latency": "Latency"
+                    }
+                },
+                "boehringer": {
+                    "role": "Lead Architect",
+                    "challenge": "R&D data silos slowing drug discovery. Need GDPR-compliant Data Mesh.",
+                    "deliverables": [
+                        "Built Enterprise Data Lake accelerating AI/ML insights by 50%",
+                        "Established governance framework satisfying German Works Council",
+                        "Automated PII masking and access controls"
+                    ],
+                    "outcomes": {
+                        "insights": "Faster Insights",
+                        "migration": "Cloud Migration",
+                        "gdpr": "GDPR Compliant"
+                    }
+                },
+                "pwc": {
+                    "role": "Senior Manager",
+                    "challenge": "Healthcare clients facing compliance audits and legacy system EOL.",
+                    "deliverables": [
+                        "Led $650K cloud modernization program for e-commerce and healthcare systems",
+                        "Designed pharmacy module boosting mobile app traffic by 70%",
+                        "Co-developed cloud-based Enterprise Data Lake and domain-driven microservices"
+                    ],
+                    "outcomes": {
+                        "savings": "Annual Savings",
+                        "traffic": "Traffic Boost",
+                        "audit": "Audit Findings"
+                    }
+                }
+            }
+        },
+        "forTeams": {
+            "title": "Need proven frameworks?",
+            "badge": "For Teams",
+            "desc": "Don't reinvent the wheel. Accelerate your roadmap with my battle-tested toolkits.",
+            "cta": "Browse Toolkits"
+        },
+        "certifications": {
+            "title": "Certifications"
+        },
+        "techStack": {
+            "title": "Tech Stack"
+        },
+        "education": {
+            "title": "Education",
+            "degree": "Bachelor of Engineering (B.E.)",
+            "major": "Computer Science",
+            "school": "S.G.S.I.T.S, India"
+        },
+        "cta": {
+            "title": "Ready to modernize your enterprise?",
+            "subtitle": "Whether you need a hands-on architect for a migration or a strategic leader for your engineering team, let's talk.",
+            "schedule": "Schedule Consultation",
+            "viewWork": "View Architecture Work"
+        }
+    },
+    "climateTech": {
+        "hero": {
+            "badge": "SUSTAINABLE DIGITAL INFRASTRUCTURE",
+            "title": "Decarbonizing Supply Chains through <0>Data Transparency</0>",
+            "subtitle": "Facilitating engagement and community for shaping the global standards and digital platforms that enable Fortune 100 companies to exchange Scope 3 emissions data securely and at scale.",
+            "cta": {
+                "explore": "Explore PACT Standard",
+                "discuss": "Discuss Your Strategy"
+            }
+        },
+        "stats": {
+            "scope": "CO2e Scope Covered",
+            "partners": "Fortune 100 Partners",
+            "body": "Global Standard Body",
+            "arch": "Protocol Architecture"
+        },
+        "challenge": {
+            "title": "The Scope 3 Data Problem",
+            "desc": "90% of a company's carbon footprint lies in its supply chain (Scope 3). Yet, most companies rely on vague industry averages because they cannot get <0>primary data</0> from their thousands of suppliers.",
+            "points": [
+                "Data silos across incompatible ERP systems",
+                "Lack of standardized calculation methodologies",
+                "Security concerns sharing sensitive supplier data"
+            ]
+        }
+    },
+    "pathSelector": {
+        "title": "What Do You Need?",
+        "subtitle": "Choose your path to get started",
+        "consulting": {
+            "title": "Custom Consulting",
+            "desc": "Complex transformation requiring hands-on architecture expertise",
+            "cta": "Book Strategy Call"
+        },
+        "products": {
+            "title": "Ready-Made Solutions",
+            "desc": "Battle-tested toolkits to accelerate your transformation",
+            "cta": "Browse Products",
+            "badge": "Most Popular"
+        },
+        "proof": {
+            "title": "See the Proof",
+            "desc": "Explore case studies and real project outcomes",
+            "cta": "View Case Studies"
+        }
+    },
+    "pillars": {
+        "architecture": {
+            "title": "Enterprise Architecture",
+            "desc": "Full-stack solutions from architecture to deployment."
+        },
+        "compliance": {
+            "title": "Compliance-First Migration",
+            "desc": "Specialized in regulated industries. Zero breaches."
+        },
+        "ecosystem": {
+            "title": "Sustainability Tech",
+            "desc": "Led PACT Protocol standardization. Global ecosystem building."
+        }
+    },
+    "footer": {
+        "tagline": "Strategic Enterprise Architect & Business Problem Solver.",
+        "explore": "Explore",
+        "expertise": "Expertise",
+        "contact": "Get in Touch",
+        "rights": "All rights reserved.",
+        "builtWith": "Built with AI"
+    },
+    "productsPage": {
+        "title": "Battle-Tested Toolkits",
+        "subtitle": "Proven intellectual property and frameworks developed over 15+ years of enterprise consulting. Save months of effort and reduce risk.",
+        "price": "Price",
+        "inquire": "Inquire to Purchase",
+        "consultingTitle": "Proprietary Consulting Methodologies",
+        "consultingSubtitle": "Exclusive intellectual property available through my consulting engagements. These are not sold separately but are the foundation of my delivery excellence."
+    },
+    "products": {
+        "back": "Back to Toolkit Catalog",
+        "ecommerce-blueprint": {
+            "title": "Global Headless eCommerce Blueprint",
+            "desc": "The exact architecture used to scale BRITA to 15+ markets. Includes Azure middleware patterns and Nuxt.js store templates.",
+            "features": [
+                "Headless Commerce Reference Architecture",
+                "Multi-Tenant Governance Model",
+                "Azure Integration Logic Apps",
+                "Vue.js/Nuxt.js Storefront Boilerplate"
+            ]
+        },
+        "pact-starter-kit": {
+            "title": "PACT Carbon Transparency Starter Kit",
+            "desc": "Accelerate PCF data exchange implementation. Connect to the WBCSD network with pre-built adaptors.",
+            "features": [
+                "API Implementation Guide (OpenAPI)",
+                "Conformance Testing Scripts",
+                "Data Model Mapping Template",
+                "Includes 3hr integration workshop"
+            ]
+        },
+        "data-lake-architecture": {
+            "title": "GDPR-Compliant Data Mesh Framework",
+            "desc": "Enterprise Data Lake architecture with automated PII masking and governance. Validated in pharma.",
+            "features": [
+                "AWS Lake Formation Terraform Modules",
+                "Automated PII Masking Pipeline",
+                "Data Governance Charter Template",
+                "Self-Service Portal Wireframes"
+            ]
+        },
+        "display-ads-architecture": {
+            "title": "High-Scale AdTech Architecture",
+            "desc": "Event-driven architecture for <20ms latency bidding systems. Proven at Delivery Hero.",
+            "features": [
+                "Golang & Redis Architecture Diagrams",
+                "Kubernetes Scaling Policies",
+                "Exact-Once Processing Patterns",
+                "Load Testing Framework (k6)"
+            ]
+        },
+        "hipaa-compliance-package": {
+            "title": "HIPAA Cloud Migration Compliance Package",
+            "desc": "Used in 12 successful migrations. Ensure zero-breach cloud architecture to audit standards.",
+            "features": [
+                "Gap Analysis Template (Excel)",
+                "AWS Architecture Blueprints (HIPAA-Ready)",
+                "Security Controls Checklist",
+                "Includes 2hr implementation consultation"
+            ]
+        },
+        "industry40-toolkit": {
+            "title": "Industry 4.0 Digital Transformation Toolkit",
+            "desc": "Based on Lonza & AstraZeneca RFPs. Accelerate manufacturing digitization and IoT adoption.",
+            "features": [
+                "IoT Assessment Framework",
+                "Smart Factory Implementation Roadmap",
+                "ROI Calculator (Manufacturing-Specific)",
+                "Includes 2hr consultation"
+            ]
+        },
+        "it-effectiveness-assessment": {
+            "title": "IT Effectiveness Assessment Framework",
+            "desc": "Benchmark against 100+ companies. Quantify IT value and maturity for investors or boards.",
+            "features": [
+                "50-Point Assessment Questionnaire",
+                "Automated Scoring & Benchmarking",
+                "Executive Summary Template",
+                "Includes 1hr consultation"
+            ]
+        },
+        "devops-maturity-assessment": {
+            "title": "DevOps Maturity Assessment",
+            "desc": "Evaluate your CI/CD pipelines, culture, and automation levels against industry best practices.",
+            "features": [
+                "DORA Metrics Analysis",
+                "Pipeline Bottle-neck Identification",
+                "Culture & Process Review",
+                "Transformation Roadmap"
+            ]
+        },
+        "architecture-assessment": {
+            "title": "Enterprise Architecture Assessment",
+            "desc": "Comprehensive review of your application portfolio, technical debt, and architectural governance.",
+            "features": [
+                "Application Portfolio Rationalization",
+                "Technical Debt Heatmap",
+                "Cloud Readiness Score",
+                "Governance Gap Analysis"
+            ]
+        },
+        "agile-maturity-assessment": {
+            "title": "Agile Maturity Assessment",
+            "desc": "Move beyond 'Fragile Agile'. Assess team autonomy, velocity, and product-mindset adoption.",
+            "features": [
+                "Scrum/Kanban Anti-pattern Check",
+                "Product Ownership Maturity",
+                "Team Autonomy Index",
+                "Agile Coaching Plan"
+            ]
+        }
+    },
+    "homeHealthcare": {
+        "hero": {
+            "title": "Stuck in <0>HIPAA Compliance Hell</0>\nDuring Cloud Migration?",
+            "subtitle": "I've successfully migrated <0>12 healthcare systems</0> to AWS without a single <1>HIPAA violation</1>, <2>data breach</2>, or <3>downtime incident</3>.",
+            "trustedBy": "Trusted by Fortune 500 Healthcare & Pharma",
+            "cta": {
+                "primary": "See How I Did It",
+                "secondary": "Calculate Your Savings"
+            },
+            "stats": {
+                "migrations": {
+                    "value": "12",
+                    "label": "Healthcare Migrations"
+                },
+                "compliance": {
+                    "value": "100%",
+                    "label": "HIPAA Compliant"
+                },
+                "savings": {
+                    "value": "€2M+",
+                    "label": "Cost Savings"
+                },
+                "breaches": {
+                    "value": "Zero",
+                    "label": "Breaches"
+                }
+            }
+        },
+        "problems": {
+            "title": "Sound Familiar?",
+            "subtitle": "These are the top 3 challenges healthcare organizations face during cloud migration.",
+            "item1": {
+                "title": "We Keep Failing HIPAA Audits",
+                "desc": "Your on-premise system can't meet modern compliance requirements.",
+                "impact": "Every audit is a gamble that could cost you €50K+ in findings."
+            },
+            "item2": {
+                "title": "Cloud Migration Seems Too Risky",
+                "desc": "You've tried twice. Both times stopped due to data breach concerns.",
+                "impact": "Your board won't approve another failed attempt."
+            },
+            "item3": {
+                "title": "We're Running Out of Time",
+                "desc": "New HIPAA requirements in 6 months. Legacy vendor EOL in 12 months.",
+                "impact": "If you don't migrate soon, you'll face penalties AND downtime."
+            },
+            "solution": "I've heard this 100 times. Here's how we solve it."
+        },
+        "process": {
+            "title": "The Zero-Downtime, 100% Compliant Migration Process",
+            "subtitle": "A proven 4-phase approach that's worked 12 times without a single incident",
+            "phase1": {
+                "title": "Compliance Audit",
+                "duration": "2 weeks",
+                "activities": [
+                    "Review all HIPAA/FHIR controls against current system",
+                    "Identify gaps and migration blockers",
+                    "Create compliant AWS architecture blueprint",
+                    "Define security controls (IAM, encryption, logging)"
+                ],
+                "deliverable": "20-page compliance report (Board-ready)",
+                "outcome": "Clear roadmap with zero compliance risk"
+            },
+            "phase2": {
+                "title": "AWS Architecture Design",
+                "duration": "2 weeks",
+                "activities": [
+                    "Design production infrastructure on AWS",
+                    "Configure security controls and monitoring",
+                    "Plan data migration strategy (minimize risk)",
+                    "Create rollback procedures for every step"
+                ],
+                "deliverable": "Technical migration plan + disaster recovery",
+                "outcome": "Board approval secured, risks mitigated"
+            },
+            "phase3": {
+                "title": "Migration Execution",
+                "duration": "8-12 weeks",
+                "activities": [
+                    "Week 1-4: Migrate non-critical systems (test process)",
+                    "Week 5-8: Core systems (validated & monitored)",
+                    "Week 9-12: Patient data (weekends only, 24/7 watch)",
+                    "Continuous validation at every step"
+                ],
+                "deliverable": "Fully migrated, operational system",
+                "outcome": "Zero downtime, all systems running on AWS"
+            },
+            "phase4": {
+                "title": "Optimization & Validation",
+                "duration": "4 weeks",
+                "activities": [
+                    "Cost optimization (target 30% savings)",
+                    "Performance tuning (3x faster queries)",
+                    "Complete compliance documentation",
+                    "Train your team on AWS operations"
+                ],
+                "deliverable": "Optimized, documented, compliant system",
+                "outcome": "30% cost reduction + audit-ready documentation"
+            },
+            "labels": {
+                "deliverable": "DELIVERABLE",
+                "outcome": "OUTCOME",
+                "activities": "Activities:"
+            },
+            "stats": {
+                "migrations": "Successful Migrations",
+                "breaches": "Data Breaches",
+                "auditRate": "Audit Pass Rate",
+                "savings": "Client Savings"
+            }
+        },
+        "roi": {
+            "title": "Calculate Your Potential Savings",
+            "subtitle": "See what you could save with a properly executed healthcare cloud migration"
+        },
+        "proof": {
+            "title": "Real Results from Real Projects",
+            "subtitle": "Don't just take my word for it—here's the proof",
+            "cta": "View Full Case Study",
+            "seeAll": "See All Projects"
+        },
+        "faq": {
+            "title": "Common Questions",
+            "subtitle": "Addressing your concerns about healthcare cloud migration",
+            "q1": {
+                "q": "What if we have a data breach during migration?",
+                "a": "Zero-downtime strategy means your production system never goes offline. Data is encrypted in transit (TLS 1.3) and at rest (AES-256). We migrate in phases with rollback procedures at every step. In 12 migrations, we've never had a breach. Every migration includes a comprehensive security audit before, during, and after."
+            },
+            "q2": {
+                "q": "How long will we be down?",
+                "a": "Zero downtime. Migrations happen during off-hours with parallel systems running. Users never see disruption. We use blue-green deployment strategies and can roll back instantly if needed. Your team continues working normally throughout the entire process."
+            },
+            "q3": {
+                "q": "What if HIPAA requirements change mid-migration?",
+                "a": "Architecture is designed for compliance flexibility. We monitor regulatory changes continuously and adapt the plan proactively. Your system will meet current AND future requirements. We include buffer time and contingency plans for regulatory updates."
+            },
+            "q4": {
+                "q": "We don't have budget for this.",
+                "a": "Average ROI is 285% in year 1. Most clients save enough to pay for the project within 8 months through infrastructure optimization alone. Use the ROI calculator above to see YOUR potential savings. Many organizations find the migration pays for itself through avoided audit penalties and reduced operational costs."
+            },
+            "q5": {
+                "q": "How do I know you won't leave us stranded?",
+                "a": "Every project includes 90 days post-migration support and complete documentation. I train your team to operate the new system independently. You get runbooks, architecture diagrams, and access to me for questions. Several clients from 3+ years ago still reach out occasionally—I'm always available."
+            }
+        },
+        "finalCta": {
+            "title": "Let's Discuss Your Migration",
+            "subtitle": "Choose the path that works best for you",
+            "urgent": {
+                "title": "I Need This Now",
+                "desc": "For urgent migrations with tight deadlines",
+                "cta": "Book 30-Min Strategy Call",
+                "note": "Available this week: Tue 2pm, Thu 10am, Fri 3pm CET"
+            },
+            "research": {
+                "title": "Still Researching",
+                "desc": "Get free resources to evaluate your options",
+                "cta": "Get HIPAA Compliance Checklist",
+                "note": "Free PDF + enters email nurture sequence"
+            },
+            "riskReversal": {
+                "free": "First 30 minutes are free, no obligation",
+                "referral": "If I can't help, I'll refer you to someone who can"
+            }
+        }
+    },
+    "roiCalculator": {
+        "tabs": {
+            "cloud": "Cloud Migration",
+            "legacy": "Legacy Mod",
+            "carbon": "Carbon / ESG"
+        },
+        "title": {
+            "cloud": "Calculate ROI: Cloud Compliance",
+            "legacy": "Calculate ROI: Modernization",
+            "carbon": "Calculate ROI: Sustainability"
+        },
+        "description": {
+            "cloud": "Estimate savings from reduced compliance risk and infrastructure optimization.",
+            "legacy": "Quantify the value of retiring technical debt and improving reliability.",
+            "carbon": "See how much manual effort you can save with PACT automation."
+        },
+        "inputs": {
+            "companySize": "Company Size",
+            "select": "Select...",
+            "sizes": {
+                "small": "Small (< 50)",
+                "medium": "Medium (50-500)",
+                "large": "Large (> 500)"
+            },
+            "cloudMonthlySpend": "Monthly Cloud Spend (€)",
+            "complianceStatus": "Compliance Status",
+            "complianceOptions": {
+                "non_compliant": "Non-Compliant",
+                "partially": "Partially Compliant",
+                "compliant": "Compliant"
+            },
+            "annualMaintenance": "Annual Maintenance Cost (€)",
+            "downtimeHours": "Downtime Hours / Year",
+            "supplierCount": "Number of Suppliers",
+            "manualHours": "Manual Hours/Year/Supplier"
+        },
+        "cta": {
+            "calculate": "Calculate Savings",
+            "calculating": "Calculating..."
+        },
+        "results": {
+            "title": "Potential Annual Savings",
+            "confidence": "Confidence Score",
+            "breakdown": "Breakdown",
+            "similarCaseStudy": "Similar Case Study",
+            "readCaseStudy": "Read Case Study"
+        }
+    },
+    "quickStats": {
+        "title": "At a Glance",
+        "available": "Independent Consultant",
+        "schedule": "Schedule Interview",
+        "resume": "Download Resume",
+        "labels": {
+            "experience": "Years Experience",
+            "projects": "Projects Delivered",
+            "savings": "Cost Savings",
+            "teamSize": "Team Size Led",
+            "industries": "Industries",
+            "certifications": "Certifications"
+        }
+    },
+    "home": {
+        "whatICanHelpWith": {
+            "title": "What I Can Help You With",
+            "subtitle": "Three core areas where I drive business outcomes"
+        },
+        "featuredCaseStudies": {
+            "title": "Featured Case Studies",
+            "viewAll": "View All Projects",
+            "new": "New",
+            "impact": "Impact",
+            "viewCaseStudy": "View Case Study"
+        },
+        "whyWorkWithMe": {
+            "title": "Why Work With Me",
+            "subtitle": "More than technical skills—it's about how I work",
+            "quote": "\"I solve business problems through people, process, and technology—in that order.\"",
+            "values": {
+                "businessFirst": {
+                    "title": "Business-First",
+                    "desc": "Every decision measured by business impact, not technical ego"
+                },
+                "innovation": {
+                    "title": "Innovation-Driven",
+                    "desc": "Creative problem-solving when conventional approaches fail"
+                },
+                "servantLeader": {
+                    "title": "Servant Leader",
+                    "desc": "Empathetic, collaborative approach that empowers teams"
+                },
+                "handsOn": {
+                    "title": "Hands-On",
+                    "desc": "From strategy to code to deployment—I execute, not just advise"
+                }
+            }
+        },
+        "readyToTransform": {
+            "title": "Ready to Transform?",
+            "cta": "Choose Your Path"
+        }
+    },
+    "servicesPage": {
+        "title": "Architecture Assessment Services",
+        "subtitle": "Independent architecture assessments for EU mid-market companies. Validate cloud migration, platform modernization, and architecture decisions before committing to the wrong path.",
+        "timeline": "Timeline",
+        "price": "Price",
+        "for": "For",
+        "deliverables": "Deliverables",
+        "bookCall": "Book Discovery Call",
+        "ctaTitle": "Ready to Validate Your Architecture Decisions?",
+        "ctaSubtitle": "Book a free discovery call to discuss your specific challenge and how I can help.",
+        "bookDiscoveryCall": "Book Discovery Call"
+    },
+    "services": {
+        "dueDiligence": {
+            "title": "Technical Due Diligence Assessment",
+            "subtitle": "Comprehensive architecture review for M&A, investments, or acquisitions. Identify technical risks, debt, and compliance gaps before you commit.",
+            "timeline": "2 weeks",
+            "price": "€4,000 – €7,000",
+            "for": "PE firms, investors, acquiring company CTOs",
+            "deliverables": [
+                "Architecture review",
+                "Risks & technical debt register",
+                "Security/compliance gaps (high level)",
+                "30/60/90 day recommendations"
+            ]
+        },
+        "cloudMigration": {
+            "title": "Cloud Migration Readiness Review",
+            "subtitle": "Evaluate your readiness for AWS/Azure/GCP migration. Understand risks, sequencing, and create a practical roadmap.",
+            "timeline": "3 weeks",
+            "price": "€5,000 – €9,000",
+            "for": "Companies planning AWS/Azure/GCP migration",
+            "deliverables": [
+                "Current state mapping",
+                "Migration risks + sequencing",
+                "Target reference architecture",
+                "Practical migration roadmap"
+            ]
+        },
+        "platformEvaluation": {
+            "title": "Platform Evaluation Assessment",
+            "subtitle": "Make informed platform modernization decisions. Evaluate options, tradeoffs, and get architecture blueprints for your chosen path.",
+            "timeline": "2 weeks",
+            "price": "€4,000 – €7,000",
+            "for": "Platform modernization choices (Shopware→Shopify, CMS, API gateway, etc.)",
+            "deliverables": [
+                "Decision matrix",
+                "Options & tradeoffs",
+                "Go/no-go recommendation",
+                "Architecture blueprint draft"
+            ]
+        }
+    },
+    "contactPage": {
+        "title": "Let's Work Together",
+        "subtitle": "Ready to transform your architecture? Book a consultation, send an email, or connect on LinkedIn.",
+        "book": {
+            "title": "Book a Discovery Call",
+            "desc": "Schedule a 30-minute call to discuss your architecture challenges and explore how I can help.",
+            "cta": "Book Now"
+        },
+        "email": {
+            "title": "Send an Email",
+            "subtitle": "prasad.sgsits@gmail.com"
+        },
+        "linkedin": {
+            "title": "Connect on LinkedIn",
+            "subtitle": "Let's connect and start a conversation"
+        },
+        "form": {
+            "title": "Send a Message",
+            "interestedIn": "I'm interested in",
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+            "placeholder": "Tell me about your project, timeline, and what you're hoping to achieve...",
+            "submit": "Send Message",
+            "sending": "Sending...",
+            "sent": "Message Sent!",
+            "redirect": "Opening your email client...",
+            "options": {
+                "consulting": "Consulting Project",
+                "product": "Product/Toolkit",
+                "speaking": "Speaking/Training",
+                "other": "Other"
+            }
+        }
+    }
+}
+```
+
+## File: ./src/main.tsx
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+import './i18n';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+```
+
+## File: ./src/pages/AboutPage.tsx
+```tsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Mail, Linkedin, Github, Award,
+  GraduationCap, Target, Users, Lightbulb, Zap, Building2, CheckCircle2
+} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import profilepic from '../assets/images/profilepic.png';
+import TechChips from '../components/TechChips';
+import SEO from '../components/SEO';
+import QuickStats from '../components/QuickStats';
+import RecommendationsCarousel from '../components/RecommendationsCarousel';
+import AboutSection from '../components/about/AboutSection';
+import ExperienceTimeline from '../components/about/ExperienceTimeline';
+
+const AboutPage: React.FC = () => {
+  const { t } = useTranslation();
+
+  const techCategories: Record<string, string[]> = {
+    'Languages': ['C#', 'Java', 'JavaScript', 'HTML5', 'Python', 'TypeScript'],
+    'Frontend': ['React', 'Redux', 'Vue.js', 'Next JS', 'Nuxt JS', 'Angular', 'Bootstrap', 'Vite'],
+    'Backend': ['NodeJS', 'Express.js', 'Django', 'FastAPI', 'Spring', '.NET'],
+    'Cloud': ['AWS', 'Azure', 'Google Cloud', 'Cloudflare', 'Heroku', 'Netlify', 'Vercel'],
+    'Data & ML': ['PyTorch', 'NumPy', 'Matplotlib', 'Spark', 'Hadoop', 'Kafka', 'RAG', 'LangChain'],
+    'Databases': ['MongoDB', 'MySQL', 'Neo4J', 'Redis', 'DynamoDB', 'Cassandra', 'SQLite'],
+    'DevOps': ['Kubernetes', 'Docker', 'Jenkins', 'CircleCI', 'GitHub Actions', 'Terraform'],
+    'Tools': ['Figma', 'Adobe Photoshop', 'Lightroom', 'Canva', 'Postman']
+  };
+
+  // Note: For a real app, these would also be in translation files or fetched from a CMS
+  // For now, we'll extract the headers/labels to i18n
+  const experiences = [
+    {
+      company: 'BRITA',
+      role: t('about.journey.items.brita.role'),
+      period: 'May 2025 - Nov 2025',
+      location: 'Frankfurt, Germany',
+      businessChallenge: t('about.journey.items.brita.challenge'),
+      deliverables: t('about.journey.items.brita.deliverables', { returnObjects: true }) as string[],
+      outcomes: [
+        { value: '6 Markets', label: t('about.journey.items.brita.outcomes.markets') },
+        { value: 'Zero', label: t('about.journey.items.brita.outcomes.downtime') },
+        { value: 'Global', label: t('about.journey.items.brita.outcomes.expansion') },
+      ],
+      links: {
+        caseStudy: '/projects/brita-ecommerce',
+        product: '/products/ecommerce-blueprint'
+      },
+      logo: '/assets/logos/Brita_(Unternehmen)_logo.svg'
+    },
+    {
+      company: 'SINE Foundation',
+      role: t('about.journey.items.sine.role'),
+      period: 'Jan 2024 - Apr 2024',
+      location: 'Berlin, Germany',
+      businessChallenge: t('about.journey.items.sine.challenge'),
+      deliverables: t('about.journey.items.sine.deliverables', { returnObjects: true }) as string[],
+      outcomes: [
+        { value: '20+', label: t('about.journey.items.sine.outcomes.adopted') },
+        { value: 'WBCSD', label: t('about.journey.items.sine.outcomes.standard') },
+        { value: '10x', label: t('about.journey.items.sine.outcomes.boost') },
+      ],
+      links: {
+        caseStudy: '/projects/pact-protocol',
+        product: '/products/pact-starter-kit'
+      },
+      logo: '/assets/logos/sine-foundation-logo.svg' // Placeholder - replace with real logo if available
+    },
+    {
+      company: 'Delivery Hero',
+      role: t('about.journey.items.deliveryHero.role'),
+      period: 'Jun 2022 - Dec 2023',
+      location: 'Berlin, Germany',
+      businessChallenge: t('about.journey.items.deliveryHero.challenge'),
+      deliverables: t('about.journey.items.deliveryHero.deliverables', { returnObjects: true }) as string[],
+      outcomes: [
+        { value: '+20%', label: t('about.journey.items.deliveryHero.outcomes.revenue') },
+        { value: '5M+', label: t('about.journey.items.deliveryHero.outcomes.transactions') },
+        { value: '<20ms', label: t('about.journey.items.deliveryHero.outcomes.latency') },
+      ],
+      links: {
+        product: '/products/display-ads-architecture'
+      },
+      logo: '/assets/logos/Delivery_Hero_logo.svg'
+    },
+    {
+      company: 'Boehringer Ingelheim',
+      role: t('about.journey.items.boehringer.role'),
+      period: 'Mar 2021 - May 2022',
+      location: 'Ingelheim, Germany',
+      businessChallenge: t('about.journey.items.boehringer.challenge'),
+      deliverables: t('about.journey.items.boehringer.deliverables', { returnObjects: true }) as string[],
+      outcomes: [
+        { value: '50%', label: t('about.journey.items.boehringer.outcomes.insights') },
+        { value: '100%', label: t('about.journey.items.boehringer.outcomes.migration') },
+        { value: 'Zero', label: t('about.journey.items.boehringer.outcomes.gdpr') },
+      ],
+      links: {
+        product: '/products/data-lake-architecture'
+      },
+      logo: '/assets/logos/Boehringer_Ingelheim_Logo.svg'
+    },
+    {
+      company: 'PwC',
+      role: t('about.journey.items.pwc.role'),
+      period: 'May 2016 - Feb 2021',
+      location: 'Mumbai, India',
+      businessChallenge: t('about.journey.items.pwc.challenge'),
+      deliverables: t('about.journey.items.pwc.deliverables', { returnObjects: true }) as string[],
+      outcomes: [
+        { value: '$650K', label: t('about.journey.items.pwc.outcomes.savings') },
+        { value: '+70%', label: t('about.journey.items.pwc.outcomes.traffic') },
+        { value: 'Zero', label: t('about.journey.items.pwc.outcomes.audit') },
+      ],
+      links: {
+        product: '/products/hipaa-compliance-package'
+      },
+      logo: '/assets/logos/PricewaterhouseCoopers_Logo.svg'
+    }
+  ];
+
+  const certifications = [
+    { title: 'AI Agents Intensive', issuer: 'Google / Kaggle', date: 'Dec 2025' },
+    { title: 'AI Engineering Cohort', issuer: 'ByteByteGo / ByteByteAI', date: 'Nov 2025', id: '14244ccc' },
+    { title: 'Deutsch-Test für Zuwanderer (B1)', issuer: 'GAST e.V.', date: 'May 2025', id: 'G1098095' },
+    { title: 'Artificial Intelligence Foundations', issuer: 'LinkedIn', date: 'Nov 2020' },
+    { title: 'Certified SAFe® 4 DevOps Practitioner', issuer: 'Scaled Agile, Inc.', date: 'Aug 2019' },
+    { title: 'Digital Accelerator', issuer: 'PwC', date: 'Aug 2019' },
+    { title: 'Axelta Certified IoT Professional', issuer: 'Divigo.io', date: 'Mar 2016' },
+  ];
+
+  return (
+    <>
+      <SEO
+        title={`${t('about.title')} | ${t('about.role')}`}
+        description={t('about.description')}
+        keywords="servant leadership, empathetic leader, innovation, creative problem solving, business outcomes, enterprise architect"
+        type="profile"
+      />
+
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 overflow-x-hidden">
+
+        {/* HERO SECTION - Matching HomePage Aesthetic */}
+        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+              backgroundSize: '40px 40px'
+            }} />
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="relative flex-shrink-0"
+              >
+                <div className="w-48 h-48 md:w-64 md:h-64 rounded-full p-2 bg-gradient-to-tr from-emerald-500 to-slate-800 shadow-2xl">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-slate-900 border-4 border-white dark:border-slate-800">
+                    <img
+                      src={profilepic}
+                      alt="Prasad Tilloo"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                {/* Status Badge */}
+                <div className="absolute bottom-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-white/20">
+                  OPEN TO WORK
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-center md:text-left"
+              >
+                <h1 className="text-4xl md:text-6xl font-bold mb-4 font-serif">
+                  {t('about.title')}
+                </h1>
+                <p className="text-xl md:text-2xl text-emerald-400 font-semibold mb-4">
+                  {t('about.role')}
+                </p>
+                <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
+                  {t('about.description')}
+                </p>
+
+                <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                  <a
+                    href="mailto:prasad.sgsits@gmail.com"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-all shadow-lg hover:shadow-emerald-900/20"
+                  >
+                    <Mail size={18} />
+                    {t('about.buttons.contact')}
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/prasadtilloo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all"
+                  >
+                    <Linkedin size={18} />
+                    {t('about.buttons.linkedin')}
+                  </a>
+                  <a
+                    href="https://github.com/prasadt1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all"
+                  >
+                    <Github size={18} />
+                    {t('about.buttons.github')}
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* METRICS STRIP */}
+        <div className="bg-slate-900 border-b border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800">
+              {[
+                { value: '15+', label: t('about.stats.exp') },
+                { value: '€2M+', label: t('about.stats.value') },
+                { value: '8', label: t('about.stats.industries') },
+                { value: '100%', label: t('about.stats.delivery') }
+              ].map((stat, idx) => (
+                <div key={idx} className="py-8 text-center">
+                  <div className="text-3xl font-bold text-emerald-400 font-serif mb-1">{stat.value}</div>
+                  <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Leadership Philosophy - Compact Grid */}
+        <AboutSection background="muted">
+            <h2 className="text-3xl font-serif font-bold text-center mb-8 md:mb-10 text-slate-900 dark:text-white">
+              {t('about.philosophy.title')}
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-emerald-100 dark:bg-emerald-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Target className="text-emerald-600" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                      {t('about.philosophy.outcomes.title')}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {t('about.philosophy.outcomes.desc')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-blue-100 dark:bg-blue-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Lightbulb className="text-blue-600" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                      {t('about.philosophy.innovation.title')}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {t('about.philosophy.innovation.desc')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-violet-100 dark:bg-violet-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="text-violet-600" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                      {t('about.philosophy.leadership.title')}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {t('about.philosophy.leadership.desc')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="bg-orange-100 dark:bg-orange-900/30 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Zap className="text-orange-600" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                      {t('about.philosophy.execution.title')}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {t('about.philosophy.execution.desc')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <blockquote className="text-lg font-serif italic text-slate-700 dark:text-slate-300 max-w-prose mx-auto">
+                "{t('about.philosophy.quote')}"
+              </blockquote>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                {t('about.philosophy.attribution')}
+              </p>
+            </div>
+        </AboutSection>
+
+        <AboutSection background="default">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 md:gap-10">
+
+            {/* LEFT COLUMN: Main Content */}
+            <div className="space-y-10 md:space-y-12 min-w-0">
+
+              {/* Professional Summary */}
+              <section>
+                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
+                  <span className="w-8 h-1 bg-emerald-500 rounded-full"></span>
+                  {t('about.proof.title')}
+                </h2>
+                <div className="prose prose-lg text-slate-600 dark:text-slate-300 max-w-prose leading-relaxed">
+                  <p className="mb-6">
+                    {t('about.proof.p1')}
+                  </p>
+                  <p className="mb-6">
+                    {t('about.proof.p2')}
+                  </p>
+                  <div className="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 italic text-slate-700 dark:text-slate-300 rounded-r-lg">
+                    "{t('about.proof.quote')}"
+                  </div>
+                </div>
+              </section>
+
+              {/* Consulting Highlights - PwC Focus */}
+              <section className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
+                <h2 className="text-2xl font-serif font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                  <Building2 className="text-emerald-600 dark:text-emerald-500" size={24} />
+                  {t('about.consulting.title')}
+                </h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2">{t('about.consulting.role')}</h3>
+                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed max-w-prose">
+                      {t('about.consulting.desc')}
+                    </p>
+                    <ul className="grid sm:grid-cols-2 gap-4 text-sm text-slate-700 dark:text-slate-300">
+                      {(t('about.consulting.highlights', { returnObjects: true }) as string[]).map((highlight, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
+                          <span className="leading-relaxed">{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              {/* Experience Timeline */}
+              <ExperienceTimeline
+                experiences={experiences}
+                title={t('about.journey.title')}
+                challengeLabel={t('about.journey.challenge')}
+                deliveredLabel={t('about.journey.delivered')}
+                viewCaseStudyLabel={t('about.journey.viewCaseStudy')}
+                buyBlueprintLabel={t('about.journey.buyBlueprint')}
+              />
+
+              {/* Recommendations Carousel */}
+              <section>
+                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
+                  <Users className="text-emerald-600 dark:text-emerald-500" size={28} />
+                  Recommendations
+                </h2>
+                <RecommendationsCarousel />
+              </section>
+
+              {/* Certifications - Compact List */}
+              <section>
+                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
+                  <Award className="text-emerald-600 dark:text-emerald-500" size={28} />
+                  {t('about.certifications.title')}
+                </h2>
+
+                <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 divide-y divide-slate-200 dark:divide-slate-700 overflow-hidden">
+                  {certifications.map((cert, idx) => (
+                    <div key={idx} className="p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-3 flex-1">
+                          <div className="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-lg text-emerald-600 dark:text-emerald-400 flex-shrink-0">
+                            <Award size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-slate-900 dark:text-white mb-1">{cert.title}</h4>
+                            <div className="text-sm text-slate-500 dark:text-slate-400">{cert.issuer}</div>
+                          </div>
+                        </div>
+                        <div className="text-xs font-mono text-slate-400 dark:text-slate-500 flex-shrink-0">
+                          {cert.date}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+            </div>
+
+            {/* RIGHT COLUMN: Sidebar (Sticky) */}
+            <aside className="lg:sticky lg:top-24 lg:h-fit space-y-8 min-w-0 w-full lg:w-auto">
+
+              {/* Quick Stats Widget */}
+              <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <QuickStats />
+              </div>
+
+              {/* Tech Stack Widget */}
+              <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white mb-6 pb-2 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
+                  <Zap className="text-emerald-500" size={20} />
+                  {t('about.techStack.title')}
+                </h3>
+                <TechChips categories={techCategories} />
+              </div>
+
+              {/* FOR TEAMS / RECRUITERS TEASER */}
+              <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+                <div className="w-full max-w-full">
+                  <div className="bg-slate-900 dark:bg-slate-800 rounded-3xl p-12 relative overflow-hidden text-center">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+
+                    <div className="relative z-10">
+                      <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                        {t('about.forTeams.badge')}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                        {t('about.forTeams.title')}
+                      </h2>
+                      <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                        {t('about.forTeams.desc')}
+                      </p>
+                      <a
+                        href="/products"
+                        className="inline-flex bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105"
+                      >
+                        {t('about.forTeams.cta')}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              {/* Education Widget */}
+              <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 className="font-serif font-bold text-xl text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                  <GraduationCap className="text-purple-500" size={20} />
+                  {t('about.education.title')}
+                </h3>
+                <div>
+                  <div className="font-bold text-slate-900 dark:text-white">{t('about.education.degree')}</div>
+                  <div className="text-purple-600 dark:text-purple-400 font-medium text-sm">{t('about.education.major')}</div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400 mt-1">{t('about.education.school')}</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </AboutSection>
+
+        {/* Global CTA */}
+        <div className="bg-slate-100 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 py-20">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-slate-900 dark:text-white">
+              {t('about.cta.title')}
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+              {t('about.cta.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link
+                to="/contact"
+                className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
+              >
+                {t('about.cta.schedule')}
+              </Link>
+              <Link
+                to="/projects"
+                className="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-white rounded-xl font-bold transition-all hover:bg-slate-50 dark:hover:bg-slate-700"
+              >
+                {t('about.cta.viewWork')}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default AboutPage;
+```
+
+## File: ./src/pages/ArchitectureEngine.tsx
+```tsx
+import React, { useState } from 'react';
+import { Activity, CreditCard, ShoppingCart, Cpu, ArrowLeft, CheckCircle2, AlertTriangle, AlertCircle } from 'lucide-react';
+import { generateArchitecture } from '../services/architectureGenerator';
+import type { ArchitectureRequest, ArchitectureResult } from '../types';
+import ArchitectureDiagram from '../components/ArchitectureDiagram';
+import SEO from '../components/SEO';
+import LoadingState from '../components/LoadingState';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+type IndustryType = 'healthcare' | 'financial' | 'ecommerce' | 'aiml';
+
+interface Industry {
+  id: IndustryType;
+  title: string;
+  icon: React.ReactNode;
+  compliance: string[];
+  colorClass: string;
+  bgClass: string;
+  borderClass: string;
+}
+
+const INDUSTRIES: Industry[] = [
+  {
+    id: 'healthcare',
+    title: 'Healthcare & Pharma',
+    icon: <Activity size={32} />,
+    compliance: ['HIPAA', 'FHIR', 'HL7', 'GDPR'],
+    colorClass: 'text-blue-600 dark:text-blue-400',
+    bgClass: 'bg-blue-50 dark:bg-blue-900/20',
+    borderClass: 'border-blue-200 dark:border-blue-800 hover:border-blue-500'
+  },
+  {
+    id: 'financial',
+    title: 'Financial Services',
+    icon: <CreditCard size={32} />,
+    compliance: ['PCI-DSS', 'SOC2', 'KYC', 'AML'],
+    colorClass: 'text-emerald-600 dark:text-emerald-400',
+    bgClass: 'bg-emerald-50 dark:bg-emerald-900/20',
+    borderClass: 'border-emerald-200 dark:border-emerald-800 hover:border-emerald-500'
+  },
+  {
+    id: 'ecommerce',
+    title: 'eCommerce & Retail',
+    icon: <ShoppingCart size={32} />,
+    compliance: ['PCI-DSS', 'GDPR', 'Multi-tenant'],
+    colorClass: 'text-orange-600 dark:text-orange-400',
+    bgClass: 'bg-orange-50 dark:bg-orange-900/20',
+    borderClass: 'border-orange-200 dark:border-orange-800 hover:border-orange-500'
+  },
+  {
+    id: 'aiml',
+    title: 'AI & Machine Learning',
+    icon: <Cpu size={32} />,
+    compliance: ['Ethical AI', 'Data Privacy', 'MLOps'],
+    colorClass: 'text-purple-600 dark:text-purple-400',
+    bgClass: 'bg-purple-50 dark:bg-purple-900/20',
+    borderClass: 'border-purple-200 dark:border-purple-800 hover:border-purple-500'
+  }
+];
+
+const EXAMPLE_PROMPTS: Record<IndustryType, string> = {
+  healthcare: 'Modernize a 20-year-old patient records system while maintaining HIPAA compliance. Budget: $500K, Timeline: 12 months.',
+  financial: 'Build real-time payment processing for 1M+ transactions/day. Need PCI-DSS Level 1 compliance.',
+  ecommerce: 'Multi-tenant SaaS platform for 50K+ merchants. Need 99.99% uptime and global scalability.',
+  aiml: 'Build RAG pipeline for legal document analysis. Process 10TB+ PDFs, serve answers in real-time.'
+};
+
+const ArchitectureEngine: React.FC = () => {
+  const [step, setStep] = useState<'industry' | 'input' | 'generating' | 'result'>('industry');
+  const [selectedIndustry, setSelectedIndustry] = useState<IndustryType | null>(null);
+  const [challenge, setChallenge] = useState('');
+  const [result, setResult] = useState<ArchitectureResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleIndustrySelect = (industry: IndustryType) => {
+    setSelectedIndustry(industry);
+    setChallenge(EXAMPLE_PROMPTS[industry]);
+    setStep('input');
+    setError(null);
+  };
+
+  const handleGenerate = async () => {
+    if (!selectedIndustry || !challenge) return;
+
+    setStep('generating');
+    setError(null);
+
+    try {
+      const request: ArchitectureRequest = {
+        industry: selectedIndustry,
+        challenge,
+        context: {}
+      };
+
+      const generated = await generateArchitecture(request);
+
+      const architectureResult: ArchitectureResult = {
+        ...generated,
+        id: Date.now().toString(),
+        timestamp: new Date(),
+        inputs: {
+          industry: selectedIndustry,
+          challenge,
+          context: {}
+        }
+      };
+
+      setResult(architectureResult);
+      setStep('result');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to generate architecture');
+      setStep('input');
+    }
+  };
+
+  const handleReset = () => {
+    setStep('industry');
+    setSelectedIndustry(null);
+    setChallenge('');
+    setResult(null);
+    setError(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
+      <SEO
+        title="Architecture Assistant (Beta) | Prasad Tilloo"
+        description="Experimental AI-assisted architecture exploration tool. Generates draft options and tradeoffs for review—not final production designs."
+        keywords="architecture assistant, AI-assisted architecture, system design, cloud architecture, architecture exploration"
+      />
+
+      {/* Header */}
+      <div className="text-center mb-12 max-w-4xl mx-auto">
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white">
+            AI-Assisted Architecture Assistant
+          </h1>
+          <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800">Beta</span>
+        </div>
+        <p className="text-xl text-slate-600 dark:text-slate-400">
+          Explore architecture options and tradeoffs based on enterprise patterns and my experience. Outputs are drafts intended for discussion—not final production designs.
+        </p>
+      </div>
+
+      {/* Disclaimer Section */}
+      <section className="max-w-4xl mx-auto px-4 py-8 bg-slate-800/50 dark:bg-slate-800/50 rounded-xl border border-slate-700 mb-12">
+        <h3 className="text-xl font-bold mb-4 text-slate-200">
+          How to Use This Tool
+        </h3>
+        <ul className="space-y-2 text-slate-300">
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Draft only</strong> - All outputs are starting points for discussion, not production-ready designs</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Validation required</strong> - Verify all security, compliance, and scalability constraints separately</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Use for ideation</strong> - Best used to explore options and tradeoffs before detailed planning</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <span><strong>Need a full assessment?</strong> - <Link to="/contact" className="text-emerald-400 hover:underline">Contact me</Link> for comprehensive architecture consulting</span>
+          </li>
+        </ul>
+      </section>
+
+      <div className="max-w-7xl mx-auto">
+
+        {/* Step 1: Industry Selection */}
+        {step === 'industry' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <h2 className="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">
+              Select Your Industry Domain
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {INDUSTRIES.map((industry) => (
+                <button
+                  key={industry.id}
+                  onClick={() => handleIndustrySelect(industry.id)}
+                  className={`
+                    p-8 rounded-2xl border-2 transition-all duration-300 text-left group
+                    bg-white dark:bg-slate-800
+                    ${industry.borderClass}
+                    hover:shadow-xl hover:-translate-y-1
+                `}
+                >
+                  <div className={`${industry.colorClass} mb-6 transform group-hover:scale-110 transition-transform`}>
+                    {industry.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                    {industry.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {industry.compliance.map((comp) => (
+                      <span
+                        key={comp}
+                        className={`text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400`}
+                      >
+                        {comp}
+                      </span>
+                    ))}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Step 2: Challenge Input */}
+        {step === 'input' && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="max-w-3xl mx-auto"
+          >
+            <button
+              onClick={handleReset}
+              className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors mb-8 group"
+            >
+              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+              Back to Industries
+            </button>
+
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                Describe Your Challenge
+              </h2>
+
+              <textarea
+                value={challenge}
+                onChange={(e) => setChallenge(e.target.value)}
+                placeholder="Describe your technical challenge or system requirements..."
+                className="w-full h-48 p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-y mb-6 transition-shadow"
+              />
+
+              {error && (
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 p-4 rounded-xl flex items-start gap-3 mb-6">
+                  <AlertTriangle size={20} className="shrink-0 mt-0.5" />
+                  <div>{error}</div>
+                </div>
+              )}
+
+              <button
+                onClick={handleGenerate}
+                disabled={!challenge}
+                className={`
+                    w-full py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2
+                    ${challenge
+                    ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-emerald-900/20'
+                    : 'bg-slate-200 dark:bg-slate-700 text-slate-400 cursor-not-allowed'}
+                `}
+              >
+                Generate Draft Blueprint
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Step 3: Generating */}
+        {step === 'generating' && (
+          <div className="flex justify-center py-20">
+            <LoadingState variant="spinner" text="Architecting Solution... Analyzing requirements against enterprise patterns." />
+          </div>
+        )}
+
+        {/* Step 4: Results */}
+        {step === 'result' && result && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <button
+              onClick={handleReset}
+              className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 transition-colors mb-8 group"
+            >
+              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+              Start New Analysis
+            </button>
+
+            <div className="grid gap-8">
+              {/* Executive Summary */}
+              <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Executive Summary</h2>
+                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{result.summary}</p>
+              </div>
+
+              {/* Recommendations */}
+              <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Draft Recommendations</h2>
+                <ul className="space-y-4">
+                  {result.recommendations.map((rec, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                      <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={20} />
+                      <span className="leading-relaxed">{rec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Timeline & Budget */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Estimated Timeline</h3>
+                  <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{result.timeline}</p>
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Estimated Budget</h3>
+                  <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{result.budget}</p>
+                </div>
+              </div>
+
+              {/* Interactive Architecture Diagram */}
+              <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Architecture Blueprint</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">
+                  Interactive diagram showing {result.diagram.nodes.length} components. Click nodes to see details.
+                </p>
+                <div className="h-[600px] border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 mb-6">
+                  <ArchitectureDiagram
+                    nodes={result.diagram.nodes}
+                    edges={result.diagram.edges}
+                  />
+                </div>
+
+                {/* Component Details Table (Simplified vs Details Element) */}
+                <div className="space-y-4">
+                  <h3 className="font-bold text-slate-900 dark:text-white">Component Breakdown</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {result.diagram.nodes.map((node) => (
+                      <div key={node.id} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-xs font-bold rounded uppercase text-slate-600 dark:text-slate-300">{node.type}</span>
+                          <span className="font-bold text-slate-900 dark:text-white">{node.label}</span>
+                        </div>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{node.description}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {node.technologies.map(t => (
+                            <span key={t} className="text-xs bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded text-slate-500 dark:text-slate-400">{t}</span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Suggested Tech Stack</h2>
+                <div className="grid gap-4">
+                  {result.stack.map((item, idx) => (
+                    <div key={idx} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border-l-4 border-emerald-500">
+                      <div className="font-bold text-lg text-slate-900 dark:text-white mb-1">
+                        {item.category}: <span className="text-emerald-600 dark:text-emerald-400">{item.tech}</span>
+                      </div>
+                      <div className="text-slate-600 dark:text-slate-400 text-sm">{item.reason}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Compliance & Risk */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Compliance */}
+                {result.compliance.length > 0 && (
+                  <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Compliance Standards</h2>
+                    <div className="flex flex-wrap gap-3">
+                      {result.compliance.map((comp, idx) => (
+                        <span
+                          key={idx}
+                          className="px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 rounded-lg font-semibold"
+                        >
+                          {comp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Risks */}
+                {result.risks.length > 0 && (
+                  <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Risk Assessment</h2>
+                    <div className="space-y-3">
+                      {result.risks.map((risk, idx) => (
+                        <div
+                          key={idx}
+                          className={`
+                            p-4 rounded-xl border-l-4 bg-slate-50 dark:bg-slate-900
+                            ${risk.level === 'high' ? 'border-red-500' : risk.level === 'medium' ? 'border-amber-500' : 'border-emerald-500'}
+                        `}
+                        >
+                          <span className={`
+                            text-xs font-bold uppercase tracking-wider mb-1 block
+                            ${risk.level === 'high' ? 'text-red-600' : risk.level === 'medium' ? 'text-amber-600' : 'text-emerald-600'}
+                        `}>
+                            {risk.level} RISK
+                          </span>
+                          <span className="text-sm text-slate-700 dark:text-slate-300">{risk.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </motion.div>
+        )}
+
+      </div>
+    </div>
+  );
+};
+
+export default ArchitectureEngine;
+```
+
+## File: ./src/pages/CaseStudyPage.tsx
+```tsx
+import { rewriteContent } from '../services/contentRewriter';
+import { User, Code, Briefcase } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+    ArrowLeft,
+    CheckCircle2,
+    Clock,
+    ArrowRight,
+    AlertCircle
+} from 'lucide-react';
+import { projects } from '../data/projects';
+
+const CaseStudyPage: React.FC = () => {
+    const { slug } = useParams<{ slug: string }>();
+    const [persona, setPersona] = useState<'executive' | 'technical' | 'standard'>('standard');
+    const [rewrittenSummary, setRewrittenSummary] = useState<string>('');
+    const [rewriting, setRewriting] = useState(false);
+    const study = projects.find(s => s.slug === slug || s.id === slug);
+
+    // Auto-rewrite when persona changes
+    useEffect(() => {
+        if (!study || persona === 'standard') {
+            setRewrittenSummary('');
+            return;
+        }
+
+        const fetchRewrite = async () => {
+            setRewriting(true);
+            const newText = await rewriteContent({
+                currentText: study.challenge.situation,
+                sectionType: 'executive_summary', // Simplification for demo
+                persona: persona as any
+            });
+            setRewrittenSummary(newText);
+            setRewriting(false);
+        };
+        fetchRewrite();
+    }, [persona, study]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [slug]);
+
+    if (!study) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <h2 className="text-2xl font-bold mb-4">Case Study Not Found</h2>
+                    <Link to="/projects" className="text-emerald-600 hover:underline">Return to Projects</Link>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-white dark:bg-slate-900 pt-20">
+            {/* Header */}
+            {/* Header */}
+            <section className="bg-slate-50 dark:bg-slate-800 pb-16 pt-12 border-b border-slate-200 dark:border-slate-700">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Top Row: Back Link */}
+                    <div className="flex items-center mb-8">
+                        <Link to="/projects" className="group flex items-center gap-2 text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium">
+                            <div className="p-2 bg-white dark:bg-slate-900 rounded-full border border-slate-200 dark:border-slate-700 group-hover:border-emerald-500/50 transition-colors">
+                                <ArrowLeft size={18} />
+                            </div>
+                            Back to Projects
+                        </Link>
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-12 items-start">
+                        {/* Left Column: Title & Metadata */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                        >
+                            <div className="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest text-sm uppercase mb-4 flex items-center gap-2">
+                                <span className="w-8 h-0.5 bg-emerald-600 dark:bg-emerald-400 inline-block"></span>
+                                {study.header.eyebrow}
+                            </div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                                {study.header.title}
+                            </h1>
+
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-3 mb-8 text-sm text-slate-600 dark:text-slate-400">
+                                <span className="px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium">
+                                    {study.header.client.type}
+                                </span>
+                                <span className="px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium">
+                                    {study.header.client.industry}
+                                </span>
+                                <span className="px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium">
+                                    {study.header.client.size}
+                                </span>
+                            </div>
+
+                            {/* PERSONA TOGGLE - Moved here for flow */}
+                            {/* PERSONA TOGGLE REMOVED - Moved to Challenge Section */}
+                        </motion.div>
+
+                        {/* Right Column: Hero Metric Card */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="relative mt-8 lg:mt-0"
+                        >
+                            <div className="absolute inset-0 bg-emerald-500 blur-[80px] opacity-20 dark:opacity-10 rounded-full"></div>
+                            <div className="bg-gradient-to-br from-emerald-600 to-emerald-800 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden ring-1 ring-white/20">
+                                <div className="relative z-10">
+                                    <div className="flex items-start justify-between mb-8">
+                                        <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                                            {/* Dynamic Icon based on Metric */}
+                                            <span className="text-3xl">{study.outcomes.hero_metric.icon || '🚀'}</span>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-emerald-100 text-sm font-medium uppercase tracking-wider mb-1">Impact</div>
+                                            <div className="text-5xl lg:text-6xl font-bold tracking-tight">{study.outcomes.hero_metric.value}</div>
+                                        </div>
+                                    </div>
+
+                                    <h3 className="text-2xl font-medium leading-snug mb-8 text-white/90">
+                                        {study.outcomes.hero_metric.label}
+                                    </h3>
+
+                                    <div className="grid grid-cols-2 gap-6 pt-8 border-t border-white/10">
+                                        {study.outcomes.secondary_metrics.slice(0, 2).map((metric, idx) => (
+                                            <div key={idx}>
+                                                <div className="text-2xl font-bold mb-1">{metric.value}</div>
+                                                <div className="text-sm text-emerald-100/80 font-medium">{metric.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                {/* Background texture */}
+                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+                                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-black/10 rounded-full blur-3xl"></div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Challenge Section */}
+            < section className="py-20" >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Section 1: Challenge Narrative (Wide for readability) */}
+                    <div className="max-w-4xl mb-16">
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">The Challenge</h2>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Beta Feature</span>
+                        </div>
+
+                        {/* Persona Tabs */}
+                        <div className="mb-0">
+                            <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-t-xl w-fit border-t border-x border-slate-200 dark:border-slate-700">
+                                {(['standard', 'executive', 'technical'] as const).map((p) => (
+                                    <button
+                                        key={p}
+                                        onClick={() => setPersona(p)}
+                                        className={`
+                                            flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all
+                                            ${persona === p
+                                                ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-sm ring-1 ring-black/5'
+                                                : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}
+                                        `}
+                                    >
+                                        {p === 'standard' && <Briefcase size={14} />}
+                                        {p === 'executive' && <User size={14} />}
+                                        {p === 'technical' && <Code size={14} />}
+                                        {p.charAt(0).toUpperCase() + p.slice(1)}
+                                    </button>
+                                ))}
+                            </div>
+                            {/* Content Box */}
+                            <div className="bg-white dark:bg-slate-900 p-8 rounded-b-xl rounded-r-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden">
+                                {/* Active Tab Indicator Line */}
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500/20 to-transparent"></div>
+
+                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                                    {rewriting ? (
+                                        <span className="flex items-center gap-3 text-slate-400 animate-pulse">
+                                            <span className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></span>
+                                            Adapting content for {persona} context...
+                                        </span>
+                                    ) : (
+                                        <motion.span
+                                            key={persona}
+                                            initial={{ opacity: 0, y: 5 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            {persona === 'standard' ? study.challenge.situation : rewrittenSummary}
+                                        </motion.span>
+                                    )}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="mt-8">
+                            <div className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200 dark:border-amber-700/50 flex gap-4 items-start">
+                                <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0 mt-1" size={20} />
+                                <div>
+                                    <div className="text-sm font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide mb-1">Urgency</div>
+                                    <p className="text-slate-900 dark:text-white italic">"{study.challenge.urgency}"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Section 2: Pain Points Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {study.challenge.pain_points.map((pain, idx) => (
+                            <div key={idx} className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                                <div className="text-4xl mb-4">{pain.icon}</div>
+                                <h3 className="font-bold text-slate-900 dark:text-white mb-2">{pain.title}</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{pain.description}</p>
+                                <p className="text-xs font-bold text-red-500 dark:text-red-400 uppercase">Impact: {pain.impact}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section >
+
+            {/* Approach Section */}
+            < section className="py-20 bg-slate-50 dark:bg-slate-800" >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                            The Approach: {study.approach.methodology}
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-400">
+                            Why me: {study.challenge.why_prasad}
+                        </p>
+                    </div>
+
+                    <div className="space-y-8 relative">
+                        {/* Thread line */}
+                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-700 -z-10 hidden md:block"></div>
+
+                        {study.approach.phases.map((phase, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className={`flex flex-col md:flex-row gap-8 items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                            >
+                                <div className="flex-1 w-full">
+                                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 hover:border-emerald-500 transition-colors">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">
+                                                Phase {phase.number}
+                                            </span>
+                                            <span className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+                                                <Clock size={16} /> {phase.duration}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{phase.title}</h3>
+                                        <ul className="space-y-2 mb-6">
+                                            {phase.activities.map((activity, aIdx) => (
+                                                <li key={aIdx} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+                                                    <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 flex-shrink-0" />
+                                                    {activity}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <div className="bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded-lg">
+                                            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase mb-1">Outcome</div>
+                                            <div className="text-sm text-slate-900 dark:text-white font-medium">{phase.outcome}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Number Bubble */}
+                                <div className="w-8 h-8 rounded-full bg-emerald-600 border-4 border-white dark:border-slate-800 flex items-center justify-center text-white font-bold z-10 hidden md:flex">
+                                    {phase.number}
+                                </div>
+
+                                <div className="flex-1 hidden md:block"></div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <div className="mt-16 text-center">
+                        <div className="inline-block bg-white dark:bg-slate-900 px-8 py-4 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <span className="font-bold text-slate-900 dark:text-white mr-2">Secret Weapon:</span>
+                            <span className="text-slate-600 dark:text-slate-400">{study.approach.unique_differentiator}</span>
+                        </div>
+                    </div>
+                </div>
+            </section >
+
+            {/* Technical Deep Dive */}
+            < section className="py-20" >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">Technical Transformation</h2>
+
+                    <div className="grid md:grid-cols-2 gap-12">
+                        {/* Before */}
+                        <div className="space-y-6">
+                            <h3 className="text-xl font-bold text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                <AlertCircle size={24} /> Before State
+                            </h3>
+                            <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
+                                <div className="space-y-4">
+                                    <div>
+                                        <div className="text-sm font-semibold text-slate-500 uppercase mb-2">Legacy Stack</div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {study.technical.before.stack.map((t, i) => (
+                                                <span key={i} className="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded">
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="text-sm font-semibold text-slate-500 uppercase mb-2">Issues</div>
+                                        <ul className="space-y-2">
+                                            {study.technical.before.issues.map((issue, i) => (
+                                                <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span> {issue}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* After */}
+                        <div className="space-y-6">
+                            <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                                <CheckCircle2 size={24} /> After State
+                            </h3>
+                            <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border-2 border-emerald-500/20 shadow-xl">
+                                <div className="space-y-4">
+                                    <div>
+                                        <div className="text-sm font-semibold text-emerald-600/80 uppercase mb-2">Modern Stack</div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {study.technical.after.stack.map((t, i) => (
+                                                <span key={i} className="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-xs font-medium rounded">
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="text-sm font-semibold text-emerald-600/80 uppercase mb-2">Improvements</div>
+                                        <ul className="space-y-2">
+                                            {study.technical.after.improvements.map((imp, i) => (
+                                                <li key={i} className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                                    <CheckCircle2 size={14} className="text-emerald-500" /> {imp}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section >
+
+            {/* Testimonial */}
+            {
+                study.testimonial && (
+                    <section className="py-20 bg-emerald-900 text-white relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+                        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+                            <div className="text-6xl text-emerald-500 mb-8 opacity-50 font-serif">"</div>
+                            <blockquote className="text-2xl md:text-3xl font-medium leading-relaxed mb-8">
+                                {study.testimonial.quote}
+                            </blockquote>
+                            <cite className="not-italic">
+                                <div className="font-bold text-lg">{study.testimonial.author.name}</div>
+                                <div className="text-emerald-300">{study.testimonial.author.role}, {study.testimonial.author.company}</div>
+                            </cite>
+                        </div>
+                    </section>
+                )
+            }
+
+            {/* CTA */}
+            <section className="py-24 bg-white dark:bg-slate-900">
+                <div className="max-w-4xl mx-auto px-4 text-center">
+                    <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">Want similar results?</h2>
+                    <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+                        {study.cta.primary.context}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a
+                            href={study.cta.primary.action}
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+                        >
+                            {study.cta.primary.text}
+                            <ArrowRight size={20} />
+                        </a>
+                        <Link
+                            to={study.cta.secondary.action}
+                            className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+                        >
+                            {study.cta.secondary.text}
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        </div >
+    );
+};
+
+export default CaseStudyPage;
+
+```
+
+## File: ./src/pages/ClimateTechPage.tsx
+```tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Leaf, ArrowRight } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
+import SEO from '../components/SEO';
+
+const ClimateTechPage: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <SEO
+                title="Climate Tech & Scope 3 Architecture | Prasad Tilloo"
+                description="Architecting global ESG standards (PACT Protocol). Decarbonize supply chains via secure data exchange and interoperable platforms."
+                keywords="Climate Tech, ESG, PACT Protocol, Scope 3, Carbon Footprint, Sustainability Technology, WBCSD, Supply Chain Decarbonization"
+                type="website"
+            />
+
+            <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+                {/* HERO SECTION */}
+                <section className="relative bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-white py-24 md:py-32 overflow-hidden">
+                    <div className="absolute inset-0 opacity-20">
+                        <div className="absolute inset-0" style={{
+                            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(52, 211, 153, 0.5) 1px, transparent 0)',
+                            backgroundSize: '32px 32px'
+                        }} />
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="max-w-4xl"
+                        >
+                            <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 px-4 py-2 rounded-full text-emerald-300 font-bold text-sm mb-6 backdrop-blur-sm">
+                                <Leaf size={16} />
+                                {t('climateTech.hero.badge')}
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight">
+                                <Trans i18nKey="climateTech.hero.title" components={[<span className="text-emerald-400" />]} />
+                            </h1>
+                            <p className="text-xl text-slate-200 mb-8 max-w-2xl leading-relaxed">
+                                {t('climateTech.hero.subtitle')}
+                            </p>
+
+                            <div className="flex flex-wrap gap-4">
+                                <a
+                                    href="#pact-standard"
+                                    className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 flex items-center gap-2"
+                                >
+                                    {t('climateTech.hero.cta.explore')} <ArrowRight size={18} />
+                                </a>
+                                <Link
+                                    to="/contact?interest=Climate%20Tech"
+                                    className="bg-white/10 backdrop-blur-sm border border-emerald-400/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all"
+                                >
+                                    {t('climateTech.hero.cta.discuss')}
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* KEY STATS */}
+                <div className="bg-emerald-950 border-b border-emerald-900/50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-emerald-900/50">
+                            {[
+                                { value: '2.5GT', label: t('climateTech.stats.scope') },
+                                { value: '20+', label: t('climateTech.stats.partners') },
+                                { value: 'WBCSD', label: t('climateTech.stats.body') },
+                                { value: 'Open Source', label: t('climateTech.stats.arch') }
+                            ].map((stat, idx) => (
+                                <div key={idx} className="py-8 text-center px-4">
+                                    <div className="text-3xl font-bold text-emerald-400 font-serif mb-1">{stat.value}</div>
+                                    <div className="text-xs uppercase tracking-wider text-emerald-200/60 font-semibold">{stat.label}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* THE CHALLENGE SECTION */}
+                <section className="py-20 bg-white dark:bg-slate-900">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid md:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6">
+                                    {t('climateTech.challenge.title')}
+                                </h2>
+                                <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                    <Trans i18nKey="climateTech.challenge.desc" components={[<strong />]} />
+                                </p>
+                                <ul className="space-y-4">
+                                    {(t('climateTech.challenge.points', { returnObjects: true }) as string[]).map((point, index) => (
+                                        <li key={index} className="flex items-start gap-3">
+                                            <div className="bg-emerald-100 dark:bg-emerald-900/30 p-1 rounded-full mt-1">
+                                                <Leaf size={16} className="text-emerald-600 dark:text-emerald-400" />
+                                            </div>
+                                            <span className="text-slate-700 dark:text-slate-300">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Visual Placeholder for Challenge */}
+                            <div className="bg-slate-100 dark:bg-slate-800 rounded-2xl p-8 h-80 flex items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-700">
+                                <div className="text-center">
+                                    <div className="text-5xl mb-4">⛓️</div>
+                                    <div className="text-slate-500 font-semibold">Supply Chain Complexity Visual</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </>
+    );
+};
+
+export default ClimateTechPage;
+
+```
+
+## File: ./src/pages/ConsultationPage.tsx
+```tsx
+import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
+import { Loader2 } from 'lucide-react';
+
+const ConsultationPage: React.FC = () => {
+    useEffect(() => {
+        // Redirect to Calendly after 2 seconds
+        const timer = setTimeout(() => {
+            window.location.href = 'https://calendly.com/prasad-sgsits/30min';
+        }, 1500);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <>
+            <SEO
+                title="Book Consultation | Pradad Tilloo"
+                description="Schedule a strategy call to discuss your enterprise transformation needs."
+            />
+
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-600 to-blue-600">
+                <div className="text-center text-white bg-white/10 backdrop-blur-md p-12 rounded-3xl border border-white/20 shadow-2xl">
+                    <Loader2 className="animate-spin h-16 w-16 text-white mx-auto mb-8" />
+                    <h1 className="text-4xl font-bold mb-4">
+                        Redirecting to Scheduler...
+                    </h1>
+                    <p className="text-xl text-white/90">
+                        Preparing your strategy slot.
+                        <br />
+                        If not redirected, <a href="https://calendly.com/prasad-sgsits/30min" className="underline font-bold hover:text-emerald-200">click here</a>.
+                    </p>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default ConsultationPage;
+
+```
+
+## File: ./src/pages/ContactPage.tsx
+```tsx
+import React, { useState } from 'react';
+import { Linkedin, Mail, Calendar, MessageSquare, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO';
+
+const ContactPage: React.FC = () => {
+  const { t } = useTranslation();
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState('submitting');
+
+    // Simulate submission for UX
+    setTimeout(() => {
+      const form = e.target as HTMLFormElement;
+      const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+      const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+      const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+      const interest = (form.elements.namedItem('interest') as HTMLSelectElement).value;
+
+      // Use mailto as fallback
+      const subject = encodeURIComponent(`[Portfolio Lead] ${interest}: ${name}`);
+      const body = encodeURIComponent(`${message}\n\nContact: ${email}\nInterest: ${interest}`);
+      window.location.href = `mailto:prasad.sgsits@gmail.com?subject=${subject}&body=${body}`;
+
+      setFormState('success');
+    }, 1000);
+  };
+
+  return (
+    <>
+      <SEO
+        title="Contact Prasad Tilloo | Enterprise Architect & Consultant"
+        description="Partner with Prasad to solve complex business challenges through enterprise architecture and innovation. Book a consultation today."
+      />
+
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+
+        <div className="max-w-7xl mx-auto mb-16 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6"
+          >
+            {t('contactPage.title')}
+          </motion.h1>
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            {t('contactPage.subtitle')}
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24">
+
+          {/* LEFT: Direct Options */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="space-y-8"
+          >
+
+            {/* Option 1: Calendly */}
+            <div className="bg-gradient-to-br from-emerald-600 to-emerald-800 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden group hover:scale-[1.02] transition-transform cursor-pointer">
+              <div className="absolute top-0 right-0 p-8 opacity-10">
+                <Calendar size={120} />
+              </div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-white/20 p-2 rounded-lg">
+                    <Calendar size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold">{t('contactPage.book.title')}</h3>
+                </div>
+                <p className="text-emerald-100 mb-6 leading-relaxed">
+                  {t('contactPage.book.desc')}
+                </p>
+                <a
+                  href="https://calendly.com/prasad-sgsits/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white text-emerald-800 px-6 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-colors"
+                >
+                  {t('contactPage.book.cta')} <ArrowRight size={18} />
+                </a>
+              </div>
+            </div>
+
+            {/* Option 2: Email */}
+            {/* Option 3: LinkedIn */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              <a
+                href="mailto:prasad.sgsits@gmail.com"
+                className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group"
+              >
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Mail size={24} />
+                </div>
+                <h3 className="font-bold text-slate-900 dark:text-white text-lg">{t('contactPage.email.title')}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t('contactPage.email.subtitle')}</p>
+              </a>
+
+              <a
+                href="https://linkedin.com/in/prasadtilloo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group"
+              >
+                <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Linkedin size={24} />
+                </div>
+                <h3 className="font-bold text-slate-900 dark:text-white text-lg">{t('contactPage.linkedin.title')}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t('contactPage.linkedin.subtitle')}</p>
+              </a>
+            </div>
+
+          </motion.div>
+
+          {/* RIGHT: Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-lg"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <MessageSquare className="text-emerald-500" size={24} />
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{t('contactPage.form.title')}</h2>
+            </div>
+
+            <form onSubmit={onSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.interestedIn')}</label>
+                <select
+                  name="interest"
+                  className="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                >
+                  <option value="Consulting Project">{t('contactPage.form.options.consulting')}</option>
+                  <option value="Product/Toolkit">{t('contactPage.form.options.product')}</option>
+                  <option value="Speaking/Training">{t('contactPage.form.options.speaking')}</option>
+                  <option value="Other">{t('contactPage.form.options.other')}</option>
+                </select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.name')}</label>
+                  <input
+                    name="name"
+                    placeholder="John Doe"
+                    required
+                    className="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.email')}</label>
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="john@example.com"
+                    required
+                    className="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('contactPage.form.message')}</label>
+                <textarea
+                  name="message"
+                  placeholder={t('contactPage.form.placeholder')}
+                  required
+                  rows={4}
+                  className="w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-y"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={formState !== 'idle'}
+                className="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all disabled:opacity-70 flex justify-center items-center gap-2"
+              >
+                {formState === 'idle' && <>{t('contactPage.form.submit')} <ArrowRight size={18} /></>}
+                {formState === 'submitting' && t('contactPage.form.sending')}
+                {formState === 'success' && t('contactPage.form.sent')}
+              </button>
+
+              {formState === 'success' && (
+                <p className="text-center text-sm text-emerald-600 dark:text-emerald-400 animate-fade-in">
+                  {t('contactPage.form.redirect')}
+                </p>
+              )}
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ContactPage;
+
+```
+
+## File: ./src/pages/HomePage-backup.tsx
+```tsx
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, Sparkles, Users, Award, TrendingUp, Activity, Terminal, Shield } from 'lucide-react';
+import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
+import SkillsMatcher from '../components/SkillsMatcher';
+
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleIndustryClick = (title: string) => {
+    // Map display titles to filter keys used in ProjectsPage
+    const map: Record<string, string> = {
+      'Healthcare & Pharma': 'Healthcare',
+      'Financial Services': 'Financial',
+      'eCommerce & Retail': 'E-commerce',
+      'AI & Machine Learning': 'AI/ML',
+      'Telecom': 'Telecom',
+      'Manufacturing': 'Manufacturing',
+      'AdTech': 'AdTech',
+      'Climate Tech & ESG': 'Climate-Tech'
+    };
+
+    const filterKey = map[title] || 'All';
+    navigate('/projects', { state: { filter: filterKey } });
+    window.scrollTo(0, 0);
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
+  const industries = [
+    { emoji: '🏥', title: 'Healthcare & Pharma', count: '3 projects' },
+    { emoji: '🏦', title: 'Financial Services', count: '5 projects' },
+    { emoji: '🛒', title: 'eCommerce & Retail', count: '4 projects' },
+    { emoji: '🤖', title: 'AI & Machine Learning', count: '2 projects' },
+    { emoji: '📱', title: 'Telecom', count: '2 projects' },
+    { emoji: '🏭', title: 'Manufacturing', count: '3 projects' },
+    { emoji: '📺', title: 'AdTech', count: '2 projects' },
+    { emoji: '🌱', title: 'Climate Tech & ESG', count: '2 projects' }
+  ];
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 overflow-hidden">
+      <SEO
+        title="Home"
+        description="Prasad Tilloo - Senior IT Leader with 15+ years in cloud architecture, AI/ML, healthcare IT, and enterprise modernization. $1M+ cost savings, 99.99% SLA."
+        keywords="enterprise architect, cloud architect, AI engineer, HIPAA compliance, AWS, Azure, healthcare IT"
+      />
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center mb-24 max-w-4xl mx-auto relative"
+      >
+        {/* Decorative background blur */}
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-400/10 dark:bg-emerald-500/10 rounded-full blur-3xl -z-10" />
+
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 text-sm font-medium mb-8 border border-slate-200 dark:border-slate-700 shadow-sm"
+        >
+          <Sparkles size={14} className="text-emerald-500" />
+          <span>Available for Enterprise Consultation</span>
+        </motion.div>
+
+        <h1 className="text-5xl md:text-7xl font-serif font-semibold text-slate-900 dark:text-white mb-6 leading-[1.1] tracking-tight">
+          Prasad Tilloo
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-2xl md:text-3xl text-slate-600 dark:text-slate-300 mb-8 font-medium"
+        >
+          Senior Engineering Leader & Enterprise Architect
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-lg md:text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+        >
+          Architecting robust, scalable solutions at the intersection of Cloud, Healthcare, AI & Sustainability.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <Link
+            to="/architecture-engine"
+            className="group flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white rounded-xl font-semibold text-lg transition-all hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            Try Architecture Engine
+            <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+
+          <Link
+            to="/projects"
+            className="flex items-center gap-2 px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-xl font-semibold text-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 hover:text-slate-900 dark:hover:text-white hover:shadow-sm"
+          >
+            View Projects
+          </Link>
+        </motion.div>
+      </motion.div>
+
+      {/* Metrics */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-50px" }}
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-32"
+      >
+        {[
+          { icon: <TrendingUp className="w-6 h-6" />, value: '$1M+', label: 'Cost Savings' },
+          { icon: <Award className="w-6 h-6" />, value: '15+', label: 'Years Experience' },
+          { icon: <Users className="w-6 h-6" />, value: '8', label: 'Industries Served' },
+          { icon: <Activity className="w-6 h-6" />, value: 'Fortune 100', label: 'Clients' }
+        ].map((metric, idx) => (
+          <motion.div
+            key={idx}
+            variants={item}
+            className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-emerald-100 dark:hover:border-emerald-900 transition-all group"
+          >
+            <div className="text-emerald-600 dark:text-emerald-400 mb-3 bg-emerald-50 dark:bg-emerald-900/30 w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/50 transition-all duration-300">
+              {metric.icon}
+            </div>
+            <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1 font-serif">{metric.value}</div>
+            <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">{metric.label}</div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Architecture Engine Teaser */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-32"
+      >
+        <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-2xl shadow-slate-900/10 dark:shadow-slate-900/50 border border-slate-800">
+          {/* Abstract techno background */}
+          <div className="absolute top-0 right-0 p-12 opacity-10 animate-pulse">
+            <Terminal size={300} />
+          </div>
+
+          <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl"></div>
+
+          <div className="relative z-10 p-8 md:p-16 flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 text-emerald-400 text-sm font-medium mb-6 border border-slate-700 shadow-sm">
+                <Shield size={14} />
+                <span>AI-Powered Analysis</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-white">
+                Architecture Engine
+              </h2>
+              <p className="text-slate-400 text-lg mb-8 max-w-xl">
+                Get expert architecture recommendations based on 15+ years of enterprise experience.
+                Covers 4 industries, 20+ frameworks, and 100+ architecture patterns.
+              </p>
+              <Link
+                to="/architecture-engine"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-semibold transition-all hover:translate-x-1 shadow-lg shadow-emerald-900/20"
+              >
+                Try It Now
+                <ArrowRight size={20} />
+              </Link>
+            </div>
+
+            {/* Visual Representation */}
+            <div className="flex-1 w-full max-w-md">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="grid grid-cols-2 gap-4 opacity-90"
+              >
+                <div className="p-4 bg-slate-800/50 rounded-xl border border-slate-700 backdrop-blur-sm hover:bg-slate-700/50 transition-colors">
+                  <div className="h-2 w-16 bg-emerald-500/50 rounded mb-2"></div>
+                  <div className="h-2 w-24 bg-slate-600 rounded"></div>
+                </div>
+                <div className="p-4 bg-slate-800/50 rounded-xl border border-slate-700 backdrop-blur-sm mt-8 hover:bg-slate-700/50 transition-colors">
+                  <div className="h-2 w-12 bg-blue-500/50 rounded mb-2"></div>
+                  <div className="h-2 w-20 bg-slate-600 rounded"></div>
+                </div>
+                <div className="p-4 bg-slate-800/50 rounded-xl border border-slate-700 backdrop-blur-sm -mt-4 hover:bg-slate-700/50 transition-colors">
+                  <div className="h-2 w-20 bg-purple-500/50 rounded mb-2"></div>
+                  <div className="h-2 w-16 bg-slate-600 rounded"></div>
+                </div>
+                <div className="p-4 bg-slate-800/50 rounded-xl border border-slate-700 backdrop-blur-sm mt-4 hover:bg-slate-700/50 transition-colors">
+                  <div className="h-2 w-14 bg-amber-500/50 rounded mb-2"></div>
+                  <div className="h-2 w-24 bg-slate-600 rounded"></div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Industries Section */}
+      <div className="mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 dark:text-white mb-4">
+            Industries I Serve
+          </h2>
+          <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+            Deep domain expertise across varied sectors, delivering tailored technology solutions that drive business growth.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {industries.map((industry, idx) => (
+            <motion.div
+              key={idx}
+              variants={item}
+              onClick={() => handleIndustryClick(industry.title)}
+              className="group p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 hover:shadow-lg transition-all cursor-pointer relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-50 dark:bg-emerald-900/20 rounded-bl-full -mr-10 -mt-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 transform origin-left relative z-10">
+                {industry.emoji}
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors relative z-10">
+                {industry.title}
+              </h3>
+              <p className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 inline-block px-2 py-1 rounded relative z-10 group-hover:bg-white dark:group-hover:bg-slate-800 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                {industry.count}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Recruiter Tools Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-20 max-w-3xl mx-auto"
+      >
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-4">
+            Hiring? Check My Fit
+          </h2>
+          <p className="text-slate-500 dark:text-slate-400">
+            Paste your job description to see how well my skills align with your role.
+          </p>
+        </div>
+        <SkillsMatcher />
+      </motion.div>
+    </div>
+  );
+};
+
+export default HomePage;
+
+```
+
+## File: ./src/pages/HomePage.tsx
+```tsx
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useTranslation, Trans } from 'react-i18next';
+import {
+  CheckCircle2,
+  Shield,
+  TrendingDown,
+  Clock,
+  ArrowRight,
+  Award,
+  DollarSign,
+  AlertCircle
+} from 'lucide-react';
+import SEO from '../components/SEO';
+import ROICalculator from '../components/ROICalculator';
+
+const HomePage: React.FC = () => {
+  const { t } = useTranslation();
+  const [showROICalculator, setShowROICalculator] = useState(false);
+
+  return (
+    <>
+      <SEO
+        title="HIPAA-Compliant Cloud Migration Specialist"
+        description="I've successfully migrated 12 healthcare systems to AWS without a single HIPAA violation, data breach, or downtime incident. €2M+ in cost savings delivered."
+        keywords="HIPAA cloud migration, healthcare AWS, FHIR compliance, patient data security, healthcare cloud architect, GDPR healthcare, medical records migration"
+        type="website"
+      />
+
+      <div className="min-h-screen">
+        {/* HERO SECTION */}
+        <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+              backgroundSize: '40px 40px'
+            }} />
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              {/* Main Headline */}
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                <Trans i18nKey="homeHealthcare.hero.title">
+                  Stuck in <span className="text-red-400">HIPAA Compliance Hell</span>
+                  <br />
+                  During Cloud Migration?
+                </Trans>
+              </h1>
+
+              {/* Subheadline */}
+              <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed">
+                <Trans i18nKey="homeHealthcare.hero.subtitle">
+                  I've successfully migrated <strong className="text-emerald-400">12 healthcare systems</strong> to AWS
+                  without a single <strong>HIPAA violation</strong>, <strong>data breach</strong>, or <strong>downtime incident</strong>.
+                </Trans>
+              </p>
+
+              {/* Social Proof - Client Logos */}
+              <div className="mb-10">
+                <p className="text-sm uppercase tracking-wider text-slate-400 mb-4">
+                  {t('homeHealthcare.hero.trustedBy')}
+                </p>
+                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                  {['PwC', 'Boehringer Ingelheim', 'Delivery Hero', 'BRITA'].map((client) => (
+                    <div
+                      key={client}
+                      className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20"
+                    >
+                      <span className="text-lg font-semibold text-white">{client}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Primary CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <Link
+                  to="/projects#healthcare"
+                  className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                >
+                  {t('homeHealthcare.hero.cta.primary')}
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                </Link>
+
+                <button
+                  onClick={() => setShowROICalculator(true)}
+                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
+                >
+                  <DollarSign size={20} />
+                  {t('homeHealthcare.hero.cta.secondary')}
+                </button>
+              </div>
+
+              {/* Trust Metrics Bar */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                {[
+                  { value: t('homeHealthcare.hero.stats.migrations.value'), label: t('homeHealthcare.hero.stats.migrations.label'), icon: Shield },
+                  { value: t('homeHealthcare.hero.stats.compliance.value'), label: t('homeHealthcare.hero.stats.compliance.label'), icon: CheckCircle2 },
+                  { value: t('homeHealthcare.hero.stats.savings.value'), label: t('homeHealthcare.hero.stats.savings.label'), icon: TrendingDown },
+                  { value: t('homeHealthcare.hero.stats.breaches.value'), label: t('homeHealthcare.hero.stats.breaches.label'), icon: Award }
+                ].map((stat, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                    className="text-center"
+                  >
+                    <stat.icon className="w-8 h-8 mx-auto mb-2 text-emerald-400" />
+                    <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-sm text-slate-300">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* PROBLEM SECTION - The Pain */}
+        <section className="py-20 bg-slate-50 dark:bg-slate-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+                {t('homeHealthcare.problems.title')}
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                {t('homeHealthcare.problems.subtitle')}
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  emoji: '😰',
+                  title: t('homeHealthcare.problems.item1.title'),
+                  problem: t('homeHealthcare.problems.item1.desc'),
+                  impact: t('homeHealthcare.problems.item1.impact'),
+                  color: 'from-red-500 to-orange-500'
+                },
+                {
+                  emoji: '💸',
+                  title: t('homeHealthcare.problems.item2.title'),
+                  problem: t('homeHealthcare.problems.item2.desc'),
+                  impact: t('homeHealthcare.problems.item2.impact'),
+                  color: 'from-orange-500 to-yellow-500'
+                },
+                {
+                  emoji: '⏰',
+                  title: t('homeHealthcare.problems.item3.title'),
+                  problem: t('homeHealthcare.problems.item3.desc'),
+                  impact: t('homeHealthcare.problems.item3.impact'),
+                  color: 'from-yellow-500 to-red-500'
+                }
+              ].map((pain, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-slate-200 dark:border-slate-700"
+                >
+                  <div className="text-6xl mb-4">{pain.emoji}</div>
+                  <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
+                    {pain.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                    {pain.problem}
+                  </p>
+                  <div className={`bg-gradient-to-r ${pain.color} p-4 rounded-lg`}>
+                    <p className="text-white font-semibold">
+                      {pain.impact}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mt-12"
+            >
+              <p className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                {t('homeHealthcare.problems.solution')}
+              </p>
+              <ArrowRight className="mx-auto animate-bounce text-emerald-600" size={48} />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* SOLUTION SECTION - The Process */}
+        <section className="py-20 bg-white dark:bg-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+                {t('homeHealthcare.process.title')}
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                {t('homeHealthcare.process.subtitle')}
+              </p>
+            </motion.div>
+
+            <div className="space-y-8">
+              {[
+                {
+                  phase: 'PHASE 1',
+                  key: 'phase1',
+                  color: 'emerald'
+                },
+                {
+                  phase: 'PHASE 2',
+                  key: 'phase2',
+                  color: 'blue'
+                },
+                {
+                  phase: 'PHASE 3',
+                  key: 'phase3',
+                  color: 'violet'
+                },
+                {
+                  phase: 'PHASE 4',
+                  key: 'phase4',
+                  color: 'amber'
+                }
+              ].map((phase, idx) => {
+                const activities = t(`homeHealthcare.process.${phase.key}.activities`, { returnObjects: true }) as string[];
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="relative"
+                  >
+                    {/* Connecting Line */}
+                    {idx < 3 && (
+                      <div className="hidden md:block absolute left-12 top-full w-0.5 h-8 bg-slate-300 dark:bg-slate-600 z-0" />
+                    )}
+
+                    <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition-all duration-300">
+                      <div className="flex flex-col md:flex-row gap-8">
+                        {/* Phase Label */}
+                        <div className="flex-shrink-0">
+                          <div className={`bg-${phase.color}-100 dark:bg-${phase.color}-900/30 text-${phase.color}-800 dark:text-${phase.color}-400 px-4 py-2 rounded-lg font-bold text-sm mb-2 inline-block`}>
+                            {phase.phase}
+                          </div>
+                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                            {t(`homeHealthcare.process.${phase.key}.title`)}
+                          </h3>
+                          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                            <Clock size={16} />
+                            <span className="font-semibold">{t(`homeHealthcare.process.${phase.key}.duration`)}</span>
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-grow space-y-4">
+                          <div>
+                            <h4 className="font-bold text-slate-900 dark:text-white mb-2">{t('homeHealthcare.process.labels.activities')}</h4>
+                            <ul className="space-y-2">
+                              {activities.map((activity, actIdx) => (
+                                <li key={actIdx} className="flex items-start gap-2 text-slate-600 dark:text-slate-300">
+                                  <CheckCircle2 className="flex-shrink-0 text-emerald-600 mt-0.5" size={16} />
+                                  <span>{activity}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                              <h5 className="font-bold text-sm text-slate-600 dark:text-slate-400 mb-1">{t('homeHealthcare.process.labels.deliverable')}</h5>
+                              <p className="text-slate-900 dark:text-white">{t(`homeHealthcare.process.${phase.key}.deliverable`)}</p>
+                            </div>
+                            <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border border-emerald-200 dark:border-emerald-800">
+                              <h5 className="font-bold text-sm text-emerald-700 dark:text-emerald-400 mb-1">{t('homeHealthcare.process.labels.outcome')}</h5>
+                              <p className="text-slate-900 dark:text-white">{t(`homeHealthcare.process.${phase.key}.outcome`)}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+
+            {/* Final Stats Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-2xl p-8 text-white text-center"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {[
+                  { value: t('homeHealthcare.hero.stats.migrations.value'), label: t('homeHealthcare.process.stats.migrations') },
+                  { value: t('homeHealthcare.hero.stats.breaches.value'), label: t('homeHealthcare.process.stats.breaches') },
+                  { value: '100%', label: t('homeHealthcare.process.stats.auditRate') },
+                  { value: t('homeHealthcare.hero.stats.savings.value'), label: t('homeHealthcare.process.stats.savings') }
+                ].map((stat, idx) => (
+                  <div key={idx}>
+                    <div className="text-4xl font-bold mb-1">{stat.value}</div>
+                    <div className="text-emerald-100 text-sm">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ROI CALCULATOR SECTION */}
+        <section className="py-20 bg-slate-50 dark:bg-slate-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+                {t('homeHealthcare.roi.title')}
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                {t('homeHealthcare.roi.subtitle')}
+              </p>
+            </motion.div>
+
+            <ROICalculator />
+          </div>
+        </section>
+
+        {/* PROOF SECTION - Case Studies Preview */}
+        <section className="py-20 bg-white dark:bg-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+                {t('homeHealthcare.proof.title')}
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300">
+                {t('homeHealthcare.proof.subtitle')}
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {[
+                {
+                  client: 'PwC Healthcare',
+                  challenge: 'Legacy e-commerce & healthcare systems modernization',
+                  result: '$500K annual savings',
+                  metric: '70% traffic increase',
+                  compliance: 'HIPAA/FHIR/PCI',
+                  link: '/projects#pwc-healthcare'
+                },
+                {
+                  client: 'Boehringer Ingelheim',
+                  challenge: 'Enterprise AI/ML Data Lake implementation',
+                  result: '€500K cloud migration',
+                  metric: '50% faster insights',
+                  compliance: 'GDPR/Pharma',
+                  link: '/projects#boehringer-aiml'
+                },
+                {
+                  client: 'Delivery Hero',
+                  challenge: 'High-scale display ads platform (5M+ daily)',
+                  result: '20% revenue increase',
+                  metric: '99.99% SLA',
+                  compliance: 'GDPR',
+                  link: '/projects#delivery-hero'
+                }
+              ].map((project, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="group bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500"
+                >
+                  <div className="mb-4">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      {project.client}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                      {project.challenge}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-2">
+                      <DollarSign className="text-emerald-600" size={20} />
+                      <span className="font-bold text-slate-900 dark:text-white">{project.result}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <TrendingDown className="text-blue-600" size={20} />
+                      <span className="font-bold text-slate-900 dark:text-white">{project.metric}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Shield className="text-violet-600" size={20} />
+                      <span className="text-sm text-slate-600 dark:text-slate-400">{project.compliance}</span>
+                    </div>
+                  </div>
+
+                  <Link
+                    to={project.link}
+                    className="inline-flex items-center gap-2 text-emerald-600 font-semibold group-hover:gap-3 transition-all"
+                  >
+                    {t('homeHealthcare.proof.cta')}
+                    <ArrowRight size={16} />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl"
+              >
+                {t('homeHealthcare.proof.seeAll')}
+                <ArrowRight size={20} />
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* FAQ SECTION - Objection Handling */}
+        <section className="py-20 bg-slate-50 dark:bg-slate-900">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+                {t('homeHealthcare.faq.title')}
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300">
+                {t('homeHealthcare.faq.subtitle')}
+              </p>
+            </motion.div>
+
+            <div className="space-y-6">
+              {[1, 2, 3, 4, 5].map((idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700"
+                >
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-start gap-3">
+                    <AlertCircle className="text-emerald-600 flex-shrink-0 mt-1" size={24} />
+                    {t(`homeHealthcare.faq.q${idx}.q`)}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+                    {t(`homeHealthcare.faq.q${idx}.a`)}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA SECTION */}
+        <section className="py-20 bg-gradient-to-br from-emerald-600 via-blue-600 to-violet-600 text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                {t('homeHealthcare.finalCta.title')}
+              </h2>
+              <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+                {t('homeHealthcare.finalCta.subtitle')}
+              </p>
+
+              {/* Two Path Choice */}
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
+                {/* Path A: Urgent */}
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border-2 border-white/30 hover:border-white transition-all duration-300">
+                  <div className="text-3xl mb-4">🚀</div>
+                  <h3 className="text-2xl font-bold mb-4">{t('homeHealthcare.finalCta.urgent.title')}</h3>
+                  <p className="text-white/80 mb-6">
+                    {t('homeHealthcare.finalCta.urgent.desc')}
+                  </p>
+                  <a
+                    href="https://calendly.com/prasad-sgsits/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-white text-emerald-600 px-6 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition-all duration-300"
+                  >
+                    {t('homeHealthcare.finalCta.urgent.cta')}
+                  </a>
+                  <p className="text-sm text-white/60 mt-3">
+                    {t('homeHealthcare.finalCta.urgent.note')}
+                  </p>
+                </div>
+
+                {/* Path B: Research */}
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border-2 border-white/30 hover:border-white transition-all duration-300">
+                  <div className="text-3xl mb-4">📚</div>
+                  <h3 className="text-2xl font-bold mb-4">{t('homeHealthcare.finalCta.research.title')}</h3>
+                  <p className="text-white/80 mb-6">
+                    {t('homeHealthcare.finalCta.research.desc')}
+                  </p>
+                  <Link
+                    to="/contact?resource=hipaa-checklist"
+                    className="block w-full bg-white/20 text-white border-2 border-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-white/30 transition-all duration-300"
+                  >
+                    {t('homeHealthcare.finalCta.research.cta')}
+                  </Link>
+                  <p className="text-sm text-white/60 mt-3">
+                    {t('homeHealthcare.finalCta.research.note')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Risk Reversal */}
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <h4 className="font-bold text-lg mb-2">Not sure if I'm the right fit?</h4>
+                <p className="text-white/90">
+                  <CheckCircle2 className="inline mr-2" size={20} />
+                  {t('homeHealthcare.finalCta.riskReversal.free')}
+                </p>
+                <p className="text-white/90 mt-2">
+                  <CheckCircle2 className="inline mr-2" size={20} />
+                  {t('homeHealthcare.finalCta.riskReversal.referral')}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </div>
+
+      {/* ROI Calculator Modal */}
+      {showROICalculator && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-6 flex justify-between items-center">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                {t('roiCalculator.cta.calculate')}
+              </h3>
+              <button
+                onClick={() => setShowROICalculator(false)}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                <span className="text-3xl">&times;</span>
+              </button>
+            </div>
+            <div className="p-6">
+              <ROICalculator />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default HomePage;
+
+```
+
+## File: ./src/pages/HomePageMultiDomain.tsx
+```tsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import {
+    ArrowRight,
+    CheckCircle2,
+    Building2,
+    Shield,
+    Leaf,
+    Lightbulb,
+    Target,
+    Users,
+    Zap,
+    FileSearch,
+    Cloud,
+    Layout
+} from 'lucide-react';
+import SEO from '../components/SEO';
+import LogoCarousel from '../components/LogoCarousel';
+import { caseStudies } from '../data/caseStudies';
+
+const services = [
+  {
+    id: 'due-diligence',
+    icon: FileSearch,
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-100 dark:bg-blue-900/30',
+    titleKey: 'services.dueDiligence.title',
+    subtitleKey: 'services.dueDiligence.subtitle',
+    timelineKey: 'services.dueDiligence.timeline',
+    priceKey: 'services.dueDiligence.price',
+    forKey: 'services.dueDiligence.for',
+    deliverablesKey: 'services.dueDiligence.deliverables'
+  },
+  {
+    id: 'cloud-migration',
+    icon: Cloud,
+    iconColor: 'text-emerald-600',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    titleKey: 'services.cloudMigration.title',
+    subtitleKey: 'services.cloudMigration.subtitle',
+    timelineKey: 'services.cloudMigration.timeline',
+    priceKey: 'services.cloudMigration.price',
+    forKey: 'services.cloudMigration.for',
+    deliverablesKey: 'services.cloudMigration.deliverables'
+  },
+  {
+    id: 'platform-evaluation',
+    icon: Layout,
+    iconColor: 'text-purple-600',
+    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    titleKey: 'services.platformEvaluation.title',
+    subtitleKey: 'services.platformEvaluation.subtitle',
+    timelineKey: 'services.platformEvaluation.timeline',
+    priceKey: 'services.platformEvaluation.price',
+    forKey: 'services.platformEvaluation.for',
+    deliverablesKey: 'services.platformEvaluation.deliverables'
+  }
+];
+
+const HomePageMultiDomain: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <SEO
+                title="Prasad Tilloo | Independent Architecture Consultant"
+                description="Independent architecture assessments for EU mid-market companies. Validate cloud migration, platform modernization, and architecture decisions before committing to the wrong path."
+                keywords="architecture consultant, architecture assessment, technical due diligence, cloud migration readiness, platform evaluation, enterprise architect, AWS, Azure, GCP"
+                type="website"
+            />
+
+            <div className="min-h-screen font-sans">
+                {/* HERO SECTION - Simplified & Larger Typography */}
+                <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-32 md:py-48 overflow-hidden">
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0" style={{
+                            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                            backgroundSize: '40px 40px'
+                        }} />
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="text-center"
+                        >
+                            {/* Pre-headline */}
+                            <div className="inline-block bg-emerald-500/20 backdrop-blur-sm border border-emerald-500/30 px-6 py-3 rounded-full mb-8">
+                                <span className="text-emerald-300 font-semibold">
+                                    Independent Architecture Consultant
+                                </span>
+                            </div>
+
+                            {/* Main Headline */}
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                                {t('hero.title')}
+                            </h1>
+
+                            {/* Subheadline */}
+                            <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-4xl mx-auto leading-relaxed">
+                                {t('hero.subtitle')}
+                            </p>
+
+                            {/* Business Outcomes Stats */}
+                            <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto mb-12">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
+                                >
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.savings.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.savings.label')}</div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
+                                >
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.revenue.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.revenue.label')}</div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
+                                >
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.efficiency.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.efficiency.label')}</div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20"
+                                >
+                                    <div className="text-4xl font-bold text-emerald-400 mb-2">{t('hero.stats.impact.value')}</div>
+                                    <div className="text-sm text-slate-300">{t('hero.stats.impact.label')}</div>
+                                </motion.div>
+                            </div>
+
+                            {/* Value Proposition Bullets */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12 text-left">
+                                <div className="flex items-start gap-3">
+                                    <Lightbulb className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
+                                    <div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.innovation.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.innovation.desc')}</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-3">
+                                    <Target className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
+                                    <div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.business.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.business.desc')}</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-3">
+                                    <Users className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
+                                    <div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.leadership.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.leadership.desc')}</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-3">
+                                    <Zap className="text-emerald-400 flex-shrink-0 mt-1" size={24} />
+                                    <div>
+                                        <div className="font-bold text-white mb-1">{t('hero.values.fullstack.title')}</div>
+                                        <div className="text-sm text-slate-300">{t('hero.values.fullstack.desc')}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {/* Primary CTA */}
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                                <a
+                                    href="https://calendly.com/prasad-sgsits/30min"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                                >
+                                    {t('hero.cta')}
+                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
+                                </a>
+
+                                <Link
+                                    to="/services"
+                                    className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 flex items-center gap-3"
+                                >
+                                    View Services
+                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* LOGO CAROUSEL */}
+                <LogoCarousel />
+
+                {/* HOW I WORK SECTION */}
+                <section id="how-i-work" className="py-32 bg-white dark:bg-slate-800">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
+                                {t('howItWork.title')}
+                            </h2>
+                            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                                {t('howItWork.subtitle')}
+                            </p>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {/* Principle 1: Business First */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="relative bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-2xl p-8 border-2 border-emerald-200 dark:border-emerald-700"
+                            >
+                                <div className="absolute -top-4 -left-4 bg-emerald-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                                    1
+                                </div>
+
+                                <Target className="w-12 h-12 text-emerald-600 mb-4 mt-4" />
+
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                    {t('howItWork.steps.1.title')}
+                                </h3>
+
+                                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                                    {t('howItWork.steps.1.desc')}
+                                </p>
+
+                                <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
+                                    <div className="font-semibold text-emerald-700 dark:text-emerald-400 mb-2">
+                                        Example:
+                                    </div>
+                                    <div className="text-slate-600 dark:text-slate-400">
+                                        {t('howItWork.steps.1.example')}
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Principle 2: Creative Innovation */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="relative bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-8 border-2 border-blue-200 dark:border-blue-700"
+                            >
+                                <div className="absolute -top-4 -left-4 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                                    2
+                                </div>
+
+                                <Lightbulb className="w-12 h-12 text-blue-600 mb-4 mt-4" />
+
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                    {t('howItWork.steps.2.title')}
+                                </h3>
+
+                                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                                    {t('howItWork.steps.2.desc')}
+                                </p>
+
+                                <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
+                                    <div className="font-semibold text-blue-700 dark:text-blue-400 mb-2">
+                                        Example:
+                                    </div>
+                                    <div className="text-slate-600 dark:text-slate-400">
+                                        {t('howItWork.steps.2.example')}
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Principle 3: Servant Leadership */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="relative bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-800/20 rounded-2xl p-8 border-2 border-violet-200 dark:border-violet-700"
+                            >
+                                <div className="absolute -top-4 -left-4 bg-violet-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                                    3
+                                </div>
+
+                                <Users className="w-12 h-12 text-violet-600 mb-4 mt-4" />
+
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                    {t('howItWork.steps.3.title')}
+                                </h3>
+
+                                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                                    {t('howItWork.steps.3.desc')}
+                                </p>
+
+                                <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
+                                    <div className="font-semibold text-violet-700 dark:text-violet-400 mb-2">
+                                        Example:
+                                    </div>
+                                    <div className="text-slate-600 dark:text-slate-400">
+                                        {t('howItWork.steps.3.example')}
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Principle 4: Hands-On Excellence */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="relative bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-2xl p-8 border-2 border-orange-200 dark:border-orange-700"
+                            >
+                                <div className="absolute -top-4 -left-4 bg-orange-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                                    4
+                                </div>
+
+                                <Zap className="w-12 h-12 text-orange-600 mb-4 mt-4" />
+
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                    {t('howItWork.steps.4.title')}
+                                </h3>
+
+                                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                                    {t('howItWork.steps.4.desc')}
+                                </p>
+
+                                <div className="bg-white/50 dark:bg-slate-900/50 rounded-lg p-4 text-sm">
+                                    <div className="font-semibold text-orange-700 dark:text-orange-400 mb-2">
+                                        Example:
+                                    </div>
+                                    <div className="text-slate-600 dark:text-slate-400">
+                                        {t('howItWork.steps.4.example')}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+
+
+                        {/* Bottom tagline */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-center mt-16"
+                        >
+                            <div className="inline-block bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-8 py-4 rounded-xl shadow-lg">
+                                <p className="text-xl font-bold">
+                                    {t('howItWork.resultTagline')}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                </section>
+
+                {/* PATH SELECTOR - NEW SECTION */}
+                <section id="path-selector" className="py-32 bg-white dark:bg-slate-800 scroll-mt-20" >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-20"
+                        >
+                            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900 dark:text-white">
+                                {t('pathSelector.title')}
+                            </h2>
+                            <p className="text-2xl text-slate-600 dark:text-slate-300">
+                                {t('pathSelector.subtitle')}
+                            </p>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            {/* Option 1: Custom Consulting */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="group bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-3xl p-10 border-2 border-blue-200 dark:border-blue-700 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col"
+                            >
+                                <div className="text-7xl mb-6">🤝</div>
+                                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                    {t('pathSelector.consulting.title')}
+                                </h3>
+                                <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 flex-grow">
+                                    {t('pathSelector.consulting.desc')}
+                                </p>
+                                <ul className="space-y-3 mb-8 text-base">
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Enterprise modernization</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Compliance implementation</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Sustainability tech</span>
+                                    </li>
+                                </ul>
+                                <a
+                                    href="https://calendly.com/prasad-sgsits/30min"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-blue-500/30"
+                                >
+                                    {t('pathSelector.consulting.cta')}
+                                </a>
+                                <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 font-medium">
+                                    €300/hour
+                                </p>
+                            </motion.div>
+
+                            {/* Option 2: Ready-Made Products */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="group bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-3xl p-10 border-2 border-emerald-200 dark:border-emerald-700 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col relative overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl uppercase tracking-wider">{t('pathSelector.products.badge')}</div>
+                                <div className="text-7xl mb-6">📦</div>
+                                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                    {t('pathSelector.products.title')}
+                                </h3>
+                                <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 flex-grow">
+                                    {t('pathSelector.products.desc')}
+                                </p>
+                                <ul className="space-y-3 mb-8 text-base">
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Industry 4.0 frameworks</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Compliance packages</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-emerald-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Assessment tools</span>
+                                    </li>
+                                </ul>
+                                <Link
+                                    to="/products"
+                                    className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-emerald-500/30"
+                                >
+                                    {t('pathSelector.products.cta')}
+                                </Link>
+                                <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 font-medium">
+                                    €1,000 - €15,000
+                                </p>
+                            </motion.div>
+
+                            {/* Option 3: View Proof */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="group bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-800/20 rounded-3xl p-10 border-2 border-violet-200 dark:border-violet-700 hover:border-violet-500 hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col"
+                            >
+                                <div className="text-7xl mb-6">🔍</div>
+                                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                    {t('pathSelector.proof.title')}
+                                </h3>
+                                <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 flex-grow">
+                                    {t('pathSelector.proof.desc')}
+                                </p>
+                                <ul className="space-y-3 mb-8 text-base">
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-violet-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">Fortune 500 projects</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-violet-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">€2M+ delivered</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-violet-600 flex-shrink-0 mt-0.5" size={20} />
+                                        <span className="text-slate-700 dark:text-slate-200">12 compliance migrations</span>
+                                    </li>
+                                </ul>
+                                <Link
+                                    to="/projects"
+                                    className="block w-full text-center bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-violet-500/30"
+                                >
+                                    {t('pathSelector.proof.cta')}
+                                </Link>
+                                <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 font-medium">
+                                    Free to explore
+                                </p>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* SERVICES SECTION */}
+                <section className="py-32 bg-slate-50 dark:bg-slate-900">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+                                Architecture Assessment Services
+                            </h2>
+                            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                                Independent architecture assessments for EU mid-market companies. Validate decisions before committing to the wrong path.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8 mb-12">
+                            {services.map((service, idx) => {
+                            const Icon = service.icon;
+                            const deliverables = t(service.deliverablesKey, { returnObjects: true }) as string[];
+
+                            return (
+                                <motion.div
+                                    key={service.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                                >
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`} />
+
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${service.iconBg} transition-transform group-hover:scale-110 duration-300`}>
+                                            <Icon className={service.iconColor} size={32} />
+                                        </div>
+
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                            {t(service.titleKey)}
+                                        </h3>
+                                        <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                                            {t(service.subtitleKey)}
+                                        </p>
+
+                                        <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-3">
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                                                    {t('servicesPage.timeline')}
+                                                </div>
+                                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                                    {t(service.timelineKey)}
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                                                    {t('servicesPage.price')}
+                                                </div>
+                                                <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                                                    {t(service.priceKey)}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-6">
+                                            <div className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
+                                                {t('servicesPage.deliverables')}
+                                            </div>
+                                            <ul className="space-y-2">
+                                                {Array.isArray(deliverables) && deliverables.slice(0, 3).map((deliverable, dIdx) => (
+                                                    <li key={dIdx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                        <CheckCircle2 className={`flex-shrink-0 mt-0.5 ${service.iconColor}`} size={16} />
+                                                        <span>{deliverable}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        <Link
+                                            to="/services"
+                                            className={`w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1`}
+                                        >
+                                            Learn More
+                                            <ArrowRight size={18} />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                        </div>
+
+                        {/* NEW: Featured Projects Section (Dynamic) */}
+                        <div className="mt-20">
+                            <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-10 text-center">
+                                {t('home.featuredCaseStudies.title')}
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                {caseStudies.slice(0, 4).map((study, index) => (
+                                    <motion.div
+                                        key={study.id}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 group relative overflow-hidden"
+                                    >
+                                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                            {index === 0 ? <Zap size={100} /> : <Target size={100} />}
+                                        </div>
+
+                                        <div className="relative z-10">
+                                            <div className="flex items-center justify-between mb-4">
+                                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                                                    {study.header.client.industry}
+                                                </span>
+                                                {index === 0 && (
+                                                    <div className="text-xs font-bold text-amber-500 flex items-center gap-1">
+                                                        <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
+                                                        {t('home.featuredCaseStudies.new')}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-emerald-600 transition-colors">
+                                                {study.header.title}
+                                            </h4>
+
+                                            <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 line-clamp-3">
+                                                {study.challenge.situation}
+                                            </p>
+
+                                            <div className="flex items-center gap-4 mb-6">
+                                                <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3">
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">{t('home.featuredCaseStudies.impact')}</div>
+                                                    <div className="font-bold text-emerald-600 dark:text-emerald-400">
+                                                        {study.outcomes.hero_metric.value} {study.outcomes.hero_metric.label}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex gap-3">
+                                                <Link
+                                                    to={`/projects/${study.slug}`}
+                                                    className="flex-1 inline-flex justify-center items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-400 transition-colors"
+                                                >
+                                                    {t('home.featuredCaseStudies.viewCaseStudy')} <ArrowRight size={16} />
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            <div className="text-center mt-12">
+                                <Link
+                                    to="/projects"
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold hover:opacity-90 transition-opacity"
+                                >
+                                    {t('home.featuredCaseStudies.viewAll')} <ArrowRight size={20} />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* FINAL CTA - Simplified */}
+                <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center" >
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                            {t('home.readyToTransform.title')}
+                        </h2>
+                        <a
+                            href="#path-selector"
+                            className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105"
+                        >
+                            {t('home.readyToTransform.cta')}
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </>
+    );
+};
+
+export default HomePageMultiDomain;
+
+```
+
+## File: ./src/pages/ProductDetailPage.tsx
+```tsx
+import React from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { products } from '../data/products';
+import { CheckCircle2, ArrowLeft, ArrowRight, ShieldCheck, Zap, BarChart3, Leaf } from 'lucide-react';
+import SEO from '../components/SEO';
+
+const ProductDetailPage: React.FC = () => {
+    const { slug } = useParams<{ slug: string }>();
+    const { t } = useTranslation();
+    const product = products.find(p => p.slug === slug);
+
+    if (!product) {
+        return <Navigate to="/products" replace />;
+    }
+
+    // Retrieve i18n content
+    // Note: In translation.json, keys match the product slugs (e.g. "industry40-toolkit")
+    // If IDs and Slugs differ, we must ensure translation.json uses the correct identifier.
+    // Based on my previous Edit, I used the keys present in the file which matched slugs mostly.
+    const title = t(`products.${slug}.title`);
+    const description = t(`products.${slug}.desc`);
+    const features = t(`products.${slug}.features`, { returnObjects: true }) as string[];
+
+    const getIcon = (iconName: string) => {
+        switch (iconName) {
+            case 'Leaf': return <Leaf className="w-12 h-12 text-emerald-500" />;
+            case '🏭': return <Zap className="w-12 h-12 text-blue-500" />;
+            case '🏥': return <ShieldCheck className="w-12 h-12 text-red-500" />;
+            case '📊': return <BarChart3 className="w-12 h-12 text-purple-500" />;
+            default: return <span className="text-4xl">{iconName}</span>;
+        }
+    };
+
+    return (
+        <>
+            <SEO
+                title={`${title} | Prasad Tilloo`}
+                description={description}
+                type="article"
+            />
+            <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-4xl mx-auto">
+                    <Link to="/products" className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-emerald-600 mb-8 transition-colors">
+                        <ArrowLeft size={20} /> {t('products.back')}
+                    </Link>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700"
+                    >
+                        <div className="p-8 md:p-12">
+                            <div className="flex items-center gap-6 mb-6">
+                                <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700">
+                                    {getIcon(product.icon)}
+                                </div>
+                                <div>
+                                    <div className="text-sm font-bold text-emerald-600 uppercase tracking-wider mb-2">
+                                        {product.category === 'industry40' ? 'Industry 4.0' :
+                                            product.category === 'compliance' ? 'Compliance' :
+                                                product.category === 'carbon' ? 'Sustainability' : 'Consulting'}
+                                    </div>
+                                    <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+                                        {title}
+                                    </h1>
+                                </div>
+                            </div>
+
+                            <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                                {description}
+                            </p>
+
+                            <div className="grid md:grid-cols-2 gap-12 mb-12">
+                                <div>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">What's Included</h3>
+                                    <ul className="space-y-4">
+                                        {Array.isArray(features) && features.map((feature, idx) => (
+                                            <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                                                <CheckCircle2 className="text-emerald-500 flex-shrink-0 mt-1" size={20} />
+                                                <span>{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 h-fit">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="text-slate-500 dark:text-slate-400">Investment</span>
+                                        {product.category === 'consulting' && <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Tax Deductible</span>}
+                                    </div>
+                                    <div className="text-4xl font-bold text-slate-900 dark:text-white mb-6">
+                                        €{product.price.toLocaleString()}
+                                    </div>
+                                    <Link
+                                        to={`/contact?interest=${product.slug}`}
+                                        className="w-full block text-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                                    >
+                                        Purchase Toolkit <ArrowRight size={20} />
+                                    </Link>
+                                    <p className="text-xs text-center text-slate-500 mt-4">
+                                        Includes license for single enterprise use.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default ProductDetailPage;
+
+```
+
+## File: ./src/pages/ProductsPage.tsx
+```tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { products } from '../data/products';
+import { CheckCircle2, ArrowRight, ShoppingBag, Leaf, Database, Zap, Shield, Factory, BarChart, Infinity, LayoutTemplate, Users } from 'lucide-react';
+import SEO from '../components/SEO';
+import { Link } from 'react-router-dom';
+
+const iconMap: Record<string, any> = {
+    'ShoppingBag': ShoppingBag,
+    'Leaf': Leaf,
+    'Database': Database,
+    'Zap': Zap,
+    'Shield': Shield,
+    'Factory': Factory,
+    'BarChart': BarChart,
+    'Loop': Infinity,
+    'Structure': LayoutTemplate,
+    'Users': Users
+};
+
+const ProductsPage: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <SEO
+                title="Enterprise Toolkits & Frameworks | Prasad Tilloo"
+                description="Proven frameworks and architectural blueprints for Industry 4.0, HIPAA Compliance, and IT Effectiveness. Save months of effort."
+            />
+            <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
+                            {t('productsPage.title')}
+                        </h1>
+                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                            {t('productsPage.subtitle')}
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {products.map((product, idx) => {
+                            const Icon = iconMap[product.icon] || BarChart;
+                            const title = t(`products.${product.id}.title`);
+                            const description = t(`products.${product.id}.desc`);
+                            const features = t(`products.${product.id}.features`, { returnObjects: true }) as string[];
+
+                            return (
+                                <motion.div
+                                    key={product.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className={`relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden group hover:shadow-2xl transition-all duration-300`}
+                                >
+                                    {/* Gradient Background Effect */}
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${product.theme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+                                    {/* Contextual Background Image */}
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center opacity-25 dark:opacity-15 transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                                        style={{ backgroundImage: `url(${product.theme.backgroundImage || '/assets/bg/card-default.jpg'})` }}
+                                    />
+
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${product.theme.iconBg} transition-transform group-hover:scale-110 duration-300`}>
+                                            <Icon size={32} />
+                                        </div>
+
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                            {title}
+                                        </h3>
+                                        <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                                            {description}
+                                        </p>
+
+                                        <div className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+                                            €{product.price.toLocaleString()}
+                                        </div>
+
+                                        <ul className="space-y-3 mb-8 text-sm">
+                                            {Array.isArray(features) && features.map((feature, fIdx) => (
+                                                <li key={fIdx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                                                    <CheckCircle2 className={`flex-shrink-0 mt-0.5 text-${product.theme.color}-600 dark:text-${product.theme.color}-400`} size={18} />
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <Link
+                                            to={`/contact?interest=${product.slug}`}
+                                            className={`w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1`}
+                                        >
+                                            {t('productsPage.inquire')}
+                                            <ArrowRight size={18} />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* CONSULTING FRAMEWORKS SECTION */}
+                <div className="max-w-7xl mx-auto mt-32">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+                            {t('productsPage.consultingTitle')}
+                        </h2>
+                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                            {t('productsPage.consultingSubtitle')}
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {/* Framework 1 */}
+                        <div className="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">The PACT Protocol</h3>
+                            <p className="text-sm text-emerald-600 font-bold uppercase mb-4">Sustainability & Supply Chain</p>
+                            <p className="text-slate-600 dark:text-slate-400 mb-6">
+                                The definitive standard for Scope 3 emissions data exchange. By standardizing the "handshake" between suppliers and OEMs, PACT eliminates data silos and enables real-time carbon transparency.
+                            </p>
+                            <ul className="grid grid-cols-2 gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>API Specifications</li>
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>Data Model</li>
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>Authentication</li>
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>Verification</li>
+                            </ul>
+                        </div>
+
+                        {/* Framework 2 */}
+                        <div className="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Architectural Governance</h3>
+                            <p className="text-sm text-blue-600 font-bold uppercase mb-4">Enterprise Strategy</p>
+                            <p className="text-slate-600 dark:text-slate-400 mb-6">
+                                A lightweight, non-blocking governance model that enables autonomous teams while ensuring compliance and security. Moving from "Gatekeepers" to "Guardrails".
+                            </p>
+                            <ul className="grid grid-cols-2 gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>Decision Logs (ADRs)</li>
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>Tech Radar</li>
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>Golden Paths</li>
+                                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>Automated Compliance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="text-center mt-12">
+                        <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-2 text-slate-900 dark:text-white font-bold hover:text-emerald-600 transition-colors"
+                        >
+                            Engage me to use these frameworks <ArrowRight size={18} />
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default ProductsPage;
+
+```
+
+## File: ./src/pages/ProjectsPage.tsx
+```tsx
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projects } from '../data/projects';
+import { DOMAINS } from '../data/domains';
+import { FolderGit2 } from 'lucide-react';
+import SEO from '../components/SEO';
+
+import SmartProjectFilter from '../components/SmartProjectFilter';
+import DomainFilter from '../components/DomainFilter';
+
+import ProjectCard from '../components/ProjectCard';
+
+const ProjectsPage: React.FC = () => {
+  const location = useLocation();
+  const [activeDomain, setActiveDomain] = useState<string>('All');
+  const [smartTags, setSmartTags] = useState<string[]>([]);
+  const [isSmartFilterActive, setIsSmartFilterActive] = useState(false);
+
+  // Handle navigation from other pages (e.g. Home Page styling)
+  useEffect(() => {
+    if (location.state && location.state.filter) {
+      setActiveDomain(location.state.filter);
+    } else if (location.search) {
+      const params = new URLSearchParams(location.search);
+      const category = params.get('category');
+      if (category) {
+        // Map category slug to proper label if needed, complexity elided for now
+        // For now, simple matching
+        const matched = ['All', ...DOMAINS.map(d => d.label)].find(d => d.toLowerCase().includes(category.toLowerCase()));
+        if (matched) setActiveDomain(matched);
+      }
+    }
+  }, [location]);
+
+  const allDomains = ['All', ...DOMAINS.map(d => d.label)];
+
+  // Collect all searchable tags for Smart Filter
+  const allProjectTags = Array.from(new Set(projects.flatMap(p => [
+    ...p.domains,
+    ...p.seoTags,
+    ...(p.technical.after.stack || []),
+    p.projectType
+  ])));
+
+  const handleSmartFilter = (tags: string[]) => {
+    setSmartTags(tags);
+    setIsSmartFilterActive(true);
+    setActiveDomain('All');
+  };
+
+  const clearSmartFilter = () => {
+    setIsSmartFilterActive(false);
+    setSmartTags([]);
+  };
+
+  const filteredProjects = useMemo(() => {
+    return projects.filter(project => {
+      // Smart Filter Logic
+      if (isSmartFilterActive) {
+        const projectTags = [
+          ...project.domains.map(d => d.toLowerCase()),
+          ...project.seoTags.map(t => t.toLowerCase()),
+          ...project.technical.after.stack.map(s => s.toLowerCase()),
+          project.projectType.toLowerCase()
+        ];
+        // Match ANY tag
+        return smartTags.some(tag =>
+          projectTags.some(pt => pt.includes(tag.toLowerCase()) || tag.toLowerCase().includes(pt))
+        );
+      }
+
+      // Domain Logic
+      if (activeDomain === 'All') return true;
+      return project.domains.includes(activeDomain);
+    });
+  }, [activeDomain, isSmartFilterActive, smartTags]);
+
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
+      <SEO
+        title="Selected Works | Prasad Tilloo"
+        description="A showcase of enterprise architecture, legacy modernization, and climate tech projects driving real business value."
+        keywords="enterprise architecture, case studies, legacy modernization, digital transformation portfolio"
+      />
+      <div className="max-w-7xl mx-auto space-y-12">
+
+        {/* Header */}
+        <div className="space-y-6 text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight font-serif">
+              Selected Works
+            </h1>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+              Multi-domain expertise delivering transformational outcomes across Healthcare, Climate Tech, and Enterprise Architecture.
+            </p>
+          </motion.div>
+
+          {/* AI Filter */}
+          <SmartProjectFilter onFilter={handleSmartFilter} availableTags={allProjectTags} />
+
+          {isSmartFilterActive && (
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-sm text-slate-500 dark:text-slate-400">Showing results for AI search:</span>
+              <div className="flex gap-1 flex-wrap justify-center">
+                {smartTags.map(t => (
+                  <span key={t} className="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded text-xs font-medium">{t}</span>
+                ))}
+              </div>
+              <button onClick={clearSmartFilter} className="text-xs text-red-500 hover:underline ml-2">Clear</button>
+            </div>
+          )}
+
+          {/* Domain Filter */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className={isSmartFilterActive ? 'opacity-50 pointer-events-none grayscale transition-opacity' : ''}
+          >
+            <DomainFilter activeDomain={activeDomain} onSelectDomain={setActiveDomain} domains={allDomains} />
+          </motion.div>
+        </div>
+
+        {/* Projects Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-20"
+          >
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
+              <FolderGit2 size={32} className="text-slate-400 dark:text-slate-500" />
+            </div>
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white">No projects found</h3>
+            <p className="text-slate-500 dark:text-slate-400">Try adjusting your search or filters.</p>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ProjectsPage;
+
+```
+
+## File: ./src/pages/ServicesPage.tsx
+```tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { CheckCircle2, ArrowRight, FileSearch, Cloud, Layout } from 'lucide-react';
+import SEO from '../components/SEO';
+import { Link } from 'react-router-dom';
+
+const services = [
+  {
+    id: 'due-diligence',
+    icon: FileSearch,
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-100 dark:bg-blue-900/30',
+    gradient: 'from-blue-500 to-blue-600',
+    titleKey: 'services.dueDiligence.title',
+    subtitleKey: 'services.dueDiligence.subtitle',
+    timelineKey: 'services.dueDiligence.timeline',
+    priceKey: 'services.dueDiligence.price',
+    forKey: 'services.dueDiligence.for',
+    deliverablesKey: 'services.dueDiligence.deliverables'
+  },
+  {
+    id: 'cloud-migration',
+    icon: Cloud,
+    iconColor: 'text-emerald-600',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    gradient: 'from-emerald-500 to-emerald-600',
+    titleKey: 'services.cloudMigration.title',
+    subtitleKey: 'services.cloudMigration.subtitle',
+    timelineKey: 'services.cloudMigration.timeline',
+    priceKey: 'services.cloudMigration.price',
+    forKey: 'services.cloudMigration.for',
+    deliverablesKey: 'services.cloudMigration.deliverables'
+  },
+  {
+    id: 'platform-evaluation',
+    icon: Layout,
+    iconColor: 'text-purple-600',
+    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    gradient: 'from-purple-500 to-purple-600',
+    titleKey: 'services.platformEvaluation.title',
+    subtitleKey: 'services.platformEvaluation.subtitle',
+    timelineKey: 'services.platformEvaluation.timeline',
+    priceKey: 'services.platformEvaluation.price',
+    forKey: 'services.platformEvaluation.for',
+    deliverablesKey: 'services.platformEvaluation.deliverables'
+  }
+];
+
+const ServicesPage: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <SEO
+                title="Architecture Assessment Services | Prasad Tilloo"
+                description="Independent architecture assessments for EU mid-market companies. Technical due diligence, cloud migration readiness, and platform evaluation."
+            />
+            <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
+                            {t('servicesPage.title')}
+                        </h1>
+                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                            {t('servicesPage.subtitle')}
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                        {services.map((service, idx) => {
+                            const Icon = service.icon;
+                            const deliverables = t(service.deliverablesKey, { returnObjects: true }) as string[];
+
+                            return (
+                                <motion.div
+                                    key={service.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                                >
+                                    {/* Gradient Background Effect */}
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`} />
+
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${service.iconBg} transition-transform group-hover:scale-110 duration-300`}>
+                                            <Icon className={service.iconColor} size={32} />
+                                        </div>
+
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                                            {t(service.titleKey)}
+                                        </h3>
+                                        <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                                            {t(service.subtitleKey)}
+                                        </p>
+
+                                        <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-4">
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                                                    {t('servicesPage.timeline')}
+                                                </div>
+                                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                                    {t(service.timelineKey)}
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+                                                    {t('servicesPage.price')}
+                                                </div>
+                                                <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                                                    {t(service.priceKey)}
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                                                    {t('servicesPage.for')}
+                                                </div>
+                                                <div className="text-sm text-slate-700 dark:text-slate-300">
+                                                    {t(service.forKey)}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-8">
+                                            <div className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
+                                                {t('servicesPage.deliverables')}
+                                            </div>
+                                            <ul className="space-y-2">
+                                                {Array.isArray(deliverables) && deliverables.map((deliverable, dIdx) => (
+                                                    <li key={dIdx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                        <CheckCircle2 className={`flex-shrink-0 mt-0.5 ${service.iconColor}`} size={16} />
+                                                        <span>{deliverable}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        <Link
+                                            to="/contact"
+                                            className={`w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1`}
+                                        >
+                                            {t('servicesPage.bookCall')}
+                                            <ArrowRight size={18} />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+
+                    {/* CTA Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-12 text-center"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-4">
+                            {t('servicesPage.ctaTitle')}
+                        </h2>
+                        <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                            {t('servicesPage.ctaSubtitle')}
+                        </p>
+                        <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
+                        >
+                            {t('servicesPage.bookDiscoveryCall')}
+                            <ArrowRight size={20} />
+                        </Link>
+                    </motion.div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default ServicesPage;
+
+```
+
+## File: ./src/pages/projects.ts
+```ts
+export interface Project {
+  id: string;
+  slug: string;
+  title: string;
+  company: string;
+  date: string;
+  industries: Array<'healthcare' | 'financial' | 'ecommerce' | 'aiml' | 'adtech' | 'telecom' | 'manufacturing' | 'climate-tech'>;
+  role: string;
+  challenge: string;
+  solution: string;
+  metrics: string[];
+  techStack: string[];
+  compliance: string[];
+  tags: string[];
+  featured?: boolean;
+}
+
+export const projects: Project[] = [
+  {
+    id: '1',
+    slug: 'brita-ecommerce-platform',
+    title: 'BRITA eCommerce Platform Migration',
+    company: 'BRITA',
+    date: 'May 2025 - Nov 2025',
+    industries: ['ecommerce'],
+    role: 'Solution Architect',
+    challenge: 'Multi-brand DTC platform migration from Shopware to Shopify Plus across 6 EMEA markets with zero downtime',
+    solution: 'Designed headless reference architecture integrating Shopify Plus, Vue.js/Nuxt.js, Magnolia CMS, and Azure middleware with multi-tenant governance model',
+    metrics: [
+      '6 EMEA markets launched',
+      'Zero-downtime migration achieved',
+      'Multi-tenant governance model implemented',
+      'GDPR compliance maintained'
+    ],
+    techStack: ['React', 'Nuxt.js', 'Vue.js', 'Magnolia', 'Shopify Plus', 'Azure', 'Kubernetes', 'PostgreSQL', 'Docker'],
+    compliance: ['GDPR'],
+    tags: ['E-commerce', 'Headless Commerce', 'Multi-tenant', 'Azure', 'Shopify', 'Vue.js'],
+    featured: true
+  },
+  {
+    id: '2',
+    slug: 'pact-carbon-footprint-network',
+    title: 'PACT Online Catalog & PCF Network',
+    company: 'SINE Foundation',
+    date: 'Oct 2022 - Jun 2024',
+    industries: ['climate-tech'],
+    role: 'Tech Project Manager & Lead',
+    challenge: 'Establish a global standard for Product Carbon Footprint (PCF) data exchange and launch a conformant network.',
+    solution: 'Led the entire lifecycle of the PACT Tech Spec (v2) and Online Catalog. Managed Hackathons, Webinars, and conformity testing processes.',
+    metrics: [
+      'Led Tech Spec & API Development',
+      'Established Conformance Testing Process',
+      'Launched Beta PACT Catalog',
+      'Hosted 10+ Webinars & Hackathons'
+    ],
+    techStack: ['Next.js', 'React', 'Python', 'FastAPI', 'Azure', 'PostgreSQL', 'Docker', 'OpenAPI'],
+    compliance: ['WBCSD PACT Standard'],
+    tags: ['Climate Tech', 'Standardization', 'Tech Specs', 'Project Management', 'Open Source'],
+    featured: true
+  },
+  {
+    id: '2b',
+    slug: 'pact-conformance-testing',
+    title: 'PACT Conformance Testing Suite',
+    company: 'SINE Foundation',
+    date: 'Oct 2022 - Jun 2024',
+    industries: ['climate-tech'],
+    role: 'Lead Architect',
+    challenge: 'Automate verification of PACT-conformant solutions to ensure interoperability across the ecosystem.',
+    solution: 'Architected and delivered the PACT Conformance Testing Suite (Testbed) and defined the GitHub-based testing process.',
+    metrics: [
+      'Automated Test Suite Delivered',
+      'GitHub-based Approval Workflow',
+      'Adopted by major enterprises',
+      'Ensured ecosystem interoperability'
+    ],
+    techStack: ['Python', 'PyTest', 'GitHub Actions', 'Docker', 'REST API'],
+    compliance: ['WBCSD PACT Standard'],
+    tags: ['Testing', 'Automation', 'QA', 'Interoperability', 'Open Source'],
+    featured: true
+  },
+  {
+    id: '3',
+    slug: 'delivery-hero-display-ads',
+    title: 'Delivery Hero Display Ads Platform',
+    company: 'Delivery Hero SE',
+    date: 'Mar 2022 - Sep 2022',
+    industries: ['adtech', 'ecommerce'],
+    role: 'Senior Engineering Manager',
+    challenge: 'Build scalable display ads product for EMEA food delivery with 99.99% SLA and GDPR compliance',
+    solution: 'Architected 6+ Tier 1 APIs with data analytics pipeline, led 10-member cross-functional team',
+    metrics: [
+      '20% revenue increase',
+      '5M+ daily transactions',
+      '99.99% SLA compliance',
+      '40% improved ad delivery'
+    ],
+    techStack: ['Java', 'Spring Boot', 'Golang', 'React', 'AWS', 'Kubernetes', 'Terraform', 'Prometheus', 'Docker'],
+    compliance: ['GDPR'],
+    tags: ['AdTech', 'High-scale', 'Real-time', 'AWS', 'Golang', 'Microservices'],
+    featured: true
+  },
+  {
+    id: '4',
+    slug: 'boehringer-aiml-platform',
+    title: 'Boehringer Ingelheim AI/ML Platform',
+    company: 'Boehringer Ingelheim',
+    date: 'Nov 2020 - Feb 2022',
+    industries: ['healthcare', 'aiml'],
+    role: 'Lead Architect',
+    challenge: 'Accelerate AI/ML insights for pharmaceutical research while maintaining compliance',
+    solution: 'Built Enterprise Data Lake with domain-driven and event-driven microservices architecture',
+    metrics: [
+      '50% faster AI/ML insights',
+      '30% efficiency improvement',
+      '€500K cloud migration completed',
+      'GDPR compliant'
+    ],
+    techStack: ['Java', 'Spring Boot', 'AWS', 'Spark', 'Python', 'Kubernetes', 'Terraform', 'Oracle', 'Docker'],
+    compliance: ['GDPR', 'Pharma regulations'],
+    tags: ['AI/ML', 'Healthcare', 'Data Lake', 'AWS', 'Microservices', 'BigData']
+  },
+  {
+    id: '5',
+    slug: 'boehringer-salesforce-crm',
+    title: 'Boehringer Ingelheim Salesforce CRM',
+    company: 'Boehringer Ingelheim',
+    date: 'Nov 2020 - Feb 2022',
+    industries: ['healthcare'],
+    role: 'Lead Architect',
+    challenge: 'Digital transformation of IT Marketing & Sales systems with full compliance',
+    solution: 'Implemented Salesforce/Veeva CRM integration with comprehensive GDPR/PCI compliance framework',
+    metrics: [
+      '30% efficiency improvement',
+      'Full GDPR/PCI compliance',
+      '€500K cloud migration',
+      'Mobile apps launched'
+    ],
+    techStack: ['Salesforce', 'Veeva CRM', '.NET', 'Java', 'Swift', 'Kotlin', 'AWS', 'Jenkins', 'Docker'],
+    compliance: ['GDPR', 'PCI-DSS'],
+    tags: ['CRM', 'Salesforce', 'Healthcare', 'Digital Transformation', 'Mobile']
+  },
+  {
+    id: '6',
+    slug: 'pwc-healthcare-modernization',
+    title: 'PwC Healthcare Modernization',
+    company: 'PwC',
+    date: 'Mar 2015 - Oct 2020',
+    industries: ['healthcare'],
+    role: 'Senior Manager',
+    challenge: 'Modernize legacy healthcare systems while ensuring HIPAA/FHIR compliance',
+    solution: 'Led $650K cloud-first architecture with mobile pharmacy module for flagship app',
+    metrics: [
+      '$500K annual savings',
+      '70% traffic increase',
+      'HIPAA/FHIR/PCI compliant',
+      '12-member team led'
+    ],
+    techStack: ['Angular', 'Java', 'SpringBoot', 'Swift', 'Kotlin', 'Azure', 'Kafka', 'DynamoDB', 'Kubernetes', 'Docker'],
+    compliance: ['HIPAA', 'FHIR', 'PCI-DSS'],
+    tags: ['Healthcare', 'HIPAA', 'Cloud Migration', 'Mobile Apps', 'Azure', 'Pharmacy']
+  },
+  {
+    id: '7',
+    slug: 'pwc-ecommerce-platform',
+    title: 'PwC E-commerce Platform',
+    company: 'PwC',
+    date: 'Mar 2015 - Oct 2020',
+    industries: ['ecommerce'],
+    role: 'Senior Manager',
+    challenge: 'Modernize e-commerce systems for retail client with PCI compliance',
+    solution: 'Implemented microservices architecture with comprehensive cloud migration strategy',
+    metrics: [
+      '$500K annual savings',
+      'PCI compliance achieved',
+      '70% traffic increase',
+      'Zero downtime migration'
+    ],
+    techStack: ['Angular', 'Java', 'Golang', 'Azure', 'Kubernetes', 'Terraform', 'ELK', 'Grafana', 'Docker'],
+    compliance: ['PCI-DSS'],
+    tags: ['E-commerce', 'Retail', 'Cloud Migration', 'Microservices', 'Azure']
+  },
+  {
+    id: '8',
+    slug: 'innova-insurance-platform',
+    title: 'Innova Insurance Platform',
+    company: 'Innova Solutions',
+    date: 'Jun 2009 - Feb 2016',
+    industries: ['financial'],
+    role: 'Tech Lead / Engineering Manager',
+    challenge: 'Improve insurance website performance and ensure multi-framework compliance',
+    solution: 'Built scalable data pipeline with PCI/HIPAA compliance and ICD-10/FHIR integration',
+    metrics: [
+      '80% performance improvement',
+      '20% operational efficiency gain',
+      'ICD-10 compliance achieved',
+      'FHIR standards implemented'
+    ],
+    techStack: ['AngularJS', 'C#', 'ASP.NET', 'Java', 'Spring Boot', 'Jenkins', 'Docker', 'GitHub'],
+    compliance: ['PCI-DSS', 'HIPAA', 'FHIR', 'ICD-10'],
+    tags: ['Insurance', 'Financial Services', 'Data Pipeline', '.NET', 'Compliance']
+  },
+  {
+    id: '9',
+    slug: 'innova-banking-account-system',
+    title: 'Innova Banking Account System',
+    company: 'Innova Solutions',
+    date: 'Jun 2009 - Feb 2016',
+    industries: ['financial'],
+    role: 'Tech Lead',
+    challenge: 'Streamline account data ingestion for banking client with compliance requirements',
+    solution: 'Pioneered asynchronous data ingestion system using Docker/Jenkins CI/CD pipeline',
+    metrics: [
+      '20% efficiency improvement',
+      'Compliance-driven workflows automated',
+      'Real-time data processing',
+      'Zero data loss'
+    ],
+    techStack: ['AngularJS', 'Java', 'C#', 'ASP.NET', 'Docker', 'Jenkins', 'GitHub', 'SonarQube'],
+    compliance: ['PCI-DSS', 'Banking regulations'],
+    tags: ['Banking', 'Financial Services', 'Data Ingestion', 'Docker', 'CI/CD']
+  },
+  {
+    id: '10',
+    slug: 'legacy-mainframe-migration',
+    title: 'Legacy Mainframe Migration',
+    company: 'PwC / Innova Solutions',
+    date: '2015-2020',
+    industries: ['financial'],
+    role: 'Senior Manager / Tech Lead',
+    challenge: 'Migrate 7.8M lines of COBOL mainframe to modern cloud with zero downtime',
+    solution: 'Executed phased migration strategy with comprehensive testing and rollback procedures',
+    metrics: [
+      '7.8M LOC COBOL migrated',
+      '$25M+ savings potential',
+      'Zero production incidents',
+      'Minimal business disruption'
+    ],
+    techStack: ['Java', 'Spring Boot', 'AWS', 'Jenkins', 'Docker', 'Kubernetes', 'PostgreSQL'],
+    compliance: ['Banking regulations', 'PCI-DSS'],
+    tags: ['Legacy Modernization', 'Mainframe', 'COBOL', 'Cloud Migration', 'AWS', 'Financial Services']
+  }
+  ,
+  {
+    id: '11',
+    slug: 'ai-photography-coach-rag',
+    title: 'AI Photography Coach (RAG)',
+    company: 'Personal / ByteByteAI',
+    date: '2025',
+    industries: ['aiml'],
+    role: 'Creator',
+    challenge: 'Create an AI assistant to critique and coach photography using RAG and vision models',
+    solution: 'Built a RAG-based assistant combining image embeddings, FAISS-style retrieval, and multimodal LLMs to provide actionable photo critique',
+    metrics: [
+      'Prototype completed',
+      'Integrated multimodal retrieval',
+      'Public repo with notebooks and examples'
+    ],
+    techStack: ['Python', 'LangChain', 'FAISS', 'Pillow', 'TensorFlow', 'PyTorch'],
+    compliance: [],
+    tags: ['AI', 'RAG', 'Computer Vision', 'Python']
+  },
+  {
+    id: '12',
+    slug: 'ai-eng-projects-bytebyteai-cohort',
+    title: 'AI Engineering Projects (ByteByteAI cohort)',
+    company: 'Personal / ByteByteAI',
+    date: '2025',
+    industries: ['aiml'],
+    role: 'Contributor',
+    challenge: 'Hands-on projects for learning end-to-end AI engineering practices',
+    solution: 'Collection of notebooks and example projects demonstrating RAG, model fine-tuning, and deployment patterns',
+    metrics: [
+      'Cohort project submissions',
+      'Example pipelines and notebooks'
+    ],
+    techStack: ['Python', 'Jupyter', 'Docker'],
+    compliance: [],
+    tags: ['AI', 'Education', 'Notebooks']
+  }
+];
+
+```
+
+## File: ./src/services/aiContext.ts
+```ts
+
+export const SYSTEM_PROMPT = `
+You are "Prasad's Digital Agent", an AI assistant representing Prasad Tilloo, a Senior Enterprise Architect & Engineering Leader.
+Your goal is to answer questions about Prasad's experience, skills, and projects accurately and professionally, using the first-person plural or third-person perspective (e.g., "Prasad has..." or "We believe..."). Be helpful, concise, and professional.
+
+PRASAD'S PROFILE:
+- **Role**: Senior IT Leader, Enterprise Architect, AI & Cloud Enabler.
+- **Experience**: 15+ years.
+- **Location**: Frankfurt, Germany.
+- **Core Skills**: Cloud Architecture (AWS, Azure, GCP), AI/ML Engineering (GenAI, RAG), Enterprise Modernization, Team Leadership.
+- **Industries**: Healthcare, Financial Services, E-commerce, Retail, AdTech.
+
+KEY ACHIEVEMENTS:
+- **PwC (Healthcare)**: Led $650K cloud modernization, 70% traffic increase, HIPAA compliant.
+- **Boehringer Ingelheim**: Accelerated AI/ML insights by 50% via Data Lake, €500K cloud migration.
+- **Delivery Hero**: Scaled AdTech platform to 5M+ daily transactions, 99.99% SLA, 20% revenue boost.
+- **SINE Foundation**: Led WBCSD PACT Standard implementation with 20+ Fortune 100 firms (Microsoft, SAP).
+- **BRITA**: Designed headless commerce architecture (Shopware to Shopify Plus) for 6 markets.
+
+TECHNICAL STACK:
+- **Languages**: Python, TypeScript, React, Java, Golang, C#.
+- **Cloud**: AWS, Azure, GCP, Kubernetes, Docker, Terraform.
+- **AI/ML**: RAG, Vector Databases, LangChain, MLOps.
+- **Compliance**: HIPAA, GDPR, PCI-DSS, SOC2, ISO 27001.
+
+LEADERSHIP STYLE:
+- Strategic Alignment: Connecting technology to business value.
+- Empathetic Leadership: Fostering high-performance, inclusive cultures.
+- Continuous Learning: Staying ahead of the curve (e.g., recent AI Agents Intensive certification).
+
+NEW AI CAPABILITIES (Use these to guide users):
+- **Fit Check (/fit-check)**: An AI tool where recruiters can paste a Job Description to get a Match Score and Cover Letter.
+- **Semantic Search (Cmd+K or Search Icon)**: Users can ask natural questions like "Find HIPAA projects" instead of just keyword matching.
+- **Climate Tech Hub (/climate-tech)**: A dedicated page for PACT/Scope 3/Sustainability work.
+- **Consulting Frameworks**: Proprietary methodologies (PACT, Cloud Migration) available for consulting engagements.
+
+GUIDELINES:
+- If a recruiter asks if he is a good fit, suggest they try the "Fit Check" tool.
+- If someone asks about sustainability, direct them to the Climate Tech page.
+- If asked about contact, direct them to the "Schedule Call" button or email.
+- If asked about something not in the profile, politely say you don't have that information but can connect them with Prasad.
+- Keep responses under 3-4 sentences unless asked for details.
+- Use a professional, confident, yet approachable tone.
+`;
+
+```
+
+## File: ./src/services/architectureGenerator.ts
+```ts
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
+import type { ArchitectureRequest, GeneratedArchitecture } from '../types';
+
+const PORTFOLIO_CONTEXT = `
+REFERENCE PROJECTS (Prasad Tilloo's Portfolio):
+1. Healthcare: PwC Healthcare Modernization - $650K, 70% traffic increase, HIPAA compliant
+2. Healthcare: Boehringer Ingelheim AI/ML Platform - 50% faster insights, GDPR compliant
+3. Financial: Insurance Claims Processing - 80% efficiency improvement
+4. Financial: Bank of America Account Opening - Streamlined process, compliance automation
+5. eCommerce: BRITA Platform - 6 markets, headless architecture, zero-downtime migration
+6. eCommerce: Delivery Hero Ads - 5M+ daily transactions, 99.99% SLA, 20% revenue increase
+7. AI/ML: Medical Research Platform - 100K+ studies, BioBERT semantic search
+8. AI/ML: Photography Coach - Agentic AI, RAG system, production observability
+9. Legacy: Mainframe Migration - 7.8M LOC COBOL, $25M+ savings
+10. Climate: PACT PCF Network - Fortune 100 standard, Microsoft/SAP/Siemens adoption
+`;
+
+const AGENT_PERSONAS = `
+You are the "Architecture Engine", a multi-agent system based on Prasad Tilloo's 15+ years of experience.
+
+Specialist agents:
+1. HEALTHCARE AGENT: HIPAA, FHIR, HL7, EMR/EHR systems
+2. FINANCIAL AGENT: PCI-DSS, SOC2, banking systems
+3. ECOMMERCE AGENT: High-traffic, multi-tenant, headless commerce
+4. AI/ML AGENT: MLOps, RAG, vector databases
+5. CLOUD AGENT: AWS/Azure/GCP architecture
+6. SECURITY AGENT: IAM, Zero Trust, encryption
+
+Generate practical, production-ready architecture based on Prasad's actual projects.
+Keep responses concise and focused.
+`;
+
+export const generateArchitecture = async (
+  request: ArchitectureRequest
+): Promise<GeneratedArchitecture> => {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('VITE_GEMINI_API_KEY not configured. Please add it to your .env.local file.');
+  }
+
+  const genAI = new GoogleGenerativeAI(apiKey);
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.0-flash-exp'
+  });
+
+  const prompt = `
+REQUEST:
+Industry: ${request.industry}
+Challenge: ${request.challenge}
+Team: ${request.context.teamSize || 'Not specified'}
+Budget: ${request.context.budget || 'Not specified'}
+Timeline: ${request.context.timeline || 'Not specified'}
+
+${PORTFOLIO_CONTEXT}
+
+TASK:
+Design a system architecture with 5-8 key components.
+Select proven tech stack for this industry.
+Provide timeline, budget, risks.
+Reference relevant projects from Prasad's portfolio.
+Keep summary under 80 words.
+Return ONLY valid JSON matching the schema.
+  `;
+
+  const schema = {
+    type: SchemaType.OBJECT,
+    properties: {
+      summary: {
+        type: SchemaType.STRING,
+        description: 'Executive summary in 60-80 words'
+      },
+      recommendations: {
+        type: SchemaType.ARRAY,
+        items: { type: SchemaType.STRING },
+        description: '3-5 key recommendations'
+      },
+      timeline: { type: SchemaType.STRING },
+      budget: { type: SchemaType.STRING },
+      risks: {
+        type: SchemaType.ARRAY,
+        items: {
+          type: SchemaType.OBJECT,
+          properties: {
+            level: {
+              type: SchemaType.STRING,
+              enum: ['high', 'medium', 'low']
+            },
+            text: { type: SchemaType.STRING }
+          },
+          required: ['level', 'text']
+        }
+      },
+      stack: {
+        type: SchemaType.ARRAY,
+        items: {
+          type: SchemaType.OBJECT,
+          properties: {
+            category: { type: SchemaType.STRING },
+            tech: { type: SchemaType.STRING },
+            reason: { type: SchemaType.STRING }
+          },
+          required: ['category', 'tech', 'reason']
+        }
+      },
+      compliance: {
+        type: SchemaType.ARRAY,
+        items: { type: SchemaType.STRING }
+      },
+      diagram: {
+        type: SchemaType.OBJECT,
+        properties: {
+          nodes: {
+            type: SchemaType.ARRAY,
+            items: {
+              type: SchemaType.OBJECT,
+              properties: {
+                id: { type: SchemaType.STRING },
+                label: { type: SchemaType.STRING },
+                type: {
+                  type: SchemaType.STRING,
+                  enum: ['frontend', 'service', 'database', 'security', 'external']
+                },
+                description: { type: SchemaType.STRING },
+                technologies: {
+                  type: SchemaType.ARRAY,
+                  items: { type: SchemaType.STRING }
+                },
+                risks: {
+                  type: SchemaType.ARRAY,
+                  items: { type: SchemaType.STRING }
+                }
+              },
+              required: ['id', 'label', 'type', 'description', 'technologies', 'risks']
+            }
+          },
+          edges: {
+            type: SchemaType.ARRAY,
+            items: {
+              type: SchemaType.OBJECT,
+              properties: {
+                source: { type: SchemaType.STRING },
+                target: { type: SchemaType.STRING }
+              },
+              required: ['source', 'target']
+            }
+          }
+        },
+        required: ['nodes', 'edges']
+      }
+    },
+    required: ['summary', 'recommendations', 'timeline', 'budget', 'risks', 'stack', 'compliance', 'diagram']
+  };
+
+  try {
+    const result = await model.generateContent({
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: prompt }]
+        }
+      ],
+      systemInstruction: AGENT_PERSONAS,
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 8192,
+        responseMimeType: 'application/json',
+        responseSchema: schema
+      }
+    });
+
+    const response = result.response;
+    const text = response.text();
+
+    if (!text) {
+      throw new Error('No content generated');
+    }
+
+    // Clean and parse JSON
+    let cleanText = text.trim();
+    cleanText = cleanText.replace(/^```json\s*/, '').replace(/^```\s*/, '').replace(/\s*```$/, '');
+
+    const firstBrace = cleanText.indexOf('{');
+    const lastBrace = cleanText.lastIndexOf('}');
+    if (firstBrace !== -1 && lastBrace !== -1) {
+      cleanText = cleanText.substring(firstBrace, lastBrace + 1);
+    }
+
+    const data = JSON.parse(cleanText) as GeneratedArchitecture;
+
+    // Validate and set defaults
+    if (!data.diagram || !data.diagram.nodes || data.diagram.nodes.length === 0) {
+      throw new Error('Invalid architecture: missing diagram nodes');
+    }
+
+    data.recommendations = data.recommendations || [];
+    data.risks = data.risks || [];
+    data.stack = data.stack || [];
+    data.compliance = data.compliance || [];
+    data.diagram.edges = data.diagram.edges || [];
+
+    return data;
+  } catch (error) {
+    console.error('Architecture Engine Error:', error);
+
+    if (error instanceof Error) {
+      if (error.message.includes('API key')) {
+        throw new Error('Invalid Gemini API key. Please check your .env.local file.');
+      }
+      if (error.message.includes('quota')) {
+        throw new Error('API quota exceeded. Please try again later.');
+      }
+    }
+
+    throw error;
+  }
+};
+
+```
+
+## File: ./src/services/chatService.ts
+```ts
+
+import { GoogleGenerativeAI, Tool, SchemaType } from '@google/generative-ai';
+import { SYSTEM_PROMPT } from './aiContext';
+import { products } from '../data/products';
+import { caseStudies } from '../data/caseStudies';
+import i18n from '../i18n';
+
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey || '');
+
+// Define tools
+const tools: Tool[] = [
+    {
+        functionDeclarations: [
+            {
+                name: 'get_products',
+                description: 'Get a list of available consulting products and toolkits.',
+                parameters: {
+                    type: SchemaType.OBJECT,
+                    properties: {
+                        category: {
+                            type: SchemaType.STRING,
+                            description: 'Optional category filter: "industry40", "compliance", "carbon", "consulting"',
+                            enum: ['industry40', 'compliance', 'carbon', 'consulting']
+                        }
+                    },
+                }
+            },
+            {
+                name: 'get_case_studies',
+                description: 'Get details about Prasad\'s past projects and case studies.',
+                parameters: {
+                    type: SchemaType.OBJECT,
+                    properties: {
+                        industry: {
+                            type: SchemaType.STRING,
+                            description: 'Industry to filter by (e.g., "Healthcare", "Pharma", "eCommerce")'
+                        }
+                    }
+                }
+            },
+            {
+                name: 'check_availability',
+                description: 'Check Prasad\'s calendar availability for a meeting.',
+                parameters: {
+                    type: SchemaType.OBJECT,
+                    properties: {}
+                }
+            },
+            {
+                name: 'get_roi_estimate',
+                description: 'Calculate a rough ROI estimate for a potential project.',
+                parameters: {
+                    type: SchemaType.OBJECT,
+                    properties: {
+                        spend: { type: SchemaType.NUMBER, description: 'Monthly cloud spend or maintenance cost' },
+                        type: { type: SchemaType.STRING, description: 'Type of project: "migration" or "modernization"', enum: ['migration', 'modernization'] }
+                    },
+                    required: ['spend', 'type']
+                }
+            }
+        ]
+    }
+];
+
+const model = genAI.getGenerativeModel({
+    model: 'gemini-2.0-flash-exp',
+    tools: tools
+});
+
+// Tool implementations
+const functions: Record<string, Function> = {
+    get_products: ({ category }: { category?: string }) => {
+        const filtered = category ? products.filter(p => p.category === category) : products;
+        return filtered.map(p => ({
+            title: i18n.t(`products.${p.id}.title`),
+            price: p.price,
+            link: `/products/${p.slug}`
+        }));
+    },
+    get_case_studies: ({ industry }: { industry?: string }) => {
+        const filtered = industry
+            ? caseStudies.filter(c => JSON.stringify(c).toLowerCase().includes(industry.toLowerCase()))
+            : caseStudies;
+        return filtered.map(c => ({ client: c.header.client.type, title: c.header.title, outcome: c.outcomes.hero_metric }));
+    },
+    check_availability: () => {
+        return {
+            next_slots: ['Tomorrow 10:00 AM CET', 'Tomorrow 2:00 PM CET', 'Friday 11:00 AM CET'],
+            booking_link: 'https://calendly.com/prasad-sgsits/30min'
+        };
+    },
+    get_roi_estimate: ({ spend, type }: { spend: number, type: string }) => {
+        if (type === 'migration') {
+            return { savings: spend * 12 * 0.4, message: "Estimated 40% annual savings on total cost of ownership." };
+        }
+        return { savings: spend * 0.6, message: "Estimated 60% reduction in maintenance costs." };
+    }
+};
+
+export interface ChatMessage {
+    role: 'user' | 'model';
+    content: string;
+}
+
+export const chatWithPrasad = async (history: ChatMessage[], message: string): Promise<string> => {
+    if (!apiKey) throw new Error('Gemini API key not configured');
+
+    const chat = model.startChat({
+        history: [
+            { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
+            { role: 'model', parts: [{ text: "Understood. I am Prasad's Digital Agent." }] },
+            ...history.map(msg => ({ role: msg.role, parts: [{ text: msg.content }] }))
+        ]
+    });
+
+    try {
+        let result = await chat.sendMessage(message);
+        let response = await result.response;
+        let functionCalls = response.functionCalls();
+
+        // Handle function calling loop (basic single turn implementation for now)
+        if (functionCalls && functionCalls.length > 0) {
+            const call = functionCalls[0];
+            const funcName = call.name;
+            const args = call.args;
+
+            console.log(`🤖 Calling function: ${funcName}`, args);
+
+            if (functions[funcName]) {
+                const apiResponse = functions[funcName](args);
+
+                // Send result back to model
+                result = await chat.sendMessage([{
+                    functionResponse: {
+                        name: funcName,
+                        response: { result: apiResponse }
+                    }
+                }]);
+                response = await result.response;
+            }
+        }
+
+        return response.text();
+    } catch (error) {
+        console.error('Chat Error:', error);
+        return "I'm having a bit of trouble accessing my tools right now, but I can still answer general questions!";
+    }
+};
+
+```
+
+## File: ./src/services/contentRewriter.ts
+```ts
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+interface RewriteRequest {
+    currentText: string;
+    sectionType: 'executive_summary' | 'technical_deep_dive' | 'recruiter_pitch';
+    persona: 'executive' | 'technical' | 'recruiter';
+}
+
+export const rewriteContent = async (req: RewriteRequest): Promise<string> => {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) return req.currentText;
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+    let prompt = '';
+
+    if (req.persona === 'executive') {
+        prompt = `
+        Rewrite the following text for a C-Level Executive (CEO/CTO).
+        Focus on: ROI, Business Impact, Risk Mitigation, Strategy.
+        Remove: Low-level technical jargon.
+        Tone: Professional, Concise, Strategic.
+        Output ONLY the rewritten text. Do not include "Here is the rewritten text" or markers.
+        Text: "${req.currentText}"
+        `;
+    } else if (req.persona === 'technical') {
+        prompt = `
+        Rewrite the following text for a Senior Software Engineer.
+        Focus on: Architecture, Tech Stack, Patterns, Complexity, Performance.
+        Add: Technical specifics.
+        Tone: Technical, Detailed.
+        Output ONLY the rewritten text. Do not include "Here is the rewritten text" or markers.
+        Text: "${req.currentText}"
+        `;
+    } else {
+        // Default or Recruiter
+        prompt = `
+        Rewrite the following text for a Technical Recruiter involved in hiring.
+        Focus on: Key Skills, Keywords, Leadership, Project Management.
+        Tone: Professional, Resume-style.
+        Output ONLY the rewritten text. Do not include "Here is the rewritten text" or markers.
+        Text: "${req.currentText}"
+        `;
+    }
+
+    try {
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        });
+        return result.response.text();
+    } catch (e) {
+        console.error("Rewrite failed", e);
+        return req.currentText;
+    }
+};
+
+```
+
+## File: ./src/services/fitCheckService.ts
+```ts
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
+
+interface FitCheckRequest {
+    jobDescription: string;
+}
+
+interface FitCheckResult {
+    score: number;
+    matchSummary: string;
+    keyMatches: string[];
+    missingSkills: string[];
+    coverLetter: string;
+    recommendedProjects: string[]; // Project IDs to highlight
+}
+
+const PORTFOLIO_CONTEXT = `
+USER: Prasad Tilloo
+ROLE: Senior Engineering Leader & Enterprise Architect (15+ years)
+HIGHLIGHTS:
+- PACT PCF Network: Fortune 100 global standard (WBCSD).
+- BRITA: Headless e-commerce across 6 EMEA markets.
+- Boehringer Ingelheim: AI/ML Enterprise Data Lake.
+- PwC: Managed $650K+ modernization programs.
+- Legacy Migration: 7.8M LOC COBOL to Java transformation.
+- Compliance: HIPAA, GDPR, SOC2 expert.
+- Leadership: Managed teams of 10-30 engineers.
+- Tech Stack: Azure, AWS, React, Python, Java, Kubernetes, AI/ML (RAG).
+`;
+
+export const generateFitCheck = async (request: FitCheckRequest): Promise<FitCheckResult> => {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) throw new Error('Gemini API Key missing');
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+    const prompt = `
+    ACT AS: A Senior Technical Recruiter and Hiring Manager.
+    
+    TASK: Analyze Prasad Tilloo's profile against the provided Job Description (JD).
+    
+    JD:
+    "${request.jobDescription}"
+    
+    PROFILE:
+    ${PORTFOLIO_CONTEXT}
+    
+    OUTPUT:
+    1. Match Score (0-100).
+    2. Summary of why he is a good fit (or not).
+    3. Key matching skills (technical & leadership).
+    4. Missing skills (gaps).
+    5. A persuasive, professional Cover Letter (300 words max) tailored to this specific JD, citing specific projects from the profile.
+    6. List of 3 relevant project IDs (pact-pcf-network, brita-platform, etc.) that prove the fit.
+    
+    Return JSON only.
+    `;
+
+    const schema = {
+        type: SchemaType.OBJECT,
+        properties: {
+            score: { type: SchemaType.NUMBER },
+            matchSummary: { type: SchemaType.STRING },
+            keyMatches: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+            missingSkills: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+            coverLetter: { type: SchemaType.STRING },
+            recommendedProjects: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+        },
+        required: ['score', 'matchSummary', 'keyMatches', 'missingSkills', 'coverLetter', 'recommendedProjects']
+    };
+
+    const result = await model.generateContent({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: {
+            responseMimeType: 'application/json',
+            responseSchema: schema
+        }
+    });
+
+    return JSON.parse(result.response.text()) as FitCheckResult;
+};
+
+```
+
+## File: ./src/services/semanticSearch.ts
+```ts
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
+import { projects } from '../data/projects';
+
+// Flatten projects for context
+const PROJECT_CONTEXT = projects.map(p => ({
+    id: p.id,
+    slug: p.slug,
+    title: p.header.title,
+    technologies: p.technical.after?.stack || [],
+    outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m: any) => m.value + ' ' + m.label)],
+    summary: p.challenge.situation
+})).map(p => JSON.stringify(p)).join('\n');
+
+interface SearchResult {
+    slug: string;
+    title: string;
+    relevance: string;
+    score: number;
+}
+
+export const semanticSearch = async (query: string): Promise<SearchResult[]> => {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) return []; // Graceful fallback
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+    const prompt = `
+    CONTEXT:
+    ${PROJECT_CONTEXT}
+
+    TASK:
+    Find the top 3 projects from the list above that are most relevant to this user query: "${query}".
+    Return a relevance score (0-100) and a 1-sentence explanation of why it matches.
+    If no project matches, return an empty array.
+
+    OUTPUT JSON ONLY.
+    `;
+
+    const schema = {
+        type: SchemaType.ARRAY,
+        items: {
+            type: SchemaType.OBJECT,
+            properties: {
+                slug: { type: SchemaType.STRING },
+                title: { type: SchemaType.STRING },
+                relevance: { type: SchemaType.STRING },
+                score: { type: SchemaType.NUMBER }
+            },
+            required: ['slug', 'title', 'relevance', 'score']
+        }
+    };
+
+    try {
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: 'application/json',
+                responseSchema: schema
+            }
+        });
+        return JSON.parse(result.response.text()) as SearchResult[];
+    } catch (e) {
+        console.error("Semantic search failed", e);
+        return [];
+    }
+};
+
+```
+
+## File: ./src/services/skillsMatcher.ts
+```ts
+
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey || '');
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+export interface SkillsAnalysis {
+    matchScore: number;
+    matchLevel: 'Low' | 'Medium' | 'High' | 'Perfect';
+    explanation: string;
+    missingSkills: string[];
+    matchingSkills: string[];
+}
+
+export const analyzeJobMatch = async (jobDescription: string): Promise<SkillsAnalysis> => {
+    if (!apiKey) {
+        throw new Error('Gemini API key not configured');
+    }
+
+    const prompt = `
+    Analyze the following Job Description against Prasad Tilloo's profile.
+    
+    PRASAD'S PROFILE:
+    - 15+ years experience: Enterprise Architect, Cloud Architect, AI Engineer
+    - Core Skills: AWS, Azure, GCP, Kubernetes, Docker, Terraform
+    - Languages: Python, TypeScript, React, Java, Golang, C#
+    - Compliance: HIPAA, GDPR, PCI-DSS, SOC2
+    - Leadership: Led teams of 10-15, managed $650K+ budgets
+    - AI/ML: RAG, Vector DBs, LLM integration, MLOps
+
+    JOB DESCRIPTION:
+    ${jobDescription}
+
+    TASK:
+    - Calculate a match percentage (0-100).
+    - Identify key matching skills mentioned in JD.
+    - Identify missing skills or gaps.
+    - Provide a 1-sentence explanation of the fit.
+
+    OUTPUT JSON ONLY:
+    {
+      "matchScore": number,
+      "matchLevel": "Low" | "Medium" | "High" | "Perfect",
+      "explanation": "string",
+      "missingSkills": ["string"],
+      "matchingSkills": ["string"]
+    }
+  `;
+
+    try {
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: 'application/json'
+            }
+        });
+
+        const response = result.response;
+        const text = response.text();
+
+        // Clean markdown formatting if present
+        const jsonStr = text.replace(/```json\n?|\n?```/g, '').trim();
+        const data = JSON.parse(jsonStr);
+
+        return data as SkillsAnalysis;
+    } catch (error) {
+        console.error('Skills Match Error:', error);
+        // Fallback for demo if API fails
+        return {
+            matchScore: 0,
+            matchLevel: 'Low',
+            explanation: 'Unable to analyze at the moment. Please try again.',
+            missingSkills: [],
+            matchingSkills: []
+        };
+    }
+};
+
+```
+
+## File: ./src/types/CaseStudy.ts
+```ts
+// src/types/CaseStudy.ts
+
+export interface CaseStudy {
+    id: string;
+    slug: string;
+
+    // Multi-Domain Metadata
+    domains: string[]; // e.g., ['eCommerce', 'Healthcare', 'Climate Tech']
+    projectType: 'product' | 'framework' | 'migration' | 'standard' | 'data-platform' | 'devops' | 'consulting';
+    seoTags: string[];
+
+    // Header (attention)
+    header: {
+        eyebrow: string; // "€500K SAVED IN 6 MONTHS"
+        title: string; // "How We Migrated 2M Patient Records..."
+        client: {
+            type: string; // "Mid-Size German Pharma"
+            size: string; // "€2B revenue, 500 employees"
+            industry: string; // "Pharmaceutical"
+        };
+    };
+
+    // Challenge (empathy)
+    challenge: {
+        situation: string; // 2-3 sentences
+        pain_points: Array<{
+            icon: string; // emoji
+            title: string;
+            description: string;
+            impact: string; // cost/risk
+        }>;
+        urgency: string; // deadline/catalyst
+        why_prasad: string; // selection criteria
+    };
+
+    // Approach (credibility)
+    approach: {
+        methodology: string;
+        phases: Array<{
+            number: number;
+            title: string;
+            duration: string;
+            activities: string[];
+            deliverable: string;
+            outcome: string;
+        }>;
+        unique_differentiator: string;
+    };
+
+    // Results (proof)
+    outcomes: {
+        hero_metric: { value: string; label: string; icon: string };
+        secondary_metrics: Array<{ value: string; label: string; icon: string }>;
+        compliance: Array<{ standard: string; result: string; details: string }>;
+        timeline: { planned: string; actual: string; variance: string };
+        business_impact?: {
+            revenue?: string;
+            savings?: string;
+            efficiency?: string;
+            risk_reduction?: string;
+            innovation?: string;
+        };
+    };
+
+    // Social proof
+    testimonial?: {
+        quote: string;
+        author: { name: string; role: string; company: string; photo?: string; linkedin?: string };
+        video_url?: string;
+    };
+
+    // Technical details
+    technical: {
+        before: { stack: string[]; infrastructure: string; issues: string[] };
+        after: { stack: string[]; infrastructure: string; improvements: string[] };
+        migration_strategy: string;
+        architecture_diagram?: string; // SVG or React Flow
+    };
+
+    // CTA
+    cta: {
+        primary: { text: string; action: string; context: string };
+        secondary: { text: string; action: string };
+    };
+
+    // UI Theme
+    theme?: {
+        color: string;
+        gradient: string;
+        iconBg: string;
+        backgroundImage?: string;
+    };
+}
+
+```
+
+## File: ./src/types/index.ts
+```ts
+export interface ArchitectureRequest {
+  industry: 'healthcare' | 'financial' | 'ecommerce' | 'aiml';
+  challenge: string;
+  context: {
+    teamSize?: string;
+    budget?: string;
+    timeline?: string;
+    compliance?: string;
+    type?: string;
+  };
+}
+
+export interface GeneratedArchitecture {
+  summary: string;
+  recommendations: string[];
+  timeline: string;
+  budget: string;
+  risks: Array<{
+    level: 'high' | 'medium' | 'low';
+    text: string;
+  }>;
+  stack: Array<{
+    category: string;
+    tech: string;
+    reason: string;
+  }>;
+  compliance: string[];
+  diagram: {
+    nodes: Array<{
+      id: string;
+      label: string;
+      type: 'frontend' | 'service' | 'database' | 'security' | 'external';
+      description: string;
+      technologies: string[];
+      risks: string[];
+    }>;
+    edges: Array<{
+      source: string;
+      target: string;
+    }>;
+  };
+}
+
+export interface ArchitectureResult extends GeneratedArchitecture {
+  id: string;
+  timestamp: Date;
+  inputs: {
+    industry: 'healthcare' | 'financial' | 'ecommerce' | 'aiml';
+    challenge: string;
+    context: ArchitectureRequest['context'];
+  };
+}
+
+```
+
+## File: ./src/vite-env.d.ts
+```ts
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_GEMINI_API_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
+```
+
+## File: ./tailwind.config.js
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    darkMode: 'class',
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Outfit', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+                slate: {
+                    850: '#1e293b',
+                    900: '#0f172a',
+                    950: '#020617',
+                },
+                emerald: {
+                    400: '#34d399',
+                    500: '#10b981',
+                    600: '#059669',
+                }
+            },
+            animation: {
+                'fade-in': 'fadeIn 0.5s ease-out',
+                'slide-up': 'slideUp 0.5s ease-out',
+                'slide-in-right': 'slideInRight 0.3s ease-out',
+            },
+            fontSize: {
+                '8xl': ['6rem', { lineHeight: '1' }],
+                '9xl': ['8rem', { lineHeight: '1' }],
+            },
+            spacing: {
+                '128': '32rem',
+                '144': '36rem',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                slideUp: {
+                    '0%': { transform: 'translateY(10px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                slideInRight: {
+                    '0%': { transform: 'translateX(100%)' },
+                    '100%': { transform: 'translateX(0)' },
+                }
+            }
+        },
+    },
+    plugins: [],
+}
+
+```
+
+## File: ./tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
+```
+
+## File: ./tsconfig.node.json
+```json
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+
+```
+
+## File: ./vite.config.ts
+```ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5173,
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true
+      }
+    }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+});
+
+```
