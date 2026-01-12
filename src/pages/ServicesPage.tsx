@@ -1,50 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2, ArrowRight, FileSearch, Cloud, Layout } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Layers, Users, Cpu } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { PageShell, PageHeader, Container } from '../components/layout';
 
 const services = [
   {
-    id: 'due-diligence',
-    icon: FileSearch,
+    id: 'blueprint-sprint',
+    icon: Layers,
     iconColor: 'text-blue-600',
     iconBg: 'bg-blue-100 dark:bg-blue-900/30',
     gradient: 'from-blue-500 to-blue-600',
-    titleKey: 'services.dueDiligence.title',
-    subtitleKey: 'services.dueDiligence.subtitle',
-    timelineKey: 'services.dueDiligence.timeline',
-    priceKey: 'services.dueDiligence.price',
-    forKey: 'services.dueDiligence.for',
-    deliverablesKey: 'services.dueDiligence.deliverables'
+    titleKey: 'services.blueprintSprint.title',
+    subtitleKey: 'services.blueprintSprint.subtitle',
+    timelineKey: 'services.blueprintSprint.timeline',
+    priceKey: 'services.blueprintSprint.price',
+    forKey: 'services.blueprintSprint.for',
+    deliverablesKey: 'services.blueprintSprint.deliverables',
+    notIncludedKey: 'services.blueprintSprint.notIncluded'
   },
   {
-    id: 'cloud-migration',
-    icon: Cloud,
+    id: 'fractional-lead',
+    icon: Users,
     iconColor: 'text-emerald-600',
     iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
     gradient: 'from-emerald-500 to-emerald-600',
-    titleKey: 'services.cloudMigration.title',
-    subtitleKey: 'services.cloudMigration.subtitle',
-    timelineKey: 'services.cloudMigration.timeline',
-    priceKey: 'services.cloudMigration.price',
-    forKey: 'services.cloudMigration.for',
-    deliverablesKey: 'services.cloudMigration.deliverables'
+    titleKey: 'services.fractionalLead.title',
+    subtitleKey: 'services.fractionalLead.subtitle',
+    timelineKey: 'services.fractionalLead.timeline',
+    priceKey: 'services.fractionalLead.price',
+    forKey: 'services.fractionalLead.for',
+    deliverablesKey: 'services.fractionalLead.deliverables',
+    notIncludedKey: 'services.fractionalLead.notIncluded'
   },
   {
-    id: 'platform-evaluation',
-    icon: Layout,
+    id: 'ai-discovery',
+    icon: Cpu,
     iconColor: 'text-purple-600',
     iconBg: 'bg-purple-100 dark:bg-purple-900/30',
     gradient: 'from-purple-500 to-purple-600',
-    titleKey: 'services.platformEvaluation.title',
-    subtitleKey: 'services.platformEvaluation.subtitle',
-    timelineKey: 'services.platformEvaluation.timeline',
-    priceKey: 'services.platformEvaluation.price',
-    forKey: 'services.platformEvaluation.for',
-    deliverablesKey: 'services.platformEvaluation.deliverables'
+    titleKey: 'services.aiDiscovery.title',
+    subtitleKey: 'services.aiDiscovery.subtitle',
+    timelineKey: 'services.aiDiscovery.timeline',
+    priceKey: 'services.aiDiscovery.price',
+    forKey: 'services.aiDiscovery.for',
+    deliverablesKey: 'services.aiDiscovery.deliverables',
+    notIncludedKey: 'services.aiDiscovery.notIncluded'
   }
 ];
 
@@ -59,8 +62,8 @@ const ServicesPage: React.FC = () => {
             />
             <PageShell background="muted" containerMaxWidth="7xl" className="pt-24">
                 <PageHeader
-                    title={t('services.title')}
-                    subtitle={t('services.subtitle')}
+                    title={t('servicesPage.title')}
+                    subtitle={t('servicesPage.subtitle')}
                 />
 
                 <Container maxWidth="7xl">
@@ -95,7 +98,7 @@ const ServicesPage: React.FC = () => {
                                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-4">
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                                                    Timeline
+                                                    {t('servicesPage.timeline')}
                                                 </div>
                                                 <div className="text-lg font-bold text-slate-900 dark:text-white">
                                                     {t(service.timelineKey)}
@@ -104,7 +107,7 @@ const ServicesPage: React.FC = () => {
 
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                                                    Price
+                                                    {t('servicesPage.price')}
                                                 </div>
                                                 <div className="text-2xl font-bold text-slate-900 dark:text-white">
                                                     {t(service.priceKey)}
@@ -113,7 +116,7 @@ const ServicesPage: React.FC = () => {
 
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                                    For
+                                                    {t('servicesPage.for')}
                                                 </div>
                                                 <div className="text-sm text-slate-700 dark:text-slate-300">
                                                     {t(service.forKey)}
@@ -121,9 +124,9 @@ const ServicesPage: React.FC = () => {
                                             </div>
                                         </div>
 
-                                        <div className="mb-8">
+                                        <div className="mb-6">
                                             <div className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
-                                                Deliverables
+                                                {t('servicesPage.deliverables')}
                                             </div>
                                             <ul className="space-y-2">
                                                 {Array.isArray(deliverables) && deliverables.map((deliverable, dIdx) => (
@@ -135,11 +138,17 @@ const ServicesPage: React.FC = () => {
                                             </ul>
                                         </div>
 
+                                        <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700">
+                                            <p className="text-xs text-slate-600 dark:text-slate-400 italic">
+                                                {t(service.notIncludedKey)}
+                                            </p>
+                                        </div>
+
                                         <Link
                                             to="/contact"
                                             className={`w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1`}
                                         >
-                                            {t('services.bookCall')}
+                                            {t('servicesPage.bookCall')}
                                             <ArrowRight size={18} />
                                         </Link>
                                     </div>
@@ -147,6 +156,30 @@ const ServicesPage: React.FC = () => {
                             );
                         })}
                     </div>
+
+                    {/* What Happens Next Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 md:p-12 mb-8 border border-slate-200 dark:border-slate-700"
+                    >
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+                            {t('services.whatHappensNext.title')}
+                        </h2>
+                        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                            {(t('services.whatHappensNext.steps', { returnObjects: true }) as string[]).map((step, idx) => (
+                                <div key={idx} className="text-center">
+                                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">
+                                        {idx + 1}
+                                    </div>
+                                    <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                                        {step}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
 
                     {/* CTA Section */}
                     <motion.div
@@ -156,16 +189,16 @@ const ServicesPage: React.FC = () => {
                         className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-12 text-center"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">
-                            Ready to Get Started?
+                            {t('servicesPage.ctaTitle')}
                         </h2>
                         <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                            Book a discovery call to discuss your architecture challenges.
+                            {t('servicesPage.ctaSubtitle')}
                         </p>
                         <Link
                             to="/contact"
                             className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
                         >
-                            {t('services.bookCall')}
+                            {t('servicesPage.bookDiscoveryCall')}
                             <ArrowRight size={20} />
                         </Link>
                     </motion.div>

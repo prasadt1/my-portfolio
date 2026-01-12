@@ -80,6 +80,51 @@ const ContactPage: React.FC = () => {
               </div>
             </div>
 
+            {/* What to Expect Section */}
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                {t('contactPage.whatToExpect.title')}
+              </h3>
+              <div className="space-y-6">
+                <div>
+                  <div className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                    {t('contactPage.whatToExpect.duration.label')}
+                  </div>
+                  <div className="text-lg font-bold text-slate-900 dark:text-white">
+                    {t('contactPage.whatToExpect.duration.value')}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                    {t('contactPage.whatToExpect.bring.label')}
+                  </div>
+                  <ul className="space-y-2">
+                    {(t('contactPage.whatToExpect.bring.items', { returnObjects: true }) as string[]).map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                        <span className="text-emerald-600 dark:text-emerald-400 mt-1">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <div className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                    {t('contactPage.whatToExpect.get.label')}
+                  </div>
+                  <ul className="space-y-2">
+                    {(t('contactPage.whatToExpect.get.items', { returnObjects: true }) as string[]).map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                        <span className="text-emerald-600 dark:text-emerald-400 mt-1">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             {/* Option 2: Email */}
             {/* Option 3: LinkedIn */}
             <div className="grid sm:grid-cols-2 gap-6">
