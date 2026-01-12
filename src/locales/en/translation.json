@@ -873,5 +873,12 @@
                 "other": "Other"
             }
         }
+    },
+    "projects": {
+        "approachToday": {
+            "title": "How I would approach this today",
+            "more": "Show more",
+            "less": "Show less"
+        }
     }
 }

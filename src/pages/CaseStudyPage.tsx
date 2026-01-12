@@ -3,6 +3,7 @@ import { User, Code, Briefcase } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
     ArrowLeft,
     CheckCircle2,
@@ -14,6 +15,7 @@ import { projects } from '../data/projects';
 
 const CaseStudyPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
+    const { t, i18n } = useTranslation();
     const [persona, setPersona] = useState<'executive' | 'technical' | 'standard'>('standard');
     const [rewrittenSummary, setRewrittenSummary] = useState<string>('');
     const [rewriting, setRewriting] = useState(false);
@@ -385,24 +387,25 @@ const CaseStudyPage: React.FC = () => {
             }
 
             {/* How I would approach this today */}
-            <section className="py-20 bg-slate-50 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-lg">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                            {/* Note: This section title is in translations, but actual content should come from project data */}
-                            How I would approach this today
-                        </h2>
-                        <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                            Reflecting on this project with current consulting experience, here's how I would evaluate decisions, risks, tradeoffs, and sequencing:
-                        </p>
-                        <div className="prose prose-slate dark:prose-invert max-w-none">
-                            <p className="text-slate-600 dark:text-slate-400 italic">
-                                <em>Consulting insights and approach recommendations for this project would be added here. This content should be added to each project's data structure to provide specific, actionable consulting angles.</em>
-                            </p>
+            {study.approachToday && (
+                <section className="py-20 bg-slate-50 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-lg">
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8">
+                                {t('projects.approachToday.title')}
+                            </h2>
+                            <ul className="space-y-4">
+                                {(i18n.language === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
+                                    <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                                        <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={20} />
+                                        <span>{bullet}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             {/* CTA */}
             <section className="py-24 bg-white dark:bg-slate-900">

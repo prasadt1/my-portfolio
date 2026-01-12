@@ -817,5 +817,12 @@
                 "Nächste Schritte innerhalb von 48 Stunden"
             ]
         }
+    },
+    "projects": {
+        "approachToday": {
+            "title": "So würde ich heute vorgehen",
+            "more": "Mehr anzeigen",
+            "less": "Weniger anzeigen"
+        }
     }
 }
