@@ -695,8 +695,8 @@
         }
     },
     "servicesPage": {
-        "title": "Architecture Assessment Services",
-        "subtitle": "Independent architecture assessments for EU mid-market companies. Validate cloud migration, platform modernization, and architecture decisions before committing to the wrong path.",
+        "title": "Architecture & Transformation Services",
+        "subtitle": "Vendor-neutral assessments, modernization roadmaps, and delivery leadership across cloud, integration, and AI enablement discovery — with a focus on EU mid-market teams.",
         "timeline": "Timeline",
         "price": "Price",
         "for": "For",
@@ -736,7 +736,7 @@
         },
         "aiDiscovery": {
             "title": "AI Enablement Discovery",
-            "subtitle": "Early-stage AI strategy and readiness assessment. Identify use cases, assess data readiness, integration gaps, and create a next-step roadmap.",
+            "subtitle": "Early-stage AI discovery and enablement planning. Identify use cases, assess data readiness, integration gaps, and create a next-step roadmap.",
             "timeline": "1–2 weeks",
             "price": "Contact for pricing",
             "for": "Companies exploring AI/ML capabilities or beginning AI initiatives",
@@ -749,11 +749,11 @@
             "notIncluded": "Implementation is not included (available separately)."
         },
         "whatHappensNext": {
-            "title": "What Happens Next",
+            "title": "What happens next",
             "steps": [
-                "Discovery call",
-                "Artifact review",
-                "Next steps within 48 hours"
+                "Book a 30-minute discovery call",
+                "Share 2–3 relevant artifacts (architecture diagrams, docs, constraints)",
+                "Receive a summary + recommended next steps within 48 hours"
             ]
         }
     },

@@ -59,7 +59,6 @@ const CaseStudyPage: React.FC = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-slate-900 pt-20">
             {/* Header */}
-            {/* Header */}
             <section className="bg-slate-50 dark:bg-slate-800 pb-16 pt-12 border-b border-slate-200 dark:border-slate-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Top Row: Back Link */}
@@ -147,7 +146,7 @@ const CaseStudyPage: React.FC = () => {
             </section>
 
             {/* Challenge Section */}
-            < section className="py-20" >
+            <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section 1: Challenge Narrative (Wide for readability) */}
                     <div className="max-w-4xl mb-16">
@@ -225,10 +224,10 @@ const CaseStudyPage: React.FC = () => {
                         ))}
                     </div>
                 </div>
-            </section >
+            </section>
 
             {/* Approach Section */}
-            < section className="py-20 bg-slate-50 dark:bg-slate-800" >
+            <section className="py-20 bg-slate-50 dark:bg-slate-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
@@ -294,10 +293,10 @@ const CaseStudyPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </section >
+            </section>
 
             {/* Technical Deep Dive */}
-            < section className="py-20" >
+            <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">Technical Transformation</h2>
 
@@ -365,7 +364,7 @@ const CaseStudyPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </section >
+            </section>
 
             {/* Testimonial */}
             {
@@ -431,7 +430,7 @@ const CaseStudyPage: React.FC = () => {
                     </div>
                 </div>
             </section>
-        </div >
+        </div>
     );
 };
 
