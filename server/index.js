@@ -90,6 +90,157 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
+// Risk Radar endpoint (server-side)
+app.post('/api/risk-radar', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        
+        // Rate limiting
+        if (!checkRateLimit(clientIp)) {
+            return res.status(429).json({ 
+                error: 'Rate limit exceeded. Please try again in a minute.' 
+            });
+        }
+
+        const { industry, companySize, platformState, initiative, urgency, compliance, integration, constraints } = req.body;
+
+        // Input validation
+        if (!industry || !companySize || !platformState || !initiative) {
+            return res.status(400).json({ 
+                error: 'Missing required fields: industry, companySize, platformState, and initiative are required' 
+            });
+        }
+
+        if (!process.env.VITE_GEMINI_API_KEY) {
+            return res.status(500).json({ error: 'API Key not configured' });
+        }
+
+        const { SchemaType } = await import('@google/generative-ai');
+        
+        const prompt = `
+REQUEST:
+Industry: ${industry}
+Company Size: ${companySize}
+Current Platform State: ${platformState}
+Primary Initiative: ${initiative}
+Delivery Urgency: ${urgency || 'Not specified'}
+Compliance Needs: ${compliance || 'Not specified'}
+Integration Complexity: ${integration || 'Not specified'}
+Constraints: ${constraints || 'None specified'}
+
+TASK:
+Generate a structured risk assessment and 3-week engagement plan for this modernization initiative.
+Provide:
+1. Top 3-5 risks with severity (high/medium/low), area, and mitigation
+2. Key tradeoffs with 2-3 options showing pros/cons
+3. Recommended 3-week engagement plan (Week 1, Week 2, Week 3 activities)
+4. Deliverables list (4-6 items)
+
+Keep output professional and focused on architecture/transformation risks.
+Return ONLY valid JSON matching the schema.
+`;
+
+        const schema = {
+            type: SchemaType.OBJECT,
+            properties: {
+                risks: {
+                    type: SchemaType.ARRAY,
+                    items: {
+                        type: SchemaType.OBJECT,
+                        properties: {
+                            title: { type: SchemaType.STRING },
+                            severity: { type: SchemaType.STRING, enum: ['high', 'medium', 'low'] },
+                            area: { type: SchemaType.STRING },
+                            mitigation: { type: SchemaType.STRING }
+                        },
+                        required: ['title', 'severity', 'area', 'mitigation']
+                    }
+                },
+                tradeoffs: {
+                    type: SchemaType.ARRAY,
+                    items: {
+                        type: SchemaType.OBJECT,
+                        properties: {
+                            title: { type: SchemaType.STRING },
+                            options: {
+                                type: SchemaType.ARRAY,
+                                items: {
+                                    type: SchemaType.OBJECT,
+                                    properties: {
+                                        label: { type: SchemaType.STRING },
+                                        pros: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                                        cons: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+                                    },
+                                    required: ['label', 'pros', 'cons']
+                                }
+                            }
+                        },
+                        required: ['title', 'options']
+                    }
+                },
+                plan: {
+                    type: SchemaType.OBJECT,
+                    properties: {
+                        week1: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                        week2: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                        week3: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+                    },
+                    required: ['week1', 'week2', 'week3']
+                },
+                deliverables: {
+                    type: SchemaType.ARRAY,
+                    items: { type: SchemaType.STRING }
+                }
+            },
+            required: ['risks', 'tradeoffs', 'plan', 'deliverables']
+        };
+
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 4096,
+                responseMimeType: 'application/json',
+                responseSchema: schema
+            }
+        });
+
+        const response = result.response;
+        let text = response.text();
+        
+        // Clean JSON
+        text = text.trim().replace(/^```json\s*/, '').replace(/^```\s*/, '').replace(/\s*```$/, '');
+        const firstBrace = text.indexOf('{');
+        const lastBrace = text.lastIndexOf('}');
+        if (firstBrace !== -1 && lastBrace !== -1) {
+            text = text.substring(firstBrace, lastBrace + 1);
+        }
+
+        const data = JSON.parse(text);
+        
+        // Validate
+        if (!data.risks || data.risks.length === 0) {
+            return res.status(500).json({ error: 'Invalid response: missing risks' });
+        }
+
+        res.json(data);
+    } catch (error) {
+        console.error('Risk Radar error:', error);
+        if (error instanceof Error) {
+            if (error.message.includes('API key') || error.message.includes('API Key')) {
+                return res.status(500).json({ error: 'API configuration error. Please contact support.' });
+            }
+            if (error.message.includes('quota') || error.message.includes('Quota') || error.message.includes('429')) {
+                return res.status(429).json({ error: 'API quota exceeded. Please try again later.' });
+            }
+            if (error.message.includes('429 Too Many Requests')) {
+                return res.status(429).json({ error: 'API quota exceeded. Please try again later.' });
+            }
+        }
+        res.status(500).json({ error: 'Failed to generate risk assessment. Please try again.' });
+    }
+});
+
 // Architecture generation endpoint (server-side)
 app.post('/api/architecture/generate', async (req, res) => {
     try {

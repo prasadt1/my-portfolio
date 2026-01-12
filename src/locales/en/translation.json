@@ -882,5 +882,93 @@
             "more": "Show more",
             "less": "Show less"
         }
+    },
+    "independentAdvisory": {
+        "title": "Why independent advisory",
+        "subtitle": "Direct senior involvement, vendor-neutral guidance, and execution-ready decision packages — without heavy overhead.",
+        "cards": {
+            "direct": {
+                "title": "Direct senior involvement",
+                "text": "You work with me directly — no rotating teams."
+            },
+            "fast": {
+                "title": "Fast clarity",
+                "text": "Decision package in 2–3 weeks, not months."
+            },
+            "vendorNeutral": {
+                "title": "Vendor-neutral",
+                "text": "Tool-agnostic guidance aligned to outcomes."
+            },
+            "executionReady": {
+                "title": "Execution-ready outputs",
+                "text": "Blueprint + risk register + roadmap — not just slides."
+            }
+        }
+    },
+    "proofSection": {
+        "title": "Proof, not promises",
+        "subtitle": "A preview of what you receive at the end of an engagement.",
+        "deliverables": {
+            "blueprint": {
+                "title": "Architecture Blueprint (sample)",
+                "label": "Example (redacted)"
+            },
+            "riskRegister": {
+                "title": "Risk Register (sample)",
+                "label": "Example (redacted)"
+            },
+            "roadmap": {
+                "title": "90-Day Roadmap (sample)",
+                "label": "Example (redacted)"
+            },
+            "decisionMatrix": {
+                "title": "Decision Matrix / Tradeoffs (sample)",
+                "label": "Example (redacted)"
+            }
+        },
+        "cta": "Book Discovery Call"
+    },
+    "riskRadar": {
+        "title": "Transformation Risk Radar",
+        "subtitle": "Get a structured risk snapshot and a 3-week plan for your modernization initiative — in under 2 minutes.",
+        "disclaimer": "Draft output for exploration. Validated during a discovery call.",
+        "form": {
+            "title": "Tell me about your initiative",
+            "helper": "Answer a few questions so I can generate relevant risks, tradeoffs, and a practical engagement plan.",
+            "industry": "Industry",
+            "companySize": "Company size",
+            "platformState": "Current platform state",
+            "initiative": "Primary initiative",
+            "urgency": "Delivery urgency",
+            "compliance": "Compliance needs",
+            "integration": "Integration complexity",
+            "constraints": "Constraints (optional)",
+            "constraintsPlaceholder": "Budget limits, timeline constraints, team capacity...",
+            "submit": "Generate Risk Snapshot",
+            "loading": "Analyzing risks and options…",
+            "select": "Select..."
+        },
+        "results": {
+            "title": "Risk Snapshot & Recommended Plan",
+            "subtitle": "A structured view of risks, tradeoffs, and the most practical next steps.",
+            "risks": "Top risks to address early",
+            "tradeoffs": "Key tradeoffs & options",
+            "plan": "Recommended 3-week engagement plan",
+            "deliverables": "Deliverables you'll receive"
+        },
+        "note": {
+            "title": "Important note",
+            "text": "This tool generates a draft assessment to accelerate early-stage thinking. It does not replace detailed architecture review, security validation, or compliance analysis. Final recommendations depend on your constraints, stakeholders, and system context."
+        },
+        "cta": {
+            "title": "Want this customized to your systems?",
+            "text": "Book a 30-minute discovery call. I'll review 2–3 key artifacts and share concrete next steps within 48 hours.",
+            "primary": "Book Discovery Call",
+            "secondary": "View relevant case studies"
+        },
+        "errors": {
+            "title": "Tool temporarily unavailable",
+            "text": "The Risk Radar is currently at capacity. You can still book a discovery call — I'll provide a tailored risk snapshot and a draft plan within 48 hours."
+        }
     }
 }

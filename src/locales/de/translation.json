@@ -850,5 +850,93 @@
             "more": "Mehr anzeigen",
             "less": "Weniger anzeigen"
         }
+    },
+    "independentAdvisory": {
+        "title": "Warum unabhängige Beratung",
+        "subtitle": "Direkte Senior-Unterstützung, vendor-neutrale Entscheidungen und umsetzbare Deliverables – ohne unnötigen Overhead.",
+        "cards": {
+            "direct": {
+                "title": "Direkte Senior-Unterstützung",
+                "text": "Sie arbeiten direkt mit mir – ohne wechselnde Teams."
+            },
+            "fast": {
+                "title": "Schnelle Klarheit",
+                "text": "Decision Package in 2–3 Wochen statt in Monaten."
+            },
+            "vendorNeutral": {
+                "title": "Vendor-neutral",
+                "text": "Tool-agnostisch und konsequent am Outcome orientiert."
+            },
+            "executionReady": {
+                "title": "Umsetzbare Outputs",
+                "text": "Blueprint + Risiko-Register + Roadmap – nicht nur Folien."
+            }
+        }
+    },
+    "proofSection": {
+        "title": "Proof statt Versprechen",
+        "subtitle": "Ein Einblick in die Deliverables am Ende eines Engagements.",
+        "deliverables": {
+            "blueprint": {
+                "title": "Architektur-Blueprint (Beispiel)",
+                "label": "Beispiel (anonymisiert)"
+            },
+            "riskRegister": {
+                "title": "Risiko-Register (Beispiel)",
+                "label": "Beispiel (anonymisiert)"
+            },
+            "roadmap": {
+                "title": "90-Tage-Umsetzungsroadmap (Beispiel)",
+                "label": "Beispiel (anonymisiert)"
+            },
+            "decisionMatrix": {
+                "title": "Entscheidungs-Matrix / Trade-offs (Beispiel)",
+                "label": "Beispiel (anonymisiert)"
+            }
+        },
+        "cta": "Discovery Call buchen"
+    },
+    "riskRadar": {
+        "title": "Transformation Risk Radar",
+        "subtitle": "Erhalten Sie einen strukturierten Risiko-Snapshot und einen 3-Wochen-Plan für Ihre Modernisierung – in unter 2 Minuten.",
+        "disclaimer": "Entwurf zur Orientierung. Validierung im Discovery Call.",
+        "form": {
+            "title": "Kurz einordnen: Ihr Vorhaben",
+            "helper": "Beantworten Sie ein paar Fragen, damit ich Risiken, Trade-offs und einen praktikablen Plan ableiten kann.",
+            "industry": "Branche",
+            "companySize": "Unternehmensgröße",
+            "platformState": "Aktueller Plattformstatus",
+            "initiative": "Primäres Vorhaben",
+            "urgency": "Lieferungsdringlichkeit",
+            "compliance": "Compliance-Anforderungen",
+            "integration": "Integrationskomplexität",
+            "constraints": "Constraints (optional)",
+            "constraintsPlaceholder": "Budgetgrenzen, Zeitrahmen, Teamkapazität...",
+            "submit": "Risiko-Snapshot generieren",
+            "loading": "Risiken und Optionen werden analysiert…",
+            "select": "Auswählen..."
+        },
+        "results": {
+            "title": "Risiko-Snapshot & empfohlener Plan",
+            "subtitle": "Strukturierter Blick auf Risiken, Trade-offs und die sinnvollsten nächsten Schritte.",
+            "risks": "Top-Risiken (früh adressieren)",
+            "tradeoffs": "Wichtige Trade-offs & Optionen",
+            "plan": "Empfohlener 3-Wochen-Engagement-Plan",
+            "deliverables": "Deliverables, die Sie erhalten"
+        },
+        "note": {
+            "title": "Wichtiger Hinweis",
+            "text": "Dieses Tool erzeugt einen Entwurf zur Beschleunigung der frühen Entscheidungsfindung. Es ersetzt keine detaillierte Architektur-Review, Security-Validierung oder Compliance-Analyse. Finale Empfehlungen hängen von Ihren Constraints, Stakeholdern und dem Systemkontext ab."
+        },
+        "cta": {
+            "title": "Möchten Sie das auf Ihre Systeme zugeschnitten?",
+            "text": "Buchen Sie einen 30-minütigen Discovery Call. Ich schaue mir 2–3 relevante Artefakte an und sende innerhalb von 48 Stunden konkrete nächste Schritte.",
+            "primary": "Discovery Call buchen",
+            "secondary": "Relevante Case Studies ansehen"
+        },
+        "errors": {
+            "title": "Tool aktuell nicht verfügbar",
+            "text": "Der Risk Radar ist derzeit ausgelastet. Buchen Sie gern einen Discovery Call – ich erstelle einen zugeschnittenen Risiko-Snapshot und einen Draft-Plan innerhalb von 48 Stunden."
+        }
     }
 }

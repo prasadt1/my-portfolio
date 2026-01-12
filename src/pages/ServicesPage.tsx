@@ -5,6 +5,7 @@ import { CheckCircle2, ArrowRight, Layers, Users, Cpu } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { PageShell, PageHeader, Container } from '../components/layout';
+import IndependentAdvisorySection from '../components/sections/IndependentAdvisorySection';
 
 const services = [
   {
@@ -157,6 +158,9 @@ const ServicesPage: React.FC = () => {
                         })}
                     </div>
 
+                    {/* Independent Advisory Section */}
+                    <IndependentAdvisorySection />
+
                     {/* What Happens Next Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -194,13 +198,22 @@ const ServicesPage: React.FC = () => {
                         <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
                             {t('servicesPage.ctaSubtitle')}
                         </p>
-                        <Link
-                            to="/contact"
-                            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
-                        >
-                            {t('servicesPage.bookDiscoveryCall')}
-                            <ArrowRight size={20} />
-                        </Link>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link
+                                to="/contact"
+                                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
+                            >
+                                {t('servicesPage.bookDiscoveryCall')}
+                                <ArrowRight size={20} />
+                            </Link>
+                            <Link
+                                to="/risk-radar"
+                                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all"
+                            >
+                                Try Risk Radar
+                                <ArrowRight size={20} />
+                            </Link>
+                        </div>
                     </motion.div>
                 </Container>
             </PageShell>
