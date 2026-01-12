@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { CaseStudy } from '../../types/CaseStudy';
 import ProjectCardHeader from './ProjectCardHeader';
 import ProjectCardTechStack from './ProjectCardTechStack';
@@ -12,8 +12,9 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-    const { t } = useTranslation('projects');
+    const { t, i18n } = useTranslation();
     const [imageError, setImageError] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const theme = project.theme || {
         color: 'emerald',
@@ -55,8 +56,42 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <ProjectCardHeader project={project} color={theme.color} iconBg={theme.iconBg} />
 
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-1">
-                    {t(`${project.id}.challenge.situation`, { defaultValue: project.challenge.situation })}
+                    {t(`${project.id}.challenge.situation`, { defaultValue: project.challenge.situation, ns: 'projects' })}
                 </p>
+
+                {/* Approach Today Section */}
+                {project.approachToday && (() => {
+                    const bullets = i18n.language === 'de' ? project.approachToday.bulletsDe : project.approachToday.bullets;
+                    const displayBullets = isExpanded ? bullets : bullets.slice(0, 2);
+                    return (
+                        <div className="mb-4 border-t border-slate-200 dark:border-slate-700 pt-4">
+                            <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide">
+                                {t('projects.approachToday.title')}
+                            </h4>
+                            <ul className="space-y-1.5 mb-2">
+                                {displayBullets.map((bullet, idx) => (
+                                    <li key={idx} className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed flex items-start gap-1.5">
+                                        <span className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0">•</span>
+                                        <span>{bullet}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            {bullets.length > 2 && (
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setIsExpanded(!isExpanded);
+                                    }}
+                                    className="text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 flex items-center gap-1 transition-colors"
+                                >
+                                    {isExpanded ? t('projects.approachToday.less') : t('projects.approachToday.more')}
+                                    <ChevronDown size={14} className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                                </button>
+                            )}
+                        </div>
+                    );
+                })()}
 
                 <ProjectCardTechStack project={project} />
 

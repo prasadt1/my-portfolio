@@ -83,6 +83,14 @@ export interface CaseStudy {
         secondary: { text: string; action: string };
     };
 
+    // Consulting insights
+    approachToday?: {
+        titleKey?: string;     // i18n title key
+        bullets: string[];     // EN bullets
+        bulletsDe: string[];   // DE bullets
+        focusAreas?: string[]; // optional chips
+    };
+
     // UI Theme
     theme?: {
         color: string;

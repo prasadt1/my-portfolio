@@ -56,6 +56,23 @@ export const projects: CaseStudy[] = [
             after: { stack: ['Gemini 3 Pro', 'React', 'Tailwind', 'Recharts'], infrastructure: 'Context-Aware', improvements: ['Structured JSON', 'Spatial Overlays'] },
             migration_strategy: 'Greenfield'
         },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Confirm target user segment and success metrics (retention, conversion, cost-per-analysis).',
+                'Review model choice and prompt strategy for repeatability and predictable quality.',
+                'Treat token cost and caching as first-class architecture constraints from day 1.',
+                'Add evaluation harness (golden set images + scoring) to prevent regression.',
+                'Define privacy, storage and observability requirements for production use.'
+            ],
+            bulletsDe: [
+                'Zielgruppe und Erfolgskriterien sauber definieren (Retention, Conversion, Kosten pro Analyse).',
+                'Modellwahl und Prompt-Strategie auf Reproduzierbarkeit und konsistente Qualität prüfen.',
+                'Token-Kosten und Caching von Anfang an als Architektur-Constraints behandeln.',
+                'Evaluation-Harness aufsetzen (Golden Set + Scoring), um Regressionen zu vermeiden.',
+                'Datenschutz, Speicherung und Observability-Anforderungen für den Produktivbetrieb festlegen.'
+            ]
+        },
         cta: {
             primary: { text: 'Try Live Demo', action: 'https://aistudio.google.com/app/apikey', context: 'See it in action.' },
             secondary: { text: 'View Code', action: 'https://github.com/prasadt1/photography-coach-ai' }
@@ -137,6 +154,23 @@ export const projects: CaseStudy[] = [
             before: { stack: [], infrastructure: 'Fragmented manual emails/spreadsheets', issues: ['No API standard', 'Inconsistent data'] },
             after: { stack: ['Next.js', 'React', 'Java Spring Boot', 'TypeScript', 'Docker', 'Kubernetes', 'Azure', 'Kafka'], infrastructure: 'Decentralized Data Space', improvements: ['Standardized API', 'Automated Verification'] },
             migration_strategy: 'Greenfield standards development'
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Align stakeholders on scope boundaries: what the standard solves vs. what remains implementation-specific.',
+                'Define canonical domain model and versioning strategy (backward compatibility governance).',
+                'Ensure interoperability: schema, API contract strategy, and conformance test approach.',
+                'Assess adoption risks: onboarding friction, tooling, and reference implementation.',
+                'Establish governance operating model: change control, working groups, and release cadence.'
+            ],
+            bulletsDe: [
+                'Scope-Grenzen abstimmen: Was der Standard löst und was bewusst Implementierungsdetails bleibt.',
+                'Kanonisches Domänenmodell und Versionierungsstrategie definieren (Backward-Compatibility Governance).',
+                'Interoperabilität sicherstellen: Schema, API-Contract-Strategie und Conformance-Tests.',
+                'Adoptionsrisiken bewerten: Onboarding-Reibung, Tooling und Referenzimplementierung.',
+                'Governance-Modell etablieren: Change-Control, Arbeitsgruppen und Release-Zyklus.'
+            ]
         },
         cta: {
             primary: { text: 'View Ecosystem', action: 'https://carbon-transparency.org/network', context: 'See the live network.' },
@@ -246,6 +280,23 @@ export const projects: CaseStudy[] = [
             after: { stack: ['Go', 'Redis', 'Kafka', 'Kubernetes', 'Terraform'], infrastructure: 'Global K8s Cluster', improvements: ['<20ms latency', 'Auto-scaling'] },
             migration_strategy: 'Strangler Fig pattern'
         },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Baseline current SLOs (latency, availability) and define target SLOs tied to revenue impact.',
+                'Identify performance bottlenecks across the request path (load balancing → service → cache → persistence).',
+                'Design capacity model (peak hour scaling + failover) and implement observability by default.',
+                'Evaluate tradeoffs of caching, data consistency, and correctness in RTB/ad-serving workflows.',
+                'Define rollout strategy (canary, shadow traffic, feature flags) to de-risk re-architecture.'
+            ],
+            bulletsDe: [
+                'Bestehende SLOs (Latenz, Verfügbarkeit) erheben und Ziel-SLOs mit Business-Impact ableiten.',
+                'Performance-Bottlenecks entlang des Request-Pfads analysieren (LB → Service → Cache → Persistenz).',
+                'Kapazitätsmodell definieren (Peak-Scaling + Failover) und Observability „by default" umsetzen.',
+                'Trade-offs zwischen Caching, Konsistenz und Korrektheit in Ad-/RTB-Workflows bewerten.',
+                'Rollout-Strategie festlegen (Canary, Shadow Traffic, Feature Flags) zur Risiko-Minimierung.'
+            ]
+        },
         cta: {
             primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
             secondary: { text: 'View Architecture', action: '#' }
@@ -350,6 +401,23 @@ export const projects: CaseStudy[] = [
             after: { stack: ['Jenkins', 'GitLab', 'Terraform', 'Kubernetes'], infrastructure: 'Modern DevOps Toolchain', improvements: [] },
             migration_strategy: 'Assessment -> Roadmap -> Transformation'
         },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Start with inventory: applications, dependencies, criticality, ownership, and runtime characteristics.',
+                'Establish scoring model: business value vs tech risk vs migration complexity.',
+                'Define wave planning with hard constraints (shared services, integration dependencies).',
+                'Choose target landing zone and platform guardrails (networking, IAM, logging).',
+                'Produce a decision matrix with recommended 6R disposition per app.'
+            ],
+            bulletsDe: [
+                'Mit Inventory starten: Apps, Abhängigkeiten, Kritikalität, Ownership und Runtime-Eigenschaften.',
+                'Scoring-Modell etablieren: Business Value vs Tech Risk vs Migrationskomplexität.',
+                'Wave Planning mit harten Constraints definieren (Shared Services, Integrationsabhängigkeiten).',
+                'Ziel-Landing-Zone + Plattform-Guardrails festlegen (Networking, IAM, Logging).',
+                'Decision-Matrix mit 6R-Empfehlungen pro Applikation erstellen.'
+            ]
+        },
         cta: {
             primary: { text: 'Assess Your Org', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Get a maturity score.' },
             secondary: { text: 'View Framework', action: '#' }
@@ -443,6 +511,23 @@ export const projects: CaseStudy[] = [
             before: { stack: ['COBOL', 'CICS', 'DB2'], infrastructure: 'Mainframe', issues: [] },
             after: { stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Kafka'], infrastructure: 'Cloud Native', improvements: [] },
             migration_strategy: 'Automated Code Conversion + Manual Optimization'
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Identify functional domains and carve-outs suitable for incremental modernization.',
+                'Define data migration strategy and parity requirements (validation and reconciliation).',
+                'Assess tradeoffs: rehost/replatform vs automated refactoring vs rewrite.',
+                'Plan cutover carefully with rollback strategy and parallel run design.',
+                'Establish testing strategy (functional + performance + data consistency) before any migration waves.'
+            ],
+            bulletsDe: [
+                'Domänen und Carve-outs identifizieren, die sich für inkrementelle Modernisierung eignen.',
+                'Data-Migration-Strategie und Parity-Anforderungen definieren (Validation, Reconciliation).',
+                'Trade-offs bewerten: Rehost/Replatform vs automatisches Refactoring vs Rewrite.',
+                'Cutover sauber planen inkl. Rollback-Strategie und Parallel-Run-Design.',
+                'Teststrategie (Funktional, Performance, Datenkonsistenz) vor jeder Migrationswelle etablieren.'
+            ]
         },
         cta: {
             primary: { text: 'Modernize Legacy', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Reduce MIPS costs.' },
@@ -540,6 +625,23 @@ export const projects: CaseStudy[] = [
             after: { stack: ['AWS', 'Databricks', 'BioBERT', 'React'], infrastructure: 'Data Mesh', improvements: [] },
             migration_strategy: 'Greenfield Build'
         },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Identify highest-value research workflows and the bottlenecks (search, summarization, retrieval).',
+                'Define data access + compliance boundaries (GDPR, masking strategy, retention rules).',
+                'Choose architecture pattern for ML enablement (data mesh vs centralized lakehouse) based on org maturity.',
+                'Establish semantic layer strategy (taxonomy, embeddings, metadata, search relevance evaluation).',
+                'Provide phased roadmap: MVP data products → enablement platform → scaling governance.'
+            ],
+            bulletsDe: [
+                'High-Value-Research-Workflows und Engpässe identifizieren (Search, Summarization, Retrieval).',
+                'Data Access + Compliance-Grenzen definieren (GDPR, Masking-Strategie, Retention).',
+                'Architekturpattern für ML Enablement wählen (Data Mesh vs zentrales Lakehouse) je nach Reifegrad.',
+                'Semantik-Layer-Strategie etablieren (Taxonomie, Embeddings, Metadaten, Relevanz-Evaluation).',
+                'Roadmap phasenweise: MVP Data Products → Enablement Platform → Scaling Governance.'
+            ]
+        },
         cta: {
             primary: { text: 'Build Data Platform', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Unlock R&D data.' },
             secondary: { text: 'View Details', action: '#' }
@@ -586,6 +688,23 @@ export const projects: CaseStudy[] = [
             before: { stack: ['Manual', 'Legacy'], infrastructure: '', issues: [] },
             after: { stack: ['Microservices', 'Kafka', 'Java'], infrastructure: 'Cloud Native', improvements: [] },
             migration_strategy: 'Phased Migration'
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Model pricing domain events and define event contracts early to prevent downstream coupling.',
+                'Evaluate target architecture options: microservices vs modular monolith vs hybrid.',
+                'Assess data consistency, ordering, and idempotency requirements for near-real-time pricing changes.',
+                'Create rollout strategy that allows coexistence of old + new pricing logic without business disruption.',
+                'Define governance for schema evolution, testing automation, and operational monitoring.'
+            ],
+            bulletsDe: [
+                'Pricing Domain Events modellieren und Event Contracts früh definieren, um Kopplung zu vermeiden.',
+                'Zielarchitektur-Optionen bewerten: Microservices vs Modular Monolith vs Hybrid.',
+                'Anforderungen an Konsistenz, Ordering und Idempotency für Near-Real-Time-Changes prüfen.',
+                'Rollout-Strategie für parallelen Betrieb Alt/Neu ohne Business-Disruption definieren.',
+                'Governance für Schema Evolution, Testautomation und Betrieb/Monitoring festlegen.'
+            ]
         },
         cta: {
             primary: { text: 'Discuss Modernization', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Automate core processes.' },
@@ -634,6 +753,23 @@ export const projects: CaseStudy[] = [
             after: { stack: ['Data Pipelines', 'Reporting Tools'], infrastructure: '', improvements: [] },
             migration_strategy: 'Automation'
         },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Map current claims journey and identify highest-friction manual steps to automate first.',
+                'Define the canonical data pipeline (ingestion → validation → enrichment → rules → reporting).',
+                'Assess correctness risks (exceptions, edge cases, compliance) before automating end-to-end.',
+                'Build measurement system: cycle time, error rate, rework rate, operational effort.',
+                'Deliver roadmap: quick wins automation + long-term platform architecture.'
+            ],
+            bulletsDe: [
+                'Claims Journey analysieren und manuelle Friktionspunkte identifizieren (für schnelle Automatisierung).',
+                'Kanonische Data Pipeline definieren (Ingestion → Validation → Enrichment → Rules → Reporting).',
+                'Korrektheitsrisiken (Exceptions, Edge Cases, Compliance) vor End-to-End-Automation bewerten.',
+                'Messsystem definieren: Durchlaufzeit, Fehlerquote, Rework, operativer Aufwand.',
+                'Roadmap liefern: Quick Wins Automation + langfristige Plattformarchitektur.'
+            ]
+        },
         cta: {
             primary: { text: 'Automate Operations', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Reduce manual work.' },
             secondary: { text: 'View Details', action: '#' }
@@ -680,6 +816,23 @@ export const projects: CaseStudy[] = [
             before: { stack: [], infrastructure: '', issues: [] },
             after: { stack: ['Workflow Engine'], infrastructure: '', improvements: [] },
             migration_strategy: 'Optimization'
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Break onboarding flow into stages and define success metrics (cycle time, drop-off, compliance).',
+                'Identify integration touchpoints: KYC/AML, document management, CRM, account provisioning.',
+                'Ensure compliance and auditability is designed-in, not added later.',
+                'Propose automation opportunities with clear risk controls and exception handling.',
+                'Provide execution roadmap aligned to advisor UX improvements.'
+            ],
+            bulletsDe: [
+                'Onboarding Flow in Phasen zerlegen und Erfolgskriterien definieren (Cycle Time, Drop-off, Compliance).',
+                'Integrationspunkte identifizieren: KYC/AML, Dokumentenmanagement, CRM, Account Provisioning.',
+                'Compliance und Auditierbarkeit „by design" sicherstellen, nicht nachträglich.',
+                'Automation Opportunities mit klaren Risk Controls und Exception Handling definieren.',
+                'Ausführungs-Roadmap liefern, abgestimmt auf Advisor-UX-Verbesserungen.'
+            ]
         },
         cta: {
             primary: { text: 'Improve UX', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Better onboarding.' },
@@ -774,6 +927,23 @@ export const projects: CaseStudy[] = [
             before: { stack: ['Legacy'], infrastructure: '', issues: [] },
             after: { stack: ['Angular', 'Spring Boot', 'iOS', 'Android'], infrastructure: 'Cloud', improvements: [] },
             migration_strategy: 'Modernization'
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Clarify modernization strategy: strangler pattern vs. full rewrite, based on risk tolerance and compliance.',
+                'Map data flows and PHI boundaries for HIPAA/security controls and auditability.',
+                'Prioritize user journeys for mobile enablement to maximize adoption and reduce ops load.',
+                'Design API and integration layer to avoid duplicating business logic across channels.',
+                'Establish governance for release management, testing, and regulatory documentation.'
+            ],
+            bulletsDe: [
+                'Modernisierungsstrategie klären: Strangler Pattern vs. Full Rewrite je nach Risiko und Compliance.',
+                'Datenflüsse und PHI-Grenzen für Security-/Audit-Anforderungen sauber modellieren.',
+                'User Journeys für Mobile priorisieren, um Adoption zu erhöhen und Ops-Aufwand zu senken.',
+                'API- und Integrationsschicht so designen, dass Business-Logik nicht kanalweise dupliziert wird.',
+                'Governance für Release-Management, Testing und regulatorische Doku etablieren.'
+            ]
         },
         cta: {
             primary: { text: 'Modernize Apps', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Go mobile.' },
