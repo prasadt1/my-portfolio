@@ -18,6 +18,8 @@ import {
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
 import { caseStudies } from '../data/caseStudies';
+import IndependentAdvisorySection from '../components/sections/IndependentAdvisorySection';
+import ProofNotPromisesSection from '../components/sections/ProofNotPromisesSection';
 
 const services = [
   {
@@ -677,6 +679,12 @@ const HomePageMultiDomain: React.FC = () => {
                         </div>
                     </div>
                 </section>
+
+                {/* Independent Advisory Section */}
+                <IndependentAdvisorySection />
+
+                {/* Proof Not Promises Section */}
+                <ProofNotPromisesSection />
 
                 {/* FINAL CTA - Simplified */}
                 <section className="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center" >
