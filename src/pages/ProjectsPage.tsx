@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/projects';
 import { DOMAINS } from '../data/domains';
-import { FolderGit2 } from 'lucide-react';
+import { FolderGit2, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 import SmartProjectFilter from '../components/SmartProjectFilter';
@@ -125,6 +125,41 @@ const ProjectsPage: React.FC = () => {
             <DomainFilter activeDomain={activeDomain} onSelectDomain={setActiveDomain} domains={allDomains} />
           </motion.div>
         </div>
+
+        {/* Featured Case Study */}
+        {!isSmartFilterActive && activeDomain === 'All' && (() => {
+          const featuredProject = projects.find(p => p.slug === 'pact-pcf-data-exchange-network');
+          if (!featuredProject) return null;
+          
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mb-12"
+            >
+              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-2xl p-8 md:p-12 border-2 border-emerald-200 dark:border-emerald-700">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">FEATURED</span>
+                  <span className="text-sm text-emerald-700 dark:text-emerald-400 font-semibold">Case Study</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                  {featuredProject.title}
+                </h2>
+                <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 max-w-3xl">
+                  {featuredProject.executiveSummary?.overview || featuredProject.description}
+                </p>
+                <Link
+                  to={`/projects/${featuredProject.slug}`}
+                  className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  Read Full Case Study
+                  <ArrowRight size={20} />
+                </Link>
+              </div>
+            </motion.div>
+          );
+        })()}
 
         {/* Projects Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

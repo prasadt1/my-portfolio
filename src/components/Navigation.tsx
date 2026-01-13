@@ -98,10 +98,18 @@ const Navigation: React.FC = () => {
               {theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
 
+            {/* For Recruiters - Subtle text link */}
+            <Link
+              to="/hiring"
+              className="px-3 py-1.5 text-xs font-normal text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors whitespace-nowrap"
+            >
+              {t('nav.forRecruiters')}
+            </Link>
+
             {/* Labs - Architecture Assistant (Secondary) */}
             <Link
               to="/architecture-engine"
-              className="px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-medium rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 transition-all whitespace-nowrap"
+              className="px-3 py-1.5 text-xs font-normal text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 rounded-md border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 transition-all whitespace-nowrap"
             >
               {t('nav.labs')}
             </Link>
@@ -172,9 +180,16 @@ const Navigation: React.FC = () => {
               </button>
               <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
               <Link
+                to="/hiring"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 rounded-lg text-base font-normal text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
+              >
+                {t('nav.forRecruiters')}
+              </Link>
+              <Link
                 to="/architecture-engine"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-center font-medium text-base hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="p-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-center font-normal text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
                 {t('nav.labs')}
               </Link>

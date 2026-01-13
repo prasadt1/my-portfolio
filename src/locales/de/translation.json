@@ -23,50 +23,17 @@
         "labs": "Labs",
         "bookDiscoveryCall": "Discovery Call buchen",
         "toggleLanguage": "Sprache wechseln",
-        "toggleTheme": "Design wechseln"
+        "toggleTheme": "Design wechseln",
+        "forRecruiters": "Für Recruiter"
     },
     "hero": {
-        "title": "Unabhängige Architektur-Bewertungen für mittelständische Unternehmen in der EU",
-        "subtitle": "Ich helfe CTOs und Engineering-Leadern dabei, Cloud-Migration, Plattform-Modernisierung und Architektur-Entscheidungen zu validieren – bevor sie den falschen Weg einschlagen.",
-        "cta": "Meine Arbeit entdecken",
-        "ctaSecondary": "Services ansehen",
-        "carousel": "Vertraut von Fortune 500 Führungskräften",
-        "stats": {
-            "savings": {
-                "value": "1M$+",
-                "label": "Kosteneinsparungen (Programmauswirkung)"
-            },
-            "revenue": {
-                "value": "20%",
-                "label": "Geschäftsauswirkung erzielt"
-            },
-            "efficiency": {
-                "value": "30%",
-                "label": "Effizienzgewinne"
-            },
-            "impact": {
-                "value": "100+",
-                "label": "Unternehmen erreicht"
-            }
-        },
-        "values": {
-            "innovation": {
-                "title": "Innovationsgetrieben",
-                "desc": "Querdenken für komplexe Herausforderungen"
-            },
-            "business": {
-                "title": "Business-First",
-                "desc": "Fokus auf Umsatz, Kosten und Wirkung"
-            },
-            "leadership": {
-                "title": "Servant Leader",
-                "desc": "Empathischer, kollaborativer Ansatz"
-            },
-            "fullstack": {
-                "title": "Full-Stack",
-                "desc": "Vom Design bis zum Deployment"
-            }
-        }
+        "badge": "Unabhängige Beratung",
+        "headline": "Architekturentscheidungen mit hoher Tragweite sicher treffen",
+        "tagline": "Unabhängige Architektur- & Transformationsberatung",
+        "subtitle": "Ich helfe CTOs und Engineering-Leads, Cloud-, Plattform- und AI-Modernisierungsentscheidungen abzusichern — bevor Budget und Roadmap festgelegt werden.",
+        "cta": "Discovery Call buchen",
+        "ctaSecondary": "Leistungen ansehen",
+        "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Umsetzbare Deliverables"
     },
     "howItWork": {
         "title": "Wie ich Probleme angehe",
@@ -431,7 +398,8 @@
         "expertise": "Expertise",
         "contact": "Kontakt aufnehmen",
         "rights": "Alle Rechte vorbehalten.",
-        "builtWith": "Erstellt mit AI"
+        "builtWith": "Erstellt mit AI",
+        "forRecruiters": "Für Recruiter"
     },
     "productsPage": {
         "title": "Marktführerschaft durch Technologie",
@@ -798,7 +766,7 @@
             "title": "Architektur- & Transformations-Blueprint Sprint",
             "subtitle": "Ein strukturierter Blueprint aus Ist- und Zielbild, Integrationsmustern, Risikoanalyse und einer 90-Tage-Umsetzungsroadmap.",
             "timeline": "2–3 Wochen",
-            "price": "Preis auf Anfrage",
+            "price": "Typischerweise €8.000–€15.000",
             "for": "Unternehmen mit größeren Transformationen, Plattform-Modernisierung oder Cloud-Migrationen",
             "deliverables": [
                 "Ist- → Zielarchitektur-Blueprint",
@@ -812,7 +780,7 @@
             "title": "Fractional Transformation Lead",
             "subtitle": "Kontinuierliche Architektur-Governance und Delivery Leadership: Programmsteuerung, Stakeholder-Alignment und pragmatische Umsetzungsunterstützung.",
             "timeline": "1–2 Tage/Woche",
-            "price": "Preis auf Anfrage",
+            "price": "Monatliches Engagement, umfangabhängig",
             "for": "Unternehmen, die Architektur-Leadership ohne Vollzeitbindung benötigen",
             "deliverables": [
                 "Programmsteuerung & Stakeholder-Alignment",
@@ -842,6 +810,20 @@
                 "2–3 relevante Artefakte teilen (Architekturdiagramme, Doku, Constraints)",
                 "Zusammenfassung + empfohlene nächste Schritte innerhalb von 48 Stunden"
             ]
+        },
+        "architectureReview": {
+            "title": "Architektur-Review",
+            "subtitle": "Unabhängige Bewertung Ihrer aktuellen Architektur und Modernisierungsoptionen. Klarheit über Risiken, Trade-offs und empfohlene Vorgehensweise.",
+            "timeline": "1–2 Wochen",
+            "price": "Typischerweise €2.500–€4.000",
+            "for": "Unternehmen, die Architektur-Entscheidungen evaluieren oder Transformationen planen",
+            "deliverables": [
+                "Ist-Zustand-Bewertung",
+                "Risiko-Register mit Mitigationsstrategien",
+                "Optionsanalyse (2–3 Ansätze)",
+                "Empfohlene nächste Schritte"
+            ],
+            "notIncluded": "Implementierung ist nicht enthalten (separat möglich)."
         }
     },
     "projects": {
@@ -974,6 +956,106 @@
         "errors": {
             "title": "Tool aktuell nicht verfügbar",
             "text": "Der Risk Radar ist derzeit ausgelastet. Buchen Sie gern einen Discovery Call – ich erstelle einen zugeschnittenen Risiko-Snapshot und einen Draft-Plan innerhalb von 48 Stunden."
+        }
+    },
+    "homepage": {
+        "problem": {
+            "title": "Warum Unternehmen bei Architektur-Entscheidungen kämpfen",
+            "bullet1": {
+                "title": "Vendor-Vorschläge sind voreingenommen",
+                "desc": "Vendor-Referenzarchitekturen bevorzugen ihre Lösungen, nicht unbedingt Ihre"
+            },
+            "bullet2": {
+                "title": "Entscheidungen werden überstürzt",
+                "desc": "Vorstandsfristen zwingen zu Verpflichtungen vor ordnungsgemäßer Validierung"
+            },
+            "bullet3": {
+                "title": "Teams fehlen Referenzmuster",
+                "desc": "Erstmalige Cloud-Migrationen fehlen bewährte Muster für hochriskante Entscheidungen"
+            },
+            "close": "Sie brauchen nicht mehr Folien — sondern ein belastbares Decision Package."
+        },
+        "howIWork": {
+            "title": "Wie ich arbeite",
+            "subtitle": "Ein strukturierter Ansatz zur Risikominimierung von Architektur-Entscheidungen",
+            "step1": {
+                "title": "Constraints & Kontext-Erkundung",
+                "desc": "Tiefe Analyse von Anforderungen, bestehenden Systemen und Geschäftsbeschränkungen"
+            },
+            "step2": {
+                "title": "Optionen + Trade-offs",
+                "desc": "Bewertung mehrerer Ansätze mit klaren Vor- und Nachteilen sowie Kostenauswirkungen"
+            },
+            "step3": {
+                "title": "Decision Package",
+                "desc": "Blueprint + Risiko-Register + Roadmap — umsetzbare Deliverables"
+            }
+        },
+        "finalCta": {
+            "title": "Bereit, Ihre Architektur-Entscheidung abzusichern?",
+            "cta": "Discovery Call buchen",
+            "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Umsetzbare Deliverables"
+        }
+    },
+    "hiringPage": {
+        "hero": {
+            "title": "Offen für Senior-Rollen",
+            "subtitle": "Ich bin offen für Senior Engineering Leadership-, Architektur- und Transformationsrollen bei innovativen Unternehmen.",
+            "note": "Aktuell verfügbar für Vollzeit-, Teilzeit- oder Fractional-Engagements."
+        },
+        "roles": {
+            "title": "Rollen, für die ich offen bin",
+            "items": [
+                {
+                    "title": "VP Engineering / Head of Engineering",
+                    "desc": "Führung von Engineering-Organisationen, Aufbau leistungsstarker Teams und Entwicklung technischer Strategien."
+                },
+                {
+                    "title": "Principal / Staff Architect",
+                    "desc": "Enterprise-Architektur, Plattformdesign und technische Führung für komplexe Transformationen."
+                },
+                {
+                    "title": "Engineering Director / Tech Lead",
+                    "desc": "Hands-on technische Führung, Architektur-Entscheidungen und Lieferqualität."
+                },
+                {
+                    "title": "Transformation Lead / CTO Advisory",
+                    "desc": "Fractional oder Vollzeit-Rollen zur Unterstützung von Unternehmen bei großen technischen Transformationen."
+                }
+            ]
+        },
+        "whatIBring": {
+            "title": "Was ich mitbringe",
+            "items": [
+                {
+                    "title": "15+ Jahre Erfahrung",
+                    "desc": "Fortune-100-Kunden, Tier-1-Beratung (PwC) und Hands-on-Delivery-Führung."
+                },
+                {
+                    "title": "Full-Stack Leadership",
+                    "desc": "Von Architektur bis Code bis Deployment. Ich setze um, nicht nur strategisiere."
+                },
+                {
+                    "title": "Business-First Denkweise",
+                    "desc": "Jede Entscheidung wird am Geschäftsergebnis gemessen, nicht am technischen Ego."
+                },
+                {
+                    "title": "EU-Markt-Expertise",
+                    "desc": "Tiefes Verständnis für EU-Regulierungen, Compliance (GDPR, HIPAA) und Mid-Market-Dynamiken."
+                }
+            ]
+        },
+        "resume": {
+            "title": "Lebenslauf & Links",
+            "download": "Lebenslauf herunterladen (PDF)",
+            "linkedin": "LinkedIn-Profil",
+            "email": "E-Mail senden",
+            "emailAddress": "prasad.sgsits@gmail.com"
+        },
+        "cta": {
+            "title": "Lassen Sie uns sprechen",
+            "subtitle": "Wenn Sie jemanden suchen, der tiefes technisches Fachwissen mit Geschäftssinn und Hands-on-Umsetzung verbindet, lassen Sie uns in Kontakt treten.",
+            "button": "E-Mail senden"
         }
     }
 }

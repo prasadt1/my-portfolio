@@ -23,50 +23,17 @@
         "labs": "Labs",
         "bookDiscoveryCall": "Book Discovery Call",
         "toggleLanguage": "Toggle Language",
-        "toggleTheme": "Toggle Theme"
+        "toggleTheme": "Toggle Theme",
+        "forRecruiters": "For Recruiters"
     },
     "hero": {
-        "title": "Digital Transformation, Architected. Delivered.",
-        "subtitle": "I help CTOs and engineering leaders modernize cloud platforms and integration landscapes — combining architecture clarity with execution-ready roadmaps and delivery leadership. AI enablement discovery available.",
+        "badge": "Independent Advisory",
+        "headline": "Make high-stakes architecture decisions with confidence",
+        "tagline": "Independent Architecture & Transformation Advisory",
+        "subtitle": "I help CTOs and engineering leaders de-risk cloud, platform and AI modernization decisions — before committing budget and roadmap.",
         "cta": "Book Discovery Call",
-        "ctaSecondary": "View Services",
-        "carousel": "Trusted by Fortune 500 Leaders",
-        "stats": {
-            "savings": {
-                "value": "$1M+",
-                "label": "Cost Savings (Program Impact)"
-            },
-            "revenue": {
-                "value": "20%",
-                "label": "Business Impact Delivered"
-            },
-            "efficiency": {
-                "value": "30%",
-                "label": "Efficiency Gains"
-            },
-            "impact": {
-                "value": "100+",
-                "label": "Companies Impacted"
-            }
-        },
-        "values": {
-            "innovation": {
-                "title": "Innovation-Driven",
-                "desc": "Out-of-box thinking for complex challenges"
-            },
-            "business": {
-                "title": "Business-First",
-                "desc": "Revenue, cost, and impact focused"
-            },
-            "leadership": {
-                "title": "Servant Leader",
-                "desc": "Empathetic, collaborative approach"
-            },
-            "fullstack": {
-                "title": "Full-Stack",
-                "desc": "Design to deployment to leadership"
-            }
-        }
+        "ctaSecondary": "See Services",
+        "trustNote": "Direct senior involvement • Vendor-neutral • Execution-ready deliverables"
     },
     "howItWork": {
         "title": "How I Approach Problems",
@@ -313,7 +280,8 @@
         "expertise": "Expertise",
         "contact": "Get in Touch",
         "rights": "All rights reserved.",
-        "builtWith": "Built with AI"
+        "builtWith": "Built with AI",
+        "forRecruiters": "For Recruiters"
     },
     "productsPage": {
         "title": "Battle-Tested Toolkits",
@@ -711,7 +679,7 @@
             "title": "Architecture & Transformation Blueprint Sprint",
             "subtitle": "Get a comprehensive architecture blueprint combining current and target state, integration patterns, risk assessment, and a 90-day execution roadmap.",
             "timeline": "2–3 weeks",
-            "price": "Contact for pricing",
+            "price": "Typically €8,000–€15,000",
             "for": "Companies planning major transformations, platform modernization, or cloud migrations",
             "deliverables": [
                 "Current → target architecture blueprint",
@@ -725,7 +693,7 @@
             "title": "Fractional Transformation Lead",
             "subtitle": "Ongoing architecture governance and delivery leadership. Program steering, stakeholder alignment, and hands-on execution support.",
             "timeline": "1–2 days/week",
-            "price": "Contact for pricing",
+            "price": "Monthly engagement, scope-dependent",
             "for": "Companies needing ongoing architecture leadership without full-time commitment",
             "deliverables": [
                 "Program steering & stakeholder alignment",
@@ -755,6 +723,20 @@
                 "Share 2–3 relevant artifacts (architecture diagrams, docs, constraints)",
                 "Receive a summary + recommended next steps within 48 hours"
             ]
+        },
+        "architectureReview": {
+            "title": "Architecture Review",
+            "subtitle": "Independent assessment of your current architecture and modernization options. Get clarity on risks, tradeoffs, and recommended path forward.",
+            "timeline": "1–2 weeks",
+            "price": "Typically €2,500–€4,000",
+            "for": "Companies evaluating architecture decisions or planning transformations",
+            "deliverables": [
+                "Current state assessment",
+                "Risk register with mitigation strategies",
+                "Options analysis (2–3 approaches)",
+                "Recommended next steps"
+            ],
+            "notIncluded": "Implementation is not included (available separately)."
         }
     },
     "architectureEngine": {
@@ -1006,6 +988,106 @@
         "errors": {
             "title": "Tool temporarily unavailable",
             "text": "The Risk Radar is currently at capacity. You can still book a discovery call — I'll provide a tailored risk snapshot and a draft plan within 48 hours."
+        }
+    },
+    "homepage": {
+        "problem": {
+            "title": "Why Companies Struggle with Architecture Decisions",
+            "bullet1": {
+                "title": "Vendor proposals are biased",
+                "desc": "Vendor reference architectures favor their solutions, not necessarily yours"
+            },
+            "bullet2": {
+                "title": "Decisions are rushed",
+                "desc": "Board-level timelines force commitments before proper validation"
+            },
+            "bullet3": {
+                "title": "Teams lack reference patterns",
+                "desc": "First-time cloud migrations lack proven patterns for high-stakes decisions"
+            },
+            "close": "You don't need more slides — you need a decision package."
+        },
+        "howIWork": {
+            "title": "How I Work",
+            "subtitle": "A structured approach to de-risking architecture decisions",
+            "step1": {
+                "title": "Constraints & Context Discovery",
+                "desc": "Deep-dive into requirements, existing systems, and business constraints"
+            },
+            "step2": {
+                "title": "Options + Tradeoffs",
+                "desc": "Evaluate multiple approaches with clear pros, cons, and cost implications"
+            },
+            "step3": {
+                "title": "Decision Package",
+                "desc": "Blueprint + risk register + roadmap — execution-ready deliverables"
+            }
+        },
+        "finalCta": {
+            "title": "Ready to De-Risk Your Architecture Decision?",
+            "cta": "Book Discovery Call",
+            "trustNote": "Direct senior involvement • Vendor-neutral • Execution-ready deliverables"
+        }
+    },
+    "hiringPage": {
+        "hero": {
+            "title": "Open to Senior Roles",
+            "subtitle": "I'm open to senior engineering leadership, architecture, and transformation roles at innovative companies.",
+            "note": "Currently available for full-time, part-time, or fractional engagements."
+        },
+        "roles": {
+            "title": "Roles I'm Open To",
+            "items": [
+                {
+                    "title": "VP Engineering / Head of Engineering",
+                    "desc": "Leading engineering organizations, building high-performing teams, and driving technical strategy."
+                },
+                {
+                    "title": "Principal / Staff Architect",
+                    "desc": "Enterprise architecture, platform design, and technical leadership for complex transformations."
+                },
+                {
+                    "title": "Engineering Director / Tech Lead",
+                    "desc": "Hands-on technical leadership, architecture decisions, and delivery excellence."
+                },
+                {
+                    "title": "Transformation Lead / CTO Advisory",
+                    "desc": "Fractional or full-time roles helping companies navigate major technical transformations."
+                }
+            ]
+        },
+        "whatIBring": {
+            "title": "What I Bring",
+            "items": [
+                {
+                    "title": "15+ Years Experience",
+                    "desc": "Fortune 100 clients, Tier-1 consulting (PwC), and hands-on delivery leadership."
+                },
+                {
+                    "title": "Full-Stack Leadership",
+                    "desc": "From architecture to code to deployment. I execute, not just strategize."
+                },
+                {
+                    "title": "Business-First Mindset",
+                    "desc": "Every decision measured by business impact, not technical ego."
+                },
+                {
+                    "title": "EU Market Expertise",
+                    "desc": "Deep understanding of EU regulations, compliance (GDPR, HIPAA), and mid-market dynamics."
+                }
+            ]
+        },
+        "resume": {
+            "title": "Resume & Links",
+            "download": "Download Resume (PDF)",
+            "linkedin": "LinkedIn Profile",
+            "email": "Email Me",
+            "emailAddress": "prasad.sgsits@gmail.com"
+        },
+        "cta": {
+            "title": "Let's Talk",
+            "subtitle": "If you're looking for someone who combines deep technical expertise with business acumen and hands-on execution, let's connect.",
+            "button": "Email Me"
         }
     }
 }
