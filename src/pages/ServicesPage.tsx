@@ -1,13 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2, ArrowRight, Layers, Users, Cpu } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Layers, Users, Cpu, FileSearch } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { PageShell, PageHeader, Container } from '../components/layout';
 import IndependentAdvisorySection from '../components/sections/IndependentAdvisorySection';
 
 const services = [
+  {
+    id: 'architecture-review',
+    icon: FileSearch,
+    iconColor: 'text-slate-600',
+    iconBg: 'bg-slate-100 dark:bg-slate-800',
+    gradient: 'from-slate-500 to-slate-600',
+    titleKey: 'services.architectureReview.title',
+    subtitleKey: 'services.architectureReview.subtitle',
+    timelineKey: 'services.architectureReview.timeline',
+    priceKey: 'services.architectureReview.price',
+    forKey: 'services.architectureReview.for',
+    deliverablesKey: 'services.architectureReview.deliverables',
+    notIncludedKey: 'services.architectureReview.notIncluded'
+  },
   {
     id: 'blueprint-sprint',
     icon: Layers,

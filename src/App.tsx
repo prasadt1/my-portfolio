@@ -26,6 +26,7 @@ const ArchitectureEngine = lazy(() => import('./pages/ArchitectureEngine'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ConsultationPage = lazy(() => import('./pages/ConsultationPage'));
 const RiskRadarPage = lazy(() => import('./pages/RiskRadarPage'));
+const HiringPage = lazy(() => import('./pages/HiringPage'));
 
 // Layout Component
 const Layout: React.FC = () => {
@@ -83,6 +84,7 @@ const App: React.FC = () => {
                 <Route path="architecture-engine" element={<ArchitectureEngine />} />
                 <Route path="risk-radar" element={<RiskRadarPage />} />
                 <Route path="contact" element={<ContactPage />} />
+                <Route path="hiring" element={<HiringPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />
               </Route>
             </Routes>

@@ -7,7 +7,7 @@ import { semanticSearch } from '../services/semanticSearch';
 const CommandPalette: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<Array<{ slug: string; title: string; snippet?: string }>>([]);
+    const [results, setResults] = useState<Array<{ slug: string; title: string; relevance: string; score: number }>>([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 

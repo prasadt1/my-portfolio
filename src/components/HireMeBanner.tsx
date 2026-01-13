@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Download, Calendar, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Calendar, X } from 'lucide-react';
 
 const HireMeBanner = () => {
     const [isVisible, setIsVisible] = useState(false);
