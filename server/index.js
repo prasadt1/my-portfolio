@@ -32,6 +32,11 @@ const rateLimitStore = new Map();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX = 10; // 10 requests per minute
 
+// Separate rate limiting for semantic search (more lenient)
+const semanticSearchRateLimitStore = new Map();
+const SEMANTIC_SEARCH_RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const SEMANTIC_SEARCH_RATE_LIMIT_MAX = 30; // 30 requests per minute (more lenient for search)
+
 const checkRateLimit = (ip) => {
     const now = Date.now();
     const key = `rate_limit_${ip}`;
@@ -43,6 +48,24 @@ const checkRateLimit = (ip) => {
     }
 
     if (record.count >= RATE_LIMIT_MAX) {
+        return false;
+    }
+
+    record.count++;
+    return true;
+};
+
+const checkSemanticSearchRateLimit = (ip) => {
+    const now = Date.now();
+    const key = `semantic_search_rate_limit_${ip}`;
+    const record = semanticSearchRateLimitStore.get(key);
+
+    if (!record || now - record.firstRequest > SEMANTIC_SEARCH_RATE_LIMIT_WINDOW) {
+        semanticSearchRateLimitStore.set(key, { firstRequest: now, count: 1 });
+        return true;
+    }
+
+    if (record.count >= SEMANTIC_SEARCH_RATE_LIMIT_MAX) {
         return false;
     }
 
@@ -425,6 +448,121 @@ Return ONLY valid JSON matching the schema.
             }
         }
         res.status(500).json({ error: 'Failed to generate architecture. Please try again.' });
+    }
+});
+
+// Semantic search endpoint (server-side)
+app.post('/api/semantic-search', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        
+        // Rate limiting (more lenient for search) - disabled in development
+        // In production, uncomment the following lines:
+        // if (!checkSemanticSearchRateLimit(clientIp)) {
+        //     return res.status(429).json({ 
+        //         error: 'Rate limit exceeded. Please try again in a minute.' 
+        //     });
+        // }
+
+        const { query } = req.body;
+
+        // Input validation
+        if (!query || typeof query !== 'string' || query.trim().length < 3) {
+            return res.status(400).json({ 
+                error: 'Query must be a string with at least 3 characters' 
+            });
+        }
+
+        if (query.length > 200) {
+            return res.status(400).json({ 
+                error: 'Query must be under 200 characters' 
+            });
+        }
+
+        if (!process.env.VITE_GEMINI_API_KEY) {
+            return res.status(500).json({ error: 'API Key not configured' });
+        }
+
+        const { SchemaType } = await import('@google/generative-ai');
+        
+        // Load projects data - use comprehensive fallback list with cloud-related projects
+        const projects = [
+            { id: 'brita-ecommerce', slug: 'brita-ecommerce', header: { title: 'BRITA eCommerce Platform' }, technical: { after: { stack: ['Shopify', 'Vue.js', 'Azure', 'Cloud'] } }, outcomes: { hero_metric: { value: '6', label: 'Markets' }, secondary_metrics: [] }, challenge: { situation: 'Shopware to Shopify Plus migration for 6 EMEA markets with cloud infrastructure' } },
+            { id: 'pact-protocol', slug: 'pact-protocol', header: { title: 'PACT PCF Network' }, technical: { after: { stack: ['Next.js', 'React', 'Java', 'Cloud'] } }, outcomes: { hero_metric: { value: '20+', label: 'Adopted' }, secondary_metrics: [] }, challenge: { situation: 'Global Product Carbon Footprint data exchange standard' } },
+            { id: 'delivery-hero-ads', slug: 'delivery-hero-ads', header: { title: 'Delivery Hero Display Ads' }, technical: { after: { stack: ['AWS', 'Kubernetes', 'Cloud'] } }, outcomes: { hero_metric: { value: '20%', label: 'Revenue Increase' }, secondary_metrics: [] }, challenge: { situation: 'High-scale display ads platform with 5M+ daily transactions on cloud infrastructure' } },
+            { id: 'boehringer-aiml', slug: 'boehringer-aiml', header: { title: 'Boehringer Ingelheim AI/ML Platform' }, technical: { after: { stack: ['Azure', 'Spark', 'Kafka', 'Cloud'] } }, outcomes: { hero_metric: { value: '50%', label: 'Faster Insights' }, secondary_metrics: [] }, challenge: { situation: 'Enterprise AI/ML Data Lake implementation with GDPR compliance on Azure cloud' } },
+            { id: 'pwc-healthcare', slug: 'pwc-healthcare', header: { title: 'PwC Healthcare Modernization' }, technical: { after: { stack: ['Azure', 'C#', '.NET', 'Cloud'] } }, outcomes: { hero_metric: { value: '$650K', label: 'Savings' }, secondary_metrics: [] }, challenge: { situation: 'Legacy e-commerce and healthcare systems modernization with HIPAA compliance on cloud' } },
+            { id: 'app-rationalization-cloud-readiness', slug: 'app-rationalization-cloud-readiness', header: { title: 'Application Rationalization & Cloud Readiness Framework' }, technical: { after: { stack: ['AWS', 'Azure', 'Migration Tools', 'Cloud'] } }, outcomes: { hero_metric: { value: '1000+', label: 'Apps Analyzed' }, secondary_metrics: [] }, challenge: { situation: 'Enterprises with 1000+ apps struggled to decide what to move to cloud, leading to stalled migrations or lift-and-shift cost disasters' } }
+        ];
+
+        // Flatten projects for context
+        const PROJECT_CONTEXT = projects.map(p => ({
+            id: p.id,
+            slug: p.slug,
+            title: p.header.title,
+            technologies: p.technical.after?.stack || [],
+            outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m) => m.value + ' ' + m.label)],
+            summary: p.challenge.situation
+        })).map(p => JSON.stringify(p)).join('\n');
+
+        const prompt = `
+    CONTEXT:
+    ${PROJECT_CONTEXT}
+
+    TASK:
+    Find the top 3 projects from the list above that are most relevant to this user query: "${query}".
+    Return a relevance score (0-100) and a 1-sentence explanation of why it matches.
+    If no project matches, return an empty array.
+
+    OUTPUT JSON ONLY.
+    `;
+
+        const schema = {
+            type: SchemaType.ARRAY,
+            items: {
+                type: SchemaType.OBJECT,
+                properties: {
+                    slug: { type: SchemaType.STRING },
+                    title: { type: SchemaType.STRING },
+                    relevance: { type: SchemaType.STRING },
+                    score: { type: SchemaType.NUMBER }
+                },
+                required: ['slug', 'title', 'relevance', 'score']
+            }
+        };
+
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: 'application/json',
+                responseSchema: schema
+            }
+        });
+        
+        const responseText = result.response.text();
+        if (!responseText || responseText.trim() === '') {
+            return res.json([]);
+        }
+        
+        const parsed = JSON.parse(responseText);
+        
+        // Validate results
+        if (!Array.isArray(parsed)) {
+            return res.json([]);
+        }
+        
+        res.json(parsed);
+    } catch (error) {
+        console.error('Semantic search error:', error);
+        if (error instanceof Error) {
+            if (error.message.includes('API key') || error.message.includes('API Key')) {
+                return res.status(500).json({ error: 'API configuration error. Please contact support.' });
+            }
+            if (error.message.includes('quota') || error.message.includes('Quota') || error.message.includes('429')) {
+                return res.status(429).json({ error: 'API quota exceeded. Please try again later.' });
+            }
+        }
+        res.status(500).json({ error: 'Failed to perform search. Please try again.' });
     }
 });
 

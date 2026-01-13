@@ -1,16 +1,3 @@
-import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
-import { projects } from '../data/projects';
-
-// Flatten projects for context
-const PROJECT_CONTEXT = projects.map(p => ({
-    id: p.id,
-    slug: p.slug,
-    title: p.header.title,
-    technologies: p.technical.after?.stack || [],
-    outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m: { value: string; label: string }) => m.value + ' ' + m.label)],
-    summary: p.challenge.situation
-})).map(p => JSON.stringify(p)).join('\n');
-
 interface SearchResult {
     slug: string;
     title: string;
@@ -19,49 +6,94 @@ interface SearchResult {
 }
 
 export const semanticSearch = async (query: string): Promise<SearchResult[]> => {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) return []; // Graceful fallback
-
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-
-    const prompt = `
-    CONTEXT:
-    ${PROJECT_CONTEXT}
-
-    TASK:
-    Find the top 3 projects from the list above that are most relevant to this user query: "${query}".
-    Return a relevance score (0-100) and a 1-sentence explanation of why it matches.
-    If no project matches, return an empty array.
-
-    OUTPUT JSON ONLY.
-    `;
-
-    const schema = {
-        type: SchemaType.ARRAY,
-        items: {
-            type: SchemaType.OBJECT,
-            properties: {
-                slug: { type: SchemaType.STRING },
-                title: { type: SchemaType.STRING },
-                relevance: { type: SchemaType.STRING },
-                score: { type: SchemaType.NUMBER }
-            },
-            required: ['slug', 'title', 'relevance', 'score']
-        }
-    };
-
+    // Try server-side endpoint first, but always fallback to client-side if it fails
     try {
-        const result = await model.generateContent({
-            contents: [{ role: 'user', parts: [{ text: prompt }] }],
-            generationConfig: {
-                responseMimeType: 'application/json',
-                responseSchema: schema
-            }
+        const response = await fetch('/api/semantic-search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ query }),
         });
-        return JSON.parse(result.response.text()) as SearchResult[];
+
+        if (!response.ok) {
+            // For any error (429, 500, etc.), use fallback
+            console.warn(`Semantic search server returned ${response.status}, using fallback`);
+            return await fallbackClientSearch(query);
+        }
+
+        const results = await response.json();
+        
+        // Validate results
+        if (!Array.isArray(results)) {
+            console.warn("Semantic search: Invalid response format, using fallback");
+            return await fallbackClientSearch(query);
+        }
+        
+        // If server returns empty array, try fallback
+        if (results.length === 0) {
+            console.warn("Semantic search: Server returned no results, trying fallback");
+            return await fallbackClientSearch(query);
+        }
+        
+        return results as SearchResult[];
     } catch (e) {
-        console.error("Semantic search failed", e);
-        return [];
+        console.warn("Semantic search server failed, using fallback:", e);
+        // Always use fallback on any error
+        return await fallbackClientSearch(query);
     }
 };
+
+// Fallback client-side search if server is unavailable
+async function fallbackClientSearch(query: string): Promise<SearchResult[]> {
+    try {
+        const { projects } = await import('../data/projects');
+        const lowerQuery = query.toLowerCase();
+        
+        // Enhanced keyword matching as fallback
+        const matches = projects
+            .map(p => {
+                const searchText = [
+                    p.header.title,
+                    p.challenge.situation,
+                    ...(p.technical.after?.stack || []),
+                    ...(p.domains || []),
+                    ...(p.seoTags || [])
+                ].join(' ').toLowerCase();
+                
+                // Calculate relevance score
+                let score = 0;
+                const queryWords = lowerQuery.split(/\s+/);
+                
+                queryWords.forEach(word => {
+                    if (searchText.includes(word)) {
+                        score += 20;
+                    }
+                    // Bonus for exact matches in title
+                    if (p.header.title.toLowerCase().includes(word)) {
+                        score += 10;
+                    }
+                    // Bonus for tech stack matches
+                    if (p.technical.after?.stack?.some(tech => tech.toLowerCase().includes(word))) {
+                        score += 15;
+                    }
+                });
+                
+                return { project: p, score };
+            })
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 3)
+            .map(item => ({
+                slug: item.project.slug,
+                title: item.project.header.title,
+                relevance: `Matches your search for "${query}" - ${item.project.challenge.situation.substring(0, 80)}...`,
+                score: Math.min(95, item.score)
+            }));
+        
+        return matches;
+    } catch (e) {
+        console.error("Fallback search failed", e);
+        return [];
+    }
+}
