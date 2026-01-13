@@ -82,6 +82,28 @@ export function AboutContent({ experiences, certifications, techCategories }: Ab
             </div>
           </section>
 
+          {/* Differentiators Section */}
+          <section className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="w-8 h-1 bg-emerald-500 rounded-full"></span>
+                {t('about.differentiators.globalDelivery.title')}
+              </h2>
+              <p className="prose prose-lg text-slate-600 dark:text-slate-300 max-w-prose leading-relaxed">
+                {t('about.differentiators.globalDelivery.paragraph')}
+              </p>
+            </div>
+            <div>
+              <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="w-8 h-1 bg-emerald-500 rounded-full"></span>
+                {t('about.differentiators.executionMindset.title')}
+              </h2>
+              <p className="prose prose-lg text-slate-600 dark:text-slate-300 max-w-prose leading-relaxed">
+                {t('about.differentiators.executionMindset.paragraph')}
+              </p>
+            </div>
+          </section>
+
           {/* Experience Timeline */}
           <ExperienceTimeline
             title={t('about.journey.title')}

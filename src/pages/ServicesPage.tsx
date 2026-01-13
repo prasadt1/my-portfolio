@@ -82,6 +82,12 @@ const ServicesPage: React.FC = () => {
                 />
 
                 <Container maxWidth="7xl">
+                    {/* Differentiator Sentence */}
+                    <div className="text-center mb-12">
+                        <p className="text-sm md:text-base text-emerald-600 dark:text-emerald-400 font-medium max-w-2xl mx-auto">
+                            {t('servicesPage.differentiator')}
+                        </p>
+                    </div>
                     <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                         {services.map((service, idx) => {
                             const Icon = service.icon;

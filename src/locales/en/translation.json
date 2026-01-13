@@ -33,7 +33,9 @@
         "subtitle": "I help CTOs and engineering leaders de-risk cloud, platform and AI modernization decisions — before committing budget and roadmap.",
         "cta": "Book Discovery Call",
         "ctaSecondary": "See Services",
-        "trustNote": "Direct senior involvement • Vendor-neutral • Execution-ready deliverables"
+        "trustNote": "Direct senior involvement • Vendor-neutral • Execution-ready deliverables • Global delivery experience",
+        "differentiator": "Global enterprise delivery experience — architecture decisions grounded in execution reality.",
+        "proofLine": "Delivered across complex enterprise environments — distributed teams, multiple stakeholders, and high-stakes systems."
     },
     "howItWork": {
         "title": "How I Approach Problems",
@@ -212,6 +214,16 @@
             "subtitle": "Whether you need a hands-on architect for a migration or a strategic leader for your engineering team, let's talk.",
             "schedule": "Schedule Consultation",
             "viewWork": "View Architecture Work"
+        },
+        "differentiators": {
+            "globalDelivery": {
+                "title": "Global delivery experience",
+                "paragraph": "Over the last 15+ years, I've delivered architecture and transformation programs with distributed teams across Europe, the Americas and Asia. I'm comfortable operating in complex stakeholder environments — aligning engineering execution with business constraints, compliance requirements, and real delivery timelines."
+            },
+            "executionMindset": {
+                "title": "Execution mindset",
+                "paragraph": "My work is not limited to assessment and planning. I stay close to execution — ensuring architecture decisions remain practical, implementable, and aligned with how teams actually build, deploy, and operate systems."
+            }
         }
     },
     "climateTech": {
@@ -664,7 +676,7 @@
     },
     "servicesPage": {
         "title": "Architecture & Transformation Services",
-        "subtitle": "Vendor-neutral assessments, modernization roadmaps, and delivery leadership across cloud, integration, and AI enablement discovery — with a focus on EU mid-market teams.",
+        "subtitle": "Vendor-neutral assessments, modernization roadmaps, and delivery leadership — grounded in global enterprise experience.",
         "timeline": "Timeline",
         "price": "Price",
         "for": "For",
@@ -672,7 +684,8 @@
         "bookCall": "Book Discovery Call",
         "ctaTitle": "Ready to Validate Your Architecture Decisions?",
         "ctaSubtitle": "Book a free discovery call to discuss your specific challenge and how I can help.",
-        "bookDiscoveryCall": "Book Discovery Call"
+        "bookDiscoveryCall": "Book Discovery Call",
+        "differentiator": "Global enterprise delivery experience — architecture decisions grounded in execution reality."
     },
     "services": {
         "blueprintSprint": {
@@ -921,6 +934,10 @@
             "executionReady": {
                 "title": "Execution-ready outputs",
                 "text": "Blueprint + risk register + roadmap — not just slides."
+            },
+            "globalDelivery": {
+                "title": "Global delivery experience",
+                "text": "Worked across EU, the Americas and Asia — with distributed teams and complex stakeholder environments."
             }
         }
     },
@@ -1020,13 +1037,13 @@
             },
             "step3": {
                 "title": "Decision Package",
-                "desc": "Blueprint + risk register + roadmap — execution-ready deliverables"
+                "desc": "Decision package (blueprint + roadmap + risk register) — with delivery reality in mind, not just theoretical architecture."
             }
         },
         "finalCta": {
             "title": "Ready to De-Risk Your Architecture Decision?",
             "cta": "Book Discovery Call",
-            "trustNote": "Direct senior involvement • Vendor-neutral • Execution-ready deliverables"
+            "trustNote": "Direct senior involvement • Vendor-neutral • Global experience"
         }
     },
     "hiringPage": {
@@ -1072,8 +1089,8 @@
                     "desc": "Every decision measured by business impact, not technical ego."
                 },
                 {
-                    "title": "EU Market Expertise",
-                    "desc": "Deep understanding of EU regulations, compliance (GDPR, HIPAA), and mid-market dynamics."
+                    "title": "Global experience",
+                    "desc": "North America, Europe, Asia, and South America (remote + onsite delivery)"
                 }
             ]
         },

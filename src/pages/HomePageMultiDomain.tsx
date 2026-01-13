@@ -61,8 +61,18 @@ const HomePageMultiDomain: React.FC = () => {
                             </p>
 
                             {/* Subtitle */}
-                            <p className="text-base md:text-lg text-slate-200 mb-12 max-w-2xl mx-auto leading-relaxed">
+                            <p className="text-base md:text-lg text-slate-200 mb-8 max-w-2xl mx-auto leading-relaxed">
                                 {t('hero.subtitle')}
+                            </p>
+
+                            {/* Differentiator Sentence */}
+                            <p className="text-sm md:text-base text-emerald-300 font-medium mb-3 max-w-2xl mx-auto">
+                                {t('hero.differentiator')}
+                            </p>
+
+                            {/* Proof Line */}
+                            <p className="text-xs md:text-sm text-slate-400 mb-12 max-w-2xl mx-auto italic">
+                                {t('hero.proofLine')}
                             </p>
 
                             {/* CTAs */}
