@@ -33,7 +33,9 @@
         "subtitle": "Ich helfe CTOs und Engineering-Leads, Cloud-, Plattform- und AI-Modernisierungsentscheidungen abzusichern — bevor Budget und Roadmap festgelegt werden.",
         "cta": "Discovery Call buchen",
         "ctaSecondary": "Leistungen ansehen",
-        "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Umsetzbare Deliverables"
+        "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Umsetzbare Deliverables • Globale Delivery-Erfahrung",
+        "differentiator": "Globale Enterprise-Erfahrung — Architekturentscheidungen mit Fokus auf Delivery-Realität.",
+        "proofLine": "Umgesetzt in komplexen Enterprise-Umfeldern — verteilte Teams, viele Stakeholder und Systeme mit hoher Kritikalität."
     },
     "howItWork": {
         "title": "Wie ich Probleme angehe",
@@ -211,6 +213,16 @@
             "subtitle": "Ob Sie einen Hands-on-Architekten für eine Migration oder einen strategischen Leiter für Ihr Engineering-Team benötigen, lassen Sie uns sprechen.",
             "schedule": "Beratung vereinbaren",
             "viewWork": "Architekturarbeiten ansehen"
+        },
+        "differentiators": {
+            "globalDelivery": {
+                "title": "Globale Delivery-Erfahrung",
+                "paragraph": "In über 15 Jahren habe ich Architektur- und Transformationsprogramme mit verteilten Teams in Europa, Amerika und Asien umgesetzt. Ich bewege mich sicher in komplexen Stakeholder-Umfeldern und verbinde Engineering-Realität mit Business-Constraints, Compliance-Anforderungen und realistischen Delivery-Zeiträumen."
+            },
+            "executionMindset": {
+                "title": "Execution-Mindset",
+                "paragraph": "Meine Arbeit endet nicht bei Assessment und Roadmap. Ich bleibe nah an der Umsetzung — damit Architekturentscheidungen praktikabel bleiben und zu Build-, Deploy- und Betriebsrealität der Teams passen."
+            }
         }
     },
     "architectureEngine": {
@@ -751,7 +763,7 @@
     },
     "servicesPage": {
         "title": "Architektur- & Transformationsberatung",
-        "subtitle": "Unabhängige Assessments, Modernisierungs-Roadmaps und Umsetzungsbegleitung für Cloud, Integration und AI Enablement Discovery – mit Fokus auf EU-Mid-Market-Unternehmen.",
+        "subtitle": "Vendor-neutrale Assessments, Modernisierungs-Roadmaps und Delivery Leadership – basierend auf globaler Enterprise-Erfahrung.",
         "timeline": "Zeitraum",
         "price": "Preis",
         "for": "Für",
@@ -759,7 +771,8 @@
         "bookCall": "Kostenloses Erstgespräch buchen",
         "ctaTitle": "Bereit, Ihre Architektur-Entscheidungen zu validieren?",
         "ctaSubtitle": "Buchen Sie ein kostenloses Erstgespräch, um Ihre spezifische Herausforderung zu besprechen.",
-        "bookDiscoveryCall": "Kostenloses Erstgespräch buchen"
+        "bookDiscoveryCall": "Kostenloses Erstgespräch buchen",
+        "differentiator": "Globale Enterprise-Erfahrung — Architekturentscheidungen mit Fokus auf Delivery-Realität."
     },
     "services": {
         "blueprintSprint": {
@@ -889,6 +902,10 @@
             "executionReady": {
                 "title": "Umsetzbare Outputs",
                 "text": "Blueprint + Risiko-Register + Roadmap – nicht nur Folien."
+            },
+            "globalDelivery": {
+                "title": "Globale Delivery-Erfahrung",
+                "text": "Projekte in EU, Amerika und Asien — mit verteilten Teams und komplexen Stakeholder-Strukturen."
             }
         }
     },
@@ -988,13 +1005,13 @@
             },
             "step3": {
                 "title": "Decision Package",
-                "desc": "Blueprint + Risiko-Register + Roadmap — umsetzbare Deliverables"
+                "desc": "Decision Package (Blueprint + Roadmap + Risiko-Register) — mit Blick auf Delivery-Realität, nicht nur Theorie."
             }
         },
         "finalCta": {
             "title": "Bereit, Ihre Architektur-Entscheidung abzusichern?",
             "cta": "Discovery Call buchen",
-            "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Umsetzbare Deliverables"
+            "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Globale Erfahrung"
         }
     },
     "hiringPage": {
@@ -1040,8 +1057,8 @@
                     "desc": "Jede Entscheidung wird am Geschäftsergebnis gemessen, nicht am technischen Ego."
                 },
                 {
-                    "title": "EU-Markt-Expertise",
-                    "desc": "Tiefes Verständnis für EU-Regulierungen, Compliance (GDPR, HIPAA) und Mid-Market-Dynamiken."
+                    "title": "Globale Erfahrung",
+                    "desc": "Nordamerika, Europa, Asien und Südamerika (remote + onsite)"
                 }
             ]
         },

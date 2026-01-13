@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { User, Zap, Target, FileText } from 'lucide-react';
+import { User, Zap, Target, FileText, Globe } from 'lucide-react';
 
 const IndependentAdvisorySection: React.FC = () => {
   const { t } = useTranslation();
@@ -34,6 +34,13 @@ const IndependentAdvisorySection: React.FC = () => {
       iconBg: 'bg-orange-100 dark:bg-orange-900/30',
       titleKey: 'independentAdvisory.cards.executionReady.title',
       textKey: 'independentAdvisory.cards.executionReady.text'
+    },
+    {
+      icon: Globe,
+      iconColor: 'text-teal-600',
+      iconBg: 'bg-teal-100 dark:bg-teal-900/30',
+      titleKey: 'independentAdvisory.cards.globalDelivery.title',
+      textKey: 'independentAdvisory.cards.globalDelivery.text'
     }
   ];
 
@@ -54,7 +61,7 @@ const IndependentAdvisorySection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {cards.map((card, idx) => {
             const Icon = card.icon;
             return (
