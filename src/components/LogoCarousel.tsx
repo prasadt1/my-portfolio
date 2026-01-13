@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 const logos = [
     { src: "/assets/logos/PG.svg", alt: "P&G", className: "h-12 md:h-14" },
@@ -20,16 +19,8 @@ const logos = [
 ];
 
 const LogoCarousel: React.FC = () => {
-    const { t } = useTranslation();
-
     return (
         <div className="w-full overflow-hidden bg-slate-50/50 dark:bg-slate-200 py-10 border-y border-slate-200 dark:border-slate-300">
-            <div className="max-w-7xl mx-auto px-4 mb-6">
-                <p className="text-center text-sm uppercase tracking-widest text-slate-500 dark:text-slate-700 font-semibold">
-                    {t('hero.carousel')}
-                </p>
-            </div>
-
             <div className="relative flex overflow-hidden group">
                 {/* Single animating track containing duplicate sets */}
                 <div className="flex animate-scroll hover:pause">
