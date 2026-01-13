@@ -38,9 +38,15 @@ const CommandPalette: React.FC = () => {
         const timer = setTimeout(async () => {
             if (query.trim().length > 2) {
                 setLoading(true);
-                const hits = await semanticSearch(query);
-                setResults(hits);
-                setLoading(false);
+                try {
+                    const hits = await semanticSearch(query);
+                    setResults(hits);
+                } catch (error) {
+                    console.error("Search error:", error);
+                    setResults([]);
+                } finally {
+                    setLoading(false);
+                }
             } else {
                 setResults([]);
             }
@@ -134,7 +140,8 @@ const CommandPalette: React.FC = () => {
 
                         {query.length > 3 && results.length === 0 && !loading && (
                             <div className="p-8 text-center text-slate-500">
-                                <p>No matching projects found.</p>
+                                <p className="mb-2">No matching projects found.</p>
+                                <p className="text-xs text-slate-400">Try searching for: "cloud migration", "AWS", "Azure", "healthcare", "ecommerce", or "AI"</p>
                             </div>
                         )}
                     </div>
