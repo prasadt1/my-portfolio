@@ -19,8 +19,6 @@ const logos = [
 ];
 
 const LogoCarousel: React.FC = () => {
-    const { t } = useTranslation();
-
     return (
         <div className="w-full overflow-hidden bg-slate-50/50 dark:bg-slate-200 py-10 border-y border-slate-200 dark:border-slate-300">
             <div className="relative flex overflow-hidden group">
