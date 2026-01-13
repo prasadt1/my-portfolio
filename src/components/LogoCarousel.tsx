@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 const logos = [
     { src: "/assets/logos/PG.svg", alt: "P&G", className: "h-12 md:h-14" },
