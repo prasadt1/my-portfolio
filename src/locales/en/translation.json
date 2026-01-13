@@ -881,6 +881,43 @@
             "title": "How I would approach this today",
             "more": "Show more",
             "less": "Show less"
+        },
+        "viewCaseStudy": "View Case Study"
+    },
+    "caseStudy": {
+        "executiveSummary": {
+            "impact": "Impact",
+            "scope": "Scope",
+            "role": "My Role"
+        },
+        "whatIDelivered": {
+            "title": "What I Delivered",
+            "differentiator": "Key Differentiator"
+        },
+        "deliverables": {
+            "title": "Deliverables You'll Receive",
+            "blueprint": {
+                "title": "Architecture Blueprint",
+                "description": "Current → target state architecture with integration patterns"
+            },
+            "riskRegister": {
+                "title": "Risk Register",
+                "description": "Prioritized risks with mitigation strategies"
+            },
+            "roadmap": {
+                "title": "90-Day Roadmap",
+                "description": "Phased execution plan with milestones"
+            },
+            "decisionMatrix": {
+                "title": "Decision Matrix",
+                "description": "Trade-off analysis and recommended options"
+            }
+        },
+        "cta": {
+            "title": "Want similar results?",
+            "text": "Book a discovery call. I'll review 2–3 key artifacts and share concrete next steps within 48 hours.",
+            "primary": "Book Discovery Call",
+            "secondary": "Try Risk Radar"
         }
     },
     "independentAdvisory": {

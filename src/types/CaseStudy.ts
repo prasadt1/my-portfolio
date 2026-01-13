@@ -8,6 +8,7 @@ export interface CaseStudy {
     domains: string[]; // e.g., ['eCommerce', 'Healthcare', 'Climate Tech']
     projectType: 'product' | 'framework' | 'migration' | 'standard' | 'data-platform' | 'devops' | 'consulting';
     seoTags: string[];
+    visualType?: 'performance' | 'modernization' | 'integration' | 'ai' | 'governance' | 'platform';
 
     // Header (attention)
     header: {

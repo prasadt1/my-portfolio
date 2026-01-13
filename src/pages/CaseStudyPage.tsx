@@ -9,9 +9,13 @@ import {
     CheckCircle2,
     Clock,
     ArrowRight,
-    AlertCircle
+    AlertCircle,
+    Target,
+    Layers,
+    Calendar
 } from 'lucide-react';
 import { projects } from '../data/projects';
+import ProjectVisual from '../components/ProjectVisual';
 
 const CaseStudyPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -77,29 +81,38 @@ const CaseStudyPage: React.FC = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                         >
-                            <div className="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest text-sm uppercase mb-4 flex items-center gap-2">
-                                <span className="w-8 h-0.5 bg-emerald-600 dark:bg-emerald-400 inline-block"></span>
-                                {study.header.eyebrow}
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest text-sm uppercase flex items-center gap-2">
+                                    <span className="w-8 h-0.5 bg-emerald-600 dark:text-emerald-400 inline-block"></span>
+                                    {study.header.eyebrow}
+                                </div>
+                                {study.visualType && (
+                                    <div className="ml-4 opacity-60">
+                                        <ProjectVisual visualType={study.visualType} size="md" />
+                                    </div>
+                                )}
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-4 leading-tight">
                                 {study.header.title}
                             </h1>
+                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed max-w-2xl">
+                                {study.challenge.situation.split('.').slice(0, 2).join('.') + '.'}
+                            </p>
 
                             {/* Tags */}
-                            <div className="flex flex-wrap gap-3 mb-8 text-sm text-slate-600 dark:text-slate-400">
-                                <span className="px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium">
+                            <div className="flex flex-wrap gap-2 mb-8 text-sm">
+                                <span className="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium text-slate-700 dark:text-slate-300">
                                     {study.header.client.type}
                                 </span>
-                                <span className="px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium">
+                                <span className="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium text-slate-700 dark:text-slate-300">
                                     {study.header.client.industry}
                                 </span>
-                                <span className="px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium">
-                                    {study.header.client.size}
-                                </span>
+                                {study.domains.slice(0, 2).map((domain, idx) => (
+                                    <span key={idx} className="px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 font-medium text-emerald-700 dark:text-emerald-400">
+                                        {domain}
+                                    </span>
+                                ))}
                             </div>
-
-                            {/* PERSONA TOGGLE - Moved here for flow */}
-                            {/* PERSONA TOGGLE REMOVED - Moved to Challenge Section */}
                         </motion.div>
 
                         {/* Right Column: Hero Metric Card */}
@@ -144,6 +157,60 @@ const CaseStudyPage: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Executive Summary Card */}
+            <section className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                        <div className="grid md:grid-cols-3 gap-8">
+                            <div className="text-center md:text-left">
+                                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                                    <Target className="text-emerald-600 dark:text-emerald-400" size={20} />
+                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        {t('caseStudy.executiveSummary.impact')}
+                                    </h3>
+                                </div>
+                                <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                                    {study.outcomes.hero_metric.value}
+                                </p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    {study.outcomes.hero_metric.label}
+                                </p>
+                            </div>
+                            <div className="text-center md:text-left">
+                                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                                    <Layers className="text-blue-600 dark:text-blue-400" size={20} />
+                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        {t('caseStudy.executiveSummary.scope')}
+                                    </h3>
+                                </div>
+                                <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                                    {study.approach.phases.length > 0 ? study.approach.phases.length + ' Phases' : 'Full Engagement'}
+                                </p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    {study.approach.methodology}
+                                </p>
+                            </div>
+                            <div className="text-center md:text-left">
+                                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                                    <Briefcase className="text-purple-600 dark:text-purple-400" size={20} />
+                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                        {t('caseStudy.executiveSummary.role')}
+                                    </h3>
+                                </div>
+                                <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                                    {study.projectType === 'framework' || study.projectType === 'standard' ? 'Lead Architect' : 'Solution Architect'}
+                                </p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    {study.challenge.why_prasad}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Challenge Section */}
 
             {/* Challenge Section */}
             <section className="py-20">
@@ -222,6 +289,58 @@ const CaseStudyPage: React.FC = () => {
                                 <p className="text-xs font-bold text-red-500 dark:text-red-400 uppercase">Impact: {pain.impact}</p>
                             </div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* What I Delivered Section */}
+            <section className="py-20 bg-slate-50 dark:bg-slate-800">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+                        {t('caseStudy.whatIDelivered.title')}
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {study.approach.phases.map((phase, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold">
+                                        {phase.number}
+                                    </div>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{phase.title}</h3>
+                                </div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                                    {phase.deliverable}
+                                </p>
+                                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                                    <Clock size={14} />
+                                    <span>{phase.duration}</span>
+                                </div>
+                            </motion.div>
+                        ))}
+                        {study.approach.unique_differentiator && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-900/10 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 shadow-sm"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold">
+                                        ⭐
+                                    </div>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t('caseStudy.whatIDelivered.differentiator')}</h3>
+                                </div>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">
+                                    {study.approach.unique_differentiator}
+                                </p>
+                            </motion.div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -406,26 +525,90 @@ const CaseStudyPage: React.FC = () => {
                 </section>
             )}
 
-            {/* CTA */}
-            <section className="py-24 bg-white dark:bg-slate-900">
+            {/* Deliverables Preview */}
+            <section className="py-20 bg-white dark:bg-slate-900">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+                        {t('caseStudy.deliverables.title')}
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                icon: Layers,
+                                title: t('caseStudy.deliverables.blueprint.title'),
+                                description: t('caseStudy.deliverables.blueprint.description'),
+                                color: 'blue'
+                            },
+                            {
+                                icon: AlertCircle,
+                                title: t('caseStudy.deliverables.riskRegister.title'),
+                                description: t('caseStudy.deliverables.riskRegister.description'),
+                                color: 'red'
+                            },
+                            {
+                                icon: Calendar,
+                                title: t('caseStudy.deliverables.roadmap.title'),
+                                description: t('caseStudy.deliverables.roadmap.description'),
+                                color: 'emerald'
+                            },
+                            {
+                                icon: Target,
+                                title: t('caseStudy.deliverables.decisionMatrix.title'),
+                                description: t('caseStudy.deliverables.decisionMatrix.description'),
+                                color: 'purple'
+                            }
+                        ].map((deliverable, idx) => {
+                            const Icon = deliverable.icon;
+                            return (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow"
+                                >
+                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-${deliverable.color}-100 dark:bg-${deliverable.color}-900/30`}>
+                                        <Icon className={`text-${deliverable.color}-600 dark:text-${deliverable.color}-400`} size={24} />
+                                    </div>
+                                    <h3 className="font-bold text-slate-900 dark:text-white mb-2">
+                                        {deliverable.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                                        {deliverable.description}
+                                    </p>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Block */}
+            <section className="py-24 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white">
                 <div className="max-w-4xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">Want similar results?</h2>
-                    <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-                        {study.cta.primary.context}
+                    <h2 className="text-4xl font-bold mb-4">
+                        {t('caseStudy.cta.title')}
+                    </h2>
+                    <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        {t('caseStudy.cta.text')}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href={study.cta.primary.action}
-                            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+                            href="https://calendly.com/prasad-sgsits/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
                         >
-                            {study.cta.primary.text}
+                            {t('caseStudy.cta.primary')}
                             <ArrowRight size={20} />
                         </a>
                         <Link
-                            to={study.cta.secondary.action}
-                            className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+                            to="/risk-radar"
+                            className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2"
                         >
-                            {study.cta.secondary.text}
+                            {t('caseStudy.cta.secondary')}
+                            <ArrowRight size={20} />
                         </Link>
                     </div>
                 </div>

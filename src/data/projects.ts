@@ -12,6 +12,7 @@ export const projects: CaseStudy[] = [
         },
         domains: ['AI & GenAI', 'Product Engineering', 'Cost Optimization'],
         projectType: 'product',
+        visualType: 'ai',
         seoTags: ['Gemini 3 Pro', 'React', 'Context Caching', 'AI Vision', 'Google DeepMind'],
         header: {
             eyebrow: 'GOOGLE DEEPMIND COMPETITION PROJECT',
@@ -90,6 +91,7 @@ export const projects: CaseStudy[] = [
         },
         domains: ['Climate Tech', 'Standards Development'],
         projectType: 'standard',
+        visualType: 'governance',
         seoTags: ['Carbon Accounting', 'Scope 3 Emissions', 'ESG Technology', 'Product Carbon Footprint', 'Climate Action', 'Sustainability Standards'],
         header: {
             eyebrow: 'GLOBAL STANDARD ADOPTION',
@@ -187,6 +189,7 @@ export const projects: CaseStudy[] = [
         },
         domains: ['eCommerce', 'Digital Transformation'],
         projectType: 'migration',
+        visualType: 'modernization',
         seoTags: ['Headless Commerce', 'Sustainable Ecommerce', 'Cloud Optimization', 'Green IT'],
         header: {
             eyebrow: 'MULTI-MARKET ROLLOUT',
@@ -243,6 +246,7 @@ export const projects: CaseStudy[] = [
         },
         domains: ['AdTech', 'eCommerce', 'High-Scale'],
         projectType: 'product',
+        visualType: 'performance',
         seoTags: ['AdTech', 'High Scale', 'Go', 'Kubernetes', 'Revenue Growth'],
         header: {
             eyebrow: '$20M REVENUE UPLIFT',
@@ -543,6 +547,7 @@ export const projects: CaseStudy[] = [
             iconBg: 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400'
         },
         domains: ['Healthcare', 'Compliance', 'Consulting'],
+        visualType: 'modernization',
         projectType: 'framework',
         seoTags: ['HIPAA', 'FHIR', 'Compliance', 'HealthIT'],
         header: {
