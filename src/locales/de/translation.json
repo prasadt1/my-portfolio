@@ -849,6 +849,43 @@
             "title": "So würde ich heute vorgehen",
             "more": "Mehr anzeigen",
             "less": "Weniger anzeigen"
+        },
+        "viewCaseStudy": "Case Study ansehen"
+    },
+    "caseStudy": {
+        "executiveSummary": {
+            "impact": "Impact",
+            "scope": "Umfang",
+            "role": "Meine Rolle"
+        },
+        "whatIDelivered": {
+            "title": "Was ich geliefert habe",
+            "differentiator": "Hauptunterschied"
+        },
+        "deliverables": {
+            "title": "Deliverables, die Sie erhalten",
+            "blueprint": {
+                "title": "Architektur-Blueprint",
+                "description": "Aktueller → Zielzustand mit Integrationsmustern"
+            },
+            "riskRegister": {
+                "title": "Risiko-Register",
+                "description": "Priorisierte Risiken mit Mitigationsstrategien"
+            },
+            "roadmap": {
+                "title": "90-Tage-Roadmap",
+                "description": "Phasierter Umsetzungsplan mit Meilensteinen"
+            },
+            "decisionMatrix": {
+                "title": "Entscheidungs-Matrix",
+                "description": "Trade-off-Analyse und empfohlene Optionen"
+            }
+        },
+        "cta": {
+            "title": "Möchten Sie ähnliche Ergebnisse?",
+            "text": "Buchen Sie einen Discovery Call. Ich schaue mir 2–3 relevante Artefakte an und sende innerhalb von 48 Stunden konkrete nächste Schritte.",
+            "primary": "Discovery Call buchen",
+            "secondary": "Risk Radar testen"
         }
     },
     "independentAdvisory": {

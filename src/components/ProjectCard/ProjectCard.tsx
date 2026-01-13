@@ -6,6 +6,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 import { CaseStudy } from '../../types/CaseStudy';
 import ProjectCardHeader from './ProjectCardHeader';
 import ProjectCardTechStack from './ProjectCardTechStack';
+import ProjectVisual from '../ProjectVisual';
 
 interface ProjectCardProps {
     project: CaseStudy;
@@ -53,30 +54,60 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className={`h-2 bg-gradient-to-r ${theme.gradient}`}></div>
 
             <div className="p-6 flex flex-col flex-1 relative z-10">
-                <ProjectCardHeader project={project} color={theme.color} iconBg={theme.iconBg} />
+                {/* Header with Visual */}
+                <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1 min-w-0">
+                        <ProjectCardHeader project={project} color={theme.color} iconBg={theme.iconBg} />
+                    </div>
+                    {project.visualType && (
+                        <div className="ml-3 flex-shrink-0 opacity-60">
+                            <ProjectVisual visualType={project.visualType} size="sm" />
+                        </div>
+                    )}
+                </div>
 
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 flex-1">
+                {/* 2-line Summary */}
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-2 flex-1 min-h-[2.5rem]">
                     {t(`${project.id}.challenge.situation`, { defaultValue: project.challenge.situation, ns: 'projects' })}
                 </p>
 
-                {/* Approach Today Section */}
+                {/* 2-3 Tags (Domain/Outcome) */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                    {project.domains.slice(0, 2).map((domain, idx) => (
+                        <span key={idx} className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">
+                            {domain}
+                        </span>
+                    ))}
+                    {project.outcomes?.hero_metric?.label && (
+                        <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                            {project.outcomes.hero_metric.label}
+                        </span>
+                    )}
+                </div>
+
+                {/* Approach Today - First Bullet Only (Expandable) */}
                 {project.approachToday && (() => {
                     const bullets = i18n.language === 'de' ? project.approachToday.bulletsDe : project.approachToday.bullets;
-                    const displayBullets = isExpanded ? bullets : bullets.slice(0, 2);
+                    const firstBullet = bullets[0];
+                    if (!firstBullet) return null;
                     return (
                         <div className="mb-4 border-t border-slate-200 dark:border-slate-700 pt-4">
                             <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 uppercase tracking-wide">
                                 {t('projects.approachToday.title')}
                             </h4>
                             <ul className="space-y-1.5 mb-2">
-                                {displayBullets.map((bullet, idx) => (
-                                    <li key={idx} className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed flex items-start gap-1.5">
+                                <li className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed flex items-start gap-1.5">
+                                    <span className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0">•</span>
+                                    <span>{firstBullet}</span>
+                                </li>
+                                {isExpanded && bullets.slice(1).map((bullet, idx) => (
+                                    <li key={idx + 1} className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed flex items-start gap-1.5">
                                         <span className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0">•</span>
                                         <span>{bullet}</span>
                                     </li>
                                 ))}
                             </ul>
-                            {bullets.length > 2 && (
+                            {bullets.length > 1 && (
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -95,25 +126,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
                 <ProjectCardTechStack project={project} />
 
-                {/* CTAs */}
-                <div className="flex gap-2 pt-4 border-t border-slate-100 dark:border-slate-700 mt-4">
+                {/* Single CTA */}
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-700 mt-auto">
                     <Link
                         to={`/projects/${project.slug}`}
-                        className={`flex-1 text-center py-2.5 px-4 rounded-lg bg-${theme.color}-600 hover:bg-${theme.color}-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5`}
+                        className="w-full text-center py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
                     >
-                        {t(`${project.id}.cta.primary`, { defaultValue: project.cta.primary?.text || 'View Case Study', ns: 'projects' })}
+                        {t('projects.viewCaseStudy', { defaultValue: 'View Case Study' })}
                         <ArrowRight size={14} />
                     </Link>
-                    {project.cta.secondary && (
-                        <a
-                            href={project.cta.secondary.action}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`flex-1 text-center py-2.5 px-4 rounded-lg border-2 border-${theme.color}-600 text-${theme.color}-600 dark:text-${theme.color}-400 hover:bg-${theme.color}-50 dark:hover:bg-${theme.color}-900/20 font-medium text-sm transition-colors`}
-                        >
-                            {t(`${project.id}.cta.secondary`, { defaultValue: project.cta.secondary.text, ns: 'projects' })}
-                        </a>
-                    )}
                 </div>
             </div>
         </motion.div>
