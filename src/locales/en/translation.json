@@ -750,7 +750,8 @@
                 "Recommended next steps"
             ],
             "notIncluded": "Implementation is not included (available separately)."
-        }
+        },
+        "mostPopular": "Most popular"
     },
     "architectureEngine": {
         "title": "AI-Assisted Architecture Assistant",
@@ -1106,5 +1107,126 @@
             "subtitle": "If you're looking for someone who combines deep technical expertise with business acumen and hands-on execution, let's connect.",
             "button": "Email Me"
         }
+    },
+    "guide": {
+        "seo": {
+            "title": "Free Architecture Guide | Prasad Tilloo",
+            "description": "10 Architecture Decisions That Create Unnecessary Risk (and Cost). A vendor-neutral checklist for modernization decisions."
+        },
+        "title": "Free guide",
+        "headline": "10 Architecture Decisions That Create Unnecessary Risk (and Cost)",
+        "subheadline": "A vendor-neutral checklist for modernization decisions. Short, practical, and based on real enterprise patterns.",
+        "form": {
+            "emailLabel": "Email",
+            "emailPlaceholder": "work@company.com",
+            "button": "Send me the guide",
+            "submitting": "Sending...",
+            "consentLabel": "I agree to receive the guide by email.",
+            "consentRequired": "Please agree to receive the guide by email.",
+            "privacyStatement": "Privacy: Your email is used to send the guide. No spam.",
+            "privacyLink": "Privacy Policy",
+            "error": "Something went wrong. Please try again."
+        },
+        "success": {
+            "title": "Check your inbox.",
+            "message": "We've sent the guide to your email address."
+        },
+        "content": {
+            "title": "Guide Preview",
+            "intro": "Here's a preview of the 10 architecture decisions covered in the guide:",
+            "decision1": "Vendor reference architectures ≠ your architecture",
+            "decision1.desc": "Vendor reference architectures are starting points, not final solutions. They're optimized for the vendor's ecosystem, not your specific constraints, team capabilities, or business context.",
+            "decision2": "\"Start with Kubernetes\" is often a maturity mismatch",
+            "decision2.desc": "Kubernetes requires significant operational maturity. Many teams jump to Kubernetes before they have the skills, processes, or scale to justify it, creating unnecessary complexity.",
+            "decision3": "Ignoring integration complexity early creates hidden delivery risk",
+            "decision3.desc": "Integration patterns are often underestimated. Legacy systems, data formats, and API contracts create hidden complexity that can derail timelines if not addressed early.",
+            "decision4": "Treating compliance as a constraint (not just documentation)",
+            "decision4.desc": "Compliance requirements (HIPAA, GDPR, PCI-DSS) must be architected into the system from day one, not added as documentation after the fact.",
+            "decision5": "Not defining NFRs upfront",
+            "decision5.desc": "Non-functional requirements (performance, scalability, availability) are often vague or missing. Without clear NFRs, you can't make informed architecture decisions.",
+            "decision6": "Confusing \"target state\" with \"end state\"",
+            "decision6.desc": "Target state is a milestone, not a final destination. Architecture should evolve. Treating it as a one-time destination leads to rigid, hard-to-maintain systems.",
+            "decision7": "Big bang migrations instead of sequencing for value",
+            "decision7.desc": "Attempting to migrate everything at once is high-risk. Sequencing migrations by business value and technical dependencies reduces risk and delivers value incrementally.",
+            "decision8": "Underestimating data migration and data ownership",
+            "decision8.desc": "Data migration is often the most complex and risky part of modernization. Data quality, ownership, and governance must be addressed early.",
+            "decision9": "Operating model not aligned with architecture",
+            "decision9.desc": "A microservices architecture requires different operating models than monoliths. Team structure, deployment processes, and monitoring must align with the architecture.",
+            "decision10": "Not creating a decision package (blueprint + risk register + roadmap)",
+            "decision10.desc": "Architecture decisions need documentation: a blueprint showing current and target state, a risk register with mitigation strategies, and a roadmap for execution.",
+            "ctaText": "Want to discuss these decisions in the context of your architecture?",
+            "ctaButton": "Book a discovery call"
+        },
+        "footerBanner": {
+            "text": "Not ready to book a call? Get the free guide →"
+        },
+        "homepageCta": {
+            "button": "Download free guide"
+        }
+    },
+    "proof": {
+        "title": "Real Results",
+        "subtitle": "Qualitative outcomes from real engagements",
+        "card1": {
+            "context": "Healthcare, EU",
+            "situation": "HIPAA compliance audit failures blocking cloud migration",
+            "delivered": "Compliance-first architecture blueprint with automated PII masking",
+            "outcome": "Zero audit findings, migration approved by board"
+        },
+        "card2": {
+            "context": "eCommerce, EMEA",
+            "situation": "Multi-market expansion blocked by legacy platform limitations",
+            "delivered": "Headless commerce architecture with multi-tenant governance",
+            "outcome": "Delivery accelerated, vendor-neutral decision framework"
+        },
+        "card3": {
+            "context": "Pharma, Global",
+            "situation": "R&D data silos slowing AI/ML initiatives",
+            "delivered": "GDPR-compliant Data Mesh architecture with governance framework",
+            "outcome": "Risk reduced, data access accelerated, compliance maintained"
+        }
+    },
+    "privacy": {
+        "seo": {
+            "title": "Privacy Policy | Prasad Tilloo",
+            "description": "Privacy policy for Prasad Tilloo's portfolio website and lead magnet services."
+        },
+        "title": "Privacy Policy",
+        "subtitle": "How we handle your data",
+        "dataCollection": {
+            "title": "Data Collection",
+            "description": "We collect minimal data necessary to provide our services:",
+            "items": [
+                "Email address (when you request the free guide)",
+                "Language preference (to send content in your preferred language)",
+                "Timestamp of submission"
+            ]
+        },
+        "dataUse": {
+            "title": "How We Use Your Data",
+            "description": "Your email address is used solely to send you the requested guide. We do not use your data for marketing purposes, and we do not share your data with third parties."
+        },
+        "dataStorage": {
+            "title": "Data Storage",
+            "description": "Your data is stored securely on our servers. We retain your email address only as long as necessary to fulfill your request. You can request deletion of your data at any time by contacting us."
+        },
+        "yourRights": {
+            "title": "Your Rights (GDPR)",
+            "description": "Under GDPR, you have the following rights:",
+            "items": [
+                "Right to access your personal data",
+                "Right to rectification of inaccurate data",
+                "Right to erasure ('right to be forgotten')",
+                "Right to restrict processing",
+                "Right to data portability",
+                "Right to object to processing"
+            ]
+        },
+        "contact": {
+            "title": "Contact",
+            "description": "If you have questions about this privacy policy or wish to exercise your rights, please contact us:",
+            "email": "Email"
+        },
+        "lastUpdated": "Last updated: January 2026"
     }
 }

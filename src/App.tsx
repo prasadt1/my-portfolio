@@ -27,6 +27,8 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ConsultationPage = lazy(() => import('./pages/ConsultationPage'));
 const RiskRadarPage = lazy(() => import('./pages/RiskRadarPage'));
 const HiringPage = lazy(() => import('./pages/HiringPage'));
+const GuidePage = lazy(() => import('./pages/GuidePage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 
 // Layout Component
 const Layout: React.FC = () => {
@@ -86,6 +88,8 @@ const App: React.FC = () => {
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="hiring" element={<HiringPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />
+                <Route path="guide" element={<GuidePage />} />
+                <Route path="privacy" element={<PrivacyPage />} />
               </Route>
             </Routes>
             <Suspense fallback={null}>

@@ -3,6 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { contextData } from './context.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import nodemailer from 'nodemailer';
 
 dotenv.config({ path: '../.env.local' });
 
@@ -566,12 +570,449 @@ app.post('/api/semantic-search', async (req, res) => {
     }
 });
 
-// Serve static files from the React app
-import path from 'path';
-import { fileURLToPath } from 'url';
-
+// Lead capture endpoint
+// Get __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const leadsFilePath = path.join(__dirname, '../leads.json');
+
+// Ensure leads file exists
+if (!fs.existsSync(leadsFilePath)) {
+    fs.writeFileSync(leadsFilePath, JSON.stringify([], null, 2));
+}
+
+// Email configuration
+const createEmailTransporter = () => {
+    // If SMTP is configured, use it
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+        const port = parseInt(process.env.SMTP_PORT || '587', 10);
+        const secure = process.env.SMTP_SECURE === 'true';
+        const isGmail = process.env.SMTP_HOST === 'smtp.gmail.com';
+        
+        // For Gmail, ensure STARTTLS (port 587, secure: false)
+        const config = {
+            host: process.env.SMTP_HOST,
+            port: port,
+            secure: secure, // false for STARTTLS (port 587), true for SSL (port 465)
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
+            // Gmail-specific settings for STARTTLS
+            ...(isGmail && {
+                requireTLS: true,
+                tls: {
+                    rejectUnauthorized: false // For dev/testing
+                }
+            })
+        };
+        
+        console.log('[SMTP] Creating transporter with config:', {
+            host: config.host,
+            port: config.port,
+            secure: config.secure,
+            user: config.auth.user,
+            isGmail: isGmail,
+            requireTLS: config.requireTLS || false
+        });
+        
+        const transporter = nodemailer.createTransport(config);
+        
+        // Verify connection on creation (async, but we'll catch errors in send)
+        transporter.verify().catch((err) => {
+            console.error('[SMTP] ❌ Connection verification failed');
+            console.error('[SMTP] Error message:', err.message);
+            console.error('[SMTP] Error code:', err.code);
+            
+            if (err.code === 'EAUTH') {
+                console.error('[SMTP] ❌ Authentication failed!');
+                console.error('[SMTP] Check the following:');
+                console.error('   - SMTP_USER:', process.env.SMTP_USER);
+                console.error('   - SMTP_PASS: [REDACTED - check if correct]');
+                console.error('   - For Gmail: Ensure you are using an App Password, not your regular password');
+                console.error('   - Generate App Password: https://myaccount.google.com/apppasswords');
+                console.error('   - Make sure 2-Step Verification is enabled on your Google account');
+            } else if (err.code === 'ECONNECTION') {
+                console.error('[SMTP] ❌ Connection failed!');
+                console.error('[SMTP] Check the following:');
+                console.error('   - SMTP_HOST:', process.env.SMTP_HOST);
+                console.error('   - SMTP_PORT:', process.env.SMTP_PORT);
+                console.error('   - Network connectivity');
+                console.error('   - Firewall settings');
+            } else if (err.code === 'ETIMEDOUT') {
+                console.error('[SMTP] ❌ Connection timeout!');
+                console.error('[SMTP] Check network connectivity and firewall settings');
+            } else {
+                console.error('[SMTP] ❌ Unexpected error:', err);
+                console.error('[SMTP] Full error details:', JSON.stringify(err, null, 2));
+            }
+        });
+        
+        return transporter;
+    }
+    
+    console.warn('[SMTP] ⚠️  SMTP not configured. Missing required env vars:');
+    if (!process.env.SMTP_HOST) console.warn('   - SMTP_HOST');
+    if (!process.env.SMTP_USER) console.warn('   - SMTP_USER');
+    if (!process.env.SMTP_PASS) console.warn('   - SMTP_PASS');
+    
+    return null;
+};
+
+// Generate guide email HTML
+const generateGuideEmail = (lang = 'en') => {
+    const decisions = {
+        en: [
+            { title: "Vendor reference architectures ≠ your architecture", desc: "Vendor reference architectures are starting points, not final solutions. They're optimized for the vendor's ecosystem, not your specific constraints, team capabilities, or business context." },
+            { title: "\"Start with Kubernetes\" is often a maturity mismatch", desc: "Kubernetes requires significant operational maturity. Many teams jump to Kubernetes before they have the skills, processes, or scale to justify it, creating unnecessary complexity." },
+            { title: "Ignoring integration complexity early creates hidden delivery risk", desc: "Integration patterns are often underestimated. Legacy systems, data formats, and API contracts create hidden complexity that can derail timelines if not addressed early." },
+            { title: "Treating compliance as a constraint (not just documentation)", desc: "Compliance requirements (HIPAA, GDPR, PCI-DSS) must be architected into the system from day one, not added as documentation after the fact." },
+            { title: "Not defining NFRs upfront", desc: "Non-functional requirements (performance, scalability, availability) are often vague or missing. Without clear NFRs, you can't make informed architecture decisions." },
+            { title: "Confusing \"target state\" with \"end state\"", desc: "Target state is a milestone, not a final destination. Architecture should evolve. Treating it as a one-time destination leads to rigid, hard-to-maintain systems." },
+            { title: "Big bang migrations instead of sequencing for value", desc: "Attempting to migrate everything at once is high-risk. Sequencing migrations by business value and technical dependencies reduces risk and delivers value incrementally." },
+            { title: "Underestimating data migration and data ownership", desc: "Data migration is often the most complex and risky part of modernization. Data quality, ownership, and governance must be addressed early." },
+            { title: "Operating model not aligned with architecture", desc: "A microservices architecture requires different operating models than monoliths. Team structure, deployment processes, and monitoring must align with the architecture." },
+            { title: "Not creating a decision package (blueprint + risk register + roadmap)", desc: "Architecture decisions need documentation: a blueprint showing current and target state, a risk register with mitigation strategies, and a roadmap for execution." },
+        ],
+        de: [
+            { title: "Vendor-Referenzarchitekturen ≠ Ihre Architektur", desc: "Vendor-Referenzarchitekturen sind Ausgangspunkte, keine finalen Lösungen. Sie sind für das Ökosystem des Vendors optimiert, nicht für Ihre spezifischen Constraints, Team-Fähigkeiten oder Business-Kontext." },
+            { title: "\"Start mit Kubernetes\" ist oft ein Reifegrad-Mismatch", desc: "Kubernetes erfordert erhebliche operative Reife. Viele Teams springen zu Kubernetes, bevor sie die Fähigkeiten, Prozesse oder Skalierung haben, um es zu rechtfertigen, was unnötige Komplexität schafft." },
+            { title: "Frühes Ignorieren der Integrationskomplexität erzeugt verstecktes Delivery-Risiko", desc: "Integrationsmuster werden oft unterschätzt. Legacy-Systeme, Datenformate und API-Verträge schaffen versteckte Komplexität, die Zeitpläne durcheinander bringen kann, wenn sie nicht früh angegangen wird." },
+            { title: "Compliance als Constraint behandeln (nicht nur Dokumentation)", desc: "Compliance-Anforderungen (HIPAA, GDPR, PCI-DSS) müssen von Tag eins an in die Architektur des Systems integriert werden, nicht als Dokumentation nachträglich hinzugefügt." },
+            { title: "NFRs nicht von Anfang an definieren", desc: "Nicht-funktionale Anforderungen (Performance, Skalierbarkeit, Verfügbarkeit) sind oft vage oder fehlen. Ohne klare NFRs können Sie keine informierten Architekturentscheidungen treffen." },
+            { title: "\"Zielzustand\" mit \"Endzustand\" verwechseln", desc: "Zielzustand ist ein Meilenstein, kein finales Ziel. Architektur sollte sich entwickeln. Sie als einmaliges Ziel zu behandeln führt zu starren, schwer wartbaren Systemen." },
+            { title: "Big-Bang-Migrationen statt Sequenzierung nach Wert", desc: "Der Versuch, alles auf einmal zu migrieren, ist hochriskant. Die Sequenzierung von Migrationen nach Geschäftswert und technischen Abhängigkeiten reduziert Risiken und liefert Wert inkrementell." },
+            { title: "Datenmigration und Datenbesitz unterschätzen", desc: "Datenmigration ist oft der komplexeste und riskanteste Teil der Modernisierung. Datenqualität, Besitz und Governance müssen früh angegangen werden." },
+            { title: "Operating Model nicht mit Architektur abgestimmt", desc: "Eine Microservices-Architektur erfordert andere Operating Models als Monolithen. Teamstruktur, Deployment-Prozesse und Monitoring müssen mit der Architektur übereinstimmen." },
+            { title: "Kein Decision Package erstellen (Blueprint + Risiko-Register + Roadmap)", desc: "Architekturentscheidungen brauchen Dokumentation: einen Blueprint mit Ist- und Zielzustand, ein Risiko-Register mit Mitigationsstrategien und eine Roadmap für die Umsetzung." },
+        ],
+    };
+
+    const content = decisions[lang] || decisions.en;
+    const ctaText = lang === 'de' 
+        ? "Möchten Sie diese Entscheidungen im Kontext Ihrer Architektur diskutieren?"
+        : "Want to discuss these decisions in the context of your architecture?";
+    const ctaButton = lang === 'de' ? "Discovery Call buchen" : "Book a discovery call";
+    const guideTitle = lang === 'de' 
+        ? "10 Architekturentscheidungen, die unnötige Risiken (und Kosten) erzeugen"
+        : "10 Architecture Decisions That Create Unnecessary Risk (and Cost)";
+
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${guideTitle}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #334155; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold;">${guideTitle}</h1>
+        <p style="color: #cbd5e1; margin: 10px 0 0 0; font-size: 14px;">A vendor-neutral checklist for modernization decisions</p>
+    </div>
+    
+    <div style="background: #ffffff; padding: 30px 20px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 8px 8px;">
+        <p style="color: #64748b; margin-bottom: 30px;">Short, practical, and based on real enterprise patterns.</p>
+        
+        ${content.map((decision, index) => `
+            <div style="margin-bottom: 25px; padding-bottom: 25px; border-bottom: ${index < content.length - 1 ? '1px solid #e2e8f0' : 'none'};">
+                <h2 style="color: #0f172a; font-size: 18px; font-weight: 600; margin: 0 0 10px 0;">
+                    ${index + 1}. ${decision.title}
+                </h2>
+                <p style="color: #475569; font-size: 14px; margin: 0; line-height: 1.6;">
+                    ${decision.desc}
+                </p>
+            </div>
+        `).join('')}
+        
+        <div style="margin-top: 40px; padding: 30px; background: #f1f5f9; border-radius: 8px; text-align: center;">
+            <p style="color: #475569; margin-bottom: 20px; font-size: 16px;">
+                ${ctaText}
+            </p>
+            <a href="https://calendly.com/prasad-sgsits/30min" style="display: inline-block; background: #059669; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
+                ${ctaButton}
+            </a>
+        </div>
+        
+        <p style="color: #94a3b8; font-size: 12px; margin-top: 30px; text-align: center;">
+            Prasad Tilloo | Independent Architecture & Transformation Consultant<br>
+            <a href="https://prasadtilloo.com" style="color: #059669;">prasadtilloo.com</a>
+        </p>
+    </div>
+</body>
+</html>
+    `.trim();
+};
+
+app.post('/api/lead', async (req, res) => {
+    try {
+        const { email, language } = req.body;
+
+        if (!email || !email.includes('@')) {
+            return res.status(400).json({ error: 'Valid email is required' });
+        }
+
+        // Validate and normalize language
+        const lang = (language === 'de' || language === 'en') ? language : 'en';
+
+        // Read existing leads
+        let leads = [];
+        try {
+            if (fs.existsSync(leadsFilePath)) {
+                const data = fs.readFileSync(leadsFilePath, 'utf8');
+                leads = JSON.parse(data);
+            }
+        } catch (err) {
+            console.error('Error reading leads file:', err);
+            leads = [];
+        }
+
+        // Check if email already exists
+        if (leads.some(lead => lead.email === email)) {
+            return res.status(200).json({ success: true, message: 'Email already registered' });
+        }
+
+        // Add new lead with language preference
+        const newLead = {
+            email,
+            language: lang,
+            timestamp: new Date().toISOString(),
+            source: 'guide',
+            consent: true // User must have consented to submit
+        };
+
+        leads.push(newLead);
+
+        // Write back to file
+        try {
+            fs.writeFileSync(leadsFilePath, JSON.stringify(leads, null, 2), 'utf8');
+        } catch (writeErr) {
+            console.error('Error writing leads file:', writeErr);
+            // Still return success even if file write fails (graceful degradation)
+        }
+
+        // Send guide via email
+        try {
+            const transporter = createEmailTransporter();
+            const fromEmail = process.env.FROM_EMAIL;
+            const fromName = process.env.FROM_NAME || 'Prasad Tilloo';
+            
+            if (!fromEmail) {
+                console.warn('[WARN] FROM_EMAIL not configured. Email sending disabled.');
+                console.warn('[WARN] Set FROM_EMAIL in .env.local to enable email sending.');
+                return res.status(200).json({ 
+                    success: true, 
+                    message: 'Email captured successfully',
+                    warning: 'Email sending not configured. Guide will be sent once SMTP is configured.'
+                });
+            }
+
+            const guideTitle = lang === 'de' 
+                ? "10 Architekturentscheidungen, die unnötige Risiken (und Kosten) erzeugen"
+                : "10 Architecture Decisions That Create Unnecessary Risk (and Cost)";
+            
+            if (transporter) {
+                // Send email using configured SMTP
+                try {
+                    await transporter.sendMail({
+                        from: `"${fromName}" <${fromEmail}>`,
+                        to: email,
+                        subject: guideTitle,
+                        html: generateGuideEmail(lang),
+                        text: generateGuideEmail(lang).replace(/<[^>]*>/g, ''), // Plain text version
+                    });
+                    console.log(`✅ Guide email sent to ${email} (${lang})`);
+                } catch (sendError) {
+                    // Enhanced error logging for SMTP issues
+                    console.error('[SMTP] ❌ Failed to send guide email');
+                    console.error('[SMTP] Error message:', sendError.message);
+                    console.error('[SMTP] Error code:', sendError.code);
+                    
+                    if (sendError.code === 'EAUTH') {
+                        console.error('[SMTP] ❌ Authentication failed!');
+                        console.error('[SMTP] Check the following:');
+                        console.error('   - SMTP_USER:', process.env.SMTP_USER);
+                        console.error('   - SMTP_PASS: [REDACTED - verify it is correct]');
+                        console.error('   - For Gmail: Ensure you are using an App Password (not regular password)');
+                        console.error('   - Generate App Password: https://myaccount.google.com/apppasswords');
+                        console.error('   - Make sure 2-Step Verification is enabled on your Google account');
+                        console.error('   - Verify the App Password was copied correctly (no extra spaces)');
+                    } else if (sendError.code === 'ECONNECTION') {
+                        console.error('[SMTP] ❌ Connection failed!');
+                        console.error('[SMTP] Check the following:');
+                        console.error('   - SMTP_HOST:', process.env.SMTP_HOST);
+                        console.error('   - SMTP_PORT:', process.env.SMTP_PORT);
+                        console.error('   - Network connectivity');
+                        console.error('   - Firewall settings');
+                    } else if (sendError.code === 'ETIMEDOUT') {
+                        console.error('[SMTP] ❌ Connection timeout!');
+                        console.error('[SMTP] Check network connectivity and firewall settings');
+                    } else {
+                        console.error('[SMTP] ❌ Unexpected error:', sendError);
+                        console.error('[SMTP] Full error details:', JSON.stringify(sendError, Object.getOwnPropertyNames(sendError), 2));
+                    }
+                    throw sendError; // Re-throw to be caught by outer catch
+                }
+            } else {
+                // SMTP not configured - fail gracefully
+                console.warn(`[WARN] SMTP not configured. Guide email not sent to ${email}`);
+                console.warn('[WARN] Configure SMTP_HOST, SMTP_USER, SMTP_PASS in .env.local to enable email sending');
+                return res.status(200).json({ 
+                    success: true, 
+                    message: 'Email captured successfully',
+                    warning: 'SMTP not configured. Guide will be sent once email service is configured.'
+                });
+            }
+        } catch (emailError) {
+            console.error('Error sending guide email:', emailError);
+            // Don't fail the request if email fails - lead is still captured
+            // Log the error but return success
+            return res.status(200).json({ 
+                success: true, 
+                message: 'Email captured successfully',
+                warning: 'Email sending failed. Please contact support if you do not receive the guide.'
+            });
+        }
+
+        res.status(200).json({ success: true, message: 'Email captured successfully' });
+    } catch (error) {
+        console.error('Lead capture error:', error);
+        console.error('Error stack:', error.stack);
+        res.status(500).json({ error: 'Failed to capture lead', details: error.message });
+    }
+});
+
+// Test email endpoint (dev-only)
+app.post('/api/email/test', async (req, res) => {
+    // Only allow in development
+    if (process.env.NODE_ENV === 'production') {
+        return res.status(403).json({ error: 'Test endpoint not available in production' });
+    }
+
+    try {
+        const { email } = req.body;
+        
+        if (!email || !email.includes('@')) {
+            return res.status(400).json({ error: 'Valid email address is required' });
+        }
+
+        const transporter = createEmailTransporter();
+        const fromEmail = process.env.FROM_EMAIL;
+        const fromName = process.env.FROM_NAME || 'Prasad Tilloo';
+
+        if (!transporter) {
+            return res.status(500).json({ 
+                error: 'SMTP not configured',
+                details: 'Please configure SMTP_HOST, SMTP_USER, and SMTP_PASS in .env.local'
+            });
+        }
+
+        if (!fromEmail) {
+            return res.status(500).json({ 
+                error: 'FROM_EMAIL not configured',
+                details: 'Please configure FROM_EMAIL in .env.local'
+            });
+        }
+
+        console.log('[TEST EMAIL] Sending test email to:', email);
+        console.log('[TEST EMAIL] From:', `${fromName} <${fromEmail}>`);
+
+        // Send test email
+        const testEmailContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMTP Test Email</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #334155; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold;">✅ SMTP Configuration Test</h1>
+        <p style="color: #d1fae5; margin: 10px 0 0 0; font-size: 14px;">Your email configuration is working correctly!</p>
+    </div>
+    
+    <div style="background: #ffffff; padding: 30px 20px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 8px 8px;">
+        <p style="color: #64748b; margin-bottom: 20px;">
+            This is a test email to verify your SMTP configuration.
+        </p>
+        
+        <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h2 style="color: #0f172a; font-size: 16px; font-weight: 600; margin: 0 0 10px 0;">Configuration Details:</h2>
+            <ul style="color: #475569; font-size: 14px; margin: 0; padding-left: 20px;">
+                <li><strong>SMTP Host:</strong> ${process.env.SMTP_HOST || 'Not set'}</li>
+                <li><strong>SMTP Port:</strong> ${process.env.SMTP_PORT || 'Not set'}</li>
+                <li><strong>SMTP Secure:</strong> ${process.env.SMTP_SECURE || 'Not set'}</li>
+                <li><strong>From Email:</strong> ${fromEmail}</li>
+                <li><strong>From Name:</strong> ${fromName}</li>
+                <li><strong>Test Time:</strong> ${new Date().toISOString()}</li>
+            </ul>
+        </div>
+        
+        <p style="color: #64748b; font-size: 14px; margin: 0;">
+            If you received this email, your SMTP configuration is working correctly and you can proceed with sending guide emails.
+        </p>
+    </div>
+</body>
+</html>
+        `.trim();
+
+        await transporter.sendMail({
+            from: `"${fromName}" <${fromEmail}>`,
+            to: email,
+            subject: '✅ SMTP Configuration Test - Portfolio',
+            html: testEmailContent,
+            text: 'This is a test email to verify your SMTP configuration. If you received this, your email setup is working correctly!'
+        });
+
+        console.log('[TEST EMAIL] ✅ Test email sent successfully to:', email);
+
+        res.status(200).json({ 
+            success: true, 
+            message: 'Test email sent successfully',
+            details: {
+                to: email,
+                from: `${fromName} <${fromEmail}>`,
+                smtpHost: process.env.SMTP_HOST,
+                smtpPort: process.env.SMTP_PORT,
+                timestamp: new Date().toISOString()
+            }
+        });
+    } catch (error) {
+        console.error('[TEST EMAIL] ❌ Failed to send test email');
+        console.error('[TEST EMAIL] Error:', error.message);
+        console.error('[TEST EMAIL] Error code:', error.code);
+        
+        if (error.code === 'EAUTH') {
+            return res.status(500).json({ 
+                error: 'SMTP Authentication failed',
+                details: 'Check SMTP_USER and SMTP_PASS. For Gmail, ensure you are using an App Password.',
+                code: error.code
+            });
+        } else if (error.code === 'ECONNECTION') {
+            return res.status(500).json({ 
+                error: 'SMTP Connection failed',
+                details: 'Check SMTP_HOST and SMTP_PORT, and verify network connectivity.',
+                code: error.code
+            });
+        } else if (error.code === 'ETIMEDOUT') {
+            return res.status(500).json({ 
+                error: 'SMTP Connection timeout',
+                details: 'Check network connectivity and firewall settings.',
+                code: error.code
+            });
+        }
+        
+        res.status(500).json({ 
+            error: 'Failed to send test email',
+            details: error.message,
+            code: error.code
+        });
+    }
+});
+
+// Serve static files from the React app
+// (__filename and __dirname already declared above for lead capture endpoint)
 
 // Serve static files from the dist directory (one level up from server)
 app.use(express.static(path.join(__dirname, '../dist')));
