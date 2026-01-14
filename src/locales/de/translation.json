@@ -1132,6 +1132,93 @@
             "button": "Guide herunterladen"
         }
     },
+    "checklist": {
+        "seo": {
+            "title": "Angebotsprüfungs-Checkliste | Prasad Tilloo",
+            "description": "Prüfen Sie Ihr Cloud-Migrationsangebot vor der Unterzeichnung. Eine professionelle, herstellerneutrale Checkliste basierend auf 50+ Unternehmenstransformationen."
+        },
+        "hero": {
+            "badge": "Kostenloser Download • Herstellerneutral",
+            "headline": "Prüfen Sie Ihr Cloud-Migrationsangebot vor der Unterzeichnung",
+            "subheadline": "Eine professionelle Checkliste basierend auf 50+ Unternehmenstransformationen. Identifizieren Sie Lücken, Risiken und Über-Engineering, bevor Sie Budget einsetzen.",
+            "valueProps": [
+                "7 kritische Bewertungsbereiche",
+                "Echte Muster aus EU/US/Asien-Projekten",
+                "Herstellerneutrale Perspektive",
+                "Sofortige Anwendbarkeit"
+            ],
+            "emailLabel": "Senden Sie mir die Checkliste:",
+            "emailPlaceholder": "ihre.email@firma.de",
+            "submitButton": "Checkliste Herunterladen (PDF)",
+            "privacy": "Einmalige Zusendung. Kein Newsletter. Abmeldemöglichkeit inklusive.",
+            "trustNote": "Genutzt von CTOs mittelständischer Unternehmen in der EU. Unabhängiger Berater • Keine Herstellerpartnerschaften."
+        },
+        "whatsInside": {
+            "title": "Was Enthalten Ist",
+            "items": [
+                {
+                    "icon": "📋",
+                    "title": "7 Bewertungskategorien",
+                    "description": "Architekturqualität, Kostentransparenz, Risikomanagement, Lieferrealismus, Teambereitschaft und mehr"
+                },
+                {
+                    "icon": "⚠️",
+                    "title": "Warnsignale Erkennen",
+                    "description": "Häufige Muster, die auf Über-Engineering, Vendor Lock-in oder unrealistische Zeitpläne hinweisen"
+                },
+                {
+                    "icon": "✅",
+                    "title": "Best-Practice-Beispiele",
+                    "description": "Wie gründliche, professionelle Angebote aussehen—basierend auf echten Unternehmenstransformationen"
+                },
+                {
+                    "icon": "🎯",
+                    "title": "Bewertungsleitfaden",
+                    "description": "Einfaches Bewertungssystem zur Beurteilung der Angebotsqualität und Identifikation spezifischer Lücken"
+                }
+            ]
+        },
+        "whoIsThisFor": {
+            "title": "Für Wen Ist Dies",
+            "items": [
+                "CTOs, die Cloud-Migrationsangebote bewerten",
+                "VP Engineering, die Plattformmodernisierung prüfen",
+                "Technische Führungskräfte, die KI-Infrastrukturpläne überprüfen",
+                "Entscheidungsträger vor €50K-500K Investitionen"
+            ]
+        },
+        "author": {
+            "name": "Prasad Tilloo",
+            "title": "Unabhängiger Architekturberater",
+            "bio": "15 Jahre Erfahrung in der Durchführung von Unternehmenstransformationen in Gesundheitswesen, Pharma, E-Commerce und Klimatechnologie. Globale Liefererfahrung (Nordamerika, Europa, Asien, Südamerika). Ansässig in Deutschland.",
+            "credentials": [
+                "Leitete PACT-Protokoll-Standardisierung (Microsoft, SAP, Siemens)",
+                "Ex-PwC Management Consultant",
+                "50+ Architekturbewertungen durchgeführt",
+                "Null Herstellerpartnerschaften (unabhängige Beratung)"
+            ]
+        },
+        "finalCta": {
+            "title": "Laden Sie Ihre Checkliste Herunter",
+            "afterNote": "Nach der Überprüfung Ihres Angebots biete ich 30-minütige Beratungsgespräche an (unverbindlich), falls Sie eine zweite Meinung wünschen.",
+            "learnMore": "Mehr über Architekturbewertungen erfahren"
+        },
+        "form": {
+            "emailLabel": "Senden Sie mir die Checkliste:",
+            "emailPlaceholder": "ihre.email@firma.de",
+            "button": "Checkliste Herunterladen (PDF)",
+            "submitting": "Wird gesendet...",
+            "consentLabel": "Ich stimme zu, die Checkliste per E-Mail zu erhalten.",
+            "consentRequired": "Bitte stimmen Sie zu, die Checkliste per E-Mail zu erhalten.",
+            "privacyStatement": "Datenschutz: Ihre E-Mail wird verwendet, um die Checkliste zu senden. Kein Spam.",
+            "privacyLink": "Datenschutzerklärung",
+            "error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+        },
+        "success": {
+            "title": "Prüfen Sie Ihren Posteingang.",
+            "message": "Wir haben die Checkliste an Ihre E-Mail-Adresse gesendet."
+        }
+    },
     "proof": {
         "title": "Echte Ergebnisse",
         "subtitle": "Qualitative Ergebnisse aus echten Engagements",

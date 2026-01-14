@@ -58,12 +58,12 @@ const ExitIntentPopup: React.FC = () => {
                             </h2>
 
                             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
-                                Don't leave empty-handed. Get my free <strong>Enterprise Transformation Checklist</strong> used by Fortune 500 teams.
+                                Review your cloud migration proposal before signing. Get my free <strong>Vendor Proposal Review Checklist</strong>—a vendor-neutral tool used by EU CTOs to identify gaps and risks.
                             </p>
 
                             <div className="space-y-4">
                                 <a
-                                    href="/products/industry40-toolkit"
+                                    href="/checklist"
                                     className="block w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-emerald-500/30 flex items-center justify-center gap-2"
                                     onClick={closePopup}
                                 >
@@ -81,7 +81,7 @@ const ExitIntentPopup: React.FC = () => {
 
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-4 text-center border-t border-slate-100 dark:border-slate-800">
                             <p className="text-xs text-slate-400">
-                                Limited time offer. No spam, ever.
+                                Vendor-neutral • No spam • One-time send
                             </p>
                         </div>
                     </motion.div>

@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import nodemailer from 'nodemailer';
+import crypto from 'crypto';
 
 dotenv.config({ path: '../.env.local' });
 
@@ -744,9 +745,1023 @@ const generateGuideEmail = (lang = 'en') => {
     `.trim();
 };
 
+// Generate checklist email HTML (Vendor Proposal Review Checklist)
+const generateChecklistEmail = (lang = 'en') => {
+    const categories = {
+        en: [
+            {
+                title: "CATEGORY 1: Architecture Quality & Trade-offs",
+                checks: [
+                    "Are 2+ alternative approaches presented?",
+                    "Are trade-offs explicitly documented?",
+                    "Is architecture modular (avoid lock-in)?",
+                    "Does it match actual scale (not over-engineered)?",
+                    "Are integration points well-defined?"
+                ],
+                redFlags: [
+                    "Single vendor \"recommended architecture\"",
+                    "No alternatives discussed",
+                    "Over-engineered for current scale"
+                ],
+                goodPractice: [
+                    "2-3 options with pros/cons",
+                    "Clear decision criteria",
+                    "Right-sized for 12-24 month horizon"
+                ]
+            },
+            {
+                title: "CATEGORY 2: Cost Transparency & FinOps",
+                checks: [
+                    "Is pricing broken down by component?",
+                    "Are hidden costs surfaced (egress, support, licensing)?",
+                    "Is cost compared to alternatives?",
+                    "Is cost model aligned to growth?",
+                    "Is there cost optimization plan?"
+                ],
+                redFlags: [
+                    "Opaque pricing",
+                    "\"Contact for pricing\"",
+                    "No comparison to alternatives"
+                ],
+                goodPractice: [
+                    "Detailed cost breakdown",
+                    "TCO analysis (3-5 years)",
+                    "Cost optimization roadmap"
+                ]
+            },
+            {
+                title: "CATEGORY 3: Risk Management & Compliance",
+                checks: [
+                    "Are compliance requirements mapped?",
+                    "Is there rollback/rollforward plan?",
+                    "Are dependencies identified?",
+                    "Is vendor lock-in risk assessed?",
+                    "Are single points of failure documented?"
+                ],
+                redFlags: [
+                    "No compliance discussion",
+                    "No rollback plan",
+                    "Proprietary formats/APIs"
+                ],
+                goodPractice: [
+                    "Compliance mapped to standards",
+                    "Risk register with mitigations",
+                    "Exit strategy documented"
+                ]
+            },
+            {
+                title: "CATEGORY 4: Integration & Sequencing",
+                checks: [
+                    "Are existing systems mapped?",
+                    "Are integration patterns defined?",
+                    "Is sequencing logical (dependencies)?",
+                    "Are data migration risks identified?",
+                    "Is there incremental delivery plan?"
+                ],
+                redFlags: [
+                    "\"Lift and shift\" without analysis",
+                    "Big-bang approach",
+                    "No integration strategy"
+                ],
+                goodPractice: [
+                    "Phased delivery (value increments)",
+                    "Integration tested early",
+                    "Dependencies mapped"
+                ]
+            },
+            {
+                title: "CATEGORY 5: Security Architecture",
+                checks: [
+                    "Is security built-in (not bolted-on)?",
+                    "Are threat models documented?",
+                    "Is zero-trust approach used?",
+                    "Are secrets management defined?",
+                    "Is observability included?"
+                ],
+                redFlags: [
+                    "Security as afterthought",
+                    "No threat modeling",
+                    "Shared credentials"
+                ],
+                goodPractice: [
+                    "Security-first design",
+                    "Defense in depth",
+                    "Automated compliance checks"
+                ]
+            },
+            {
+                title: "CATEGORY 6: Delivery Realism",
+                checks: [
+                    "Is timeline based on similar projects?",
+                    "Are assumptions documented?",
+                    "Is team capacity validated?",
+                    "Are unknowns acknowledged?",
+                    "Is there buffer for risks?"
+                ],
+                redFlags: [
+                    "Aggressive timeline with no justification",
+                    "No risk buffer",
+                    "Assumes ideal conditions"
+                ],
+                goodPractice: [
+                    "Timeline based on benchmarks",
+                    "Risk-adjusted estimates",
+                    "Phased milestones"
+                ]
+            },
+            {
+                title: "CATEGORY 7: Team & Operating Model",
+                checks: [
+                    "Is team structure defined?",
+                    "Are skills gaps identified?",
+                    "Is operating model clear (DevOps/SRE)?",
+                    "Is knowledge transfer planned?",
+                    "Is runbook/documentation included?"
+                ],
+                redFlags: [
+                    "No team discussion",
+                    "Assumes existing skills",
+                    "No training plan"
+                ],
+                goodPractice: [
+                    "Skills assessment done",
+                    "Training included",
+                    "Runbooks delivered"
+                ]
+            }
+        ],
+        de: [
+            {
+                title: "KATEGORIE 1: Architekturqualität & Trade-offs",
+                checks: [
+                    "Werden 2+ alternative Ansätze präsentiert?",
+                    "Sind Trade-offs explizit dokumentiert?",
+                    "Ist die Architektur modular (Lock-in vermeiden)?",
+                    "Entspricht sie dem tatsächlichen Maßstab (nicht über-engineered)?",
+                    "Sind Integrationspunkte klar definiert?"
+                ],
+                redFlags: [
+                    "Einzelne Vendor-\"Empfohlene Architektur\"",
+                    "Keine Alternativen diskutiert",
+                    "Über-engineered für aktuellen Maßstab"
+                ],
+                goodPractice: [
+                    "2-3 Optionen mit Vor-/Nachteilen",
+                    "Klare Entscheidungskriterien",
+                    "Richtig dimensioniert für 12-24 Monate"
+                ]
+            },
+            {
+                title: "KATEGORIE 2: Kostentransparenz & FinOps",
+                checks: [
+                    "Ist die Preisgestaltung nach Komponenten aufgeschlüsselt?",
+                    "Werden versteckte Kosten aufgedeckt (Egress, Support, Lizenzen)?",
+                    "Wird der Preis mit Alternativen verglichen?",
+                    "Ist das Kostenmodell auf Wachstum ausgerichtet?",
+                    "Gibt es einen Kostenoptimierungsplan?"
+                ],
+                redFlags: [
+                    "Intransparente Preisgestaltung",
+                    "\"Preis auf Anfrage\"",
+                    "Kein Vergleich zu Alternativen"
+                ],
+                goodPractice: [
+                    "Detaillierte Kostenaufschlüsselung",
+                    "TCO-Analyse (3-5 Jahre)",
+                    "Kostenoptimierungs-Roadmap"
+                ]
+            },
+            {
+                title: "KATEGORIE 3: Risikomanagement & Compliance",
+                checks: [
+                    "Sind Compliance-Anforderungen abgebildet?",
+                    "Gibt es einen Rollback/Rollforward-Plan?",
+                    "Sind Abhängigkeiten identifiziert?",
+                    "Wird Vendor Lock-in-Risiko bewertet?",
+                    "Sind Single Points of Failure dokumentiert?"
+                ],
+                redFlags: [
+                    "Keine Compliance-Diskussion",
+                    "Kein Rollback-Plan",
+                    "Proprietäre Formate/APIs"
+                ],
+                goodPractice: [
+                    "Compliance Standards zugeordnet",
+                    "Risikoregister mit Mitigationen",
+                    "Exit-Strategie dokumentiert"
+                ]
+            },
+            {
+                title: "KATEGORIE 4: Integration & Sequenzierung",
+                checks: [
+                    "Sind bestehende Systeme abgebildet?",
+                    "Sind Integrationsmuster definiert?",
+                    "Ist die Sequenzierung logisch (Abhängigkeiten)?",
+                    "Sind Datenmigrationsrisiken identifiziert?",
+                    "Gibt es einen inkrementellen Lieferplan?"
+                ],
+                redFlags: [
+                    "\"Lift and Shift\" ohne Analyse",
+                    "Big-Bang-Ansatz",
+                    "Keine Integrationsstrategie"
+                ],
+                goodPractice: [
+                    "Phasenweise Lieferung (Wertinkremente)",
+                    "Integration früh getestet",
+                    "Abhängigkeiten abgebildet"
+                ]
+            },
+            {
+                title: "KATEGORIE 5: Sicherheitsarchitektur",
+                checks: [
+                    "Ist Sicherheit eingebaut (nicht nachträglich)?",
+                    "Sind Bedrohungsmodelle dokumentiert?",
+                    "Wird Zero-Trust-Ansatz verwendet?",
+                    "Ist Secrets Management definiert?",
+                    "Ist Observability enthalten?"
+                ],
+                redFlags: [
+                    "Sicherheit als Nachgedanke",
+                    "Keine Bedrohungsmodellierung",
+                    "Geteilte Credentials"
+                ],
+                goodPractice: [
+                    "Security-First-Design",
+                    "Defense in Depth",
+                    "Automatisierte Compliance-Checks"
+                ]
+            },
+            {
+                title: "KATEGORIE 6: Lieferrealismus",
+                checks: [
+                    "Basiert der Zeitplan auf ähnlichen Projekten?",
+                    "Sind Annahmen dokumentiert?",
+                    "Ist Teamkapazität validiert?",
+                    "Werden Unbekannte anerkannt?",
+                    "Gibt es einen Puffer für Risiken?"
+                ],
+                redFlags: [
+                    "Aggressiver Zeitplan ohne Begründung",
+                    "Kein Risikopuffer",
+                    "Geht von idealen Bedingungen aus"
+                ],
+                goodPractice: [
+                    "Zeitplan basierend auf Benchmarks",
+                    "Risikoadjustierte Schätzungen",
+                    "Phasenweise Meilensteine"
+                ]
+            },
+            {
+                title: "KATEGORIE 7: Team & Operating Model",
+                checks: [
+                    "Ist Teamstruktur definiert?",
+                    "Sind Kompetenzlücken identifiziert?",
+                    "Ist Operating Model klar (DevOps/SRE)?",
+                    "Ist Wissenstransfer geplant?",
+                    "Sind Runbooks/Dokumentation enthalten?"
+                ],
+                redFlags: [
+                    "Keine Team-Diskussion",
+                    "Geht von bestehenden Fähigkeiten aus",
+                    "Kein Schulungsplan"
+                ],
+                goodPractice: [
+                    "Kompetenzbewertung durchgeführt",
+                    "Schulung enthalten",
+                    "Runbooks geliefert"
+                ]
+            }
+        ]
+    };
+
+    const content = categories[lang] || categories.en;
+    const checklistTitle = lang === 'de' 
+        ? "Angebotsprüfungs-Checkliste (Herstellerneutral)"
+        : "Vendor Proposal Review Checklist (Vendor-Neutral)";
+    
+    const howToUse = lang === 'de'
+        ? "WIE SIE ES VERWENDEN:\n\n1. Überprüfen Sie jede Kategorie gegen Ihr aktuelles Angebot\n2. Aktivieren Sie Kontrollkästchen für Punkte, die das Angebot gut abdeckt\n3. Notieren Sie Warnsignale oder fehlende Elemente\n4. Berechnen Sie Ihre Punktzahl (Seite 12)"
+        : "HOW TO USE IT:\n\n1. Review each category against your current proposal\n2. Check boxes for items the proposal addresses well\n3. Note red flags or missing elements\n4. Calculate your score (page 12)";
+
+    const scoringTitle = lang === 'de' ? "BEWERTUNG" : "SCORING SECTION";
+    const scoringText = lang === 'de'
+        ? "Zählen Sie Häkchen pro Kategorie.\nGesamtpunktzahl = Summe aller Häkchen (max 35)\n\n0-12 Punkte: HOHES RISIKO\n→ Erhebliche Lücken. Empfehlung: Unabhängige Überprüfung vor Verpflichtung.\n\n13-24 Punkte: MODERATES RISIKO\n→ Einige Lücken zu beheben. Mit Vendor klären oder unabhängig validieren.\n\n25-35 Punkte: NIEDRIGES RISIKO\n→ Angebot erscheint gründlich. Spezifische Details vor Unterzeichnung prüfen."
+        : "Count checkmarks per category.\nTotal score = sum of all checkmarks (max 35)\n\n0-12 points: HIGH RISK\n→ Significant gaps. Recommend independent review before committing.\n\n13-24 points: MODERATE RISK\n→ Some gaps to address. Clarify with vendor or validate independently.\n\n25-35 points: LOW RISK\n→ Proposal appears thorough. Review specific details before signing.";
+
+    const ctaText = lang === 'de'
+        ? "Wenn Sie <25 Punkte erzielt haben oder Lücken in kritischen Kategorien gefunden haben, erwägen Sie eine herstellerneutrale zweite Meinung."
+        : "If you scored <25 or found gaps in critical categories, consider a vendor-neutral second opinion.";
+
+    const ctaButton = lang === 'de' ? "30-Minuten-Beratung" : "30-minute consultation";
+    const calendarLink = "https://calendly.com/prasad-sgsits/30min";
+    const emailContact = "prasad@prasadtilloo.com";
+
+    const greeting = lang === 'de' ? 'Hallo' : 'Hi';
+    const pdfNote = lang === 'de'
+        ? "Hier ist Ihre Checkliste—inline zur schnellen Referenz und als PDF zum Speichern/Teilen."
+        : "Here's your checklist—inline for quick reference and as PDF for saving/sharing.";
+    
+    const optionalFeedbackTitle = lang === 'de' ? "OPTIONAL: FEEDBACK ERHALTEN" : "OPTIONAL: GET FEEDBACK";
+    
+    const psText = lang === 'de'
+        ? "P.S. Wenn dies hilfreich war, teilen Sie es gerne mit Kollegen, die ähnliche Entscheidungen bewerten."
+        : "P.S. If this was helpful, feel free to share with colleagues evaluating similar decisions.";
+
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${checklistTitle}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #334155; max-width: 700px; margin: 0 auto; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold;">${checklistTitle}</h1>
+        <p style="color: #cbd5e1; margin: 10px 0 0 0; font-size: 14px;">Professional architecture validation checklist</p>
+    </div>
+    
+    <div style="background: #ffffff; padding: 30px 20px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 8px 8px;">
+        <p style="color: #475569; margin-bottom: 20px; font-size: 15px;">${greeting},</p>
+        <p style="color: #475569; margin-bottom: 20px; font-size: 15px;">${pdfNote}</p>
+        
+        <div style="background: #f0f9ff; padding: 20px; border-left: 4px solid #0284c7; border-radius: 4px; margin-bottom: 30px;">
+            <h2 style="color: #0284c7; font-size: 16px; font-weight: 700; margin: 0 0 12px 0;">📋 HOW TO USE THIS:</h2>
+            <div style="white-space: pre-line; color: #475569; font-size: 14px; line-height: 1.8;">
+${howToUse}
+            </div>
+            <p style="color: #475569; font-size: 13px; margin: 12px 0 0 0; font-style: italic;">
+                ${lang === 'de' ? 'Wenn Sie <25 Punkte erzielen, deutet dies normalerweise auf Bereiche hin, die es wert sind, mit einem unabhängigen Gutachter besprochen zu werden.' : 'If you score <25, that typically indicates areas worth discussing with an independent reviewer.'}
+            </p>
+        </div>
+        
+        ${content.map((category, catIndex) => `
+            <div style="margin-bottom: 40px; padding-bottom: 30px; border-bottom: ${catIndex < content.length - 1 ? '2px solid #e2e8f0' : 'none'};">
+                <div style="background: #f0f9ff; padding: 16px; border-left: 4px solid #0284c7; margin: 0 0 20px 0; border-radius: 4px;">
+                    <h2 style="color: #0284c7; font-size: 18px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                        📋 ${category.title}
+                    </h2>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    ${category.checks.map((check, index) => `
+                        <div style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border: 2px solid #64748b; border-radius: 3px; display: inline-block;"></span>
+                            <span style="color: #475569; font-size: 14px;">${check}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 16px; margin-bottom: 16px; border-radius: 4px;">
+                    <strong style="color: #dc2626; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">⚠️ RED FLAGS:</strong>
+                    <ul style="margin: 0; padding-left: 20px; color: #7f1d1d; font-size: 13px;">
+                        ${category.redFlags.map(flag => `<li style="margin-bottom: 5px;">${flag}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 16px; border-radius: 4px;">
+                    <strong style="color: #16a34a; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">✅ GOOD PRACTICE:</strong>
+                    <ul style="margin: 0; padding-left: 20px; color: #14532d; font-size: 13px;">
+                        ${category.goodPractice.map(practice => `<li style="margin-bottom: 5px;">${practice}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `).join('')}
+        
+        <div style="background: #f8fafc; padding: 25px; border-radius: 8px; margin-top: 40px; margin-bottom: 30px;">
+            <h2 style="color: #0f172a; font-size: 18px; font-weight: 700; margin: 0 0 20px 0; text-transform: uppercase; text-align: center;">
+                ${scoringTitle}
+            </h2>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="display: inline-block; text-align: left;">
+                    <div style="margin: 8px 0;">
+                        <span style="display: inline-block; width: 100px; background: #dc2626; height: 8px; border-radius: 4px; vertical-align: middle;"></span>
+                        <span style="margin-left: 12px; color: #475569; font-size: 14px;">0-12: ${lang === 'de' ? 'HOHES RISIKO' : 'HIGH RISK'}</span>
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <span style="display: inline-block; width: 150px; background: #f59e0b; height: 8px; border-radius: 4px; vertical-align: middle;"></span>
+                        <span style="margin-left: 12px; color: #475569; font-size: 14px;">13-24: ${lang === 'de' ? 'MODERATES RISIKO' : 'MODERATE RISK'}</span>
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <span style="display: inline-block; width: 200px; background: #16a34a; height: 8px; border-radius: 4px; vertical-align: middle;"></span>
+                        <span style="margin-left: 12px; color: #475569; font-size: 14px;">25-35: ${lang === 'de' ? 'NIEDRIGES RISIKO' : 'LOW RISK'}</span>
+                    </div>
+                </div>
+            </div>
+            <div style="white-space: pre-line; color: #475569; font-size: 14px; line-height: 1.8;">
+${scoringText}
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 32px; border-radius: 12px; margin: 32px 0; text-align: center;">
+            <h3 style="color: white; margin: 0 0 16px 0; font-size: 18px;">
+                ${lang === 'de' ? 'Lücken in Ihrem Angebot gefunden?' : 'Found Gaps in Your Proposal?'}
+            </h3>
+            <p style="color: #cbd5e1; margin-bottom: 24px; font-size: 15px; line-height: 1.6;">
+                ${ctaText}
+            </p>
+            <div style="margin-bottom: 16px;">
+                <a href="https://calendly.com/prasad-sgsits/30min" style="display: inline-block; background: #10b981; color: #ffffff !important; padding: 16px 32px; border-radius: 8px; text-decoration: none !important; font-weight: bold; font-size: 15px;">
+                    ${lang === 'de' ? '📅 30-Minuten-Beratung buchen' : '📅 Book 30-Minute Consultation'} (${lang === 'de' ? 'keine Verpflichtung' : 'no obligation'})
+                </a>
+            </div>
+            <p style="color: #cbd5e1; font-size: 14px; margin: 0;">
+                ${lang === 'de' ? 'Oder antworten Sie auf diese E-Mail mit Ihrem Kontext' : 'Or reply to this email with your context'}
+            </p>
+        </div>
+        
+        <div style="border-top: 2px solid #e2e8f0; padding-top: 24px; margin-top: 32px;">
+            <h3 style="color: #0f172a; font-size: 16px; font-weight: 700; margin: 0 0 16px 0;">
+                ${optionalFeedbackTitle}
+            </h3>
+            <div style="color: #475569; font-size: 14px; line-height: 1.8; margin-bottom: 16px;">
+                <p style="margin: 0 0 12px 0;">${lang === 'de' ? 'Wenn Sie eine kurze zweite Meinung zu Ihrer spezifischen Situation wünschen, helfe ich gerne:' : "If you'd like a brief second opinion on your specific situation, I'm happy to provide feedback:"}</p>
+                <ul style="margin: 0 0 12px 0; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">${lang === 'de' ? 'Antworten Sie auf diese E-Mail mit Ihrem Kontext (Cloud/Plattform/AI, Budgetrahmen, Zeitplan)' : 'Reply to this email with your context (cloud/platform/AI, budget range, timeline)'}</li>
+                    <li style="margin-bottom: 8px;">${lang === 'de' ? 'Oder buchen Sie eine 30-minütige Diskussion (unverbindlich)' : 'Or book a 30-minute discussion (no obligation)'}</li>
+                </ul>
+            </div>
+            <div style="text-align: center; margin-bottom: 24px;">
+                <a href="https://calendly.com/prasad-sgsits/30min" style="display: inline-block; background: #059669; color: #ffffff !important; padding: 12px 24px; text-decoration: none !important; border-radius: 6px; font-weight: 600; font-size: 14px; border: none;">
+                    ${lang === 'de' ? '📅 30-Minuten-Beratung buchen' : '📅 Book 30-Minute Consultation'}
+                </a>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid #e2e8f0; padding-top: 24px; margin-top: 32px; color: #64748b; font-size: 14px;">
+            <p style="margin-bottom: 8px; color: #0f172a; font-weight: 600;">
+                <strong>Prasad Tilloo</strong> | Independent Architecture & Transformation Consultant
+            </p>
+            <p style="margin-bottom: 16px; line-height: 1.6;">
+                Vendor-neutral advice • No implementation upsell • Based in Germany<br />
+                Global delivery experience: North America, Europe, Asia, South America
+            </p>
+            <p style="margin-bottom: 16px;">
+                🌐 <a href="https://prasadtilloo.com" style="color: #10b981; text-decoration: none;">prasadtilloo.com</a>
+                &nbsp; | &nbsp;
+                📧 <a href="mailto:${emailContact}" style="color: #10b981; text-decoration: none;">${emailContact}</a>
+                &nbsp; | &nbsp;
+                💼 <a href="https://linkedin.com/in/prasadtilloo" style="color: #10b981; text-decoration: none;">LinkedIn</a>
+            </p>
+            <p style="color: #94a3b8; font-size: 12px; margin-top: 24px; font-style: italic;">
+                ${psText}
+            </p>
+            <p style="color: #94a3b8; font-size: 11px; margin-top: 16px;">
+                ${lang === 'de' ? 'Sie haben dies erhalten, weil Sie die Angebotsprüfungs-Checkliste angefordert haben.' : 'You received this because you requested the Vendor Proposal Review Checklist.'}
+                <br />
+                ${lang === 'de' ? 'Kein Newsletter. Kein Spam.' : 'No newsletter. No spam.'}
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+    `.trim();
+};
+
+// Generate PDF version of checklist
+const generateChecklistPDF = async (lang = 'en') => {
+    try {
+        console.log('[PDF] Attempting to import pdfkit...');
+        let PDFDocument;
+        try {
+            const pdfkitModule = await import('pdfkit');
+            PDFDocument = pdfkitModule.default;
+            console.log('[PDF] pdfkit imported successfully');
+        } catch (importError) {
+            console.error('[PDF] ❌ Failed to import pdfkit:', importError.message);
+            console.error('[PDF] ⚠️  PDF generation unavailable. To enable PDF attachments:');
+            console.error('[PDF]    1. Run: cd server && npm install pdfkit');
+            console.error('[PDF]    2. Restart the server');
+            console.error('[PDF]    Email will still be sent without PDF attachment.');
+            // Return null to allow email to be sent without PDF
+            return null;
+        }
+        const doc = new PDFDocument({ 
+            margin: 60,
+            size: 'LETTER',
+            info: {
+                Title: lang === 'de' ? 'Angebotsprüfungs-Checkliste' : 'Vendor Proposal Review Checklist',
+                Author: 'Prasad Tilloo',
+                Subject: 'Vendor Proposal Review Checklist'
+            }
+        });
+        
+        // Collect PDF data
+        const buffers = [];
+        doc.on('data', buffers.push.bind(buffers));
+        
+        // Helper function to add section
+        const addSection = (title, fontSize = 14, isBold = true) => {
+            doc.moveDown(0.8);
+            doc.fontSize(fontSize);
+            if (isBold) doc.font('Helvetica-Bold');
+            else doc.font('Helvetica');
+            doc.text(title, { align: 'left' });
+            doc.moveDown(0.4);
+        };
+        
+        const addText = (text, fontSize = 10, options = {}) => {
+            doc.fontSize(fontSize);
+            doc.font('Helvetica');
+            const opts = { align: 'left', continued: false, ...options };
+            doc.text(text, opts);
+            doc.moveDown(0.25);
+        };
+        
+        // Title Page
+        doc.fontSize(24).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'Angebotsprüfungs-Checkliste' : 'Vendor Proposal Review Checklist', { align: 'center' });
+        doc.moveDown(0.5);
+        doc.fontSize(14).font('Helvetica');
+        doc.text(lang === 'de' ? 'Herstellerneutrale Architekturbewertung' : 'Vendor-Neutral Architecture Validation', { align: 'center' });
+        doc.moveDown(1.5);
+        
+        // How to Use
+        doc.fontSize(12).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'WIE SIE ES VERWENDEN:' : 'HOW TO USE IT:', { align: 'left' });
+        doc.moveDown(0.5);
+        doc.fontSize(10).font('Helvetica');
+        doc.text('1. ' + (lang === 'de' ? 'Überprüfen Sie jede Kategorie gegen Ihr aktuelles Angebot' : 'Review each category against your current proposal'), { align: 'left' });
+        doc.moveDown(0.3);
+        doc.text('2. ' + (lang === 'de' ? 'Aktivieren Sie Kontrollkästchen für Punkte, die das Angebot gut abdeckt' : 'Check boxes for items the proposal addresses well'), { align: 'left' });
+        doc.moveDown(0.3);
+        doc.text('3. ' + (lang === 'de' ? 'Notieren Sie Warnsignale oder fehlende Elemente' : 'Note red flags or missing elements'), { align: 'left' });
+        doc.moveDown(0.3);
+        doc.text('4. ' + (lang === 'de' ? 'Berechnen Sie Ihre Punktzahl (siehe unten)' : 'Calculate your score (see below)'), { align: 'left' });
+        doc.moveDown(0.5);
+        doc.fontSize(9).font('Helvetica');
+        doc.text((lang === 'de' ? 'Wenn Sie <25 Punkte erzielen, deutet dies normalerweise auf Bereiche hin, die es wert sind, mit einem unabhängigen Gutachter besprochen zu werden.' : 'If you score <25, that typically indicates areas worth discussing with an independent reviewer.'), { align: 'left' });
+        doc.moveDown(1);
+        
+        // Table of Contents
+        doc.fontSize(11).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'INHALTSVERZEICHNIS' : 'TABLE OF CONTENTS', { align: 'left' });
+        doc.moveDown(0.4);
+        doc.fontSize(9).font('Helvetica');
+        const tocItems = lang === 'de' 
+            ? [
+                'Kategorie 1: Architekturqualität & Trade-offs',
+                'Kategorie 2: Kostentransparenz & FinOps',
+                'Kategorie 3: Risikomanagement & Compliance',
+                'Kategorie 4: Integration & Sequenzierung',
+                'Kategorie 5: Sicherheitsarchitektur',
+                'Kategorie 6: Lieferrealismus',
+                'Kategorie 7: Team & Operating Model',
+                'Bewertung'
+            ]
+            : [
+                'Category 1: Architecture Quality & Trade-offs',
+                'Category 2: Cost Transparency & FinOps',
+                'Category 3: Risk Management & Compliance',
+                'Category 4: Integration & Sequencing',
+                'Category 5: Security Architecture',
+                'Category 6: Delivery Realism',
+                'Category 7: Team & Operating Model',
+                'Scoring Section'
+            ];
+        tocItems.forEach((item, idx) => {
+            doc.text(`${idx + 1}. ${item}`, { align: 'left', indent: 10 });
+            doc.moveDown(0.2);
+        });
+        doc.moveDown(1);
+        
+        // Categories (using the same data structure)
+        const categories = lang === 'de' ? [
+            { title: "KATEGORIE 1: Architekturqualität & Trade-offs", checks: ["Werden 2+ alternative Ansätze präsentiert?", "Sind Trade-offs explizit dokumentiert?", "Ist die Architektur modular (Lock-in vermeiden)?", "Entspricht sie dem tatsächlichen Maßstab (nicht über-engineered)?", "Sind Integrationspunkte klar definiert?"], redFlags: ["Einzelne Vendor-\"Empfohlene Architektur\"", "Keine Alternativen diskutiert", "Über-engineered für aktuellen Maßstab"], goodPractice: ["2-3 Optionen mit Vor-/Nachteilen", "Klare Entscheidungskriterien", "Richtig dimensioniert für 12-24 Monate"] },
+            { title: "KATEGORIE 2: Kostentransparenz & FinOps", checks: ["Ist die Preisgestaltung nach Komponenten aufgeschlüsselt?", "Werden versteckte Kosten aufgedeckt (Egress, Support, Lizenzen)?", "Wird der Preis mit Alternativen verglichen?", "Ist das Kostenmodell auf Wachstum ausgerichtet?", "Gibt es einen Kostenoptimierungsplan?"], redFlags: ["Intransparente Preisgestaltung", "\"Preis auf Anfrage\"", "Kein Vergleich zu Alternativen"], goodPractice: ["Detaillierte Kostenaufschlüsselung", "TCO-Analyse (3-5 Jahre)", "Kostenoptimierungs-Roadmap"] },
+            { title: "KATEGORIE 3: Risikomanagement & Compliance", checks: ["Sind Compliance-Anforderungen abgebildet?", "Gibt es einen Rollback/Rollforward-Plan?", "Sind Abhängigkeiten identifiziert?", "Wird Vendor Lock-in-Risiko bewertet?", "Sind Single Points of Failure dokumentiert?"], redFlags: ["Keine Compliance-Diskussion", "Kein Rollback-Plan", "Proprietäre Formate/APIs"], goodPractice: ["Compliance Standards zugeordnet", "Risikoregister mit Mitigationen", "Exit-Strategie dokumentiert"] },
+            { title: "KATEGORIE 4: Integration & Sequenzierung", checks: ["Sind bestehende Systeme abgebildet?", "Sind Integrationsmuster definiert?", "Ist die Sequenzierung logisch (Abhängigkeiten)?", "Sind Datenmigrationsrisiken identifiziert?", "Gibt es einen inkrementellen Lieferplan?"], redFlags: ["\"Lift and Shift\" ohne Analyse", "Big-Bang-Ansatz", "Keine Integrationsstrategie"], goodPractice: ["Phasenweise Lieferung (Wertinkremente)", "Integration früh getestet", "Abhängigkeiten abgebildet"] },
+            { title: "KATEGORIE 5: Sicherheitsarchitektur", checks: ["Ist Sicherheit eingebaut (nicht nachträglich)?", "Sind Bedrohungsmodelle dokumentiert?", "Wird Zero-Trust-Ansatz verwendet?", "Ist Secrets Management definiert?", "Ist Observability enthalten?"], redFlags: ["Sicherheit als Nachgedanke", "Keine Bedrohungsmodellierung", "Geteilte Credentials"], goodPractice: ["Security-First-Design", "Defense in Depth", "Automatisierte Compliance-Checks"] },
+            { title: "KATEGORIE 6: Lieferrealismus", checks: ["Basiert der Zeitplan auf ähnlichen Projekten?", "Sind Annahmen dokumentiert?", "Ist Teamkapazität validiert?", "Werden Unbekannte anerkannt?", "Gibt es einen Puffer für Risiken?"], redFlags: ["Aggressiver Zeitplan ohne Begründung", "Kein Risikopuffer", "Geht von idealen Bedingungen aus"], goodPractice: ["Zeitplan basierend auf Benchmarks", "Risikoadjustierte Schätzungen", "Phasenweise Meilensteine"] },
+            { title: "KATEGORIE 7: Team & Operating Model", checks: ["Ist Teamstruktur definiert?", "Sind Kompetenzlücken identifiziert?", "Ist Operating Model klar (DevOps/SRE)?", "Ist Wissenstransfer geplant?", "Sind Runbooks/Dokumentation enthalten?"], redFlags: ["Keine Team-Diskussion", "Geht von bestehenden Fähigkeiten aus", "Kein Schulungsplan"], goodPractice: ["Kompetenzbewertung durchgeführt", "Schulung enthalten", "Runbooks geliefert"] }
+        ] : [
+            { title: "CATEGORY 1: Architecture Quality & Trade-offs", checks: ["Are 2+ alternative approaches presented?", "Are trade-offs explicitly documented?", "Is architecture modular (avoid lock-in)?", "Does it match actual scale (not over-engineered)?", "Are integration points well-defined?"], redFlags: ["Single vendor \"recommended architecture\"", "No alternatives discussed", "Over-engineered for current scale"], goodPractice: ["2-3 options with pros/cons", "Clear decision criteria", "Right-sized for 12-24 month horizon"] },
+            { title: "CATEGORY 2: Cost Transparency & FinOps", checks: ["Is pricing broken down by component?", "Are hidden costs surfaced (egress, support, licensing)?", "Is cost compared to alternatives?", "Is cost model aligned to growth?", "Is there cost optimization plan?"], redFlags: ["Opaque pricing", "\"Contact for pricing\"", "No comparison to alternatives"], goodPractice: ["Detailed cost breakdown", "TCO analysis (3-5 years)", "Cost optimization roadmap"] },
+            { title: "CATEGORY 3: Risk Management & Compliance", checks: ["Are compliance requirements mapped?", "Is there rollback/rollforward plan?", "Are dependencies identified?", "Is vendor lock-in risk assessed?", "Are single points of failure documented?"], redFlags: ["No compliance discussion", "No rollback plan", "Proprietary formats/APIs"], goodPractice: ["Compliance mapped to standards", "Risk register with mitigations", "Exit strategy documented"] },
+            { title: "CATEGORY 4: Integration & Sequencing", checks: ["Are existing systems mapped?", "Are integration patterns defined?", "Is sequencing logical (dependencies)?", "Are data migration risks identified?", "Is there incremental delivery plan?"], redFlags: ["\"Lift and shift\" without analysis", "Big-bang approach", "No integration strategy"], goodPractice: ["Phased delivery (value increments)", "Integration tested early", "Dependencies mapped"] },
+            { title: "CATEGORY 5: Security Architecture", checks: ["Is security built-in (not bolted-on)?", "Are threat models documented?", "Is zero-trust approach used?", "Are secrets management defined?", "Is observability included?"], redFlags: ["Security as afterthought", "No threat modeling", "Shared credentials"], goodPractice: ["Security-first design", "Defense in depth", "Automated compliance checks"] },
+            { title: "CATEGORY 6: Delivery Realism", checks: ["Is timeline based on similar projects?", "Are assumptions documented?", "Is team capacity validated?", "Are unknowns acknowledged?", "Is there buffer for risks?"], redFlags: ["Aggressive timeline with no justification", "No risk buffer", "Assumes ideal conditions"], goodPractice: ["Timeline based on benchmarks", "Risk-adjusted estimates", "Phased milestones"] },
+            { title: "CATEGORY 7: Team & Operating Model", checks: ["Is team structure defined?", "Are skills gaps identified?", "Is operating model clear (DevOps/SRE)?", "Is knowledge transfer planned?", "Is runbook/documentation included?"], redFlags: ["No team discussion", "Assumes existing skills", "No training plan"], goodPractice: ["Skills assessment done", "Training included", "Runbooks delivered"] }
+        ];
+        
+        categories.forEach((category, index) => {
+            if (index > 0) {
+                doc.addPage();
+                doc.moveDown(0.3);
+            }
+            
+            // Category Title
+            doc.fontSize(15).font('Helvetica-Bold');
+            doc.text(category.title, { align: 'left' });
+            doc.moveDown(0.6);
+            
+            // Checklist Items
+            doc.fontSize(10).font('Helvetica');
+            doc.text('CHECKLIST:', { align: 'left', continued: false });
+            doc.moveDown(0.3);
+            category.checks.forEach((check, i) => {
+                // Use a simple checkbox format that PDFKit can render
+                doc.fontSize(10).font('Helvetica');
+                doc.text(`[ ] ${check}`, { 
+                    indent: 20, 
+                    align: 'left',
+                    width: 500,
+                    lineGap: 2
+                });
+                doc.moveDown(0.2);
+            });
+            
+            doc.moveDown(0.5);
+            
+            // Red Flags Section
+            doc.fontSize(11).font('Helvetica-Bold');
+            doc.text('[!] RED FLAGS:', { align: 'left' });
+            doc.moveDown(0.3);
+            doc.fontSize(9).font('Helvetica');
+            category.redFlags.forEach(flag => {
+                doc.text(`- ${flag}`, { 
+                    indent: 20, 
+                    align: 'left',
+                    width: 500,
+                    lineGap: 2
+                });
+                doc.moveDown(0.15);
+            });
+            
+            doc.moveDown(0.4);
+            
+            // Good Practice Section
+            doc.fontSize(11).font('Helvetica-Bold');
+            doc.text('[OK] GOOD PRACTICE:', { align: 'left' });
+            doc.moveDown(0.3);
+            doc.fontSize(9).font('Helvetica');
+            category.goodPractice.forEach(practice => {
+                doc.text(`- ${practice}`, { 
+                    indent: 20, 
+                    align: 'left',
+                    width: 500,
+                    lineGap: 2
+                });
+                doc.moveDown(0.15);
+            });
+            
+            doc.moveDown(0.8);
+        });
+        
+        // Scoring section
+        doc.addPage();
+        doc.moveDown(0.5);
+        
+        // Scoring Title
+        doc.fontSize(16).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'BEWERTUNG' : 'SCORING SECTION', { align: 'center' });
+        doc.moveDown(1);
+        
+        // Scoring Instructions
+        doc.fontSize(11).font('Helvetica');
+        const scoringText = lang === 'de' 
+            ? 'Zählen Sie Häkchen pro Kategorie.\nGesamtpunktzahl = Summe aller Häkchen (max 35)'
+            : 'Count checkmarks per category.\nTotal score = sum of all checkmarks (max 35)';
+        doc.text(scoringText, { align: 'left' });
+        doc.moveDown(0.8);
+        
+        // Score Ranges
+        doc.fontSize(12).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? '0-12 Punkte: HOHES RISIKO' : '0-12 points: HIGH RISK', { align: 'left' });
+        doc.moveDown(0.3);
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? '→ Erhebliche Lücken. Empfehlung: Unabhängige Überprüfung vor Verpflichtung.'
+            : '→ Significant gaps. Recommend independent review before committing.', { align: 'left', indent: 15 });
+        doc.moveDown(0.6);
+        
+        doc.fontSize(12).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? '13-24 Punkte: MODERATES RISIKO' : '13-24 points: MODERATE RISK', { align: 'left' });
+        doc.moveDown(0.3);
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? '→ Einige Lücken zu beheben. Mit Vendor klären oder unabhängig validieren.'
+            : '→ Some gaps to address. Clarify with vendor or validate independently.', { align: 'left', indent: 15 });
+        doc.moveDown(0.6);
+        
+        doc.fontSize(12).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? '25-35 Punkte: NIEDRIGES RISIKO' : '25-35 points: LOW RISK', { align: 'left' });
+        doc.moveDown(0.3);
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? '→ Angebot erscheint gründlich. Spezifische Details vor Unterzeichnung prüfen.'
+            : '→ Proposal appears thorough. Review specific details before signing.', { align: 'left', indent: 15 });
+        
+        // Footer
+        doc.moveDown(2);
+        doc.fontSize(8).font('Helvetica');
+        doc.text('Prasad Tilloo | Independent Architecture & Transformation Consultant', { align: 'center' });
+        doc.moveDown(0.15);
+        doc.text('prasadtilloo.com | prasad@prasadtilloo.com', { align: 'center' });
+        doc.moveDown(0.15);
+        doc.fontSize(7).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? 'Vendor-neutral • Keine Implementierungsvoreingenommenheit • Ansässig in Deutschland'
+            : 'Vendor-neutral • No implementation bias • Based in Germany', { align: 'center' });
+        
+        // Wait for PDF to be generated
+        return new Promise((resolve, reject) => {
+            doc.on('end', () => {
+                try {
+                    const pdfBuffer = Buffer.concat(buffers);
+                    console.log('[PDF] PDF buffer created, size:', pdfBuffer.length, 'bytes');
+                    resolve(pdfBuffer);
+                } catch (bufferError) {
+                    console.error('[PDF] Error creating buffer:', bufferError);
+                    reject(bufferError);
+                }
+            });
+            doc.on('error', (err) => {
+                console.error('[PDF] PDF document error:', err);
+                reject(err);
+            });
+            // Finalize the PDF
+            doc.end();
+        });
+    } catch (error) {
+        console.error('[PDF] ❌ Failed to generate PDF - Exception caught');
+        console.error('[PDF] Error type:', error.constructor.name);
+        console.error('[PDF] Error message:', error.message);
+        console.error('[PDF] Error stack:', error.stack);
+        // Return null if PDF generation fails - email will still be sent
+        return null;
+    }
+};
+
+// Generate nurture email #2 (Day 2): 3 red flags
+const generateNurtureEmail2 = (lang = 'en') => {
+    const subject = lang === 'de'
+        ? "3 Warnsignale, die ich wiederholt in Vendor-Angeboten sehe"
+        : "3 red flags I see repeatedly in vendor proposals";
+    
+    const content = lang === 'de'
+        ? {
+            greeting: "Hallo",
+            intro: "Nach der Überprüfung von 50+ Architekturangeboten stechen drei Muster als sofortige Warnsignale hervor:",
+            flag1: {
+                title: "1. EINZELNE VENDOR-\"EMPFOHLENE ARCHITEKTUR\"",
+                desc: "Wenn ein Angebot nur einen Ansatz präsentiert, bedeutet das normalerweise:\n- Der Vendor hat es entworfen, um seinen Umsatz zu maximieren\n- Alternativen wurden nicht ernsthaft in Betracht gezogen\n- Sie werden in Richtung Lock-in gelenkt",
+                question: "Was zu fragen: \"Welche Alternativen haben Sie evaluiert? Warum haben Sie sie abgelehnt?\""
+            },
+            flag2: {
+                title: "2. KEINE ROLLBACK/EXIT-STRATEGIE",
+                desc: "Wenn das Angebot nicht enthält:\n- Wie man zurückrollt, wenn Probleme auftreten\n- Wie man wegmigriert, falls nötig\n- Kosten für den Ausstieg",
+                note: "Das ist ein wichtiger Risikoindikator.",
+                question: "Was zu fragen: \"Was ist unsere Exit-Strategie? Was kostet es?\""
+            },
+            flag3: {
+                title: "3. AGGRESSIVER ZEITPLAN OHNE BEGRÜNDUNG",
+                desc: "Wenn der Zeitplan verdächtig schnell (oder langsam) aussieht ohne Vergleich zu ähnlichen Projekten, basiert er normalerweise auf:\n- Idealen Bedingungen (keine Risiken berücksichtigt)\n- Aufgebläht, um Beratungsstunden zu maximieren\n- Nicht in der Realität verankert",
+                question: "Was zu fragen: \"Welche vergleichbaren Projekte haben diesen Zeitplan beeinflusst? Welche Annahmen treffen Sie?\""
+            },
+            cta: "Wenn Sie diese Muster in Ihrem Angebot sehen, erwägen Sie eine unabhängige Überprüfung vor der Unterzeichnung.",
+            button: "30-Minuten-Beratung"
+        }
+        : {
+            greeting: "Hi",
+            intro: "After reviewing 50+ architecture proposals, three patterns stand out as immediate red flags:",
+            flag1: {
+                title: "1. SINGLE VENDOR \"RECOMMENDED ARCHITECTURE\"",
+                desc: "When a proposal presents only one approach, it usually means:\n- The vendor designed it to maximize their revenue\n- Alternatives weren't seriously considered\n- You're being steered toward lock-in",
+                question: "What to ask: \"What alternatives did you evaluate? Why did you reject them?\""
+            },
+            flag2: {
+                title: "2. NO ROLLBACK/EXIT STRATEGY",
+                desc: "If the proposal doesn't include:\n- How to roll back if issues arise\n- How to migrate away if needed\n- Cost to exit",
+                note: "That's a major risk indicator.",
+                question: "What to ask: \"What's our exit strategy? What does it cost?\""
+            },
+            flag3: {
+                title: "3. AGGRESSIVE TIMELINE WITH NO JUSTIFICATION",
+                desc: "If the timeline looks suspiciously fast (or slow) with no comparison to similar projects, it's usually:\n- Based on ideal conditions (no risks accounted)\n- Padded to maximize consulting hours\n- Not grounded in reality",
+                question: "What to ask: \"What comparable projects informed this timeline? What assumptions are you making?\""
+            },
+            cta: "If you're seeing these patterns in your proposal, consider an independent review before signing.",
+            button: "30-minute consultation"
+        };
+
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${subject}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #334155; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: #ffffff; padding: 30px 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+        <p style="color: #475569; margin-bottom: 20px;">${content.greeting},</p>
+        <p style="color: #475569; margin-bottom: 30px;">${content.intro}</p>
+        
+        <div style="margin-bottom: 30px; padding: 20px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 4px;">
+            <h2 style="color: #991b1b; font-size: 16px; font-weight: 700; margin: 0 0 10px 0;">${content.flag1.title}</h2>
+            <p style="color: #7f1d1d; font-size: 14px; margin: 0 0 10px 0; white-space: pre-line;">${content.flag1.desc}</p>
+            <p style="color: #991b1b; font-size: 13px; font-weight: 600; margin: 0;">${content.flag1.question}</p>
+        </div>
+        
+        <div style="margin-bottom: 30px; padding: 20px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 4px;">
+            <h2 style="color: #991b1b; font-size: 16px; font-weight: 700; margin: 0 0 10px 0;">${content.flag2.title}</h2>
+            <p style="color: #7f1d1d; font-size: 14px; margin: 0 0 10px 0; white-space: pre-line;">${content.flag2.desc}</p>
+            ${content.flag2.note ? `<p style="color: #991b1b; font-size: 13px; font-weight: 600; margin: 0 0 10px 0;">${content.flag2.note}</p>` : ''}
+            <p style="color: #991b1b; font-size: 13px; font-weight: 600; margin: 0;">${content.flag2.question}</p>
+        </div>
+        
+        <div style="margin-bottom: 30px; padding: 20px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 4px;">
+            <h2 style="color: #991b1b; font-size: 16px; font-weight: 700; margin: 0 0 10px 0;">${content.flag3.title}</h2>
+            <p style="color: #7f1d1d; font-size: 14px; margin: 0 0 10px 0; white-space: pre-line;">${content.flag3.desc}</p>
+            <p style="color: #991b1b; font-size: 13px; font-weight: 600; margin: 0;">${content.flag3.question}</p>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f1f5f9; border-radius: 8px; text-align: center;">
+            <p style="color: #475569; margin-bottom: 15px; font-size: 14px;">${content.cta}</p>
+            <a href="https://calendly.com/prasad-sgsits/30min" style="display: inline-block; background: #059669; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
+                ${content.button}
+            </a>
+        </div>
+        
+        <p style="color: #94a3b8; font-size: 12px; margin-top: 30px; text-align: center;">
+            Best,<br>Prasad
+        </p>
+    </div>
+</body>
+</html>
+    `.trim();
+};
+
+// Generate nurture email #3 (Day 5): Case example
+const generateNurtureEmail3 = (lang = 'en') => {
+    const subject = lang === 'de'
+        ? "Fallbeispiel: Wie die Vereinfachung der Architektur €400K gespart hat"
+        : "Case example: How simplifying architecture saved €400K";
+    
+    const content = lang === 'de'
+        ? {
+            greeting: "Hallo",
+            intro: "Schnelles Beispiel aus einem kürzlichen Engagement:",
+            case: {
+                client: "KUNDE: Mittelständisches Pharmaunternehmen (Deutschland)",
+                situation: "SITUATION: AWS schlug €450K Kubernetes-Setup für API-Backend vor (10K Benutzer, 50 Mitarbeiter)",
+                proposal: {
+                    title: "VENDOR-ANGEBOT:",
+                    items: [
+                        "Kubernetes (EKS)",
+                        "Service Mesh (Istio)",
+                        "Observability Stack (Prometheus, Grafana, ELK)",
+                        "GitOps (ArgoCD)",
+                        "Multi-Environment-Setup"
+                    ],
+                    cost: "Geschätzte Kosten: €450K Setup + €80K/Jahr Betrieb"
+                },
+                assessment: {
+                    title: "MEINE BEWERTUNG:",
+                    text: "Die Architektur war Enterprise-Grade—aber massiv über-engineered für ihren Maßstab.",
+                    reality: "Realitätscheck:\n- 10K Benutzer = ~5K API-Aufrufe/Tag\n- 50 Mitarbeiter = kein DevOps-Team\n- Erste Cloud-Migration"
+                },
+                recommendation: {
+                    title: "EMPFEHLUNG:",
+                    text: "Serverless-Architektur (AWS Lambda + API Gateway):",
+                    items: [
+                        "Gleiche Funktionalität",
+                        "Null DevOps-Overhead",
+                        "Skaliert automatisch",
+                        "€35K Setup + €15K/Jahr Betrieb"
+                    ]
+                },
+                outcome: {
+                    title: "ERGEBNIS:",
+                    text: "Kunde sparte €415K vorab + €65K/Jahr\nIn 2 Wochen deployed (vs. 3 Monate)\nKein DevOps-Hiring nötig"
+                }
+            },
+            lesson: {
+                title: "DIE LEHRE:",
+                text: "Vendor-Angebote optimieren oft für:\n- Ihre Expertise (Kubernetes-Spezialisten empfehlen K8s)\n- Ihren Umsatz (komplex = mehr abrechenbare Stunden)\n- Enterprise-Muster (auch wenn Sie sie nicht brauchen)",
+                notFor: "Nicht für:\n- Ihren tatsächlichen Maßstab\n- Die Fähigkeiten Ihres Teams\n- Ihre Budgetbeschränkungen"
+            },
+            cta: "Wenn Sie eine Überprüfung Ihrer Architekturentscheidung wünschen, bin ich gerne bereit, eine schnelle Bewertung bereitzustellen.",
+            button: "30-Minuten-Beratung"
+        }
+        : {
+            greeting: "Hi",
+            intro: "Quick example from a recent engagement:",
+            case: {
+                client: "CLIENT: Mid-market pharma company (Germany)",
+                situation: "SITUATION: AWS proposed €450K Kubernetes setup for API backend (10K users, 50 employees)",
+                proposal: {
+                    title: "VENDOR PROPOSAL:",
+                    items: [
+                        "Kubernetes (EKS)",
+                        "Service mesh (Istio)",
+                        "Observability stack (Prometheus, Grafana, ELK)",
+                        "GitOps (ArgoCD)",
+                        "Multi-environment setup"
+                    ],
+                    cost: "Estimated cost: €450K setup + €80K/year run"
+                },
+                assessment: {
+                    title: "MY ASSESSMENT:",
+                    text: "The architecture was enterprise-grade—but massively over-engineered for their scale.",
+                    reality: "Reality check:\n- 10K users = ~5K API calls/day\n- 50 employees = no DevOps team\n- First cloud migration"
+                },
+                recommendation: {
+                    title: "RECOMMENDATION:",
+                    text: "Serverless architecture (AWS Lambda + API Gateway):",
+                    items: [
+                        "Same functionality",
+                        "Zero DevOps overhead",
+                        "Scales automatically",
+                        "€35K setup + €15K/year run"
+                    ]
+                },
+                outcome: {
+                    title: "OUTCOME:",
+                    text: "Client saved €415K upfront + €65K/year\nDeployed in 2 weeks (vs 3 months)\nNo DevOps hiring needed"
+                }
+            },
+            lesson: {
+                title: "THE LESSON:",
+                text: "Vendor proposals often optimize for:\n- Their expertise (Kubernetes specialists recommend K8s)\n- Their revenue (complex = more billable hours)\n- Enterprise patterns (even when you don't need them)",
+                notFor: "Not for:\n- Your actual scale\n- Your team's capabilities\n- Your budget constraints"
+            },
+            cta: "If you'd like a sanity check on your architecture decision, I'm happy to provide a quick assessment.",
+            button: "30-minute consultation"
+        };
+
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${subject}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #334155; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: #ffffff; padding: 30px 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+        <p style="color: #475569; margin-bottom: 20px;">${content.greeting},</p>
+        <p style="color: #475569; margin-bottom: 30px;">${content.intro}</p>
+        
+        <div style="margin-bottom: 25px;">
+            <p style="color: #0f172a; font-weight: 700; margin: 0 0 5px 0;">${content.case.client}</p>
+            <p style="color: #0f172a; font-weight: 700; margin: 0 0 15px 0;">${content.case.situation}</p>
+            
+            <div style="background: #fef2f2; padding: 15px; border-radius: 4px; margin-bottom: 15px;">
+                <p style="color: #991b1b; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">${content.case.proposal.title}</p>
+                <ul style="margin: 0; padding-left: 20px; color: #7f1d1d; font-size: 13px;">
+                    ${content.case.proposal.items.map(item => `<li style="margin-bottom: 5px;">${item}</li>`).join('')}
+                </ul>
+                <p style="color: #991b1b; font-weight: 600; margin: 10px 0 0 0; font-size: 13px;">${content.case.proposal.cost}</p>
+            </div>
+            
+            <div style="background: #f0fdf4; padding: 15px; border-radius: 4px; margin-bottom: 15px;">
+                <p style="color: #166534; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">${content.case.assessment.title}</p>
+                <p style="color: #14532d; font-size: 13px; margin: 0 0 10px 0;">${content.case.assessment.text}</p>
+                <p style="color: #14532d; font-size: 13px; margin: 0; white-space: pre-line;">${content.case.assessment.reality}</p>
+            </div>
+            
+            <div style="background: #eff6ff; padding: 15px; border-radius: 4px; margin-bottom: 15px;">
+                <p style="color: #1e40af; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">${content.case.recommendation.title}</p>
+                <p style="color: #1e3a8a; font-size: 13px; margin: 0 0 10px 0;">${content.case.recommendation.text}</p>
+                <ul style="margin: 0; padding-left: 20px; color: #1e3a8a; font-size: 13px;">
+                    ${content.case.recommendation.items.map(item => `<li style="margin-bottom: 5px;">${item}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div style="background: #f0fdf4; padding: 15px; border-radius: 4px;">
+                <p style="color: #166534; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">${content.case.outcome.title}</p>
+                <p style="color: #14532d; font-size: 13px; margin: 0; white-space: pre-line;">${content.case.outcome.text}</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 8px;">
+            <p style="color: #0f172a; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">${content.lesson.title}</p>
+            <p style="color: #475569; font-size: 13px; margin: 0 0 10px 0; white-space: pre-line;">${content.lesson.text}</p>
+            <p style="color: #475569; font-size: 13px; margin: 0; white-space: pre-line;">${content.lesson.notFor}</p>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f1f5f9; border-radius: 8px; text-align: center;">
+            <p style="color: #475569; margin-bottom: 15px; font-size: 14px;">${content.cta}</p>
+            <p style="color: #64748b; margin-bottom: 15px; font-size: 13px;">Reply with your situation or book 30 minutes:</p>
+            <a href="https://calendly.com/prasad-sgsits/30min" style="display: inline-block; background: #059669; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
+                ${content.button}
+            </a>
+        </div>
+        
+        <p style="color: #94a3b8; font-size: 12px; margin-top: 30px; text-align: center;">
+            Best,<br>Prasad
+        </p>
+    </div>
+</body>
+</html>
+    `.trim();
+};
+
 app.post('/api/lead', async (req, res) => {
     try {
-        const { email, language } = req.body;
+        const { email, language, sourcePath, leadMagnet } = req.body;
 
         if (!email || !email.includes('@')) {
             return res.status(400).json({ error: 'Valid email is required' });
@@ -754,6 +1769,11 @@ app.post('/api/lead', async (req, res) => {
 
         // Validate and normalize language
         const lang = (language === 'de' || language === 'en') ? language : 'en';
+
+        // Get client info for lead tracking
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        const userAgent = req.get('user-agent') || 'unknown';
+        const referrer = req.get('referer') || '';
 
         // Read existing leads
         let leads = [];
@@ -772,12 +1792,19 @@ app.post('/api/lead', async (req, res) => {
             return res.status(200).json({ success: true, message: 'Email already registered' });
         }
 
-        // Add new lead with language preference
+        // Hash IP for privacy (simple hash)
+        const ipHash = crypto.createHash('sha256').update(clientIp).digest('hex').substring(0, 16);
+
+        // Add new lead with enhanced tracking
         const newLead = {
             email,
-            language: lang,
+            locale: lang,
+            sourcePath: sourcePath || '/guide',
             timestamp: new Date().toISOString(),
-            source: 'guide',
+            ipHash: ipHash,
+            leadMagnet: leadMagnet || 'guide',
+            userAgent: userAgent,
+            referrer: referrer,
             consent: true // User must have consented to submit
         };
 
@@ -793,6 +1820,13 @@ app.post('/api/lead', async (req, res) => {
 
         // Send guide via email
         try {
+            console.log('[EMAIL] Starting email send process...');
+            console.log('[EMAIL] Environment check:');
+            console.log('  - SMTP_HOST:', process.env.SMTP_HOST || 'NOT SET');
+            console.log('  - SMTP_USER:', process.env.SMTP_USER || 'NOT SET');
+            console.log('  - SMTP_PASS:', process.env.SMTP_PASS ? '[SET]' : 'NOT SET');
+            console.log('  - FROM_EMAIL:', process.env.FROM_EMAIL || 'NOT SET');
+            
             const transporter = createEmailTransporter();
             const fromEmail = process.env.FROM_EMAIL;
             const fromName = process.env.FROM_NAME || 'Prasad Tilloo';
@@ -807,21 +1841,97 @@ app.post('/api/lead', async (req, res) => {
                 });
             }
 
-            const guideTitle = lang === 'de' 
-                ? "10 Architekturentscheidungen, die unnötige Risiken (und Kosten) erzeugen"
-                : "10 Architecture Decisions That Create Unnecessary Risk (and Cost)";
+            // Determine email content based on leadMagnet type
+            const isChecklist = leadMagnet === 'vendor-proposal-checklist';
+            console.log('[EMAIL] Lead magnet type:', leadMagnet, '→ isChecklist:', isChecklist);
+            const emailSubject = isChecklist
+                ? (lang === 'de' 
+                    ? "Ihre Angebotsprüfungs-Checkliste"
+                    : "Your Vendor Proposal Review Checklist")
+                : (lang === 'de' 
+                    ? "10 Architekturentscheidungen, die unnötige Risiken (und Kosten) erzeugen"
+                    : "10 Architecture Decisions That Create Unnecessary Risk (and Cost)");
             
             if (transporter) {
+                console.log('[EMAIL] ✅ Transporter created successfully, attempting to send email...');
                 // Send email using configured SMTP
                 try {
+                    const emailContent = isChecklist ? generateChecklistEmail(lang) : generateGuideEmail(lang);
+                    console.log('[EMAIL] Email content generated, length:', emailContent.length, 'chars');
+                    
+                    // Debug: Verify button text in email content
+                    if (isChecklist) {
+                        const buttonTextEN = '📅 Book 30-Minute Consultation';
+                        const buttonTextDE = '📅 30-Minuten-Beratung buchen';
+                        const hasButtonText = emailContent.includes(buttonTextEN) || emailContent.includes(buttonTextDE);
+                        const calendarUrl = 'https://calendly.com/prasad-sgsits/30min';
+                        const hasUrlAsButtonText = emailContent.includes(`<a href="${calendarUrl}">${calendarUrl}</a>`) || 
+                                                   emailContent.includes(`>${calendarUrl}<`);
+                        
+                        // Extract button sections for debugging
+                        const buttonMatches = emailContent.match(/<a[^>]*href="https:\/\/calendly\.com[^"]*"[^>]*>([^<]+)<\/a>/g);
+                        if (buttonMatches) {
+                            console.log('[EMAIL] Found Calendly buttons in email:');
+                            buttonMatches.forEach((match, idx) => {
+                                console.log(`[EMAIL]   Button ${idx + 1}: ${match.substring(0, 150)}...`);
+                            });
+                        }
+                        
+                        if (hasUrlAsButtonText) {
+                            console.error('[EMAIL] ❌ ERROR: Calendar URL is being used as button text!');
+                            console.error('[EMAIL] This indicates a template rendering issue.');
+                        } else if (hasButtonText) {
+                            console.log('[EMAIL] ✅ Button text verified: Contains proper button text');
+                        } else {
+                            console.warn('[EMAIL] ⚠️  WARNING: Could not verify button text in email content');
+                            console.warn('[EMAIL] Looking for:', buttonTextEN, 'or', buttonTextDE);
+                        }
+                    }
+                    
+                    // Generate PDF attachment for checklist
+                    let attachments = [];
+                    if (isChecklist) {
+                        try {
+                            console.log('[PDF] Starting PDF generation...');
+                            const pdfBuffer = await generateChecklistPDF(lang);
+                            if (pdfBuffer && Buffer.isBuffer(pdfBuffer)) {
+                                console.log('[PDF] ✅ PDF generated successfully, size:', pdfBuffer.length, 'bytes');
+                                attachments.push({
+                                    filename: lang === 'de' 
+                                        ? 'Angebotsprüfungs-Checkliste.pdf'
+                                        : 'Vendor-Proposal-Review-Checklist.pdf',
+                                    content: pdfBuffer,
+                                    contentType: 'application/pdf'
+                                });
+                            } else {
+                                console.warn('[PDF] ⚠️  PDF generation returned null or invalid buffer, sending email without attachment');
+                                console.warn('[PDF] pdfBuffer type:', typeof pdfBuffer, 'isBuffer:', Buffer.isBuffer(pdfBuffer));
+                            }
+                        } catch (pdfError) {
+                            console.error('[PDF] ❌ Failed to generate PDF');
+                            console.error('[PDF] Error:', pdfError);
+                            console.error('[PDF] Error message:', pdfError.message);
+                            console.error('[PDF] Error stack:', pdfError.stack);
+                            console.warn('[PDF] ⚠️  Sending email without PDF attachment');
+                            // Continue sending email even if PDF fails
+                        }
+                    }
+                    
+                    console.log('[EMAIL] Sending email via SMTP...');
+                    console.log('[EMAIL] From:', `"${fromName}" <${fromEmail}>`);
+                    console.log('[EMAIL] To:', email);
+                    console.log('[EMAIL] Subject:', emailSubject);
+                    console.log('[EMAIL] Attachments:', attachments.length);
+                    
                     await transporter.sendMail({
                         from: `"${fromName}" <${fromEmail}>`,
                         to: email,
-                        subject: guideTitle,
-                        html: generateGuideEmail(lang),
-                        text: generateGuideEmail(lang).replace(/<[^>]*>/g, ''), // Plain text version
+                        subject: emailSubject,
+                        html: emailContent,
+                        text: emailContent.replace(/<[^>]*>/g, ''), // Plain text version
+                        attachments: attachments.length > 0 ? attachments : undefined
                     });
-                    console.log(`✅ Guide email sent to ${email} (${lang})`);
+                    console.log(`[EMAIL] ✅ ${isChecklist ? 'Checklist' : 'Guide'} email sent successfully to ${email} (${lang})${attachments.length > 0 ? ' with PDF attachment' : ''}`);
                 } catch (sendError) {
                     // Enhanced error logging for SMTP issues
                     console.error('[SMTP] ❌ Failed to send guide email');

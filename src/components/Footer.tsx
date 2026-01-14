@@ -17,10 +17,10 @@ const Footer: React.FC = () => {
                             {t('guide.footerBanner.text')}
                         </p>
                         <Link
-                            to="/guide"
+                            to="/checklist"
                             className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 px-6 py-2 rounded-lg font-semibold text-sm transition-all whitespace-nowrap flex items-center gap-2"
                         >
-                            Get Guide
+                            Get Checklist
                             <ArrowRight size={16} />
                         </Link>
                     </div>

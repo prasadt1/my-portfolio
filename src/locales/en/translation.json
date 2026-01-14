@@ -1164,6 +1164,93 @@
             "button": "Download free guide"
         }
     },
+    "checklist": {
+        "seo": {
+            "title": "Vendor Proposal Review Checklist | Prasad Tilloo",
+            "description": "Review your cloud migration proposal before signing. A professional, vendor-neutral checklist based on 50+ enterprise transformations."
+        },
+        "hero": {
+            "badge": "Free Download • Vendor-Neutral",
+            "headline": "Review Your Cloud Migration Proposal Before Signing",
+            "subheadline": "A professional checklist based on 50+ enterprise transformations. Identify gaps, risks, and over-engineering before committing budget.",
+            "valueProps": [
+                "7 critical assessment areas",
+                "Real patterns from EU/US/Asia projects",
+                "Vendor-neutral perspective",
+                "Immediate applicability"
+            ],
+            "emailLabel": "Send me the checklist:",
+            "emailPlaceholder": "your.email@company.com",
+            "submitButton": "Download Checklist (PDF)",
+            "privacy": "One-time send. No newsletter. Unsubscribe option included.",
+            "trustNote": "Used by CTOs at mid-market companies across EU. Independent consultant • No vendor partnerships."
+        },
+        "whatsInside": {
+            "title": "What's Inside",
+            "items": [
+                {
+                    "icon": "📋",
+                    "title": "7 Assessment Categories",
+                    "description": "Architecture quality, cost transparency, risk management, delivery realism, team readiness, and more"
+                },
+                {
+                    "icon": "⚠️",
+                    "title": "Red Flag Identification",
+                    "description": "Common patterns that indicate over-engineering, vendor lock-in, or unrealistic timelines"
+                },
+                {
+                    "icon": "✅",
+                    "title": "Good Practice Examples",
+                    "description": "What thorough, professional proposals look like—based on real enterprise transformations"
+                },
+                {
+                    "icon": "🎯",
+                    "title": "Scoring Guide",
+                    "description": "Simple scoring system to assess overall proposal quality and identify specific gaps"
+                }
+            ]
+        },
+        "whoIsThisFor": {
+            "title": "Who Should Use This",
+            "items": [
+                "CTOs evaluating cloud migration proposals",
+                "VPs Engineering assessing platform modernization",
+                "Technical leaders reviewing AI infrastructure plans",
+                "Decision-makers about to commit €50K-500K"
+            ]
+        },
+        "author": {
+            "name": "Prasad Tilloo",
+            "title": "Independent Architecture Consultant",
+            "bio": "15 years delivering enterprise transformations across healthcare, pharma, e-commerce, and climate tech. Global delivery experience (North America, Europe, Asia, South America). Based in Germany.",
+            "credentials": [
+                "Led PACT Protocol standardization (Microsoft, SAP, Siemens)",
+                "Ex-PwC Management Consultant",
+                "50+ architecture assessments delivered",
+                "Zero vendor partnerships (independent advice)"
+            ]
+        },
+        "finalCta": {
+            "title": "Download Your Checklist",
+            "afterNote": "After reviewing your proposal, if you'd like a second opinion, I offer 30-minute consultations (no obligation).",
+            "learnMore": "Learn about architecture reviews"
+        },
+        "form": {
+            "emailLabel": "Send me the checklist:",
+            "emailPlaceholder": "your.email@company.com",
+            "button": "Download Checklist (PDF)",
+            "submitting": "Sending...",
+            "consentLabel": "I agree to receive the checklist by email.",
+            "consentRequired": "Please agree to receive the checklist by email.",
+            "privacyStatement": "Privacy: Your email is used to send the checklist. No spam.",
+            "privacyLink": "Privacy Policy",
+            "error": "Something went wrong. Please try again."
+        },
+        "success": {
+            "title": "Check your inbox.",
+            "message": "We've sent the checklist to your email address."
+        }
+    },
     "proof": {
         "title": "Real Results",
         "subtitle": "Qualitative outcomes from real engagements",
