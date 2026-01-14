@@ -307,7 +307,7 @@ const HomePageMultiDomain: React.FC = () => {
                                     <ArrowRight size={20} />
                                 </a>
                                 <Link
-                                    to="/guide"
+                                    to="/checklist"
                                     className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-semibold text-lg transition-all"
                                 >
                                     {t('guide.homepageCta.button')}
