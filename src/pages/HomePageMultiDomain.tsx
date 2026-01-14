@@ -296,15 +296,23 @@ const HomePageMultiDomain: React.FC = () => {
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                                 {t('homepage.finalCta.title')}
                             </h2>
-                            <a
-                                href="https://calendly.com/prasad-sgsits/30min"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105 mb-6"
-                            >
-                                {t('homepage.finalCta.cta')}
-                                <ArrowRight size={20} />
-                            </a>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                                <a
+                                    href="https://calendly.com/prasad-sgsits/30min"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                                >
+                                    {t('homepage.finalCta.cta')}
+                                    <ArrowRight size={20} />
+                                </a>
+                                <Link
+                                    to="/guide"
+                                    className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-semibold text-lg transition-all"
+                                >
+                                    {t('guide.homepageCta.button')}
+                                </Link>
+                            </div>
                             <p className="text-slate-300 text-sm">
                                 {t('homepage.finalCta.trustNote')}
                             </p>

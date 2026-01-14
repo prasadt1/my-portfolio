@@ -92,6 +92,7 @@ const ServicesPage: React.FC = () => {
                         {services.map((service, idx) => {
                             const Icon = service.icon;
                             const deliverables = t(service.deliverablesKey, { returnObjects: true }) as string[];
+                            const isBlueprintSprint = service.id === 'blueprint-sprint';
 
                             return (
                                 <motion.div
@@ -103,6 +104,13 @@ const ServicesPage: React.FC = () => {
                                 >
                                     {/* Gradient Background Effect */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`} />
+
+                                    {/* Most Popular Badge */}
+                                    {isBlueprintSprint && (
+                                        <div className="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-20">
+                                            {t('services.mostPopular')}
+                                        </div>
+                                    )}
 
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${service.iconBg} transition-transform group-hover:scale-110 duration-300`}>
@@ -177,6 +185,65 @@ const ServicesPage: React.FC = () => {
                             );
                         })}
                     </div>
+
+                    {/* Proof Cards Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-16"
+                    >
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                {t('proof.title', { defaultValue: 'Real Results' })}
+                            </h2>
+                            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                                {t('proof.subtitle', { defaultValue: 'Qualitative outcomes from real engagements' })}
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {[1, 2, 3].map((cardNum) => {
+                                const contextKey = `proof.card${cardNum}.context`;
+                                const situationKey = `proof.card${cardNum}.situation`;
+                                const deliveredKey = `proof.card${cardNum}.delivered`;
+                                const outcomeKey = `proof.card${cardNum}.outcome`;
+                                
+                                return (
+                                    <motion.div
+                                        key={cardNum}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: cardNum * 0.1 }}
+                                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                                    >
+                                        <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-3">
+                                            {t(contextKey, { defaultValue: '' })}
+                                        </div>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                                            {t(situationKey, { defaultValue: '' })}
+                                        </h3>
+                                        <div className="mb-4">
+                                            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">
+                                                What I Delivered:
+                                            </div>
+                                            <p className="text-sm text-slate-700 dark:text-slate-300">
+                                                {t(deliveredKey, { defaultValue: '' })}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">
+                                                Outcome:
+                                            </div>
+                                            <p className="text-sm text-slate-700 dark:text-slate-300 font-medium">
+                                                {t(outcomeKey, { defaultValue: '' })}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </motion.div>
 
                     {/* Independent Advisory Section */}
                     <IndependentAdvisorySection />

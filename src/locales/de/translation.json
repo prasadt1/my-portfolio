@@ -837,7 +837,8 @@
                 "Empfohlene nächste Schritte"
             ],
             "notIncluded": "Implementierung ist nicht enthalten (separat möglich)."
-        }
+        },
+        "mostPopular": "Beliebteste"
     },
     "projects": {
         "approachToday": {
@@ -1074,5 +1075,126 @@
             "subtitle": "Wenn Sie jemanden suchen, der tiefes technisches Fachwissen mit Geschäftssinn und Hands-on-Umsetzung verbindet, lassen Sie uns in Kontakt treten.",
             "button": "E-Mail senden"
         }
+    },
+    "guide": {
+        "seo": {
+            "title": "Kostenloser Architektur-Guide | Prasad Tilloo",
+            "description": "10 Architekturentscheidungen, die unnötige Risiken (und Kosten) erzeugen. Eine vendor-neutrale Checkliste für Modernisierungsentscheidungen."
+        },
+        "title": "Kostenloser Guide",
+        "headline": "10 Architekturentscheidungen, die unnötige Risiken (und Kosten) erzeugen",
+        "subheadline": "Eine vendor-neutrale Checkliste für Modernisierungsentscheidungen. Kurz, praxisnah und auf realen Enterprise-Patterns basiert.",
+        "form": {
+            "emailLabel": "E-Mail",
+            "emailPlaceholder": "arbeit@unternehmen.de",
+            "button": "Guide senden",
+            "submitting": "Wird gesendet...",
+            "consentLabel": "Ich stimme zu, den Guide per E-Mail zu erhalten.",
+            "consentRequired": "Bitte stimmen Sie zu, den Guide per E-Mail zu erhalten.",
+            "privacyStatement": "Datenschutz: Ihre E-Mail wird zum Versand des Guides genutzt. Kein Spam.",
+            "privacyLink": "Datenschutzerklärung",
+            "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+        },
+        "success": {
+            "title": "Bitte prüfen Sie Ihr Postfach.",
+            "message": "Wir haben den Guide an Ihre E-Mail-Adresse gesendet."
+        },
+        "content": {
+            "title": "Guide-Vorschau",
+            "intro": "Hier ist eine Vorschau der 10 Architekturentscheidungen, die im Guide behandelt werden:",
+            "decision1": "Vendor-Referenzarchitekturen ≠ Ihre Architektur",
+            "decision1.desc": "Vendor-Referenzarchitekturen sind Ausgangspunkte, keine finalen Lösungen. Sie sind für das Ökosystem des Vendors optimiert, nicht für Ihre spezifischen Constraints, Team-Fähigkeiten oder Business-Kontext.",
+            "decision2": "\"Start mit Kubernetes\" ist oft ein Reifegrad-Mismatch",
+            "decision2.desc": "Kubernetes erfordert erhebliche operative Reife. Viele Teams springen zu Kubernetes, bevor sie die Fähigkeiten, Prozesse oder Skalierung haben, um es zu rechtfertigen, was unnötige Komplexität schafft.",
+            "decision3": "Frühes Ignorieren der Integrationskomplexität erzeugt verstecktes Delivery-Risiko",
+            "decision3.desc": "Integrationsmuster werden oft unterschätzt. Legacy-Systeme, Datenformate und API-Verträge schaffen versteckte Komplexität, die Zeitpläne durcheinander bringen kann, wenn sie nicht früh angegangen wird.",
+            "decision4": "Compliance als Constraint behandeln (nicht nur Dokumentation)",
+            "decision4.desc": "Compliance-Anforderungen (HIPAA, GDPR, PCI-DSS) müssen von Tag eins an in die Architektur des Systems integriert werden, nicht als Dokumentation nachträglich hinzugefügt.",
+            "decision5": "NFRs nicht von Anfang an definieren",
+            "decision5.desc": "Nicht-funktionale Anforderungen (Performance, Skalierbarkeit, Verfügbarkeit) sind oft vage oder fehlen. Ohne klare NFRs können Sie keine informierten Architekturentscheidungen treffen.",
+            "decision6": "\"Zielzustand\" mit \"Endzustand\" verwechseln",
+            "decision6.desc": "Zielzustand ist ein Meilenstein, kein finales Ziel. Architektur sollte sich entwickeln. Sie als einmaliges Ziel zu behandeln führt zu starren, schwer wartbaren Systemen.",
+            "decision7": "Big-Bang-Migrationen statt Sequenzierung nach Wert",
+            "decision7.desc": "Der Versuch, alles auf einmal zu migrieren, ist hochriskant. Die Sequenzierung von Migrationen nach Geschäftswert und technischen Abhängigkeiten reduziert Risiken und liefert Wert inkrementell.",
+            "decision8": "Datenmigration und Datenbesitz unterschätzen",
+            "decision8.desc": "Datenmigration ist oft der komplexeste und riskanteste Teil der Modernisierung. Datenqualität, Besitz und Governance müssen früh angegangen werden.",
+            "decision9": "Operating Model nicht mit Architektur abgestimmt",
+            "decision9.desc": "Eine Microservices-Architektur erfordert andere Operating Models als Monolithen. Teamstruktur, Deployment-Prozesse und Monitoring müssen mit der Architektur übereinstimmen.",
+            "decision10": "Kein Decision Package erstellen (Blueprint + Risiko-Register + Roadmap)",
+            "decision10.desc": "Architekturentscheidungen brauchen Dokumentation: einen Blueprint mit Ist- und Zielzustand, ein Risiko-Register mit Mitigationsstrategien und eine Roadmap für die Umsetzung.",
+            "ctaText": "Möchten Sie diese Entscheidungen im Kontext Ihrer Architektur diskutieren?",
+            "ctaButton": "Discovery Call buchen"
+        },
+        "footerBanner": {
+            "text": "Noch nicht bereit für einen Call? Kostenlosen Guide erhalten →"
+        },
+        "homepageCta": {
+            "button": "Guide herunterladen"
+        }
+    },
+    "proof": {
+        "title": "Echte Ergebnisse",
+        "subtitle": "Qualitative Ergebnisse aus echten Engagements",
+        "card1": {
+            "context": "Gesundheitswesen, EU",
+            "situation": "HIPAA-Compliance-Audit-Fehlschläge blockieren Cloud-Migration",
+            "delivered": "Compliance-First-Architektur-Blueprint mit automatisierter PII-Maskierung",
+            "outcome": "Null Audit-Feststellungen, Migration vom Vorstand genehmigt"
+        },
+        "card2": {
+            "context": "eCommerce, EMEA",
+            "situation": "Multi-Markt-Expansion durch Legacy-Plattform-Limitierungen blockiert",
+            "delivered": "Headless-Commerce-Architektur mit Multi-Tenant-Governance",
+            "outcome": "Delivery beschleunigt, vendor-neutrales Entscheidungsframework"
+        },
+        "card3": {
+            "context": "Pharma, Global",
+            "situation": "F&E-Datensilos verlangsamen AI/ML-Initiativen",
+            "delivered": "GDPR-konforme Data-Mesh-Architektur mit Governance-Framework",
+            "outcome": "Risiko reduziert, Datenzugriff beschleunigt, Compliance aufrechterhalten"
+        }
+    },
+    "privacy": {
+        "seo": {
+            "title": "Datenschutzerklärung | Prasad Tilloo",
+            "description": "Datenschutzerklärung für die Portfolio-Website und Lead-Magnet-Services von Prasad Tilloo."
+        },
+        "title": "Datenschutzerklärung",
+        "subtitle": "Wie wir mit Ihren Daten umgehen",
+        "dataCollection": {
+            "title": "Datenerhebung",
+            "description": "Wir erheben nur die für unsere Dienstleistungen notwendigen Daten:",
+            "items": [
+                "E-Mail-Adresse (wenn Sie den kostenlosen Guide anfordern)",
+                "Spracheinstellung (um Inhalte in Ihrer bevorzugten Sprache zu senden)",
+                "Zeitstempel der Übermittlung"
+            ]
+        },
+        "dataUse": {
+            "title": "Wie wir Ihre Daten verwenden",
+            "description": "Ihre E-Mail-Adresse wird ausschließlich verwendet, um Ihnen den angeforderten Guide zu senden. Wir verwenden Ihre Daten nicht für Marketingzwecke und geben Ihre Daten nicht an Dritte weiter."
+        },
+        "dataStorage": {
+            "title": "Datenspeicherung",
+            "description": "Ihre Daten werden sicher auf unseren Servern gespeichert. Wir speichern Ihre E-Mail-Adresse nur so lange, wie es zur Erfüllung Ihrer Anfrage erforderlich ist. Sie können jederzeit die Löschung Ihrer Daten anfordern, indem Sie uns kontaktieren."
+        },
+        "yourRights": {
+            "title": "Ihre Rechte (DSGVO)",
+            "description": "Unter der DSGVO haben Sie folgende Rechte:",
+            "items": [
+                "Recht auf Auskunft über Ihre personenbezogenen Daten",
+                "Recht auf Berichtigung unrichtiger Daten",
+                "Recht auf Löschung ('Recht auf Vergessenwerden')",
+                "Recht auf Einschränkung der Verarbeitung",
+                "Recht auf Datenübertragbarkeit",
+                "Widerspruchsrecht gegen die Verarbeitung"
+            ]
+        },
+        "contact": {
+            "title": "Kontakt",
+            "description": "Wenn Sie Fragen zu dieser Datenschutzerklärung haben oder Ihre Rechte ausüben möchten, kontaktieren Sie uns bitte:",
+            "email": "E-Mail"
+        },
+        "lastUpdated": "Zuletzt aktualisiert: Januar 2026"
     }
 }

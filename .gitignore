@@ -45,3 +45,6 @@ SITE_REVIEW_REPORT.md
 export_codebase*.sh
 generate_resume.py
 create-pr.sh
+
+# Lead data
+leads.json
