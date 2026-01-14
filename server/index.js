@@ -1293,6 +1293,180 @@ const generateChecklistPDF = async (lang = 'en') => {
         doc.text((lang === 'de' ? 'Wenn Sie <25 Punkte erzielen, deutet dies normalerweise auf Bereiche hin, die es wert sind, mit einem unabhängigen Gutachter besprochen zu werden.' : 'If you score <25, that typically indicates areas worth discussing with an independent reviewer.'), { align: 'left' });
         doc.moveDown(1);
         
+        // Top 7 Red Flags Executive Summary Page
+        doc.addPage();
+        doc.moveDown(0.5);
+        
+        doc.fontSize(18).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'TOP 7 VENDOR PROPOSAL RED FLAGS' : 'TOP 7 VENDOR PROPOSAL RED FLAGS', { align: 'center' });
+        doc.moveDown(0.3);
+        doc.fontSize(12).font('Helvetica');
+        doc.text(lang === 'de' ? 'Quick scan for critical issues' : 'Quick scan for critical issues', { align: 'center' });
+        doc.moveDown(1);
+        
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? 'Wenn Sie 3+ davon in Ihrem Angebot sehen, stoppen Sie und holen Sie eine unabhängige Überprüfung ein, bevor Sie sich verpflichten.'
+            : 'If you see 3+ of these in your proposal, stop and get an independent review before committing.', 
+            { align: 'left', width: 500 });
+        doc.moveDown(1);
+        
+        const redFlags = lang === 'de' ? [
+            {
+                number: 1,
+                title: 'EINZEL-ARCHITEKTUR-ANGEBOT',
+                whatItLooksLike: 'Nur ein Ansatz präsentiert, keine Alternativen diskutiert',
+                whyProblem: 'Vendor optimiert für seinen Umsatz/Expertise, nicht für Ihre spezifischen Bedürfnisse',
+                whatToAsk: 'Welche Alternativen haben Sie in Betracht gezogen? Warum haben Sie sie abgelehnt? Zeigen Sie mir den Vergleich.'
+            },
+            {
+                number: 2,
+                title: 'KEINE KOSTENAUFSCHLÜSSELUNG',
+                whatItLooksLike: '"Preis auf Anfrage" oder Gesamtkosten ohne Komponentenaufschlüsselung',
+                whyProblem: 'Versteckte Kosten tauchen später auf (Support-Verträge, Data Egress, Lizenzen, Schulungen)',
+                whatToAsk: 'Zeigen Sie mir die Komponentenpreise für 3 Jahre. Was ist in diesem Angebot nicht enthalten?'
+            },
+            {
+                number: 3,
+                title: '"LIFT & SHIFT" MIGRATION',
+                whatItLooksLike: 'Keine Analyse, was migriert/modernisiert werden sollte',
+                whyProblem: 'Sie replizieren bestehende Probleme in der Cloud, verpassen Modernisierungsmöglichkeiten',
+                whatToAsk: 'Welche Anwendungen sind Kandidaten für Modernisierung vs. Migration wie sie sind? Zeigen Sie mir die Entscheidungskriterien.'
+            },
+            {
+                number: 4,
+                title: 'KEIN ROLLBACK-PLAN',
+                whatItLooksLike: 'Keine Diskussion über "Was ist, wenn dies fehlschlägt?" oder wie man Änderungen rückgängig macht',
+                whyProblem: 'Bedeutet, dass der Vendor Risiken nicht durchdacht hat oder unrealistisches Vertrauen hat',
+                whatToAsk: 'Wie ist die Rollback-Strategie in jeder Phase? Was kostet es, rückgängig zu machen?'
+            },
+            {
+                number: 5,
+                title: 'SICHERHEIT NACHTRÄGLICH ANGEFÜGT',
+                whatItLooksLike: 'Sicherheit als separates Add-on oder Phase-2-Punkt diskutiert',
+                whyProblem: 'Sicherheit sollte von Tag 1 an eingebaut sein, nicht später nachgerüstet werden',
+                whatToAsk: 'Wie ist Sicherheit von Anfang an integriert? Zeigen Sie mir das Bedrohungsmodell.'
+            },
+            {
+                number: 6,
+                title: 'KEINE INTEGRATIONSMAPPING',
+                whatItLooksLike: 'Bestehende Systeme als "Legacy Blackbox" ohne Integrationsarchitektur behandelt',
+                whyProblem: 'Integrationskomplexität ist, wo die meisten Projekte scheitern oder große Verzögerungen erleben',
+                whatToAsk: 'Zeigen Sie mir die Integrationsarchitektur. Was sind die Abhängigkeiten? Wie ist die Sequenzierung?'
+            },
+            {
+                number: 7,
+                title: 'AGGRESSIVER ZEITPLAN, KEINE BEGRÜNDUNG',
+                whatItLooksLike: '"6 Wochen bis Produktion" oder sehr lange Zeitpläne ohne Benchmarks oder Annahmen',
+                whyProblem: 'Entweder aufgebläht für maximale Abrechnung oder unrealistisch ohne Risikopuffer',
+                whatToAsk: 'Welche ähnlichen Projekte haben diesen Zeitplan informiert? Welche Annahmen treffen Sie? Was ist der Risikopuffer?'
+            }
+        ] : [
+            {
+                number: 1,
+                title: 'SINGLE-ARCHITECTURE PROPOSAL',
+                whatItLooksLike: 'Only one approach presented, no alternatives discussed',
+                whyProblem: 'Vendor optimizes for their revenue/expertise, not your specific needs',
+                whatToAsk: 'What alternatives did you consider? Why did you reject them? Show me the comparison.'
+            },
+            {
+                number: 2,
+                title: 'NO COST BREAKDOWN',
+                whatItLooksLike: '"Contact us for pricing" or total cost without component breakdown',
+                whyProblem: 'Hidden costs emerge later (support contracts, data egress, licensing, training)',
+                whatToAsk: 'Show me component-level pricing for 3 years. What\'s not included in this quote?'
+            },
+            {
+                number: 3,
+                title: '"LIFT & SHIFT" MIGRATION',
+                whatItLooksLike: 'No analysis of what should/shouldn\'t migrate or be modernized',
+                whyProblem: 'You replicate existing problems in the cloud, miss modernization opportunities',
+                whatToAsk: 'Which applications are candidates to modernize vs migrate as-is? Show me the decision criteria.'
+            },
+            {
+                number: 4,
+                title: 'NO ROLLBACK PLAN',
+                whatItLooksLike: 'No discussion of "what if this fails?" or how to revert changes',
+                whyProblem: 'Means vendor hasn\'t thought through risks or has unrealistic confidence',
+                whatToAsk: 'What\'s the rollback strategy at each phase? What\'s the cost to revert?'
+            },
+            {
+                number: 5,
+                title: 'SECURITY BOLTED ON',
+                whatItLooksLike: 'Security discussed as separate add-on or Phase 2 item',
+                whyProblem: 'Security should be built-in from day 1, not retrofitted later',
+                whatToAsk: 'How is security integrated from the beginning? Show me the threat model.'
+            },
+            {
+                number: 6,
+                title: 'NO INTEGRATION MAPPING',
+                whatItLooksLike: 'Existing systems treated as "legacy blackbox" with no integration architecture',
+                whyProblem: 'Integration complexity is where most projects fail or experience major delays',
+                whatToAsk: 'Show me the integration architecture. What are the dependencies? What\'s the sequencing?'
+            },
+            {
+                number: 7,
+                title: 'AGGRESSIVE TIMELINE, NO JUSTIFICATION',
+                whatItLooksLike: '"6 weeks to production" or very long timelines with no benchmarks or assumptions',
+                whyProblem: 'Either padded for maximum billing or unrealistic without risk buffer',
+                whatToAsk: 'What similar projects informed this timeline? What assumptions are you making? What\'s the risk buffer?'
+            }
+        ];
+        
+        redFlags.forEach((flag, idx) => {
+            if (idx > 0 && idx % 2 === 0) {
+                doc.addPage();
+                doc.moveDown(0.3);
+            }
+            
+            doc.fontSize(11).font('Helvetica-Bold');
+            doc.text(`[!] RED FLAG #${flag.number}: ${flag.title}`, { align: 'left' });
+            doc.moveDown(0.3);
+            
+            doc.fontSize(9).font('Helvetica-Bold');
+            doc.text(lang === 'de' ? 'Wie es aussieht:' : 'What it looks like:', { align: 'left' });
+            doc.fontSize(9).font('Helvetica');
+            doc.text(flag.whatItLooksLike, { align: 'left', indent: 15, width: 500 });
+            doc.moveDown(0.3);
+            
+            doc.fontSize(9).font('Helvetica-Bold');
+            doc.text(lang === 'de' ? 'Warum es ein Problem ist:' : 'Why it\'s a problem:', { align: 'left' });
+            doc.fontSize(9).font('Helvetica');
+            doc.text(flag.whyProblem, { align: 'left', indent: 15, width: 500 });
+            doc.moveDown(0.3);
+            
+            doc.fontSize(9).font('Helvetica-Bold');
+            doc.text(lang === 'de' ? 'Was Sie fragen sollten:' : 'What to ask:', { align: 'left' });
+            doc.fontSize(9).font('Helvetica');
+            doc.text(flag.whatToAsk, { align: 'left', indent: 15, width: 500 });
+            doc.moveDown(0.8);
+        });
+        
+        // Scoring section for red flags
+        doc.addPage();
+        doc.moveDown(0.5);
+        doc.fontSize(12).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'BEWERTUNG IHRES ANGEBOTS:' : 'SCORING YOUR PROPOSAL:', { align: 'center' });
+        doc.moveDown(0.8);
+        
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? '0-1 Warnsignale: Angebot erscheint gründlich, Details prüfen'
+            : '0-1 red flags: Proposal appears thorough, review details', 
+            { align: 'left', width: 500 });
+        doc.moveDown(0.5);
+        doc.text(lang === 'de' 
+            ? '2-3 Warnsignale: Vor Unterzeichnung unabhängig validieren'
+            : '2-3 red flags: Validate independently before signing', 
+            { align: 'left', width: 500 });
+        doc.moveDown(0.5);
+        doc.fontSize(11).font('Helvetica-Bold');
+        doc.text(lang === 'de' 
+            ? '4+ Warnsignale: Hohes Risiko - sofort zweite Meinung einholen'
+            : '4+ red flags: High risk—get second opinion immediately', 
+            { align: 'left', width: 500 });
+        doc.moveDown(1);
+        
         // Table of Contents
         doc.fontSize(11).font('Helvetica-Bold');
         doc.text(lang === 'de' ? 'INHALTSVERZEICHNIS' : 'TABLE OF CONTENTS', { align: 'left' });
@@ -1325,23 +1499,321 @@ const generateChecklistPDF = async (lang = 'en') => {
         });
         doc.moveDown(1);
         
-        // Categories (using the same data structure)
+        // Categories (using the same data structure with examples)
         const categories = lang === 'de' ? [
-            { title: "KATEGORIE 1: Architekturqualität & Trade-offs", checks: ["Werden 2+ alternative Ansätze präsentiert?", "Sind Trade-offs explizit dokumentiert?", "Ist die Architektur modular (Lock-in vermeiden)?", "Entspricht sie dem tatsächlichen Maßstab (nicht über-engineered)?", "Sind Integrationspunkte klar definiert?"], redFlags: ["Einzelne Vendor-\"Empfohlene Architektur\"", "Keine Alternativen diskutiert", "Über-engineered für aktuellen Maßstab"], goodPractice: ["2-3 Optionen mit Vor-/Nachteilen", "Klare Entscheidungskriterien", "Richtig dimensioniert für 12-24 Monate"] },
-            { title: "KATEGORIE 2: Kostentransparenz & FinOps", checks: ["Ist die Preisgestaltung nach Komponenten aufgeschlüsselt?", "Werden versteckte Kosten aufgedeckt (Egress, Support, Lizenzen)?", "Wird der Preis mit Alternativen verglichen?", "Ist das Kostenmodell auf Wachstum ausgerichtet?", "Gibt es einen Kostenoptimierungsplan?"], redFlags: ["Intransparente Preisgestaltung", "\"Preis auf Anfrage\"", "Kein Vergleich zu Alternativen"], goodPractice: ["Detaillierte Kostenaufschlüsselung", "TCO-Analyse (3-5 Jahre)", "Kostenoptimierungs-Roadmap"] },
-            { title: "KATEGORIE 3: Risikomanagement & Compliance", checks: ["Sind Compliance-Anforderungen abgebildet?", "Gibt es einen Rollback/Rollforward-Plan?", "Sind Abhängigkeiten identifiziert?", "Wird Vendor Lock-in-Risiko bewertet?", "Sind Single Points of Failure dokumentiert?"], redFlags: ["Keine Compliance-Diskussion", "Kein Rollback-Plan", "Proprietäre Formate/APIs"], goodPractice: ["Compliance Standards zugeordnet", "Risikoregister mit Mitigationen", "Exit-Strategie dokumentiert"] },
-            { title: "KATEGORIE 4: Integration & Sequenzierung", checks: ["Sind bestehende Systeme abgebildet?", "Sind Integrationsmuster definiert?", "Ist die Sequenzierung logisch (Abhängigkeiten)?", "Sind Datenmigrationsrisiken identifiziert?", "Gibt es einen inkrementellen Lieferplan?"], redFlags: ["\"Lift and Shift\" ohne Analyse", "Big-Bang-Ansatz", "Keine Integrationsstrategie"], goodPractice: ["Phasenweise Lieferung (Wertinkremente)", "Integration früh getestet", "Abhängigkeiten abgebildet"] },
-            { title: "KATEGORIE 5: Sicherheitsarchitektur", checks: ["Ist Sicherheit eingebaut (nicht nachträglich)?", "Sind Bedrohungsmodelle dokumentiert?", "Wird Zero-Trust-Ansatz verwendet?", "Ist Secrets Management definiert?", "Ist Observability enthalten?"], redFlags: ["Sicherheit als Nachgedanke", "Keine Bedrohungsmodellierung", "Geteilte Credentials"], goodPractice: ["Security-First-Design", "Defense in Depth", "Automatisierte Compliance-Checks"] },
-            { title: "KATEGORIE 6: Lieferrealismus", checks: ["Basiert der Zeitplan auf ähnlichen Projekten?", "Sind Annahmen dokumentiert?", "Ist Teamkapazität validiert?", "Werden Unbekannte anerkannt?", "Gibt es einen Puffer für Risiken?"], redFlags: ["Aggressiver Zeitplan ohne Begründung", "Kein Risikopuffer", "Geht von idealen Bedingungen aus"], goodPractice: ["Zeitplan basierend auf Benchmarks", "Risikoadjustierte Schätzungen", "Phasenweise Meilensteine"] },
-            { title: "KATEGORIE 7: Team & Operating Model", checks: ["Ist Teamstruktur definiert?", "Sind Kompetenzlücken identifiziert?", "Ist Operating Model klar (DevOps/SRE)?", "Ist Wissenstransfer geplant?", "Sind Runbooks/Dokumentation enthalten?"], redFlags: ["Keine Team-Diskussion", "Geht von bestehenden Fähigkeiten aus", "Kein Schulungsplan"], goodPractice: ["Kompetenzbewertung durchgeführt", "Schulung enthalten", "Runbooks geliefert"] }
+            { 
+                title: "KATEGORIE 1: Architekturqualität & Trade-offs", 
+                checks: ["Werden 2+ alternative Ansätze präsentiert?", "Sind Trade-offs explizit dokumentiert?", "Ist die Architektur modular (Lock-in vermeiden)?", "Entspricht sie dem tatsächlichen Maßstab (nicht über-engineered)?", "Sind Integrationspunkte klar definiert?"], 
+                redFlags: ["Einzelne Vendor-\"Empfohlene Architektur\"", "Keine Alternativen diskutiert", "Über-engineered für aktuellen Maßstab"], 
+                goodPractice: ["2-3 Optionen mit Vor-/Nachteilen", "Klare Entscheidungskriterien", "Richtig dimensioniert für 12-24 Monate"],
+                examples: [
+                    {
+                        industry: "E-Commerce",
+                        region: "Netherlands",
+                        year: "2024",
+                        situation: "Vendor proposed microservices architecture for new product launch (10-person team, 5K users initially)",
+                        hiddenIssue: "Team had no microservices experience, would need 6 months just for infrastructure setup",
+                        alternative: "Modular monolith with clear domain boundaries, plan to extract services when scale demands it",
+                        outcome: "Launched in 8 weeks vs 6 months. Saved €120K in infrastructure costs. Team velocity increased 3x.",
+                        lesson: "Match architecture to team capabilities AND current scale, not future hypothetical scale."
+                    },
+                    {
+                        industry: "Healthcare",
+                        region: "Switzerland",
+                        year: "2023",
+                        situation: "Cloud migration proposal with single-vendor recommended architecture (AWS-only)",
+                        hiddenIssue: "No multi-cloud exit strategy, proprietary services throughout",
+                        alternative: "Portable architecture using open standards, ability to run on AWS/Azure/GCP",
+                        outcome: "When AWS pricing increased 40% in Year 2, client negotiated better rate by demonstrating exit capability",
+                        lesson: "Build in optionality from day 1—it's cheaper than retrofitting later."
+                    }
+                ]
+            },
+            { 
+                title: "KATEGORIE 2: Kostentransparenz & FinOps", 
+                checks: ["Ist die Preisgestaltung nach Komponenten aufgeschlüsselt?", "Werden versteckte Kosten aufgedeckt (Egress, Support, Lizenzen)?", "Wird der Preis mit Alternativen verglichen?", "Ist das Kostenmodell auf Wachstum ausgerichtet?", "Gibt es einen Kostenoptimierungsplan?"], 
+                redFlags: ["Intransparente Preisgestaltung", "\"Preis auf Anfrage\"", "Kein Vergleich zu Alternativen"], 
+                goodPractice: ["Detaillierte Kostenaufschlüsselung", "TCO-Analyse (3-5 Jahre)", "Kostenoptimierungs-Roadmap"],
+                examples: [
+                    {
+                        industry: "Pharma",
+                        region: "Germany",
+                        year: "2023",
+                        situation: "AWS proposed €450K Kubernetes (EKS) setup for API backend (50 employees, 10K users, first cloud migration)",
+                        hiddenIssue: "€80K/year support + €40K training + no DevOps team = €200K+ hidden costs in Year 1",
+                        alternative: "Serverless (Lambda + API Gateway) - same functionality, zero DevOps overhead",
+                        outcome: "€35K setup + €15K/year run cost. Saved €415K upfront + €105K/year. Deployed in 2 weeks vs 3 months.",
+                        lesson: "Always ask \"What are ALL costs over 3 years, including support, training, and team hiring?\""
+                    },
+                    {
+                        industry: "Scale-up",
+                        region: "EU",
+                        year: "2024",
+                        situation: "Multi-cloud proposal with opaque \"contact for pricing\"",
+                        hiddenIssue: "Data egress costs not mentioned (€50K/month at scale)",
+                        alternative: "Architecture with minimal cross-cloud data movement",
+                        outcome: "Saved €600K/year in hidden egress costs",
+                        lesson: "Demand line-item pricing. If vendor won't provide it, that's a red flag."
+                    }
+                ]
+            },
+            { 
+                title: "KATEGORIE 3: Risikomanagement & Compliance", 
+                checks: ["Sind Compliance-Anforderungen abgebildet?", "Gibt es einen Rollback/Rollforward-Plan?", "Sind Abhängigkeiten identifiziert?", "Wird Vendor Lock-in-Risiko bewertet?", "Sind Single Points of Failure dokumentiert?"], 
+                redFlags: ["Keine Compliance-Diskussion", "Kein Rollback-Plan", "Proprietäre Formate/APIs"], 
+                goodPractice: ["Compliance Standards zugeordnet", "Risikoregister mit Mitigationen", "Exit-Strategie dokumentiert"],
+                examples: [
+                    {
+                        industry: "Healthcare",
+                        region: "Germany",
+                        year: "2024",
+                        situation: "Cloud migration with no GDPR compliance mapping",
+                        hiddenIssue: "Vendor assumed \"AWS handles compliance\" but didn't map to specific GDPR articles",
+                        alternative: "Compliance-first architecture with explicit mapping to GDPR requirements",
+                        outcome: "Passed audit first time. Avoided €2M+ potential fines.",
+                        lesson: "Compliance is your responsibility, not the vendor's. Demand explicit mapping to regulations."
+                    },
+                    {
+                        industry: "Financial Services",
+                        region: "Switzerland",
+                        year: "2023",
+                        situation: "Migration with no rollback plan",
+                        hiddenIssue: "Vendor confidence = \"We've done 100 migrations, never needed rollback\"",
+                        alternative: "Phased migration with rollback capability at each phase",
+                        outcome: "Phase 3 had critical issue. Rolled back in 2 hours vs potential week-long outage.",
+                        lesson: "Hope for best, plan for worst. Rollback plans cost 5% more but save 100x in failures."
+                    }
+                ]
+            },
+            { 
+                title: "KATEGORIE 4: Integration & Sequenzierung", 
+                checks: ["Sind bestehende Systeme abgebildet?", "Sind Integrationsmuster definiert?", "Ist die Sequenzierung logisch (Abhängigkeiten)?", "Sind Datenmigrationsrisiken identifiziert?", "Gibt es einen inkrementellen Lieferplan?"], 
+                redFlags: ["\"Lift and Shift\" ohne Analyse", "Big-Bang-Ansatz", "Keine Integrationsstrategie"], 
+                goodPractice: ["Phasenweise Lieferung (Wertinkremente)", "Integration früh getestet", "Abhängigkeiten abgebildet"],
+                examples: [
+                    {
+                        industry: "Manufacturing",
+                        region: "EU",
+                        year: "2024",
+                        situation: "\"Lift and shift\" migration of 50 applications",
+                        hiddenIssue: "No analysis of integration dependencies—just migrate everything",
+                        alternative: "Dependency mapping revealed 12 apps could be decommissioned, 15 needed modernization first",
+                        outcome: "Migrated 23 apps instead of 50. Saved €800K + 4 months timeline.",
+                        lesson: "Integration analysis often reveals apps you don't need to migrate at all."
+                    }
+                ]
+            },
+            { 
+                title: "KATEGORIE 5: Sicherheitsarchitektur", 
+                checks: ["Ist Sicherheit eingebaut (nicht nachträglich)?", "Sind Bedrohungsmodelle dokumentiert?", "Wird Zero-Trust-Ansatz verwendet?", "Ist Secrets Management definiert?", "Ist Observability enthalten?"], 
+                redFlags: ["Sicherheit als Nachgedanke", "Keine Bedrohungsmodellierung", "Geteilte Credentials"], 
+                goodPractice: ["Security-First-Design", "Defense in Depth", "Automatisierte Compliance-Checks"],
+                examples: [
+                    {
+                        industry: "Healthcare",
+                        region: "North America",
+                        year: "2024",
+                        situation: "Security mentioned as \"Phase 2\" after migration",
+                        hiddenIssue: "Would need to retrofit security controls = 3x cost + 6 month delay",
+                        alternative: "Security-first design—zero-trust from day 1",
+                        outcome: "Passed HIPAA audit immediately. No retrofit needed.",
+                        lesson: "Retrofitting security costs 3-5x more than building it in from start."
+                    }
+                ]
+            },
+            { 
+                title: "KATEGORIE 6: Lieferrealismus", 
+                checks: ["Basiert der Zeitplan auf ähnlichen Projekten?", "Sind Annahmen dokumentiert?", "Ist Teamkapazität validiert?", "Werden Unbekannte anerkannt?", "Gibt es einen Puffer für Risiken?"], 
+                redFlags: ["Aggressiver Zeitplan ohne Begründung", "Kein Risikopuffer", "Geht von idealen Bedingungen aus"], 
+                goodPractice: ["Zeitplan basierend auf Benchmarks", "Risikoadjustierte Schätzungen", "Phasenweise Meilensteine"],
+                examples: [
+                    {
+                        industry: "E-commerce",
+                        region: "EMEA",
+                        year: "2023",
+                        situation: "Consultant proposed 8-month migration timeline",
+                        hiddenIssue: "No similar project benchmarks, just \"experience\"",
+                        alternative: "Analyzed 5 comparable migrations—realistic timeline was 12-14 months",
+                        outcome: "Set proper expectations, avoided rushed decisions that would have caused quality issues",
+                        lesson: "Demand benchmarks from similar projects. Generic experience ≠ your specific context."
+                    }
+                ]
+            },
+            { 
+                title: "KATEGORIE 7: Team & Operating Model", 
+                checks: ["Ist Teamstruktur definiert?", "Sind Kompetenzlücken identifiziert?", "Ist Operating Model klar (DevOps/SRE)?", "Ist Wissenstransfer geplant?", "Sind Runbooks/Dokumentation enthalten?"], 
+                redFlags: ["Keine Team-Diskussion", "Geht von bestehenden Fähigkeiten aus", "Kein Schulungsplan"], 
+                goodPractice: ["Kompetenzbewertung durchgeführt", "Schulung enthalten", "Runbooks geliefert"],
+                examples: [
+                    {
+                        industry: "Scale-up",
+                        region: "Netherlands",
+                        year: "2024",
+                        situation: "Cloud-native proposal with no team assessment",
+                        hiddenIssue: "Team had zero Kubernetes/cloud experience—would need 6 months training",
+                        alternative: "Managed PaaS (Heroku/Render) while team builds cloud skills gradually",
+                        outcome: "Launched in 4 weeks. Team learned cloud incrementally without blocking delivery.",
+                        lesson: "Match technology to current team capabilities, not ideal future state."
+                    }
+                ]
+            }
         ] : [
-            { title: "CATEGORY 1: Architecture Quality & Trade-offs", checks: ["Are 2+ alternative approaches presented?", "Are trade-offs explicitly documented?", "Is architecture modular (avoid lock-in)?", "Does it match actual scale (not over-engineered)?", "Are integration points well-defined?"], redFlags: ["Single vendor \"recommended architecture\"", "No alternatives discussed", "Over-engineered for current scale"], goodPractice: ["2-3 options with pros/cons", "Clear decision criteria", "Right-sized for 12-24 month horizon"] },
-            { title: "CATEGORY 2: Cost Transparency & FinOps", checks: ["Is pricing broken down by component?", "Are hidden costs surfaced (egress, support, licensing)?", "Is cost compared to alternatives?", "Is cost model aligned to growth?", "Is there cost optimization plan?"], redFlags: ["Opaque pricing", "\"Contact for pricing\"", "No comparison to alternatives"], goodPractice: ["Detailed cost breakdown", "TCO analysis (3-5 years)", "Cost optimization roadmap"] },
-            { title: "CATEGORY 3: Risk Management & Compliance", checks: ["Are compliance requirements mapped?", "Is there rollback/rollforward plan?", "Are dependencies identified?", "Is vendor lock-in risk assessed?", "Are single points of failure documented?"], redFlags: ["No compliance discussion", "No rollback plan", "Proprietary formats/APIs"], goodPractice: ["Compliance mapped to standards", "Risk register with mitigations", "Exit strategy documented"] },
-            { title: "CATEGORY 4: Integration & Sequencing", checks: ["Are existing systems mapped?", "Are integration patterns defined?", "Is sequencing logical (dependencies)?", "Are data migration risks identified?", "Is there incremental delivery plan?"], redFlags: ["\"Lift and shift\" without analysis", "Big-bang approach", "No integration strategy"], goodPractice: ["Phased delivery (value increments)", "Integration tested early", "Dependencies mapped"] },
-            { title: "CATEGORY 5: Security Architecture", checks: ["Is security built-in (not bolted-on)?", "Are threat models documented?", "Is zero-trust approach used?", "Are secrets management defined?", "Is observability included?"], redFlags: ["Security as afterthought", "No threat modeling", "Shared credentials"], goodPractice: ["Security-first design", "Defense in depth", "Automated compliance checks"] },
-            { title: "CATEGORY 6: Delivery Realism", checks: ["Is timeline based on similar projects?", "Are assumptions documented?", "Is team capacity validated?", "Are unknowns acknowledged?", "Is there buffer for risks?"], redFlags: ["Aggressive timeline with no justification", "No risk buffer", "Assumes ideal conditions"], goodPractice: ["Timeline based on benchmarks", "Risk-adjusted estimates", "Phased milestones"] },
-            { title: "CATEGORY 7: Team & Operating Model", checks: ["Is team structure defined?", "Are skills gaps identified?", "Is operating model clear (DevOps/SRE)?", "Is knowledge transfer planned?", "Is runbook/documentation included?"], redFlags: ["No team discussion", "Assumes existing skills", "No training plan"], goodPractice: ["Skills assessment done", "Training included", "Runbooks delivered"] }
+            { 
+                title: "CATEGORY 1: Architecture Quality & Trade-offs", 
+                checks: ["Are 2+ alternative approaches presented?", "Are trade-offs explicitly documented?", "Is architecture modular (avoid lock-in)?", "Does it match actual scale (not over-engineered)?", "Are integration points well-defined?"], 
+                redFlags: ["Single vendor \"recommended architecture\"", "No alternatives discussed", "Over-engineered for current scale"], 
+                goodPractice: ["2-3 options with pros/cons", "Clear decision criteria", "Right-sized for 12-24 month horizon"],
+                examples: [
+                    {
+                        industry: "E-commerce",
+                        region: "Netherlands",
+                        year: "2024",
+                        situation: "Vendor proposed microservices architecture for new product launch (10-person team, 5K users initially)",
+                        hiddenIssue: "Team had no microservices experience, would need 6 months just for infrastructure setup",
+                        alternative: "Modular monolith with clear domain boundaries, plan to extract services when scale demands it",
+                        outcome: "Launched in 8 weeks vs 6 months. Saved €120K in infrastructure costs. Team velocity increased 3x.",
+                        lesson: "Match architecture to team capabilities AND current scale, not future hypothetical scale."
+                    },
+                    {
+                        industry: "Healthcare",
+                        region: "Switzerland",
+                        year: "2023",
+                        situation: "Cloud migration proposal with single-vendor recommended architecture (AWS-only)",
+                        hiddenIssue: "No multi-cloud exit strategy, proprietary services throughout",
+                        alternative: "Portable architecture using open standards, ability to run on AWS/Azure/GCP",
+                        outcome: "When AWS pricing increased 40% in Year 2, client negotiated better rate by demonstrating exit capability",
+                        lesson: "Build in optionality from day 1—it's cheaper than retrofitting later."
+                    }
+                ]
+            },
+            { 
+                title: "CATEGORY 2: Cost Transparency & FinOps", 
+                checks: ["Is pricing broken down by component?", "Are hidden costs surfaced (egress, support, licensing)?", "Is cost compared to alternatives?", "Is cost model aligned to growth?", "Is there cost optimization plan?"], 
+                redFlags: ["Opaque pricing", "\"Contact for pricing\"", "No comparison to alternatives"], 
+                goodPractice: ["Detailed cost breakdown", "TCO analysis (3-5 years)", "Cost optimization roadmap"],
+                examples: [
+                    {
+                        industry: "Pharma",
+                        region: "Germany",
+                        year: "2023",
+                        situation: "AWS proposed €450K Kubernetes (EKS) setup for API backend (50 employees, 10K users, first cloud migration)",
+                        hiddenIssue: "€80K/year support + €40K training + no DevOps team = €200K+ hidden costs in Year 1",
+                        alternative: "Serverless (Lambda + API Gateway) - same functionality, zero DevOps overhead",
+                        outcome: "€35K setup + €15K/year run cost. Saved €415K upfront + €105K/year. Deployed in 2 weeks vs 3 months.",
+                        lesson: "Always ask \"What are ALL costs over 3 years, including support, training, and team hiring?\""
+                    },
+                    {
+                        industry: "Scale-up",
+                        region: "EU",
+                        year: "2024",
+                        situation: "Multi-cloud proposal with opaque \"contact for pricing\"",
+                        hiddenIssue: "Data egress costs not mentioned (€50K/month at scale)",
+                        alternative: "Architecture with minimal cross-cloud data movement",
+                        outcome: "Saved €600K/year in hidden egress costs",
+                        lesson: "Demand line-item pricing. If vendor won't provide it, that's a red flag."
+                    }
+                ]
+            },
+            { 
+                title: "CATEGORY 3: Risk Management & Compliance", 
+                checks: ["Are compliance requirements mapped?", "Is there rollback/rollforward plan?", "Are dependencies identified?", "Is vendor lock-in risk assessed?", "Are single points of failure documented?"], 
+                redFlags: ["No compliance discussion", "No rollback plan", "Proprietary formats/APIs"], 
+                goodPractice: ["Compliance mapped to standards", "Risk register with mitigations", "Exit strategy documented"],
+                examples: [
+                    {
+                        industry: "Healthcare",
+                        region: "Germany",
+                        year: "2024",
+                        situation: "Cloud migration with no GDPR compliance mapping",
+                        hiddenIssue: "Vendor assumed \"AWS handles compliance\" but didn't map to specific GDPR articles",
+                        alternative: "Compliance-first architecture with explicit mapping to GDPR requirements",
+                        outcome: "Passed audit first time. Avoided €2M+ potential fines.",
+                        lesson: "Compliance is your responsibility, not the vendor's. Demand explicit mapping to regulations."
+                    },
+                    {
+                        industry: "Financial Services",
+                        region: "Switzerland",
+                        year: "2023",
+                        situation: "Migration with no rollback plan",
+                        hiddenIssue: "Vendor confidence = \"We've done 100 migrations, never needed rollback\"",
+                        alternative: "Phased migration with rollback capability at each phase",
+                        outcome: "Phase 3 had critical issue. Rolled back in 2 hours vs potential week-long outage.",
+                        lesson: "Hope for best, plan for worst. Rollback plans cost 5% more but save 100x in failures."
+                    }
+                ]
+            },
+            { 
+                title: "CATEGORY 4: Integration & Sequencing", 
+                checks: ["Are existing systems mapped?", "Are integration patterns defined?", "Is sequencing logical (dependencies)?", "Are data migration risks identified?", "Is there incremental delivery plan?"], 
+                redFlags: ["\"Lift and shift\" without analysis", "Big-bang approach", "No integration strategy"], 
+                goodPractice: ["Phased delivery (value increments)", "Integration tested early", "Dependencies mapped"],
+                examples: [
+                    {
+                        industry: "Manufacturing",
+                        region: "EU",
+                        year: "2024",
+                        situation: "\"Lift and shift\" migration of 50 applications",
+                        hiddenIssue: "No analysis of integration dependencies—just migrate everything",
+                        alternative: "Dependency mapping revealed 12 apps could be decommissioned, 15 needed modernization first",
+                        outcome: "Migrated 23 apps instead of 50. Saved €800K + 4 months timeline.",
+                        lesson: "Integration analysis often reveals apps you don't need to migrate at all."
+                    }
+                ]
+            },
+            { 
+                title: "CATEGORY 5: Security Architecture", 
+                checks: ["Is security built-in (not bolted-on)?", "Are threat models documented?", "Is zero-trust approach used?", "Are secrets management defined?", "Is observability included?"], 
+                redFlags: ["Security as afterthought", "No threat modeling", "Shared credentials"], 
+                goodPractice: ["Security-first design", "Defense in depth", "Automated compliance checks"],
+                examples: [
+                    {
+                        industry: "Healthcare",
+                        region: "North America",
+                        year: "2024",
+                        situation: "Security mentioned as \"Phase 2\" after migration",
+                        hiddenIssue: "Would need to retrofit security controls = 3x cost + 6 month delay",
+                        alternative: "Security-first design—zero-trust from day 1",
+                        outcome: "Passed HIPAA audit immediately. No retrofit needed.",
+                        lesson: "Retrofitting security costs 3-5x more than building it in from start."
+                    }
+                ]
+            },
+            { 
+                title: "CATEGORY 6: Delivery Realism", 
+                checks: ["Is timeline based on similar projects?", "Are assumptions documented?", "Is team capacity validated?", "Are unknowns acknowledged?", "Is there buffer for risks?"], 
+                redFlags: ["Aggressive timeline with no justification", "No risk buffer", "Assumes ideal conditions"], 
+                goodPractice: ["Timeline based on benchmarks", "Risk-adjusted estimates", "Phased milestones"],
+                examples: [
+                    {
+                        industry: "E-commerce",
+                        region: "EMEA",
+                        year: "2023",
+                        situation: "Consultant proposed 8-month migration timeline",
+                        hiddenIssue: "No similar project benchmarks, just \"experience\"",
+                        alternative: "Analyzed 5 comparable migrations—realistic timeline was 12-14 months",
+                        outcome: "Set proper expectations, avoided rushed decisions that would have caused quality issues",
+                        lesson: "Demand benchmarks from similar projects. Generic experience ≠ your specific context."
+                    }
+                ]
+            },
+            { 
+                title: "CATEGORY 7: Team & Operating Model", 
+                checks: ["Is team structure defined?", "Are skills gaps identified?", "Is operating model clear (DevOps/SRE)?", "Is knowledge transfer planned?", "Is runbook/documentation included?"], 
+                redFlags: ["No team discussion", "Assumes existing skills", "No training plan"], 
+                goodPractice: ["Skills assessment done", "Training included", "Runbooks delivered"],
+                examples: [
+                    {
+                        industry: "Scale-up",
+                        region: "Netherlands",
+                        year: "2024",
+                        situation: "Cloud-native proposal with no team assessment",
+                        hiddenIssue: "Team had zero Kubernetes/cloud experience—would need 6 months training",
+                        alternative: "Managed PaaS (Heroku/Render) while team builds cloud skills gradually",
+                        outcome: "Launched in 4 weeks. Team learned cloud incrementally without blocking delivery.",
+                        lesson: "Match technology to current team capabilities, not ideal future state."
+                    }
+                ]
+            }
         ];
         
         categories.forEach((category, index) => {
@@ -1405,6 +1877,50 @@ const generateChecklistPDF = async (lang = 'en') => {
                 doc.moveDown(0.15);
             });
             
+            // Real Examples Section
+            if (category.examples && category.examples.length > 0) {
+                doc.moveDown(0.6);
+                doc.fontSize(11).font('Helvetica-Bold');
+                doc.text('[EX] REAL EXAMPLES:', { align: 'left' });
+                doc.moveDown(0.4);
+                
+                category.examples.forEach((example, exIdx) => {
+                    doc.fontSize(9).font('Helvetica-Bold');
+                    doc.text(`Example ${exIdx + 1} (${example.industry}, ${example.region}, ${example.year}):`, { align: 'left' });
+                    doc.moveDown(0.2);
+                    
+                    doc.fontSize(8).font('Helvetica-Bold');
+                    doc.text('Situation:', { align: 'left', indent: 15 });
+                    doc.fontSize(8).font('Helvetica');
+                    doc.text(example.situation, { align: 'left', indent: 25, width: 480, lineGap: 1.5 });
+                    doc.moveDown(0.2);
+                    
+                    doc.fontSize(8).font('Helvetica-Bold');
+                    doc.text('Hidden issue:', { align: 'left', indent: 15 });
+                    doc.fontSize(8).font('Helvetica');
+                    doc.text(example.hiddenIssue, { align: 'left', indent: 25, width: 480, lineGap: 1.5 });
+                    doc.moveDown(0.2);
+                    
+                    doc.fontSize(8).font('Helvetica-Bold');
+                    doc.text('Alternative:', { align: 'left', indent: 15 });
+                    doc.fontSize(8).font('Helvetica');
+                    doc.text(example.alternative, { align: 'left', indent: 25, width: 480, lineGap: 1.5 });
+                    doc.moveDown(0.2);
+                    
+                    doc.fontSize(8).font('Helvetica-Bold');
+                    doc.text('Outcome:', { align: 'left', indent: 15 });
+                    doc.fontSize(8).font('Helvetica');
+                    doc.text(example.outcome, { align: 'left', indent: 25, width: 480, lineGap: 1.5 });
+                    doc.moveDown(0.2);
+                    
+                    doc.fontSize(8).font('Helvetica-Bold');
+                    doc.text('Lesson:', { align: 'left', indent: 15 });
+                    doc.fontSize(8).font('Helvetica');
+                    doc.text(example.lesson, { align: 'left', indent: 25, width: 480, lineGap: 1.5 });
+                    doc.moveDown(0.5);
+                });
+            }
+            
             doc.moveDown(0.8);
         });
         
@@ -1452,17 +1968,85 @@ const generateChecklistPDF = async (lang = 'en') => {
             ? '→ Angebot erscheint gründlich. Spezifische Details vor Unterzeichnung prüfen.'
             : '→ Proposal appears thorough. Review specific details before signing.', { align: 'left', indent: 15 });
         
+        // Final CTA Section
+        doc.addPage();
+        doc.moveDown(0.5);
+        
+        doc.fontSize(16).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'LÜCKEN IN IHREM ANGEBOT GEFUNDEN?' : 'FOUND GAPS IN YOUR PROPOSAL?', { align: 'center' });
+        doc.moveDown(0.8);
+        
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? 'Wenn Sie <25 Punkte erzielt haben oder kritische Warnsignale identifiziert haben, erwägen Sie eine unabhängige Überprüfung vor der Verpflichtung.'
+            : 'If you scored <25 or identified critical red flags, consider an independent review before committing.', 
+            { align: 'left', width: 500 });
+        doc.moveDown(1);
+        
+        doc.fontSize(14).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'UNABHÄNGIGE ANGEBOTSPRÜFUNG' : 'INDEPENDENT PROPOSAL REVIEW', { align: 'center' });
+        doc.moveDown(0.3);
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' ? '30 Minuten • Herstellerneutral • Antwort innerhalb von 24 Stunden' : '30 minutes • Vendor-neutral • Reply within 24 hours', { align: 'center' });
+        doc.moveDown(0.8);
+        
+        doc.fontSize(11).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'Was ich überprüfen werde:' : 'What I\'ll review:', { align: 'left' });
+        doc.moveDown(0.4);
+        doc.fontSize(9).font('Helvetica');
+        const reviewItems = lang === 'de' ? [
+            '- Über-Engineering-Risiken',
+            '- Versteckte Kostenexpositionen',
+            '- Vendor Lock-in-Bedenken',
+            '- Zeitplan-Realismus',
+            '- Integrationskomplexität',
+            '- Sicherheitslücken'
+        ] : [
+            '- Over-engineering risks',
+            '- Hidden cost exposures',
+            '- Vendor lock-in concerns',
+            '- Timeline realism',
+            '- Integration complexity',
+            '- Security gaps'
+        ];
+        reviewItems.forEach(item => {
+            doc.text(item, { align: 'left', indent: 15 });
+            doc.moveDown(0.2);
+        });
+        doc.moveDown(0.6);
+        
+        doc.fontSize(9).font('Helvetica');
+        doc.text(lang === 'de' ? 'Kein Verkaufspitch. Nur ehrliche Bewertung.' : 'No sales pitch. Just honest assessment.', { align: 'center', width: 500 });
+        doc.moveDown(1);
+        
+        doc.fontSize(10).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'Beratung buchen:' : 'Book Review:', { align: 'left' });
+        doc.fontSize(9).font('Helvetica');
+        doc.text('https://calendly.com/prasad-sgsits/30min', { align: 'left', indent: 15 });
+        doc.moveDown(0.4);
+        
+        doc.fontSize(10).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'Angebotszusammenfassung senden:' : 'Send Proposal Summary:', { align: 'left' });
+        doc.fontSize(9).font('Helvetica');
+        doc.text('prasad@prasadtilloo.com', { align: 'left', indent: 15 });
+        doc.moveDown(1.5);
+        
         // Footer
-        doc.moveDown(2);
         doc.fontSize(8).font('Helvetica');
-        doc.text('Prasad Tilloo | Independent Architecture & Transformation Consultant', { align: 'center' });
-        doc.moveDown(0.15);
-        doc.text('prasadtilloo.com | prasad@prasadtilloo.com', { align: 'center' });
-        doc.moveDown(0.15);
+        doc.text('Prasad Tilloo', { align: 'center' });
+        doc.moveDown(0.1);
+        doc.text('Independent Architecture & Transformation Consultant', { align: 'center' });
+        doc.moveDown(0.3);
         doc.fontSize(7).font('Helvetica');
         doc.text(lang === 'de' 
-            ? 'Vendor-neutral • Keine Implementierungsvoreingenommenheit • Ansässig in Deutschland'
-            : 'Vendor-neutral • No implementation bias • Based in Germany', { align: 'center' });
+            ? 'Herstellerneutrale Beratung • Keine Implementierungsvoreingenommenheit • Ansässig in Deutschland'
+            : 'Vendor-neutral advice • No implementation upsell • Based in Germany', { align: 'center' });
+        doc.moveDown(0.3);
+        doc.text(lang === 'de' 
+            ? 'Globale Liefererfahrung: Nordamerika • Europa • Asien • Südamerika'
+            : 'Global delivery experience: North America • Europe • Asia • South America', { align: 'center' });
+        doc.moveDown(0.3);
+        doc.text('prasadtilloo.com', { align: 'center' });
         
         // Wait for PDF to be generated
         return new Promise((resolve, reject) => {

@@ -51,10 +51,59 @@ const CaseStudyPage: React.FC = () => {
 
     if (!study) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">Case Study Not Found</h2>
-                    <Link to="/projects" className="text-emerald-600 hover:underline">Return to Projects</Link>
+            <div className="min-h-screen bg-white dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                            Case Study Coming Soon
+                        </h1>
+                        <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
+                            The full case study for this project is currently being prepared.
+                        </p>
+                        <Link 
+                            to="/projects" 
+                            className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:underline font-semibold"
+                        >
+                            <ArrowLeft size={18} />
+                            Return to Projects
+                        </Link>
+                    </div>
+
+                    <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 mb-8">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                            Need Similar Architecture Validation?
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                            If you're evaluating a similar project or architecture decision, I offer independent reviews 
+                            to help identify risks, gaps, and optimization opportunities before committing budget.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <Link
+                                to="/services"
+                                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                            >
+                                Request Architecture Review
+                                <ArrowRight size={18} />
+                            </Link>
+                            <a
+                                href="https://calendly.com/prasad-sgsits/30min"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-white px-6 py-3 rounded-lg font-semibold transition-all hover:border-emerald-500"
+                            >
+                                Book 30-Min Consultation
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-6 border border-emerald-200 dark:border-emerald-800">
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                            <strong className="text-slate-900 dark:text-white">Full case study available upon request.</strong>
+                        </p>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                            Contact: <a href="mailto:prasad@prasadtilloo.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">prasad@prasadtilloo.com</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         );

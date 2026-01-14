@@ -285,7 +285,160 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
 
-                {/* SECTION 5: FINAL CTA */}
+                {/* SECTION 5: MINI CASE STUDIES */}
+                <section className="py-20 bg-white dark:bg-slate-900">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-12"
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                                {t('homepage.miniCases.title', { defaultValue: 'Proof in Outcomes' })}
+                            </h2>
+                            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                                {t('homepage.miniCases.subtitle', { defaultValue: 'Real architecture decisions from recent engagements' })}
+                            </p>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Case 1 */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                            >
+                                <div className="text-4xl mb-4">🏭</div>
+                                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
+                                    {t('homepage.miniCases.case1.client', { defaultValue: 'Pharma Company (Germany)' })}
+                                </div>
+                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
+                                    <strong>{t('homepage.miniCases.situation', { defaultValue: 'Situation:' })}</strong>{' '}
+                                    {t('homepage.miniCases.case1.situation', { defaultValue: 'AWS proposed €450K Kubernetes setup for 50-person team' })}
+                                </p>
+                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
+                                    <strong>{t('homepage.miniCases.decision', { defaultValue: 'Decision:' })}</strong>{' '}
+                                    {t('homepage.miniCases.case1.decision', { defaultValue: 'Serverless alternative recommended' })}
+                                </p>
+                                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
+                                    {t('homepage.miniCases.case1.outcome', { defaultValue: '€415K saved' })}
+                                </div>
+                                <p className="text-sm text-slate-500 dark:text-slate-500">
+                                    {t('homepage.miniCases.case1.detail', { defaultValue: 'Upfront + €65K/year ongoing' })}
+                                </p>
+                            </motion.div>
+
+                            {/* Case 2 */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                            >
+                                <div className="text-4xl mb-4">🏥</div>
+                                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
+                                    {t('homepage.miniCases.case2.client', { defaultValue: 'Healthcare Provider (Switzerland)' })}
+                                </div>
+                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
+                                    <strong>{t('homepage.miniCases.situation', { defaultValue: 'Situation:' })}</strong>{' '}
+                                    {t('homepage.miniCases.case2.situation', { defaultValue: '8-month migration timeline from consultant' })}
+                                </p>
+                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
+                                    <strong>{t('homepage.miniCases.decision', { defaultValue: 'Decision:' })}</strong>{' '}
+                                    {t('homepage.miniCases.case2.decision', { defaultValue: 'Phased approach with early value delivery' })}
+                                </p>
+                                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
+                                    {t('homepage.miniCases.case2.outcome', { defaultValue: '6 months faster' })}
+                                </div>
+                                <p className="text-sm text-slate-500 dark:text-slate-500">
+                                    {t('homepage.miniCases.case2.detail', { defaultValue: 'First value in 6 weeks vs 8 months' })}
+                                </p>
+                            </motion.div>
+
+                            {/* Case 3 */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                            >
+                                <div className="text-4xl mb-4">🏢</div>
+                                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
+                                    {t('homepage.miniCases.case3.client', { defaultValue: 'Scale-up (Netherlands)' })}
+                                </div>
+                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
+                                    <strong>{t('homepage.miniCases.situation', { defaultValue: 'Situation:' })}</strong>{' '}
+                                    {t('homepage.miniCases.case3.situation', { defaultValue: 'Multi-cloud proposal with vendor lock-in risk' })}
+                                </p>
+                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
+                                    <strong>{t('homepage.miniCases.decision', { defaultValue: 'Decision:' })}</strong>{' '}
+                                    {t('homepage.miniCases.case3.decision', { defaultValue: 'Portable architecture with 3 viable vendor options' })}
+                                </p>
+                                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
+                                    {t('homepage.miniCases.case3.outcome', { defaultValue: 'Zero lock-in' })}
+                                </div>
+                                <p className="text-sm text-slate-500 dark:text-slate-500">
+                                    {t('homepage.miniCases.case3.detail', { defaultValue: 'Freedom to negotiate or switch' })}
+                                </p>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* SECTION 6: LEAD MAGNET CTA */}
+                <section className="py-20 bg-slate-50 dark:bg-slate-800">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-center"
+                        >
+                            <div className="inline-block bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-full mb-6">
+                                <FileText className="text-emerald-600 dark:text-emerald-400" size={48} />
+                            </div>
+                            
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+                                {t('homepage.leadMagnetCta.title', { defaultValue: 'Free Download' })}
+                            </h2>
+                            
+                            <h3 className="text-xl md:text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                                {t('homepage.leadMagnetCta.subtitle', { defaultValue: 'Vendor Proposal Review Checklist' })}
+                            </h3>
+                            
+                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
+                                {t('homepage.leadMagnetCta.description', { defaultValue: 'Professional checklist to identify gaps, risks, and over-engineering in cloud, platform, and AI proposals before signing.' })}
+                            </p>
+                            
+                            <div className="mb-4">
+                                <Link
+                                    to="/checklist"
+                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-lg hover:shadow-xl"
+                                >
+                                    <FileText size={20} />
+                                    {t('homepage.leadMagnetCta.button', { defaultValue: 'Download PDF' })}
+                                </Link>
+                            </div>
+                            
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">
+                                {t('homepage.leadMagnetCta.privacy', { defaultValue: 'One-time send. No newsletter. Unsubscribe option included.' })}
+                            </p>
+                            
+                            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-slate-600 dark:text-slate-400">
+                                <span>✓ {t('homepage.leadMagnetCta.features.1', { defaultValue: '7 assessment categories' })}</span>
+                                <span>✓ {t('homepage.leadMagnetCta.features.2', { defaultValue: 'Red flag patterns' })}</span>
+                                <span>✓ {t('homepage.leadMagnetCta.features.3', { defaultValue: 'Vendor-neutral' })}</span>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* SECTION 7: FINAL CTA */}
                 <section className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                         <motion.div

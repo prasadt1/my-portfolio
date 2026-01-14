@@ -239,23 +239,42 @@ const ChecklistPage: React.FC = () => {
                             </motion.div>
                         )}
 
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                            className="text-sm text-slate-500 dark:text-slate-400 mt-8 max-w-2xl mx-auto"
-                        >
-                            {t('checklist.hero.trustNote')}
-                        </motion.p>
                     </div>
+                </Container>
+
+                {/* Trust Note Section */}
+                <Container maxWidth="4xl" className="py-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="bg-slate-50 dark:bg-slate-800 p-8 rounded-xl text-center"
+                    >
+                        <p className="text-slate-600 dark:text-slate-300 mb-4">
+                            {t('checklist.trust.usedBy', { defaultValue: 'Used by CTOs at mid-market companies across EU.' })}
+                        </p>
+                        
+                        <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500 dark:text-slate-400 mb-4">
+                            <span>✓ {t('checklist.trust.independent', { defaultValue: 'Independent consultant' })}</span>
+                            <span>✓ {t('checklist.trust.noVendor', { defaultValue: 'No vendor partnerships' })}</span>
+                            <span>✓ {t('checklist.trust.global', { defaultValue: 'Global delivery experience' })}</span>
+                        </div>
+                        
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                            {t('checklist.trust.experience', { defaultValue: 'Delivery experience across: North America • Europe • Asia • South America' })}
+                        </p>
+                    </motion.div>
                 </Container>
 
                 {/* What's Inside Section */}
                 <Container maxWidth="4xl" className="py-16">
-                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
+                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-4">
                         {t('checklist.whatsInside.title')}
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <p className="text-lg text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+                        {t('checklist.whatsInside.subtitle', { defaultValue: 'Everything you need to validate your proposal' })}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                         {whatsInside.map((item, index) => (
                             <motion.div
                                 key={index}
@@ -268,7 +287,7 @@ const ChecklistPage: React.FC = () => {
                                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                                     {item.title}
                                 </h3>
-                                <p className="text-slate-600 dark:text-slate-400">
+                                <p className="text-slate-600 dark:text-slate-400 text-sm">
                                     {item.description}
                                 </p>
                             </motion.div>
@@ -406,6 +425,27 @@ const ChecklistPage: React.FC = () => {
                             <ArrowRight size={18} />
                         </Link>
                     </div>
+                </Container>
+
+                {/* Secondary CTA */}
+                <Container maxWidth="4xl" className="py-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center"
+                    >
+                        <p className="text-slate-600 dark:text-slate-400 mb-4">
+                            {t('checklist.secondaryCta.text', { defaultValue: 'Want to discuss your specific situation first?' })}
+                        </p>
+                        <Link 
+                            to="/services" 
+                            className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:underline font-semibold"
+                        >
+                            {t('checklist.secondaryCta.link', { defaultValue: 'Explore architecture review services' })}
+                            <ArrowRight size={18} />
+                        </Link>
+                    </motion.div>
                 </Container>
             </PageShell>
         </>

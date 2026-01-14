@@ -737,6 +737,12 @@
                 "Receive a summary + recommended next steps within 48 hours"
             ]
         },
+        "mostPopular": "MOST POPULAR",
+        "guarantee": {
+            "title": "Money-Back Guarantee",
+            "description": "If my review doesn't identify at least one significant improvement opportunity, I refund the full fee.",
+            "noQuestions": "No questions asked."
+        },
         "architectureReview": {
             "title": "Architecture Review",
             "subtitle": "Independent assessment of your current architecture and modernization options. Get clarity on risks, tradeoffs, and recommended path forward.",
@@ -1045,6 +1051,45 @@
             "title": "Ready to De-Risk Your Architecture Decision?",
             "cta": "Book Discovery Call",
             "trustNote": "Direct senior involvement • Vendor-neutral • Global experience"
+        },
+        "miniCases": {
+            "title": "Proof in Outcomes",
+            "subtitle": "Real architecture decisions from recent engagements",
+            "situation": "Situation:",
+            "decision": "Decision:",
+            "case1": {
+                "client": "Pharma Company (Germany)",
+                "situation": "AWS proposed €450K Kubernetes setup for 50-person team",
+                "decision": "Serverless alternative recommended",
+                "outcome": "€415K saved",
+                "detail": "Upfront + €65K/year ongoing"
+            },
+            "case2": {
+                "client": "Healthcare Provider (Switzerland)",
+                "situation": "8-month migration timeline from consultant",
+                "decision": "Phased approach with early value delivery",
+                "outcome": "6 months faster",
+                "detail": "First value in 6 weeks vs 8 months"
+            },
+            "case3": {
+                "client": "Scale-up (Netherlands)",
+                "situation": "Multi-cloud proposal with vendor lock-in risk",
+                "decision": "Portable architecture with 3 viable vendor options",
+                "outcome": "Zero lock-in",
+                "detail": "Freedom to negotiate or switch"
+            }
+        },
+        "leadMagnetCta": {
+            "title": "Free Download",
+            "subtitle": "Vendor Proposal Review Checklist",
+            "description": "Professional checklist to identify gaps, risks, and over-engineering in cloud, platform, and AI proposals before signing.",
+            "button": "Download PDF",
+            "privacy": "One-time send. No newsletter. Unsubscribe option included.",
+            "features": {
+                "1": "7 assessment categories",
+                "2": "Red flag patterns",
+                "3": "Vendor-neutral"
+            }
         }
     },
     "hiringPage": {
@@ -1187,6 +1232,7 @@
         },
         "whatsInside": {
             "title": "What's Inside",
+            "subtitle": "Everything you need to validate your proposal",
             "items": [
                 {
                     "icon": "📋",
@@ -1234,6 +1280,17 @@
             "title": "Download Your Checklist",
             "afterNote": "After reviewing your proposal, if you'd like a second opinion, I offer 30-minute consultations (no obligation).",
             "learnMore": "Learn about architecture reviews"
+        },
+        "trust": {
+            "usedBy": "Used by CTOs at mid-market companies across EU.",
+            "independent": "Independent consultant",
+            "noVendor": "No vendor partnerships",
+            "global": "Global delivery experience",
+            "experience": "Delivery experience across: North America • Europe • Asia • South America"
+        },
+        "secondaryCta": {
+            "text": "Want to discuss your specific situation first?",
+            "link": "Explore architecture review services"
         },
         "form": {
             "emailLabel": "Send me the checklist:",
