@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2, ArrowRight, Layers, Users, Cpu, FileSearch } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Layers, Users, Cpu, FileSearch, Shield } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { PageShell, PageHeader, Container } from '../components/layout';
@@ -100,15 +100,19 @@ const ServicesPage: React.FC = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                                    className={`relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl flex flex-col overflow-hidden group hover:shadow-2xl transition-all duration-300 ${
+                                        isBlueprintSprint 
+                                            ? 'border-4 border-emerald-500 dark:border-emerald-400 scale-105' 
+                                            : 'border border-slate-200 dark:border-slate-700'
+                                    }`}
                                 >
                                     {/* Gradient Background Effect */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`} />
 
-                                    {/* Most Popular Badge */}
+                                    {/* Most Popular Badge - Floating Above */}
                                     {isBlueprintSprint && (
-                                        <div className="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-20">
-                                            {t('services.mostPopular')}
+                                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg z-20">
+                                            ⭐ {t('services.mostPopular', { defaultValue: 'MOST POPULAR' })}
                                         </div>
                                     )}
 
@@ -166,6 +170,27 @@ const ServicesPage: React.FC = () => {
                                                 ))}
                                             </ul>
                                         </div>
+
+                                        {/* Money-Back Guarantee for Architecture Review */}
+                                        {service.id === 'architecture-review' && (
+                                            <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-lg">
+                                                <div className="flex items-start gap-3">
+                                                    <Shield className="text-emerald-600 dark:text-emerald-400 flex-shrink-0" size={24} />
+                                                    <div>
+                                                        <h4 className="font-bold text-slate-900 dark:text-white mb-2">
+                                                            {t('services.guarantee.title', { defaultValue: 'Money-Back Guarantee' })}
+                                                        </h4>
+                                                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                                                            {t('services.guarantee.description', { defaultValue: 'If my review doesn\'t identify at least one significant improvement opportunity, I refund the full fee.' })}
+                                                            <br />
+                                                            <span className="font-semibold">
+                                                                {t('services.guarantee.noQuestions', { defaultValue: 'No questions asked.' })}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
 
                                         <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700">
                                             <p className="text-xs text-slate-600 dark:text-slate-400 italic">

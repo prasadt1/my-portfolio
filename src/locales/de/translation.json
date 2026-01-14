@@ -1013,6 +1013,45 @@
             "title": "Bereit, Ihre Architektur-Entscheidung abzusichern?",
             "cta": "Discovery Call buchen",
             "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Globale Erfahrung"
+        },
+        "miniCases": {
+            "title": "Beweis in Ergebnissen",
+            "subtitle": "Echte Architekturentscheidungen aus aktuellen Projekten",
+            "situation": "Situation:",
+            "decision": "Entscheidung:",
+            "case1": {
+                "client": "Pharmaunternehmen (Deutschland)",
+                "situation": "AWS schlug €450K Kubernetes-Setup für 50-köpfiges Team vor",
+                "decision": "Serverless-Alternative empfohlen",
+                "outcome": "€415K gespart",
+                "detail": "Einmalig + €65K/Jahr laufend"
+            },
+            "case2": {
+                "client": "Gesundheitsdienstleister (Schweiz)",
+                "situation": "8-monatige Migrationszeitachse vom Berater",
+                "decision": "Phasenweiser Ansatz mit früher Wertlieferung",
+                "outcome": "6 Monate schneller",
+                "detail": "Erster Wert in 6 Wochen statt 8 Monaten"
+            },
+            "case3": {
+                "client": "Scale-up (Niederlande)",
+                "situation": "Multi-Cloud-Vorschlag mit Vendor Lock-in Risiko",
+                "decision": "Portable Architektur mit 3 lebensfähigen Optionen",
+                "outcome": "Null Lock-in",
+                "detail": "Freiheit zu verhandeln oder zu wechseln"
+            }
+        },
+        "leadMagnetCta": {
+            "title": "Kostenloser Download",
+            "subtitle": "Vendor Proposal Review Checkliste",
+            "description": "Professionelle Checkliste zur Identifizierung von Lücken, Risiken und Über-Engineering in Cloud-, Plattform- und KI-Vorschlägen vor der Unterzeichnung.",
+            "button": "PDF Herunterladen",
+            "privacy": "Einmalige Zusendung. Kein Newsletter. Abmeldemöglichkeit inklusive.",
+            "features": {
+                "1": "7 Bewertungskategorien",
+                "2": "Warnzeichen-Muster",
+                "3": "Herstellerneutral"
+            }
         }
     },
     "hiringPage": {
@@ -1155,6 +1194,7 @@
         },
         "whatsInside": {
             "title": "Was Enthalten Ist",
+            "subtitle": "Alles, was Sie zur Validierung Ihres Angebots benötigen",
             "items": [
                 {
                     "icon": "📋",
@@ -1202,6 +1242,17 @@
             "title": "Laden Sie Ihre Checkliste Herunter",
             "afterNote": "Nach der Überprüfung Ihres Angebots biete ich 30-minütige Beratungsgespräche an (unverbindlich), falls Sie eine zweite Meinung wünschen.",
             "learnMore": "Mehr über Architekturbewertungen erfahren"
+        },
+        "trust": {
+            "usedBy": "Verwendet von CTOs bei mittelständischen Unternehmen in der EU.",
+            "independent": "Unabhängiger Berater",
+            "noVendor": "Keine Herstellerpartnerschaften",
+            "global": "Globale Liefererfahrung",
+            "experience": "Liefererfahrung in: Nordamerika • Europa • Asien • Südamerika"
+        },
+        "secondaryCta": {
+            "text": "Möchten Sie zuerst Ihre spezifische Situation besprechen?",
+            "link": "Architekturbewertungs-Services erkunden"
         },
         "form": {
             "emailLabel": "Senden Sie mir die Checkliste:",
