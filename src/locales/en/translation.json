@@ -897,7 +897,30 @@
             "more": "Show more",
             "less": "Show less"
         },
-        "viewCaseStudy": "View Case Study"
+        "viewCaseStudy": "View Case Study",
+        "caseStudyComingSoon": "Case Study Coming Soon",
+        "viewOverview": "View Overview"
+    },
+    "projectsPage": {
+        "featured": {
+            "badge": "Featured",
+            "globalStandard": "Global Standard",
+            "fortune100": "Fortune 100 Adopters",
+            "integrationReduction": "Integration Time Reduction",
+            "globalBody": "Global Standards Body",
+            "readCaseStudy": "Read Full Case Study"
+        },
+        "otherProjects": {
+            "title": "Other Projects",
+            "subtitle": "Architecture reviews, frameworks, and transformation work across industries"
+        },
+        "projectTypes": {
+            "product": "Product",
+            "standard": "Standard",
+            "migration": "Migration",
+            "framework": "Framework",
+            "data-platform": "Data Platform"
+        }
     },
     "caseStudy": {
         "executiveSummary": {

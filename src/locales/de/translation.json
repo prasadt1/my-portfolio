@@ -859,7 +859,30 @@
             "more": "Mehr anzeigen",
             "less": "Weniger anzeigen"
         },
-        "viewCaseStudy": "Case Study ansehen"
+        "viewCaseStudy": "Case Study ansehen",
+        "caseStudyComingSoon": "Case Study in Arbeit",
+        "viewOverview": "Übersicht ansehen"
+    },
+    "projectsPage": {
+        "featured": {
+            "badge": "Highlight",
+            "globalStandard": "Globaler Standard",
+            "fortune100": "Fortune 100 Anwender",
+            "integrationReduction": "Integrationszeit-Reduktion",
+            "globalBody": "Globales Standardgremium",
+            "readCaseStudy": "Vollständige Case Study lesen"
+        },
+        "otherProjects": {
+            "title": "Weitere Projekte",
+            "subtitle": "Architektur-Reviews, Frameworks und Transformationsprojekte branchenübergreifend"
+        },
+        "projectTypes": {
+            "product": "Produkt",
+            "standard": "Standard",
+            "migration": "Migration",
+            "framework": "Framework",
+            "data-platform": "Datenplattform"
+        }
     },
     "caseStudy": {
         "executiveSummary": {
