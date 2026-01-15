@@ -1042,11 +1042,11 @@
             }
         },
         "leadMagnetCta": {
-            "title": "Kostenloser Download",
-            "subtitle": "Vendor Proposal Review Checkliste",
-            "description": "Professionelle Checkliste zur Identifizierung von Lücken, Risiken und Über-Engineering in Cloud-, Plattform- und KI-Vorschlägen vor der Unterzeichnung.",
-            "button": "PDF Herunterladen",
-            "privacy": "Einmalige Zusendung. Kein Newsletter. Abmeldemöglichkeit inklusive.",
+            "title": "Kostenlose Ressource",
+            "subtitle": "Angebotsprüfungs-Checkliste",
+            "description": "Eine professionelle Checkliste zur Bewertung von Cloud-, Plattform- und KI-Angeboten, bevor Sie Budget binden. Basierend auf 50+ Enterprise-Architektur-Assessments.",
+            "button": "Checkliste zusenden",
+            "privacy": "Eine E-Mail. Kein Newsletter. Ihre Daten bleiben privat.",
             "features": {
                 "1": "7 Bewertungskategorien",
                 "2": "Warnzeichen-Muster",
@@ -1267,7 +1267,9 @@
         },
         "success": {
             "title": "Prüfen Sie Ihren Posteingang.",
-            "message": "Wir haben die Checkliste an Ihre E-Mail-Adresse gesendet."
+            "message": "Wir haben die Checkliste an Ihre E-Mail-Adresse gesendet.",
+            "softCtaText": "Falls relevant, kann ich Ihr konkretes Angebot prüfen und Risiken identifizieren, bevor Sie sich festlegen.",
+            "softCtaLink": "Architektur-Review-Services ansehen"
         }
     },
     "proof": {

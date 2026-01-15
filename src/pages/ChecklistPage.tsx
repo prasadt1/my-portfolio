@@ -233,9 +233,23 @@ const ChecklistPage: React.FC = () => {
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                                     {t('checklist.success.title')}
                                 </h3>
-                                <p className="text-slate-600 dark:text-slate-400">
+                                <p className="text-slate-600 dark:text-slate-400 mb-6">
                                     {t('checklist.success.message')}
                                 </p>
+                                
+                                {/* Soft CTA after download */}
+                                <div className="border-t border-emerald-200 dark:border-emerald-700 pt-6 mt-6">
+                                    <p className="text-slate-600 dark:text-slate-400 mb-4">
+                                        {t('checklist.success.softCtaText', { defaultValue: 'If relevant, I can review your specific proposal and identify risks before you commit.' })}
+                                    </p>
+                                    <Link
+                                        to="/services"
+                                        className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold"
+                                    >
+                                        {t('checklist.success.softCtaLink', { defaultValue: 'Explore Architecture Review Services' })}
+                                        <ArrowRight size={18} />
+                                    </Link>
+                                </div>
                             </motion.div>
                         )}
 

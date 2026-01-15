@@ -1080,11 +1080,11 @@
             }
         },
         "leadMagnetCta": {
-            "title": "Free Download",
+            "title": "Free Resource",
             "subtitle": "Vendor Proposal Review Checklist",
-            "description": "Professional checklist to identify gaps, risks, and over-engineering in cloud, platform, and AI proposals before signing.",
-            "button": "Download PDF",
-            "privacy": "One-time send. No newsletter. Unsubscribe option included.",
+            "description": "A professional checklist to evaluate cloud, platform, and AI proposals before committing budget. Based on 50+ enterprise architecture assessments.",
+            "button": "Send me the checklist",
+            "privacy": "One email only. No newsletter. Your data stays private.",
             "features": {
                 "1": "7 assessment categories",
                 "2": "Red flag patterns",
@@ -1305,7 +1305,9 @@
         },
         "success": {
             "title": "Check your inbox.",
-            "message": "We've sent the checklist to your email address."
+            "message": "We've sent the checklist to your email address.",
+            "softCtaText": "If relevant, I can review your specific proposal and identify risks before you commit.",
+            "softCtaLink": "Explore Architecture Review Services"
         }
     },
     "proof": {
