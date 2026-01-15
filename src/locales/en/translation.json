@@ -21,20 +21,20 @@
         "consulting": "Consulting",
         "architectureEngine": "Architecture Assistant (Beta)",
         "labs": "Labs",
-        "bookDiscoveryCall": "Book Discovery Call",
+        "bookDiscoveryCall": "Book Architecture Review",
         "toggleLanguage": "Toggle Language",
         "toggleTheme": "Toggle Theme",
         "forRecruiters": "For Recruiters"
     },
     "hero": {
-        "badge": "Independent Advisory",
-        "headline": "Make high-stakes architecture decisions with confidence",
+        "badge": "Independent Validator • Vendor-Neutral",
+        "headline": "Reduce risk before committing budget",
         "tagline": "Independent Architecture & Transformation Advisory",
-        "subtitle": "I help CTOs and engineering leaders de-risk cloud, platform and AI modernization decisions — before committing budget and roadmap.",
-        "cta": "Book Discovery Call",
+        "subtitle": "I help CTOs and engineering leaders validate architecture, modernization, cloud migration, and AI enablement decisions — before committing budget and roadmap.",
+        "cta": "Book Architecture Review",
         "ctaSecondary": "See Services",
-        "trustNote": "Direct senior involvement • Vendor-neutral • Execution-ready deliverables • Global delivery experience",
-        "differentiator": "Global enterprise delivery experience — architecture decisions grounded in execution reality.",
+        "trustNote": "Global delivery (NA • EU • Asia • South America) • Hands-on execution support • Vendor-neutral • PACT/WBCSD credibility",
+        "differentiator": "Not just assessment — delivery and execution experience across Fortune 100 transformations.",
         "proofLine": "Delivered across complex enterprise environments — distributed teams, multiple stakeholders, and high-stakes systems."
     },
     "howItWork": {
@@ -676,16 +676,16 @@
     },
     "servicesPage": {
         "title": "Architecture & Transformation Services",
-        "subtitle": "Vendor-neutral assessments, modernization roadmaps, and delivery leadership — grounded in global enterprise experience.",
+        "subtitle": "Independent validation of architecture, modernization, cloud migration, and AI enablement decisions.",
         "timeline": "Timeline",
         "price": "Price",
         "for": "For",
         "deliverables": "Deliverables",
-        "bookCall": "Book Discovery Call",
+        "bookCall": "Book Architecture Review",
         "ctaTitle": "Ready to Validate Your Architecture Decisions?",
         "ctaSubtitle": "Book a free discovery call to discuss your specific challenge and how I can help.",
-        "bookDiscoveryCall": "Book Discovery Call",
-        "differentiator": "Global enterprise delivery experience — architecture decisions grounded in execution reality."
+        "bookDiscoveryCall": "Book Architecture Review",
+        "differentiator": "Global delivery experience (NA • EU • Asia • South America) — not just assessment, but hands-on execution support."
     },
     "services": {
         "blueprintSprint": {
@@ -923,12 +923,12 @@
         }
     },
     "independentAdvisory": {
-        "title": "Why independent advisory",
-        "subtitle": "Direct senior involvement, vendor-neutral guidance, and execution-ready decision packages — without heavy overhead.",
+        "title": "Why independent validation",
+        "subtitle": "Direct senior involvement, vendor-neutral guidance, and hands-on execution support — without heavy overhead.",
         "cards": {
             "direct": {
                 "title": "Direct senior involvement",
-                "text": "You work with me directly — no rotating teams."
+                "text": "You work with me directly — no rotating teams or junior consultants."
             },
             "fast": {
                 "title": "Fast clarity",
@@ -936,15 +936,15 @@
             },
             "vendorNeutral": {
                 "title": "Vendor-neutral",
-                "text": "Tool-agnostic guidance aligned to outcomes."
+                "text": "Tool-agnostic guidance aligned to your outcomes, not vendor revenue."
             },
             "executionReady": {
-                "title": "Execution-ready outputs",
-                "text": "Blueprint + risk register + roadmap — not just slides."
+                "title": "Hands-on execution support",
+                "text": "Not just assessment — I stay involved through delivery when needed."
             },
             "globalDelivery": {
                 "title": "Global delivery experience",
-                "text": "Worked across EU, the Americas and Asia — with distributed teams and complex stakeholder environments."
+                "text": "NA • EU • Asia • South America — distributed teams and complex stakeholder environments."
             }
         }
     },

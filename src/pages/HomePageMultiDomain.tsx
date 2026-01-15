@@ -75,7 +75,7 @@ const HomePageMultiDomain: React.FC = () => {
                                 {t('hero.proofLine')}
                             </p>
 
-                            {/* CTAs */}
+                            {/* CTAs - Primary CTA prominent, secondary subdued */}
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                                 <a
                                     href="https://calendly.com/prasad-sgsits/30min"
@@ -89,9 +89,10 @@ const HomePageMultiDomain: React.FC = () => {
 
                                 <Link
                                     to="/services"
-                                    className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center gap-3"
+                                    className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
                                 >
                                     {t('hero.ctaSecondary')}
+                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
                                 </Link>
                             </div>
 
