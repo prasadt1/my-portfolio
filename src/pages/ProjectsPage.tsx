@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/projects';
 import { DOMAINS } from '../data/domains';
-import { FolderGit2, ArrowRight } from 'lucide-react';
+import { FolderGit2, ArrowRight, Globe, Award, TrendingUp } from 'lucide-react';
 import SEO from '../components/SEO';
 
 import SmartProjectFilter from '../components/SmartProjectFilter';
@@ -12,6 +13,7 @@ import DomainFilter from '../components/DomainFilter';
 import ProjectCard from '../components/ProjectCard';
 
 const ProjectsPage: React.FC = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const [activeDomain, setActiveDomain] = useState<string>('All');
   const [smartTags, setSmartTags] = useState<string[]>([]);
@@ -136,36 +138,101 @@ const ProjectsPage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mb-12"
+              className="mb-8"
             >
-              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-2xl p-8 md:p-12 border-2 border-emerald-200 dark:border-emerald-700">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">FEATURED</span>
-                  <span className="text-sm text-emerald-700 dark:text-emerald-400 font-semibold">Case Study</span>
+              <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 dark:from-emerald-900/30 dark:via-teal-900/20 dark:to-emerald-800/20 rounded-2xl p-8 md:p-12 border-2 border-emerald-200 dark:border-emerald-700 relative overflow-hidden">
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500 rounded-full -translate-y-1/2 translate-x-1/2" />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500 rounded-full translate-y-1/2 -translate-x-1/2" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                  {featuredProject.title}
-                </h2>
-                <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 max-w-3xl">
-                  {featuredProject.executiveSummary?.overview || featuredProject.description}
-                </p>
-                <Link
-                  to={`/projects/${featuredProject.slug}`}
-                  className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105"
-                >
-                  Read Full Case Study
-                  <ArrowRight size={20} />
-                </Link>
+                
+                <div className="relative z-10">
+                  <div className="flex flex-wrap items-center gap-3 mb-6">
+                    <span className="px-4 py-1.5 bg-emerald-600 text-white text-xs font-bold rounded-full uppercase tracking-wide">
+                      {t('projectsPage.featured.badge', { defaultValue: 'Featured' })}
+                    </span>
+                    <span className="px-3 py-1 bg-white/80 dark:bg-slate-800/80 text-emerald-700 dark:text-emerald-400 text-xs font-semibold rounded-full border border-emerald-200 dark:border-emerald-700">
+                      {t('projectsPage.featured.globalStandard', { defaultValue: 'Global Standard' })}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 font-serif">
+                    {featuredProject.header?.title || featuredProject.title}
+                  </h2>
+                  
+                  <p className="text-lg text-slate-700 dark:text-slate-300 mb-8 max-w-3xl leading-relaxed">
+                    {featuredProject.challenge?.situation}
+                  </p>
+                  
+                  {/* Key metrics */}
+                  <div className="flex flex-wrap gap-6 mb-8">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
+                        <Globe className="text-emerald-600 dark:text-emerald-400" size={20} />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">90+</div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400">{t('projectsPage.featured.fortune100', { defaultValue: 'Fortune 100 Adopters' })}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
+                        <TrendingUp className="text-emerald-600 dark:text-emerald-400" size={20} />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">60%</div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400">{t('projectsPage.featured.integrationReduction', { defaultValue: 'Integration Time Reduction' })}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
+                        <Award className="text-emerald-600 dark:text-emerald-400" size={20} />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">WBCSD</div>
+                        <div className="text-xs text-slate-600 dark:text-slate-400">{t('projectsPage.featured.globalBody', { defaultValue: 'Global Standards Body' })}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    to={`/projects/${featuredProject.slug}`}
+                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                  >
+                    {t('projectsPage.featured.readCaseStudy', { defaultValue: 'Read Full Case Study' })}
+                    <ArrowRight size={20} />
+                  </Link>
+                </div>
               </div>
             </motion.div>
           );
         })()}
 
+        {/* Other Projects Section Header */}
+        {!isSmartFilterActive && activeDomain === 'All' && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mb-6"
+          >
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              {t('projectsPage.otherProjects.title', { defaultValue: 'Other Projects' })}
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              {t('projectsPage.otherProjects.subtitle', { defaultValue: 'Architecture reviews, frameworks, and transformation work across industries' })}
+            </p>
+          </motion.div>
+        )}
+
         {/* Projects Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            {filteredProjects
+              .filter(p => isSmartFilterActive || activeDomain !== 'All' || p.slug !== 'pact-pcf-data-exchange-network')
+              .map((project) => (
+                <ProjectCard key={project.id} project={project} />
             ))}
           </AnimatePresence>
         </motion.div>

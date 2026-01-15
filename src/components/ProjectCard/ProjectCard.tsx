@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Cpu, Layers, FileCode, Database, Shield, Clock } from 'lucide-react';
 import { CaseStudy } from '../../types/CaseStudy';
 import ProjectCardHeader from './ProjectCardHeader';
 import ProjectCardTechStack from './ProjectCardTechStack';
 import ProjectVisual from '../ProjectVisual';
+
+// Project type badge configuration
+const projectTypeBadges: Record<string, { icon: typeof Cpu; label: string; className: string }> = {
+  'product': { icon: Cpu, label: 'Product', className: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
+  'standard': { icon: Shield, label: 'Standard', className: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' },
+  'migration': { icon: Layers, label: 'Migration', className: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' },
+  'framework': { icon: FileCode, label: 'Framework', className: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' },
+  'data-platform': { icon: Database, label: 'Data Platform', className: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400' }
+};
 
 interface ProjectCardProps {
     project: CaseStudy;
@@ -22,6 +31,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         gradient: 'from-slate-800 to-emerald-600 dark:from-slate-700 dark:to-emerald-500',
         iconBg: 'text-emerald-600 dark:text-emerald-400'
     };
+
+    // Determine if this project has a detailed case study
+    // Projects with approachToday or detailed phases are considered to have case studies
+    const hasCaseStudy = project.approachToday || 
+        (project.approach?.phases && project.approach.phases.length > 0 && project.approach.phases[0].activities?.length > 0);
+    
+    // Get project type badge config
+    const typeBadge = projectTypeBadges[project.projectType] || projectTypeBadges['framework'];
+    const TypeIcon = typeBadge.icon;
 
     const getBackgroundImage = () => {
         if (imageError || !theme.backgroundImage) {
@@ -71,9 +89,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     {t(`${project.id}.challenge.situation`, { defaultValue: project.challenge.situation, ns: 'projects' })}
                 </p>
 
-                {/* 2-3 Tags (Domain/Outcome) */}
+                {/* Project Type Badge + Domain Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {project.domains.slice(0, 2).map((domain, idx) => (
+                    {/* Project type badge */}
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${typeBadge.className}`}>
+                        <TypeIcon size={12} />
+                        {t(`projectsPage.projectTypes.${project.projectType}`, { defaultValue: typeBadge.label })}
+                    </span>
+                    {project.domains.slice(0, 1).map((domain, idx) => (
                         <span key={idx} className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">
                             {domain}
                         </span>
@@ -126,15 +149,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
                 <ProjectCardTechStack project={project} />
 
-                {/* Single CTA */}
+                {/* CTA - Different for projects with/without detailed case studies */}
                 <div className="pt-4 border-t border-slate-100 dark:border-slate-700 mt-auto">
-                    <Link
-                        to={`/projects/${project.slug}`}
-                        className="w-full text-center py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
-                    >
-                        {t('projects.viewCaseStudy', { defaultValue: 'View Case Study' })}
-                        <ArrowRight size={14} />
-                    </Link>
+                    {hasCaseStudy ? (
+                        <Link
+                            to={`/projects/${project.slug}`}
+                            className="w-full text-center py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
+                        >
+                            {t('projects.viewCaseStudy', { defaultValue: 'View Case Study' })}
+                            <ArrowRight size={14} />
+                        </Link>
+                    ) : (
+                        <div className="flex flex-col gap-2">
+                            <div className="w-full text-center py-2 px-4 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-medium text-sm flex items-center justify-center gap-1.5">
+                                <Clock size={14} />
+                                {t('projects.caseStudyComingSoon', { defaultValue: 'Case Study Coming Soon' })}
+                            </div>
+                            <Link
+                                to={`/projects/${project.slug}`}
+                                className="w-full text-center py-2 px-4 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
+                            >
+                                {t('projects.viewOverview', { defaultValue: 'View Overview' })}
+                                <ArrowRight size={14} />
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </motion.div>
