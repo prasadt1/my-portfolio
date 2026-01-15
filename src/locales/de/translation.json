@@ -766,9 +766,10 @@
         "subtitle": "Unabhängige Validierung von Architektur-, Modernisierungs-, Cloud-Migrations- und AI-Enablement-Entscheidungen.",
         "timeline": "Zeitraum",
         "price": "Preis",
+        "startingAt": "Ab",
         "for": "Für",
         "deliverables": "Leistungen",
-        "bookCall": "Architektur-Review buchen",
+        "bookCall": "Discovery Call buchen",
         "ctaTitle": "Bereit, Ihre Architektur-Entscheidungen zu validieren?",
         "ctaSubtitle": "Buchen Sie ein kostenloses Erstgespräch, um Ihre spezifische Herausforderung zu besprechen.",
         "bookDiscoveryCall": "Architektur-Review buchen",
@@ -779,7 +780,7 @@
             "title": "Architektur- & Transformations-Blueprint Sprint",
             "subtitle": "Ein strukturierter Blueprint aus Ist- und Zielbild, Integrationsmustern, Risikoanalyse und einer 90-Tage-Umsetzungsroadmap.",
             "timeline": "2–3 Wochen",
-            "price": "Typischerweise €8.000–€15.000",
+            "price": "€8.000",
             "for": "Unternehmen mit größeren Transformationen, Plattform-Modernisierung oder Cloud-Migrationen",
             "deliverables": [
                 "Ist- → Zielarchitektur-Blueprint",
@@ -793,7 +794,7 @@
             "title": "Fractional Transformation Lead",
             "subtitle": "Kontinuierliche Architektur-Governance und Delivery Leadership: Programmsteuerung, Stakeholder-Alignment und pragmatische Umsetzungsunterstützung.",
             "timeline": "1–2 Tage/Woche",
-            "price": "Monatliches Engagement, umfangabhängig",
+            "price": "€4.000/Monat",
             "for": "Unternehmen, die Architektur-Leadership ohne Vollzeitbindung benötigen",
             "deliverables": [
                 "Programmsteuerung & Stakeholder-Alignment",
@@ -828,7 +829,7 @@
             "title": "Architektur-Review",
             "subtitle": "Unabhängige Bewertung Ihrer aktuellen Architektur und Modernisierungsoptionen. Klarheit über Risiken, Trade-offs und empfohlene Vorgehensweise.",
             "timeline": "1–2 Wochen",
-            "price": "Typischerweise €2.500–€4.000",
+            "price": "€2.500",
             "for": "Unternehmen, die Architektur-Entscheidungen evaluieren oder Transformationen planen",
             "deliverables": [
                 "Ist-Zustand-Bewertung",
@@ -838,7 +839,19 @@
             ],
             "notIncluded": "Implementierung ist nicht enthalten (separat möglich)."
         },
-        "mostPopular": "Beliebteste"
+        "tiers": {
+            "good": "Einstieg",
+            "better": "Empfohlen",
+            "best": "Laufende Unterstützung"
+        },
+        "mostPopular": "BELIEBTESTE",
+        "riskReversal": {
+            "title": "Risikofreies Engagement",
+            "description": "Jedes Engagement beginnt mit einem Discovery Call. Wenn wir nicht zusammenpassen, sage ich es Ihnen — und empfehle Alternativen, wenn ich kann.",
+            "point1": "Unverbindlicher Discovery Call",
+            "point2": "Klarer Umfang vor Zusage",
+            "point3": "Geld-zurück bei Reviews"
+        }
     },
     "projects": {
         "approachToday": {

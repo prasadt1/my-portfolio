@@ -679,9 +679,10 @@
         "subtitle": "Independent validation of architecture, modernization, cloud migration, and AI enablement decisions.",
         "timeline": "Timeline",
         "price": "Price",
+        "startingAt": "Starting at",
         "for": "For",
         "deliverables": "Deliverables",
-        "bookCall": "Book Architecture Review",
+        "bookCall": "Book Discovery Call",
         "ctaTitle": "Ready to Validate Your Architecture Decisions?",
         "ctaSubtitle": "Book a free discovery call to discuss your specific challenge and how I can help.",
         "bookDiscoveryCall": "Book Architecture Review",
@@ -692,7 +693,7 @@
             "title": "Architecture & Transformation Blueprint Sprint",
             "subtitle": "Get a comprehensive architecture blueprint combining current and target state, integration patterns, risk assessment, and a 90-day execution roadmap.",
             "timeline": "2–3 weeks",
-            "price": "Typically €8,000–€15,000",
+            "price": "€8,000",
             "for": "Companies planning major transformations, platform modernization, or cloud migrations",
             "deliverables": [
                 "Current → target architecture blueprint",
@@ -706,7 +707,7 @@
             "title": "Fractional Transformation Lead",
             "subtitle": "Ongoing architecture governance and delivery leadership. Program steering, stakeholder alignment, and hands-on execution support.",
             "timeline": "1–2 days/week",
-            "price": "Monthly engagement, scope-dependent",
+            "price": "€4,000/month",
             "for": "Companies needing ongoing architecture leadership without full-time commitment",
             "deliverables": [
                 "Program steering & stakeholder alignment",
@@ -737,17 +738,29 @@
                 "Receive a summary + recommended next steps within 48 hours"
             ]
         },
+        "tiers": {
+            "good": "Entry Point",
+            "better": "Recommended",
+            "best": "Ongoing Support"
+        },
         "mostPopular": "MOST POPULAR",
         "guarantee": {
             "title": "Money-Back Guarantee",
             "description": "If my review doesn't identify at least one significant improvement opportunity, I refund the full fee.",
             "noQuestions": "No questions asked."
         },
+        "riskReversal": {
+            "title": "Risk-Free Engagement",
+            "description": "Every engagement starts with a discovery call. If we're not a good fit, I'll tell you — and recommend alternatives if I can.",
+            "point1": "No obligation discovery call",
+            "point2": "Clear scope before commitment",
+            "point3": "Money-back on reviews"
+        },
         "architectureReview": {
             "title": "Architecture Review",
             "subtitle": "Independent assessment of your current architecture and modernization options. Get clarity on risks, tradeoffs, and recommended path forward.",
             "timeline": "1–2 weeks",
-            "price": "Typically €2,500–€4,000",
+            "price": "€2,500",
             "for": "Companies evaluating architecture decisions or planning transformations",
             "deliverables": [
                 "Current state assessment",
