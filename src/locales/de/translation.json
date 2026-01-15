@@ -33,6 +33,8 @@
         "subtitle": "Ich helfe CTOs und Engineering-Leads, Architektur-, Modernisierungs-, Cloud-Migrations- und AI-Enablement-Entscheidungen zu validieren — bevor Budget und Roadmap festgelegt werden.",
         "cta": "Architektur-Review buchen",
         "ctaSecondary": "Leistungen ansehen",
+        "watchVideo": "75-Sekunden-Überblick ansehen",
+        "videoTitle": "75-Sekunden-Überblick",
         "trustNote": "Globale Delivery (NA • EU • Asien • Südamerika) • Hands-on Umsetzungsunterstützung • Vendor-neutral • PACT/WBCSD Referenzen",
         "differentiator": "Nicht nur Assessment — Delivery- und Umsetzungserfahrung aus Fortune-100-Transformationen.",
         "proofLine": "Umgesetzt in komplexen Enterprise-Umfeldern — verteilte Teams, viele Stakeholder und Systeme mit hoher Kritikalität."
@@ -411,7 +413,8 @@
         "contact": "Kontakt aufnehmen",
         "rights": "Alle Rechte vorbehalten.",
         "builtWith": "Erstellt mit AI",
-        "forRecruiters": "Für Recruiter"
+        "forRecruiters": "Für Recruiter",
+        "privacy": "Datenschutzerklärung"
     },
     "productsPage": {
         "title": "Marktführerschaft durch Technologie",
@@ -1165,14 +1168,22 @@
             "button": "Guide senden",
             "submitting": "Wird gesendet...",
             "consentLabel": "Ich stimme zu, den Guide per E-Mail zu erhalten.",
+            "consentLabelPrefix": "Ich stimme der",
+            "consentLabelSuffix": "zu und willige ein, den Guide per E-Mail zu erhalten.",
+            "privacyPolicyLink": "Datenschutzerklärung",
             "consentRequired": "Bitte stimmen Sie zu, den Guide per E-Mail zu erhalten.",
             "privacyStatement": "Datenschutz: Ihre E-Mail wird zum Versand des Guides genutzt. Kein Spam.",
             "privacyLink": "Datenschutzerklärung",
             "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
         },
         "success": {
-            "title": "Bitte prüfen Sie Ihr Postfach.",
-            "message": "Wir haben den Guide an Ihre E-Mail-Adresse gesendet."
+            "title": "Guide wurde an Ihre E-Mail gesendet",
+            "message": "Bitte prüfen Sie Ihr Postfach für den Architektur-Guide.",
+            "guidanceTip": "Überprüfen Sie die 10 Architekturentscheidungen gegen Ihr aktuelles Projekt. Jede kann Wochen an Nacharbeit verhindern.",
+            "primaryCta": "Architektur-Review anfragen (Festpreis)",
+            "primaryCtaSubtext": "€2.500 • 3 Tage • Herstellerneutral",
+            "secondaryCta": "Antworten Sie mit Ihrer Architekturfrage",
+            "trustNote": "Direkte Antwort • Kein Verkaufspitch • Herstellerneutrale Beratung"
         },
         "content": {
             "title": "Guide-Vorschau",
@@ -1296,14 +1307,22 @@
             "button": "Checkliste Herunterladen (PDF)",
             "submitting": "Wird gesendet...",
             "consentLabel": "Ich stimme zu, die Checkliste per E-Mail zu erhalten.",
+            "consentLabelPrefix": "Ich stimme der",
+            "consentLabelSuffix": "zu und willige ein, die Checkliste per E-Mail zu erhalten.",
+            "privacyPolicyLink": "Datenschutzerklärung",
             "consentRequired": "Bitte stimmen Sie zu, die Checkliste per E-Mail zu erhalten.",
             "privacyStatement": "Datenschutz: Ihre E-Mail wird verwendet, um die Checkliste zu senden. Kein Spam.",
             "privacyLink": "Datenschutzerklärung",
             "error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
         },
         "success": {
-            "title": "Prüfen Sie Ihren Posteingang.",
-            "message": "Wir haben die Checkliste an Ihre E-Mail-Adresse gesendet.",
+            "title": "Checkliste wurde an Ihre E-Mail gesendet",
+            "message": "Prüfen Sie Ihren Posteingang für die Checkliste mit PDF-Anhang.",
+            "guidanceTip": "Führen Sie die Checkliste gegen Ihr Angebot in 20 Minuten durch. Punktzahl <25 zeigt zu validierende Bereiche an.",
+            "primaryCta": "Architektur-Review anfragen (Festpreis)",
+            "primaryCtaSubtext": "€2.500 • 3 Tage • Herstellerneutral",
+            "secondaryCta": "Antworten Sie mit Ihrem Angebot für schnelles Feedback",
+            "trustNote": "Direkte Antwort • Kein Verkaufspitch • Herstellerneutrale Beratung",
             "softCtaText": "Falls relevant, kann ich Ihr konkretes Angebot prüfen und Risiken identifizieren, bevor Sie sich festlegen.",
             "softCtaLink": "Architektur-Review-Services ansehen"
         }

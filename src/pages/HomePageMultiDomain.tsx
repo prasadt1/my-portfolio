@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -9,13 +9,17 @@ import {
     FileText,
     Search,
     TrendingUp,
-    Package
+    Package,
+    Play
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
+import VideoModal from '../components/VideoModal';
+import { trackEvent, AnalyticsEvents } from '../services/analytics';
 
 const HomePageMultiDomain: React.FC = () => {
     const { t } = useTranslation();
+    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
     return (
         <>
@@ -76,11 +80,12 @@ const HomePageMultiDomain: React.FC = () => {
                             </p>
 
                             {/* CTAs - Primary CTA prominent, secondary subdued */}
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                                 <a
                                     href="https://calendly.com/prasad-sgsits/30min"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero' })}
                                     className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
                                 >
                                     {t('hero.cta')}
@@ -94,6 +99,22 @@ const HomePageMultiDomain: React.FC = () => {
                                     {t('hero.ctaSecondary')}
                                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
                                 </Link>
+                            </div>
+
+                            {/* Video CTA */}
+                            <div className="mb-8">
+                                <button
+                                    onClick={() => {
+                                        setIsVideoModalOpen(true);
+                                        trackEvent(AnalyticsEvents.CTA_VIDEO_CLICK, { source: 'hero' });
+                                    }}
+                                    className="group inline-flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
+                                >
+                                    <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                                        <Play size={14} className="ml-0.5" />
+                                    </span>
+                                    {t('hero.watchVideo', { defaultValue: 'Watch 75-sec overview' })}
+                                </button>
                             </div>
 
                             {/* Trust Note */}
@@ -474,6 +495,15 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
             </div>
+
+            {/* Video Modal */}
+            <VideoModal
+                isOpen={isVideoModalOpen}
+                onClose={() => setIsVideoModalOpen(false)}
+                title={t('hero.videoTitle', { defaultValue: '75-Second Overview' })}
+                // Video URL will be added when available
+                // videoUrl="https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+            />
         </>
     );
 };

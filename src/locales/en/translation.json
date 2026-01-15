@@ -33,6 +33,8 @@
         "subtitle": "I help CTOs and engineering leaders validate architecture, modernization, cloud migration, and AI enablement decisions — before committing budget and roadmap.",
         "cta": "Book Architecture Review",
         "ctaSecondary": "See Services",
+        "watchVideo": "Watch 75-sec overview",
+        "videoTitle": "75-Second Overview",
         "trustNote": "Global delivery (NA • EU • Asia • South America) • Hands-on execution support • Vendor-neutral • PACT/WBCSD credibility",
         "differentiator": "Not just assessment — delivery and execution experience across Fortune 100 transformations.",
         "proofLine": "Delivered across complex enterprise environments — distributed teams, multiple stakeholders, and high-stakes systems."
@@ -293,7 +295,8 @@
         "contact": "Get in Touch",
         "rights": "All rights reserved.",
         "builtWith": "Built with AI",
-        "forRecruiters": "For Recruiters"
+        "forRecruiters": "For Recruiters",
+        "privacy": "Privacy Policy"
     },
     "productsPage": {
         "title": "Battle-Tested Toolkits",
@@ -1203,14 +1206,22 @@
             "button": "Send me the guide",
             "submitting": "Sending...",
             "consentLabel": "I agree to receive the guide by email.",
+            "consentLabelPrefix": "I agree to the",
+            "consentLabelSuffix": "and consent to receive the guide by email.",
+            "privacyPolicyLink": "Privacy Policy",
             "consentRequired": "Please agree to receive the guide by email.",
             "privacyStatement": "Privacy: Your email is used to send the guide. No spam.",
             "privacyLink": "Privacy Policy",
             "error": "Something went wrong. Please try again."
         },
         "success": {
-            "title": "Check your inbox.",
-            "message": "We've sent the guide to your email address."
+            "title": "Guide sent to your email",
+            "message": "Check your inbox for the architecture guide.",
+            "guidanceTip": "Review the 10 architecture decisions against your current project. Each can prevent weeks of rework.",
+            "primaryCta": "Request Architecture Review (Fixed Scope)",
+            "primaryCtaSubtext": "€2,500 • 3 days • Vendor-neutral",
+            "secondaryCta": "Reply with your architecture question",
+            "trustNote": "Direct response • No sales pitch • Vendor-neutral advice"
         },
         "content": {
             "title": "Guide Preview",
@@ -1334,14 +1345,22 @@
             "button": "Download Checklist (PDF)",
             "submitting": "Sending...",
             "consentLabel": "I agree to receive the checklist by email.",
+            "consentLabelPrefix": "I agree to the",
+            "consentLabelSuffix": "and consent to receive the checklist by email.",
+            "privacyPolicyLink": "Privacy Policy",
             "consentRequired": "Please agree to receive the checklist by email.",
             "privacyStatement": "Privacy: Your email is used to send the checklist. No spam.",
             "privacyLink": "Privacy Policy",
             "error": "Something went wrong. Please try again."
         },
         "success": {
-            "title": "Check your inbox.",
-            "message": "We've sent the checklist to your email address.",
+            "title": "Checklist sent to your email",
+            "message": "Check your inbox for the checklist with PDF attachment.",
+            "guidanceTip": "Run the checklist against your vendor proposal in 20 minutes. Score <25 indicates areas worth validating.",
+            "primaryCta": "Request Architecture Review (Fixed Scope)",
+            "primaryCtaSubtext": "€2,500 • 3 days • Vendor-neutral",
+            "secondaryCta": "Reply with your proposal for quick feedback",
+            "trustNote": "Direct response • No sales pitch • Vendor-neutral advice",
             "softCtaText": "If relevant, I can review your specific proposal and identify risks before you commit.",
             "softCtaLink": "Explore Architecture Review Services"
         }
