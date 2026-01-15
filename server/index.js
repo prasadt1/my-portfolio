@@ -1153,6 +1153,26 @@ ${scoringText}
             </div>
         </div>
         
+        <!-- What AI Cannot Validate Section -->
+        <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 12px; padding: 24px; margin: 32px 0;">
+            <h3 style="color: #92400e; font-size: 16px; font-weight: 700; margin: 0 0 16px 0; text-transform: uppercase;">
+                ${lang === 'de' ? '⚠️ Was KI nicht für Sie validieren kann' : '⚠️ What AI Cannot Validate for You'}
+            </h3>
+            <p style="color: #78350f; font-size: 13px; margin: 0 0 16px 0;">
+                ${lang === 'de' ? 'Diese kritischen Bereiche erfordern menschliches Urteil und Kontextverständnis:' : 'These critical areas require human judgment and contextual understanding:'}
+            </p>
+            <ul style="margin: 0; padding-left: 20px; color: #78350f; font-size: 13px; line-height: 1.8;">
+                <li style="margin-bottom: 8px;"><strong>${lang === 'de' ? 'Versteckte Kostentreiber' : 'Hidden cost drivers'}</strong> — ${lang === 'de' ? 'Support-Tiers, Observability, Data Egress, Lizenzen' : 'support tiers, observability, data egress, licensing'}</li>
+                <li style="margin-bottom: 8px;"><strong>${lang === 'de' ? 'Delivery-Sequenzierungsrisiko' : 'Delivery sequencing risk'}</strong> — ${lang === 'de' ? 'Abhängigkeiten, Cutover-Strategie, Übergangsarchitektur' : 'dependencies, cutover strategy, transitional architecture'}</li>
+                <li style="margin-bottom: 8px;"><strong>${lang === 'de' ? 'Organisations-Reifegrad-Mismatch' : 'Org maturity mismatch'}</strong> — ${lang === 'de' ? 'Kubernetes vor Platform-Ops; KI ohne Data-Ownership' : 'Kubernetes before platform ops; AI without data ownership'}</li>
+                <li style="margin-bottom: 8px;"><strong>${lang === 'de' ? 'Integrationsrealität' : 'Integration reality'}</strong> — ${lang === 'de' ? 'API-Eigentum, Legacy-Einschränkungen, Partnersysteme' : 'API ownership, legacy constraints, partner systems, data contracts'}</li>
+                <li style="margin-bottom: 8px;"><strong>${lang === 'de' ? 'Compliance-Lücken' : 'Compliance gaps'}</strong> — ${lang === 'de' ? 'DPIA, Datenresidenz, Audit-Bereitschaft, ISO-Kontrollen' : 'DPIA, residency, audit readiness, ISO controls'}</li>
+            </ul>
+            <p style="color: #92400e; font-size: 13px; font-weight: 600; margin: 16px 0 0 0; font-style: italic;">
+                ${lang === 'de' ? 'Wenn Sie eine herstellerneutrale zweite Meinung wünschen, biete ich einen festen Architecture Review an.' : 'If you want a vendor-neutral second opinion, I offer a fixed-scope Architecture Review.'}
+            </p>
+        </div>
+        
         <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 32px; border-radius: 12px; margin: 32px 0; text-align: center;">
             <h3 style="color: white; margin: 0 0 16px 0; font-size: 18px;">
                 ${lang === 'de' ? 'Lücken in Ihrem Angebot gefunden?' : 'Found Gaps in Your Proposal?'}
@@ -1968,6 +1988,83 @@ const generateChecklistPDF = async (lang = 'en') => {
             ? '→ Angebot erscheint gründlich. Spezifische Details vor Unterzeichnung prüfen.'
             : '→ Proposal appears thorough. Review specific details before signing.', { align: 'left', indent: 15 });
         
+        // What AI Cannot Validate Section
+        doc.addPage();
+        doc.moveDown(0.5);
+        
+        doc.fontSize(18).font('Helvetica-Bold');
+        doc.text(lang === 'de' ? 'WAS KI NICHT FÜR SIE VALIDIEREN KANN' : 'WHAT AI CANNOT VALIDATE FOR YOU', { align: 'center' });
+        doc.moveDown(0.5);
+        doc.fontSize(11).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? 'Automatisierte Tools und KI können Checklisten-Items überprüfen, aber diese kritischen Bereiche erfordern menschliches Urteil und Kontextverständnis:'
+            : 'Automated tools and AI can check checklist items, but these critical areas require human judgment and contextual understanding:', 
+            { align: 'left', width: 500 });
+        doc.moveDown(1);
+        
+        const aiCannotValidate = lang === 'de' ? [
+            {
+                title: 'Versteckte Kostentreiber',
+                items: ['Support-Tiers und SLA-Strafen', 'Observability- und Monitoring-Kosten', 'Data Egress bei realistischem Traffic', 'Lizenzierungs-Eskalationen bei Wachstum']
+            },
+            {
+                title: 'Sequenzierungsrisiko bei Delivery',
+                items: ['Abhängigkeiten zwischen Arbeitspaketen', 'Cutover-Strategie und Rollback-Fähigkeit', 'Übergangsarchitektur während der Migration', 'Team-Kapazität vs. Zeitplan-Realismus']
+            },
+            {
+                title: 'Organisations-Reifegrad-Mismatch',
+                items: ['Kubernetes-Adoption ohne Platform-Ops-Team', 'KI/ML-Initiativen ohne Data-Ownership-Klarheit', 'Microservices ohne DevOps-Kultur', 'Cloud-Native ohne Cloud-Finanz-Governance']
+            },
+            {
+                title: 'Integrationsrealität',
+                items: ['API-Eigentum und Vertragsklarheit', 'Legacy-System-Einschränkungen und Dokumentationslücken', 'Partnersystem-Abhängigkeiten und SLAs', 'Datenverträge und Schema-Evolution']
+            },
+            {
+                title: 'Compliance-Lücken',
+                items: ['DPIA-Anforderungen für Datenverarbeitung', 'Datenresidenz- und Souveränitätsanforderungen', 'Audit-Bereitschaft und Nachweisführung', 'ISO-27001/SOC2-Kontroll-Mapping']
+            }
+        ] : [
+            {
+                title: 'Hidden cost drivers',
+                items: ['Support tiers and SLA penalties', 'Observability and monitoring costs', 'Data egress at realistic traffic', 'Licensing escalations at growth']
+            },
+            {
+                title: 'Delivery sequencing risk',
+                items: ['Dependencies between work packages', 'Cutover strategy and rollback capability', 'Transitional architecture during migration', 'Team capacity vs timeline realism']
+            },
+            {
+                title: 'Org maturity mismatch',
+                items: ['Kubernetes adoption without platform ops team', 'AI/ML initiatives without data ownership clarity', 'Microservices without DevOps culture', 'Cloud-native without cloud financial governance']
+            },
+            {
+                title: 'Integration reality',
+                items: ['API ownership and contract clarity', 'Legacy system constraints and documentation gaps', 'Partner system dependencies and SLAs', 'Data contracts and schema evolution']
+            },
+            {
+                title: 'Compliance gaps',
+                items: ['DPIA requirements for data processing', 'Data residency and sovereignty requirements', 'Audit readiness and evidence collection', 'ISO 27001/SOC2 control mapping']
+            }
+        ];
+        
+        aiCannotValidate.forEach((section, idx) => {
+            doc.fontSize(11).font('Helvetica-Bold');
+            doc.text(`${idx + 1}. ${section.title}`, { align: 'left' });
+            doc.moveDown(0.3);
+            doc.fontSize(9).font('Helvetica');
+            section.items.forEach(item => {
+                doc.text(`   • ${item}`, { align: 'left', indent: 15 });
+                doc.moveDown(0.15);
+            });
+            doc.moveDown(0.5);
+        });
+        
+        doc.moveDown(0.5);
+        doc.fontSize(10).font('Helvetica');
+        doc.text(lang === 'de' 
+            ? 'Wenn Sie eine herstellerneutrale zweite Meinung wünschen, biete ich einen festen Architecture Review an.'
+            : 'If you want a vendor-neutral second opinion, I offer a fixed-scope Architecture Review.', 
+            { align: 'left', width: 500 });
+        
         // Final CTA Section
         doc.addPage();
         doc.moveDown(0.5);
@@ -2715,6 +2812,37 @@ app.post('/api/email/test', async (req, res) => {
             details: error.message,
             code: error.code
         });
+    }
+});
+
+// Analytics events endpoint
+app.post('/api/events', async (req, res) => {
+    try {
+        const { name, props, timestamp, url } = req.body;
+
+        if (!name) {
+            return res.status(400).json({ error: 'Event name is required' });
+        }
+
+        // Log event (in production, could send to analytics service)
+        console.log('[Analytics Event]', {
+            name,
+            props: props || {},
+            timestamp: timestamp || new Date().toISOString(),
+            url: url || '',
+            ip: req.ip || req.connection.remoteAddress || 'unknown'
+        });
+
+        // In production, you could:
+        // - Send to Google Analytics Measurement Protocol
+        // - Send to Mixpanel, Amplitude, or similar
+        // - Store in a database for custom analytics
+
+        res.status(200).json({ success: true });
+    } catch (error) {
+        console.error('[Analytics Event] Error:', error.message);
+        // Don't expose error details - analytics should fail silently
+        res.status(200).json({ success: true });
     }
 });
 

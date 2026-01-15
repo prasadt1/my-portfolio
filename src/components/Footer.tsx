@@ -92,6 +92,7 @@ const Footer: React.FC = () => {
                             <li><Link to="/checklist" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Proposal Checklist</Link></li>
                             <li><Link to="/architecture-engine" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.labs')} (Architecture Assistant)</Link></li>
                             <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
+                            <li><Link to="/privacy" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('footer.privacy', { defaultValue: 'Privacy Policy' })}</Link></li>
                         </ul>
                     </div>
 

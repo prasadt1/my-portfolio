@@ -126,10 +126,67 @@ All styles are inline for simplicity. You can:
 
 ## 📝 Environment Variables
 
+### Core Configuration
+
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `VITE_GEMINI_API_KEY` | Your Google Gemini API key | Yes |
-| `OPENAI_API_KEY` | (Removed) Previously used for a local RAG scaffold (feature reverted) | No |
+
+### Email Configuration
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `EMAIL_PROVIDER` | Email provider: `smtp` (default) or `sendgrid_api` | No |
+| `SMTP_HOST` | SMTP server host (e.g., `smtp.gmail.com`) | For SMTP |
+| `SMTP_PORT` | SMTP port (default: `587`) | For SMTP |
+| `SMTP_SECURE` | Use SSL (default: `false` for STARTTLS) | No |
+| `SMTP_USER` | SMTP username | For SMTP |
+| `SMTP_PASS` | SMTP password (App Password for Gmail) | For SMTP |
+| `SENDGRID_API_KEY` | SendGrid API key | For SendGrid |
+| `FROM_EMAIL` | Default from email address | Yes (for email) |
+| `FROM_NAME` | Default from name | No |
+| `REPLY_TO_EMAIL` | Reply-to email address | No |
+| `CONTACT_EMAIL` | Contact email shown in templates | No |
+
+### Lead Storage Configuration
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `LEAD_STORE_PROVIDER` | Storage provider: `json` (default) or `gsheets` | No |
+| `GSHEETS_SPREADSHEET_ID` | Google Sheet ID for lead storage | For GSheets |
+| `GSHEETS_CLIENT_EMAIL` | Service account email | For GSheets |
+| `GSHEETS_PRIVATE_KEY` | Service account private key (with `\n` for newlines) | For GSheets |
+
+### Example `.env.local` Configuration
+
+```bash
+# Gemini API
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+
+# Email (SMTP - for development)
+EMAIL_PROVIDER=smtp
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+
+# Email (SendGrid - for production)
+# EMAIL_PROVIDER=sendgrid_api
+# SENDGRID_API_KEY=SG.your_sendgrid_api_key
+
+# Email addresses
+FROM_EMAIL=noreply@prasadtilloo.com
+FROM_NAME=Prasad Tilloo
+REPLY_TO_EMAIL=prasad.sgsits@gmail.com
+CONTACT_EMAIL=prasad@prasadtilloo.com
+
+# Lead Storage (optional - defaults to JSON file)
+# LEAD_STORE_PROVIDER=gsheets
+# GSHEETS_SPREADSHEET_ID=your_spreadsheet_id
+# GSHEETS_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
+# GSHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
 
 ## 🚨 Troubleshooting
 
