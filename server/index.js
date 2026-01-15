@@ -1054,7 +1054,7 @@ const generateChecklistEmail = (lang = 'en') => {
 
     const ctaButton = lang === 'de' ? "30-Minuten-Beratung" : "30-minute consultation";
     const calendarLink = "https://calendly.com/prasad-sgsits/30min";
-    const emailContact = "prasad@prasadtilloo.com";
+    const emailContact = process.env.CONTACT_EMAIL || "prasad@prasadtilloo.com";
 
     const greeting = lang === 'de' ? 'Hallo' : 'Hi';
     const pdfNote = lang === 'de'
@@ -1166,7 +1166,7 @@ ${scoringText}
                 </a>
             </div>
             <p style="color: #cbd5e1; font-size: 14px; margin: 0;">
-                ${lang === 'de' ? 'Oder antworten Sie auf diese E-Mail mit Ihrem Kontext' : 'Or reply to this email with your context'}
+                ${lang === 'de' ? `Oder antworten Sie auf diese E-Mail oder kontaktieren Sie mich unter ${emailContact}` : `Or reply to this email or contact me at ${emailContact}`}
             </p>
         </div>
         
@@ -1177,7 +1177,7 @@ ${scoringText}
             <div style="color: #475569; font-size: 14px; line-height: 1.8; margin-bottom: 16px;">
                 <p style="margin: 0 0 12px 0;">${lang === 'de' ? 'Wenn Sie eine kurze zweite Meinung zu Ihrer spezifischen Situation wünschen, helfe ich gerne:' : "If you'd like a brief second opinion on your specific situation, I'm happy to provide feedback:"}</p>
                 <ul style="margin: 0 0 12px 0; padding-left: 20px;">
-                    <li style="margin-bottom: 8px;">${lang === 'de' ? 'Antworten Sie auf diese E-Mail mit Ihrem Kontext (Cloud/Plattform/AI, Budgetrahmen, Zeitplan)' : 'Reply to this email with your context (cloud/platform/AI, budget range, timeline)'}</li>
+                    <li style="margin-bottom: 8px;">${lang === 'de' ? `Antworten Sie auf diese E-Mail oder schreiben Sie an ${emailContact} mit Ihrem Kontext (Cloud/Plattform/AI, Budgetrahmen, Zeitplan)` : `Reply to this email or contact ${emailContact} with your context (cloud/platform/AI, budget range, timeline)`}</li>
                     <li style="margin-bottom: 8px;">${lang === 'de' ? 'Oder buchen Sie eine 30-minütige Diskussion (unverbindlich)' : 'Or book a 30-minute discussion (no obligation)'}</li>
                 </ul>
             </div>
@@ -2028,7 +2028,7 @@ const generateChecklistPDF = async (lang = 'en') => {
         doc.fontSize(10).font('Helvetica-Bold');
         doc.text(lang === 'de' ? 'Angebotszusammenfassung senden:' : 'Send Proposal Summary:', { align: 'left' });
         doc.fontSize(9).font('Helvetica');
-        doc.text('prasad@prasadtilloo.com', { align: 'left', indent: 15 });
+        doc.text(process.env.CONTACT_EMAIL || 'prasad@prasadtilloo.com', { align: 'left', indent: 15 });
         doc.moveDown(1.5);
         
         // Footer
@@ -2501,14 +2501,18 @@ app.post('/api/lead', async (req, res) => {
                         }
                     }
                     
+                    const replyToEmail = process.env.REPLY_TO_EMAIL || fromEmail;
+                    
                     console.log('[EMAIL] Sending email via SMTP...');
                     console.log('[EMAIL] From:', `"${fromName}" <${fromEmail}>`);
+                    console.log('[EMAIL] Reply-To:', replyToEmail);
                     console.log('[EMAIL] To:', email);
                     console.log('[EMAIL] Subject:', emailSubject);
                     console.log('[EMAIL] Attachments:', attachments.length);
                     
                     await transporter.sendMail({
                         from: `"${fromName}" <${fromEmail}>`,
+                        replyTo: replyToEmail,
                         to: email,
                         subject: emailSubject,
                         html: emailContent,
@@ -2608,8 +2612,13 @@ app.post('/api/email/test', async (req, res) => {
             });
         }
 
+        const replyToEmail = process.env.REPLY_TO_EMAIL || fromEmail;
+        const contactEmail = process.env.CONTACT_EMAIL || 'prasad@prasadtilloo.com';
+        
         console.log('[TEST EMAIL] Sending test email to:', email);
         console.log('[TEST EMAIL] From:', `${fromName} <${fromEmail}>`);
+        console.log('[TEST EMAIL] Reply-To:', replyToEmail);
+        console.log('[TEST EMAIL] Contact Email:', contactEmail);
 
         // Send test email
         const testEmailContent = `
@@ -2638,6 +2647,8 @@ app.post('/api/email/test', async (req, res) => {
                 <li><strong>SMTP Port:</strong> ${process.env.SMTP_PORT || 'Not set'}</li>
                 <li><strong>SMTP Secure:</strong> ${process.env.SMTP_SECURE || 'Not set'}</li>
                 <li><strong>From Email:</strong> ${fromEmail}</li>
+                <li><strong>Reply-To Email:</strong> ${replyToEmail}</li>
+                <li><strong>Contact Email:</strong> ${contactEmail}</li>
                 <li><strong>From Name:</strong> ${fromName}</li>
                 <li><strong>Test Time:</strong> ${new Date().toISOString()}</li>
             </ul>
@@ -2650,9 +2661,10 @@ app.post('/api/email/test', async (req, res) => {
 </body>
 </html>
         `.trim();
-
+        
         await transporter.sendMail({
             from: `"${fromName}" <${fromEmail}>`,
+            replyTo: replyToEmail,
             to: email,
             subject: '✅ SMTP Configuration Test - Portfolio',
             html: testEmailContent,
@@ -2660,6 +2672,7 @@ app.post('/api/email/test', async (req, res) => {
         });
 
         console.log('[TEST EMAIL] ✅ Test email sent successfully to:', email);
+        console.log('[TEST EMAIL] Reply-To configured as:', replyToEmail);
 
         res.status(200).json({ 
             success: true, 
