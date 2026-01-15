@@ -1015,30 +1015,30 @@
             "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Globale Erfahrung"
         },
         "miniCases": {
-            "title": "Beweis in Ergebnissen",
-            "subtitle": "Echte Architekturentscheidungen aus aktuellen Projekten",
+            "title": "Unternehmen, denen ich geholfen habe",
+            "subtitle": "Anonymisierte Beispiele aus aktuellen Projekten — Ergebnisse zuerst.",
             "situation": "Situation:",
             "decision": "Entscheidung:",
             "case1": {
                 "client": "Pharmaunternehmen (Deutschland)",
                 "situation": "AWS schlug €450K Kubernetes-Setup für 50-köpfiges Team vor",
-                "decision": "Serverless-Alternative empfohlen",
+                "decision": "Serverless-Alternative empfohlen — passend zur Team-Reife",
                 "outcome": "€415K gespart",
-                "detail": "Einmalig + €65K/Jahr laufend"
+                "detail": "Überengineering vermieden + €65K/Jahr laufende Einsparungen"
             },
             "case2": {
                 "client": "Gesundheitsdienstleister (Schweiz)",
-                "situation": "8-monatige Migrationszeitachse vom Berater",
-                "decision": "Phasenweiser Ansatz mit früher Wertlieferung",
+                "situation": "8-monatige Migrationszeitachse mit Compliance-Unsicherheit",
+                "decision": "Phasenweiser Ansatz mit Compliance-Validierung in jeder Phase",
                 "outcome": "6 Monate schneller",
-                "detail": "Erster Wert in 6 Wochen statt 8 Monaten"
+                "detail": "Erster Wert in 6 Wochen, Compliance-Risiko gemindert"
             },
             "case3": {
                 "client": "Scale-up (Niederlande)",
                 "situation": "Multi-Cloud-Vorschlag mit Vendor Lock-in Risiko",
                 "decision": "Portable Architektur mit 3 lebensfähigen Optionen",
                 "outcome": "Null Lock-in",
-                "detail": "Freiheit zu verhandeln oder zu wechseln"
+                "detail": "Freiheit zu verhandeln oder Anbieter zu wechseln"
             }
         },
         "leadMagnetCta": {

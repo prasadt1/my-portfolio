@@ -1053,30 +1053,30 @@
             "trustNote": "Direct senior involvement • Vendor-neutral • Global experience"
         },
         "miniCases": {
-            "title": "Proof in Outcomes",
-            "subtitle": "Real architecture decisions from recent engagements",
+            "title": "Companies I've Helped",
+            "subtitle": "Anonymized examples from recent engagements — outcomes first.",
             "situation": "Situation:",
             "decision": "Decision:",
             "case1": {
                 "client": "Pharma Company (Germany)",
                 "situation": "AWS proposed €450K Kubernetes setup for 50-person team",
-                "decision": "Serverless alternative recommended",
+                "decision": "Recommended serverless alternative — matched to team maturity",
                 "outcome": "€415K saved",
-                "detail": "Upfront + €65K/year ongoing"
+                "detail": "Avoided overengineering + €65K/year ongoing savings"
             },
             "case2": {
                 "client": "Healthcare Provider (Switzerland)",
-                "situation": "8-month migration timeline from consultant",
-                "decision": "Phased approach with early value delivery",
+                "situation": "8-month migration timeline with compliance uncertainty",
+                "decision": "Phased approach with compliance validation at each stage",
                 "outcome": "6 months faster",
-                "detail": "First value in 6 weeks vs 8 months"
+                "detail": "First value in 6 weeks, compliance risk mitigated"
             },
             "case3": {
                 "client": "Scale-up (Netherlands)",
                 "situation": "Multi-cloud proposal with vendor lock-in risk",
                 "decision": "Portable architecture with 3 viable vendor options",
                 "outcome": "Zero lock-in",
-                "detail": "Freedom to negotiate or switch"
+                "detail": "Freedom to negotiate or switch vendors"
             }
         },
         "leadMagnetCta": {
