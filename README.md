@@ -176,10 +176,11 @@ SMTP_PASS=your_app_password
 # SENDGRID_API_KEY=SG.your_sendgrid_api_key
 
 # Email addresses
-FROM_EMAIL=noreply@prasadtilloo.com
+# Note: Until you have a real mailbox on prasadtilloo.com, set all email addresses to Gmail
+FROM_EMAIL=prasad.sgsits@gmail.com
 FROM_NAME=Prasad Tilloo
 REPLY_TO_EMAIL=prasad.sgsits@gmail.com
-CONTACT_EMAIL=prasad@prasadtilloo.com
+CONTACT_EMAIL=prasad.sgsits@gmail.com
 
 # Lead Storage (optional - defaults to JSON file)
 # LEAD_STORE_PROVIDER=gsheets
@@ -187,6 +188,12 @@ CONTACT_EMAIL=prasad@prasadtilloo.com
 # GSHEETS_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
 # GSHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 ```
+
+## 📧 Email Configuration Note
+
+**Important:** Until you have a real mailbox configured on `prasadtilloo.com`, set `CONTACT_EMAIL` and `REPLY_TO_EMAIL` to a Gmail address (e.g., `prasad.sgsits@gmail.com`).
+
+The server will log a warning if it detects `CONTACT_EMAIL` ends with `@prasadtilloo.com` but `REPLY_TO_EMAIL` is a Gmail address, indicating a potential mismatch where the displayed contact email may not be deliverable.
 
 ## 🚨 Troubleshooting
 
