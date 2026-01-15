@@ -21,20 +21,20 @@
         "consulting": "Beratung",
         "architectureEngine": "Architektur-Assistent (Beta)",
         "labs": "Labs",
-        "bookDiscoveryCall": "Discovery Call buchen",
+        "bookDiscoveryCall": "Architektur-Review buchen",
         "toggleLanguage": "Sprache wechseln",
         "toggleTheme": "Design wechseln",
         "forRecruiters": "Für Recruiter"
     },
     "hero": {
-        "badge": "Unabhängige Beratung",
-        "headline": "Architekturentscheidungen mit hoher Tragweite sicher treffen",
+        "badge": "Unabhängiger Validator • Vendor-neutral",
+        "headline": "Risiken reduzieren, bevor Budget gebunden wird",
         "tagline": "Unabhängige Architektur- & Transformationsberatung",
-        "subtitle": "Ich helfe CTOs und Engineering-Leads, Cloud-, Plattform- und AI-Modernisierungsentscheidungen abzusichern — bevor Budget und Roadmap festgelegt werden.",
-        "cta": "Discovery Call buchen",
+        "subtitle": "Ich helfe CTOs und Engineering-Leads, Architektur-, Modernisierungs-, Cloud-Migrations- und AI-Enablement-Entscheidungen zu validieren — bevor Budget und Roadmap festgelegt werden.",
+        "cta": "Architektur-Review buchen",
         "ctaSecondary": "Leistungen ansehen",
-        "trustNote": "Direkte Senior-Beteiligung • Vendor-neutral • Umsetzbare Deliverables • Globale Delivery-Erfahrung",
-        "differentiator": "Globale Enterprise-Erfahrung — Architekturentscheidungen mit Fokus auf Delivery-Realität.",
+        "trustNote": "Globale Delivery (NA • EU • Asien • Südamerika) • Hands-on Umsetzungsunterstützung • Vendor-neutral • PACT/WBCSD Referenzen",
+        "differentiator": "Nicht nur Assessment — Delivery- und Umsetzungserfahrung aus Fortune-100-Transformationen.",
         "proofLine": "Umgesetzt in komplexen Enterprise-Umfeldern — verteilte Teams, viele Stakeholder und Systeme mit hoher Kritikalität."
     },
     "howItWork": {
@@ -763,16 +763,16 @@
     },
     "servicesPage": {
         "title": "Architektur- & Transformationsberatung",
-        "subtitle": "Vendor-neutrale Assessments, Modernisierungs-Roadmaps und Delivery Leadership – basierend auf globaler Enterprise-Erfahrung.",
+        "subtitle": "Unabhängige Validierung von Architektur-, Modernisierungs-, Cloud-Migrations- und AI-Enablement-Entscheidungen.",
         "timeline": "Zeitraum",
         "price": "Preis",
         "for": "Für",
         "deliverables": "Leistungen",
-        "bookCall": "Kostenloses Erstgespräch buchen",
+        "bookCall": "Architektur-Review buchen",
         "ctaTitle": "Bereit, Ihre Architektur-Entscheidungen zu validieren?",
         "ctaSubtitle": "Buchen Sie ein kostenloses Erstgespräch, um Ihre spezifische Herausforderung zu besprechen.",
-        "bookDiscoveryCall": "Kostenloses Erstgespräch buchen",
-        "differentiator": "Globale Enterprise-Erfahrung — Architekturentscheidungen mit Fokus auf Delivery-Realität."
+        "bookDiscoveryCall": "Architektur-Review buchen",
+        "differentiator": "Globale Delivery-Erfahrung (NA • EU • Asien • Südamerika) — nicht nur Assessment, sondern Hands-on-Umsetzungsunterstützung."
     },
     "services": {
         "blueprintSprint": {
@@ -885,12 +885,12 @@
         }
     },
     "independentAdvisory": {
-        "title": "Warum unabhängige Beratung",
-        "subtitle": "Direkte Senior-Unterstützung, vendor-neutrale Entscheidungen und umsetzbare Deliverables – ohne unnötigen Overhead.",
+        "title": "Warum unabhängige Validierung",
+        "subtitle": "Direkte Senior-Unterstützung, vendor-neutrale Entscheidungen und Hands-on-Umsetzungsunterstützung — ohne unnötigen Overhead.",
         "cards": {
             "direct": {
                 "title": "Direkte Senior-Unterstützung",
-                "text": "Sie arbeiten direkt mit mir – ohne wechselnde Teams."
+                "text": "Sie arbeiten direkt mit mir — keine wechselnden Teams oder Junior-Berater."
             },
             "fast": {
                 "title": "Schnelle Klarheit",
@@ -898,15 +898,15 @@
             },
             "vendorNeutral": {
                 "title": "Vendor-neutral",
-                "text": "Tool-agnostisch und konsequent am Outcome orientiert."
+                "text": "Tool-agnostisch und an Ihren Outcomes orientiert, nicht an Vendor-Umsätzen."
             },
             "executionReady": {
-                "title": "Umsetzbare Outputs",
-                "text": "Blueprint + Risiko-Register + Roadmap – nicht nur Folien."
+                "title": "Hands-on Umsetzungsunterstützung",
+                "text": "Nicht nur Assessment — ich bleibe bei Bedarf bis zur Delivery dabei."
             },
             "globalDelivery": {
                 "title": "Globale Delivery-Erfahrung",
-                "text": "Projekte in EU, Amerika und Asien — mit verteilten Teams und komplexen Stakeholder-Strukturen."
+                "text": "NA • EU • Asien • Südamerika — verteilte Teams und komplexe Stakeholder-Strukturen."
             }
         }
     },
