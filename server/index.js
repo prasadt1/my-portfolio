@@ -14,6 +14,27 @@ dotenv.config({ path: '../.env.local' });
 const app = express();
 const port = process.env.PORT || 3001;
 
+// Email contact helper - consistent fallback pattern
+const getContactEmail = () => {
+    return process.env.CONTACT_EMAIL || process.env.REPLY_TO_EMAIL || process.env.FROM_EMAIL || 'prasad.sgsits@gmail.com';
+};
+
+// Fail-safe validation for domain email
+const validateEmailConfig = () => {
+    const contactEmail = process.env.CONTACT_EMAIL;
+    const replyToEmail = process.env.REPLY_TO_EMAIL;
+    
+    if (contactEmail && contactEmail.endsWith('@prasadtilloo.com') && replyToEmail && replyToEmail.includes('@gmail.com')) {
+        console.warn('[EMAIL CONFIG] ⚠️  WARNING: CONTACT_EMAIL looks like domain email but may not exist.');
+        console.warn('[EMAIL CONFIG] CONTACT_EMAIL:', contactEmail);
+        console.warn('[EMAIL CONFIG] REPLY_TO_EMAIL:', replyToEmail);
+        console.warn('[EMAIL CONFIG] Set CONTACT_EMAIL to a real inbox (e.g., Gmail) until domain mailbox is configured.');
+    }
+};
+
+// Run validation on startup
+validateEmailConfig();
+
 app.use(cors());
 app.use(express.json());
 
@@ -1054,7 +1075,7 @@ const generateChecklistEmail = (lang = 'en') => {
 
     const ctaButton = lang === 'de' ? "30-Minuten-Beratung" : "30-minute consultation";
     const calendarLink = "https://calendly.com/prasad-sgsits/30min";
-    const emailContact = process.env.CONTACT_EMAIL || "prasad@prasadtilloo.com";
+    const emailContact = getContactEmail();
 
     const greeting = lang === 'de' ? 'Hallo' : 'Hi';
     const pdfNote = lang === 'de'
@@ -1186,7 +1207,7 @@ ${scoringText}
                 </a>
             </div>
             <p style="color: #cbd5e1; font-size: 14px; margin: 0;">
-                ${lang === 'de' ? `Oder antworten Sie auf diese E-Mail oder kontaktieren Sie mich unter ${emailContact}` : `Or reply to this email or contact me at ${emailContact}`}
+                ${lang === 'de' ? `Falls relevant, können Sie auf diese E-Mail antworten oder mich unter ${emailContact} erreichen.` : `If relevant, you can reply to this email or reach me at ${emailContact}.`}
             </p>
         </div>
         
@@ -2125,7 +2146,7 @@ const generateChecklistPDF = async (lang = 'en') => {
         doc.fontSize(10).font('Helvetica-Bold');
         doc.text(lang === 'de' ? 'Angebotszusammenfassung senden:' : 'Send Proposal Summary:', { align: 'left' });
         doc.fontSize(9).font('Helvetica');
-        doc.text(process.env.CONTACT_EMAIL || 'prasad@prasadtilloo.com', { align: 'left', indent: 15 });
+        doc.text(getContactEmail(), { align: 'left', indent: 15 });
         doc.moveDown(1.5);
         
         // Footer
@@ -2710,7 +2731,7 @@ app.post('/api/email/test', async (req, res) => {
         }
 
         const replyToEmail = process.env.REPLY_TO_EMAIL || fromEmail;
-        const contactEmail = process.env.CONTACT_EMAIL || 'prasad@prasadtilloo.com';
+        const contactEmail = getContactEmail();
         
         console.log('[TEST EMAIL] Sending test email to:', email);
         console.log('[TEST EMAIL] From:', `${fromName} <${fromEmail}>`);

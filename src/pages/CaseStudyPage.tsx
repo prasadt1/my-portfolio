@@ -101,7 +101,7 @@ const CaseStudyPage: React.FC = () => {
                             <strong className="text-slate-900 dark:text-white">Full case study available upon request.</strong>
                         </p>
                         <p className="text-sm text-slate-600 dark:text-slate-400">
-                            Contact: <a href="mailto:prasad@prasadtilloo.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">prasad@prasadtilloo.com</a>
+                            Contact: <a href="mailto:prasad.sgsits@gmail.com" className="text-emerald-600 dark:text-emerald-400 hover:underline">prasad.sgsits@gmail.com</a>
                         </p>
                     </div>
                 </div>
