@@ -8,6 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import createLeadStore, { logLeadStoreConfig } from './leadStore/index.js';
 
 dotenv.config({ path: '../.env.local' });
 
@@ -34,6 +35,10 @@ const validateEmailConfig = () => {
 
 // Run validation on startup
 validateEmailConfig();
+
+// Initialize lead store
+logLeadStoreConfig();
+const leadStore = createLeadStore();
 
 app.use(cors());
 app.use(express.json());
@@ -2477,21 +2482,15 @@ app.post('/api/lead', async (req, res) => {
         const userAgent = req.get('user-agent') || 'unknown';
         const referrer = req.get('referer') || '';
 
-        // Read existing leads
-        let leads = [];
+        // Check if email already exists using lead store
         try {
-            if (fs.existsSync(leadsFilePath)) {
-                const data = fs.readFileSync(leadsFilePath, 'utf8');
-                leads = JSON.parse(data);
+            const emailAlreadyExists = await leadStore.emailExists(email);
+            if (emailAlreadyExists) {
+                return res.status(200).json({ success: true, message: 'Email already registered' });
             }
         } catch (err) {
-            console.error('Error reading leads file:', err);
-            leads = [];
-        }
-
-        // Check if email already exists
-        if (leads.some(lead => lead.email === email)) {
-            return res.status(200).json({ success: true, message: 'Email already registered' });
+            // Log but continue - we don't want to block lead capture if dedupe check fails
+            console.warn('[LEAD] Dedupe check failed, proceeding with capture:', err.message);
         }
 
         // Hash IP for privacy (simple hash)
@@ -2507,17 +2506,17 @@ app.post('/api/lead', async (req, res) => {
             leadMagnet: leadMagnet || 'guide',
             userAgent: userAgent,
             referrer: referrer,
-            consent: true // User must have consented to submit
+            consent: true, // User must have consented to submit
+            consentTimestamp: new Date().toISOString()
         };
 
-        leads.push(newLead);
-
-        // Write back to file
+        // Save lead using lead store (handles both JSON and Google Sheets with fallback)
         try {
-            fs.writeFileSync(leadsFilePath, JSON.stringify(leads, null, 2), 'utf8');
-        } catch (writeErr) {
-            console.error('Error writing leads file:', writeErr);
-            // Still return success even if file write fails (graceful degradation)
+            await leadStore.saveLead(newLead);
+            console.log('[LEAD] Lead captured successfully:', email);
+        } catch (saveErr) {
+            console.error('[LEAD] Error saving lead:', saveErr.message);
+            // Still return success - graceful degradation, don't block email sending
         }
 
         // Send guide via email
