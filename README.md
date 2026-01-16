@@ -153,9 +153,14 @@ All styles are inline for simplicity. You can:
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `LEAD_STORE_PROVIDER` | Storage provider: `json` (default) or `gsheets` | No |
-| `GSHEETS_SPREADSHEET_ID` | Google Sheet ID for lead storage | For GSheets |
+| `GSHEETS_SPREADSHEET_ID` | Google Sheet ID from URL (NOT a friendly name) | For GSheets |
+| `GSHEETS_SHEET_NAME` | Sheet tab name (default: `Leads`) | No |
 | `GSHEETS_CLIENT_EMAIL` | Service account email | For GSheets |
-| `GSHEETS_PRIVATE_KEY` | Service account private key (with `\n` for newlines) | For GSheets |
+| `GSHEETS_PRIVATE_KEY` | Service account private key (with `\n` for newlines, in quotes) | For GSheets |
+
+> **Important:** `GSHEETS_SPREADSHEET_ID` must be the actual ID from the spreadsheet URL, not a friendly name.
+> Example URL: `https://docs.google.com/spreadsheets/d/1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY/edit`
+> The ID is: `1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY`
 
 ### Example `.env.local` Configuration
 
@@ -184,9 +189,10 @@ CONTACT_EMAIL=prasad.sgsits@gmail.com
 
 # Lead Storage (optional - defaults to JSON file)
 # LEAD_STORE_PROVIDER=gsheets
-# GSHEETS_SPREADSHEET_ID=your_spreadsheet_id
+# GSHEETS_SPREADSHEET_ID=1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY
+# GSHEETS_SHEET_NAME=Leads
 # GSHEETS_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
-# GSHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+# GSHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBg...\n-----END PRIVATE KEY-----\n"
 ```
 
 ## 📧 Email Configuration Note
@@ -194,6 +200,129 @@ CONTACT_EMAIL=prasad.sgsits@gmail.com
 **Important:** Until you have a real mailbox configured on `prasadtilloo.com`, set `CONTACT_EMAIL` and `REPLY_TO_EMAIL` to a Gmail address (e.g., `prasad.sgsits@gmail.com`).
 
 The server will log a warning if it detects `CONTACT_EMAIL` ends with `@prasadtilloo.com` but `REPLY_TO_EMAIL` is a Gmail address, indicating a potential mismatch where the displayed contact email may not be deliverable.
+
+## 📊 Google Sheets Lead Storage Setup
+
+To store leads in Google Sheets instead of a local JSON file, follow these steps:
+
+### Step 1: Create a Google Cloud Project
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project or select an existing one
+3. Note your project ID
+
+### Step 2: Enable the Google Sheets API
+
+1. In Google Cloud Console, go to **APIs & Services** > **Library**
+2. Search for "Google Sheets API"
+3. Click **Enable**
+
+### Step 3: Create a Service Account
+
+1. Go to **APIs & Services** > **Credentials**
+2. Click **Create Credentials** > **Service Account**
+3. Fill in:
+   - Service account name: e.g., `portfolio-leads`
+   - Service account ID: auto-generated
+4. Click **Create and Continue**
+5. Skip the optional permissions, click **Done**
+
+### Step 4: Generate a Private Key
+
+1. Click on your newly created service account
+2. Go to the **Keys** tab
+3. Click **Add Key** > **Create new key**
+4. Select **JSON** format
+5. Click **Create** - the key file will download
+6. **Important:** Keep this file secure and never commit it to git!
+
+### Step 5: Create Your Google Sheet
+
+1. Go to [Google Sheets](https://sheets.google.com)
+2. Create a new spreadsheet
+3. Rename the first sheet tab to `Leads`
+4. Add headers in row 1 (optional but recommended):
+   ```
+   timestamp | email | name | sourcePath | locale | consent | consentTimestamp | ipHash | userAgent | leadMagnet | referrer
+   ```
+5. Copy the spreadsheet ID from the URL:
+   ```
+   https://docs.google.com/spreadsheets/d/SPREADSHEET_ID_HERE/edit
+   ```
+   The ID is the long string between `/d/` and `/edit`
+
+### Step 6: Share the Spreadsheet with the Service Account
+
+1. Open your Google Sheet
+2. Click **Share**
+3. Paste the service account email (from your JSON key file, looks like: `name@project-id.iam.gserviceaccount.com`)
+4. Set permission to **Editor**
+5. Click **Share**
+
+### Step 7: Configure Environment Variables
+
+Add these to your `.env.local`:
+
+```bash
+LEAD_STORE_PROVIDER=gsheets
+GSHEETS_SPREADSHEET_ID=1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY
+GSHEETS_SHEET_NAME=Leads
+GSHEETS_CLIENT_EMAIL=your-service-account@project-id.iam.gserviceaccount.com
+GSHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADA...\n-----END PRIVATE KEY-----\n"
+```
+
+**Important notes for `GSHEETS_PRIVATE_KEY`:**
+- Must be wrapped in double quotes
+- Newlines must be represented as `\n` (not actual line breaks)
+- Copy the `private_key` value from your JSON key file exactly
+
+### Step 8: Verify the Integration
+
+1. Start your server: `npm run server` or `cd server && npm start`
+2. Check the startup logs for:
+   ```
+   [LeadStore] Configuration:
+     - Provider: gsheets
+     - Spreadsheet ID: 1haP11eMs...
+     - Sheet Name: Leads
+     - Client Email: SET
+     - Private Key: SET
+   [GoogleSheetLeadStore] ✓ Verified access to spreadsheet, sheet "Leads" found.
+   ```
+3. Submit a test lead through your form
+4. Check your Google Sheet - the lead should appear
+
+### Troubleshooting
+
+**"Spreadsheet not found" error:**
+- Ensure `GSHEETS_SPREADSHEET_ID` is the actual ID from the URL, not a friendly name
+- Double-check you copied the correct ID
+
+**"Permission denied" error:**
+- Verify you shared the spreadsheet with the service account email
+- Ensure the service account has **Editor** access
+
+**"Sheet not found" error:**
+- Check that a sheet tab named `Leads` exists (or set `GSHEETS_SHEET_NAME` to match your tab name)
+
+**Private key errors:**
+- Ensure the key is wrapped in double quotes
+- Verify `\n` characters are preserved (not converted to actual newlines)
+- Check the key starts with `-----BEGIN PRIVATE KEY-----`
+
+### Fallback Behavior
+
+If Google Sheets fails (misconfigured, API error, etc.):
+- The system automatically falls back to JSON file storage
+- Lead capture continues without interruption
+- Check server logs for warnings about fallback activation
+
+### Security Notes
+
+> ⚠️ **Never commit secrets to git!**
+> - `.env.local` is already in `.gitignore`
+> - Never commit the service account JSON key file
+> - Never log the full private key
 
 ## 🚨 Troubleshooting
 
