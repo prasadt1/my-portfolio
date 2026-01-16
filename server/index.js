@@ -2894,18 +2894,6 @@ app.post('/api/events', async (req, res) => {
     }
 });
 
-// Serve static files from the React app
-// (__filename and __dirname already declared above for lead capture endpoint)
-
-// Serve static files from the dist directory (one level up from server)
-app.use(express.static(path.join(__dirname, '../dist')));
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
 // ============================================
 // DEV-ONLY ENDPOINTS: LeadStore Debugging
 // These endpoints are blocked in production
@@ -3042,6 +3030,18 @@ app.post('/api/leadstore/test-write', devOnlyMiddleware, async (req, res) => {
             error: `Write failed: ${err.message}`
         });
     }
+});
+
+// Serve static files from the React app
+// (__filename and __dirname already declared above for lead capture endpoint)
+
+// Serve static files from the dist directory (one level up from server)
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.listen(port, () => {
