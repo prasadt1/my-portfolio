@@ -15,6 +15,7 @@
  */
 
 import { LeadStore } from './LeadStore.js';
+import { safeSheetStr } from '../utils.js';
 
 export class GoogleSheetLeadStore extends LeadStore {
     constructor() {
@@ -145,6 +146,9 @@ export class GoogleSheetLeadStore extends LeadStore {
 
     /**
      * Save a lead to Google Sheets
+     * Defense-in-depth: sanitizes all fields before writing to prevent
+     * PII overflow and formula injection attacks.
+     * 
      * @param {Object} lead - Lead data
      * @returns {Promise<void>}
      * @throws {Error} If save fails (allows caller to handle fallback)
@@ -159,20 +163,20 @@ export class GoogleSheetLeadStore extends LeadStore {
         try {
             const sheets = await this._getSheets();
             
-            // Prepare row data
-            // Columns: timestamp, email, name, source, lang, consent, consentTimestamp, ipHash, userAgent, leadMagnet, referrer
+            // Defense-in-depth: Sanitize all fields with truncation and formula injection prevention
+            // Even if /api/lead already sanitized, we enforce limits here too
             const row = [
-                lead.timestamp || new Date().toISOString(),
-                lead.email || '',
-                lead.name || '',
-                lead.sourcePath || '',
-                lead.locale || 'en',
+                safeSheetStr(lead.timestamp || new Date().toISOString(), 40),
+                safeSheetStr(lead.email, 160),
+                safeSheetStr(lead.name, 120),
+                safeSheetStr(lead.sourcePath, 200),
+                safeSheetStr(lead.locale || 'en', 10),
                 lead.consent ? 'TRUE' : 'FALSE',
-                lead.consentTimestamp || '',
-                lead.ipHash || '',
-                lead.userAgent || '',
-                lead.leadMagnet || '',
-                lead.referrer || ''
+                safeSheetStr(lead.consentTimestamp, 40),
+                safeSheetStr(lead.ipHash, 64),
+                safeSheetStr(lead.userAgent, 250),
+                safeSheetStr(lead.leadMagnet, 80),
+                safeSheetStr(lead.referrer, 300)
             ];
 
             await sheets.spreadsheets.values.append({
@@ -185,7 +189,9 @@ export class GoogleSheetLeadStore extends LeadStore {
                 }
             });
 
-            console.log('[GoogleSheetLeadStore] Lead saved to Google Sheets:', lead.email);
+            // Log success without sensitive data (truncate email for privacy in logs)
+            const maskedEmail = lead.email ? lead.email.substring(0, 3) + '***' : 'unknown';
+            console.log('[GoogleSheetLeadStore] Lead saved to Google Sheets:', maskedEmail);
         } catch (err) {
             console.error('[GoogleSheetLeadStore] Error saving to Google Sheets:', err.message);
             

@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import createLeadStore, { logLeadStoreConfig } from './leadStore/index.js';
+import { safeStr } from './utils.js';
 
 dotenv.config({ path: '../.env.local' });
 
@@ -2468,19 +2469,44 @@ const generateNurtureEmail3 = (lang = 'en') => {
 
 app.post('/api/lead', async (req, res) => {
     try {
-        const { email, language, sourcePath, leadMagnet } = req.body;
+        const { email: rawEmail, language, sourcePath: rawSourcePath, leadMagnet: rawLeadMagnet } = req.body;
 
-        if (!email || !email.includes('@')) {
-            return res.status(400).json({ error: 'Valid email is required' });
+        // ========================================
+        // Input validation and sanitization
+        // ========================================
+        
+        // Validate email
+        if (!rawEmail || !rawEmail.includes('@')) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        
+        // Sanitize email: trim, lowercase, max 160 chars
+        const email = String(rawEmail).trim().toLowerCase().substring(0, 160);
+        
+        // Reject if email is still too long after sanitization (shouldn't happen, but safety check)
+        if (email.length > 160) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        
+        // Validate and sanitize sourcePath (if provided)
+        const sourcePath = safeStr(rawSourcePath, 200) || '/guide';
+        if (rawSourcePath && String(rawSourcePath).trim().length > 200) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        
+        // Validate and sanitize leadMagnet (if provided)
+        const leadMagnet = safeStr(rawLeadMagnet, 80) || 'guide';
+        if (rawLeadMagnet && String(rawLeadMagnet).trim().length > 80) {
+            return res.status(400).json({ error: 'Invalid input.' });
         }
 
         // Validate and normalize language
         const lang = (language === 'de' || language === 'en') ? language : 'en';
 
-        // Get client info for lead tracking
+        // Get client info for lead tracking (sanitize for safety)
         const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
-        const userAgent = req.get('user-agent') || 'unknown';
-        const referrer = req.get('referer') || '';
+        const userAgent = safeStr(req.get('user-agent'), 250);
+        const referrer = safeStr(req.get('referer'), 300);
 
         // Check if email already exists using lead store
         try {
@@ -2496,16 +2522,16 @@ app.post('/api/lead', async (req, res) => {
         // Hash IP for privacy (simple hash)
         const ipHash = crypto.createHash('sha256').update(clientIp).digest('hex').substring(0, 16);
 
-        // Add new lead with enhanced tracking
+        // Add new lead with sanitized data
         const newLead = {
             email,
             locale: lang,
-            sourcePath: sourcePath || '/guide',
+            sourcePath,
             timestamp: new Date().toISOString(),
-            ipHash: ipHash,
-            leadMagnet: leadMagnet || 'guide',
-            userAgent: userAgent,
-            referrer: referrer,
+            ipHash,
+            leadMagnet,
+            userAgent,
+            referrer,
             consent: true, // User must have consented to submit
             consentTimestamp: new Date().toISOString()
         };
@@ -2513,7 +2539,9 @@ app.post('/api/lead', async (req, res) => {
         // Save lead using lead store (handles both JSON and Google Sheets with fallback)
         try {
             await leadStore.saveLead(newLead);
-            console.log('[LEAD] Lead captured successfully:', email);
+            // Log success with masked email for privacy
+            const maskedEmail = email.substring(0, 3) + '***';
+            console.log('[LEAD] Lead captured successfully:', maskedEmail);
         } catch (saveErr) {
             console.error('[LEAD] Error saving lead:', saveErr.message);
             // Still return success - graceful degradation, don't block email sending
