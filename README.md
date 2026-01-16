@@ -324,6 +324,64 @@ If Google Sheets fails (misconfigured, API error, etc.):
 > - Never commit the service account JSON key file
 > - Never log the full private key
 
+### Debugging Google Sheets Integration (Dev Only)
+
+The server provides dev-only endpoints for debugging Google Sheets integration. These endpoints are **blocked in production** (`NODE_ENV=production`).
+
+#### Check Configuration Status
+
+```bash
+curl http://localhost:3001/api/leadstore/status
+```
+
+Returns current configuration with masked sensitive values:
+```json
+{
+  "success": true,
+  "status": {
+    "provider": "gsheets",
+    "configured": true,
+    "spreadsheetId": "1haP11...JsKY",
+    "sheetName": "Leads",
+    "clientEmail": "my-por...@just-plate-124722.iam.gserviceaccount.com",
+    "privateKeySet": true,
+    "primaryFailed": false,
+    "errors": []
+  }
+}
+```
+
+#### Verify Google Sheets Access
+
+```bash
+curl -X POST http://localhost:3001/api/leadstore/verify
+```
+
+Tests connectivity and permissions:
+```json
+{
+  "success": true,
+  "message": "Google Sheets access verified"
+}
+```
+
+#### Test Write Operation
+
+```bash
+curl -X POST http://localhost:3001/api/leadstore/test-write
+```
+
+Writes a test lead to verify end-to-end functionality:
+```json
+{
+  "success": true,
+  "message": "Test lead written successfully",
+  "testEmail": "test+gsheets@prasadtilloo.com"
+}
+```
+
+> **Note:** These endpoints return `403 Not available` in production environments.
+
 ## 🚨 Troubleshooting
 
 ### "VITE_GEMINI_API_KEY not configured"
