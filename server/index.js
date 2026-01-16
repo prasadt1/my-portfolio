@@ -2906,6 +2906,144 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
+// ============================================
+// DEV-ONLY ENDPOINTS: LeadStore Debugging
+// These endpoints are blocked in production
+// ============================================
+
+/**
+ * Middleware to block dev-only endpoints in production
+ */
+const devOnlyMiddleware = (req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        return res.status(403).json({ error: 'Not available' });
+    }
+    next();
+};
+
+/**
+ * GET /api/leadstore/status
+ * Returns current LeadStore configuration status (dev-only)
+ * Sensitive values are masked for security
+ */
+app.get('/api/leadstore/status', devOnlyMiddleware, (req, res) => {
+    try {
+        const status = leadStore.getStatus ? leadStore.getStatus() : {
+            provider: process.env.LEAD_STORE_PROVIDER || 'json',
+            configured: true,
+            message: 'Status method not available on this store type'
+        };
+        
+        res.json({
+            success: true,
+            status
+        });
+    } catch (err) {
+        console.error('[LeadStore Debug] Error getting status:', err.message);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve status'
+        });
+    }
+});
+
+/**
+ * POST /api/leadstore/verify
+ * Verifies Google Sheets access and connectivity (dev-only)
+ */
+app.post('/api/leadstore/verify', devOnlyMiddleware, async (req, res) => {
+    try {
+        const provider = process.env.LEAD_STORE_PROVIDER || 'json';
+        const isGSheets = ['gsheets', 'googlesheets', 'google_sheets'].includes(provider.toLowerCase());
+        
+        if (!isGSheets) {
+            return res.json({
+                success: true,
+                message: 'JSON provider is active, no external verification needed'
+            });
+        }
+        
+        // Check if store has verifyPrimaryAccess method (FallbackLeadStore)
+        if (!leadStore.verifyPrimaryAccess) {
+            return res.json({
+                success: false,
+                message: 'Verification not available for this store type'
+            });
+        }
+        
+        // Check configuration first
+        const status = leadStore.getStatus ? leadStore.getStatus() : {};
+        if (!status.configured) {
+            return res.json({
+                success: false,
+                message: 'Google Sheets not configured',
+                errors: status.errors || []
+            });
+        }
+        
+        // Attempt verification
+        console.log('[LeadStore Debug] Verifying Google Sheets access...');
+        const verified = await leadStore.verifyPrimaryAccess();
+        
+        if (verified) {
+            console.log('[LeadStore Debug] Verification successful');
+            return res.json({
+                success: true,
+                message: 'Google Sheets access verified'
+            });
+        } else {
+            console.log('[LeadStore Debug] Verification failed');
+            return res.json({
+                success: false,
+                message: 'Google Sheets access verification failed. Check spreadsheet ID and sharing permissions.'
+            });
+        }
+    } catch (err) {
+        console.error('[LeadStore Debug] Verification error:', err.message);
+        res.json({
+            success: false,
+            message: `Verification failed: ${err.message}`
+        });
+    }
+});
+
+/**
+ * POST /api/leadstore/test-write
+ * Writes a deterministic test lead to verify end-to-end functionality (dev-only)
+ */
+app.post('/api/leadstore/test-write', devOnlyMiddleware, async (req, res) => {
+    try {
+        const testLead = {
+            email: 'test+gsheets@prasadtilloo.com',
+            locale: 'en',
+            sourcePath: '/debug/gsheets',
+            leadMagnet: 'debug-test',
+            timestamp: new Date().toISOString(),
+            userAgent: 'leadstore-debug',
+            referrer: 'local-debug',
+            consent: true,
+            consentTimestamp: new Date().toISOString(),
+            ipHash: 'debug000000000000'
+        };
+        
+        console.log('[LeadStore Debug] Attempting test write...');
+        await leadStore.saveLead(testLead);
+        console.log('[LeadStore Debug] Test write successful');
+        
+        res.json({
+            success: true,
+            message: 'Test lead written successfully',
+            testEmail: testLead.email
+        });
+    } catch (err) {
+        console.error('[LeadStore Debug] Test write failed:', err.message);
+        res.json({
+            success: false,
+            error: `Write failed: ${err.message}`
+        });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

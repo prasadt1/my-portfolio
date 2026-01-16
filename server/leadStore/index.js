@@ -166,6 +166,79 @@ export class FallbackLeadStore {
         }
         return true;
     }
+    
+    /**
+     * Get status information for debugging (dev-only)
+     * Returns masked sensitive values for security
+     * @returns {Object} Status information
+     */
+    getStatus() {
+        const provider = process.env.LEAD_STORE_PROVIDER || 'json';
+        const isGSheets = ['gsheets', 'googlesheets', 'google_sheets'].includes(provider.toLowerCase());
+        
+        if (!isGSheets) {
+            return {
+                provider: 'json',
+                configured: true,
+                primaryFailed: this.primaryFailed
+            };
+        }
+        
+        const spreadsheetId = process.env.GSHEETS_SPREADSHEET_ID || '';
+        const clientEmail = process.env.GSHEETS_CLIENT_EMAIL || '';
+        const sheetName = process.env.GSHEETS_SHEET_NAME || 'Leads';
+        const privateKey = process.env.GSHEETS_PRIVATE_KEY || '';
+        
+        // Mask sensitive values
+        const maskedSpreadsheetId = spreadsheetId.length > 10 
+            ? `${spreadsheetId.substring(0, 6)}...${spreadsheetId.substring(spreadsheetId.length - 4)}`
+            : spreadsheetId ? '***' : 'NOT SET';
+            
+        const maskedClientEmail = clientEmail 
+            ? `${clientEmail.substring(0, 6)}...@${clientEmail.split('@')[1] || '***'}`
+            : 'NOT SET';
+        
+        return {
+            provider: 'gsheets',
+            configured: this.primary?.isConfigured || false,
+            spreadsheetId: maskedSpreadsheetId,
+            sheetName: sheetName,
+            clientEmail: maskedClientEmail,
+            privateKeySet: !!privateKey,
+            primaryFailed: this.primaryFailed,
+            errors: this._getConfigErrors()
+        };
+    }
+    
+    /**
+     * Get configuration errors for diagnostics
+     * @private
+     * @returns {string[]} List of configuration issues
+     */
+    _getConfigErrors() {
+        const errors = [];
+        const spreadsheetId = process.env.GSHEETS_SPREADSHEET_ID;
+        const clientEmail = process.env.GSHEETS_CLIENT_EMAIL;
+        const privateKey = process.env.GSHEETS_PRIVATE_KEY;
+        
+        if (!spreadsheetId) {
+            errors.push('GSHEETS_SPREADSHEET_ID not set');
+        } else if (spreadsheetId.includes('-') && !spreadsheetId.match(/^[a-zA-Z0-9_-]{20,}$/)) {
+            errors.push('GSHEETS_SPREADSHEET_ID appears to be a friendly name, not a valid ID');
+        }
+        
+        if (!clientEmail) {
+            errors.push('GSHEETS_CLIENT_EMAIL not set');
+        }
+        
+        if (!privateKey) {
+            errors.push('GSHEETS_PRIVATE_KEY not set');
+        } else if (!privateKey.includes('BEGIN PRIVATE KEY')) {
+            errors.push('GSHEETS_PRIVATE_KEY appears malformed');
+        }
+        
+        return errors;
+    }
 }
 
 /**
