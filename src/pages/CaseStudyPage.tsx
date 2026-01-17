@@ -15,35 +15,83 @@ import {
 } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectVisual from '../components/ProjectVisual';
-import { isPersonaChallenge, type ChallengeStructure, type PersonaChallengeStructure, type LegacyChallengeStructure } from '../types/CaseStudy';
+import { 
+    isLocalizedPersonaChallenge, 
+    isLegacyChallenge,
+    getLocalizedString,
+    getLocalizedStringArray,
+    type ChallengeStructure, 
+    type LocalizedPersonaChallengeStructure, 
+    type LegacyChallengeStructure,
+    type LocalizedString,
+    type LocalizedStringArray
+} from '../types/CaseStudy';
 
-// Helper to get challenge content based on persona and structure type
+// =============================================================================
+// HELPER FUNCTIONS FOR LOCALIZED CONTENT
+// =============================================================================
+
+// Get challenge content based on persona and locale
 function getChallengeContent(
     challenge: ChallengeStructure,
-    persona: 'standard' | 'executive' | 'technical'
+    persona: 'standard' | 'executive' | 'technical',
+    locale: string
 ) {
-    if (isPersonaChallenge(challenge)) {
+    if (isLocalizedPersonaChallenge(challenge)) {
         const personaContent = challenge[persona];
         return {
-            situation: personaContent.situation,
-            keyTensions: personaContent.keyTensions,
-            urgency: personaContent.urgency || challenge.standard.urgency,
-            contextChips: challenge.contextChips || [],
-            why_prasad: challenge.why_prasad,
+            situation: getLocalizedString(personaContent.situation, locale),
+            keyTensions: getLocalizedStringArray(personaContent.keyTensions, locale),
+            urgency: personaContent.urgency ? getLocalizedString(personaContent.urgency, locale) : 
+                     getLocalizedString(challenge.standard.urgency!, locale),
+            contextChips: challenge.contextChips?.map(chip => ({
+                label: getLocalizedString(chip.label, locale),
+                value: getLocalizedString(chip.value, locale)
+            })) || [],
+            why_prasad: getLocalizedString(challenge.why_prasad, locale),
             isPersonaBased: true
         };
     }
     
     // Legacy structure - derive key tensions from pain points
-    const legacyChallenge = challenge as LegacyChallengeStructure;
+    if (isLegacyChallenge(challenge)) {
+        const legacyChallenge = challenge as LegacyChallengeStructure;
+        return {
+            situation: legacyChallenge.situation,
+            keyTensions: legacyChallenge.pain_points?.map(p => `${p.title}: ${p.description}`) || [],
+            urgency: legacyChallenge.urgency,
+            contextChips: [],
+            why_prasad: legacyChallenge.why_prasad,
+            isPersonaBased: false
+        };
+    }
+
+    // Fallback for any edge case
     return {
-        situation: legacyChallenge.situation,
-        keyTensions: legacyChallenge.pain_points?.map(p => `${p.title}: ${p.description}`) || [],
-        urgency: legacyChallenge.urgency,
+        situation: '',
+        keyTensions: [],
+        urgency: '',
         contextChips: [],
-        why_prasad: legacyChallenge.why_prasad,
+        why_prasad: '',
         isPersonaBased: false
     };
+}
+
+// Helper to get localized value from potentially localized field
+function getLocalized(value: LocalizedString | string | undefined, locale: string): string {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return locale === 'de' ? value.de : value.en;
+}
+
+// Helper to get localized array
+function getLocalizedArray(value: LocalizedStringArray | string[] | undefined, locale: string): string[] {
+    if (!value) return [];
+    if (Array.isArray(value) && (value.length === 0 || typeof value[0] === 'string')) {
+        return value as string[];
+    }
+    const localized = value as LocalizedStringArray;
+    return locale === 'de' ? localized.de : localized.en;
 }
 
 // Section Header component for consistent styling
@@ -62,12 +110,19 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string; className?: st
     </div>
 );
 
+// =============================================================================
+// MAIN COMPONENT
+// =============================================================================
+
 const CaseStudyPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t, i18n } = useTranslation();
+    const locale = i18n.language;
     const [persona, setPersona] = useState<'executive' | 'technical' | 'standard'>('standard');
     const [showAllDeliverables, setShowAllDeliverables] = useState(false);
     const [showAllApproach, setShowAllApproach] = useState(false);
+    
+    // Single source of truth: projects.ts
     const study = projects.find(s => s.slug === slug || s.id === slug);
 
     useEffect(() => {
@@ -134,10 +189,23 @@ const CaseStudyPage: React.FC = () => {
         );
     }
 
-    // Get challenge content based on current persona
-    const challengeContent = getChallengeContent(study.challenge, persona);
+    // Get challenge content based on current persona and locale
+    const challengeContent = getChallengeContent(study.challenge, persona, locale);
 
-    // Determine how many phases/deliverables to show initially
+    // Get localized header content
+    const headerTitle = getLocalized(study.header.title, locale);
+    const headerEyebrow = getLocalized(study.header.eyebrow, locale);
+    const clientType = getLocalized(study.header.client.type, locale);
+    const clientIndustry = getLocalized(study.header.client.industry, locale);
+
+    // Get localized approach content
+    const methodology = getLocalized(study.approach.methodology, locale);
+    const uniqueDifferentiator = getLocalized(study.approach.unique_differentiator, locale);
+
+    // Get localized outcomes
+    const heroMetricLabel = getLocalized(study.outcomes.hero_metric.label, locale);
+    
+    // Determine how many phases to show initially
     const initialItemCount = 4;
     const phasesToShow = showAllApproach 
         ? study.approach.phases 
@@ -168,7 +236,7 @@ const CaseStudyPage: React.FC = () => {
                             <div className="flex items-start justify-between mb-4">
                                 <div className="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest text-sm uppercase flex items-center gap-2">
                                     <span className="w-8 h-0.5 bg-emerald-600 dark:text-emerald-400 inline-block"></span>
-                                    {study.header.eyebrow}
+                                    {headerEyebrow}
                                 </div>
                                 {study.visualType && (
                                     <div className="ml-4 opacity-60">
@@ -177,7 +245,7 @@ const CaseStudyPage: React.FC = () => {
                                 )}
                             </div>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-                                {study.header.title}
+                                {headerTitle}
                             </h1>
                             <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed max-w-2xl">
                                 {challengeContent.situation.split('.').slice(0, 2).join('.') + '.'}
@@ -186,10 +254,10 @@ const CaseStudyPage: React.FC = () => {
                             {/* Tags */}
                             <div className="flex flex-wrap gap-2 mb-8 text-sm">
                                 <span className="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium text-slate-700 dark:text-slate-300">
-                                    {study.header.client.type}
+                                    {clientType}
                                 </span>
                                 <span className="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium text-slate-700 dark:text-slate-300">
-                                    {study.header.client.industry}
+                                    {clientIndustry}
                                 </span>
                                 {study.domains.slice(0, 2).map((domain, idx) => (
                                     <span key={idx} className="px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 font-medium text-emerald-700 dark:text-emerald-400">
@@ -220,14 +288,16 @@ const CaseStudyPage: React.FC = () => {
                                     </div>
 
                                     <h3 className="text-2xl font-medium leading-snug mb-8 text-white/90">
-                                        {study.outcomes.hero_metric.label}
+                                        {heroMetricLabel}
                                     </h3>
 
                                     <div className="grid grid-cols-2 gap-6 pt-8 border-t border-white/10">
                                         {study.outcomes.secondary_metrics.slice(0, 2).map((metric, idx) => (
                                             <div key={idx}>
                                                 <div className="text-2xl font-bold mb-1">{metric.value}</div>
-                                                <div className="text-sm text-emerald-100/80 font-medium">{metric.label}</div>
+                                                <div className="text-sm text-emerald-100/80 font-medium">
+                                                    {getLocalized(metric.label, locale)}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -256,7 +326,7 @@ const CaseStudyPage: React.FC = () => {
                                     {study.outcomes.hero_metric.value}
                                 </p>
                                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    {study.outcomes.hero_metric.label}
+                                    {heroMetricLabel}
                                 </p>
                             </div>
                             <div className="text-center md:text-left">
@@ -270,7 +340,7 @@ const CaseStudyPage: React.FC = () => {
                                     {study.approach.phases.length > 0 ? study.approach.phases.length + ' Phases' : 'Full Engagement'}
                                 </p>
                                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    {study.approach.methodology}
+                                    {methodology}
                                 </p>
                             </div>
                             <div className="text-center md:text-left">
@@ -349,7 +419,7 @@ const CaseStudyPage: React.FC = () => {
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500/20 to-transparent"></div>
                             )}
                             <motion.p 
-                                key={persona}
+                                key={`${persona}-${locale}`}
                                 initial={{ opacity: 0, y: 5 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3 }}
@@ -366,7 +436,7 @@ const CaseStudyPage: React.FC = () => {
                                     {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
                                 </h3>
                                 <motion.div 
-                                    key={persona}
+                                    key={`${persona}-${locale}`}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     className="grid md:grid-cols-2 gap-3"
@@ -424,9 +494,11 @@ const CaseStudyPage: React.FC = () => {
                                         {phase.number}
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="font-bold text-slate-900 dark:text-white mb-1">{phase.title}</h3>
+                                        <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+                                            {getLocalized(phase.title, locale)}
+                                        </h3>
                                         <p className="text-sm text-slate-600 dark:text-slate-400 mb-2 line-clamp-2">
-                                            {phase.deliverable}
+                                            {getLocalized(phase.deliverable, locale)}
                                         </p>
                                         <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
                                             <span className="flex items-center gap-1">
@@ -435,7 +507,7 @@ const CaseStudyPage: React.FC = () => {
                                             </span>
                                             {phase.outcome && (
                                                 <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                                                    → {phase.outcome}
+                                                    → {getLocalized(phase.outcome, locale)}
                                                 </span>
                                             )}
                                         </div>
@@ -468,7 +540,7 @@ const CaseStudyPage: React.FC = () => {
                     )}
 
                     {/* Key Differentiator */}
-                    {study.approach.unique_differentiator && (
+                    {uniqueDifferentiator && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -484,7 +556,7 @@ const CaseStudyPage: React.FC = () => {
                                         {t('caseStudy.whatIDelivered.differentiator')}
                                     </h3>
                                     <p className="text-sm text-slate-700 dark:text-slate-300">
-                                        {study.approach.unique_differentiator}
+                                        {uniqueDifferentiator}
                                     </p>
                                 </div>
                             </div>
@@ -497,7 +569,7 @@ const CaseStudyPage: React.FC = () => {
             <section className="py-16 bg-white dark:bg-slate-900">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionHeader 
-                        title={t('caseStudy.howIDelivered.title', `The Approach: ${study.approach.methodology}`)}
+                        title={t('caseStudy.howIDelivered.title', `The Approach: ${methodology}`)}
                         subtitle={`${t('caseStudy.howIDelivered.whyMe', 'Why me')}: ${challengeContent.why_prasad}`}
                     />
 
@@ -527,7 +599,9 @@ const CaseStudyPage: React.FC = () => {
                                                 <span className="md:hidden w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs">
                                                     {phase.number}
                                                 </span>
-                                                <h3 className="font-bold text-slate-900 dark:text-white">{phase.title}</h3>
+                                                <h3 className="font-bold text-slate-900 dark:text-white">
+                                                    {getLocalized(phase.title, locale)}
+                                                </h3>
                                             </div>
                                             <span className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                                                 <Clock size={14} />
@@ -536,7 +610,7 @@ const CaseStudyPage: React.FC = () => {
                                         </div>
                                         
                                         <ul className="space-y-1.5 mb-4">
-                                            {phase.activities.slice(0, 3).map((activity, aIdx) => (
+                                            {getLocalizedArray(phase.activities, locale).slice(0, 3).map((activity, aIdx) => (
                                                 <li key={aIdx} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
                                                     <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 flex-shrink-0" />
                                                     {activity}
@@ -548,7 +622,9 @@ const CaseStudyPage: React.FC = () => {
                                             <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">
                                                 {t('caseStudy.outcome', 'Outcome')}:
                                             </span>
-                                            <span className="text-sm text-slate-900 dark:text-white font-medium">{phase.outcome}</span>
+                                            <span className="text-sm text-slate-900 dark:text-white font-medium">
+                                                {getLocalized(phase.outcome, locale)}
+                                            </span>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -575,19 +651,19 @@ const CaseStudyPage: React.FC = () => {
                                         <div>
                                             <div className="text-xs font-semibold text-slate-500 uppercase mb-2">Legacy Stack</div>
                                             <div className="flex flex-wrap gap-2">
-                                                {study.technical.before.stack.map((t, i) => (
+                                                {study.technical.before.stack.map((tech, i) => (
                                                     <span key={i} className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs rounded">
-                                                        {t}
+                                                        {tech}
                                                     </span>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
-                                    {study.technical.before.issues.length > 0 && (
+                                    {getLocalizedArray(study.technical.before.issues, locale).length > 0 && (
                                         <div>
                                             <div className="text-xs font-semibold text-slate-500 uppercase mb-2">Issues</div>
                                             <ul className="space-y-1.5">
-                                                {study.technical.before.issues.map((issue, i) => (
+                                                {getLocalizedArray(study.technical.before.issues, locale).map((issue, i) => (
                                                     <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
                                                         <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span> {issue}
                                                     </li>
@@ -618,11 +694,11 @@ const CaseStudyPage: React.FC = () => {
                                             </div>
                                         </div>
                                     )}
-                                    {study.technical.after.improvements.length > 0 && (
+                                    {getLocalizedArray(study.technical.after.improvements, locale).length > 0 && (
                                         <div>
                                             <div className="text-xs font-semibold text-emerald-600/80 uppercase mb-2">Improvements</div>
                                             <ul className="space-y-1.5">
-                                                {study.technical.after.improvements.map((imp, i) => (
+                                                {getLocalizedArray(study.technical.after.improvements, locale).map((imp, i) => (
                                                     <li key={i} className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
                                                         <CheckCircle2 size={14} className="text-emerald-500" /> {imp}
                                                     </li>
@@ -644,11 +720,13 @@ const CaseStudyPage: React.FC = () => {
                     <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                         <div className="text-5xl text-emerald-500 mb-6 opacity-50 font-serif">"</div>
                         <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6">
-                            {study.testimonial.quote}
+                            {getLocalized(study.testimonial.quote, locale)}
                         </blockquote>
                         <cite className="not-italic">
                             <div className="font-bold text-lg">{study.testimonial.author.name}</div>
-                            <div className="text-emerald-300">{study.testimonial.author.role}, {study.testimonial.author.company}</div>
+                            <div className="text-emerald-300">
+                                {getLocalized(study.testimonial.author.role, locale)}, {study.testimonial.author.company}
+                            </div>
                         </cite>
                     </div>
                 </section>
@@ -663,7 +741,7 @@ const CaseStudyPage: React.FC = () => {
                                 {t('projects.approachToday.title')}
                             </h2>
                             <ul className="space-y-3">
-                                {(i18n.language === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
+                                {(locale === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
                                     <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 leading-relaxed">
                                         <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={18} />
                                         <span className="text-sm">{bullet}</span>
