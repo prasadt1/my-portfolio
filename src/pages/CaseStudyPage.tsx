@@ -35,18 +35,19 @@ import { getLocalizedValue, getLocalizedArray as getLocalizedArrayUtil } from '.
 // =============================================================================
 
 // Get challenge content based on persona and locale
+// Note: For new persona-based challenges, we use 'standard' content for display
+// The new executiveSnapshot and personaChallenges structures handle persona-specific content separately
 function getChallengeContent(
     challenge: ChallengeStructure,
-    persona: 'standard' | 'executive' | 'technical',
     locale: string
 ) {
     if (isLocalizedPersonaChallenge(challenge)) {
-        const personaContent = challenge[persona];
+        // Use 'standard' persona content for the main challenge display
+        const personaContent = challenge.standard;
         return {
             situation: getLocalizedString(personaContent.situation, locale),
             keyTensions: getLocalizedStringArray(personaContent.keyTensions, locale),
-            urgency: personaContent.urgency ? getLocalizedString(personaContent.urgency, locale) : 
-                     getLocalizedString(challenge.standard.urgency!, locale),
+            urgency: personaContent.urgency ? getLocalizedString(personaContent.urgency, locale) : '',
             contextChips: challenge.contextChips?.map(chip => ({
                 label: getLocalizedString(chip.label, locale),
                 value: getLocalizedString(chip.value, locale)
@@ -194,7 +195,7 @@ const CaseStudyPage: React.FC = () => {
     }
 
     // Get challenge content based on current persona and locale
-    const challengeContent = getChallengeContent(study.challenge, persona, locale);
+    const challengeContent = getChallengeContent(study.challenge, locale);
 
     // Get localized header content
     const headerTitle = getLocalized(study.header.title, locale);

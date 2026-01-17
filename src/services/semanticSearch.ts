@@ -1,8 +1,28 @@
+import { isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, type CaseStudy, type LocalizedString } from '../types/CaseStudy';
+
 interface SearchResult {
     slug: string;
     title: string;
     relevance: string;
     score: number;
+}
+
+// Helper to get string value from potentially localized field
+function getStringValue(value: string | LocalizedString | undefined): string {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return value.en || '';
+}
+
+// Helper to get situation from challenge structure
+function getChallengeSituation(challenge: CaseStudy['challenge']): string {
+    if (isLocalizedPersonaChallenge(challenge)) {
+        return getLocalizedString(challenge.standard.situation, 'en');
+    }
+    if (isLegacyChallenge(challenge)) {
+        return challenge.situation;
+    }
+    return '';
 }
 
 export const semanticSearch = async (query: string): Promise<SearchResult[]> => {
@@ -53,9 +73,12 @@ async function fallbackClientSearch(query: string): Promise<SearchResult[]> {
         // Enhanced keyword matching as fallback
         const matches = projects
             .map(p => {
+                const titleStr = getStringValue(p.header.title);
+                const situationStr = getChallengeSituation(p.challenge);
+                
                 const searchText = [
-                    p.header.title,
-                    p.challenge.situation,
+                    titleStr,
+                    situationStr,
                     ...(p.technical.after?.stack || []),
                     ...(p.domains || []),
                     ...(p.seoTags || [])
@@ -70,7 +93,7 @@ async function fallbackClientSearch(query: string): Promise<SearchResult[]> {
                         score += 20;
                     }
                     // Bonus for exact matches in title
-                    if (p.header.title.toLowerCase().includes(word)) {
+                    if (titleStr.toLowerCase().includes(word)) {
                         score += 10;
                     }
                     // Bonus for tech stack matches
@@ -79,15 +102,15 @@ async function fallbackClientSearch(query: string): Promise<SearchResult[]> {
                     }
                 });
                 
-                return { project: p, score };
+                return { project: p, score, titleStr, situationStr };
             })
             .filter(item => item.score > 0)
             .sort((a, b) => b.score - a.score)
             .slice(0, 3)
             .map(item => ({
                 slug: item.project.slug,
-                title: item.project.header.title,
-                relevance: `Matches your search for "${query}" - ${item.project.challenge.situation.substring(0, 80)}...`,
+                title: item.titleStr,
+                relevance: `Matches your search for "${query}" - ${item.situationStr.substring(0, 80)}...`,
                 score: Math.min(95, item.score)
             }));
         

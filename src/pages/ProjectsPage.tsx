@@ -6,6 +6,25 @@ import { projects } from '../data/projects';
 import { DOMAINS } from '../data/domains';
 import { FolderGit2, ArrowRight, Globe, Award, TrendingUp } from 'lucide-react';
 import SEO from '../components/SEO';
+import { isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, type CaseStudy, type LocalizedString } from '../types/CaseStudy';
+
+// Helper to get situation text from any challenge structure
+function getChallengeSituation(challenge: CaseStudy['challenge'], locale: string): string {
+    if (isLocalizedPersonaChallenge(challenge)) {
+        return getLocalizedString(challenge.standard.situation, locale);
+    }
+    if (isLegacyChallenge(challenge)) {
+        return challenge.situation;
+    }
+    return '';
+}
+
+// Helper to get localized string value
+function getLocalizedValue(value: string | LocalizedString | undefined, locale: string): string {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return getLocalizedString(value, locale);
+}
 
 import SmartProjectFilter from '../components/SmartProjectFilter';
 import DomainFilter from '../components/DomainFilter';
@@ -13,7 +32,7 @@ import DomainFilter from '../components/DomainFilter';
 import ProjectCard from '../components/ProjectCard';
 
 const ProjectsPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const [activeDomain, setActiveDomain] = useState<string>('All');
   const [smartTags, setSmartTags] = useState<string[]>([]);
@@ -158,11 +177,11 @@ const ProjectsPage: React.FC = () => {
                   </div>
                   
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 font-serif">
-                    {featuredProject.header?.title || featuredProject.title}
+                    {getLocalizedValue(featuredProject.header?.title, i18n.language)}
                   </h2>
                   
                   <p className="text-lg text-slate-700 dark:text-slate-300 mb-8 max-w-3xl leading-relaxed">
-                    {featuredProject.challenge?.situation}
+                    {featuredProject.challenge && getChallengeSituation(featuredProject.challenge, i18n.language)}
                   </p>
                   
                   {/* Key metrics */}
