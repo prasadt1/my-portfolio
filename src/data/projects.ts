@@ -1,4 +1,5 @@
 import { CaseStudy } from "../types/CaseStudy";
+import { runProjectValidation } from "../utils/validateProjects";
 
 export const projects: CaseStudy[] = [
     {
@@ -181,7 +182,7 @@ export const projects: CaseStudy[] = [
     },
     {
         id: 'brita-ecommerce',
-        slug: 'brita-ecommerce-modernization',
+        slug: 'brita-ecommerce',
         theme: {
             color: 'orange',
             gradient: 'from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10',
@@ -286,6 +287,166 @@ export const projects: CaseStudy[] = [
             },
             why_prasad: { en: 'Proven track record in headless commerce and cloud migration', de: 'Nachgewiesene Erfolge in Headless Commerce und Cloud-Migration' }
         },
+        // Phase 2: Executive Snapshot
+        executiveSnapshot: {
+            whyItMattered: {
+                en: [
+                    'BRITA needed a scalable eCommerce platform to support 6 EMEA markets with consistent customer experience.',
+                    'Legacy Shopware implementation created high operational overhead and slow release cycles.',
+                    'Business required migration without revenue disruption and with minimal internal change load.'
+                ],
+                de: [
+                    'BRITA benötigte eine skalierbare E-Commerce-Plattform für 6 EMEA-Märkte mit konsistenter Customer Experience.',
+                    'Die bestehende Shopware-Implementierung verursachte hohen Betriebsaufwand und langsame Release-Zyklen.',
+                    'Die Migration musste ohne Umsatzrisiko und mit minimaler Belastung interner Teams erfolgen.'
+                ]
+            },
+            keyTensions: {
+                en: [
+                    'Speed-to-market vs. platform governance across multiple markets.',
+                    'Migration continuity vs. deep refactoring of legacy integrations.',
+                    'Shopify ecosystem benefits vs. avoiding vendor lock-in and hidden costs.'
+                ],
+                de: [
+                    'Geschwindigkeit vs. Governance über mehrere Märkte hinweg.',
+                    'Kontinuität in der Migration vs. tiefes Refactoring von Legacy-Integrationen.',
+                    'Vorteile des Shopify-Ökosystems vs. Vermeidung von Lock-in und versteckten Kosten.'
+                ]
+            },
+            metricCallout: {
+                value: { en: '6 markets', de: '6 Märkte' },
+                label: { en: 'migrated to Shopify Plus', de: 'migriert auf Shopify Plus' }
+            }
+        },
+        // Phase 2: Persona Challenges
+        personaChallenges: {
+            executive: {
+                challenges: {
+                    en: [
+                        'Ensure uninterrupted revenue during migration (no "big bang" cutover risk).',
+                        'Align stakeholders across markets on a single reference architecture and operating model.',
+                        'Maintain consistent product and pricing governance across regions.',
+                        'Control long-term platform costs and avoid "agency dependency".',
+                        'Build confidence that Shopify was the right strategic choice for the next 3–5 years.'
+                    ],
+                    de: [
+                        'Umsatzkontinuität sicherstellen (kein Big-Bang-Cutover-Risiko).',
+                        'Stakeholder über mehrere Märkte auf Referenzarchitektur und Operating Model ausrichten.',
+                        'Konsistente Governance für Produkt- und Preislogik in allen Regionen sicherstellen.',
+                        'Langfristige Plattformkosten steuern und „Agency-Dependency" vermeiden.',
+                        'Sicherheit schaffen, dass Shopify strategisch für die nächsten 3–5 Jahre die richtige Wahl ist.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Revenue disruption during cutover and seasonal traffic peaks.',
+                        'Market divergence leading to fragmented platforms and higher TCO.',
+                        'Replatforming twice due to bad early platform decisions.'
+                    ],
+                    de: [
+                        'Umsatzverluste durch Cutover-Probleme in Peak-Phasen.',
+                        'Divergierende Markt-Lösungen → fragmentierte Plattform und höhere TCO.',
+                        'Zweite Replatforming-Runde wegen falscher Anfangsentscheidungen.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Sequence migration by market vs. migrate all markets together.',
+                        'Standardize shared services vs. allow regional deviations.',
+                        'Define ownership of integrations (internal vs partner).'
+                    ],
+                    de: [
+                        'Migration nach Märkten sequenzieren vs. parallel migrieren.',
+                        'Shared Services standardisieren vs. regionale Abweichungen erlauben.',
+                        'Ownership der Integrationen definieren (intern vs. Partner).'
+                    ]
+                }
+            },
+            technical: {
+                challenges: {
+                    en: [
+                        'Decouple legacy ERP/OMS integrations without breaking order flows.',
+                        'Preserve SEO rankings during URL + content migration.',
+                        'Design a scalable headless integration layer for downstream systems.',
+                        'Ensure observability across checkout, fulfillment, and payment flows.',
+                        'Build deployment safety: feature flags, rollback strategy, integration testing.'
+                    ],
+                    de: [
+                        'Legacy ERP/OMS-Integrationen entkoppeln, ohne Order-Flows zu brechen.',
+                        'SEO-Rankings bei URL- und Content-Migration erhalten.',
+                        'Skalierbare headless Integration Layer für Downstream-Systeme designen.',
+                        'Observability für Checkout-, Fulfillment- und Payment-Flows sicherstellen.',
+                        'Deployment-Sicherheit: Feature Flags, Rollback-Strategie, Integrationstests.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Broken checkout / order processing with delayed detection.',
+                        'SEO loss leading to measurable revenue decline.',
+                        'Hidden integration complexity delaying delivery by months.'
+                    ],
+                    de: [
+                        'Defekte Checkout-/Order-Prozesse mit verspäteter Erkennung.',
+                        'SEO-Verlust → messbarer Umsatzrückgang.',
+                        'Versteckte Integrationskomplexität → Monate Verzögerung.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Headless vs. Shopify-native patterns for critical flows.',
+                        'Integration ownership boundaries (Shopify vs middleware).',
+                        'Data model mapping and product catalog governance.'
+                    ],
+                    de: [
+                        'Headless vs. Shopify-native Patterns für kritische Flows.',
+                        'Integrationsgrenzen definieren (Shopify vs Middleware).',
+                        'Datenmodell-Mapping und Produktkatalog-Governance.'
+                    ]
+                }
+            },
+            delivery: {
+                challenges: {
+                    en: [
+                        'Deliver in phased releases without destabilizing markets.',
+                        'Align agencies, internal teams, and vendors with clear accountability.',
+                        'Establish migration governance: scope control, risk register, escalation paths.',
+                        'Create a realistic cutover plan with rollback and support readiness.',
+                        'Avoid rework by validating integration constraints early.'
+                    ],
+                    de: [
+                        'Phasenweise Releases liefern, ohne Märkte zu destabilisieren.',
+                        'Agencies, interne Teams und Vendoren mit klarer Accountability ausrichten.',
+                        'Migration Governance etablieren: Scope Control, Risk Register, Escalation Paths.',
+                        'Realistischer Cutover-Plan inkl. Rollback und Support-Readiness.',
+                        'Rework vermeiden durch frühe Validierung von Integrations-Constraints.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Delays due to unclear ownership and escalation paths.',
+                        'Uncontrolled scope expansion across markets.',
+                        'Failed cutover requiring costly recovery work.'
+                    ],
+                    de: [
+                        'Verzögerungen durch unklare Ownership- und Eskalationswege.',
+                        'Unkontrollierte Scope-Ausweitung über Märkte hinweg.',
+                        'Fehlgeschlagener Cutover mit hohen Recovery-Kosten.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Governance model: central PMO vs. market-led delivery.',
+                        'Release cadence and QA gating.',
+                        'Cutover rehearsal strategy.'
+                    ],
+                    de: [
+                        'Governance-Modell: zentrale PMO vs. marktgetriebene Umsetzung.',
+                        'Release-Cadence und QA-Gating.',
+                        'Cutover-Rehearsal-Strategie.'
+                    ]
+                }
+            }
+        },
         approach: {
             methodology: 'Headless Transformation Strategy',
             phases: [
@@ -331,8 +492,8 @@ export const projects: CaseStudy[] = [
         }
     },
     {
-        id: 'delivery-hero',
-        slug: 'delivery-hero-adtech',
+        id: 'delivery-hero-ads',
+        slug: 'delivery-hero-ads',
         theme: {
             color: 'rose',
             gradient: 'from-rose-50 to-red-50 dark:from-rose-900/20 dark:to-red-900/10',
@@ -437,6 +598,166 @@ export const projects: CaseStudy[] = [
             },
             why_prasad: { en: 'High-scale distributed systems expertise', de: 'Expertise in hochskalierten verteilten Systemen' }
         },
+        // Phase 2: Executive Snapshot
+        executiveSnapshot: {
+            whyItMattered: {
+                en: [
+                    'Advertising became a strategic revenue stream requiring enterprise-grade reliability and scale.',
+                    'The platform needed to handle millions of daily transactions with strict latency requirements.',
+                    'Leadership required a measurable uplift in monetization while protecting customer experience.'
+                ],
+                de: [
+                    'Werbung wurde zu einem strategischen Revenue Stream mit Bedarf an Enterprise-Scale Reliability.',
+                    'Die Plattform musste Millionen täglicher Transaktionen mit strikten Latenzanforderungen verarbeiten.',
+                    'Das Management erwartete messbare Monetarisierungssteigerung bei gleichzeitig stabiler Customer Experience.'
+                ]
+            },
+            keyTensions: {
+                en: [
+                    'Revenue growth vs. protecting marketplace experience (latency, relevance).',
+                    'High-scale experimentation vs. platform stability and governance.',
+                    'Fast delivery vs. operational excellence (SRE discipline, SLAs).'
+                ],
+                de: [
+                    'Umsatzwachstum vs. Schutz der Marketplace Experience (Latenz, Relevanz).',
+                    'High-Scale Experimentation vs. Plattformstabilität und Governance.',
+                    'Schnelle Delivery vs. Operational Excellence (SRE-Disziplin, SLAs).'
+                ]
+            },
+            metricCallout: {
+                value: { en: '99.99%', de: '99,99%' },
+                label: { en: 'SLA at scale', de: 'SLA bei hoher Last' }
+            }
+        },
+        // Phase 2: Persona Challenges
+        personaChallenges: {
+            executive: {
+                challenges: {
+                    en: [
+                        'Scale ads revenue without degrading marketplace performance.',
+                        'Build confidence in platform reliability under peak traffic and campaigns.',
+                        'Introduce governance for experimentation and rollout safety.',
+                        'Align product monetization goals with engineering delivery constraints.',
+                        'Ensure the platform remains extensible for future ad formats.'
+                    ],
+                    de: [
+                        'Ads-Revenue skalieren ohne Marketplace-Performance zu verschlechtern.',
+                        'Vertrauen in Zuverlässigkeit unter Peak Traffic und Kampagnen aufbauen.',
+                        'Governance für Experimentation und Rollout-Sicherheit etablieren.',
+                        'Monetarisierungsziele mit Delivery-Constraints der Engineering-Teams ausrichten.',
+                        'Plattform erweiterbar halten für zukünftige Ad-Formate.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Revenue growth stalled due to platform instability.',
+                        'Customer trust erosion if ads degrade UX.',
+                        'Operational costs rise through unmanaged complexity.'
+                    ],
+                    de: [
+                        'Umsatzwachstum stagniert aufgrund instabiler Plattform.',
+                        'Vertrauensverlust wenn Ads die UX verschlechtern.',
+                        'Betriebskosten steigen durch unkontrollierte Komplexität.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Define SLAs and guardrails for monetization experiments.',
+                        'Prioritize reliability investments vs feature acceleration.',
+                        'Establish operating model (SRE / platform ownership).'
+                    ],
+                    de: [
+                        'SLAs und Guardrails für Monetarisierungs-Experimente definieren.',
+                        'Reliability-Investments vs Feature Acceleration priorisieren.',
+                        'Operating Model etablieren (SRE / Platform Ownership).'
+                    ]
+                }
+            },
+            technical: {
+                challenges: {
+                    en: [
+                        'Design for high throughput and low latency under burst load.',
+                        'Build event-driven architecture for tracking, attribution, and reporting.',
+                        'Ensure data consistency across bidding, delivery, and reporting pipelines.',
+                        'Implement observability at scale (metrics, tracing, anomaly detection).',
+                        'Harden platform with automated failure handling and resilience patterns.'
+                    ],
+                    de: [
+                        'Für hohen Durchsatz und geringe Latenz bei Burst Load designen.',
+                        'Event-driven Architektur für Tracking, Attribution und Reporting aufbauen.',
+                        'Datenkonsistenz über Bidding-, Delivery- und Reporting-Pipelines sicherstellen.',
+                        'Observability in Scale (Metrics, Tracing, Anomaly Detection) implementieren.',
+                        'Plattform-Härtung durch automatisiertes Failure Handling und Resilience Patterns.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Latency spikes causing lost auctions and revenue leakage.',
+                        'Data integrity gaps damaging advertiser trust.',
+                        'On-call overload and unstable releases.'
+                    ],
+                    de: [
+                        'Latenzspitzen verursachen verlorene Auctions und Revenue Leakage.',
+                        'Data-Integrity-Lücken zerstören Advertiser Trust.',
+                        'On-call Überlastung und instabile Releases.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Event streaming + storage patterns (Kafka / Kinesis, OLAP).',
+                        'Reliability patterns: backpressure, retries, idempotency.',
+                        'Observability strategy and SLO enforcement.'
+                    ],
+                    de: [
+                        'Event Streaming + Storage Patterns (Kafka/Kinesis, OLAP).',
+                        'Reliability Patterns: Backpressure, Retries, Idempotency.',
+                        'Observability-Strategie und SLO-Enforcement.'
+                    ]
+                }
+            },
+            delivery: {
+                challenges: {
+                    en: [
+                        'Deliver new monetization features without destabilizing production.',
+                        'Create reliable release patterns (canary rollout, gradual traffic shifting).',
+                        'Align multiple squads on shared platform standards and interfaces.',
+                        'Prevent "local optimization" decisions that increase systemic risk.',
+                        'Maintain incident response maturity with clear escalation paths.'
+                    ],
+                    de: [
+                        'Neue Monetarisierungs-Features liefern ohne Produktion zu destabilisieren.',
+                        'Reliable Release Patterns etablieren (Canary Rollout, Traffic Shifting).',
+                        'Mehrere Squads auf gemeinsame Plattformstandards und Interfaces ausrichten.',
+                        '"Local Optimization" vermeiden, die systemisches Risiko erhöht.',
+                        'Incident Response Maturity mit klaren Eskalationswegen sicherstellen.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Failed rollouts impacting revenue and customer experience.',
+                        'Diverging architectures across squads increasing maintenance cost.',
+                        'Slow delivery due to lack of stable platform foundations.'
+                    ],
+                    de: [
+                        'Fehlgeschlagene Rollouts mit Auswirkungen auf Umsatz und UX.',
+                        'Divergierende Architekturen erhöhen Wartungskosten.',
+                        'Langsamere Delivery wegen instabiler Plattform-Fundamente.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Release governance and quality gates.',
+                        'Shared platform standards and ownership model.',
+                        'Incident workflow and postmortem discipline.'
+                    ],
+                    de: [
+                        'Release Governance und Quality Gates.',
+                        'Plattformstandards + Ownership Modell.',
+                        'Incident Workflow und Postmortem-Disziplin.'
+                    ]
+                }
+            }
+        },
         approach: {
             methodology: 'Event-Driven Architecture',
             phases: [
@@ -478,6 +799,344 @@ export const projects: CaseStudy[] = [
         cta: {
             primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
             secondary: { text: 'View Architecture', action: '#' }
+        }
+    },
+    // =============================================================================
+    // INSURANCE PERFORMANCE IMPROVEMENT - NEW CASE STUDY (Phase 2)
+    // =============================================================================
+    {
+        id: 'insurance-performance',
+        slug: 'insurance-performance',
+        theme: {
+            color: 'blue',
+            gradient: 'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10',
+            iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+        },
+        domains: ['FinServ', 'Insurance', 'Performance Engineering'],
+        projectType: 'consulting',
+        visualType: 'performance',
+        seoTags: ['Performance Engineering', 'Insurance', 'Claims Processing', 'Latency Optimization', 'SLA'],
+        header: {
+            eyebrow: { en: '80% FASTER PROCESSING', de: '80% SCHNELLERE VERARBEITUNG' },
+            title: { en: 'Insurance Performance Improvement: Claims & Policy Workflow Optimization', de: 'Performance-Optimierung: Schaden- und Policen-Workflow-Optimierung' },
+            client: {
+                type: { en: 'Insurance / FinServ', de: 'Versicherung / FinServ' },
+                size: 'Enterprise',
+                industry: { en: 'Insurance', de: 'Versicherung' }
+            }
+        },
+        challenge: {
+            contextChips: [
+                { label: { en: 'Industry', de: 'Branche' }, value: { en: 'Insurance / FinServ', de: 'Versicherung / FinServ' } },
+                { label: { en: 'Impact', de: 'Impact' }, value: { en: '80% faster throughput', de: '80% schnellerer Durchsatz' } },
+                { label: { en: 'Focus', de: 'Fokus' }, value: { en: 'Claims & Policy workflows', de: 'Schaden- & Policen-Workflows' } },
+                { label: { en: 'Compliance', de: 'Compliance' }, value: { en: 'Audit-safe', de: 'Audit-sicher' } },
+                { label: { en: 'Approach', de: 'Ansatz' }, value: { en: 'Non-disruptive optimization', de: 'Non-disruptive Optimierung' } }
+            ],
+            standard: {
+                situation: {
+                    en: 'Claims and policy workflows suffered from recurring latency spikes, impacting customer experience and SLAs. Batch-heavy processing limited throughput and created operational firefighting during peak periods. Leadership needed measurable performance gains without high-risk platform rewrites.',
+                    de: 'Schaden- und Policenprozesse litten unter wiederkehrenden Latenzspitzen, mit Auswirkungen auf Customer Experience und SLAs. Batch-lastige Verarbeitung begrenzte den Durchsatz und führte zu operativem "Firefighting" in Peak-Phasen. Das Management benötigte messbare Performance-Gewinne ohne risikoreiche Komplett-Neuentwicklung.'
+                },
+                keyTensions: {
+                    en: [
+                        'Short-term stability vs. long-term modernization roadmap',
+                        'Performance fixes vs. preventing regression via engineering discipline',
+                        'Faster throughput vs. maintaining auditability and compliance controls',
+                        'Incremental optimization vs. architecture refactoring pressure',
+                        'Team capacity vs. performance improvement scope'
+                    ],
+                    de: [
+                        'Kurzfristige Stabilität vs. langfristige Modernisierungs-Roadmap',
+                        'Performance-Fixes vs. Vermeidung von Regression durch Engineering-Disziplin',
+                        'Höherer Durchsatz vs. Auditierbarkeit und Compliance-Kontrollen',
+                        'Inkrementelle Optimierung vs. Architektur-Refactoring-Druck',
+                        'Teamkapazität vs. Umfang der Performance-Verbesserungen'
+                    ]
+                },
+                urgency: {
+                    en: 'SLA breaches were increasing, and customer satisfaction scores were declining quarter over quarter.',
+                    de: 'SLA-Verletzungen nahmen zu und Kundenzufriedenheitswerte sanken Quartal für Quartal.'
+                }
+            },
+            executive: {
+                situation: {
+                    en: 'SLA breaches were increasing costs and risking customer churn. The board demanded measurable improvements without a multi-year rewrite program. Leadership needed to show quick wins while building a sustainable performance engineering culture.',
+                    de: 'SLA-Verletzungen erhöhten Kosten und riskierten Kundenabwanderung. Der Vorstand forderte messbare Verbesserungen ohne mehrjähriges Rewrite-Programm. Die Führung musste Quick Wins zeigen und gleichzeitig eine nachhaltige Performance-Engineering-Kultur aufbauen.'
+                },
+                keyTensions: {
+                    en: [
+                        'Short-term stability vs. long-term modernization roadmap',
+                        'Performance fixes vs. preventing regression via engineering discipline',
+                        'Faster throughput vs. maintaining auditability and compliance controls'
+                    ],
+                    de: [
+                        'Kurzfristige Stabilität vs. langfristige Modernisierungs-Roadmap',
+                        'Performance-Fixes vs. Vermeidung von Regression durch Engineering-Disziplin',
+                        'Höherer Durchsatz vs. Auditierbarkeit und Compliance-Kontrollen'
+                    ]
+                },
+                urgency: {
+                    en: 'Board mandate to reduce SLA breaches by 50% within two quarters.',
+                    de: 'Vorstandsmandat: SLA-Verletzungen innerhalb von zwei Quartalen um 50% reduzieren.'
+                }
+            },
+            technical: {
+                situation: {
+                    en: 'The core technical challenge was identifying and resolving bottlenecks in a complex legacy system without introducing new defects. Database locks, inefficient queries, and synchronous processing patterns needed systematic analysis and targeted fixes.',
+                    de: 'Die zentrale technische Herausforderung war das Identifizieren und Beheben von Bottlenecks in einem komplexen Legacy-System ohne neue Fehler einzuführen. Database Locks, ineffiziente Queries und synchrone Processing-Patterns erforderten systematische Analyse und gezielte Fixes.'
+                },
+                keyTensions: {
+                    en: [
+                        'DB tuning vs application-level refactoring vs queue-based async flows',
+                        'Introduce distributed tracing without impacting production',
+                        'Define SLOs/SLIs and performance budgets with existing monitoring gaps'
+                    ],
+                    de: [
+                        'DB-Tuning vs Application Refactoring vs Queue-basierte Async-Flows',
+                        'Distributed Tracing einführen ohne Produktion zu beeinträchtigen',
+                        'SLOs/SLIs und Performance-Budgets trotz Monitoring-Lücken definieren'
+                    ]
+                },
+                urgency: {
+                    en: 'Peak processing periods were causing cascading failures, requiring immediate stabilization.',
+                    de: 'Peak-Verarbeitungsphasen verursachten kaskadierende Ausfälle und erforderten sofortige Stabilisierung.'
+                }
+            },
+            why_prasad: { en: 'Performance engineering expertise with insurance domain knowledge', de: 'Performance-Engineering-Expertise mit Versicherungs-Domänenwissen' }
+        },
+        // Phase 2: Executive Snapshot
+        executiveSnapshot: {
+            whyItMattered: {
+                en: [
+                    'Claims and policy workflows suffered from recurring latency spikes, impacting customer experience and SLAs.',
+                    'Batch-heavy processing limited throughput and created operational firefighting during peak periods.',
+                    'Leadership needed measurable performance gains without high-risk platform rewrites.'
+                ],
+                de: [
+                    'Schaden- und Policenprozesse litten unter wiederkehrenden Latenzspitzen, mit Auswirkungen auf Customer Experience und SLAs.',
+                    'Batch-lastige Verarbeitung begrenzte den Durchsatz und führte zu operativem "Firefighting" in Peak-Phasen.',
+                    'Das Management benötigte messbare Performance-Gewinne ohne risikoreiche Komplett-Neuentwicklung.'
+                ]
+            },
+            keyTensions: {
+                en: [
+                    'Short-term stability vs. long-term modernization roadmap.',
+                    'Performance fixes vs. preventing regression via engineering discipline.',
+                    'Faster throughput vs. maintaining auditability and compliance controls.'
+                ],
+                de: [
+                    'Kurzfristige Stabilität vs. langfristige Modernisierungs-Roadmap.',
+                    'Performance-Fixes vs. Vermeidung von Regression durch Engineering-Disziplin.',
+                    'Höherer Durchsatz vs. Auditierbarkeit und Compliance-Kontrollen.'
+                ]
+            },
+            metricCallout: {
+                value: { en: '80%', de: '80%' },
+                label: { en: 'faster processing throughput', de: 'schnellerer Processing-Durchsatz' }
+            }
+        },
+        // Phase 2: Persona Challenges
+        personaChallenges: {
+            executive: {
+                challenges: {
+                    en: [
+                        'Reduce SLA breaches without increasing run costs disproportionately.',
+                        'Improve customer-facing responsiveness for key workflows.',
+                        'Maintain regulatory/audit confidence while changing runtime behavior.',
+                        'Avoid a multi-year "platform rewrite" programme with unclear ROI.',
+                        'Create visible performance KPIs leadership could track weekly.'
+                    ],
+                    de: [
+                        'SLA-Verletzungen reduzieren ohne unverhältnismäßige Run-Kosten-Erhöhung.',
+                        'Customer-Facing Responsiveness für Kernprozesse verbessern.',
+                        'Regulatorische/Audit-Sicherheit trotz Änderungen im Runtime-Verhalten erhalten.',
+                        'Multi-Jahres-„Rewrite"-Programme mit unklarem ROI vermeiden.',
+                        'Messbare Performance-KPIs schaffen, die Führung wöchentlich verfolgen kann.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Rising customer dissatisfaction and churn due to slow claims cycles.',
+                        'Escalating operational costs from incident-driven operations.',
+                        'Compliance exposure from unstable remediation changes.'
+                    ],
+                    de: [
+                        'Sinkende Kundenzufriedenheit und Abwanderung durch langsame Schadenprozesse.',
+                        'Steigende Betriebskosten durch incident-getriebenen Betrieb.',
+                        'Compliance-Risiko durch instabile "Quick Fixes".'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Optimize existing stack vs. selective re-architecture of hotspots.',
+                        'Define performance KPIs tied to business outcomes.',
+                        'Invest in observability vs. continue reactive incident handling.'
+                    ],
+                    de: [
+                        'Bestehenden Stack optimieren vs. selektives Re-Architecture von Hotspots.',
+                        'Performance-KPIs definieren, die Business Outcomes abbilden.',
+                        'In Observability investieren vs. weiter reaktiv arbeiten.'
+                    ]
+                }
+            },
+            technical: {
+                challenges: {
+                    en: [
+                        'Identify true bottlenecks (DB locks, thread pools, IO waits) instead of guessing.',
+                        'Improve latency without breaking legacy integration contracts.',
+                        'Introduce caching and async patterns safely.',
+                        'Build proper load/performance testing that mirrors production behavior.',
+                        'Implement observability: tracing, structured logs, error budgets.'
+                    ],
+                    de: [
+                        'Echte Bottlenecks identifizieren (DB Locks, Thread Pools, IO Waits) statt Vermutungen.',
+                        'Latenz reduzieren ohne Legacy-Integrationsverträge zu brechen.',
+                        'Caching- und Async-Patterns sicher einführen.',
+                        'Load-/Performance-Tests aufbauen, die Produktion realistisch abbilden.',
+                        'Observability implementieren: Tracing, strukturierte Logs, Error Budgets.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        '"Optimizations" that don\'t move KPIs and create new defects.',
+                        'Performance regressions after releases.',
+                        'Continued inability to debug incidents quickly.'
+                    ],
+                    de: [
+                        '"Optimierungen", die KPIs nicht verbessern und neue Fehler erzeugen.',
+                        'Performance-Regressionen nach Releases.',
+                        'Weiterhin langsame Incident-Diagnose.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'DB tuning vs application-level refactoring vs queue-based async flows.',
+                        'Introduce distributed tracing strategy.',
+                        'Define SLOs/SLIs and performance budgets.'
+                    ],
+                    de: [
+                        'DB Tuning vs Application Refactoring vs Queue-basierte Async-Flows.',
+                        'Distributed-Tracing-Strategie einführen.',
+                        'SLOs/SLIs und Performance Budgets definieren.'
+                    ]
+                }
+            },
+            delivery: {
+                challenges: {
+                    en: [
+                        'Stabilize production while implementing improvements in parallel.',
+                        'Coordinate cross-team delivery without disrupting release calendars.',
+                        'Ensure performance gains are sustained (not one-off fixes).',
+                        'Build a repeatable rollout approach (canary, feature flags, rollback).',
+                        'Document and institutionalize performance engineering practices.'
+                    ],
+                    de: [
+                        'Produktion stabilisieren und parallel Verbesserungen umsetzen.',
+                        'Cross-Team Delivery koordinieren ohne Release-Kalender zu stören.',
+                        'Performance-Gewinne nachhaltig machen (keine einmaligen Fixes).',
+                        'Rollout-Ansatz etablieren (Canary, Feature Flags, Rollback).',
+                        'Performance-Engineering-Praktiken dokumentieren und institutionalisieren.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Improvements lost after the next releases.',
+                        'Ongoing firefighting and inability to scale change delivery.',
+                        'Release freezes due to fear of instability.'
+                    ],
+                    de: [
+                        'Verbesserungen gehen nach den nächsten Releases verloren.',
+                        'Fortlaufendes Firefighting und fehlende Skalierung der Delivery.',
+                        'Release-Freezes aus Angst vor Instabilität.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Incremental rollout strategy and safe testing gates.',
+                        'Ownership model for performance KPIs and SLOs.',
+                        'Process changes to prevent future regressions.'
+                    ],
+                    de: [
+                        'Inkrementelle Rollout-Strategie und sichere Test-Gates.',
+                        'Ownership-Modell für KPIs und SLOs.',
+                        'Prozessänderungen zur Vermeidung zukünftiger Regression.'
+                    ]
+                }
+            }
+        },
+        approach: {
+            methodology: { en: 'Performance Engineering & Observability-First', de: 'Performance Engineering & Observability-First' },
+            phases: [
+                {
+                    number: 1,
+                    title: { en: 'Baseline & Analysis', de: 'Baseline & Analyse' },
+                    duration: '3 weeks',
+                    activities: { en: ['Performance profiling', 'Bottleneck identification', 'SLO definition'], de: ['Performance-Profiling', 'Bottleneck-Identifikation', 'SLO-Definition'] },
+                    deliverable: { en: 'Performance Assessment Report', de: 'Performance-Assessment-Bericht' },
+                    outcome: { en: 'Clear optimization roadmap', de: 'Klare Optimierungs-Roadmap' }
+                },
+                {
+                    number: 2,
+                    title: { en: 'Quick Wins Implementation', de: 'Quick Wins Umsetzung' },
+                    duration: '4 weeks',
+                    activities: { en: ['DB query optimization', 'Caching layer', 'Async processing'], de: ['DB-Query-Optimierung', 'Caching-Layer', 'Async-Processing'] },
+                    deliverable: { en: 'Optimized critical paths', de: 'Optimierte kritische Pfade' },
+                    outcome: { en: '50% latency reduction', de: '50% Latenz-Reduktion' }
+                },
+                {
+                    number: 3,
+                    title: { en: 'Observability & Governance', de: 'Observability & Governance' },
+                    duration: '3 weeks',
+                    activities: { en: ['Distributed tracing', 'Performance dashboards', 'Alerting setup'], de: ['Distributed Tracing', 'Performance-Dashboards', 'Alerting-Setup'] },
+                    deliverable: { en: 'Performance monitoring platform', de: 'Performance-Monitoring-Plattform' },
+                    outcome: { en: 'Proactive issue detection', de: 'Proaktive Problemerkennung' }
+                }
+            ],
+            unique_differentiator: { en: 'Non-disruptive optimization with continuous production stability', de: 'Non-disruptive Optimierung bei kontinuierlicher Produktionsstabilität' }
+        },
+        outcomes: {
+            hero_metric: { value: '80%', label: { en: 'Faster Processing', de: 'Schnellere Verarbeitung' }, icon: '⚡' },
+            secondary_metrics: [
+                { value: '50%', label: { en: 'SLA Breach Reduction', de: 'SLA-Verletzungs-Reduktion' }, icon: '📉' },
+                { value: '30%', label: { en: 'Operational Cost Savings', de: 'Betriebskosten-Einsparung' }, icon: '💰' }
+            ],
+            compliance: [{ standard: 'SOC 2', result: 'Maintained', details: { en: 'Audit-safe changes', de: 'Audit-sichere Änderungen' } }],
+            timeline: { planned: '10 weeks', actual: '10 weeks', variance: { en: 'On time', de: 'Pünktlich' } }
+        },
+        technical: {
+            before: {
+                stack: ['Java', 'Oracle DB', 'Legacy MQ'],
+                infrastructure: { en: 'On-premise, batch-heavy', de: 'On-Premise, batch-lastig' },
+                issues: { en: ['Latency spikes', 'DB locks', 'Poor observability'], de: ['Latenz-Spitzen', 'DB-Locks', 'Mangelnde Observability'] }
+            },
+            after: {
+                stack: ['Java', 'Oracle DB', 'Redis Cache', 'Kafka', 'Distributed Tracing'],
+                infrastructure: { en: 'Hybrid with async processing', de: 'Hybrid mit Async-Processing' },
+                improvements: { en: ['Sub-second responses', 'Real-time monitoring', 'Auto-scaling'], de: ['Sub-Sekunden-Antworten', 'Echtzeit-Monitoring', 'Auto-Scaling'] }
+            },
+            migration_strategy: { en: 'Incremental optimization with feature flags', de: 'Inkrementelle Optimierung mit Feature Flags' }
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Establish baseline metrics and SLOs before making any changes.',
+                'Use profiling and distributed tracing to identify real bottlenecks (not assumptions).',
+                'Prioritize quick wins that deliver measurable impact within weeks.',
+                'Implement observability as a first-class concern, not an afterthought.',
+                'Create a regression prevention culture with performance testing in CI/CD.'
+            ],
+            bulletsDe: [
+                'Baseline-Metriken und SLOs etablieren, bevor Änderungen gemacht werden.',
+                'Profiling und Distributed Tracing nutzen, um echte Bottlenecks zu finden (keine Annahmen).',
+                'Quick Wins priorisieren, die innerhalb von Wochen messbaren Impact liefern.',
+                'Observability als First-Class-Concern implementieren, nicht als Nachgedanke.',
+                'Regressions-Präventions-Kultur mit Performance-Testing in CI/CD schaffen.'
+            ]
+        },
+        cta: {
+            primary: { text: { en: 'Optimize Your Systems', de: 'Systeme optimieren' }, action: 'https://calendly.com/prasad-sgsits/30min', context: { en: 'Improve performance without rewrites.', de: 'Performance verbessern ohne Rewrites.' } },
+            secondary: { text: { en: 'View Approach', de: 'Ansatz ansehen' }, action: '#' }
         }
     },
     {
@@ -1257,3 +1916,6 @@ export const projects: CaseStudy[] = [
         }
     }
 ];
+
+// Phase 1.6: Run validation on import (dev-mode only warning, does not crash build)
+runProjectValidation(projects);

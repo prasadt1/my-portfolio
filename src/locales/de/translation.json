@@ -893,15 +893,26 @@
             "scope": "Umfang",
             "role": "Meine Rolle"
         },
+        "executiveSnapshot": {
+            "title": "Executive Snapshot",
+            "whyItMattered": "Warum es wichtig war",
+            "keyTensions": "Kernspannungen",
+            "viewPersonaDetails": "Herausforderungen nach Persona",
+            "hidePersonaDetails": "Persona-Details ausblenden"
+        },
         "challenge": {
             "title": "Die Herausforderung",
             "keyTensions": "Kernspannungen",
-            "urgency": "Dringlichkeit"
+            "urgency": "Dringlichkeit",
+            "challenges": "Herausforderungen",
+            "riskIfIgnored": "Risiko bei Ignorieren",
+            "decisionPoints": "Entscheidungspunkte"
         },
         "persona": {
             "standard": "Standard",
             "executive": "Executive",
-            "technical": "Technisch"
+            "technical": "Technisch",
+            "delivery": "Delivery"
         },
         "whatIDelivered": {
             "title": "Was ich geliefert habe",

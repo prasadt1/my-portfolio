@@ -1,7 +1,7 @@
-import { User, Code, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
+import { User, Code, Briefcase, ChevronDown, ChevronUp, Truck } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
     ArrowLeft,
@@ -24,8 +24,11 @@ import {
     type LocalizedPersonaChallengeStructure, 
     type LegacyChallengeStructure,
     type LocalizedString,
-    type LocalizedStringArray
+    type LocalizedStringArray,
+    type CaseStudyExecutiveSnapshot,
+    type PersonaChallenges
 } from '../types/CaseStudy';
+import { getLocalizedValue, getLocalizedArray as getLocalizedArrayUtil } from '../utils/localization';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -118,9 +121,10 @@ const CaseStudyPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
-    const [persona, setPersona] = useState<'executive' | 'technical' | 'standard'>('standard');
+    const [persona, setPersona] = useState<'executive' | 'technical' | 'delivery'>('executive');
     const [showAllDeliverables, setShowAllDeliverables] = useState(false);
     const [showAllApproach, setShowAllApproach] = useState(false);
+    const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
     
     // Single source of truth: projects.ts
     const study = projects.find(s => s.slug === slug || s.id === slug);
@@ -205,12 +209,19 @@ const CaseStudyPage: React.FC = () => {
     // Get localized outcomes
     const heroMetricLabel = getLocalized(study.outcomes.hero_metric.label, locale);
     
-    // Determine how many phases to show initially
-    const initialItemCount = 4;
+    // Determine how many phases to show initially - Phase 2: show only 5 by default
+    const initialItemCount = 5;
     const phasesToShow = showAllApproach 
         ? study.approach.phases 
         : study.approach.phases.slice(0, initialItemCount);
     const hasMorePhases = study.approach.phases.length > initialItemCount;
+    
+    // Phase 2: How I Delivered - show only 3 phases by default
+    const initialPhaseCount = 3;
+    const approachPhasesToShow = showAllDeliverables
+        ? study.approach.phases
+        : study.approach.phases.slice(0, initialPhaseCount);
+    const hasMoreApproachPhases = study.approach.phases.length > initialPhaseCount;
 
     return (
         <div className="min-h-screen bg-white dark:bg-slate-900 pt-20">
@@ -362,7 +373,7 @@ const CaseStudyPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Challenge Section - Redesigned */}
+            {/* Challenge Section - Phase 2 Redesign */}
             <section className="py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header Row with Context Chips */}
@@ -371,10 +382,10 @@ const CaseStudyPage: React.FC = () => {
                             {t('caseStudy.challenge.title', 'The Challenge')}
                         </h2>
                         
-                        {/* Context Chips */}
+                        {/* Context Chips - Max 6 */}
                         {challengeContent.contextChips.length > 0 && (
                             <div className="flex flex-wrap gap-2">
-                                {challengeContent.contextChips.map((chip, idx) => (
+                                {challengeContent.contextChips.slice(0, 6).map((chip, idx) => (
                                     <div 
                                         key={idx}
                                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium"
@@ -387,88 +398,221 @@ const CaseStudyPage: React.FC = () => {
                         )}
                     </div>
 
-                    <div className="max-w-4xl">
-                        {/* Persona Tabs - Only show if persona-based challenge */}
-                        {challengeContent.isPersonaBased && (
-                            <div className="mb-0">
-                                <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-t-xl w-fit border-t border-x border-slate-200 dark:border-slate-700">
-                                    {(['standard', 'executive', 'technical'] as const).map((p) => (
-                                        <button
-                                            key={p}
-                                            onClick={() => setPersona(p)}
-                                            className={`
-                                                flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all
-                                                ${persona === p
-                                                    ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-sm ring-1 ring-black/5'
-                                                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}
-                                            `}
-                                        >
-                                            {p === 'standard' && <Briefcase size={14} />}
-                                            {p === 'executive' && <User size={14} />}
-                                            {p === 'technical' && <Code size={14} />}
-                                            {t(`caseStudy.persona.${p}`, p.charAt(0).toUpperCase() + p.slice(1))}
-                                        </button>
-                                    ))}
+                    {/* Executive Snapshot - Phase 2: Always visible, compact */}
+                    {study.executiveSnapshot && (
+                        <div className="mb-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                                <Target className="text-emerald-600" size={20} />
+                                {t('caseStudy.executiveSnapshot.title', 'Executive Snapshot')}
+                            </h3>
+                            
+                            <div className="grid md:grid-cols-3 gap-6">
+                                {/* Why It Mattered */}
+                                <div>
+                                    <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                        {t('caseStudy.executiveSnapshot.whyItMattered', 'Why it mattered')}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                        {getLocalizedArrayUtil(study.executiveSnapshot.whyItMattered, locale).slice(0, 3).map((item, idx) => (
+                                            <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 shrink-0" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                            </div>
-                        )}
 
-                        {/* Narrative Box */}
-                        <div className={`bg-white dark:bg-slate-900 p-8 ${challengeContent.isPersonaBased ? 'rounded-b-xl rounded-tr-xl' : 'rounded-xl'} border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden`}>
-                            {challengeContent.isPersonaBased && (
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500/20 to-transparent"></div>
-                            )}
-                            <motion.p 
-                                key={`${persona}-${locale}`}
-                                initial={{ opacity: 0, y: 5 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg"
-                            >
-                                {challengeContent.situation}
-                            </motion.p>
-                        </div>
+                                {/* Key Tensions */}
+                                <div>
+                                    <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                        {t('caseStudy.executiveSnapshot.keyTensions', 'Key tensions')}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                        {getLocalizedArrayUtil(study.executiveSnapshot.keyTensions, locale).slice(0, 3).map((item, idx) => (
+                                            <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
 
-                        {/* Key Tensions List */}
-                        {challengeContent.keyTensions.length > 0 && (
-                            <div className="mt-8">
-                                <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
-                                    {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
-                                </h3>
-                                <motion.div 
-                                    key={`${persona}-${locale}`}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="grid md:grid-cols-2 gap-3"
-                                >
-                                    {challengeContent.keyTensions.slice(0, 6).map((tension, idx) => (
-                                        <div 
-                                            key={idx}
-                                            className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
-                                        >
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                                            <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                {/* Metric Callout */}
+                                <div className="flex items-center justify-center md:justify-end">
+                                    <div className="bg-emerald-600 text-white rounded-xl p-6 text-center min-w-[140px]">
+                                        <div className="text-3xl font-bold mb-1">
+                                            {getLocalizedValue(study.executiveSnapshot.metricCallout.value, locale)}
                                         </div>
-                                    ))}
-                                </motion.div>
-                            </div>
-                        )}
-
-                        {/* Urgency Callout - Compact */}
-                        {challengeContent.urgency && (
-                            <div className="mt-6">
-                                <div className="bg-amber-50 dark:bg-amber-900/20 px-4 py-3 rounded-lg border border-amber-200 dark:border-amber-700/50 flex items-center gap-3">
-                                    <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0" size={18} />
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">
-                                            {t('caseStudy.challenge.urgency', 'Urgency')}:
-                                        </span>
-                                        <span className="text-sm text-slate-700 dark:text-slate-300">{challengeContent.urgency}</span>
+                                        <div className="text-sm text-emerald-100">
+                                            {getLocalizedValue(study.executiveSnapshot.metricCallout.label, locale)}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
+
+                    {/* Persona Challenges - Phase 2: Collapsed by default */}
+                    {study.personaChallenges && (
+                        <div className="mb-8">
+                            {/* Expand/Collapse Button */}
+                            <button
+                                onClick={() => setShowPersonaDetails(!showPersonaDetails)}
+                                className="w-full flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                            >
+                                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                    {showPersonaDetails 
+                                        ? t('caseStudy.executiveSnapshot.hidePersonaDetails', 'Hide persona details')
+                                        : t('caseStudy.executiveSnapshot.viewPersonaDetails', 'View challenges by persona')
+                                    }
+                                </span>
+                                {showPersonaDetails ? (
+                                    <ChevronUp className="text-slate-500" size={20} />
+                                ) : (
+                                    <ChevronDown className="text-slate-500" size={20} />
+                                )}
+                            </button>
+
+                            {/* Expandable Persona Content */}
+                            <AnimatePresence>
+                                {showPersonaDetails && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="mt-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                                            {/* Persona Tabs */}
+                                            <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 border-b border-slate-200 dark:border-slate-700">
+                                                {(['executive', 'technical', 'delivery'] as const).map((p) => (
+                                                    <button
+                                                        key={p}
+                                                        onClick={() => setPersona(p)}
+                                                        className={`
+                                                            flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all
+                                                            ${persona === p
+                                                                ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-sm'
+                                                                : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}
+                                                        `}
+                                                    >
+                                                        {p === 'executive' && <User size={14} />}
+                                                        {p === 'technical' && <Code size={14} />}
+                                                        {p === 'delivery' && <Truck size={14} />}
+                                                        {t(`caseStudy.persona.${p}`, p.charAt(0).toUpperCase() + p.slice(1))}
+                                                    </button>
+                                                ))}
+                                            </div>
+
+                                            {/* Persona Content */}
+                                            <div className="p-6">
+                                                <motion.div
+                                                    key={`${persona}-${locale}`}
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.2 }}
+                                                    className="space-y-6"
+                                                >
+                                                    {/* Challenges */}
+                                                    <div>
+                                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                                            {t('caseStudy.challenge.challenges', 'Challenges')}
+                                                        </h4>
+                                                        <ul className="grid md:grid-cols-2 gap-2">
+                                                            {getLocalizedArrayUtil(study.personaChallenges[persona].challenges, locale).slice(0, 6).map((item, idx) => (
+                                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                                                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                                                    <span>{item}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+
+                                                    {/* Risk If Ignored */}
+                                                    <div>
+                                                        <h4 className="text-xs font-bold text-red-500 dark:text-red-400 uppercase tracking-wider mb-3">
+                                                            {t('caseStudy.challenge.riskIfIgnored', 'Risk if ignored')}
+                                                        </h4>
+                                                        <ul className="space-y-2">
+                                                            {getLocalizedArrayUtil(study.personaChallenges[persona].riskIfIgnored, locale).slice(0, 3).map((item, idx) => (
+                                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                                    <AlertCircle size={14} className="text-red-500 mt-0.5 shrink-0" />
+                                                                    <span>{item}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+
+                                                    {/* Decision Points */}
+                                                    <div>
+                                                        <h4 className="text-xs font-bold text-blue-500 dark:text-blue-400 uppercase tracking-wider mb-3">
+                                                            {t('caseStudy.challenge.decisionPoints', 'Decision points')}
+                                                        </h4>
+                                                        <ul className="space-y-2">
+                                                            {getLocalizedArrayUtil(study.personaChallenges[persona].decisionPoints, locale).slice(0, 3).map((item, idx) => (
+                                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                                    <Target size={14} className="text-blue-500 mt-0.5 shrink-0" />
+                                                                    <span>{item}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                </motion.div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    )}
+
+                    {/* Legacy Challenge Display - for projects without new structure */}
+                    {!study.executiveSnapshot && !study.personaChallenges && (
+                        <div className="max-w-4xl">
+                            {/* Legacy Narrative Box */}
+                            <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                                    {challengeContent.situation}
+                                </p>
+                            </div>
+
+                            {/* Legacy Key Tensions List */}
+                            {challengeContent.keyTensions.length > 0 && (
+                                <div className="mt-8">
+                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
+                                        {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
+                                    </h3>
+                                    <div className="grid md:grid-cols-2 gap-3">
+                                        {challengeContent.keyTensions.slice(0, 6).map((tension, idx) => (
+                                            <div 
+                                                key={idx}
+                                                className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
+                                            >
+                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                                <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Legacy Urgency Callout */}
+                            {challengeContent.urgency && (
+                                <div className="mt-6">
+                                    <div className="bg-amber-50 dark:bg-amber-900/20 px-4 py-3 rounded-lg border border-amber-200 dark:border-amber-700/50 flex items-center gap-3">
+                                        <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0" size={18} />
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">
+                                                {t('caseStudy.challenge.urgency', 'Urgency')}:
+                                            </span>
+                                            <span className="text-sm text-slate-700 dark:text-slate-300">{challengeContent.urgency}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -565,7 +709,7 @@ const CaseStudyPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* How I Delivered Section - Compact Timeline */}
+            {/* How I Delivered Section - Phase 2: Compact Timeline (3 phases only by default) */}
             <section className="py-16 bg-white dark:bg-slate-900">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionHeader 
@@ -573,13 +717,13 @@ const CaseStudyPage: React.FC = () => {
                         subtitle={`${t('caseStudy.howIDelivered.whyMe', 'Why me')}: ${challengeContent.why_prasad}`}
                     />
 
-                    {/* Compact Timeline */}
+                    {/* Compact Timeline - Phase 2: Only 3 phases by default */}
                     <div className="relative">
                         {/* Timeline Line */}
                         <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
 
                         <div className="space-y-6">
-                            {study.approach.phases.map((phase, idx) => (
+                            {approachPhasesToShow.map((phase, idx) => (
                                 <motion.div
                                     key={idx}
                                     initial={{ opacity: 0, x: -20 }}
@@ -609,6 +753,7 @@ const CaseStudyPage: React.FC = () => {
                                             </span>
                                         </div>
                                         
+                                        {/* Phase 2: Max 3 bullets per phase */}
                                         <ul className="space-y-1.5 mb-4">
                                             {getLocalizedArray(phase.activities, locale).slice(0, 3).map((activity, aIdx) => (
                                                 <li key={aIdx} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
@@ -630,6 +775,28 @@ const CaseStudyPage: React.FC = () => {
                                 </motion.div>
                             ))}
                         </div>
+
+                        {/* Show More/Less for Approach */}
+                        {hasMoreApproachPhases && (
+                            <div className="mt-6 text-center">
+                                <button
+                                    onClick={() => setShowAllDeliverables(!showAllDeliverables)}
+                                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                >
+                                    {showAllDeliverables ? (
+                                        <>
+                                            {t('caseStudy.showLess', 'Show less')}
+                                            <ChevronUp size={16} />
+                                        </>
+                                    ) : (
+                                        <>
+                                            {t('caseStudy.showMore', 'Show execution details')} ({study.approach.phases.length - initialPhaseCount} more)
+                                            <ChevronDown size={16} />
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
