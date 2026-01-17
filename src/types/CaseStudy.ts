@@ -1,4 +1,48 @@
 // src/types/CaseStudy.ts
+// Single source of truth for case study types with bilingual support
+
+// =============================================================================
+// BILINGUAL CONTENT SUPPORT
+// =============================================================================
+
+// Localized string - supports EN and DE content in one object
+export interface LocalizedString {
+    en: string;
+    de: string;
+}
+
+// Localized string array
+export interface LocalizedStringArray {
+    en: string[];
+    de: string[];
+}
+
+// Localized context chip
+export interface LocalizedContextChip {
+    label: LocalizedString;
+    value: LocalizedString;
+}
+
+// Helper to get string for current locale
+export function getLocalizedString(content: LocalizedString | string, locale: string): string {
+    if (typeof content === 'string') {
+        return content; // Backward compatibility for non-localized strings
+    }
+    return locale === 'de' ? content.de : content.en;
+}
+
+// Helper to get string array for current locale
+export function getLocalizedStringArray(content: LocalizedStringArray | string[], locale: string): string[] {
+    if (Array.isArray(content) && typeof content[0] === 'string') {
+        return content as string[]; // Backward compatibility
+    }
+    const localized = content as LocalizedStringArray;
+    return locale === 'de' ? localized.de : localized.en;
+}
+
+// =============================================================================
+// CHALLENGE STRUCTURES
+// =============================================================================
 
 // Pain point for legacy challenge structure
 export interface PainPoint {
@@ -8,29 +52,23 @@ export interface PainPoint {
     impact: string;
 }
 
-// Persona-specific challenge content
-export interface PersonaChallenge {
-    situation: string;
-    keyTensions: string[];
-    urgency?: string;
+// Persona-specific challenge content (localized)
+export interface LocalizedPersonaChallenge {
+    situation: LocalizedString;
+    keyTensions: LocalizedStringArray;
+    urgency?: LocalizedString;
 }
 
-// Context chip for challenge section header
-export interface ContextChip {
-    label: string;
-    value: string;
+// New persona-based challenge structure (fully localized)
+export interface LocalizedPersonaChallengeStructure {
+    standard: LocalizedPersonaChallenge;
+    executive: LocalizedPersonaChallenge;
+    technical: LocalizedPersonaChallenge;
+    contextChips?: LocalizedContextChip[];
+    why_prasad: LocalizedString;
 }
 
-// New persona-based challenge structure
-export interface PersonaChallengeStructure {
-    standard: PersonaChallenge;
-    executive: PersonaChallenge;
-    technical: PersonaChallenge;
-    contextChips?: ContextChip[];
-    why_prasad: string;
-}
-
-// Legacy challenge structure (for backward compatibility)
+// Legacy challenge structure (for backward compatibility - non-localized)
 export interface LegacyChallengeStructure {
     situation: string;
     pain_points: PainPoint[];
@@ -39,105 +77,153 @@ export interface LegacyChallengeStructure {
 }
 
 // Union type for challenge - supports both old and new structures
-export type ChallengeStructure = PersonaChallengeStructure | LegacyChallengeStructure;
+export type ChallengeStructure = LocalizedPersonaChallengeStructure | LegacyChallengeStructure;
 
-// Type guard to check if challenge uses new persona structure
-export function isPersonaChallenge(challenge: ChallengeStructure): challenge is PersonaChallengeStructure {
-    return 'standard' in challenge && 'executive' in challenge && 'technical' in challenge;
+// Type guard to check if challenge uses new localized persona structure
+export function isLocalizedPersonaChallenge(challenge: ChallengeStructure): challenge is LocalizedPersonaChallengeStructure {
+    return 'standard' in challenge && 
+           'executive' in challenge && 
+           'technical' in challenge &&
+           typeof (challenge as LocalizedPersonaChallengeStructure).standard?.situation === 'object';
 }
+
+// Type guard for legacy structure
+export function isLegacyChallenge(challenge: ChallengeStructure): challenge is LegacyChallengeStructure {
+    return 'pain_points' in challenge;
+}
+
+// =============================================================================
+// MAIN CASE STUDY INTERFACE
+// =============================================================================
 
 export interface CaseStudy {
     id: string;
     slug: string;
 
     // Multi-Domain Metadata
-    domains: string[]; // e.g., ['eCommerce', 'Healthcare', 'Climate Tech']
+    domains: string[];
     projectType: 'product' | 'framework' | 'migration' | 'standard' | 'data-platform' | 'devops' | 'consulting';
     seoTags: string[];
     visualType?: 'performance' | 'modernization' | 'integration' | 'ai' | 'governance' | 'platform';
 
-    // Header (attention)
+    // Header (attention) - localized
     header: {
-        eyebrow: string; // "€500K SAVED IN 6 MONTHS"
-        title: string; // "How We Migrated 2M Patient Records..."
+        eyebrow: LocalizedString | string;
+        title: LocalizedString | string;
         client: {
-            type: string; // "Mid-Size German Pharma"
-            size: string; // "€2B revenue, 500 employees"
-            industry: string; // "Pharmaceutical"
+            type: LocalizedString | string;
+            size: string;
+            industry: LocalizedString | string;
         };
     };
 
-    // Challenge (empathy) - supports both legacy and persona-based structures
+    // Challenge (empathy) - supports both legacy and localized persona-based structures
     challenge: ChallengeStructure;
 
     // Approach (credibility)
     approach: {
-        methodology: string;
+        methodology: LocalizedString | string;
         phases: Array<{
             number: number;
-            title: string;
+            title: LocalizedString | string;
             duration: string;
-            activities: string[];
-            deliverable: string;
-            outcome: string;
+            activities: LocalizedStringArray | string[];
+            deliverable: LocalizedString | string;
+            outcome: LocalizedString | string;
         }>;
-        unique_differentiator: string;
-        // Optional compact version for less-dense rendering
+        unique_differentiator: LocalizedString | string;
         phases_compact?: Array<{
-            title: string;
-            detail: string;
+            title: LocalizedString | string;
+            detail: LocalizedString | string;
         }>;
     };
 
-    // Optional compact deliverables for executive summary view
+    // Optional compact deliverables
     deliverables_compact?: Array<{
-        title: string;
-        detail: string;
+        title: LocalizedString | string;
+        detail: LocalizedString | string;
         metric?: string;
     }>;
 
     // Results (proof)
     outcomes: {
-        hero_metric: { value: string; label: string; icon: string };
-        secondary_metrics: Array<{ value: string; label: string; icon: string }>;
-        compliance: Array<{ standard: string; result: string; details: string }>;
-        timeline: { planned: string; actual: string; variance: string };
+        hero_metric: { 
+            value: string; 
+            label: LocalizedString | string; 
+            icon: string 
+        };
+        secondary_metrics: Array<{ 
+            value: string; 
+            label: LocalizedString | string; 
+            icon: string 
+        }>;
+        compliance: Array<{ 
+            standard: string; 
+            result: LocalizedString | string; 
+            details: LocalizedString | string 
+        }>;
+        timeline: { 
+            planned: string; 
+            actual: string; 
+            variance: LocalizedString | string 
+        };
         business_impact?: {
-            revenue?: string;
-            savings?: string;
-            efficiency?: string;
-            risk_reduction?: string;
-            innovation?: string;
+            revenue?: LocalizedString | string;
+            savings?: LocalizedString | string;
+            efficiency?: LocalizedString | string;
+            risk_reduction?: LocalizedString | string;
+            innovation?: LocalizedString | string;
         };
     };
 
     // Social proof
     testimonial?: {
-        quote: string;
-        author: { name: string; role: string; company: string; photo?: string; linkedin?: string };
+        quote: LocalizedString | string;
+        author: { 
+            name: string; 
+            role: LocalizedString | string; 
+            company: string; 
+            photo?: string; 
+            linkedin?: string 
+        };
         video_url?: string;
     };
 
     // Technical details
     technical: {
-        before: { stack: string[]; infrastructure: string; issues: string[] };
-        after: { stack: string[]; infrastructure: string; improvements: string[] };
-        migration_strategy: string;
-        architecture_diagram?: string; // SVG or React Flow
+        before: { 
+            stack: string[]; 
+            infrastructure: LocalizedString | string; 
+            issues: LocalizedStringArray | string[] 
+        };
+        after: { 
+            stack: string[]; 
+            infrastructure: LocalizedString | string; 
+            improvements: LocalizedStringArray | string[] 
+        };
+        migration_strategy: LocalizedString | string;
+        architecture_diagram?: string;
     };
 
     // CTA
     cta: {
-        primary: { text: string; action: string; context: string };
-        secondary: { text: string; action: string };
+        primary: { 
+            text: LocalizedString | string; 
+            action: string; 
+            context: LocalizedString | string 
+        };
+        secondary: { 
+            text: LocalizedString | string; 
+            action: string 
+        };
     };
 
-    // Consulting insights
+    // Consulting insights - already supports bilingual via bulletsDe
     approachToday?: {
-        titleKey?: string;     // i18n title key
-        bullets: string[];     // EN bullets
-        bulletsDe: string[];   // DE bullets
-        focusAreas?: string[]; // optional chips
+        titleKey?: string;
+        bullets: string[];
+        bulletsDe: string[];
+        focusAreas?: string[];
     };
 
     // UI Theme

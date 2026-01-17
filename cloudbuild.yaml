@@ -15,6 +15,7 @@ steps:
     args: ["push", "gcr.io/$PROJECT_ID/portfolio-service:$COMMIT_SHA"]
 
   # Deploy container image to Cloud Run
+  # All sensitive credentials are stored in Secret Manager to persist across builds
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
     args:
@@ -28,30 +29,51 @@ steps:
       - "--platform"
       - "managed"
       - "--allow-unauthenticated"
+      # Non-sensitive env vars only - sensitive ones come from Secret Manager
       - "--set-env-vars"
-      - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY},LEAD_STORE_PROVIDER=${_LEAD_STORE_PROVIDER},GSHEETS_SPREADSHEET_ID=${_GSHEETS_SPREADSHEET_ID},GSHEETS_SHEET_NAME=${_GSHEETS_SHEET_NAME},GSHEETS_CLIENT_EMAIL=${_GSHEETS_CLIENT_EMAIL},EMAIL_PROVIDER=${_EMAIL_PROVIDER},SMTP_HOST=${_SMTP_HOST},SMTP_PORT=${_SMTP_PORT},SMTP_USER=${_SMTP_USER},SMTP_PASS=${_SMTP_PASS},FROM_EMAIL=${_FROM_EMAIL},FROM_NAME=${_FROM_NAME},REPLY_TO_EMAIL=${_REPLY_TO_EMAIL},CONTACT_EMAIL=${_CONTACT_EMAIL}"
-      # GSHEETS_PRIVATE_KEY passed separately due to special characters
+      - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY},LEAD_STORE_PROVIDER=${_LEAD_STORE_PROVIDER},GSHEETS_SHEET_NAME=${_GSHEETS_SHEET_NAME},EMAIL_PROVIDER=${_EMAIL_PROVIDER},SMTP_HOST=${_SMTP_HOST},SMTP_PORT=${_SMTP_PORT},FROM_NAME=${_FROM_NAME}"
+      # All sensitive credentials stored in Secret Manager - these persist across builds
       - "--update-secrets"
-      - "GSHEETS_PRIVATE_KEY=gsheets-private-key:latest"
+      - "GSHEETS_PRIVATE_KEY=gsheets-private-key:latest,GSHEETS_SPREADSHEET_ID=gsheets-spreadsheet-id:latest,GSHEETS_CLIENT_EMAIL=gsheets-client-email:latest,SMTP_USER=smtp-user:latest,SMTP_PASS=smtp-pass:latest,FROM_EMAIL=from-email:latest,REPLY_TO_EMAIL=reply-to-email:latest,CONTACT_EMAIL=contact-email:latest"
 
+# Substitutions - only non-sensitive defaults that rarely change
+# Sensitive values are stored in Secret Manager (not here) so they persist across builds
 substitutions:
   _VITE_GEMINI_API_KEY: ""
   _LEAD_STORE_PROVIDER: "gsheets"
-  _GSHEETS_SPREADSHEET_ID: ""
   _GSHEETS_SHEET_NAME: "Leads"
-  _GSHEETS_CLIENT_EMAIL: ""
   _EMAIL_PROVIDER: "smtp"
   _SMTP_HOST: "smtp.gmail.com"
   _SMTP_PORT: "587"
-  _SMTP_USER: ""
-  _SMTP_PASS: ""
-  _FROM_EMAIL: ""
   _FROM_NAME: "Prasad Tilloo"
-  _REPLY_TO_EMAIL: ""
-  _CONTACT_EMAIL: ""
 
 images:
   - "gcr.io/$PROJECT_ID/portfolio-service:$COMMIT_SHA"
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+# =============================================================================
+# IMPORTANT: Secret Manager Setup Required (One-time)
+# =============================================================================
+# The following secrets must be created in Google Cloud Secret Manager:
+#
+# gcloud secrets create gsheets-spreadsheet-id --replication-policy="automatic"
+# gcloud secrets create gsheets-client-email --replication-policy="automatic"
+# gcloud secrets create gsheets-private-key --replication-policy="automatic"
+# gcloud secrets create smtp-user --replication-policy="automatic"
+# gcloud secrets create smtp-pass --replication-policy="automatic"
+# gcloud secrets create from-email --replication-policy="automatic"
+# gcloud secrets create reply-to-email --replication-policy="automatic"
+# gcloud secrets create contact-email --replication-policy="automatic"
+#
+# Then add values:
+# echo -n "your-spreadsheet-id" | gcloud secrets versions add gsheets-spreadsheet-id --data-file=-
+# echo -n "your-service-account@project.iam.gserviceaccount.com" | gcloud secrets versions add gsheets-client-email --data-file=-
+# ... etc for other secrets
+#
+# Grant Cloud Run access:
+# gcloud secrets add-iam-policy-binding SECRET_NAME \
+#   --member="serviceAccount:YOUR-COMPUTE-SA@developer.gserviceaccount.com" \
+#   --role="roles/secretmanager.secretAccessor"
+# =============================================================================
