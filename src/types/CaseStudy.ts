@@ -6,16 +6,11 @@
 // =============================================================================
 
 // Localized string - supports EN and DE content in one object
-export interface LocalizedString {
-    en: string;
-    de: string;
-}
+// Also supports additional locales via Record type
+export type LocalizedString = Record<string, string>;
 
 // Localized string array
-export interface LocalizedStringArray {
-    en: string[];
-    de: string[];
-}
+export type LocalizedStringArray = Record<string, string[]>;
 
 // Localized context chip
 export interface LocalizedContextChip {
@@ -93,6 +88,43 @@ export function isLegacyChallenge(challenge: ChallengeStructure): challenge is L
 }
 
 // =============================================================================
+// PHASE 2: EXECUTIVE SNAPSHOT & PERSONA CHALLENGES (NEW STRUCTURE)
+// =============================================================================
+
+/**
+ * Executive Snapshot - compact panel shown above the fold
+ * Contains: Why it mattered (3 bullets), Key tensions (3 bullets), Metric callout
+ */
+export interface CaseStudyExecutiveSnapshot {
+    whyItMattered: LocalizedStringArray;   // exactly 3 bullets
+    keyTensions: LocalizedStringArray;     // exactly 3 bullets
+    metricCallout: {
+        value: LocalizedString;
+        label: LocalizedString;
+    };
+}
+
+/**
+ * Persona Challenge Block - content for a single persona tab
+ * Used in expanded persona section
+ */
+export interface PersonaChallengeBlock {
+    challenges: LocalizedStringArray;      // max 6 bullets
+    riskIfIgnored: LocalizedStringArray;   // max 3 bullets
+    decisionPoints: LocalizedStringArray;  // max 3 bullets
+}
+
+/**
+ * Persona Challenges - container for all three persona views
+ * Executive, Technical, and Delivery perspectives
+ */
+export interface PersonaChallenges {
+    executive: PersonaChallengeBlock;
+    technical: PersonaChallengeBlock;
+    delivery: PersonaChallengeBlock;
+}
+
+// =============================================================================
 // MAIN CASE STUDY INTERFACE
 // =============================================================================
 
@@ -119,6 +151,12 @@ export interface CaseStudy {
 
     // Challenge (empathy) - supports both legacy and localized persona-based structures
     challenge: ChallengeStructure;
+
+    // Phase 2: Executive Snapshot (compact, always visible)
+    executiveSnapshot?: CaseStudyExecutiveSnapshot;
+
+    // Phase 2: Persona Challenges (expandable, collapsed by default)
+    personaChallenges?: PersonaChallenges;
 
     // Approach (credibility)
     approach: {

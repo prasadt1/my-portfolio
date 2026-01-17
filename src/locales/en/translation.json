@@ -931,15 +931,26 @@
             "scope": "Scope",
             "role": "My Role"
         },
+        "executiveSnapshot": {
+            "title": "Executive Snapshot",
+            "whyItMattered": "Why it mattered",
+            "keyTensions": "Key tensions",
+            "viewPersonaDetails": "View challenges by persona",
+            "hidePersonaDetails": "Hide persona details"
+        },
         "challenge": {
             "title": "The Challenge",
             "keyTensions": "Key Tensions",
-            "urgency": "Urgency"
+            "urgency": "Urgency",
+            "challenges": "Challenges",
+            "riskIfIgnored": "Risk if ignored",
+            "decisionPoints": "Decision points"
         },
         "persona": {
             "standard": "Standard",
             "executive": "Executive",
-            "technical": "Technical"
+            "technical": "Technical",
+            "delivery": "Delivery"
         },
         "whatIDelivered": {
             "title": "What I Delivered",

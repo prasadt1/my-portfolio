@@ -382,6 +382,56 @@ Writes a test lead to verify end-to-end functionality:
 
 > **Note:** These endpoints return `403 Not available` in production environments.
 
+## 🔍 Diagnostics (Dev Only)
+
+### Case Study Data Validation
+
+The project includes automatic validation of case study IDs and slugs on startup. This runs in development mode and logs warnings to the console if issues are detected.
+
+**Validation Rules:**
+- All `id` and `slug` values must be unique
+- Must be lowercase kebab-case (e.g., `my-project-id`)
+- No empty strings allowed
+- No spaces or uppercase characters
+
+**Example console output (if issues exist):**
+```
+=== PROJECT VALIDATION ISSUES ===
+Found 2 issue(s) in project data:
+
+1. [ID] Duplicate ID (first seen at index 0)
+   Project: BRITA eCommerce Modernization
+   Value: "brita-ecommerce"
+
+2. [SLUG] Slug must be lowercase kebab-case
+   Project: Insurance Performance
+   Value: "Insurance_Performance"
+
+=================================
+Please fix these issues in src/data/projects.ts
+```
+
+**Localization Fallback Validation:**
+
+The localization utilities (`src/utils/localization.ts`) also log warnings in development mode when:
+- A `LocalizedString` is missing the English (`en`) key
+- A `LocalizedStringArray` is empty or missing
+
+### Google Sheets Diagnostic Endpoints
+
+```bash
+# Check configuration status
+curl http://localhost:3001/api/leadstore/status
+
+# Verify Google Sheets access
+curl -X POST http://localhost:3001/api/leadstore/verify
+
+# Test write operation
+curl -X POST http://localhost:3001/api/leadstore/test-write
+```
+
+> **Security Note:** Diagnostic endpoints are blocked in production (`NODE_ENV=production`). No secrets are logged.
+
 ## 🚨 Troubleshooting
 
 ### "VITE_GEMINI_API_KEY not configured"
