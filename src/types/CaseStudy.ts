@@ -271,4 +271,13 @@ export interface CaseStudy {
         iconBg: string;
         backgroundImage?: string;
     };
+
+    // Phase 2.5: Listing card fields (optional, for executive-first cards)
+    tags?: string[];  // For filtering: 'cloud-modernization', 'ai-genai', 'compliance', etc.
+    listingSummary?: LocalizedString;  // One-liner for card subtitle
+    listingMetrics?: Array<{
+        label: LocalizedString;
+        value: LocalizedString;
+        type?: 'outcome' | 'scope' | 'constraint';
+    }>;
 }
