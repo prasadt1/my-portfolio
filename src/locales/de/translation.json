@@ -867,6 +867,11 @@
         "viewOverview": "Übersicht ansehen"
     },
     "projectsPage": {
+        "title": "Ausgewählte Projekte",
+        "subtitle": "Bereichsübergreifende Expertise für messbare Ergebnisse in Healthcare, Climate Tech und Enterprise Architecture.",
+        "searchPlaceholder": "Nach Titel, Unternehmen oder Tag suchen...",
+        "filterLabel": "Nach Kategorie filtern",
+        "filterAll": "Alle Projekte",
         "featured": {
             "badge": "Highlight",
             "globalStandard": "Globaler Standard",
@@ -885,7 +890,32 @@
             "migration": "Migration",
             "framework": "Framework",
             "data-platform": "Datenplattform"
+        },
+        "categories": {
+            "cloud-modernization": "Cloud-Modernisierung",
+            "platform-engineering": "Plattform-Engineering",
+            "ai-genai": "KI / GenAI",
+            "compliance": "Compliance-intensiv",
+            "ecommerce": "E-Commerce",
+            "enterprise-integration": "Enterprise Integration"
         }
+    },
+    "caseStudies": {
+        "searchPlaceholder": "Projekte suchen...",
+        "filterLabel": "Kategorie",
+        "viewCaseStudy": "Case Study ansehen",
+        "executiveSummary": "Executive Summary",
+        "businessContext": "Business-Kontext",
+        "keyDecisions": "Zentrale Entscheidungen",
+        "whatIDelivered": "Was ich geliefert habe",
+        "impact": "Impact",
+        "risksAvoided": "Vermiedene Risiken",
+        "close": "Schließen",
+        "outcome": "Ergebnis",
+        "scope": "Umfang",
+        "constraints": "Rahmenbedingungen",
+        "noResults": "Keine Projekte gefunden",
+        "noResultsHint": "Versuchen Sie, Ihre Suche oder Filter anzupassen."
     },
     "caseStudy": {
         "executiveSummary": {

@@ -905,6 +905,11 @@
         "viewOverview": "View Overview"
     },
     "projectsPage": {
+        "title": "Selected Works",
+        "subtitle": "Multi-domain expertise delivering transformational outcomes across Healthcare, Climate Tech, and Enterprise Architecture.",
+        "searchPlaceholder": "Search by title, company or tag...",
+        "filterLabel": "Filter by category",
+        "filterAll": "All Projects",
         "featured": {
             "badge": "Featured",
             "globalStandard": "Global Standard",
@@ -923,7 +928,32 @@
             "migration": "Migration",
             "framework": "Framework",
             "data-platform": "Data Platform"
+        },
+        "categories": {
+            "cloud-modernization": "Cloud Modernization",
+            "platform-engineering": "Platform Engineering",
+            "ai-genai": "AI / GenAI",
+            "compliance": "Compliance-Heavy",
+            "ecommerce": "E-Commerce",
+            "enterprise-integration": "Enterprise Integration"
         }
+    },
+    "caseStudies": {
+        "searchPlaceholder": "Search projects...",
+        "filterLabel": "Category",
+        "viewCaseStudy": "View Case Study",
+        "executiveSummary": "Executive Summary",
+        "businessContext": "Business Context",
+        "keyDecisions": "Key Decisions",
+        "whatIDelivered": "What I Delivered",
+        "impact": "Impact",
+        "risksAvoided": "Risks Avoided",
+        "close": "Close",
+        "outcome": "Outcome",
+        "scope": "Scope",
+        "constraints": "Constraints",
+        "noResults": "No projects found",
+        "noResultsHint": "Try adjusting your search or filters."
     },
     "caseStudy": {
         "executiveSummary": {
