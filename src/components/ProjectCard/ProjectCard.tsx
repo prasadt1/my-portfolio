@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, TrendingUp, Layers, ShieldAlert } from 'lucide-react';
+import { ArrowRight, FileText, TrendingUp, Layers, ShieldAlert, Loader2 } from 'lucide-react';
 import { CaseStudy, isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, getLocalizedStringArray, LocalizedString } from '../../types/CaseStudy';
-import ExecutiveSummaryModal from '../ExecutiveSummaryModal';
+import { trackEvent } from '../../services/analytics';
+
+// Lazy-load ExecutiveSummaryModal for better initial bundle size
+const ExecutiveSummaryModal = lazy(() => import('../ExecutiveSummaryModal'));
 
 // Helper to get situation text from any challenge structure
 function getChallengeSituation(challenge: CaseStudy['challenge'], locale: string): string {
@@ -193,13 +196,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700 flex gap-2">
                         <Link
                             to={`/projects/${project.slug}`}
+                            onClick={() => trackEvent('projects_card_click_case_study', {
+                                slug: project.slug,
+                                locale
+                            })}
                             className="flex-1 text-center py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
                         >
                             {t('caseStudies.viewCaseStudy')}
                             <ArrowRight size={14} />
                         </Link>
                         <button
-                            onClick={() => setShowExecutiveSummary(true)}
+                            onClick={() => {
+                                setShowExecutiveSummary(true);
+                                trackEvent('projects_card_click_exec_summary', {
+                                    slug: project.slug,
+                                    locale
+                                });
+                            }}
                             className="py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
                             title={t('caseStudies.executiveSummary')}
                         >
@@ -210,12 +223,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </div>
             </motion.div>
 
-            {/* Executive Summary Modal */}
-            <ExecutiveSummaryModal
-                project={project}
-                isOpen={showExecutiveSummary}
-                onClose={() => setShowExecutiveSummary(false)}
-            />
+            {/* Executive Summary Modal - Lazy loaded */}
+            {showExecutiveSummary && (
+                <Suspense fallback={
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+                        <div className="bg-white dark:bg-slate-800 rounded-lg p-8">
+                            <Loader2 className="animate-spin text-emerald-600" size={32} />
+                        </div>
+                    </div>
+                }>
+                    <ExecutiveSummaryModal
+                        project={project}
+                        isOpen={showExecutiveSummary}
+                        onClose={() => setShowExecutiveSummary(false)}
+                    />
+                </Suspense>
+            )}
         </>
     );
 };

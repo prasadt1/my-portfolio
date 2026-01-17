@@ -489,7 +489,25 @@ export const projects: CaseStudy[] = [
                 'SEO-Migrationsstrategie mit Redirect-Mapping und Monitoring von Tag 1 etablieren.',
                 'Composable-Architektur designen, die Wiederverwendbarkeit und Markt-Flexibilität balanciert.'
             ]
-        }
+        },
+        // Phase 2.6: Listing metadata for executive-first cards
+        tags: [
+            'E-Commerce',
+            'Cloud Modernization',
+            'Platform Engineering',
+            'Shopify Plus',
+            'Migration',
+            'EMEA Rollout'
+        ],
+        listingSummary: {
+            en: 'Migrated 6-market eCommerce landscape from Shopware to Shopify Plus with zero downtime and stable integration patterns across EMEA.',
+            de: 'Migration der 6-Markt-eCommerce-Landschaft von Shopware zu Shopify Plus mit Zero-Downtime und stabilen Integrationsmustern in EMEA.'
+        },
+        listingMetrics: [
+            { en: '6 markets', de: '6 Märkte' },
+            { en: 'Zero-downtime cutover', de: 'Zero-Downtime Cutover' },
+            { en: 'Shopware → Shopify Plus', de: 'Shopware → Shopify Plus' }
+        ]
     },
     {
         id: 'delivery-hero-ads',
@@ -799,7 +817,24 @@ export const projects: CaseStudy[] = [
         cta: {
             primary: { text: 'Scale Your System', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Fix performance bottlenecks.' },
             secondary: { text: 'View Architecture', action: '#' }
-        }
+        },
+        // Phase 2.6: Listing metadata for executive-first cards
+        tags: [
+            'Platform Engineering',
+            'Cloud Modernization',
+            'High Scale',
+            'Ads Platform',
+            'SLA / Reliability'
+        ],
+        listingSummary: {
+            en: 'Re-architected ad serving platform from PHP/MySQL to Go/Redis, scaling to 5M+ daily transactions with sub-20ms latency and 99.99% availability.',
+            de: 'Re-Architektur der Ad-Serving-Plattform von PHP/MySQL zu Go/Redis, Skalierung auf 5M+ tägliche Transaktionen mit <20ms Latenz und 99,99% Verfügbarkeit.'
+        },
+        listingMetrics: [
+            { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' },
+            { en: '99.99% SLA', de: '99,99% SLA' },
+            { en: 'Revenue +20%', de: 'Umsatz +20%' }
+        ]
     },
     // =============================================================================
     // INSURANCE PERFORMANCE IMPROVEMENT - NEW CASE STUDY (Phase 2)
@@ -1137,7 +1172,23 @@ export const projects: CaseStudy[] = [
         cta: {
             primary: { text: { en: 'Optimize Your Systems', de: 'Systeme optimieren' }, action: 'https://calendly.com/prasad-sgsits/30min', context: { en: 'Improve performance without rewrites.', de: 'Performance verbessern ohne Rewrites.' } },
             secondary: { text: { en: 'View Approach', de: 'Ansatz ansehen' }, action: '#' }
-        }
+        },
+        // Phase 2.6: Listing metadata for executive-first cards
+        tags: [
+            'Cloud Modernization',
+            'Performance Engineering',
+            'Enterprise Integration',
+            'Observability'
+        ],
+        listingSummary: {
+            en: 'Optimized claims and policy workflows to achieve 80% faster processing throughput through targeted bottleneck resolution and async processing patterns, without high-risk rewrites.',
+            de: 'Optimierung der Schaden- und Policen-Workflows zur Erreichung von 80% schnellerem Durchsatz durch gezielte Bottleneck-Behebung und Async-Processing-Patterns, ohne risikoreiche Rewrites.'
+        },
+        listingMetrics: [
+            { en: '80% faster processing', de: '80% schnellere Verarbeitung' },
+            { en: 'Claims workflow automation', de: 'Automatisierung Claims-Workflow' },
+            { en: 'Reduced operational load', de: 'Reduzierte operative Last' }
+        ]
     },
     {
         id: 'ai-photography-coach',

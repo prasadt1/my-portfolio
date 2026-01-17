@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,6 +7,7 @@ import { Search, ChevronDown, FolderGit2, ArrowRight, Globe, Award, TrendingUp }
 import SEO from '../components/SEO';
 import { isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, type CaseStudy, type LocalizedString } from '../types/CaseStudy';
 import ProjectCard from '../components/ProjectCard';
+import { trackEvent } from '../services/analytics';
 
 // Helper to get situation text from any challenge structure
 function getChallengeSituation(challenge: CaseStudy['challenge'], locale: string): string {
@@ -44,7 +45,123 @@ const ProjectsPage: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [isFilterBarSticky, setIsFilterBarSticky] = useState(false);
+    const [focusedIndex, setFocusedIndex] = useState(-1);
+    
+    const filterBarRef = useRef<HTMLDivElement>(null);
+    const searchDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const stickyTrackedRef = useRef(false);
+    const dropdownButtonRef = useRef<HTMLButtonElement>(null);
+    const dropdownItemsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
+    // Debounced search change tracking
+    useEffect(() => {
+        if (searchDebounceTimerRef.current) {
+            clearTimeout(searchDebounceTimerRef.current);
+        }
+        
+        if (searchQuery.trim().length > 0) {
+            searchDebounceTimerRef.current = setTimeout(() => {
+                trackEvent('projects_filter_search_changed', {
+                    queryLength: searchQuery.length,
+                    locale
+                });
+            }, 700);
+        }
+        
+        return () => {
+            if (searchDebounceTimerRef.current) {
+                clearTimeout(searchDebounceTimerRef.current);
+            }
+        };
+    }, [searchQuery, locale]);
+    
+    // Track sticky filter bar activation
+    useEffect(() => {
+        if (!filterBarRef.current) return;
+        
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const isSticky = !entry.isIntersecting;
+                if (isSticky && !stickyTrackedRef.current) {
+                    setIsFilterBarSticky(true);
+                    stickyTrackedRef.current = true;
+                    trackEvent('projects_filter_bar_sticky_active', { locale });
+                } else if (entry.isIntersecting) {
+                    setIsFilterBarSticky(false);
+                    stickyTrackedRef.current = false;
+                }
+            },
+            { threshold: [0], rootMargin: '-80px 0px 0px 0px' }
+        );
+        
+        observer.observe(filterBarRef.current);
+        return () => observer.disconnect();
+    }, [locale]);
+    
+    // Keyboard navigation for dropdown
+    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+        if (!isFilterOpen) {
+            if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setIsFilterOpen(true);
+                setFocusedIndex(0);
+            }
+            return;
+        }
+        
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                setFocusedIndex(prev => (prev < CATEGORIES.length - 1 ? prev + 1 : 0));
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                setFocusedIndex(prev => (prev > 0 ? prev - 1 : CATEGORIES.length - 1));
+                break;
+            case 'Enter':
+            case ' ':
+                e.preventDefault();
+                if (focusedIndex >= 0 && focusedIndex < CATEGORIES.length) {
+                    const category = CATEGORIES[focusedIndex];
+                    setSelectedCategory(category.id);
+                    setIsFilterOpen(false);
+                    setFocusedIndex(-1);
+                    trackEvent('projects_filter_category_selected', {
+                        category: category.id,
+                        locale
+                    });
+                }
+                break;
+            case 'Escape':
+                e.preventDefault();
+                setIsFilterOpen(false);
+                setFocusedIndex(-1);
+                dropdownButtonRef.current?.focus();
+                break;
+            case 'Tab':
+                if (!e.shiftKey && focusedIndex === CATEGORIES.length - 1) {
+                    setIsFilterOpen(false);
+                    setFocusedIndex(-1);
+                }
+                break;
+        }
+    }, [isFilterOpen, focusedIndex, locale]);
+    
+    // Focus management for dropdown items
+    useEffect(() => {
+        if (isFilterOpen && focusedIndex >= 0 && dropdownItemsRef.current[focusedIndex]) {
+            dropdownItemsRef.current[focusedIndex]?.focus();
+        }
+    }, [isFilterOpen, focusedIndex]);
+    
+    // Track filter clear
+    const handleClearFilters = useCallback(() => {
+        setSearchQuery('');
+        setSelectedCategory('all');
+        trackEvent('projects_filter_cleared', { locale });
+    }, [locale]);
+    
     // Filter projects based on search and category
     const filteredProjects = useMemo(() => {
         return projects.filter(project => {
@@ -106,12 +223,17 @@ const ProjectsPage: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Search and Filter Controls */}
+                {/* Search and Filter Controls - Sticky */}
                 <motion.div 
+                    ref={filterBarRef}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="flex flex-col sm:flex-row gap-3 mb-8 max-w-2xl mx-auto"
+                    className={`sticky top-0 z-30 flex flex-col sm:flex-row gap-3 mb-8 max-w-2xl mx-auto transition-all ${
+                        isFilterBarSticky 
+                            ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-4 pb-4 mb-6 shadow-sm' 
+                            : ''
+                    }`}
                 >
                     {/* Search Input */}
                     <div className="relative flex-1">
@@ -131,11 +253,16 @@ const ProjectsPage: React.FC = () => {
                     {/* Category Filter Dropdown */}
                     <div className="relative">
                         <button
+                            ref={dropdownButtonRef}
                             onClick={() => setIsFilterOpen(!isFilterOpen)}
+                            onKeyDown={handleKeyDown}
+                            aria-expanded={isFilterOpen}
+                            aria-haspopup="listbox"
                             className="w-full sm:w-auto flex items-center justify-between gap-2 px-4 py-2.5 rounded-lg 
                                        border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 
                                        text-slate-700 dark:text-slate-300 text-sm font-medium
-                                       hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                                       hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors
+                                       focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500"
                         >
                             <span>{t('projectsPage.filterLabel')}</span>
                             <ChevronDown size={16} className={`transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
@@ -147,21 +274,33 @@ const ProjectsPage: React.FC = () => {
                                     initial={{ opacity: 0, y: -5 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -5 }}
+                                    role="listbox"
                                     className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-slate-800 rounded-lg 
-                                               border border-slate-200 dark:border-slate-700 shadow-lg z-20 py-1"
+                                               border border-slate-200 dark:border-slate-700 shadow-lg z-40 py-1"
                                 >
-                                    {CATEGORIES.map((category) => (
+                                    {CATEGORIES.map((category, idx) => (
                                         <button
                                             key={category.id}
+                                            ref={(el) => { dropdownItemsRef.current[idx] = el; }}
                                             onClick={() => {
                                                 setSelectedCategory(category.id);
                                                 setIsFilterOpen(false);
+                                                setFocusedIndex(-1);
+                                                trackEvent('projects_filter_category_selected', {
+                                                    category: category.id,
+                                                    locale
+                                                });
                                             }}
+                                            onKeyDown={handleKeyDown}
+                                            role="option"
+                                            aria-selected={selectedCategory === category.id}
                                             className={`w-full text-left px-4 py-2 text-sm transition-colors
                                                        ${selectedCategory === category.id 
                                                            ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' 
                                                            : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
-                                                       }`}
+                                                       }
+                                                       ${focusedIndex === idx ? 'bg-slate-100 dark:bg-slate-700' : ''}
+                                                       focus:outline-none focus:ring-2 focus:ring-emerald-500/50`}
                                         >
                                             {t(category.labelKey)}
                                         </button>
@@ -185,7 +324,7 @@ const ProjectsPage: React.FC = () => {
                             {selectedCategory !== 'all' && ` in ${t(`projectsPage.categories.${selectedCategory}`)}`}
                         </span>
                         <button
-                            onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
+                            onClick={handleClearFilters}
                             className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
                         >
                             Clear
