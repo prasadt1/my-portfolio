@@ -28,12 +28,27 @@ steps:
       - "--platform"
       - "managed"
       - "--allow-unauthenticated"
-      # Pass the key as a runtime env var too (for server/index.js)
       - "--set-env-vars"
-      - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY}"
+      - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY},LEAD_STORE_PROVIDER=${_LEAD_STORE_PROVIDER},GSHEETS_SPREADSHEET_ID=${_GSHEETS_SPREADSHEET_ID},GSHEETS_SHEET_NAME=${_GSHEETS_SHEET_NAME},GSHEETS_CLIENT_EMAIL=${_GSHEETS_CLIENT_EMAIL},EMAIL_PROVIDER=${_EMAIL_PROVIDER},SMTP_HOST=${_SMTP_HOST},SMTP_PORT=${_SMTP_PORT},SMTP_USER=${_SMTP_USER},SMTP_PASS=${_SMTP_PASS},FROM_EMAIL=${_FROM_EMAIL},FROM_NAME=${_FROM_NAME},REPLY_TO_EMAIL=${_REPLY_TO_EMAIL},CONTACT_EMAIL=${_CONTACT_EMAIL}"
+      # GSHEETS_PRIVATE_KEY passed separately due to special characters
+      - "--update-secrets"
+      - "GSHEETS_PRIVATE_KEY=gsheets-private-key:latest"
 
 substitutions:
-  _VITE_GEMINI_API_KEY: "" # Value to be set in Cloud Build Trigger settings
+  _VITE_GEMINI_API_KEY: ""
+  _LEAD_STORE_PROVIDER: "gsheets"
+  _GSHEETS_SPREADSHEET_ID: ""
+  _GSHEETS_SHEET_NAME: "Leads"
+  _GSHEETS_CLIENT_EMAIL: ""
+  _EMAIL_PROVIDER: "smtp"
+  _SMTP_HOST: "smtp.gmail.com"
+  _SMTP_PORT: "587"
+  _SMTP_USER: ""
+  _SMTP_PASS: ""
+  _FROM_EMAIL: ""
+  _FROM_NAME: "Prasad Tilloo"
+  _REPLY_TO_EMAIL: ""
+  _CONTACT_EMAIL: ""
 
 images:
   - "gcr.io/$PROJECT_ID/portfolio-service:$COMMIT_SHA"
