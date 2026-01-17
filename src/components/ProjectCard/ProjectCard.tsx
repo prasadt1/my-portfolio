@@ -3,10 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Cpu, Layers, FileCode, Database, Shield, Clock } from 'lucide-react';
-import { CaseStudy } from '../../types/CaseStudy';
+import { CaseStudy, isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString } from '../../types/CaseStudy';
 import ProjectCardHeader from './ProjectCardHeader';
 import ProjectCardTechStack from './ProjectCardTechStack';
 import ProjectVisual from '../ProjectVisual';
+
+// Helper to get situation text from any challenge structure
+function getChallengeSituation(challenge: CaseStudy['challenge'], locale: string): string {
+    if (isLocalizedPersonaChallenge(challenge)) {
+        return getLocalizedString(challenge.standard.situation, locale);
+    }
+    if (isLegacyChallenge(challenge)) {
+        return challenge.situation;
+    }
+    return '';
+}
 
 // Project type badge configuration
 const projectTypeBadges: Record<string, { icon: typeof Cpu; label: string; className: string }> = {
@@ -34,8 +45,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
     // Determine if this project has a detailed case study
     // Projects with approachToday or detailed phases are considered to have case studies
-    const hasCaseStudy = project.approachToday || 
-        (project.approach?.phases && project.approach.phases.length > 0 && project.approach.phases[0].activities?.length > 0);
+    const hasDetailedPhases = project.approach?.phases && project.approach.phases.length > 0 && (() => {
+        const activities = project.approach.phases[0].activities;
+        if (Array.isArray(activities)) return activities.length > 0;
+        if (activities && typeof activities === 'object' && 'en' in activities) return activities.en.length > 0;
+        return false;
+    })();
+    const hasCaseStudy = project.approachToday || hasDetailedPhases;
     
     // Get project type badge config
     const typeBadge = projectTypeBadges[project.projectType] || projectTypeBadges['framework'];
@@ -86,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
                 {/* 2-line Summary */}
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-2 flex-1 min-h-[2.5rem]">
-                    {t(`${project.id}.challenge.situation`, { defaultValue: project.challenge.situation, ns: 'projects' })}
+                    {getChallengeSituation(project.challenge, i18n.language)}
                 </p>
 
                 {/* Project Type Badge + Domain Tags */}
@@ -103,7 +119,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     ))}
                     {project.outcomes?.hero_metric?.label && (
                         <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-                            {project.outcomes.hero_metric.label}
+                            {typeof project.outcomes.hero_metric.label === 'string' 
+                                ? project.outcomes.hero_metric.label 
+                                : getLocalizedString(project.outcomes.hero_metric.label, i18n.language)}
                         </span>
                     )}
                 </div>
