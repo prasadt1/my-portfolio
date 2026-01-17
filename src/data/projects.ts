@@ -201,12 +201,45 @@ export const projects: CaseStudy[] = [
             }
         },
         challenge: {
-            situation: 'Legacy Shopware platform could not support rapid global expansion. Managing 15+ markets with monolithic architecture was slow and costly.',
-            pain_points: [
-                { icon: '🐌', title: 'Slow Time-to-Market', description: 'Months to launch new regions', impact: 'Lost revenue opportunities' },
-                { icon: '🔗', title: 'Tightly Coupled', description: 'Frontend changes risked backend stability', impact: 'High regression risk' }
+            contextChips: [
+                { label: 'Industry', value: 'Consumer Goods / eCommerce' },
+                { label: 'Scope', value: '6 EMEA markets' },
+                { label: 'Platform', value: 'Shopify Plus' },
+                { label: 'Constraint', value: 'SEO + integrations' },
+                { label: 'Delivery', value: 'Zero downtime target' }
             ],
-            urgency: 'Strategic goal to double D2C revenue',
+            standard: {
+                situation: 'BRITA needed to migrate from Shopware to Shopify Plus across 6 EMEA markets without breaking SEO, analytics, or fulfillment integrations. The platform had to support localization, structured product content, and future experimentation—while minimizing downtime and operational load.',
+                keyTensions: [
+                    'Zero-downtime cutover vs fragmented legacy integrations',
+                    'SEO preservation vs URL/metadata changes during migration',
+                    'Speed-to-market vs long-term maintainability',
+                    'Shared components vs market-specific localization needs',
+                    'Vendor templates vs BRITA-specific business rules'
+                ],
+                urgency: 'Seasonal campaigns and country launches were blocked by the legacy platform limitations.'
+            },
+            executive: {
+                situation: "BRITA's eCommerce growth was constrained by a platform that slowed releases and increased operational risk. The modernization goal wasn't only a replatform—it was to enable faster market launches, reduce vendor dependency, and protect revenue-critical traffic during transition.",
+                keyTensions: [
+                    'Revenue continuity vs platform replacement risk',
+                    'Market launch speed vs governance and brand consistency',
+                    'Reducing vendor dependency without delaying delivery',
+                    'Migration cost containment vs future-proof architecture'
+                ],
+                urgency: 'Delay impacted growth initiatives and increased campaign execution risk.'
+            },
+            technical: {
+                situation: "The key technical challenge was executing a multi-market replatform while keeping integrations stable (payments, ERP, fulfillment, analytics), preserving SEO signals, and avoiding a fragile 'big bang' cutover. The solution needed clean domain boundaries and reusable components across markets.",
+                keyTensions: [
+                    'Strangler migration vs big bang cutover',
+                    'Composable architecture vs Shopify customization limits',
+                    'Data model cleanup vs time-to-migrate pressure',
+                    'Integration reliability vs change volume',
+                    'Observability readiness for multi-market rollout'
+                ],
+                urgency: 'Migration sequencing had to align with campaign calendar and business freeze windows.'
+            },
             why_prasad: 'Proven track record in headless commerce and cloud migration'
         },
         approach: {
@@ -234,6 +267,23 @@ export const projects: CaseStudy[] = [
         cta: {
             primary: { text: 'Book Consultation', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Discuss your migration.' },
             secondary: { text: 'View Architecture', action: '#' }
+        },
+        approachToday: {
+            titleKey: 'projects.approachToday.title',
+            bullets: [
+                'Validate platform fit against NFRs (performance, localization, integrations) before committing.',
+                'Define clear domain boundaries and data model for multi-market governance.',
+                'Plan migration waves aligned to campaign calendar and business freeze windows.',
+                'Establish SEO migration strategy with redirect mapping and monitoring from day 1.',
+                'Design composable architecture that balances reusability with market-specific flexibility.'
+            ],
+            bulletsDe: [
+                'Plattform-Fit gegen NFRs (Performance, Lokalisierung, Integrationen) validieren, bevor Entscheidung fällt.',
+                'Klare Domain-Grenzen und Datenmodell für Multi-Market-Governance definieren.',
+                'Migrationswellen auf Kampagnenkalender und Business-Freeze-Zeiträume abstimmen.',
+                'SEO-Migrationsstrategie mit Redirect-Mapping und Monitoring von Tag 1 etablieren.',
+                'Composable-Architektur designen, die Wiederverwendbarkeit und Markt-Flexibilität balanciert.'
+            ]
         }
     },
     {
@@ -258,9 +308,45 @@ export const projects: CaseStudy[] = [
             }
         },
         challenge: {
-            situation: 'Existing ad server crashed during peak lunch hours. Latency > 200ms caused lost impressions and revenue.',
-            pain_points: [],
-            urgency: 'Black Friday approaching',
+            contextChips: [
+                { label: 'Industry', value: 'Food Delivery / AdTech' },
+                { label: 'Scale', value: '5M+ daily transactions' },
+                { label: 'SLA', value: '99.99% availability' },
+                { label: 'Latency', value: '<20ms target' },
+                { label: 'Impact', value: '$20M revenue uplift' }
+            ],
+            standard: {
+                situation: 'The existing ad server was crashing during peak lunch hours, with latency exceeding 200ms and causing lost impressions and revenue. The platform needed to scale to 5M+ daily transactions while maintaining sub-20ms response times and 99.99% availability.',
+                keyTensions: [
+                    'Peak traffic spikes vs infrastructure cost control',
+                    'Sub-20ms latency vs data consistency requirements',
+                    'Legacy PHP codebase vs modern performance needs',
+                    'Rapid delivery vs production stability',
+                    'Per-second billing accuracy vs system throughput'
+                ],
+                urgency: 'Black Friday approaching with projected 3x traffic increase.'
+            },
+            executive: {
+                situation: 'Revenue from display ads was being lost due to platform instability during peak hours. The business case was clear: every millisecond of latency and every crash directly impacted impression yield and advertiser confidence. A 20% revenue increase was projected if performance targets were met.',
+                keyTensions: [
+                    'Revenue at risk vs migration/replatform investment',
+                    'Advertiser SLA commitments vs technical debt',
+                    'Speed of fix vs long-term architecture quality',
+                    'Team capacity vs Black Friday deadline'
+                ],
+                urgency: 'Seasonal revenue at stake with Black Friday as hard deadline.'
+            },
+            technical: {
+                situation: 'The core technical challenge was re-architecting a high-throughput ad serving system from PHP/MySQL to Go/Redis while implementing exact-once processing for billing accuracy. The system needed to handle 5M+ daily transactions with <20ms P99 latency and support real-time bidding workflows.',
+                keyTensions: [
+                    'Event-driven architecture vs legacy synchronous patterns',
+                    'Exact-once processing vs throughput optimization',
+                    'Go migration vs team PHP expertise',
+                    'Redis caching strategy vs data durability',
+                    'Kubernetes auto-scaling vs cost predictability'
+                ],
+                urgency: 'Architecture decisions had to support 3x traffic growth within 6 weeks.'
+            },
             why_prasad: 'High-scale distributed systems expertise'
         },
         approach: {
@@ -912,9 +998,45 @@ export const projects: CaseStudy[] = [
             }
         },
         challenge: {
-            situation: 'Legacy system needed modernization and mobile access.',
-            pain_points: [],
-            urgency: 'Cost and user demand',
+            contextChips: [
+                { label: 'Industry', value: 'Healthcare' },
+                { label: 'Savings', value: '$500K annually' },
+                { label: 'Traffic', value: '70% increase' },
+                { label: 'Compliance', value: 'HIPAA' },
+                { label: 'Platform', value: 'Cloud + Mobile' }
+            ],
+            standard: {
+                situation: 'A 15-year-old healthcare and e-commerce platform was facing compliance audit failures, performance degradation, and escalating maintenance costs. The system needed modernization to cloud infrastructure while adding mobile capabilities to meet user demand.',
+                keyTensions: [
+                    'Compliance audit deadlines vs migration complexity',
+                    'Legacy vendor EOL vs business continuity',
+                    'Mobile enablement vs security requirements',
+                    'Cost reduction targets vs modernization investment',
+                    'User experience improvements vs regulatory constraints'
+                ],
+                urgency: 'Board mandate to achieve compliance within 6 months.'
+            },
+            executive: {
+                situation: 'Monthly audit findings were costing €50K+ and threatening operational continuity. The board mandate was clear: achieve HIPAA compliance and reduce operational costs within 6 months, or face escalating penalties and potential service disruption.',
+                keyTensions: [
+                    'Audit cost burden vs transformation budget',
+                    'Compliance deadline vs realistic migration timeline',
+                    'Risk of continued operation vs migration risk',
+                    'Short-term fixes vs long-term platform strategy'
+                ],
+                urgency: 'Board deadline with €600K annual audit burden at stake.'
+            },
+            technical: {
+                situation: 'The technical challenge involved migrating a legacy Java 8/Oracle system to AWS while maintaining HIPAA compliance, implementing zero-downtime deployment, and building a new pharmacy mobile app that would become the primary user channel.',
+                keyTensions: [
+                    'Blue-green deployment vs data consistency',
+                    'HIPAA controls vs cloud-native patterns',
+                    'Mobile app performance vs API legacy constraints',
+                    'Automated compliance monitoring vs manual audit processes',
+                    'Multi-region availability vs cost optimization'
+                ],
+                urgency: 'Legacy vendor support ending within 12 months.'
+            },
             why_prasad: 'Full stack leadership'
         },
         approach: {

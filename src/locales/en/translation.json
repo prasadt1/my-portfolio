@@ -931,9 +931,31 @@
             "scope": "Scope",
             "role": "My Role"
         },
+        "challenge": {
+            "title": "The Challenge",
+            "keyTensions": "Key Tensions",
+            "urgency": "Urgency"
+        },
+        "persona": {
+            "standard": "Standard",
+            "executive": "Executive",
+            "technical": "Technical"
+        },
         "whatIDelivered": {
             "title": "What I Delivered",
             "differentiator": "Key Differentiator"
+        },
+        "howIDelivered": {
+            "title": "How I Delivered",
+            "whyMe": "Why me"
+        },
+        "outcome": "Outcome",
+        "showMore": "Show more",
+        "showLess": "Show less",
+        "technical": {
+            "title": "Technical Transformation",
+            "before": "Before State",
+            "after": "After State"
         },
         "deliverables": {
             "title": "Deliverables You'll Receive",

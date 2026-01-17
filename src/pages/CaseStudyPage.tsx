@@ -1,5 +1,4 @@
-import { rewriteContent } from '../services/contentRewriter';
-import { User, Code, Briefcase } from 'lucide-react';
+import { User, Code, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -16,34 +15,60 @@ import {
 } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectVisual from '../components/ProjectVisual';
+import { isPersonaChallenge, type ChallengeStructure, type PersonaChallengeStructure, type LegacyChallengeStructure } from '../types/CaseStudy';
+
+// Helper to get challenge content based on persona and structure type
+function getChallengeContent(
+    challenge: ChallengeStructure,
+    persona: 'standard' | 'executive' | 'technical'
+) {
+    if (isPersonaChallenge(challenge)) {
+        const personaContent = challenge[persona];
+        return {
+            situation: personaContent.situation,
+            keyTensions: personaContent.keyTensions,
+            urgency: personaContent.urgency || challenge.standard.urgency,
+            contextChips: challenge.contextChips || [],
+            why_prasad: challenge.why_prasad,
+            isPersonaBased: true
+        };
+    }
+    
+    // Legacy structure - derive key tensions from pain points
+    const legacyChallenge = challenge as LegacyChallengeStructure;
+    return {
+        situation: legacyChallenge.situation,
+        keyTensions: legacyChallenge.pain_points?.map(p => `${p.title}: ${p.description}`) || [],
+        urgency: legacyChallenge.urgency,
+        contextChips: [],
+        why_prasad: legacyChallenge.why_prasad,
+        isPersonaBased: false
+    };
+}
+
+// Section Header component for consistent styling
+const SectionHeader: React.FC<{ title: string; subtitle?: string; className?: string }> = ({ 
+    title, 
+    subtitle,
+    className = ''
+}) => (
+    <div className={`mb-8 ${className}`}>
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
+            {title}
+        </h2>
+        {subtitle && (
+            <p className="mt-2 text-slate-600 dark:text-slate-400">{subtitle}</p>
+        )}
+    </div>
+);
 
 const CaseStudyPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t, i18n } = useTranslation();
     const [persona, setPersona] = useState<'executive' | 'technical' | 'standard'>('standard');
-    const [rewrittenSummary, setRewrittenSummary] = useState<string>('');
-    const [rewriting, setRewriting] = useState(false);
+    const [showAllDeliverables, setShowAllDeliverables] = useState(false);
+    const [showAllApproach, setShowAllApproach] = useState(false);
     const study = projects.find(s => s.slug === slug || s.id === slug);
-
-    // Auto-rewrite when persona changes
-    useEffect(() => {
-        if (!study || persona === 'standard') {
-            setRewrittenSummary('');
-            return;
-        }
-
-        const fetchRewrite = async () => {
-            setRewriting(true);
-            const newText = await rewriteContent({
-                currentText: study.challenge.situation,
-                sectionType: 'executive_summary', // Simplification for demo
-                persona: persona
-            });
-            setRewrittenSummary(newText);
-            setRewriting(false);
-        };
-        fetchRewrite();
-    }, [persona, study]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -109,6 +134,16 @@ const CaseStudyPage: React.FC = () => {
         );
     }
 
+    // Get challenge content based on current persona
+    const challengeContent = getChallengeContent(study.challenge, persona);
+
+    // Determine how many phases/deliverables to show initially
+    const initialItemCount = 4;
+    const phasesToShow = showAllApproach 
+        ? study.approach.phases 
+        : study.approach.phases.slice(0, initialItemCount);
+    const hasMorePhases = study.approach.phases.length > initialItemCount;
+
     return (
         <div className="min-h-screen bg-white dark:bg-slate-900 pt-20">
             {/* Header */}
@@ -120,7 +155,7 @@ const CaseStudyPage: React.FC = () => {
                             <div className="p-2 bg-white dark:bg-slate-900 rounded-full border border-slate-200 dark:border-slate-700 group-hover:border-emerald-500/50 transition-colors">
                                 <ArrowLeft size={18} />
                             </div>
-                            Back to Projects
+                            {t('common.viewAllProjects', 'Back to Projects')}
                         </Link>
                     </div>
 
@@ -145,7 +180,7 @@ const CaseStudyPage: React.FC = () => {
                                 {study.header.title}
                             </h1>
                             <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed max-w-2xl">
-                                {study.challenge.situation.split('.').slice(0, 2).join('.') + '.'}
+                                {challengeContent.situation.split('.').slice(0, 2).join('.') + '.'}
                             </p>
 
                             {/* Tags */}
@@ -176,7 +211,6 @@ const CaseStudyPage: React.FC = () => {
                                 <div className="relative z-10">
                                     <div className="flex items-start justify-between mb-8">
                                         <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
-                                            {/* Dynamic Icon based on Metric */}
                                             <span className="text-3xl">{study.outcomes.hero_metric.icon || '🚀'}</span>
                                         </div>
                                         <div className="text-right">
@@ -198,7 +232,6 @@ const CaseStudyPage: React.FC = () => {
                                         ))}
                                     </div>
                                 </div>
-                                {/* Background texture */}
                                 <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
                                 <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-black/10 rounded-full blur-3xl"></div>
                             </div>
@@ -251,7 +284,7 @@ const CaseStudyPage: React.FC = () => {
                                     {study.projectType === 'framework' || study.projectType === 'standard' ? 'Lead Architect' : 'Solution Architect'}
                                 </p>
                                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    {study.challenge.why_prasad}
+                                    {challengeContent.why_prasad}
                                 </p>
                             </div>
                         </div>
@@ -259,274 +292,344 @@ const CaseStudyPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Challenge Section */}
-
-            {/* Challenge Section */}
-            <section className="py-20">
+            {/* Challenge Section - Redesigned */}
+            <section className="py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Section 1: Challenge Narrative (Wide for readability) */}
-                    <div className="max-w-4xl mb-16">
-                        <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">The Challenge</h2>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Beta Feature</span>
-                        </div>
-
-                        {/* Persona Tabs */}
-                        <div className="mb-0">
-                            <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-t-xl w-fit border-t border-x border-slate-200 dark:border-slate-700">
-                                {(['standard', 'executive', 'technical'] as const).map((p) => (
-                                    <button
-                                        key={p}
-                                        onClick={() => setPersona(p)}
-                                        className={`
-                                            flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all
-                                            ${persona === p
-                                                ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-sm ring-1 ring-black/5'
-                                                : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}
-                                        `}
+                    {/* Header Row with Context Chips */}
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
+                            {t('caseStudy.challenge.title', 'The Challenge')}
+                        </h2>
+                        
+                        {/* Context Chips */}
+                        {challengeContent.contextChips.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                                {challengeContent.contextChips.map((chip, idx) => (
+                                    <div 
+                                        key={idx}
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium"
                                     >
-                                        {p === 'standard' && <Briefcase size={14} />}
-                                        {p === 'executive' && <User size={14} />}
-                                        {p === 'technical' && <Code size={14} />}
-                                        {p.charAt(0).toUpperCase() + p.slice(1)}
-                                    </button>
+                                        <span className="text-slate-500 dark:text-slate-400">{chip.label}:</span>
+                                        <span className="text-slate-900 dark:text-white">{chip.value}</span>
+                                    </div>
                                 ))}
                             </div>
-                            {/* Content Box */}
-                            <div className="bg-white dark:bg-slate-900 p-8 rounded-b-xl rounded-r-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden">
-                                {/* Active Tab Indicator Line */}
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500/20 to-transparent"></div>
+                        )}
+                    </div>
 
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                                    {rewriting ? (
-                                        <span className="flex items-center gap-3 text-slate-400 animate-pulse">
-                                            <span className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></span>
-                                            Adapting content for {persona} context...
-                                        </span>
-                                    ) : (
-                                        <motion.span
-                                            key={persona}
-                                            initial={{ opacity: 0, y: 5 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.3 }}
+                    <div className="max-w-4xl">
+                        {/* Persona Tabs - Only show if persona-based challenge */}
+                        {challengeContent.isPersonaBased && (
+                            <div className="mb-0">
+                                <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-t-xl w-fit border-t border-x border-slate-200 dark:border-slate-700">
+                                    {(['standard', 'executive', 'technical'] as const).map((p) => (
+                                        <button
+                                            key={p}
+                                            onClick={() => setPersona(p)}
+                                            className={`
+                                                flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all
+                                                ${persona === p
+                                                    ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-sm ring-1 ring-black/5'
+                                                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}
+                                            `}
                                         >
-                                            {persona === 'standard' ? study.challenge.situation : rewrittenSummary}
-                                        </motion.span>
-                                    )}
-                                </p>
+                                            {p === 'standard' && <Briefcase size={14} />}
+                                            {p === 'executive' && <User size={14} />}
+                                            {p === 'technical' && <Code size={14} />}
+                                            {t(`caseStudy.persona.${p}`, p.charAt(0).toUpperCase() + p.slice(1))}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
+                        )}
+
+                        {/* Narrative Box */}
+                        <div className={`bg-white dark:bg-slate-900 p-8 ${challengeContent.isPersonaBased ? 'rounded-b-xl rounded-tr-xl' : 'rounded-xl'} border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden`}>
+                            {challengeContent.isPersonaBased && (
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500/20 to-transparent"></div>
+                            )}
+                            <motion.p 
+                                key={persona}
+                                initial={{ opacity: 0, y: 5 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg"
+                            >
+                                {challengeContent.situation}
+                            </motion.p>
                         </div>
 
-                        <div className="mt-8">
-                            <div className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200 dark:border-amber-700/50 flex gap-4 items-start">
-                                <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0 mt-1" size={20} />
-                                <div>
-                                    <div className="text-sm font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide mb-1">Urgency</div>
-                                    <p className="text-slate-900 dark:text-white italic">"{study.challenge.urgency}"</p>
+                        {/* Key Tensions List */}
+                        {challengeContent.keyTensions.length > 0 && (
+                            <div className="mt-8">
+                                <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
+                                    {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
+                                </h3>
+                                <motion.div 
+                                    key={persona}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="grid md:grid-cols-2 gap-3"
+                                >
+                                    {challengeContent.keyTensions.slice(0, 6).map((tension, idx) => (
+                                        <div 
+                                            key={idx}
+                                            className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
+                                        >
+                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                            <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                        </div>
+                                    ))}
+                                </motion.div>
+                            </div>
+                        )}
+
+                        {/* Urgency Callout - Compact */}
+                        {challengeContent.urgency && (
+                            <div className="mt-6">
+                                <div className="bg-amber-50 dark:bg-amber-900/20 px-4 py-3 rounded-lg border border-amber-200 dark:border-amber-700/50 flex items-center gap-3">
+                                    <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0" size={18} />
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">
+                                            {t('caseStudy.challenge.urgency', 'Urgency')}:
+                                        </span>
+                                        <span className="text-sm text-slate-700 dark:text-slate-300">{challengeContent.urgency}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* Section 2: Pain Points Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {study.challenge.pain_points.map((pain, idx) => (
-                            <div key={idx} className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-                                <div className="text-4xl mb-4">{pain.icon}</div>
-                                <h3 className="font-bold text-slate-900 dark:text-white mb-2">{pain.title}</h3>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{pain.description}</p>
-                                <p className="text-xs font-bold text-red-500 dark:text-red-400 uppercase">Impact: {pain.impact}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* What I Delivered Section */}
-            <section className="py-20 bg-slate-50 dark:bg-slate-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-                        {t('caseStudy.whatIDelivered.title')}
-                    </h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {study.approach.phases.map((phase, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
-                            >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold">
-                                        {phase.number}
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{phase.title}</h3>
-                                </div>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                                    {phase.deliverable}
-                                </p>
-                                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                                    <Clock size={14} />
-                                    <span>{phase.duration}</span>
-                                </div>
-                            </motion.div>
-                        ))}
-                        {study.approach.unique_differentiator && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-900/10 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 shadow-sm"
-                            >
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold">
-                                        ⭐
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t('caseStudy.whatIDelivered.differentiator')}</h3>
-                                </div>
-                                <p className="text-sm text-slate-700 dark:text-slate-300">
-                                    {study.approach.unique_differentiator}
-                                </p>
-                            </motion.div>
                         )}
                     </div>
                 </div>
             </section>
 
-            {/* Approach Section */}
-            <section className="py-20 bg-slate-50 dark:bg-slate-800">
+            {/* What I Delivered Section - Compact */}
+            <section className="py-16 bg-slate-50 dark:bg-slate-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                            The Approach: {study.approach.methodology}
-                        </h2>
-                        <p className="text-slate-600 dark:text-slate-400">
-                            Why me: {study.challenge.why_prasad}
-                        </p>
-                    </div>
-
-                    <div className="space-y-8 relative">
-                        {/* Thread line */}
-                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-700 -z-10 hidden md:block"></div>
-
-                        {study.approach.phases.map((phase, idx) => (
+                    <SectionHeader 
+                        title={t('caseStudy.whatIDelivered.title')} 
+                    />
+                    
+                    <div className="grid md:grid-cols-2 gap-4">
+                        {phasesToShow.map((phase, idx) => (
                             <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className={`flex flex-col md:flex-row gap-8 items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                                transition={{ delay: idx * 0.05 }}
+                                className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
                             >
-                                <div className="flex-1 w-full">
-                                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 hover:border-emerald-500 transition-colors">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">
-                                                Phase {phase.number}
+                                <div className="flex items-start gap-4">
+                                    <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm shrink-0">
+                                        {phase.number}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="font-bold text-slate-900 dark:text-white mb-1">{phase.title}</h3>
+                                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-2 line-clamp-2">
+                                            {phase.deliverable}
+                                        </p>
+                                        <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+                                            <span className="flex items-center gap-1">
+                                                <Clock size={12} />
+                                                {phase.duration}
                                             </span>
-                                            <span className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
-                                                <Clock size={16} /> {phase.duration}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{phase.title}</h3>
-                                        <ul className="space-y-2 mb-6">
-                                            {phase.activities.map((activity, aIdx) => (
-                                                <li key={aIdx} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
-                                                    <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-                                                    {activity}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <div className="bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded-lg">
-                                            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase mb-1">Outcome</div>
-                                            <div className="text-sm text-slate-900 dark:text-white font-medium">{phase.outcome}</div>
+                                            {phase.outcome && (
+                                                <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                                                    → {phase.outcome}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* Number Bubble */}
-                                <div className="w-8 h-8 rounded-full bg-emerald-600 border-4 border-white dark:border-slate-800 flex items-center justify-center text-white font-bold z-10 hidden md:flex">
-                                    {phase.number}
-                                </div>
-
-                                <div className="flex-1 hidden md:block"></div>
                             </motion.div>
                         ))}
                     </div>
 
-                    <div className="mt-16 text-center">
-                        <div className="inline-block bg-white dark:bg-slate-900 px-8 py-4 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
-                            <span className="font-bold text-slate-900 dark:text-white mr-2">Secret Weapon:</span>
-                            <span className="text-slate-600 dark:text-slate-400">{study.approach.unique_differentiator}</span>
+                    {/* Show More Button */}
+                    {hasMorePhases && (
+                        <div className="mt-6 text-center">
+                            <button
+                                onClick={() => setShowAllApproach(!showAllApproach)}
+                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                            >
+                                {showAllApproach ? (
+                                    <>
+                                        {t('caseStudy.showLess', 'Show less')}
+                                        <ChevronUp size={16} />
+                                    </>
+                                ) : (
+                                    <>
+                                        {t('caseStudy.showMore', 'Show more')} ({study.approach.phases.length - initialItemCount} more)
+                                        <ChevronDown size={16} />
+                                    </>
+                                )}
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Key Differentiator */}
+                    {study.approach.unique_differentiator && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mt-8 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-900/10 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-800"
+                        >
+                            <div className="flex items-start gap-4">
+                                <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold shrink-0">
+                                    ⭐
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+                                        {t('caseStudy.whatIDelivered.differentiator')}
+                                    </h3>
+                                    <p className="text-sm text-slate-700 dark:text-slate-300">
+                                        {study.approach.unique_differentiator}
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </div>
+            </section>
+
+            {/* How I Delivered Section - Compact Timeline */}
+            <section className="py-16 bg-white dark:bg-slate-900">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <SectionHeader 
+                        title={t('caseStudy.howIDelivered.title', `The Approach: ${study.approach.methodology}`)}
+                        subtitle={`${t('caseStudy.howIDelivered.whyMe', 'Why me')}: ${challengeContent.why_prasad}`}
+                    />
+
+                    {/* Compact Timeline */}
+                    <div className="relative">
+                        {/* Timeline Line */}
+                        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
+
+                        <div className="space-y-6">
+                            {study.approach.phases.map((phase, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="relative pl-0 md:pl-12"
+                                >
+                                    {/* Timeline Dot */}
+                                    <div className="absolute left-0 top-2 w-8 h-8 rounded-full bg-emerald-600 border-4 border-white dark:border-slate-900 flex items-center justify-center text-white font-bold text-xs z-10 hidden md:flex">
+                                        {phase.number}
+                                    </div>
+
+                                    <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                                            <div className="flex items-center gap-3">
+                                                <span className="md:hidden w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs">
+                                                    {phase.number}
+                                                </span>
+                                                <h3 className="font-bold text-slate-900 dark:text-white">{phase.title}</h3>
+                                            </div>
+                                            <span className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                                                <Clock size={14} />
+                                                {phase.duration}
+                                            </span>
+                                        </div>
+                                        
+                                        <ul className="space-y-1.5 mb-4">
+                                            {phase.activities.slice(0, 3).map((activity, aIdx) => (
+                                                <li key={aIdx} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+                                                    <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 flex-shrink-0" />
+                                                    {activity}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        
+                                        <div className="flex items-center gap-2 pt-3 border-t border-slate-200 dark:border-slate-700">
+                                            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">
+                                                {t('caseStudy.outcome', 'Outcome')}:
+                                            </span>
+                                            <span className="text-sm text-slate-900 dark:text-white font-medium">{phase.outcome}</span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Technical Deep Dive */}
-            <section className="py-20">
+            <section className="py-16 bg-slate-50 dark:bg-slate-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">Technical Transformation</h2>
+                    <SectionHeader title={t('caseStudy.technical.title', 'Technical Transformation')} />
 
-                    <div className="grid md:grid-cols-2 gap-12">
+                    <div className="grid md:grid-cols-2 gap-8">
                         {/* Before */}
-                        <div className="space-y-6">
-                            <h3 className="text-xl font-bold text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                                <AlertCircle size={24} /> Before State
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-bold text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                <AlertCircle size={20} /> {t('caseStudy.technical.before', 'Before State')}
                             </h3>
-                            <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
                                 <div className="space-y-4">
-                                    <div>
-                                        <div className="text-sm font-semibold text-slate-500 uppercase mb-2">Legacy Stack</div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {study.technical.before.stack.map((t, i) => (
-                                                <span key={i} className="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded">
-                                                    {t}
-                                                </span>
-                                            ))}
+                                    {study.technical.before.stack.length > 0 && (
+                                        <div>
+                                            <div className="text-xs font-semibold text-slate-500 uppercase mb-2">Legacy Stack</div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {study.technical.before.stack.map((t, i) => (
+                                                    <span key={i} className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs rounded">
+                                                        {t}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div className="text-sm font-semibold text-slate-500 uppercase mb-2">Issues</div>
-                                        <ul className="space-y-2">
-                                            {study.technical.before.issues.map((issue, i) => (
-                                                <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span> {issue}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    )}
+                                    {study.technical.before.issues.length > 0 && (
+                                        <div>
+                                            <div className="text-xs font-semibold text-slate-500 uppercase mb-2">Issues</div>
+                                            <ul className="space-y-1.5">
+                                                {study.technical.before.issues.map((issue, i) => (
+                                                    <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span> {issue}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
 
                         {/* After */}
-                        <div className="space-y-6">
-                            <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
-                                <CheckCircle2 size={24} /> After State
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                                <CheckCircle2 size={20} /> {t('caseStudy.technical.after', 'After State')}
                             </h3>
-                            <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border-2 border-emerald-500/20 shadow-xl">
+                            <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border-2 border-emerald-500/20 shadow-lg">
                                 <div className="space-y-4">
-                                    <div>
-                                        <div className="text-sm font-semibold text-emerald-600/80 uppercase mb-2">Modern Stack</div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {study.technical.after.stack.map((t, i) => (
-                                                <span key={i} className="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-xs font-medium rounded">
-                                                    {t}
-                                                </span>
-                                            ))}
+                                    {study.technical.after.stack.length > 0 && (
+                                        <div>
+                                            <div className="text-xs font-semibold text-emerald-600/80 uppercase mb-2">Modern Stack</div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {study.technical.after.stack.map((tech, i) => (
+                                                    <span key={i} className="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-xs font-medium rounded">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div className="text-sm font-semibold text-emerald-600/80 uppercase mb-2">Improvements</div>
-                                        <ul className="space-y-2">
-                                            {study.technical.after.improvements.map((imp, i) => (
-                                                <li key={i} className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
-                                                    <CheckCircle2 size={14} className="text-emerald-500" /> {imp}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    )}
+                                    {study.technical.after.improvements.length > 0 && (
+                                        <div>
+                                            <div className="text-xs font-semibold text-emerald-600/80 uppercase mb-2">Improvements</div>
+                                            <ul className="space-y-1.5">
+                                                {study.technical.after.improvements.map((imp, i) => (
+                                                    <li key={i} className="flex items-center gap-2 text-sm text-slate-900 dark:text-white font-medium">
+                                                        <CheckCircle2 size={14} className="text-emerald-500" /> {imp}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -535,37 +638,35 @@ const CaseStudyPage: React.FC = () => {
             </section>
 
             {/* Testimonial */}
-            {
-                study.testimonial && (
-                    <section className="py-20 bg-emerald-900 text-white relative overflow-hidden">
-                        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-                        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-                            <div className="text-6xl text-emerald-500 mb-8 opacity-50 font-serif">"</div>
-                            <blockquote className="text-2xl md:text-3xl font-medium leading-relaxed mb-8">
-                                {study.testimonial.quote}
-                            </blockquote>
-                            <cite className="not-italic">
-                                <div className="font-bold text-lg">{study.testimonial.author.name}</div>
-                                <div className="text-emerald-300">{study.testimonial.author.role}, {study.testimonial.author.company}</div>
-                            </cite>
-                        </div>
-                    </section>
-                )
-            }
+            {study.testimonial && (
+                <section className="py-16 bg-emerald-900 text-white relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+                    <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+                        <div className="text-5xl text-emerald-500 mb-6 opacity-50 font-serif">"</div>
+                        <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6">
+                            {study.testimonial.quote}
+                        </blockquote>
+                        <cite className="not-italic">
+                            <div className="font-bold text-lg">{study.testimonial.author.name}</div>
+                            <div className="text-emerald-300">{study.testimonial.author.role}, {study.testimonial.author.company}</div>
+                        </cite>
+                    </div>
+                </section>
+            )}
 
             {/* How I would approach this today */}
             {study.approachToday && (
-                <section className="py-20 bg-slate-50 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700">
+                <section className="py-16 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-700">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-lg">
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8">
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 md:p-10 border border-slate-200 dark:border-slate-700">
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                                 {t('projects.approachToday.title')}
                             </h2>
-                            <ul className="space-y-4">
+                            <ul className="space-y-3">
                                 {(i18n.language === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
                                     <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                                        <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={20} />
-                                        <span>{bullet}</span>
+                                        <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={18} />
+                                        <span className="text-sm">{bullet}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -575,12 +676,10 @@ const CaseStudyPage: React.FC = () => {
             )}
 
             {/* Deliverables Preview */}
-            <section className="py-20 bg-white dark:bg-slate-900">
+            <section className="py-16 bg-slate-50 dark:bg-slate-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-                        {t('caseStudy.deliverables.title')}
-                    </h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <SectionHeader title={t('caseStudy.deliverables.title')} />
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
                             {
                                 icon: Layers,
@@ -615,15 +714,15 @@ const CaseStudyPage: React.FC = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow"
+                                    className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow"
                                 >
-                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-${deliverable.color}-100 dark:bg-${deliverable.color}-900/30`}>
-                                        <Icon className={`text-${deliverable.color}-600 dark:text-${deliverable.color}-400`} size={24} />
+                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-${deliverable.color}-100 dark:bg-${deliverable.color}-900/30`}>
+                                        <Icon className={`text-${deliverable.color}-600 dark:text-${deliverable.color}-400`} size={20} />
                                     </div>
-                                    <h3 className="font-bold text-slate-900 dark:text-white mb-2">
+                                    <h3 className="font-bold text-slate-900 dark:text-white mb-1 text-sm">
                                         {deliverable.title}
                                     </h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-xs text-slate-600 dark:text-slate-400">
                                         {deliverable.description}
                                     </p>
                                 </motion.div>
@@ -634,12 +733,12 @@ const CaseStudyPage: React.FC = () => {
             </section>
 
             {/* CTA Block */}
-            <section className="py-24 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white">
+            <section className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white">
                 <div className="max-w-4xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         {t('caseStudy.cta.title')}
                     </h2>
-                    <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-emerald-100 mb-8 max-w-2xl mx-auto leading-relaxed">
                         {t('caseStudy.cta.text')}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

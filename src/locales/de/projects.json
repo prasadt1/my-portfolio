@@ -31,7 +31,45 @@
             "title": "Modernisierung des globalen E-Commerce: Von Monolyth zu Headless-Architektur"
         },
         "challenge": {
-            "situation": "Die alte Shopware-Plattform konnte die schnelle globale Expansion nicht unterstützen. Die Verwaltung von 15+ Märkten mit monolithischer Architektur war langsam und kostspielig."
+            "contextChips": [
+                { "label": "Branche", "value": "Consumer Goods / eCommerce" },
+                { "label": "Scope", "value": "6 EMEA-Märkte" },
+                { "label": "Plattform", "value": "Shopify Plus" },
+                { "label": "Constraint", "value": "SEO + Integrationen" },
+                { "label": "Delivery", "value": "Zero-Downtime Ziel" }
+            ],
+            "standard": {
+                "situation": "BRITA musste Shopware durch Shopify Plus in 6 EMEA-Märkten ersetzen—ohne SEO-Verluste, ohne Integrationsbrüche und ohne operative Instabilität. Gleichzeitig sollte die Plattform Lokalisierung, strukturierte Produktdaten und zukünftige Optimierungen ermöglichen.",
+                "keyTensions": [
+                    "Zero-Downtime Cutover vs komplexe Legacy-Integrationen",
+                    "SEO-Schutz vs Änderungen an URLs/Metadaten",
+                    "Time-to-Market vs Wartbarkeit im Target Operating Model",
+                    "Wiederverwendbarkeit vs lokale Marktanforderungen",
+                    "Standard-Templates vs BRITA-spezifische Business Rules"
+                ],
+                "urgency": "Saisonale Kampagnen und Länder-Rollouts wurden durch Plattformgrenzen ausgebremst."
+            },
+            "executive": {
+                "situation": "Das Ziel war nicht nur ein Replatforming, sondern eine belastbare Grundlage für Wachstum: schnellere Marktstarts, weniger Abhängigkeit von Dienstleistern und eine kontrollierte Transition ohne Umsatzrisiko.",
+                "keyTensions": [
+                    "Umsatzkontinuität vs Migrationsrisiko",
+                    "Marktgeschwindigkeit vs Governance/Brand-Konsistenz",
+                    "Vendor-Abhängigkeit reduzieren ohne Delivery zu blockieren",
+                    "Kostenkontrolle vs Architektur-Zukunftsfähigkeit"
+                ],
+                "urgency": "Jede Verzögerung erhöhte Kampagnenrisiken und bremste Wachstumsinitiativen."
+            },
+            "technical": {
+                "situation": "Technisch lag der Schwerpunkt auf einer mehrstufigen Migration über mehrere Märkte hinweg: Integrationen (Payment, ERP, Fulfillment, Analytics) stabil halten, SEO-Signale erhalten und Cutover-Risiken minimieren. Gleichzeitig musste die Architektur klar modular sein, damit weitere Märkte effizient angebunden werden können.",
+                "keyTensions": [
+                    "Strangler-Ansatz vs Big-Bang-Cutover",
+                    "Composable Design vs Shopify-Limitierungen",
+                    "Datenmodell-Bereinigung vs Delivery-Druck",
+                    "Integrationsstabilität vs hohe Änderungsrate",
+                    "Observability/Monitoring für Rollout-Sicherheit"
+                ],
+                "urgency": "Sequenzierung musste mit Kampagnenkalender und Business-Freeze-Zeiten kompatibel sein."
+            }
         },
         "cta": {
             "primary": "Beratung buchen",
@@ -44,7 +82,45 @@
             "title": "Skalierung der Display-Ads-Plattform auf 5M+ tägliche Transaktionen"
         },
         "challenge": {
-            "situation": "Der bestehende Ad-Server stürzte zu den Stoßzeiten beim Mittagessen ab. Latenz > 200ms führte zu verlorenen Impressionen und Umsatz."
+            "contextChips": [
+                { "label": "Branche", "value": "Food Delivery / AdTech" },
+                { "label": "Volumen", "value": "5M+ tägliche Transaktionen" },
+                { "label": "SLA", "value": "99,99% Verfügbarkeit" },
+                { "label": "Latenz", "value": "<20ms Ziel" },
+                { "label": "Impact", "value": "$20M Umsatzsteigerung" }
+            ],
+            "standard": {
+                "situation": "Der bestehende Ad-Server stürzte zu Spitzenzeiten ab, mit Latenzen über 200ms und daraus resultierenden verlorenen Impressionen und Umsatzeinbußen. Die Plattform musste auf 5M+ tägliche Transaktionen skaliert werden bei gleichzeitiger Einhaltung von <20ms Antwortzeiten und 99,99% Verfügbarkeit.",
+                "keyTensions": [
+                    "Peak-Traffic-Spitzen vs Infrastruktur-Kostenkontrolle",
+                    "Sub-20ms Latenz vs Datenkonsistenz-Anforderungen",
+                    "Legacy PHP-Codebase vs moderne Performance-Anforderungen",
+                    "Schnelle Delivery vs Produktionsstabilität",
+                    "Sekundengenaue Abrechnung vs Systemdurchsatz"
+                ],
+                "urgency": "Black Friday rückte näher mit prognostiziertem 3-fachen Traffic-Anstieg."
+            },
+            "executive": {
+                "situation": "Umsätze aus Display-Ads gingen durch Plattforminstabilität zu Spitzenzeiten verloren. Der Business Case war eindeutig: Jede Millisekunde Latenz und jeder Absturz wirkte sich direkt auf Impression-Yield und Advertiser-Vertrauen aus. Bei Erreichen der Performance-Ziele wurde eine 20%ige Umsatzsteigerung prognostiziert.",
+                "keyTensions": [
+                    "Gefährdeter Umsatz vs Migrations-/Replatform-Investition",
+                    "Advertiser-SLA-Zusagen vs technische Schulden",
+                    "Schnelligkeit der Lösung vs langfristige Architekturqualität",
+                    "Teamkapazität vs Black-Friday-Deadline"
+                ],
+                "urgency": "Saisonaler Umsatz auf dem Spiel mit Black Friday als harter Deadline."
+            },
+            "technical": {
+                "situation": "Die zentrale technische Herausforderung war die Re-Architektur eines Hochdurchsatz-Ad-Serving-Systems von PHP/MySQL zu Go/Redis bei gleichzeitiger Implementierung von Exactly-Once-Processing für Abrechnungsgenauigkeit. Das System musste 5M+ tägliche Transaktionen mit <20ms P99-Latenz bewältigen und Real-Time-Bidding-Workflows unterstützen.",
+                "keyTensions": [
+                    "Event-Driven-Architektur vs Legacy-synchrone Patterns",
+                    "Exactly-Once-Processing vs Throughput-Optimierung",
+                    "Go-Migration vs Team-PHP-Expertise",
+                    "Redis-Caching-Strategie vs Datenpersistenz",
+                    "Kubernetes Auto-Scaling vs Kostenplanbarkeit"
+                ],
+                "urgency": "Architekturentscheidungen mussten 3-faches Traffic-Wachstum innerhalb von 6 Wochen ermöglichen."
+            }
         },
         "cta": {
             "primary": "System skalieren",
@@ -187,7 +263,45 @@
             "title": "Gesundheitssystem-Modernisierung & Mobile App"
         },
         "challenge": {
-            "situation": "Veraltetes System benötigte Modernisierung und mobilen Zugriff."
+            "contextChips": [
+                { "label": "Branche", "value": "Healthcare" },
+                { "label": "Einsparung", "value": "$500K jährlich" },
+                { "label": "Traffic", "value": "70% Steigerung" },
+                { "label": "Compliance", "value": "HIPAA" },
+                { "label": "Plattform", "value": "Cloud + Mobile" }
+            ],
+            "standard": {
+                "situation": "Eine 15 Jahre alte Healthcare- und E-Commerce-Plattform stand vor Compliance-Audit-Fehlschlägen, Performance-Degradation und steigenden Wartungskosten. Das System benötigte eine Modernisierung auf Cloud-Infrastruktur bei gleichzeitiger Ergänzung mobiler Funktionen zur Erfüllung der Nutzeranforderungen.",
+                "keyTensions": [
+                    "Compliance-Audit-Fristen vs Migrationskomplexität",
+                    "Legacy-Vendor-EOL vs Business-Kontinuität",
+                    "Mobile Enablement vs Sicherheitsanforderungen",
+                    "Kostenreduktionsziele vs Modernisierungsinvestition",
+                    "User-Experience-Verbesserungen vs regulatorische Constraints"
+                ],
+                "urgency": "Vorstandsmandat: Compliance innerhalb von 6 Monaten erreichen."
+            },
+            "executive": {
+                "situation": "Monatliche Audit-Feststellungen kosteten €50K+ und gefährdeten die operative Kontinuität. Das Vorstandsmandat war eindeutig: HIPAA-Compliance erreichen und operative Kosten innerhalb von 6 Monaten senken, oder mit eskalierenden Strafen und potenziellen Service-Unterbrechungen rechnen.",
+                "keyTensions": [
+                    "Audit-Kostenbelastung vs Transformationsbudget",
+                    "Compliance-Deadline vs realistische Migrations-Timeline",
+                    "Risiko des Weiterbetriebs vs Migrationsrisiko",
+                    "Kurzfristige Fixes vs langfristige Plattformstrategie"
+                ],
+                "urgency": "Vorstandsfrist mit €600K jährlicher Audit-Belastung auf dem Spiel."
+            },
+            "technical": {
+                "situation": "Die technische Herausforderung bestand in der Migration eines Legacy Java 8/Oracle-Systems zu AWS unter Beibehaltung der HIPAA-Compliance, Implementierung von Zero-Downtime-Deployment und Aufbau einer neuen Apotheken-Mobile-App, die zum primären Nutzerkanal werden sollte.",
+                "keyTensions": [
+                    "Blue-Green-Deployment vs Datenkonsistenz",
+                    "HIPAA-Controls vs Cloud-Native-Patterns",
+                    "Mobile-App-Performance vs API-Legacy-Constraints",
+                    "Automatisiertes Compliance-Monitoring vs manuelle Audit-Prozesse",
+                    "Multi-Region-Verfügbarkeit vs Kostenoptimierung"
+                ],
+                "urgency": "Legacy-Vendor-Support endet innerhalb von 12 Monaten."
+            }
         },
         "cta": {
             "primary": "Apps modernisieren",
