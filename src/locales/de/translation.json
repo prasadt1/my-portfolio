@@ -893,9 +893,31 @@
             "scope": "Umfang",
             "role": "Meine Rolle"
         },
+        "challenge": {
+            "title": "Die Herausforderung",
+            "keyTensions": "Kernspannungen",
+            "urgency": "Dringlichkeit"
+        },
+        "persona": {
+            "standard": "Standard",
+            "executive": "Executive",
+            "technical": "Technisch"
+        },
         "whatIDelivered": {
             "title": "Was ich geliefert habe",
             "differentiator": "Hauptunterschied"
+        },
+        "howIDelivered": {
+            "title": "Wie ich es umgesetzt habe",
+            "whyMe": "Warum ich"
+        },
+        "outcome": "Ergebnis",
+        "showMore": "Mehr anzeigen",
+        "showLess": "Weniger anzeigen",
+        "technical": {
+            "title": "Technische Transformation",
+            "before": "Vorher-Zustand",
+            "after": "Nachher-Zustand"
         },
         "deliverables": {
             "title": "Deliverables, die Sie erhalten",
