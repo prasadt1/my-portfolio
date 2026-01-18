@@ -8,6 +8,7 @@ import LoadingState from '../components/LoadingState';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useFeatureFlag } from '../context/FeatureFlagsProvider';
 
 type IndustryType = 'healthcare' | 'financial' | 'ecommerce' | 'aiml';
 
@@ -69,6 +70,7 @@ const EXAMPLE_PROMPTS: Record<IndustryType, string> = {
 
 const ArchitectureEngine: React.FC = () => {
   const { t } = useTranslation();
+  const archGenFlag = useFeatureFlag('arch_generator');
   const [step, setStep] = useState<'industry' | 'input' | 'generating' | 'result'>('industry');
   const [selectedIndustry, setSelectedIndustry] = useState<IndustryType | null>(null);
   const [challenge, setChallenge] = useState('');
@@ -201,6 +203,29 @@ const ArchitectureEngine: React.FC = () => {
     setResult(null);
     setError(null);
   };
+
+  // Feature flag gate - show message if disabled
+  if (!archGenFlag.enabled) {
+    return (
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="max-w-2xl mx-auto text-center">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+            Architecture Generator Temporarily Unavailable
+          </h1>
+          <p className="text-lg text-slate-600 dark:text-slate-400 mb-6">
+            This feature is currently disabled. Please contact us if you need architecture assessment services.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            <ArrowLeft size={18} />
+            Contact Us
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">

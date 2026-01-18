@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, TrendingUp, Layers, ShieldAlert, Loader2 } from 'lucide-react';
 import { CaseStudy, isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, getLocalizedStringArray, LocalizedString } from '../../types/CaseStudy';
 import { trackEvent } from '../../services/analytics';
+import { useFeatureFlag } from '../../context/FeatureFlagsProvider';
 
-// Lazy-load ExecutiveSummaryModal for better initial bundle size
+// Lazy-load ExecutiveSummaryModal for better initial bundle size (gated by feature flag)
 const ExecutiveSummaryModal = lazy(() => import('../ExecutiveSummaryModal'));
 
 // Helper to get situation text from any challenge structure
@@ -35,6 +36,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
     const [showExecutiveSummary, setShowExecutiveSummary] = useState(false);
+    
+    // Feature flag for Executive Modal
+    const execModalFlag = useFeatureFlag('exec_modal');
+    
+    // Debug: log flag status (remove in production)
+    React.useEffect(() => {
+        if (process.env.NODE_ENV === 'development') {
+            console.log('[ProjectCard] exec_modal flag:', execModalFlag);
+        }
+    }, [execModalFlag]);
 
     const theme = project.theme || {
         color: 'emerald',
@@ -205,26 +216,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                             {t('caseStudies.viewCaseStudy')}
                             <ArrowRight size={14} />
                         </Link>
-                        <button
-                            onClick={() => {
-                                setShowExecutiveSummary(true);
-                                trackEvent('projects_card_click_exec_summary', {
-                                    slug: project.slug,
-                                    locale
-                                });
-                            }}
-                            className="py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
-                            title={t('caseStudies.executiveSummary')}
-                        >
-                            <FileText size={14} />
-                            <span className="hidden sm:inline">{t('caseStudies.executiveSummary')}</span>
-                        </button>
+                                {execModalFlag.enabled && (
+                                    <button
+                                        onClick={() => {
+                                            setShowExecutiveSummary(true);
+                                            trackEvent('projects_card_click_exec_summary', {
+                                                slug: project.slug,
+                                                locale
+                                            });
+                                        }}
+                                        className="py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm transition-colors flex items-center justify-center gap-1.5"
+                                        title={t('caseStudies.executiveSummary')}
+                                    >
+                                        <FileText size={14} />
+                                        <span className="hidden sm:inline">{t('caseStudies.executiveSummary')}</span>
+                                    </button>
+                                )}
                     </div>
                 </div>
             </motion.div>
 
-            {/* Executive Summary Modal - Lazy loaded */}
-            {showExecutiveSummary && (
+            {/* Executive Summary Modal - Lazy loaded (gated by feature flag) */}
+            {showExecutiveSummary && execModalFlag.enabled && (
                 <Suspense fallback={
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
                         <div className="bg-white dark:bg-slate-800 rounded-lg p-8">

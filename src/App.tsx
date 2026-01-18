@@ -6,6 +6,7 @@ import { AnalyticsProvider } from './components/AnalyticsProvider';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
+import { FeatureFlagsProvider } from './context/FeatureFlagsProvider';
 import { Loader2 } from 'lucide-react';
 import './i18n';
 
@@ -75,8 +76,9 @@ const App: React.FC = () => {
     <HelmetProvider>
       <ThemeProvider>
         <BrowserRouter>
-          <AnalyticsProvider>
-            <Routes>
+          <FeatureFlagsProvider>
+            <AnalyticsProvider>
+              <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
                 <Route path="services" element={<ServicesPage />} />
@@ -97,7 +99,8 @@ const App: React.FC = () => {
             <Suspense fallback={null}>
               <ExitIntentPopup />
             </Suspense>
-          </AnalyticsProvider>
+            </AnalyticsProvider>
+          </FeatureFlagsProvider>
         </BrowserRouter>
       </ThemeProvider>
     </HelmetProvider>

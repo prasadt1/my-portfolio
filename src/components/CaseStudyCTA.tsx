@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight, Mail } from 'lucide-react';
 import { trackEvent } from '../services/analytics';
 import { setAttributionContext } from '../utils/attribution';
+import { useFeatureFlag } from '../context/FeatureFlagsProvider';
 
 export interface CaseStudyCTAProps {
     variant: 'primary' | 'secondary' | 'tertiary';
@@ -40,6 +41,9 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
 }) => {
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
+    
+    // Feature flag for Risk Radar (secondary CTA)
+    const riskRadarFlag = useFeatureFlag('risk_radar');
 
     const handleClick = (ctaType: string, href?: string) => {
         // Update attribution context with CTA source
@@ -87,8 +91,13 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
         );
     }
 
-    // Secondary CTA: Try Risk Radar
+    // Secondary CTA: Try Risk Radar (gated by feature flag)
     if (variant === 'secondary') {
+        // Don't render if Risk Radar feature is disabled
+        if (!riskRadarFlag.enabled) {
+            return null;
+        }
+        
         return (
             <Link
                 to="/risk-radar"

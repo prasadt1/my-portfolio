@@ -10,6 +10,7 @@ import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import createLeadStore, { logLeadStoreConfig } from './leadStore/index.js';
 import { safeStr } from './utils.js';
+import { getFeatureFlags, logFeatureFlagsConfig } from './featureFlags.js';
 
 dotenv.config({ path: '../.env.local' });
 
@@ -39,6 +40,10 @@ validateEmailConfig();
 
 // Initialize lead store
 logLeadStoreConfig();
+
+// Initialize feature flags logging
+logFeatureFlagsConfig();
+
 const leadStore = createLeadStore();
 
 app.use(cors());
@@ -299,6 +304,14 @@ Return ONLY valid JSON matching the schema.
 // Architecture generation endpoint (server-side)
 app.post('/api/architecture/generate', async (req, res) => {
     try {
+        // Feature flag check
+        const { isFeatureEnabled } = await import('./featureFlags.js');
+        if (!isFeatureEnabled('arch_generator', req)) {
+            return res.status(403).json({ 
+                error: 'Architecture Generator feature is currently disabled. Please contact support if you need access.' 
+            });
+        }
+
         const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
         
         // Rate limiting
@@ -647,7 +660,7 @@ const createEmailTransporter = () => {
             port: config.port,
             secure: config.secure,
             user: config.auth.user,
-            passLength: passLength
+            passLength: passLength,
             isGmail: isGmail,
             requireTLS: config.requireTLS || false
         });
@@ -2777,6 +2790,37 @@ app.post('/api/lead', async (req, res) => {
 });
 
 // Test email endpoint (dev-only)
+// Feature Flags API endpoints
+app.get('/api/featureflags', (req, res) => {
+    try {
+        const flags = getFeatureFlags(req);
+        // Debug: log if flags are all disabled (helps diagnose env var issues)
+        const enabledCount = Object.values(flags).filter(f => f.enabled).length;
+        if (enabledCount === 0 && process.env.NODE_ENV !== 'production') {
+            console.warn('[Feature Flags] ⚠️  All flags are disabled. Check .env.local file for FEATURE_* variables.');
+        }
+        res.json({ flags });
+    } catch (error) {
+        console.error('[Feature Flags] Error getting flags:', error);
+        res.status(500).json({ error: 'Failed to get feature flags' });
+    }
+});
+
+app.post('/api/featureflags/refresh', (req, res) => {
+    // Dev-only endpoint for re-evaluating flags
+    if (process.env.NODE_ENV === 'production') {
+        return res.status(403).json({ error: 'Refresh endpoint not available in production' });
+    }
+    
+    try {
+        const flags = getFeatureFlags(req);
+        res.json({ flags });
+    } catch (error) {
+        console.error('[Feature Flags] Error refreshing flags:', error);
+        res.status(500).json({ error: 'Failed to refresh feature flags' });
+    }
+});
+
 app.post('/api/email/test', async (req, res) => {
     // Only allow in development
     if (process.env.NODE_ENV === 'production') {
