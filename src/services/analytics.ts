@@ -5,6 +5,9 @@
  * GDPR compliant - no PII collection.
  */
 
+import { getAttributionSnapshot } from '../utils/attribution';
+import i18n from '../i18n';
+
 interface EventProps {
   [key: string]: string | number | boolean | undefined;
 }
@@ -12,6 +15,17 @@ interface EventProps {
 interface AnalyticsEvent {
   name: string;
   props?: EventProps;
+  attribution?: {
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    utm_content?: string;
+    utm_term?: string;
+    referrer?: string;
+    landingPath?: string;
+    caseStudySlug?: string;
+    projectsCategory?: string;
+  };
   timestamp: string;
   url: string;
   userAgent?: string;
@@ -22,13 +36,31 @@ const API_ENDPOINT = '/api/events';
 
 /**
  * Track an analytics event
+ * Automatically attaches attribution snapshot (UTM params, referrer, landing path, etc.)
  * @param name - Event name (e.g., 'leadmagnet_view', 'cta_click')
  * @param props - Optional event properties
  */
 export const trackEvent = async (name: string, props?: EventProps): Promise<void> => {
+  // Get attribution snapshot (includes UTM params, referrer, landing path, context)
+  const attributionSnapshot = typeof window !== 'undefined' 
+    ? getAttributionSnapshot(i18n.language || 'en')
+    : null;
+
   const event: AnalyticsEvent = {
     name,
     props,
+    // Attach safe attribution fields (no PII)
+    attribution: attributionSnapshot ? {
+      utm_source: attributionSnapshot.utm_source,
+      utm_medium: attributionSnapshot.utm_medium,
+      utm_campaign: attributionSnapshot.utm_campaign,
+      utm_content: attributionSnapshot.utm_content,
+      utm_term: attributionSnapshot.utm_term,
+      referrer: attributionSnapshot.referrer,
+      landingPath: attributionSnapshot.landingPath,
+      caseStudySlug: attributionSnapshot.caseStudySlug,
+      projectsCategory: attributionSnapshot.projectsCategory,
+    } : undefined,
     timestamp: new Date().toISOString(),
     url: typeof window !== 'undefined' ? window.location.pathname : '',
   };

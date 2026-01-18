@@ -165,6 +165,8 @@ export class GoogleSheetLeadStore extends LeadStore {
             
             // Defense-in-depth: Sanitize all fields with truncation and formula injection prevention
             // Even if /api/lead already sanitized, we enforce limits here too
+            // Columns A-K: Original fields (timestamp, email, name, sourcePath, locale, consent, consentTimestamp, ipHash, userAgent, leadMagnet, referrer)
+            // Columns L-V: Attribution fields (Phase 3.0)
             const row = [
                 safeSheetStr(lead.timestamp || new Date().toISOString(), 40),
                 safeSheetStr(lead.email, 160),
@@ -176,12 +178,25 @@ export class GoogleSheetLeadStore extends LeadStore {
                 safeSheetStr(lead.ipHash, 64),
                 safeSheetStr(lead.userAgent, 250),
                 safeSheetStr(lead.leadMagnet, 80),
-                safeSheetStr(lead.referrer, 300)
+                safeSheetStr(lead.referrer, 300),
+                // Attribution fields (Phase 3.0) - columns L-V
+                safeSheetStr(lead.utm_source, 100),
+                safeSheetStr(lead.utm_medium, 100),
+                safeSheetStr(lead.utm_campaign, 200),
+                safeSheetStr(lead.utm_content, 200),
+                safeSheetStr(lead.utm_term, 200),
+                safeSheetStr(lead.landingPath, 200),
+                safeSheetStr(lead.currentPath, 200),
+                safeSheetStr(lead.caseStudySlug, 100),
+                safeSheetStr(lead.projectsCategory, 100),
+                safeSheetStr(lead.projectsSearchQuery, 200),
+                safeSheetStr(lead.ctaSource, 100)
             ];
 
+            // Use range A:V to include attribution columns (backwards compatible: if sheet has fewer columns, Google Sheets will append)
             await sheets.spreadsheets.values.append({
                 spreadsheetId: this.spreadsheetId,
-                range: `${this.sheetName}!A:K`,
+                range: `${this.sheetName}!A:V`,
                 valueInputOption: 'USER_ENTERED',
                 insertDataOption: 'INSERT_ROWS',
                 requestBody: {
