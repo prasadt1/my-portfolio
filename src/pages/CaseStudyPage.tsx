@@ -32,6 +32,7 @@ import {
 import { getLocalizedValue, getLocalizedArray as getLocalizedArrayUtil } from '../utils/localization';
 import { setAttributionContext } from '../utils/attribution';
 import { trackEvent } from '../services/analytics';
+import { useFeatureFlag } from '../context/FeatureFlagsProvider';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -130,6 +131,12 @@ const CaseStudyPage: React.FC = () => {
     const [showAllApproach, setShowAllApproach] = useState(false);
     const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
+    
+    // Feature flag for sticky CTAs
+    const stickyCtaFlag = useFeatureFlag('sticky_cta');
+    
+    // Feature flag for Risk Radar
+    const riskRadarFlag = useFeatureFlag('risk_radar');
     
     // Single source of truth: projects.ts
     const study = projects.find(s => s.slug === slug || s.id === slug);
@@ -257,8 +264,8 @@ const CaseStudyPage: React.FC = () => {
 
     return (
         <div className={`min-h-screen bg-white dark:bg-slate-900 pt-20 relative ${isSticky ? 'pb-20 lg:pb-0' : ''}`}>
-            {/* Phase 3.0 B2: Sticky Sidebar CTA (Desktop Only) */}
-            {study && (
+            {/* Phase 3.0 B2: Sticky Sidebar CTA (Desktop Only) - Gated by feature flag */}
+            {study && stickyCtaFlag.enabled && (
                 <aside className="hidden lg:block fixed right-4 top-1/2 -translate-y-1/2 z-40 transition-opacity duration-300" style={{ opacity: isSticky ? 1 : 0, pointerEvents: isSticky ? 'auto' : 'none' }}>
                     <motion.div
                         initial={{ x: 100, opacity: 0 }}
@@ -280,8 +287,8 @@ const CaseStudyPage: React.FC = () => {
                 </aside>
             )}
 
-            {/* Phase 3.0 B3: Sticky Bottom Bar CTA (Mobile Only) */}
-            {study && (
+            {/* Phase 3.0 B3: Sticky Bottom Bar CTA (Mobile Only) - Gated by feature flag */}
+            {study && stickyCtaFlag.enabled && (
                 <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300" style={{ transform: isSticky ? 'translateY(0)' : 'translateY(100%)' }}>
                     <motion.div
                         initial={{ y: 100 }}
@@ -1087,13 +1094,15 @@ const CaseStudyPage: React.FC = () => {
                             {t('caseStudy.cta.primary')}
                             <ArrowRight size={20} />
                         </a>
-                        <Link
-                            to="/risk-radar"
-                            className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2"
-                        >
-                            {t('caseStudy.cta.secondary')}
-                            <ArrowRight size={20} />
-                        </Link>
+                        {riskRadarFlag.enabled && (
+                            <Link
+                                to="/risk-radar"
+                                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2"
+                            >
+                                {t('caseStudy.cta.secondary')}
+                                <ArrowRight size={20} />
+                            </Link>
+                        )}
                     </div>
                 </div>
             </section>
