@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import { PageShell, PageHeader, Container } from '../components/layout';
 import i18n from '../i18n';
 import { trackEvent, AnalyticsEvents } from '../services/analytics';
+import { getAttributionSnapshot } from '../utils/attribution';
 
 const ChecklistPage: React.FC = () => {
     const { t } = useTranslation();
@@ -43,6 +44,9 @@ const ChecklistPage: React.FC = () => {
         });
 
         try {
+            // Get attribution snapshot for lead attribution
+            const attribution = getAttributionSnapshot(i18n.language || 'en');
+            
             const response = await fetch('/api/lead', {
                 method: 'POST',
                 headers: {
@@ -54,7 +58,19 @@ const ChecklistPage: React.FC = () => {
                     sourcePath: '/checklist',
                     leadMagnet: 'vendor-proposal-checklist',
                     consent: true,
-                    consentTimestamp: new Date().toISOString()
+                    consentTimestamp: new Date().toISOString(),
+                    // Attribution fields
+                    utm_source: attribution.utm_source,
+                    utm_medium: attribution.utm_medium,
+                    utm_campaign: attribution.utm_campaign,
+                    utm_content: attribution.utm_content,
+                    utm_term: attribution.utm_term,
+                    landingPath: attribution.landingPath,
+                    currentPath: attribution.currentPath,
+                    caseStudySlug: attribution.caseStudySlug,
+                    projectsCategory: attribution.projectsCategory,
+                    projectsSearchQuery: attribution.projectsSearchQuery,
+                    ctaSource: attribution.ctaSource || 'checklist-page',
                 }),
             });
 

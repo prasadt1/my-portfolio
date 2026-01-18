@@ -635,11 +635,19 @@ const createEmailTransporter = () => {
             })
         };
         
+        // Debug: Check password length (help identify spacing issues)
+        const passLength = process.env.SMTP_PASS ? process.env.SMTP_PASS.length : 0;
+        if (isGmail && passLength !== 16 && passLength !== 20) {
+            console.warn(`[SMTP] ⚠️  WARNING: Gmail App Password should be 16 chars (without spaces) or 20 chars (with spaces). Current length: ${passLength}`);
+            console.warn('[SMTP] If password has spaces, remove them or Gmail auth will fail.');
+        }
+        
         console.log('[SMTP] Creating transporter with config:', {
             host: config.host,
             port: config.port,
             secure: config.secure,
             user: config.auth.user,
+            passLength: passLength
             isGmail: isGmail,
             requireTLS: config.requireTLS || false
         });
@@ -2469,7 +2477,24 @@ const generateNurtureEmail3 = (lang = 'en') => {
 
 app.post('/api/lead', async (req, res) => {
     try {
-        const { email: rawEmail, language, sourcePath: rawSourcePath, leadMagnet: rawLeadMagnet } = req.body;
+        const { 
+            email: rawEmail, 
+            language, 
+            sourcePath: rawSourcePath, 
+            leadMagnet: rawLeadMagnet,
+            // Attribution fields (optional, Phase 3.0)
+            utm_source: rawUtmSource,
+            utm_medium: rawUtmMedium,
+            utm_campaign: rawUtmCampaign,
+            utm_content: rawUtmContent,
+            utm_term: rawUtmTerm,
+            landingPath: rawLandingPath,
+            currentPath: rawCurrentPath,
+            caseStudySlug: rawCaseStudySlug,
+            projectsCategory: rawProjectsCategory,
+            projectsSearchQuery: rawProjectsSearchQuery,
+            ctaSource: rawCtaSource
+        } = req.body;
 
         // ========================================
         // Input validation and sanitization
@@ -2506,7 +2531,21 @@ app.post('/api/lead', async (req, res) => {
         // Get client info for lead tracking (sanitize for safety)
         const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
         const userAgent = safeStr(req.get('user-agent'), 250);
+        // Use referrer from header (attribution referrer comes from client)
         const referrer = safeStr(req.get('referer'), 300);
+        
+        // Sanitize attribution fields (all optional, preserve backwards compatibility)
+        const utm_source = safeStr(rawUtmSource, 100);
+        const utm_medium = safeStr(rawUtmMedium, 100);
+        const utm_campaign = safeStr(rawUtmCampaign, 200);
+        const utm_content = safeStr(rawUtmContent, 200);
+        const utm_term = safeStr(rawUtmTerm, 200);
+        const landingPath = safeStr(rawLandingPath, 200);
+        const currentPath = safeStr(rawCurrentPath, 200);
+        const caseStudySlug = safeStr(rawCaseStudySlug, 100);
+        const projectsCategory = safeStr(rawProjectsCategory, 100);
+        const projectsSearchQuery = safeStr(rawProjectsSearchQuery, 200);
+        const ctaSource = safeStr(rawCtaSource, 100);
 
         // Check if email already exists using lead store
         try {
@@ -2522,7 +2561,7 @@ app.post('/api/lead', async (req, res) => {
         // Hash IP for privacy (simple hash)
         const ipHash = crypto.createHash('sha256').update(clientIp).digest('hex').substring(0, 16);
 
-        // Add new lead with sanitized data
+        // Add new lead with sanitized data (includes attribution fields from Phase 3.0)
         const newLead = {
             email,
             locale: lang,
@@ -2533,7 +2572,19 @@ app.post('/api/lead', async (req, res) => {
             userAgent,
             referrer,
             consent: true, // User must have consented to submit
-            consentTimestamp: new Date().toISOString()
+            consentTimestamp: new Date().toISOString(),
+            // Attribution fields (Phase 3.0) - all optional, backwards compatible
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            utm_content,
+            utm_term,
+            landingPath,
+            currentPath,
+            caseStudySlug,
+            projectsCategory,
+            projectsSearchQuery,
+            ctaSource
         };
 
         // Save lead using lead store (handles both JSON and Google Sheets with fallback)
