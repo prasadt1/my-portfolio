@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectVisual from '../components/ProjectVisual';
+import CaseStudyCTA from '../components/CaseStudyCTA';
 import { 
     isLocalizedPersonaChallenge, 
     isLegacyChallenge,
@@ -29,6 +30,8 @@ import {
     type PersonaChallenges
 } from '../types/CaseStudy';
 import { getLocalizedValue, getLocalizedArray as getLocalizedArrayUtil } from '../utils/localization';
+import { setAttributionContext } from '../utils/attribution';
+import { trackEvent } from '../services/analytics';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -126,13 +129,41 @@ const CaseStudyPage: React.FC = () => {
     const [showAllDeliverables, setShowAllDeliverables] = useState(false);
     const [showAllApproach, setShowAllApproach] = useState(false);
     const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
+    const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
     
     // Single source of truth: projects.ts
     const study = projects.find(s => s.slug === slug || s.id === slug);
 
+    // Phase 3.0 B: Set attribution context when case study is viewed
+    useEffect(() => {
+        if (slug && study) {
+            setAttributionContext({
+                caseStudySlug: slug,
+            });
+            
+            // Track page view
+            trackEvent('case_study_view', {
+                slug,
+                locale,
+            });
+        }
+    }, [slug, study, locale]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [slug]);
+
+    // Phase 3.0 B: Track scroll position for sticky CTAs
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            // Show sticky CTAs after scrolling past 300px
+            setIsSticky(scrollY > 300);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     if (!study) {
         return (
@@ -225,7 +256,46 @@ const CaseStudyPage: React.FC = () => {
     const hasMoreApproachPhases = study.approach.phases.length > initialPhaseCount;
 
     return (
-        <div className="min-h-screen bg-white dark:bg-slate-900 pt-20">
+        <div className={`min-h-screen bg-white dark:bg-slate-900 pt-20 relative ${isSticky ? 'pb-20 lg:pb-0' : ''}`}>
+            {/* Phase 3.0 B2: Sticky Sidebar CTA (Desktop Only) */}
+            {study && (
+                <aside className="hidden lg:block fixed right-4 top-1/2 -translate-y-1/2 z-40 transition-opacity duration-300" style={{ opacity: isSticky ? 1 : 0, pointerEvents: isSticky ? 'auto' : 'none' }}>
+                    <motion.div
+                        initial={{ x: 100, opacity: 0 }}
+                        animate={{ x: isSticky ? 0 : 100, opacity: isSticky ? 1 : 0 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-2xl border border-slate-200 dark:border-slate-700 max-w-[280px]"
+                    >
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                            {t('caseStudy.cta.sidebarTitle', 'Ready to discuss?')}
+                        </h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                            {t('caseStudy.cta.sidebarText', "Get a 30-min discovery call to explore how we can help.")}
+                        </p>
+                        <div className="space-y-3">
+                            <CaseStudyCTA variant="primary" caseStudySlug={slug} className="w-full justify-center" />
+                            <CaseStudyCTA variant="secondary" caseStudySlug={slug} className="w-full justify-center" />
+                        </div>
+                    </motion.div>
+                </aside>
+            )}
+
+            {/* Phase 3.0 B3: Sticky Bottom Bar CTA (Mobile Only) */}
+            {study && (
+                <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300" style={{ transform: isSticky ? 'translateY(0)' : 'translateY(100%)' }}>
+                    <motion.div
+                        initial={{ y: 100 }}
+                        animate={{ y: isSticky ? 0 : 100 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 shadow-2xl p-4"
+                    >
+                        <div className="max-w-sm mx-auto flex gap-3">
+                            <CaseStudyCTA variant="primary" caseStudySlug={slug} className="flex-1 justify-center text-sm py-2.5" />
+                            <CaseStudyCTA variant="secondary" caseStudySlug={slug} className="flex-1 justify-center text-sm py-2.5" />
+                        </div>
+                    </motion.div>
+                </div>
+            )}
             {/* Header */}
             <section className="bg-slate-50 dark:bg-slate-800 pb-16 pt-12 border-b border-slate-200 dark:border-slate-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -616,6 +686,26 @@ const CaseStudyPage: React.FC = () => {
                     )}
                 </div>
             </section>
+
+            {/* Phase 3.0 B4: Inline CTA Block */}
+            {study && (
+                <section className="py-12 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-700">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-900/10 rounded-2xl p-8 md:p-10 border border-emerald-200 dark:border-emerald-800">
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                {t('caseStudy.cta.inlineTitle', 'Need similar architecture validation?')}
+                            </h2>
+                            <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                                {t('caseStudy.cta.inlineText', 'I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget.')}
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <CaseStudyCTA variant="primary" caseStudySlug={slug} />
+                                <CaseStudyCTA variant="tertiary" caseStudySlug={slug} />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* What I Delivered Section - Compact */}
             <section className="py-16 bg-slate-50 dark:bg-slate-800">

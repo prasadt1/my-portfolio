@@ -983,7 +983,12 @@
             "title": "Möchten Sie ähnliche Ergebnisse?",
             "text": "Buchen Sie einen Discovery Call. Ich schaue mir 2–3 relevante Artefakte an und sende innerhalb von 48 Stunden konkrete nächste Schritte.",
             "primary": "Discovery Call buchen",
-            "secondary": "Risk Radar testen"
+            "secondary": "Risk Radar testen",
+            "tertiary": "Vorschlag-Review anfragen",
+            "sidebarTitle": "Bereit zu sprechen?",
+            "sidebarText": "Buchen Sie einen 30-Minuten Discovery Call, um zu besprechen, wie wir helfen können.",
+            "inlineTitle": "Ähnliche Architektur-Validierung benötigt?",
+            "inlineText": "Ich biete unabhängige Reviews an, um Risiken, Lücken und Optimierungsmöglichkeiten zu identifizieren, bevor Budget bereitgestellt wird."
         }
     },
     "independentAdvisory": {
