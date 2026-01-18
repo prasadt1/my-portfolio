@@ -1021,7 +1021,12 @@
             "title": "Want similar results?",
             "text": "Book a discovery call. I'll review 2–3 key artifacts and share concrete next steps within 48 hours.",
             "primary": "Book Discovery Call",
-            "secondary": "Try Risk Radar"
+            "secondary": "Try Risk Radar",
+            "tertiary": "Request Proposal Review",
+            "sidebarTitle": "Ready to discuss?",
+            "sidebarText": "Get a 30-min discovery call to explore how we can help.",
+            "inlineTitle": "Need similar architecture validation?",
+            "inlineText": "I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget."
         }
     },
     "independentAdvisory": {
