@@ -224,126 +224,34 @@ const ServicesPage: React.FC = () => {
                         })}
                     </div>
 
-                    {/* Proof Cards Section */}
+                    {/* Phase 4 Wireframe: SECTION 3 — HOW I WORK (3 steps only) */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="mb-16"
-                    >
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                                {t('proof.title', { defaultValue: 'Real Results' })}
-                            </h2>
-                            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                                {t('proof.subtitle', { defaultValue: 'Qualitative outcomes from real engagements' })}
-                            </p>
-                        </div>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            {[1, 2, 3].map((cardNum) => {
-                                const contextKey = `proof.card${cardNum}.context`;
-                                const situationKey = `proof.card${cardNum}.situation`;
-                                const deliveredKey = `proof.card${cardNum}.delivered`;
-                                const outcomeKey = `proof.card${cardNum}.outcome`;
-                                
-                                return (
-                                    <motion.div
-                                        key={cardNum}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: cardNum * 0.1 }}
-                                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
-                                    >
-                                        <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-3">
-                                            {t(contextKey, { defaultValue: '' })}
-                                        </div>
-                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
-                                            {t(situationKey, { defaultValue: '' })}
-                                        </h3>
-                                        <div className="mb-4">
-                                            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">
-                                                What I Delivered:
-                                            </div>
-                                            <p className="text-sm text-slate-700 dark:text-slate-300">
-                                                {t(deliveredKey, { defaultValue: '' })}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">
-                                                Outcome:
-                                            </div>
-                                            <p className="text-sm text-slate-700 dark:text-slate-300 font-medium">
-                                                {t(outcomeKey, { defaultValue: '' })}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-                    </motion.div>
-
-                    {/* Risk Reversal / Guarantee Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-16 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-8 md:p-12 border-2 border-emerald-200 dark:border-emerald-800"
-                    >
-                        <div className="flex flex-col md:flex-row items-center gap-8">
-                            <div className="flex-shrink-0">
-                                <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center">
-                                    <Shield className="text-emerald-600 dark:text-emerald-400" size={40} />
-                                </div>
-                            </div>
-                            <div className="text-center md:text-left">
-                                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                                    {t('services.riskReversal.title', { defaultValue: 'Risk-Free Engagement' })}
-                                </h2>
-                                <p className="text-lg text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-                                    {t('services.riskReversal.description', { defaultValue: 'Every engagement starts with a discovery call. If we\'re not a good fit, I\'ll tell you — and recommend alternatives if I can.' })}
-                                </p>
-                                <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm">
-                                    <span className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-                                        <CheckCircle2 size={16} />
-                                        {t('services.riskReversal.point1', { defaultValue: 'No obligation discovery call' })}
-                                    </span>
-                                    <span className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-                                        <CheckCircle2 size={16} />
-                                        {t('services.riskReversal.point2', { defaultValue: 'Clear scope before commitment' })}
-                                    </span>
-                                    <span className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-                                        <CheckCircle2 size={16} />
-                                        {t('services.riskReversal.point3', { defaultValue: 'Money-back on reviews' })}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Independent Advisory Section */}
-                    <IndependentAdvisorySection />
-
-                    {/* What Happens Next Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 md:p-12 mb-8 border border-slate-200 dark:border-slate-700"
+                        className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 md:p-12 mb-16 border border-slate-200 dark:border-slate-700"
                     >
                         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-                            {t('services.whatHappensNext.title')}
+                            {t('services.whatHappensNext.title', { defaultValue: 'How I Work' })}
                         </h2>
+                        {/* Phase 4 Wireframe: 3 steps only */}
                         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                            {(t('services.whatHappensNext.steps', { returnObjects: true }) as string[]).map((step, idx) => (
-                                <div key={idx} className="text-center">
-                                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">
+                            {(t('services.whatHappensNext.steps', { returnObjects: true }) as string[]).slice(0, 3).map((step, idx) => (
+                                <motion.div 
+                                    key={idx} 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="text-center"
+                                >
+                                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto shadow-lg">
                                         {idx + 1}
                                     </div>
-                                    <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                                    <p className="text-base font-semibold text-slate-900 dark:text-white leading-relaxed">
                                         {step}
                                     </p>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </motion.div>
