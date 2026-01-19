@@ -74,44 +74,93 @@ const CompetitionPage: React.FC = () => {
                         </p>
                     </motion.div>
 
+                    {/* Phase 4 F2: Start Here Panel - Checklist for Judges */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.05 }}
+                        className="bg-gradient-to-br from-emerald-50 to-slate-50 dark:from-emerald-900/20 dark:to-slate-800 rounded-xl p-6 md:p-8 border-2 border-emerald-200 dark:border-emerald-800 mb-8"
+                    >
+                        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <CheckCircle2 className="text-emerald-600 dark:text-emerald-400" size={20} />
+                            {t('competition.page.startHere.title', { defaultValue: 'Start Here - Quick Checklist' })}
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-3 mb-4">
+                            <Link
+                                to="/checklist"
+                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'try_checklist' })}
+                                className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                                <CheckCircle2 size={14} className="text-emerald-500" />
+                                <span>{t('competition.page.startHere.item1', { defaultValue: 'Try AI Checklist' })}</span>
+                            </Link>
+                            <Link
+                                to="/architecture-engine"
+                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'try_arch_engine' })}
+                                className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                                <CheckCircle2 size={14} className="text-emerald-500" />
+                                <span>{t('competition.page.startHere.item2', { defaultValue: 'Try Architecture Assistant' })}</span>
+                            </Link>
+                            <Link
+                                to="/projects"
+                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'view_case_studies' })}
+                                className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                                <CheckCircle2 size={14} className="text-emerald-500" />
+                                <span>{t('competition.page.startHere.item3', { defaultValue: 'View Hero Case Studies' })}</span>
+                            </Link>
+                            <Link
+                                to="/projects/brita-ecommerce#artifacts"
+                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'see_artifacts' })}
+                                className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                            >
+                                <CheckCircle2 size={14} className="text-emerald-500" />
+                                <span>{t('competition.page.startHere.item4', { defaultValue: 'See Artifacts Gating + Request' })}</span>
+                            </Link>
+                        </div>
+                    </motion.section>
+
+                    {/* Phase 4 F1: 2-Column Grid Layout on Desktop */}
+                    <div className="grid md:grid-cols-2 gap-6 mb-8">
                     {/* What This Site Is */}
                     <motion.section
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 mb-8"
+                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
                     >
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
-                                <FileText className="text-emerald-600 dark:text-emerald-400" size={24} />
+                        <div className="flex items-start gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                                <FileText className="text-emerald-600 dark:text-emerald-400" size={20} />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                                     {t('competition.page.whatIs.title', { defaultValue: 'What This Site Is' })}
                                 </h2>
-                                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                                     {t('competition.page.whatIs.description', { defaultValue: 'An independent architecture consultant portfolio built with React + TypeScript, featuring AI-powered tools (Gemini 3 Pro), feature flags for phased rollout, GDPR-safe analytics, and production deployment on Google Cloud Run. The site demonstrates real-world enterprise architecture expertise through detailed case studies.' })}
                                 </p>
                             </div>
                         </div>
                     </motion.section>
 
-                    {/* AI Features */}
-                    <motion.section
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 mb-8"
-                    >
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                                <Sparkles className="text-blue-600 dark:text-blue-400" size={24} />
+                        {/* AI Features */}
+                        <motion.section
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                        >
+                        <div className="flex items-start gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                                <Sparkles className="text-blue-600 dark:text-blue-400" size={20} />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                                     {t('competition.page.aiFeatures.title', { defaultValue: 'AI Features' })}
                                 </h2>
-                                <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
                                     {t('competition.page.aiFeatures.description', { defaultValue: 'This portfolio integrates Google Gemini 3 Pro for:' })}
                                 </p>
                                 <ul className="space-y-2 mb-4">

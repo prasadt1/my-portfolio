@@ -40,3 +40,6 @@ const CardElevated: React.FC<CardElevatedProps> = ({
 };
 
 export default CardElevated;
+
+// Re-export for convenience
+export { Card as CardElevatedBase } from './Card';

@@ -38,6 +38,7 @@ import NDADisclaimer from '../components/NDADisclaimer';
 import CredibilityStrip from '../components/CredibilityStrip';
 import { isPromoted } from '../config/featureUtils';
 import { getGlobalPersona } from '../utils/personaPersistence';
+import CaseStudyNavigation, { type CaseStudySection } from '../components/CaseStudyNavigation';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -138,6 +139,7 @@ const CaseStudyPage: React.FC = () => {
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
     const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
     const [activePersona, setActivePersona] = useState<'hire' | 'consult' | 'toolkit' | null>(null); // Phase 3.4D: For CTA resolution
+    const [activeNavSection, setActiveNavSection] = useState<CaseStudySection>('snapshot'); // Phase 4 D1: Active section for nav pills
     
     // Feature flag for sticky CTAs
     const stickyCtaFlag = useFeatureFlag('sticky_cta');
@@ -277,6 +279,64 @@ const CaseStudyPage: React.FC = () => {
         : study.approach.phases.slice(0, initialPhaseCount);
     const hasMoreApproachPhases = study.approach.phases.length > initialPhaseCount;
 
+    // Phase 4 D1: IntersectionObserver to track active section (throttled for performance)
+    useEffect(() => {
+        const observerOptions = {
+            rootMargin: '-100px 0px -66%',
+            threshold: 0.1,
+        };
+
+        // Phase 4 I: Throttled section view tracking
+        let lastTracked: Record<string, number> = {};
+        const TRACK_THROTTLE_MS = 2000; // Track each section view max once per 2 seconds
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id as CaseStudySection;
+                    setActiveNavSection(sectionId);
+
+                    // Throttle analytics tracking
+                    const now = Date.now();
+                    const lastTrackedTime = lastTracked[sectionId] || 0;
+                    if (now - lastTrackedTime > TRACK_THROTTLE_MS) {
+                        lastTracked[sectionId] = now;
+                        trackEvent('case_study_section_viewed', {
+                            section: sectionId,
+                            caseStudySlug: slug || '',
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        const sections = ['snapshot', 'challenge', 'delivery', 'proof', 'artifacts', 'contact'];
+        sections.forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, [slug]);
+
+    // Phase 4 D1: Handle nav pill click - smooth scroll
+    const handleNavClick = (section: CaseStudySection) => {
+        const element = document.getElementById(section);
+        if (element) {
+            const offset = 100; // Account for sticky nav
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+            });
+
+            // Update active section immediately
+            setActiveNavSection(section);
+        }
+    };
+
     return (
         <div className={`min-h-screen bg-white dark:bg-slate-900 pt-20 relative ${isSticky ? 'pb-20 lg:pb-0' : ''}`}>
             {/* Phase 3.0 B2: Sticky Sidebar CTA (Desktop Only) - Gated by feature flag */}
@@ -318,8 +378,16 @@ const CaseStudyPage: React.FC = () => {
                     </motion.div>
                 </div>
             )}
-            {/* Header */}
-            <section className="bg-slate-50 dark:bg-slate-800 pb-16 pt-12 border-b border-slate-200 dark:border-slate-700">
+            {/* Phase 4 D1: Sticky Navigation Pills */}
+            {study && (
+                <CaseStudyNavigation
+                    activeSection={activeNavSection}
+                    onSectionClick={handleNavClick}
+                />
+            )}
+
+            {/* Header / Snapshot */}
+            <section id="snapshot" className="bg-slate-50 dark:bg-slate-800 pb-16 pt-12 border-b border-slate-200 dark:border-slate-700 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Top Row: Back Link */}
                     <div className="flex items-center mb-8">
@@ -467,7 +535,7 @@ const CaseStudyPage: React.FC = () => {
             </section>
 
             {/* Challenge Section - Phase 2 Redesign */}
-            <section className="py-16">
+            <section id="challenge" className="py-16 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header Row with Context Chips */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
@@ -552,10 +620,8 @@ const CaseStudyPage: React.FC = () => {
                         </div>
                     )}
 
-                    {/* Phase 3.3C: NDA Disclaimer (always shown if trustLayer exists) */}
-                    {study.trustLayer && (
-                        <NDADisclaimer trustLayer={study.trustLayer} locale={locale} />
-                    )}
+                    {/* Phase 4 D4: NDA Disclaimer - Subtle inline note (removed heavy component for density reduction) */}
+                    {/* NDA disclaimer is now shown inline in Trust Layer section above */}
 
                     {/* Phase 3.1: Trust Layer Section */}
                     {study.trustLayer && (
@@ -574,59 +640,58 @@ const CaseStudyPage: React.FC = () => {
                                 }, [study.slug, locale]); // Track once per study/page view
                                 return null;
                             })()}
-                            <div className="mb-8 bg-slate-50 dark:bg-slate-800 rounded-xl p-4 md:p-6 border border-slate-200 dark:border-slate-700">
-                                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4">
+                            {/* Phase 4 D4: Trust Layer - More compact (2-column, not stacked paragraphs) */}
+                            <div className="mb-6 bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3">
                                     {t('caseStudy.trustLayer.title', 'Trust & Scope')}
                                 </h3>
                                 
-                                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                                <div className="grid md:grid-cols-2 gap-3">
+                                    {/* Phase 4 D4: Compact Trust Layer - 2-column pills */}
                                     {/* My Role */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
-                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-3 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                                             {t('caseStudy.trustLayer.myRole', 'My Role')}
                                         </h4>
-                                        <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                                        <p className="text-xs text-slate-700 dark:text-slate-300 leading-snug line-clamp-2">
                                             {getLocalized(study.trustLayer.myRole, locale)}
                                         </p>
                                     </div>
 
                                     {/* Scope Owned */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
-                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                            {t('caseStudy.trustLayer.scopeOwned', 'Scope I personally owned')}
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-3 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                                            {t('caseStudy.trustLayer.scopeOwned', 'Scope Owned')}
                                         </h4>
-                                        <ul className="space-y-1.5">
-                                            {getLocalizedArray(study.trustLayer.scopeOwned, locale).map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                    <CheckCircle2 size={12} className="text-emerald-500 mt-0.5 shrink-0" />
-                                                    <span>{item}</span>
+                                        <ul className="space-y-1">
+                                            {getLocalizedArray(study.trustLayer.scopeOwned, locale).slice(0, 2).map((item, idx) => (
+                                                <li key={idx} className="flex items-start gap-1.5 text-xs text-slate-700 dark:text-slate-300 leading-snug">
+                                                    <CheckCircle2 size={10} className="text-emerald-500 mt-0.5 shrink-0" />
+                                                    <span className="line-clamp-1">{item}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
 
                                     {/* Delivered With Team */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
-                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                            {t('caseStudy.trustLayer.deliveredWithTeam', 'Delivered with team')}
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-3 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                                            {t('caseStudy.trustLayer.deliveredWithTeam', 'With Team')}
                                         </h4>
-                                        <ul className="space-y-1.5">
-                                            {getLocalizedArray(study.trustLayer.deliveredWithTeam, locale).map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                    <Layers size={12} className="text-blue-500 mt-0.5 shrink-0" />
-                                                    <span>{item}</span>
+                                        <ul className="space-y-1">
+                                            {getLocalizedArray(study.trustLayer.deliveredWithTeam, locale).slice(0, 2).map((item, idx) => (
+                                                <li key={idx} className="flex items-start gap-1.5 text-xs text-slate-700 dark:text-slate-300 leading-snug">
+                                                    <Layers size={10} className="text-blue-500 mt-0.5 shrink-0" />
+                                                    <span className="line-clamp-1">{item}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
 
-                                    {/* Confidentiality Note */}
-                                    <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
-                                        <h4 className="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider mb-2">
-                                            {t('caseStudy.trustLayer.confidentialityNote', 'Confidentiality note')}
-                                        </h4>
-                                        <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
-                                            {getLocalized(study.trustLayer.confidentialityNote, locale)}
+                                    {/* Phase 4 D4: Subtle inline NDA note (not full heavy component) */}
+                                    <div className="bg-amber-50/50 dark:bg-amber-900/10 rounded-lg p-2 border border-amber-200/50 dark:border-amber-800/50">
+                                        <p className="text-xs text-amber-700 dark:text-amber-400 leading-snug">
+                                            <span className="font-semibold">NDA:</span> {getLocalized(study.trustLayer.confidentialityNote, locale).slice(0, 80)}...
                                         </p>
                                     </div>
                                 </div>
@@ -637,10 +702,19 @@ const CaseStudyPage: React.FC = () => {
                     {/* Persona Challenges - Phase 2: Collapsed by default */}
                     {study.personaChallenges && (
                         <div className="mb-8">
-                            {/* Expand/Collapse Button */}
+                            {/* Phase 4 D2: Expand/Collapse Button with analytics */}
                             <button
-                                onClick={() => setShowPersonaDetails(!showPersonaDetails)}
+                                onClick={() => {
+                                    setShowPersonaDetails(!showPersonaDetails);
+                                    trackEvent('persona_block_expanded', {
+                                        persona,
+                                        expanded: !showPersonaDetails,
+                                        caseStudySlug: slug || '',
+                                    });
+                                }}
                                 className="w-full flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                aria-expanded={showPersonaDetails}
+                                aria-label={showPersonaDetails ? t('caseStudy.executiveSnapshot.hidePersonaDetails', 'Hide persona details') : t('caseStudy.executiveSnapshot.viewPersonaDetails', 'View challenges by persona')}
                             >
                                 <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                                     {showPersonaDetails 
@@ -696,13 +770,13 @@ const CaseStudyPage: React.FC = () => {
                                                     transition={{ duration: 0.2 }}
                                                     className="space-y-6"
                                                 >
-                                                    {/* Challenges */}
+                                                    {/* Phase 4 D2: Challenges - Max 3 bullets only */}
                                                     <div>
                                                         <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
                                                             {t('caseStudy.challenge.challenges', 'Challenges')}
                                                         </h4>
-                                                        <ul className="grid md:grid-cols-2 gap-2">
-                                                            {getLocalizedArrayUtil(study.personaChallenges[persona].challenges, locale).slice(0, 6).map((item, idx) => (
+                                                        <ul className="space-y-2">
+                                                            {getLocalizedArrayUtil(study.personaChallenges[persona].challenges, locale).slice(0, 3).map((item, idx) => (
                                                                 <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                                                                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
                                                                     <span>{item}</span>
@@ -765,8 +839,9 @@ const CaseStudyPage: React.FC = () => {
                                     <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
                                         {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
                                     </h3>
+                                    {/* Phase 4 D2: Max 4 key tensions in 2-column */}
                                     <div className="grid md:grid-cols-2 gap-3">
-                                        {challengeContent.keyTensions.slice(0, 6).map((tension, idx) => (
+                                        {challengeContent.keyTensions.slice(0, 4).map((tension, idx) => (
                                             <div 
                                                 key={idx}
                                                 className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
@@ -821,7 +896,7 @@ const CaseStudyPage: React.FC = () => {
             )}
 
             {/* What I Delivered Section - Compact */}
-            <section className="py-16 bg-slate-50 dark:bg-slate-800">
+            <section id="delivery" className="py-16 bg-slate-50 dark:bg-slate-800 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionHeader 
                         title={t('caseStudy.whatIDelivered.title')} 
@@ -941,39 +1016,42 @@ const CaseStudyPage: React.FC = () => {
                                         {phase.number}
                                     </div>
 
-                                    <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                                            <div className="flex items-center gap-3">
-                                                <span className="md:hidden w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs">
-                                                    {phase.number}
-                                                </span>
-                                                <h3 className="font-bold text-slate-900 dark:text-white">
-                                                    {getLocalized(phase.title, locale)}
-                                                </h3>
+                                    {/* Phase 4 D3: Compressed phase card */}
+                                    <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                                        <div className="flex items-start gap-3 mb-2">
+                                            <span className="w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 mt-0.5">
+                                                {phase.number}
+                                            </span>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                                                    <h3 className="font-semibold text-slate-900 dark:text-white text-sm">
+                                                        {getLocalized(phase.title, locale)}
+                                                    </h3>
+                                                    <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+                                                        <Clock size={12} />
+                                                        {phase.duration}
+                                                    </span>
+                                                </div>
+                                                
+                                                {/* Phase 4 D3: Max 3 bullets per phase (compact) */}
+                                                <ul className="space-y-1 mb-2">
+                                                    {getLocalizedArray(phase.activities, locale).slice(0, 3).map((activity, aIdx) => (
+                                                        <li key={aIdx} className="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-300">
+                                                            <CheckCircle2 size={12} className="text-emerald-500 mt-0.5 flex-shrink-0" />
+                                                            <span>{activity}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                
+                                                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-200 dark:border-slate-700">
+                                                    <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                                                        {t('caseStudy.outcome', 'Outcome')}:
+                                                    </span>
+                                                    <span className="text-xs text-slate-900 dark:text-white font-medium">
+                                                        {getLocalized(phase.outcome, locale)}
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <span className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
-                                                <Clock size={14} />
-                                                {phase.duration}
-                                            </span>
-                                        </div>
-                                        
-                                        {/* Phase 2: Max 3 bullets per phase */}
-                                        <ul className="space-y-1.5 mb-4">
-                                            {getLocalizedArray(phase.activities, locale).slice(0, 3).map((activity, aIdx) => (
-                                                <li key={aIdx} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
-                                                    <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-                                                    {activity}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        
-                                        <div className="flex items-center gap-2 pt-3 border-t border-slate-200 dark:border-slate-700">
-                                            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">
-                                                {t('caseStudy.outcome', 'Outcome')}:
-                                            </span>
-                                            <span className="text-sm text-slate-900 dark:text-white font-medium">
-                                                {getLocalized(phase.outcome, locale)}
-                                            </span>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -1005,8 +1083,8 @@ const CaseStudyPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Technical Deep Dive */}
-            <section className="py-16 bg-slate-50 dark:bg-slate-800">
+            {/* Technical Deep Dive / Proof */}
+            <section id="proof" className="py-16 bg-slate-50 dark:bg-slate-800 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionHeader title={t('caseStudy.technical.title', 'Technical Transformation')} />
 
@@ -1124,10 +1202,10 @@ const CaseStudyPage: React.FC = () => {
                 </section>
             )}
 
-            {/* Deliverables Preview */}
-            <section className="py-16 bg-slate-50 dark:bg-slate-800">
+            {/* Proof Section / Outcomes */}
+            <section id="proof" className="py-16 bg-slate-50 dark:bg-slate-800 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <SectionHeader title={t('caseStudy.deliverables.title')} />
+                    <SectionHeader title={t('caseStudy.deliverables.title', 'Deliverables Preview')} />
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
                             {
@@ -1181,93 +1259,132 @@ const CaseStudyPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Phase 3.1: Artifact Previews Section */}
+            {/* Phase 3.1: Artifact Previews Section - Phase 4 D5: Redesign */}
             {study.artifactPreviews && study.artifactPreviews.length > 0 && (
-                <section className="py-16 bg-slate-50 dark:bg-slate-800">
+                <section id="artifacts" className="py-16 bg-slate-50 dark:bg-slate-800 scroll-mt-24">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <SectionHeader 
                             title={t('caseStudy.artifacts.title', 'Artifacts (Preview)')}
                         />
                         
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                            {study.artifactPreviews.map((artifact, idx) => {
-                                const iconMap: Record<string, string> = {
-                                    'ADR': '📋',
-                                    'Diagram': '📊',
-                                    'Checklist': '✅',
-                                    'Roadmap': '🗺️',
-                                    'TCO': '💰',
-                                    'Risk': '⚠️'
-                                };
-                                return (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
-                                    >
-                                        <div className="flex items-start gap-4 mb-3">
-                                            <div className="text-3xl">{iconMap[artifact.type] || '📄'}</div>
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+                        {/* Phase 4 D5: Horizontal scroll on mobile, 2x3 grid on desktop */}
+                        <div className="mb-8">
+                            {/* Desktop: 2x3 grid */}
+                            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                                {study.artifactPreviews.map((artifact, idx) => {
+                                    const iconMap: Record<string, string> = {
+                                        'ADR': '📋',
+                                        'Diagram': '📊',
+                                        'Checklist': '✅',
+                                        'Roadmap': '🗺️',
+                                        'TCO': '💰',
+                                        'Risk': '⚠️'
+                                    };
+                                    return (
+                                        <motion.div
+                                            key={idx}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: idx * 0.05 }}
+                                            className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                                        >
+                                            <div className="flex items-start gap-3 mb-2">
+                                                <div className="text-2xl flex-shrink-0">{iconMap[artifact.type] || '📄'}</div>
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="font-semibold text-slate-900 dark:text-white text-sm mb-1 line-clamp-1">
                                                         {getLocalized(artifact.title, locale)}
                                                     </h3>
-                                                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                                                        {t('caseStudy.artifacts.availableOnRequest', 'Available on request')}
+                                                    <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
+                                                        {getLocalized(artifact.description, locale)}
+                                                    </p>
+                                                    <span className="inline-block mt-2 px-2 py-0.5 rounded text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
+                                                        {t('caseStudy.artifacts.onRequest', 'On request')}
                                                     </span>
                                                 </div>
-                                                <p className="text-sm text-slate-600 dark:text-slate-400">
-                                                    {getLocalized(artifact.description, locale)}
-                                                </p>
                                             </div>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })}
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                            
+                            {/* Mobile: Horizontal scroll */}
+                            <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 pb-4">
+                                <div className="flex gap-4" style={{ width: 'max-content' }}>
+                                    {study.artifactPreviews.map((artifact, idx) => {
+                                        const iconMap: Record<string, string> = {
+                                            'ADR': '📋',
+                                            'Diagram': '📊',
+                                            'Checklist': '✅',
+                                            'Roadmap': '🗺️',
+                                            'TCO': '💰',
+                                            'Risk': '⚠️'
+                                        };
+                                        return (
+                                            <motion.div
+                                                key={idx}
+                                                initial={{ opacity: 0, x: 20 }}
+                                                whileInView={{ opacity: 1, x: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: idx * 0.05 }}
+                                                className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm min-w-[280px] flex-shrink-0"
+                                            >
+                                                <div className="flex items-start gap-3 mb-2">
+                                                    <div className="text-2xl flex-shrink-0">{iconMap[artifact.type] || '📄'}</div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h3 className="font-semibold text-slate-900 dark:text-white text-sm mb-1">
+                                                            {getLocalized(artifact.title, locale)}
+                                                        </h3>
+                                                        <p className="text-xs text-slate-600 dark:text-slate-400 mb-2">
+                                                            {getLocalized(artifact.description, locale)}
+                                                        </p>
+                                                        <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
+                                                            {t('caseStudy.artifacts.onRequest', 'On request')}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </div>
                         
-                        {/* Request Access CTA */}
-                        <div className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                                <div className="flex-1">
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                                        {t('caseStudy.artifacts.privacyNote', 'Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.')}
-                                    </p>
-                                </div>
-                                {isPromoted('CASE_STUDY_ARTIFACTS_REQUEST') ? (
-                                    <button
-                                        onClick={() => {
-                                            setArtifactRequestModalOpen(true);
-                                            trackEvent('artifact_request_opened', {
-                                                slug: study.slug,
-                                                locale: locale,
-                                            });
-                                        }}
-                                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
-                                    >
-                                        {t('caseStudy.artifacts.requestAccess', 'Request full artifacts')}
-                                        <ArrowRight size={18} />
-                                    </button>
-                                ) : (
-                                    <Link
-                                        to="/contact?interest=artifacts"
-                                        onClick={() => {
-                                            setAttributionContext({ ctaSource: 'artifact_gate' });
-                                            trackEvent('artifact_gate_cta_click', {
-                                                slug: study.slug,
-                                                locale: locale
-                                            });
-                                        }}
-                                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
-                                    >
-                                        {t('caseStudy.artifacts.requestAccess', 'Request full artifacts')}
-                                        <ArrowRight size={18} />
-                                    </Link>
-                                )}
-                            </div>
+                        {/* Phase 4 D5: Request Full Artifacts Pack CTA */}
+                        <div className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                                {t('caseStudy.artifacts.privacyNote', 'Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.')}
+                            </p>
+                            {isPromoted('CASE_STUDY_ARTIFACTS_REQUEST') ? (
+                                <button
+                                    onClick={() => {
+                                        setArtifactRequestModalOpen(true);
+                                        trackEvent('artifact_request_opened', {
+                                            slug: study.slug,
+                                            locale: locale,
+                                        });
+                                    }}
+                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                                >
+                                    {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
+                                    <ArrowRight size={18} />
+                                </button>
+                            ) : (
+                                <Link
+                                    to="/contact?interest=artifacts"
+                                    onClick={() => {
+                                        setAttributionContext({ ctaSource: 'artifact_gate' });
+                                        trackEvent('artifact_gate_cta_click', {
+                                            slug: study.slug,
+                                            locale: locale
+                                        });
+                                    }}
+                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                                >
+                                    {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
+                                    <ArrowRight size={18} />
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </section>
@@ -1283,8 +1400,8 @@ const CaseStudyPage: React.FC = () => {
                 />
             )}
 
-            {/* CTA Block */}
-            <section className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white">
+            {/* Contact CTA Block */}
+            <section id="contact" className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white scroll-mt-24">
                 <div className="max-w-4xl mx-auto px-4 text-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         {t('caseStudy.cta.title')}

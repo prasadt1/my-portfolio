@@ -650,10 +650,23 @@
         },
         "featuredCaseStudies": {
             "title": "Featured Case Studies",
+            "subtitle": "Deep-dive case studies with executive snapshots, trust layers, and artifact previews",
             "viewAll": "View All Projects",
+            "viewAllCaseStudies": "View All Case Studies",
             "new": "New",
             "impact": "Impact",
             "viewCaseStudy": "View Case Study"
+        },
+        "allProjects": {
+            "title": "All Projects",
+            "total": "projects",
+            "showAll": "Show all projects"
+        },
+        "presets": {
+            "costSavings": "Cost Savings",
+            "compliance": "Compliance Heavy",
+            "aiGenai": "AI/GenAI",
+            "platformEngineering": "Platform Engineering"
         },
         "whyWorkWithMe": {
             "title": "Why Work With Me",
@@ -988,6 +1001,14 @@
             "technical": "Technical",
             "delivery": "Delivery"
         },
+        "nav": {
+            "snapshot": "Snapshot",
+            "challenge": "Challenge",
+            "delivery": "Delivery",
+            "proof": "Proof",
+            "artifacts": "Artifacts",
+            "contact": "Contact"
+        },
         "whatIDelivered": {
             "title": "What I Delivered",
             "differentiator": "Key Differentiator"
@@ -1052,6 +1073,7 @@
             "onRequest": "On request",
             "availableOnRequest": "Available on request",
             "requestAccess": "Request full artifacts",
+            "requestFullPack": "Request Full Artifacts Pack",
             "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures."
         },
         "ndaDisclaimer": {
@@ -1681,6 +1703,13 @@
                 "checklistDesc": "Try AI tool",
                 "github": "GitHub Repo",
                 "githubDesc": "View source code"
+            },
+            "startHere": {
+                "title": "Start Here - Quick Checklist",
+                "item1": "Try AI Checklist",
+                "item2": "Try Architecture Assistant",
+                "item3": "View Hero Case Studies",
+                "item4": "See Artifacts Gating + Request"
             }
         }
     },

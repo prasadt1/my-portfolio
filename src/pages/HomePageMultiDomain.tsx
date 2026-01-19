@@ -20,6 +20,8 @@ import LogoCarousel from '../components/LogoCarousel';
 import VideoModal from '../components/VideoModal';
 import TestimonialsRotator from '../components/TestimonialsRotator';
 import ImpactDashboard from '../components/ImpactDashboard';
+import ProjectCard from '../components/ProjectCard/ProjectCard';
+import { projects } from '../data/projects';
 import { trackEvent, AnalyticsEvents } from '../services/analytics';
 import { isEnabled, isPromoted } from '../config/featureUtils';
 import { setGlobalPersona, getGlobalPersona } from '../utils/personaPersistence';
@@ -642,8 +644,9 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
 
-                {/* SECTION 3: THE PROBLEM */}
-                <section className="py-20 bg-white dark:bg-slate-900">
+                {/* Phase 4 C3: Hide "The Problem" section - too dense for scanning */}
+                {/* SECTION 3: THE PROBLEM - HIDDEN FOR DENSITY REDUCTION */}
+                {false && <section className="py-20 bg-white dark:bg-slate-900">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -735,10 +738,11 @@ const HomePageMultiDomain: React.FC = () => {
                             </p>
                         </motion.div>
                     </div>
-                </section>
+                </section>}
 
-                {/* SECTION 4: HOW I WORK */}
-                <section className="py-20 bg-slate-50 dark:bg-slate-800">
+                {/* Phase 4 C3: Hide "How I Work" section - too dense for scanning */}
+                {/* SECTION 4: HOW I WORK - HIDDEN FOR DENSITY REDUCTION */}
+                {false && <section className="py-20 bg-slate-50 dark:bg-slate-800">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -819,109 +823,58 @@ const HomePageMultiDomain: React.FC = () => {
                             </motion.div>
                         </div>
                     </div>
-                </section>
+                </section>}
 
-                {/* SECTION 5: MINI CASE STUDIES */}
-                <section className="py-20 bg-white dark:bg-slate-900">
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Phase 4 C3: Featured Case Studies - Max 5 hero projects */}
+                <section className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-center mb-12"
+                            className="text-center mb-10"
                         >
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                                {t('homepage.miniCases.title', { defaultValue: 'Proof in Outcomes' })}
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
+                                {t('homepage.featuredCaseStudies.title', { defaultValue: 'Featured Case Studies' })}
                             </h2>
-                            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                                {t('homepage.miniCases.subtitle', { defaultValue: 'Real architecture decisions from recent engagements' })}
+                            <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                                {t('homepage.featuredCaseStudies.subtitle', { defaultValue: 'Deep-dive case studies with executive snapshots, trust layers, and artifact previews' })}
                             </p>
                         </motion.div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {/* Case 1 */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
-                                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
-                            >
-                                <div className="text-4xl mb-4">🏭</div>
-                                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    {t('homepage.miniCases.case1.client', { defaultValue: 'Pharma Company (Germany)' })}
-                                </div>
-                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
-                                    <strong>{t('homepage.miniCases.situation', { defaultValue: 'Situation:' })}</strong>{' '}
-                                    {t('homepage.miniCases.case1.situation', { defaultValue: 'AWS proposed €450K Kubernetes setup for 50-person team' })}
-                                </p>
-                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
-                                    <strong>{t('homepage.miniCases.decision', { defaultValue: 'Decision:' })}</strong>{' '}
-                                    {t('homepage.miniCases.case1.decision', { defaultValue: 'Serverless alternative recommended' })}
-                                </p>
-                                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    {t('homepage.miniCases.case1.outcome', { defaultValue: '€415K saved' })}
-                                </div>
-                                <p className="text-sm text-slate-500 dark:text-slate-500">
-                                    {t('homepage.miniCases.case1.detail', { defaultValue: 'Upfront + €65K/year ongoing' })}
-                                </p>
-                            </motion.div>
+                        {/* Get hero projects (max 5) */}
+                        {(() => {
+                            const HERO_SLUGS = ['brita-ecommerce', 'delivery-hero-ads', 'insurance-performance', 'pact-pcf-data-exchange-network', 'photography-coach-ai'];
+                            const featuredProjects = projects
+                                .filter(p => HERO_SLUGS.includes(p.slug))
+                                .slice(0, 5);
 
-                            {/* Case 2 */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
-                            >
-                                <div className="text-4xl mb-4">🏥</div>
-                                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    {t('homepage.miniCases.case2.client', { defaultValue: 'Healthcare Provider (Switzerland)' })}
+                            return (
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                                    {featuredProjects.map((project, idx) => (
+                                        <motion.div
+                                            key={project.slug}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: idx * 0.1 }}
+                                        >
+                                            <ProjectCard project={project} />
+                                        </motion.div>
+                                    ))}
                                 </div>
-                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
-                                    <strong>{t('homepage.miniCases.situation', { defaultValue: 'Situation:' })}</strong>{' '}
-                                    {t('homepage.miniCases.case2.situation', { defaultValue: '8-month migration timeline from consultant' })}
-                                </p>
-                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
-                                    <strong>{t('homepage.miniCases.decision', { defaultValue: 'Decision:' })}</strong>{' '}
-                                    {t('homepage.miniCases.case2.decision', { defaultValue: 'Phased approach with early value delivery' })}
-                                </p>
-                                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    {t('homepage.miniCases.case2.outcome', { defaultValue: '6 months faster' })}
-                                </div>
-                                <p className="text-sm text-slate-500 dark:text-slate-500">
-                                    {t('homepage.miniCases.case2.detail', { defaultValue: 'First value in 6 weeks vs 8 months' })}
-                                </p>
-                            </motion.div>
+                            );
+                        })()}
 
-                            {/* Case 3 */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 }}
-                                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                        <div className="text-center">
+                            <Link
+                                to="/projects"
+                                className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold transition-colors"
+                                onClick={() => trackEvent('homepage_view_all_projects_click', { source: 'featured_section' })}
                             >
-                                <div className="text-4xl mb-4">🏢</div>
-                                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    {t('homepage.miniCases.case3.client', { defaultValue: 'Scale-up (Netherlands)' })}
-                                </div>
-                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
-                                    <strong>{t('homepage.miniCases.situation', { defaultValue: 'Situation:' })}</strong>{' '}
-                                    {t('homepage.miniCases.case3.situation', { defaultValue: 'Multi-cloud proposal with vendor lock-in risk' })}
-                                </p>
-                                <p className="text-base text-slate-600 dark:text-slate-400 mb-3">
-                                    <strong>{t('homepage.miniCases.decision', { defaultValue: 'Decision:' })}</strong>{' '}
-                                    {t('homepage.miniCases.case3.decision', { defaultValue: 'Portable architecture with 3 viable vendor options' })}
-                                </p>
-                                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    {t('homepage.miniCases.case3.outcome', { defaultValue: 'Zero lock-in' })}
-                                </div>
-                                <p className="text-sm text-slate-500 dark:text-slate-500">
-                                    {t('homepage.miniCases.case3.detail', { defaultValue: 'Freedom to negotiate or switch' })}
-                                </p>
-                            </motion.div>
+                                {t('homepage.featuredCaseStudies.viewAll', { defaultValue: 'View All Case Studies' })}
+                                <ArrowRight size={18} />
+                            </Link>
                         </div>
                     </div>
                 </section>

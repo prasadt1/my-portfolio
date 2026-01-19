@@ -950,6 +950,14 @@
             "technical": "Technisch",
             "delivery": "Delivery"
         },
+        "nav": {
+            "snapshot": "Snapshot",
+            "challenge": "Herausforderung",
+            "delivery": "Umsetzung",
+            "proof": "Beweis",
+            "artifacts": "Artefakte",
+            "contact": "Kontakt"
+        },
         "whatIDelivered": {
             "title": "Was ich geliefert habe",
             "differentiator": "Hauptunterschied"
@@ -1012,8 +1020,10 @@
         "artifacts": {
             "title": "Artefakte (Vorschau)",
             "onRequest": "Auf Anfrage",
+            "availableOnRequest": "Auf Anfrage verfügbar",
             "requestAccess": "Artefakte anfragen",
-            "privacyNote": "Zum Schutz der Vertraulichkeit der Kunden werden detaillierte Artefakte selektiv geteilt."
+            "requestFullPack": "Vollständiges Artefaktpaket anfragen",
+            "privacyNote": "Artefakte sind anonymisiert und werden selektiv geteilt, um die Vertraulichkeit der Kunden zu schützen. Alle Diagramme werden aus dem Gedächtnis neu erstellt und stellen Patterns dar, nicht interne Architekturen."
         },
         "ndaDisclaimer": {
             "title": "NDA & Ownership Disclaimer",
@@ -1642,6 +1652,13 @@
                 "checklistDesc": "AI Tool ausprobieren",
                 "github": "GitHub Repo",
                 "githubDesc": "Source Code ansehen"
+            },
+            "startHere": {
+                "title": "Start Here - Quick Checklist",
+                "item1": "AI Checklist ausprobieren",
+                "item2": "Architecture Assistant ausprobieren",
+                "item3": "Hero Case Studies ansehen",
+                "item4": "Artifact Gating + Request sehen"
             }
         }
     },
