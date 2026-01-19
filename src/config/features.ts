@@ -1,6 +1,8 @@
 // src/config/features.ts
 // Centralized feature flag configuration for Phase 3.1
 
+import { shouldPromoteInCompetitionMode } from './competition';
+
 export type FeatureKey =
   | 'AI_CHECKLIST'
   | 'AI_ARCH_ENGINE'
@@ -18,7 +20,13 @@ export type FeatureFlag = {
 // Read promotion flags from environment variables
 // enabled defaults to true for all features (competition wants depth)
 // promoted depends on env var; if undefined, default promoted=false EXCEPT checklist which is always promoted
-const getPromotionFlag = (envKey: string, defaultPromoted: boolean = false): boolean => {
+// Competition mode auto-promotes all major features
+const getPromotionFlag = (envKey: string, featureKey: FeatureKey, defaultPromoted: boolean = false): boolean => {
+  // Check competition mode first
+  if (shouldPromoteInCompetitionMode(featureKey)) {
+    return true;
+  }
+  
   if (typeof import.meta !== 'undefined' && import.meta.env) {
     const value = import.meta.env[envKey];
     if (value === 'true' || value === '1') return true;
@@ -30,30 +38,30 @@ const getPromotionFlag = (envKey: string, defaultPromoted: boolean = false): boo
 export const FEATURES: Record<FeatureKey, FeatureFlag> = {
   AI_CHECKLIST: {
     enabled: true,
-    promoted: true, // Always promoted (default exception)
+    promoted: getPromotionFlag('VITE_PROMOTE_AI_CHECKLIST', 'AI_CHECKLIST', true), // Always promoted (default exception)
   },
   AI_ARCH_ENGINE: {
     enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_AI_ARCH_ENGINE', false),
+    promoted: getPromotionFlag('VITE_PROMOTE_AI_ARCH_ENGINE', 'AI_ARCH_ENGINE', false),
   },
   AI_RISK_RADAR: {
     enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_AI_RISK_RADAR', false),
+    promoted: getPromotionFlag('VITE_PROMOTE_AI_RISK_RADAR', 'AI_RISK_RADAR', false),
   },
   TOOLKIT_LIBRARY: {
     enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_TOOLKIT_LIBRARY', false),
+    promoted: getPromotionFlag('VITE_PROMOTE_TOOLKIT_LIBRARY', 'TOOLKIT_LIBRARY', false),
   },
   EXEC_SUMMARY_MODAL: {
     enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_EXEC_SUMMARY', false),
+    promoted: getPromotionFlag('VITE_PROMOTE_EXEC_SUMMARY', 'EXEC_SUMMARY_MODAL', false),
   },
   CASESTUDY_ARTIFACT_GATE: {
     enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_ARTIFACT_GATE', false),
+    promoted: getPromotionFlag('VITE_PROMOTE_ARTIFACT_GATE', 'CASESTUDY_ARTIFACT_GATE', false),
   },
   HOMEPAGE_PERSONA_TABS: {
     enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_PERSONA_TABS', false),
+    promoted: getPromotionFlag('VITE_PROMOTE_PERSONA_TABS', 'HOMEPAGE_PERSONA_TABS', false),
   },
 };

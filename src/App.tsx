@@ -8,6 +8,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { FeatureFlagsProvider } from './context/FeatureFlagsProvider';
 import { Loader2 } from 'lucide-react';
+import { FeatureRouteGuard } from './components/FeatureRouteGuard';
+import { canAccessRoute } from './config/featureRouting';
 import './i18n';
 
 // Lazy load optional components for performance
@@ -31,6 +33,10 @@ const HiringPage = lazy(() => import('./pages/HiringPage'));
 const GuidePage = lazy(() => import('./pages/GuidePage'));
 const ChecklistPage = lazy(() => import('./pages/ChecklistPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const HireMePage = lazy(() => import('./pages/HireMePage'));
+const ConsultingPage = lazy(() => import('./pages/ConsultingPage'));
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
+const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 // Admin pages (dev-only, hidden in production)
 const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));
 
@@ -94,8 +100,27 @@ const App: React.FC = () => {
                 <Route path="hiring" element={<HiringPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />
                 <Route path="guide" element={<GuidePage />} />
-                <Route path="checklist" element={<ChecklistPage />} />
+                <Route path="checklist" element={
+                  <FeatureRouteGuard path="/checklist" featureKey="AI_CHECKLIST">
+                    <ChecklistPage />
+                  </FeatureRouteGuard>
+                } />
                 <Route path="privacy" element={<PrivacyPage />} />
+                {/* Phase 3.2: Competition landing routes */}
+                <Route path="hire-me" element={<HireMePage />} />
+                <Route path="consulting" element={<ConsultingPage />} />
+                <Route path="resources" element={<ResourcesPage />} />
+                {/* Feature routes with guards */}
+                <Route path="architecture-engine" element={
+                  <FeatureRouteGuard path="/architecture-engine" featureKey="AI_ARCH_ENGINE">
+                    <ArchitectureEngine />
+                  </FeatureRouteGuard>
+                } />
+                <Route path="risk-radar" element={
+                  <FeatureRouteGuard path="/risk-radar" featureKey="AI_RISK_RADAR">
+                    <RiskRadarPage />
+                  </FeatureRouteGuard>
+                } />
                 {/* Admin routes (dev-only, FeatureFlagsPage hides itself in production) */}
                 <Route path="admin/feature-flags" element={<FeatureFlagsPage />} />
               </Route>

@@ -6,7 +6,7 @@ import { ArrowRight, FileText, TrendingUp, Layers, ShieldAlert, Loader2 } from '
 import { CaseStudy, isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, getLocalizedStringArray, LocalizedString } from '../../types/CaseStudy';
 import { trackEvent } from '../../services/analytics';
 import { useFeatureFlag } from '../../context/FeatureFlagsProvider';
-import { isPromoted } from '../../config/featureUtils';
+import { shouldShowFeaturedBadge } from '../../config/featureRouting';
 
 // Lazy-load ExecutiveSummaryModal for better initial bundle size (gated by feature flag)
 const ExecutiveSummaryModal = lazy(() => import('../ExecutiveSummaryModal'));
@@ -168,12 +168,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                             <h3 className="text-base font-semibold text-slate-900 dark:text-white leading-snug line-clamp-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-1">
                                 {title}
                             </h3>
-                            {/* Phase 3.1: Featured Badge for promoted projects */}
-                            {(project.slug === 'brita-ecommerce' || 
-                              project.slug === 'delivery-hero-ads' || 
-                              project.slug === 'insurance-performance') && (
+                            {/* Phase 3.1: Featured Badge - only show if in hero list AND case studies are promoted */}
+                            {shouldShowFeaturedBadge(project.slug) && (
                                 <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 uppercase tracking-wide shrink-0">
-                                    Featured
+                                    {t('caseStudies.featured.badge', { defaultValue: 'Featured' })}
                                 </span>
                             )}
                         </div>

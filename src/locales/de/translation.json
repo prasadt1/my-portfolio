@@ -19,7 +19,13 @@
         "engagement": "Zusammenarbeit",
         "contact": "Kontakt",
         "consulting": "Beratung",
+        "consultation": "Beratung",
         "architectureEngine": "Architektur-Assistent (Beta)",
+        "riskRadar": "Risiko-Radar",
+        "checklist": "Checkliste",
+        "hiring": "Karriere",
+        "hireMe": "Mich einstellen",
+        "resources": "Ressourcen",
         "labs": "Labs",
         "bookDiscoveryCall": "Architektur-Review buchen",
         "toggleLanguage": "Sprache wechseln",
@@ -1180,6 +1186,7 @@
             "hiringPrimary": "Lebenslauf / Recruiting-Snapshot ansehen",
             "hiringSecondary": "Ausgewählte Case Studies",
             "hiringTitle": "Recruiting-Snapshot",
+            "hiringSubtitle": "Senior Engineering Leader offen für neue Möglichkeiten",
             "hiringYears": "Jahre Erfahrung",
             "hiringIndustries": "Branchen",
             "hiringStrengths": "Stärken",
@@ -1188,9 +1195,11 @@
             "consultingPrimary": "Discovery Call buchen",
             "consultingSecondary": "Vendor Proposal Checklist testen",
             "consultingTitle": "Beratungsleistungen",
+            "consultingSubtitle": "Unabhängige Validierung von Architektur-, Modernisierungs- und AI-Enablement-Entscheidungen",
             "toolkitPrimary": "Toolkits durchsuchen",
             "toolkitSecondary": "Checklist herunterladen",
-            "toolkitTitle": "Toolkits & Ressourcen"
+            "toolkitTitle": "Toolkits & Ressourcen",
+            "toolkitSubtitle": "Kostenlose Tools und Ressourcen, um bessere Architektur-Entscheidungen zu treffen"
         }
     },
     "hiringPage": {
@@ -1496,7 +1505,17 @@
         "unavailable": {
             "title": "Funktion vorübergehend nicht verfügbar",
             "message": "Diese Funktion ist derzeit deaktiviert. Bitte kontaktieren Sie den Support, wenn Sie Zugriff benötigen.",
-            "contact": "Support kontaktieren"
+            "contact": "Support kontaktieren",
+            "goHome": "Zurück zur Startseite"
         }
+    },
+    "consultationPage": {
+        "title": "Entdeckungsgespräch buchen",
+        "subtitle": "Vereinbaren Sie ein 30-minütiges Strategiegespräch, um Ihre Enterprise-Transformationsbedürfnisse zu besprechen und zu erkunden, wie ich helfen kann.",
+        "benefit1": "Schnelle, fokussierte Diskussion Ihrer spezifischen Herausforderung",
+        "benefit2": "Optionen ohne Verpflichtung erkunden",
+        "benefit3": "Erhalten Sie konkrete Empfehlungen innerhalb von 48 Stunden",
+        "cta": "Kalender öffnen zum Buchen",
+        "note": "Öffnet in einem neuen Fenster"
     }
 }

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import { getNavItems } from '../config/featureRouting';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,14 +24,11 @@ const Navigation: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  // Simplified navigation - core pages only
-  const navLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/services', label: t('nav.services') },
-    { path: '/projects', label: t('nav.projects') },
-    { path: '/about', label: t('nav.about') },
-    { path: '/contact', label: t('nav.contact') }
-  ];
+  // Get navigation items filtered by promotion flags
+  const navLinks = getNavItems().map(item => ({
+    path: item.path,
+    label: t(item.labelKey),
+  }));
 
   return (
     <>
@@ -98,13 +96,15 @@ const Navigation: React.FC = () => {
               {theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
 
-            {/* For Recruiters - Subtle text link */}
-            <Link
-              to="/hiring"
-              className="px-3 py-1.5 text-xs font-normal text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors whitespace-nowrap"
-            >
-              {t('nav.forRecruiters')}
-            </Link>
+            {/* For Recruiters - Subtle text link (only if hiring route is promoted) */}
+            {navLinks.some(link => link.path === '/hiring') && (
+              <Link
+                to="/hiring"
+                className="px-3 py-1.5 text-xs font-normal text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors whitespace-nowrap"
+              >
+                {t('nav.forRecruiters')}
+              </Link>
+            )}
 
             {/* Primary CTA - Book Discovery Call */}
             <Link
@@ -170,14 +170,18 @@ const Navigation: React.FC = () => {
                 <Search size={20} />
                 <span>Search...</span>
               </button>
-              <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
-              <Link
-                to="/hiring"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-3 rounded-lg text-base font-normal text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
-              >
-                {t('nav.forRecruiters')}
-              </Link>
+              {navLinks.some(link => link.path === '/hiring') && (
+                <>
+                  <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
+                  <Link
+                    to="/hiring"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-3 rounded-lg text-base font-normal text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
+                  >
+                    {t('nav.forRecruiters')}
+                  </Link>
+                </>
+              )}
               <Link
                 to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}

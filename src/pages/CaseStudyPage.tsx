@@ -534,40 +534,44 @@ const CaseStudyPage: React.FC = () => {
                     {study.trustLayer && (
                         <>
                             {(() => {
-                                // Track impression once per page view
+                                // Track impression once per page view using useOnceEffect pattern
+                                const hasTrackedRef = React.useRef(false);
                                 React.useEffect(() => {
-                                    trackEvent('case_study_trust_layer_viewed', {
-                                        slug: study.slug,
-                                        locale: locale
-                                    });
+                                    if (!hasTrackedRef.current) {
+                                        hasTrackedRef.current = true;
+                                        trackEvent('case_study_trust_layer_viewed', {
+                                            slug: study.slug,
+                                            locale: locale
+                                        });
+                                    }
                                 }, [study.slug, locale]); // Track once per study/page view
                                 return null;
                             })()}
-                            <div className="mb-8 bg-slate-50 dark:bg-slate-800 rounded-xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
+                            <div className="mb-8 bg-slate-50 dark:bg-slate-800 rounded-xl p-4 md:p-6 border border-slate-200 dark:border-slate-700">
+                                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4">
                                     {t('caseStudy.trustLayer.title', 'Trust & Scope')}
                                 </h3>
                                 
-                                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                                <div className="grid md:grid-cols-2 gap-4 mb-4">
                                     {/* My Role */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
-                                        <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                                             {t('caseStudy.trustLayer.myRole', 'My Role')}
                                         </h4>
-                                        <p className="text-sm text-slate-700 dark:text-slate-300">
+                                        <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                                             {getLocalized(study.trustLayer.myRole, locale)}
                                         </p>
                                     </div>
 
                                     {/* Scope Owned */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
-                                        <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                                             {t('caseStudy.trustLayer.scopeOwned', 'Scope I personally owned')}
                                         </h4>
-                                        <ul className="space-y-2">
+                                        <ul className="space-y-1.5">
                                             {getLocalizedArray(study.trustLayer.scopeOwned, locale).map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
-                                                    <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 shrink-0" />
+                                                <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                                                    <CheckCircle2 size={12} className="text-emerald-500 mt-0.5 shrink-0" />
                                                     <span>{item}</span>
                                                 </li>
                                             ))}
@@ -575,14 +579,14 @@ const CaseStudyPage: React.FC = () => {
                                     </div>
 
                                     {/* Delivered With Team */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
-                                        <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                                             {t('caseStudy.trustLayer.deliveredWithTeam', 'Delivered with team')}
                                         </h4>
-                                        <ul className="space-y-2">
+                                        <ul className="space-y-1.5">
                                             {getLocalizedArray(study.trustLayer.deliveredWithTeam, locale).map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
-                                                    <Layers size={14} className="text-blue-500 mt-0.5 shrink-0" />
+                                                <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                                                    <Layers size={12} className="text-blue-500 mt-0.5 shrink-0" />
                                                     <span>{item}</span>
                                                 </li>
                                             ))}
@@ -590,11 +594,11 @@ const CaseStudyPage: React.FC = () => {
                                     </div>
 
                                     {/* Confidentiality Note */}
-                                    <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border border-amber-200 dark:border-amber-800">
-                                        <h4 className="text-sm font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider mb-3">
+                                    <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                                        <h4 className="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider mb-2">
                                             {t('caseStudy.trustLayer.confidentialityNote', 'Confidentiality note')}
                                         </h4>
-                                        <p className="text-sm text-amber-800 dark:text-amber-300">
+                                        <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
                                             {getLocalized(study.trustLayer.confidentialityNote, locale)}
                                         </p>
                                     </div>
@@ -1182,8 +1186,8 @@ const CaseStudyPage: React.FC = () => {
                                                     <h3 className="font-bold text-slate-900 dark:text-white text-sm">
                                                         {getLocalized(artifact.title, locale)}
                                                     </h3>
-                                                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">
-                                                        {t('caseStudy.artifacts.onRequest', 'On request')}
+                                                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                                        {t('caseStudy.artifacts.availableOnRequest', 'Available on request')}
                                                     </span>
                                                 </div>
                                                 <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -1201,7 +1205,7 @@ const CaseStudyPage: React.FC = () => {
                             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                                 <div className="flex-1">
                                     <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                                        {t('caseStudy.artifacts.privacyNote', 'To protect client confidentiality, detailed artifacts are shared selectively.')}
+                                        {t('caseStudy.artifacts.privacyNote', 'Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.')}
                                     </p>
                                 </div>
                                 <Link
