@@ -29,14 +29,6 @@
   p, span {
     @apply text-slate-700 dark:text-slate-300;
   }
-
-  .text-sm {
-    @apply text-sm md:text-base;
-  }
-
-  .text-xs {
-    @apply text-xs md:text-sm;
-  }
 }
 
 /* React Flow Styles */

@@ -208,20 +208,20 @@ const CompetitionPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 mb-8"
+                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
                     >
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="w-12 h-12 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
-                                <Shield className="text-amber-600 dark:text-amber-400" size={24} />
+                        <div className="flex items-start gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
+                                <Shield className="text-amber-600 dark:text-amber-400" size={20} />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                                     {t('competition.page.evidence.title', { defaultValue: 'Evidence System' })}
                                 </h2>
-                                <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
                                     {t('competition.page.evidence.description', { defaultValue: 'Each hero case study includes:' })}
                                 </p>
-                                <ul className="space-y-2 mb-4">
+                                <ul className="space-y-2 mb-3">
                                     <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400">
                                         <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
                                         <span>{t('competition.page.evidence.item1', { defaultValue: 'Trust Layer: My role, scope owned, team collaboration, NDA disclaimers' })}</span>
@@ -252,17 +252,17 @@ const CompetitionPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 mb-8"
+                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
                     >
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
-                                <BarChart3 className="text-purple-600 dark:text-purple-400" size={24} />
+                        <div className="flex items-start gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
+                                <BarChart3 className="text-purple-600 dark:text-purple-400" size={20} />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                                     {t('competition.page.metrics.title', { defaultValue: 'Metrics Dashboard' })}
                                 </h2>
-                                <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
                                     {t('competition.page.metrics.description', { defaultValue: 'Impact metrics displayed on homepage: cost saved, projects delivered, compliance rate, data breaches prevented.' })}
                                 </p>
                                 <Link
@@ -291,17 +291,17 @@ const CompetitionPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 mb-8"
+                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
                     >
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="w-12 h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center flex-shrink-0">
-                                <Mail className="text-teal-600 dark:text-teal-400" size={24} />
+                        <div className="flex items-start gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center flex-shrink-0">
+                                <Mail className="text-teal-600 dark:text-teal-400" size={20} />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                                     {t('competition.page.leadCapture.title', { defaultValue: 'Lead Capture Demo' })}
                                 </h2>
-                                <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
                                     {t('competition.page.leadCapture.description', { defaultValue: 'GDPR-safe lead capture with email delivery and Google Sheets storage. Includes attribution tracking (UTM params, referrer, landing path) without PII in analytics.' })}
                                 </p>
                                 <div className="flex flex-wrap gap-3">
@@ -317,6 +317,7 @@ const CompetitionPage: React.FC = () => {
                             </div>
                         </div>
                     </motion.section>
+                    </div>
 
                     {/* Quick Links */}
                     <motion.section
