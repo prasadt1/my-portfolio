@@ -477,7 +477,7 @@ const CaseStudyPage: React.FC = () => {
                                 }}
                                 className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
                             >
-                                Request Artifacts Pack
+                                {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
                                 <ArrowRight size={18} />
                             </button>
                         )}
@@ -485,54 +485,64 @@ const CaseStudyPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* SECTION 3: EXECUTIVE SNAPSHOT - Phase 4 Wireframe: Always visible, compact, 2-column grid (max 6 blocks) */}
+            {/* SECTION 3: EXECUTIVE SNAPSHOT - Phase 4 Wireframe: Always visible, compact, 2-column grid (max 6 blocks), no paragraphs > 2 lines */}
             <section className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
-                        {/* Phase 4 Wireframe: 2-column card grid (max 6 blocks) */}
-                        <div className="grid md:grid-cols-2 gap-4">
-                            <div className="text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
-                                    <Target className="text-emerald-600 dark:text-emerald-400" size={20} />
-                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                        {t('caseStudy.executiveSummary.impact')}
-                                    </h3>
-                                </div>
-                                <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                                    {study.outcomes.hero_metric.value}
-                                </p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    {heroMetricLabel}
-                                </p>
-                            </div>
-                            <div className="text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
-                                    <Layers className="text-blue-600 dark:text-blue-400" size={20} />
-                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                        {t('caseStudy.executiveSummary.scope')}
-                                    </h3>
-                                </div>
-                                <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                                    {study.approach.phases.length > 0 ? study.approach.phases.length + ' Phases' : 'Full Engagement'}
-                                </p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    {methodology}
-                                </p>
-                            </div>
-                            <div className="text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
-                                    <Briefcase className="text-purple-600 dark:text-purple-400" size={20} />
-                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                        {t('caseStudy.executiveSummary.role')}
-                                    </h3>
-                                </div>
-                                <p className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                                    {study.projectType === 'framework' || study.projectType === 'standard' ? 'Lead Architect' : 'Solution Architect'}
-                                </p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    {challengeContent.why_prasad}
-                                </p>
-                            </div>
+                    {/* Phase 4 Wireframe: 2-column card grid (max 6 blocks) */}
+                    <div className="grid md:grid-cols-2 gap-3">
+                        {/* Block 1: Business Context */}
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Business Context</h4>
+                            <p className="text-xs text-slate-700 dark:text-slate-300 line-clamp-2 leading-snug">
+                                {challengeContent.situation.split('.').slice(0, 1).join('.') + '.'}
+                            </p>
+                        </div>
+                        
+                        {/* Block 2: Problem */}
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Problem</h4>
+                            <p className="text-xs text-slate-700 dark:text-slate-300 line-clamp-2 leading-snug">
+                                {challengeContent.situation.split('.').slice(1, 2).join('.') || challengeContent.situation.split('.').slice(0, 1).join('.') + '.'}
+                            </p>
+                        </div>
+                        
+                        {/* Block 3: Key Decision */}
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Key Decision</h4>
+                            <p className="text-xs text-slate-700 dark:text-slate-300 line-clamp-2 leading-snug">
+                                {uniqueDifferentiator || methodology}
+                            </p>
+                        </div>
+                        
+                        {/* Block 4: What I Delivered */}
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">What I Delivered</h4>
+                            <p className="text-xs text-slate-700 dark:text-slate-300 line-clamp-2 leading-snug">
+                                {study.approach.phases.length} phases: {study.approach.phases.slice(0, 2).map(p => getLocalized(p.title, locale)).join(', ')}
+                            </p>
+                        </div>
+                        
+                        {/* Block 5: Outcome */}
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Outcome</h4>
+                            <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">
+                                {study.outcomes.hero_metric.value}
+                            </p>
+                            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-1">
+                                {getLocalized(study.outcomes.hero_metric.label, locale)}
+                            </p>
+                        </div>
+                        
+                        {/* Block 6: Risk Avoided */}
+                        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+                            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Risk Avoided</h4>
+                            <p className="text-xs text-slate-700 dark:text-slate-300 line-clamp-2 leading-snug">
+                                {study.outcomes.compliance?.length > 0 
+                                    ? `${study.outcomes.compliance.length} compliance risks mitigated`
+                                    : study.executiveSnapshot?.keyTensions 
+                                        ? `${getLocalizedArrayUtil(study.executiveSnapshot.keyTensions, locale).length} key tensions resolved`
+                                        : 'Critical architecture risks mitigated'}
+                            </p>
                         </div>
                     </div>
                 </div>
