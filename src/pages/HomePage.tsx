@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation, Trans } from 'react-i18next';
 import {
@@ -10,14 +10,67 @@ import {
   ArrowRight,
   Award,
   DollarSign,
-  AlertCircle
+  AlertCircle,
+  Briefcase,
+  User,
+  BookOpen
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import ROICalculator from '../components/ROICalculator';
+import { trackEvent } from '../services/analytics';
+import { isEnabled } from '../config/featureUtils';
+import i18n from '../i18n';
+
+type PersonaType = 'hire' | 'consult' | 'toolkit';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
   const [showROICalculator, setShowROICalculator] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Get persona from URL param or localStorage, default to 'consult'
+  const getInitialPersona = (): PersonaType => {
+    const urlPersona = searchParams.get('persona') as PersonaType;
+    if (urlPersona && ['hire', 'consult', 'toolkit'].includes(urlPersona)) {
+      return urlPersona;
+    }
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('pt_home_persona');
+      if (stored === 'v1_hire') return 'hire';
+      if (stored === 'v1_toolkit') return 'toolkit';
+    }
+    return 'consult'; // default
+  };
+
+  const [selectedPersona, setSelectedPersona] = useState<PersonaType>(getInitialPersona);
+  const showPersonaTabs = isEnabled('HOMEPAGE_PERSONA_TABS');
+
+  // Update URL and localStorage when persona changes
+  useEffect(() => {
+    if (selectedPersona) {
+      // Update URL without triggering navigation
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set('persona', selectedPersona);
+      setSearchParams(newParams, { replace: true });
+      
+      // Persist to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('pt_home_persona', `v1_${selectedPersona}`);
+      }
+    }
+  }, [selectedPersona, searchParams, setSearchParams]);
+
+  // Track persona selection
+  const handlePersonaChange = (persona: PersonaType, source: 'tabs' | 'url' = 'tabs') => {
+    setSelectedPersona(persona);
+    if (source === 'tabs') {
+      trackEvent('homepage_persona_selected', {
+        selectedPersona: persona,
+        source: 'tabs',
+        locale: i18n.language || 'en',
+      });
+    }
+  };
 
   return (
     <>
@@ -46,6 +99,47 @@ const HomePage: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
+              {/* Phase 3.1: Persona Tabs */}
+              {showPersonaTabs && (
+                <div className="mb-8 flex justify-center">
+                  <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-lg p-1 border border-white/20">
+                    <button
+                      onClick={() => handlePersonaChange('hire')}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                        selectedPersona === 'hire'
+                          ? 'bg-white text-slate-900'
+                          : 'text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <Briefcase size={16} />
+                      {t('homepage.personaTabs.hiring')}
+                    </button>
+                    <button
+                      onClick={() => handlePersonaChange('consult')}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                        selectedPersona === 'consult'
+                          ? 'bg-white text-slate-900'
+                          : 'text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <User size={16} />
+                      {t('homepage.personaTabs.consulting')}
+                    </button>
+                    <button
+                      onClick={() => handlePersonaChange('toolkit')}
+                      className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                        selectedPersona === 'toolkit'
+                          ? 'bg-white text-slate-900'
+                          : 'text-white hover:bg-white/10'
+                      }`}
+                    >
+                      <BookOpen size={16} />
+                      {t('homepage.personaTabs.toolkit')}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Main Headline */}
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 <Trans i18nKey="homeHealthcare.hero.title">
@@ -80,24 +174,82 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Primary CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <Link
-                  to="/projects#healthcare"
-                  className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
-                >
-                  {t('homeHealthcare.hero.cta.primary')}
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                </Link>
-
-                <button
-                  onClick={() => setShowROICalculator(true)}
-                  className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
-                >
-                  <DollarSign size={20} />
-                  {t('homeHealthcare.hero.cta.secondary')}
-                </button>
-              </div>
+              {/* Phase 3.1: Persona-Specific CTAs */}
+              {showPersonaTabs ? (
+                <>
+                  {selectedPersona === 'hire' && (
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                      <Link
+                        to="/hiring"
+                        className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                      >
+                        {t('homepage.personaTabs.hiringPrimary')}
+                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                      </Link>
+                      <Link
+                        to="/projects"
+                        className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
+                      >
+                        {t('homepage.personaTabs.hiringSecondary')}
+                        <ArrowRight size={20} />
+                      </Link>
+                    </div>
+                  )}
+                  {selectedPersona === 'consult' && (
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                      <Link
+                        to="/contact"
+                        className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                      >
+                        {t('homepage.personaTabs.consultingPrimary')}
+                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                      </Link>
+                      <Link
+                        to="/checklist"
+                        className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
+                      >
+                        {t('homepage.personaTabs.consultingSecondary')}
+                        <ArrowRight size={20} />
+                      </Link>
+                    </div>
+                  )}
+                  {selectedPersona === 'toolkit' && (
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                      <Link
+                        to="/services"
+                        className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                      >
+                        {t('homepage.personaTabs.toolkitPrimary')}
+                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                      </Link>
+                      <Link
+                        to="/checklist"
+                        className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
+                      >
+                        {t('homepage.personaTabs.toolkitSecondary')}
+                        <ArrowRight size={20} />
+                      </Link>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                  <Link
+                    to="/projects#healthcare"
+                    className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                  >
+                    {t('homeHealthcare.hero.cta.primary')}
+                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                  </Link>
+                  <button
+                    onClick={() => setShowROICalculator(true)}
+                    className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3"
+                  >
+                    <DollarSign size={20} />
+                    {t('homeHealthcare.hero.cta.secondary')}
+                  </button>
+                </div>
+              )}
 
               {/* Trust Metrics Bar */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -123,6 +275,93 @@ const HomePage: React.FC = () => {
             </motion.div>
           </div>
         </section>
+
+        {/* Phase 3.1: Persona-Specific Content Block */}
+        {showPersonaTabs && selectedPersona && (
+          <section className="py-16 bg-white/5 backdrop-blur-sm border-b border-white/10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {selectedPersona === 'hire' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="max-w-4xl mx-auto"
+                >
+                  <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                    {t('homepage.personaTabs.hiringTitle')}
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-6 text-white/90">
+                    <div>
+                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringYears')}</div>
+                      <div className="text-sm">15+ years</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringIndustries')}</div>
+                      <div className="text-sm">Healthcare, Pharma, eCommerce, Financial Services, Climate Tech</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringStrengths')}</div>
+                      <div className="text-sm">Architecture validation, Cloud migration, AI enablement, Risk mitigation</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringAvailability')}</div>
+                      <div className="text-sm">{t('homepage.personaTabs.hiringBilingual')}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              {selectedPersona === 'consult' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="max-w-4xl mx-auto"
+                >
+                  <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                    {t('homepage.personaTabs.consultingTitle')}
+                  </h2>
+                  <div className="grid md:grid-cols-3 gap-6 text-white/90">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                      <h3 className="font-bold mb-2">Architecture Review</h3>
+                      <p className="text-sm">Independent validation of architecture decisions before commitment</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                      <h3 className="font-bold mb-2">Cloud Migration</h3>
+                      <p className="text-sm">Risk reduction and cost optimization for cloud transformation</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                      <h3 className="font-bold mb-2">AI Enablement</h3>
+                      <p className="text-sm">Strategic guidance for AI/ML adoption and integration</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              {selectedPersona === 'toolkit' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="max-w-4xl mx-auto"
+                >
+                  <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                    {t('homepage.personaTabs.toolkitTitle')}
+                  </h2>
+                  <div className="grid md:grid-cols-3 gap-6 text-white/90">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                      <h3 className="font-bold mb-2">Vendor Proposal Checklist</h3>
+                      <p className="text-sm">7-area framework for evaluating vendor proposals</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                      <h3 className="font-bold mb-2">Architecture Patterns</h3>
+                      <p className="text-sm">Reusable patterns for common transformation scenarios</p>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                      <h3 className="font-bold mb-2">Risk Assessment Tools</h3>
+                      <p className="text-sm">Templates and frameworks for risk identification</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* PROBLEM SECTION - The Pain */}
         <section className="py-20 bg-slate-50 dark:bg-slate-900">

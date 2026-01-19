@@ -280,4 +280,34 @@ export interface CaseStudy {
         value: LocalizedString;
         type?: 'outcome' | 'scope' | 'constraint';
     }>;
+
+    // Phase 3.1: Trust Layer (credibility & IP safety)
+    trustLayer?: TrustLayer;
+
+    // Phase 3.1: Artifact Previews (gated content)
+    artifactPreviews?: ArtifactPreviewItem[];
+}
+
+// =============================================================================
+// PHASE 3.1: TRUST LAYER & ARTIFACT PREVIEWS
+// =============================================================================
+
+/**
+ * Trust Layer - clarifies ownership and scope, IP-safe disclaimer
+ */
+export interface TrustLayer {
+    myRole: LocalizedString;              // e.g. Lead Architect / Program Manager
+    scopeOwned: LocalizedStringArray;     // bullets: what I personally owned
+    deliveredWithTeam: LocalizedStringArray; // bullets: team-delivered items
+    confidentialityNote: LocalizedString; // explicit IP-safe disclaimer
+}
+
+/**
+ * Artifact Preview Item - shows preview but requires access request
+ */
+export interface ArtifactPreviewItem {
+    title: LocalizedString;
+    description: LocalizedString;
+    type: 'ADR' | 'Diagram' | 'Checklist' | 'Roadmap' | 'TCO' | 'Risk';
+    gated: boolean; // always true for deep artifacts
 }

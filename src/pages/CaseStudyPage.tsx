@@ -530,6 +530,79 @@ const CaseStudyPage: React.FC = () => {
                         </div>
                     )}
 
+                    {/* Phase 3.1: Trust Layer Section */}
+                    {study.trustLayer && (
+                        <>
+                            {(() => {
+                                // Track impression once per page view
+                                React.useEffect(() => {
+                                    trackEvent('case_study_trust_layer_viewed', {
+                                        slug: study.slug,
+                                        locale: locale
+                                    });
+                                }, [study.slug, locale]); // Track once per study/page view
+                                return null;
+                            })()}
+                            <div className="mb-8 bg-slate-50 dark:bg-slate-800 rounded-xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
+                                    {t('caseStudy.trustLayer.title', 'Trust & Scope')}
+                                </h3>
+                                
+                                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                                    {/* My Role */}
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                            {t('caseStudy.trustLayer.myRole', 'My Role')}
+                                        </h4>
+                                        <p className="text-sm text-slate-700 dark:text-slate-300">
+                                            {getLocalized(study.trustLayer.myRole, locale)}
+                                        </p>
+                                    </div>
+
+                                    {/* Scope Owned */}
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                            {t('caseStudy.trustLayer.scopeOwned', 'Scope I personally owned')}
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {getLocalizedArray(study.trustLayer.scopeOwned, locale).map((item, idx) => (
+                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                    <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 shrink-0" />
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Delivered With Team */}
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-5 border border-slate-200 dark:border-slate-700">
+                                        <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                            {t('caseStudy.trustLayer.deliveredWithTeam', 'Delivered with team')}
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {getLocalizedArray(study.trustLayer.deliveredWithTeam, locale).map((item, idx) => (
+                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                                    <Layers size={14} className="text-blue-500 mt-0.5 shrink-0" />
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Confidentiality Note */}
+                                    <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border border-amber-200 dark:border-amber-800">
+                                        <h4 className="text-sm font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider mb-3">
+                                            {t('caseStudy.trustLayer.confidentialityNote', 'Confidentiality note')}
+                                        </h4>
+                                        <p className="text-sm text-amber-800 dark:text-amber-300">
+                                            {getLocalized(study.trustLayer.confidentialityNote, locale)}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )}
+
                     {/* Persona Challenges - Phase 2: Collapsed by default */}
                     {study.personaChallenges && (
                         <div className="mb-8">
@@ -1074,6 +1147,82 @@ const CaseStudyPage: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Phase 3.1: Artifact Previews Section */}
+            {study.artifactPreviews && study.artifactPreviews.length > 0 && (
+                <section className="py-16 bg-slate-50 dark:bg-slate-800">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <SectionHeader 
+                            title={t('caseStudy.artifacts.title', 'Artifacts (Preview)')}
+                        />
+                        
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            {study.artifactPreviews.map((artifact, idx) => {
+                                const iconMap: Record<string, string> = {
+                                    'ADR': '📋',
+                                    'Diagram': '📊',
+                                    'Checklist': '✅',
+                                    'Roadmap': '🗺️',
+                                    'TCO': '💰',
+                                    'Risk': '⚠️'
+                                };
+                                return (
+                                    <motion.div
+                                        key={idx}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: idx * 0.1 }}
+                                        className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                                    >
+                                        <div className="flex items-start gap-4 mb-3">
+                                            <div className="text-3xl">{iconMap[artifact.type] || '📄'}</div>
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+                                                        {getLocalized(artifact.title, locale)}
+                                                    </h3>
+                                                    <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">
+                                                        {t('caseStudy.artifacts.onRequest', 'On request')}
+                                                    </span>
+                                                </div>
+                                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                                    {getLocalized(artifact.description, locale)}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                        
+                        {/* Request Access CTA */}
+                        <div className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                                <div className="flex-1">
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                                        {t('caseStudy.artifacts.privacyNote', 'To protect client confidentiality, detailed artifacts are shared selectively.')}
+                                    </p>
+                                </div>
+                                <Link
+                                    to="/contact?interest=artifacts"
+                                    onClick={() => {
+                                        setAttributionContext({ ctaSource: 'artifact_gate' });
+                                        trackEvent('artifact_gate_cta_click', {
+                                            slug: study.slug,
+                                            locale: locale
+                                        });
+                                    }}
+                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                                >
+                                    {t('caseStudy.artifacts.requestAccess', 'Request full artifacts')}
+                                    <ArrowRight size={18} />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* CTA Block */}
             <section className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white">
