@@ -1056,6 +1056,14 @@
             "whatRequestDesc": "Detailed artifacts, ADRs, and implementation patterns (NDA-safe)",
             "teamCredit": "Where team credit applies",
             "teamCreditDesc": "All outcomes were delivered collaboratively. The \"Scope Owned\" section clarifies my specific contributions."
+        },
+        "cta": {
+            "hiring": {
+                "primary": "Download Resume"
+            },
+            "toolkit": {
+                "primary": "Download Checklist"
+            }
         }
     },
     "independentAdvisory": {
@@ -1684,15 +1692,5 @@
         "region": "Region",
         "engagementType": "Engagement",
         "decisionAuthority": "Decision Authority"
-    },
-    "caseStudy": {
-        "cta": {
-            "hiring": {
-                "primary": "Download Resume"
-            },
-            "toolkit": {
-                "primary": "Download Checklist"
-            }
-        }
     }
 }

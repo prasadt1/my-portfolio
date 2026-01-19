@@ -169,25 +169,6 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
             );
         }
     }
-        return (
-            <a
-                href="https://calendly.com/prasad-sgsits/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleClick('calendly', 'https://calendly.com/prasad-sgsits/30min')}
-                className={`
-                    inline-flex items-center justify-center gap-2
-                    bg-emerald-600 hover:bg-emerald-700 text-white
-                    px-6 py-3 rounded-lg font-semibold
-                    transition-all shadow-lg hover:shadow-xl
-                    ${className}
-                `}
-            >
-                {primaryText || t('caseStudy.cta.primary', 'Book Discovery Call')}
-                <ArrowRight size={18} />
-            </a>
-        );
-    }
 
     // Secondary CTA: Try Risk Radar (gated by feature flag)
     if (variant === 'secondary') {
