@@ -650,10 +650,23 @@
         },
         "featuredCaseStudies": {
             "title": "Featured Case Studies",
+            "subtitle": "Deep-dive case studies with executive snapshots, trust layers, and artifact previews",
             "viewAll": "View All Projects",
+            "viewAllCaseStudies": "View All Case Studies",
             "new": "New",
             "impact": "Impact",
             "viewCaseStudy": "View Case Study"
+        },
+        "allProjects": {
+            "title": "All Projects",
+            "total": "projects",
+            "showAll": "Show all projects"
+        },
+        "presets": {
+            "costSavings": "Cost Savings",
+            "compliance": "Compliance Heavy",
+            "aiGenai": "AI/GenAI",
+            "platformEngineering": "Platform Engineering"
         },
         "whyWorkWithMe": {
             "title": "Why Work With Me",
@@ -988,6 +1001,14 @@
             "technical": "Technical",
             "delivery": "Delivery"
         },
+        "nav": {
+            "snapshot": "Snapshot",
+            "challenge": "Challenge",
+            "delivery": "Delivery",
+            "proof": "Proof",
+            "artifacts": "Artifacts",
+            "contact": "Contact"
+        },
         "whatIDelivered": {
             "title": "What I Delivered",
             "differentiator": "Key Differentiator"
@@ -1032,7 +1053,13 @@
             "sidebarTitle": "Ready to discuss?",
             "sidebarText": "Get a 30-min discovery call to explore how we can help.",
             "inlineTitle": "Need similar architecture validation?",
-            "inlineText": "I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget."
+            "inlineText": "I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget.",
+            "hiring": {
+                "primary": "Download Resume"
+            },
+            "toolkit": {
+                "primary": "Download Checklist"
+            }
         },
         "trustLayer": {
             "title": "Trust & Scope",
@@ -1046,7 +1073,17 @@
             "onRequest": "On request",
             "availableOnRequest": "Available on request",
             "requestAccess": "Request full artifacts",
+            "requestFullPack": "Request Full Artifacts Pack",
             "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures."
+        },
+        "ndaDisclaimer": {
+            "title": "NDA & Ownership Disclaimer",
+            "whatPublic": "What I can share publicly",
+            "whatPublicDesc": "Generalized patterns, anonymized outcomes, and architectural approaches",
+            "whatRequest": "What I share on request",
+            "whatRequestDesc": "Detailed artifacts, ADRs, and implementation patterns (NDA-safe)",
+            "teamCredit": "Where team credit applies",
+            "teamCreditDesc": "All outcomes were delivered collaboratively. The \"Scope Owned\" section clarifies my specific contributions."
         }
     },
     "independentAdvisory": {
@@ -1556,5 +1593,131 @@
         "benefit3": "Get concrete recommendations within 48 hours",
         "cta": "Open Calendar to Schedule",
         "note": "Opens in a new window"
+    },
+    "artifactRequest": {
+        "title": "Request Artifact Access",
+        "description": "To protect client confidentiality, detailed artifacts are shared selectively. Please provide your details and we'll review your request.",
+        "name": "Name",
+        "namePlaceholder": "Your full name",
+        "email": "Email",
+        "emailPlaceholder": "your.email@example.com",
+        "company": "Company",
+        "optional": "Optional",
+        "companyPlaceholder": "Your company name",
+        "role": "Role",
+        "rolePlaceholder": "e.g. CTO, Engineering Lead",
+        "reason": "Reason for Request",
+        "reasonSelect": "Select a reason...",
+        "reasonEvaluation": "Evaluating similar architecture",
+        "reasonLearning": "Learning best practices",
+        "reasonReference": "Reference for project",
+        "reasonOther": "Other",
+        "ndaCheckbox": "I understand that materials are shared selectively due to NDA and client confidentiality requirements.",
+        "cancel": "Cancel",
+        "submit": "Submit Request",
+        "submitting": "Submitting...",
+        "error": "Failed to submit request. Please try again.",
+        "success": {
+            "title": "Request Submitted",
+            "message": "We'll review your request and get back to you within 48 hours."
+        }
+    },
+    "impactDashboard": {
+        "title": "Impact at a Glance",
+        "subtitle": "Measurable outcomes from real engagements",
+        "savings": "Cost Saved",
+        "projects": "Projects",
+        "compliance": "Compliance Rate",
+        "breaches": "Data Breaches"
+    },
+    "testimonials": {
+        "title": "What Clients Say",
+        "subtitle": "Hover to read full testimonials",
+        "viewMore": "More testimonials"
+    },
+    "competition": {
+        "badge": "Google AI Portfolio Challenge Submission",
+        "ribbon": "Competition Mode",
+        "startHere": {
+            "title": "Start Here",
+            "subtitle": "This portfolio demonstrates enterprise architecture expertise, AI integration with Gemini, and a production-ready platform deployed on Google Cloud Run.",
+            "cta1": {
+                "title": "Explore 5 Hero Case Studies",
+                "description": "Deep-dive case studies with executive snapshots, trust layers, and artifact previews",
+                "button": "View Case Studies"
+            },
+            "cta2": {
+                "title": "Try AI Tool",
+                "description": "Vendor Proposal Checklist - AI-powered proposal review tool",
+                "button": "Try Checklist"
+            },
+            "cta3": {
+                "title": "Watch Executive Summary",
+                "description": "View executive snapshot modal from any hero case study",
+                "button": "View Example"
+            }
+        },
+        "page": {
+            "title": "Competition Submission",
+            "description": "Google AI Portfolio Challenge submission walkthrough",
+            "badge": "Google AI Portfolio Challenge",
+            "subtitle": "A production-ready portfolio demonstrating enterprise architecture expertise, AI integration with Gemini, and Cloud Run deployment.",
+            "whatIs": {
+                "title": "What This Site Is",
+                "description": "An independent architecture consultant portfolio built with React + TypeScript, featuring AI-powered tools (Gemini 3 Pro), feature flags for phased rollout, GDPR-safe analytics, and production deployment on Google Cloud Run. The site demonstrates real-world enterprise architecture expertise through detailed case studies."
+            },
+            "aiFeatures": {
+                "title": "AI Features",
+                "description": "This portfolio integrates Google Gemini 3 Pro for:",
+                "feature1": "Vendor Proposal Review Checklist generation",
+                "feature2": "Architecture decision recommendations",
+                "feature3": "Risk assessment and mitigation planning",
+                "tryChecklist": "Try Checklist",
+                "tryArchEngine": "Try Architecture Engine"
+            },
+            "evidence": {
+                "title": "Evidence System",
+                "description": "Each hero case study includes:",
+                "item1": "Trust Layer: My role, scope owned, team collaboration, NDA disclaimers",
+                "item2": "Artifact Previews: 6+ artifacts per case study (ADRs, diagrams, roadmaps)",
+                "item3": "Credibility Signals: Duration, team size, region, engagement type",
+                "viewCaseStudies": "View Hero Case Studies"
+            },
+            "metrics": {
+                "title": "Metrics Dashboard",
+                "description": "Impact metrics displayed on homepage: cost saved, projects delivered, compliance rate, data breaches prevented.",
+                "viewDashboard": "View Dashboard"
+            },
+            "leadCapture": {
+                "title": "Lead Capture Demo",
+                "description": "GDPR-safe lead capture with email delivery and Google Sheets storage. Includes attribution tracking (UTM params, referrer, landing path) without PII in analytics.",
+                "tryChecklist": "Try Checklist Download"
+            },
+            "quickLinks": {
+                "title": "Quick Links",
+                "homepage": "Homepage",
+                "homepageDesc": "Start here",
+                "caseStudies": "Case Studies",
+                "caseStudiesDesc": "5 hero case studies",
+                "checklist": "AI Checklist",
+                "checklistDesc": "Try AI tool",
+                "github": "GitHub Repo",
+                "githubDesc": "View source code"
+            },
+            "startHere": {
+                "title": "Start Here - Quick Checklist",
+                "item1": "Try AI Checklist",
+                "item2": "Try Architecture Assistant",
+                "item3": "View Hero Case Studies",
+                "item4": "See Artifacts Gating + Request"
+            }
+        }
+    },
+    "credibilityStrip": {
+        "duration": "Duration",
+        "teamSize": "Team Size",
+        "region": "Region",
+        "engagementType": "Engagement",
+        "decisionAuthority": "Decision Authority"
     }
 }

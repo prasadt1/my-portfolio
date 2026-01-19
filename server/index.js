@@ -3127,6 +3127,263 @@ app.post('/api/leadstore/test-write', devOnlyMiddleware, async (req, res) => {
     }
 });
 
+/**
+ * POST /api/artifact-request
+ * Phase 3.3: Artifact request endpoint - stores requests in Google Sheets
+ * Phase 3.4B: Hardened with honeypot, rate limiting, and stricter validation
+ */
+// Rate limiting store for artifact requests (in-memory, best effort)
+const artifactRequestRateLimit = new Map();
+const ARTIFACT_RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const ARTIFACT_RATE_LIMIT_MAX = 5; // 5 requests per hour per IP
+
+// Hero case studies list (must match frontend)
+const HERO_CASE_STUDIES = [
+    'brita-ecommerce',
+    'delivery-hero-ads',
+    'insurance-performance',
+    'pact-pcf-data-exchange-network',
+    'photography-coach-ai'
+];
+
+app.post('/api/artifact-request', async (req, res) => {
+    try {
+        const {
+            name: rawName,
+            email: rawEmail,
+            company: rawCompany,
+            role: rawRole,
+            reason: rawReason,
+            understandsNDA,
+            caseStudySlug: rawCaseStudySlug,
+            artifactIds: rawArtifactIds,
+            attribution: rawAttribution,
+            // Phase 3.4B: Honeypot fields
+            website: rawWebsite,
+            companyUrl: rawCompanyUrl,
+        } = req.body;
+
+        // Phase 3.4B: Honeypot check - silently reject if filled
+        if ((rawWebsite && String(rawWebsite).trim().length > 0) || 
+            (rawCompanyUrl && String(rawCompanyUrl).trim().length > 0)) {
+            // Silently return 200 OK (don't reveal it's a honeypot)
+            return res.status(200).json({ success: true, message: 'Request submitted successfully' });
+        }
+
+        // Get client info for rate limiting
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        const ipHash = crypto.createHash('sha256').update(clientIp).digest('hex').substring(0, 16);
+
+        // Phase 3.4B: Rate limiting check
+        const now = Date.now();
+        const rateLimitKey = `artifact_${ipHash}`;
+        const rateLimitRecord = artifactRequestRateLimit.get(rateLimitKey);
+
+        if (rateLimitRecord) {
+            // Check if within time window
+            if (now - rateLimitRecord.firstRequest < ARTIFACT_RATE_LIMIT_WINDOW) {
+                if (rateLimitRecord.count >= ARTIFACT_RATE_LIMIT_MAX) {
+                    return res.status(429).json({ 
+                        error: 'Too many requests. Please try again later.',
+                        retryAfter: Math.ceil((ARTIFACT_RATE_LIMIT_WINDOW - (now - rateLimitRecord.firstRequest)) / 1000)
+                    });
+                }
+                rateLimitRecord.count++;
+            } else {
+                // Reset window
+                artifactRequestRateLimit.set(rateLimitKey, { firstRequest: now, count: 1 });
+            }
+        } else {
+            artifactRequestRateLimit.set(rateLimitKey, { firstRequest: now, count: 1 });
+        }
+
+        // Validate required fields
+        if (!rawEmail || !rawEmail.includes('@')) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        // Phase 3.4B: Stricter email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(String(rawEmail).trim())) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        if (!rawName || !rawName.trim()) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        if (!rawReason || !rawReason.trim()) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        if (!understandsNDA) {
+            return res.status(400).json({ error: 'NDA acknowledgment required.' });
+        }
+
+        // Sanitize inputs
+        const email = String(rawEmail).trim().toLowerCase().substring(0, 160);
+        const name = safeStr(rawName, 200);
+        const company = safeStr(rawCompany, 200);
+        const role = safeStr(rawRole, 200);
+        const reason = safeStr(rawReason, 200);
+        const caseStudySlug = safeStr(rawCaseStudySlug, 100);
+        const artifactIds = Array.isArray(rawArtifactIds) ? rawArtifactIds.join(',') : safeStr(rawArtifactIds, 500);
+
+        // Phase 3.4B: Stricter validation - caseStudySlug must be in hero list
+        if (!caseStudySlug || !HERO_CASE_STUDIES.includes(caseStudySlug)) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+
+        // Phase 3.4B: Validate artifactIds (basic check - should match case study artifacts)
+        // Note: Full validation would require loading project data, keeping it simple for now
+        if (!artifactIds || artifactIds.trim().length === 0) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+
+        // Prepare artifact request record
+        const artifactRequest = {
+            timestamp: new Date().toISOString(),
+            name,
+            email,
+            company: company || '',
+            role: role || '',
+            reason,
+            understandsNDA: true,
+            caseStudySlug: caseStudySlug || '',
+            artifactIds: artifactIds || '',
+            ipHash,
+            // Attribution (no PII)
+            utm_source: rawAttribution?.utm_source || '',
+            utm_medium: rawAttribution?.utm_medium || '',
+            utm_campaign: rawAttribution?.utm_campaign || '',
+            referrer: safeStr(rawAttribution?.referrer, 300) || '',
+            landingPath: safeStr(rawAttribution?.landingPath, 200) || '',
+        };
+
+        // Save to Google Sheets (use lead store with special leadMagnet type for filtering)
+        try {
+            // Format as lead with special leadMagnet type for easy filtering
+            const artifactLead = {
+                email,
+                locale: 'en', // Default, can be enhanced
+                sourcePath: `/projects/${caseStudySlug}`,
+                timestamp: artifactRequest.timestamp,
+                ipHash: artifactRequest.ipHash,
+                leadMagnet: 'artifact-request', // Special marker
+                userAgent: safeStr(req.get('user-agent'), 250),
+                referrer: artifactRequest.referrer,
+                consent: true,
+                consentTimestamp: artifactRequest.timestamp,
+                // Additional fields for artifact requests
+                name,
+                company: company || '',
+                role: role || '',
+                reason,
+                understandsNDA: true,
+                caseStudySlug,
+                artifactIds,
+                // Attribution
+                utm_source: artifactRequest.utm_source,
+                utm_medium: artifactRequest.utm_medium,
+                utm_campaign: artifactRequest.utm_campaign,
+                landingPath: artifactRequest.landingPath,
+            };
+
+            await leadStore.saveLead(artifactLead);
+            // Phase 3.4B: Server logging (no email, no PII)
+            const artifactCount = artifactIds.split(',').length;
+            console.log('[ARTIFACT REQUEST] Request saved:', {
+                timestamp: new Date().toISOString(),
+                slug: caseStudySlug,
+                artifactCount,
+                ipHash,
+            });
+        } catch (saveErr) {
+            console.error('[ARTIFACT REQUEST] Error saving to store:', saveErr.message);
+            // Continue - don't block response
+        }
+
+        // Send confirmation email
+        try {
+            const transporter = createEmailTransporter();
+            const fromEmail = process.env.FROM_EMAIL;
+            const fromName = process.env.FROM_NAME || 'Prasad Tilloo';
+            const contactEmail = getContactEmail();
+
+            if (transporter && fromEmail) {
+                await transporter.sendMail({
+                    from: `"${fromName}" <${fromEmail}>`,
+                    to: email,
+                    replyTo: contactEmail,
+                    subject: 'Artifact Request Received',
+                    html: `
+                        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+                            <h2>Artifact Request Received</h2>
+                            <p>Thank you for your interest, ${name}.</p>
+                            <p>We've received your request for access to case study artifacts. We'll review your request and get back to you within 48 hours.</p>
+                            <p>Best regards,<br>Prasad Tilloo</p>
+                        </div>
+                    `,
+                });
+
+                // Also notify you
+                await transporter.sendMail({
+                    from: `"${fromName}" <${fromEmail}>`,
+                    to: contactEmail,
+                    subject: `New Artifact Request: ${caseStudySlug}`,
+                    html: `
+                        <div style="font-family: sans-serif;">
+                            <h2>New Artifact Request</h2>
+                            <p><strong>Name:</strong> ${name}</p>
+                            <p><strong>Email:</strong> ${email}</p>
+                            <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+                            <p><strong>Role:</strong> ${role || 'Not provided'}</p>
+                            <p><strong>Reason:</strong> ${reason}</p>
+                            <p><strong>Case Study:</strong> ${caseStudySlug}</p>
+                            <p><strong>Artifacts:</strong> ${artifactIds}</p>
+                        </div>
+                    `,
+                });
+            }
+        } catch (emailErr) {
+            console.error('[ARTIFACT REQUEST] Error sending email:', emailErr.message);
+            // Continue - don't block response
+        }
+
+        res.status(200).json({ success: true, message: 'Request submitted successfully' });
+    } catch (error) {
+        console.error('[ARTIFACT REQUEST] Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+/**
+ * GET /health
+ * Phase 3.2C: Health check endpoint for Cloud Run
+ */
+app.get('/health', (req, res) => {
+    res.status(200).json({
+        status: 'ok',
+        timestamp: new Date().toISOString(),
+        service: 'portfolio-api',
+    });
+});
+
+/**
+ * GET /api/version
+ * Phase 3.4E: Deployment diagnostics endpoint
+ */
+app.get('/api/version', (req, res) => {
+    const gitSha = process.env.GIT_SHA || process.env.COMMIT_SHA || 'unknown';
+    const buildTimestamp = process.env.BUILD_TIMESTAMP || process.env.BUILD_DATE || 'unknown';
+    const nodeEnv = process.env.NODE_ENV || 'unknown';
+    const leadStoreProvider = process.env.LEAD_STORE_PROVIDER || 'json';
+
+    res.status(200).json({
+        gitSha,
+        buildTimestamp,
+        nodeEnv,
+        leadStoreProvider,
+        timestamp: new Date().toISOString(),
+    });
+});
+
 // Serve static files from the React app
 // (__filename and __dirname already declared above for lead capture endpoint)
 

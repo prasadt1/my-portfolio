@@ -37,12 +37,15 @@ const HireMePage = lazy(() => import('./pages/HireMePage'));
 const ConsultingPage = lazy(() => import('./pages/ConsultingPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
+const CompetitionPage = lazy(() => import('./pages/CompetitionPage'));
 // Admin pages (dev-only, hidden in production)
 const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));
+const DiagnosticsPage = lazy(() => import('./pages/admin/DiagnosticsPage'));
 
 // Layout Component
 const Layout: React.FC = () => {
   const location = useLocation();
+  const competitionMode = typeof import.meta !== 'undefined' && (import.meta.env?.VITE_COMPETITION_MODE === 'true' || import.meta.env?.VITE_COMPETITION_MODE === '1');
   
   // Conditionally show ChatAssistant only on specific pages
   const showChatAssistant = ['/', '/services', '/contact'].includes(location.pathname);
@@ -53,7 +56,7 @@ const Layout: React.FC = () => {
         <CommandPalette />
       </Suspense>
       <Navigation />
-      <main className="pt-20">
+      <main className={competitionMode ? 'pt-32' : 'pt-20'}>
         <ErrorBoundary>
           <Suspense
             fallback={
@@ -94,8 +97,6 @@ const App: React.FC = () => {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="projects" element={<ProjectsPage />} />
                 <Route path="projects/:slug" element={<CaseStudyPage />} />
-                <Route path="architecture-engine" element={<ArchitectureEngine />} />
-                <Route path="risk-radar" element={<RiskRadarPage />} />
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="hiring" element={<HiringPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />
@@ -110,6 +111,8 @@ const App: React.FC = () => {
                 <Route path="hire-me" element={<HireMePage />} />
                 <Route path="consulting" element={<ConsultingPage />} />
                 <Route path="resources" element={<ResourcesPage />} />
+                {/* Phase 3.4A: Competition page */}
+                <Route path="competition" element={<CompetitionPage />} />
                 {/* Feature routes with guards */}
                 <Route path="architecture-engine" element={
                   <FeatureRouteGuard path="/architecture-engine" featureKey="AI_ARCH_ENGINE">
@@ -121,8 +124,9 @@ const App: React.FC = () => {
                     <RiskRadarPage />
                   </FeatureRouteGuard>
                 } />
-                {/* Admin routes (dev-only, FeatureFlagsPage hides itself in production) */}
+                {/* Admin routes (dev-only) */}
                 <Route path="admin/feature-flags" element={<FeatureFlagsPage />} />
+                <Route path="admin/diagnostics" element={<DiagnosticsPage />} />
               </Route>
             </Routes>
             <Suspense fallback={null}>

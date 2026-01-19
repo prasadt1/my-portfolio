@@ -10,7 +10,18 @@ export type FeatureKey =
   | 'TOOLKIT_LIBRARY'
   | 'EXEC_SUMMARY_MODAL'
   | 'CASESTUDY_ARTIFACT_GATE'
-  | 'HOMEPAGE_PERSONA_TABS';
+  | 'HOMEPAGE_PERSONA_TABS'
+  // Phase 3.2: Extended feature flags
+  | 'AI_TOOLS_SECTION'
+  | 'TOOLKIT_LIBRARY_SECTION'
+  | 'RISK_RADAR_TOOL'
+  | 'ARCH_ENGINE_TOOL'
+  | 'FIT_CHECK_TOOL'
+  | 'FULL_CASE_STUDIES_CATALOG'
+  | 'CASE_STUDY_ARTIFACTS_DOWNLOAD'
+  | 'CASE_STUDY_ARTIFACTS_REQUEST'
+  | 'TESTIMONIALS_ROTATOR'
+  | 'IMPACT_DASHBOARDS';
 
 export type FeatureFlag = {
   enabled: boolean;   // Controls if feature works (competition judges can access if enabled=true)
@@ -63,5 +74,46 @@ export const FEATURES: Record<FeatureKey, FeatureFlag> = {
   HOMEPAGE_PERSONA_TABS: {
     enabled: true,
     promoted: getPromotionFlag('VITE_PROMOTE_PERSONA_TABS', 'HOMEPAGE_PERSONA_TABS', false),
+  },
+  // Phase 3.2: Extended feature flags
+  AI_TOOLS_SECTION: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_AI_TOOLS', 'AI_TOOLS_SECTION', false),
+  },
+  TOOLKIT_LIBRARY_SECTION: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_TOOLKITS', 'TOOLKIT_LIBRARY_SECTION', false),
+  },
+  RISK_RADAR_TOOL: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_RISK_RADAR_TOOL', 'RISK_RADAR_TOOL', false),
+  },
+  ARCH_ENGINE_TOOL: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_ARCH_ENGINE_TOOL', 'ARCH_ENGINE_TOOL', false),
+  },
+  FIT_CHECK_TOOL: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_FIT_CHECK_TOOL', 'FIT_CHECK_TOOL', false),
+  },
+  FULL_CASE_STUDIES_CATALOG: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_FULL_CATALOG', 'FULL_CASE_STUDIES_CATALOG', false),
+  },
+  CASE_STUDY_ARTIFACTS_DOWNLOAD: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_ARTIFACTS_DOWNLOAD', 'CASE_STUDY_ARTIFACTS_DOWNLOAD', false),
+  },
+  CASE_STUDY_ARTIFACTS_REQUEST: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_ARTIFACTS_REQUEST', 'CASE_STUDY_ARTIFACTS_REQUEST', false),
+  },
+  TESTIMONIALS_ROTATOR: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_TESTIMONIALS', 'TESTIMONIALS_ROTATOR', false),
+  },
+  IMPACT_DASHBOARDS: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_IMPACT_DASHBOARDS', 'IMPACT_DASHBOARDS', false),
   },
 };

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/projects';
-import { Search, ChevronDown, FolderGit2, ArrowRight, Globe, Award, TrendingUp } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, FolderGit2, ArrowRight, Globe, Award, TrendingUp } from 'lucide-react';
 import SEO from '../components/SEO';
 import { isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, type CaseStudy, type LocalizedString } from '../types/CaseStudy';
 import ProjectCard from '../components/ProjectCard';
@@ -194,9 +194,16 @@ const ProjectsPage: React.FC = () => {
         });
     }, [searchQuery, selectedCategory, locale]);
 
-    // Featured project
-    const featuredProject = projects.find(p => p.slug === 'pact-pcf-data-exchange-network');
-    const showFeatured = !searchQuery && selectedCategory === 'all' && featuredProject;
+    // Phase 4 E1: Featured projects (5 hero case studies)
+    const HERO_SLUGS = ['brita-ecommerce', 'delivery-hero-ads', 'insurance-performance', 'pact-pcf-data-exchange-network', 'photography-coach-ai'];
+    const featuredProjects = projects.filter(p => HERO_SLUGS.includes(p.slug)).slice(0, 5);
+    const showFeatured = !searchQuery && selectedCategory === 'all' && featuredProjects.length > 0;
+    
+    // Phase 4 E1: Collapsed all projects list (show first 9, expand for more)
+    const [showAllProjects, setShowAllProjects] = useState(false);
+    const otherProjects = projects.filter(p => !HERO_SLUGS.includes(p.slug));
+    const displayedOtherProjects = showAllProjects ? otherProjects : otherProjects.slice(0, 9);
+    const hasMoreProjects = otherProjects.length > 9;
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans">
@@ -223,7 +230,43 @@ const ProjectsPage: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Search and Filter Controls - Sticky */}
+                {/* Phase 4 E2: Quick Preset Filter Chips */}
+                {!searchQuery && selectedCategory === 'all' && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex flex-wrap items-center justify-center gap-2 mb-6"
+                    >
+                        {[
+                            { id: 'cost-savings', label: t('projectsPage.presets.costSavings', { defaultValue: 'Cost Savings' }), domains: ['Cost Optimization', 'Cloud Migration'] },
+                            { id: 'compliance', label: t('projectsPage.presets.compliance', { defaultValue: 'Compliance Heavy' }), domains: ['Compliance', 'Healthcare IT', 'FinTech'] },
+                            { id: 'ai-genai', label: t('projectsPage.presets.aiGenai', { defaultValue: 'AI/GenAI' }), domains: ['AI & GenAI', 'AI/ML'] },
+                            { id: 'platform-engineering', label: t('projectsPage.presets.platformEngineering', { defaultValue: 'Platform Engineering' }), domains: ['Platform Engineering', 'Enterprise Integration'] },
+                        ].map((preset) => (
+                            <button
+                                key={preset.id}
+                                onClick={() => {
+                                    // Find matching category or set search
+                                    const matchingCategory = CATEGORIES.find(c => 
+                                        c.domains?.some(d => preset.domains.includes(d))
+                                    );
+                                    if (matchingCategory) {
+                                        setSelectedCategory(matchingCategory.id);
+                                    }
+                                    trackEvent('projects_preset_filter_clicked', {
+                                        preset: preset.id,
+                                        locale,
+                                    });
+                                }}
+                                className="px-3 py-1.5 text-xs font-medium rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                            >
+                                {preset.label}
+                            </button>
+                        ))}
+                    </motion.div>
+                )}
+
+                {/* Phase 4 E2: Simplified Filter Controls - Sticky */}
                 <motion.div 
                     ref={filterBarRef}
                     initial={{ opacity: 0, y: 10 }}
@@ -250,7 +293,7 @@ const ProjectsPage: React.FC = () => {
                         />
                     </div>
 
-                    {/* Category Filter Dropdown */}
+                    {/* Phase 4 E2: Simplified Category Filter Dropdown */}
                     <div className="relative">
                         <button
                             ref={dropdownButtonRef}
@@ -259,12 +302,12 @@ const ProjectsPage: React.FC = () => {
                             aria-expanded={isFilterOpen}
                             aria-haspopup="listbox"
                             className="w-full sm:w-auto flex items-center justify-between gap-2 px-4 py-2.5 rounded-lg 
-                                       border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 
+                                       border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 
                                        text-slate-700 dark:text-slate-300 text-sm font-medium
-                                       hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors
+                                       hover:border-slate-400 dark:hover:border-slate-500 transition-colors
                                        focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500"
                         >
-                            <span>{t('projectsPage.filterLabel')}</span>
+                            <span>{t('projectsPage.filterLabel', { defaultValue: 'Category' })}</span>
                             <ChevronDown size={16} className={`transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
                         </button>
                         
@@ -276,7 +319,7 @@ const ProjectsPage: React.FC = () => {
                                     exit={{ opacity: 0, y: -5 }}
                                     role="listbox"
                                     className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-slate-800 rounded-lg 
-                                               border border-slate-200 dark:border-slate-700 shadow-lg z-40 py-1"
+                                               border border-slate-300 dark:border-slate-600 shadow-lg z-40 py-1"
                                 >
                                     {CATEGORIES.map((category, idx) => (
                                         <button
@@ -332,108 +375,34 @@ const ProjectsPage: React.FC = () => {
                     </motion.div>
                 )}
 
-                {/* Featured Case Study */}
-                {showFeatured && (
+                {/* Phase 4 E1: Featured Projects Section - 5 Hero Projects */}
+                {showFeatured && featuredProjects.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="mb-10"
+                        className="mb-12"
                     >
-                        <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 dark:from-emerald-900/20 dark:via-teal-900/15 dark:to-emerald-800/15 rounded-2xl p-6 md:p-8 border border-emerald-200 dark:border-emerald-800 relative overflow-hidden">
-                            {/* Background pattern */}
-                            <div className="absolute inset-0 opacity-5 pointer-events-none">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full -translate-y-1/2 translate-x-1/2" />
-                            </div>
-                            
-                            <div className="relative z-10">
-                                <div className="flex flex-wrap items-center gap-2 mb-4">
-                                    <span className="px-3 py-1 bg-emerald-600 text-white text-xs font-semibold rounded-full uppercase tracking-wide">
-                                        {t('projectsPage.featured.badge')}
-                                    </span>
-                                    <span className="px-2.5 py-1 bg-white/80 dark:bg-slate-800/80 text-emerald-700 dark:text-emerald-400 text-xs font-medium rounded-full">
-                                        {t('projectsPage.featured.globalStandard')}
-                                    </span>
-                                </div>
-                                
-                                <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 font-serif">
-                                    {getLocalizedValue(featuredProject.header?.title, locale)}
-                                </h2>
-                                
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-6 max-w-2xl leading-relaxed line-clamp-2">
-                                    {getChallengeSituation(featuredProject.challenge, locale)}
-                                </p>
-                                
-                                {/* Key metrics - compact */}
-                                <div className="flex flex-wrap gap-4 mb-6">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
-                                            <Globe className="text-emerald-600 dark:text-emerald-400" size={16} />
-                                        </div>
-                                        <div>
-                                            <div className="text-sm font-semibold text-slate-900 dark:text-white">90+</div>
-                                            <div className="text-xs text-slate-500 dark:text-slate-400">{t('projectsPage.featured.fortune100')}</div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
-                                            <TrendingUp className="text-emerald-600 dark:text-emerald-400" size={16} />
-                                        </div>
-                                        <div>
-                                            <div className="text-sm font-semibold text-slate-900 dark:text-white">60%</div>
-                                            <div className="text-xs text-slate-500 dark:text-slate-400">{t('projectsPage.featured.integrationReduction')}</div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
-                                            <Award className="text-emerald-600 dark:text-emerald-400" size={16} />
-                                        </div>
-                                        <div>
-                                            <div className="text-sm font-semibold text-slate-900 dark:text-white">WBCSD</div>
-                                            <div className="text-xs text-slate-500 dark:text-slate-400">{t('projectsPage.featured.globalBody')}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <Link
-                                    to={`/projects/${featuredProject.slug}`}
-                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-all shadow-md hover:shadow-lg"
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
+                                {t('projectsPage.featured.title', { defaultValue: 'Featured Case Studies' })}
+                            </h2>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                            {featuredProjects.map((project, idx) => (
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 + idx * 0.1 }}
                                 >
-                                    {t('projectsPage.featured.readCaseStudy')}
-                                    <ArrowRight size={16} />
-                                </Link>
-                            </div>
+                                    <ProjectCard project={project} />
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
                 )}
 
-                {/* Section Header for Other Projects */}
-                {showFeatured && filteredProjects.filter(p => p.slug !== 'pact-pcf-data-exchange-network').length > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="mb-6"
-                    >
-                        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-                            {t('projectsPage.otherProjects.title')}
-                        </h2>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                            {t('projectsPage.otherProjects.subtitle')}
-                        </p>
-                    </motion.div>
-                )}
-
-                {/* Projects Grid */}
-                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <AnimatePresence mode="popLayout">
-                        {filteredProjects
-                            .filter(p => !showFeatured || p.slug !== 'pact-pcf-data-exchange-network')
-                            .map((project) => (
-                                <ProjectCard key={project.id} project={project} />
-                            ))}
-                    </AnimatePresence>
-                </motion.div>
 
                 {/* Empty State */}
                 {filteredProjects.length === 0 && (

@@ -18,9 +18,9 @@ const logos = [
     { src: "/assets/logos/ecovadis-vector-logo.svg", alt: "EcoVadis", className: "h-5 md:h-6" }
 ];
 
-const LogoCarousel: React.FC = () => {
+const LogoCarousel: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
     return (
-        <div className="w-full overflow-hidden bg-slate-50/50 dark:bg-slate-200 py-10 border-y border-slate-200 dark:border-slate-300">
+        <div className={`w-full overflow-hidden ${compact ? '' : 'bg-slate-50/50 dark:bg-slate-200 py-10 border-y border-slate-200 dark:border-slate-300'}`}>
             <div className="relative flex overflow-hidden group">
                 {/* Single animating track containing duplicate sets */}
                 <div className="flex animate-scroll hover:pause">
