@@ -507,6 +507,67 @@ export const projects: CaseStudy[] = [
             { en: '6 markets', de: '6 Märkte' },
             { en: 'Zero-downtime cutover', de: 'Zero-Downtime Cutover' },
             { en: 'Shopware → Shopify Plus', de: 'Shopware → Shopify Plus' }
+        ],
+        // Phase 3.1: Trust Layer
+        trustLayer: {
+            myRole: { en: 'Lead Architect / Program Manager', de: 'Lead-Architekt / Program Manager' },
+            scopeOwned: {
+                en: [
+                    'Architecture design and governance model definition',
+                    'Platform selection (Shopify Plus) and vendor negotiation',
+                    'Migration strategy and sequencing across 6 markets',
+                    'SEO preservation and redirect mapping strategy',
+                    'Stakeholder alignment and cross-functional coordination'
+                ],
+                de: [
+                    'Architektur-Design und Governance-Modell-Definition',
+                    'Plattform-Auswahl (Shopify Plus) und Vendor-Verhandlung',
+                    'Migrationsstrategie und Sequenzierung über 6 Märkte',
+                    'SEO-Erhaltung und Redirect-Mapping-Strategie',
+                    'Stakeholder-Alignment und Cross-Funktionale Koordination'
+                ]
+            },
+            deliveredWithTeam: {
+                en: [
+                    'Frontend implementation (Vue.js/Nuxt.js) by development team',
+                    'Data migration execution and validation',
+                    'Infrastructure setup (Azure, CDN, caching) by DevOps team',
+                    'Market-specific localization and content management',
+                    'Testing and QA across all markets'
+                ],
+                de: [
+                    'Frontend-Implementierung (Vue.js/Nuxt.js) durch Development-Team',
+                    'Datenmigration-Ausführung und Validierung',
+                    'Infrastruktur-Setup (Azure, CDN, Caching) durch DevOps-Team',
+                    'Marktspezifische Lokalisierung und Content-Management',
+                    'Testing und QA über alle Märkte'
+                ]
+            },
+            confidentialityNote: {
+                en: 'This case study is anonymized and generalized. It contains no confidential data, internal system details, code, or proprietary documents. All diagrams are recreated from memory and represent patterns, not internal architectures.',
+                de: 'Diese Fallstudie ist anonymisiert und verallgemeinert. Sie enthält keine vertraulichen Daten, internen Systemdetails, Code oder proprietäre Dokumente. Alle Diagramme sind aus dem Gedächtnis rekonstruiert und repräsentieren Patterns, nicht interne Architekturen.'
+            }
+        },
+        // Phase 3.1: Artifact Previews
+        artifactPreviews: [
+            {
+                title: { en: 'Architecture Decision Records (ADRs)', de: 'Architecture Decision Records (ADRs)' },
+                description: { en: 'Documented decisions on platform selection, migration strategy, and governance model', de: 'Dokumentierte Entscheidungen zu Plattform-Auswahl, Migrationsstrategie und Governance-Modell' },
+                type: 'ADR',
+                gated: true
+            },
+            {
+                title: { en: 'Migration Sequencing Diagram', de: 'Migrations-Sequenzierungs-Diagramm' },
+                description: { en: 'Multi-market rollout sequence with dependencies and risk mitigation steps', de: 'Multi-Market-Rollout-Sequenz mit Abhängigkeiten und Risiko-Mitigations-Schritten' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'SEO Migration Checklist', de: 'SEO-Migrations-Checklist' },
+                description: { en: 'Comprehensive checklist for preserving SEO during platform migration', de: 'Umfassende Checkliste zur SEO-Erhaltung während Plattform-Migration' },
+                type: 'Checklist',
+                gated: true
+            }
         ]
     },
     {
@@ -834,6 +895,67 @@ export const projects: CaseStudy[] = [
             { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' },
             { en: '99.99% SLA', de: '99,99% SLA' },
             { en: 'Revenue +20%', de: 'Umsatz +20%' }
+        ],
+        // Phase 3.1: Trust Layer
+        trustLayer: {
+            myRole: { en: 'Lead Architect / Technical Lead', de: 'Lead-Architekt / Technical Lead' },
+            scopeOwned: {
+                en: [
+                    'System architecture design and performance optimization strategy',
+                    'Technology stack selection (Go, Redis, Kubernetes)',
+                    'Exact-once processing pattern design and implementation',
+                    'Capacity planning and auto-scaling strategy',
+                    'Rollout strategy with canary deployment and feature flags'
+                ],
+                de: [
+                    'System-Architektur-Design und Performance-Optimierungsstrategie',
+                    'Technology-Stack-Auswahl (Go, Redis, Kubernetes)',
+                    'Exactly-Once-Processing-Pattern-Design und Implementierung',
+                    'Kapazitätsplanung und Auto-Scaling-Strategie',
+                    'Rollout-Strategie mit Canary-Deployment und Feature Flags'
+                ]
+            },
+            deliveredWithTeam: {
+                en: [
+                    'Go microservices implementation by backend development team',
+                    'Redis cache layer and data pipeline setup by infrastructure team',
+                    'Kubernetes cluster configuration and monitoring by DevOps team',
+                    'Load testing and performance validation by QA team',
+                    'Production deployment and incident response procedures'
+                ],
+                de: [
+                    'Go-Microservices-Implementierung durch Backend-Development-Team',
+                    'Redis-Cache-Layer und Datenpipeline-Setup durch Infrastructure-Team',
+                    'Kubernetes-Cluster-Konfiguration und Monitoring durch DevOps-Team',
+                    'Load-Testing und Performance-Validierung durch QA-Team',
+                    'Produktions-Deployment und Incident-Response-Prozesse'
+                ]
+            },
+            confidentialityNote: {
+                en: 'This case study is anonymized and generalized. It contains no confidential data, internal system details, code, or proprietary documents. All diagrams are recreated from memory and represent patterns, not internal architectures.',
+                de: 'Diese Fallstudie ist anonymisiert und verallgemeinert. Sie enthält keine vertraulichen Daten, internen Systemdetails, Code oder proprietäre Dokumente. Alle Diagramme sind aus dem Gedächtnis rekonstruiert und repräsentieren Patterns, nicht interne Architekturen.'
+            }
+        },
+        // Phase 3.1: Artifact Previews
+        artifactPreviews: [
+            {
+                title: { en: 'Performance Optimization Architecture', de: 'Performance-Optimierungs-Architektur' },
+                description: { en: 'System architecture diagram showing event-driven design and caching strategy', de: 'System-Architektur-Diagramm mit Event-Driven-Design und Caching-Strategie' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'Capacity Planning Model', de: 'Kapazitätsplanungs-Modell' },
+                description: { en: 'Traffic modeling and auto-scaling configuration for peak load handling', de: 'Traffic-Modellierung und Auto-Scaling-Konfiguration für Peak-Load-Handling' },
+                type: 'TCO',
+                gated: true
+            },
+            {
+                title: { en: 'Exact-Once Processing Pattern', de: 'Exactly-Once-Processing-Pattern' },
+                description: { en: 'Pattern documentation for ensuring billing accuracy in distributed ad serving', de: 'Pattern-Dokumentation für Abrechnungsgenauigkeit im verteilten Ad-Serving' },
+                type: 'ADR',
+                gated: true
+            }
         ]
     },
     // =============================================================================
@@ -1188,6 +1310,67 @@ export const projects: CaseStudy[] = [
             { en: '80% faster processing', de: '80% schnellere Verarbeitung' },
             { en: 'Claims workflow automation', de: 'Automatisierung Claims-Workflow' },
             { en: 'Reduced operational load', de: 'Reduzierte operative Last' }
+        ],
+        // Phase 3.1: Trust Layer
+        trustLayer: {
+            myRole: { en: 'Performance Engineering Lead / Consultant', de: 'Performance Engineering Lead / Consultant' },
+            scopeOwned: {
+                en: [
+                    'Performance assessment and bottleneck identification methodology',
+                    'SLO definition and performance budget allocation',
+                    'Optimization strategy design (non-disruptive approach)',
+                    'Database query optimization and caching strategy',
+                    'Observability framework design and implementation plan'
+                ],
+                de: [
+                    'Performance-Assessment und Bottleneck-Identifikations-Methodik',
+                    'SLO-Definition und Performance-Budget-Zuteilung',
+                    'Optimierungsstrategie-Design (Non-Disruptive-Ansatz)',
+                    'Datenbank-Query-Optimierung und Caching-Strategie',
+                    'Observability-Framework-Design und Implementierungsplan'
+                ]
+            },
+            deliveredWithTeam: {
+                en: [
+                    'Database optimization execution and query tuning by DBA team',
+                    'Application code refactoring and async processing implementation by development team',
+                    'Monitoring infrastructure setup (distributed tracing, dashboards) by DevOps team',
+                    'Load testing and performance validation by QA team',
+                    'Production rollout and stability monitoring'
+                ],
+                de: [
+                    'Datenbank-Optimierung und Query-Tuning durch DBA-Team',
+                    'Application-Code-Refactoring und Async-Processing-Implementierung durch Development-Team',
+                    'Monitoring-Infrastruktur-Setup (Distributed Tracing, Dashboards) durch DevOps-Team',
+                    'Load-Testing und Performance-Validierung durch QA-Team',
+                    'Produktions-Rollout und Stabilitäts-Monitoring'
+                ]
+            },
+            confidentialityNote: {
+                en: 'This case study is anonymized and generalized. It contains no confidential data, internal system details, code, or proprietary documents. All diagrams are recreated from memory and represent patterns, not internal architectures.',
+                de: 'Diese Fallstudie ist anonymisiert und verallgemeinert. Sie enthält keine vertraulichen Daten, internen Systemdetails, Code oder proprietäre Dokumente. Alle Diagramme sind aus dem Gedächtnis rekonstruiert und repräsentieren Patterns, nicht interne Architekturen.'
+            }
+        },
+        // Phase 3.1: Artifact Previews
+        artifactPreviews: [
+            {
+                title: { en: 'Performance Assessment Report', de: 'Performance-Assessment-Bericht' },
+                description: { en: 'Detailed analysis of bottlenecks, root causes, and optimization opportunities', de: 'Detaillierte Analyse von Bottlenecks, Root Causes und Optimierungsmöglichkeiten' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'SLO Definition & Performance Budget', de: 'SLO-Definition & Performance-Budget' },
+                description: { en: 'Service level objectives and performance budget allocation across workflows', de: 'Service-Level-Objectives und Performance-Budget-Zuteilung über Workflows' },
+                type: 'Roadmap',
+                gated: true
+            },
+            {
+                title: { en: 'Observability Framework Design', de: 'Observability-Framework-Design' },
+                description: { en: 'Distributed tracing setup and performance monitoring dashboard configuration', de: 'Distributed-Tracing-Setup und Performance-Monitoring-Dashboard-Konfiguration' },
+                type: 'Diagram',
+                gated: true
+            }
         ]
     },
     {

@@ -989,6 +989,19 @@
             "sidebarText": "Buchen Sie einen 30-Minuten Discovery Call, um zu besprechen, wie wir helfen können.",
             "inlineTitle": "Ähnliche Architektur-Validierung benötigt?",
             "inlineText": "Ich biete unabhängige Reviews an, um Risiken, Lücken und Optimierungsmöglichkeiten zu identifizieren, bevor Budget bereitgestellt wird."
+        },
+        "trustLayer": {
+            "title": "Vertrauen & Umfang",
+            "myRole": "Meine Rolle",
+            "scopeOwned": "Umfang, den ich persönlich verantwortet habe",
+            "deliveredWithTeam": "Mit Team umgesetzt",
+            "confidentialityNote": "Vertraulichkeitshinweis"
+        },
+        "artifacts": {
+            "title": "Artefakte (Vorschau)",
+            "onRequest": "Auf Anfrage",
+            "requestAccess": "Artefakte anfragen",
+            "privacyNote": "Zum Schutz der Vertraulichkeit der Kunden werden detaillierte Artefakte selektiv geteilt."
         }
     },
     "independentAdvisory": {
@@ -1159,6 +1172,25 @@
                 "2": "Warnzeichen-Muster",
                 "3": "Herstellerneutral"
             }
+        },
+        "personaTabs": {
+            "hiring": "Recruiting",
+            "consulting": "Beratung",
+            "toolkit": "Toolkit",
+            "hiringPrimary": "Lebenslauf / Recruiting-Snapshot ansehen",
+            "hiringSecondary": "Ausgewählte Case Studies",
+            "hiringTitle": "Recruiting-Snapshot",
+            "hiringYears": "Jahre Erfahrung",
+            "hiringIndustries": "Branchen",
+            "hiringStrengths": "Stärken",
+            "hiringAvailability": "Verfügbarkeit",
+            "hiringBilingual": "Deutsch/Englisch zweisprachig",
+            "consultingPrimary": "Discovery Call buchen",
+            "consultingSecondary": "Vendor Proposal Checklist testen",
+            "consultingTitle": "Beratungsleistungen",
+            "toolkitPrimary": "Toolkits durchsuchen",
+            "toolkitSecondary": "Checklist herunterladen",
+            "toolkitTitle": "Toolkits & Ressourcen"
         }
     },
     "hiringPage": {
@@ -1459,5 +1491,12 @@
             "email": "E-Mail"
         },
         "lastUpdated": "Zuletzt aktualisiert: Januar 2026"
+    },
+    "features": {
+        "unavailable": {
+            "title": "Funktion vorübergehend nicht verfügbar",
+            "message": "Diese Funktion ist derzeit deaktiviert. Bitte kontaktieren Sie den Support, wenn Sie Zugriff benötigen.",
+            "contact": "Support kontaktieren"
+        }
     }
 }
