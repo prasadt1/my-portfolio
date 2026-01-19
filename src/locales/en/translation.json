@@ -1032,7 +1032,13 @@
             "sidebarTitle": "Ready to discuss?",
             "sidebarText": "Get a 30-min discovery call to explore how we can help.",
             "inlineTitle": "Need similar architecture validation?",
-            "inlineText": "I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget."
+            "inlineText": "I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget.",
+            "hiring": {
+                "primary": "Download Resume"
+            },
+            "toolkit": {
+                "primary": "Download Checklist"
+            }
         },
         "trustLayer": {
             "title": "Trust & Scope",
@@ -1056,14 +1062,6 @@
             "whatRequestDesc": "Detailed artifacts, ADRs, and implementation patterns (NDA-safe)",
             "teamCredit": "Where team credit applies",
             "teamCreditDesc": "All outcomes were delivered collaboratively. The \"Scope Owned\" section clarifies my specific contributions."
-        },
-        "cta": {
-            "hiring": {
-                "primary": "Download Resume"
-            },
-            "toolkit": {
-                "primary": "Download Checklist"
-            }
         }
     },
     "independentAdvisory": {

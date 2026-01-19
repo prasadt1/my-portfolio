@@ -994,7 +994,13 @@
             "sidebarTitle": "Bereit zu sprechen?",
             "sidebarText": "Buchen Sie einen 30-Minuten Discovery Call, um zu besprechen, wie wir helfen können.",
             "inlineTitle": "Ähnliche Architektur-Validierung benötigt?",
-            "inlineText": "Ich biete unabhängige Reviews an, um Risiken, Lücken und Optimierungsmöglichkeiten zu identifizieren, bevor Budget bereitgestellt wird."
+            "inlineText": "Ich biete unabhängige Reviews an, um Risiken, Lücken und Optimierungsmöglichkeiten zu identifizieren, bevor Budget bereitgestellt wird.",
+            "hiring": {
+                "primary": "Resume herunterladen"
+            },
+            "toolkit": {
+                "primary": "Checklist herunterladen"
+            }
         },
         "trustLayer": {
             "title": "Vertrauen & Umfang",
@@ -1017,14 +1023,6 @@
             "whatRequestDesc": "Detaillierte Artefakte, ADRs und Implementierungsmuster (NDA-sicher)",
             "teamCredit": "Wo Team-Credit gilt",
             "teamCreditDesc": "Alle Ergebnisse wurden kollaborativ erzielt. Der Abschnitt \"Scope Owned\" klärt meine spezifischen Beiträge."
-        },
-        "cta": {
-            "hiring": {
-                "primary": "Resume herunterladen"
-            },
-            "toolkit": {
-                "primary": "Checklist herunterladen"
-            }
         }
     },
     "independentAdvisory": {
