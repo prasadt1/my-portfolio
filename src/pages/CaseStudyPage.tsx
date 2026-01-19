@@ -136,6 +136,7 @@ const CaseStudyPage: React.FC = () => {
     const [showAllDeliverables, setShowAllDeliverables] = useState(false);
     const [showAllApproach, setShowAllApproach] = useState(false);
     const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
+    const [showFullDeliverables, setShowFullDeliverables] = useState(false); // Phase 4 Wireframe: Deliverables compact/expand
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
     const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
     const [activePersona, setActivePersona] = useState<'hire' | 'consult' | 'toolkit' | null>(null); // Phase 3.4D: For CTA resolution
@@ -386,107 +387,110 @@ const CaseStudyPage: React.FC = () => {
                 />
             )}
 
-            {/* Header / Snapshot */}
+            {/* SECTION 1: HERO HEADER - Phase 4 Wireframe: Breadcrumb, H1, Subhead, Proof Chips, CTAs */}
             <section id="snapshot" className="bg-slate-50 dark:bg-slate-800 pb-16 pt-12 border-b border-slate-200 dark:border-slate-700 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Top Row: Back Link */}
-                    <div className="flex items-center mb-8">
-                        <Link to="/projects" className="group flex items-center gap-2 text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium">
-                            <div className="p-2 bg-white dark:bg-slate-900 rounded-full border border-slate-200 dark:border-slate-700 group-hover:border-emerald-500/50 transition-colors">
-                                <ArrowLeft size={18} />
-                            </div>
-                            {t('common.viewAllProjects', 'Back to Projects')}
+                    {/* Phase 4 Wireframe: Breadcrumb */}
+                    <div className="flex items-center mb-6">
+                        <Link to="/projects" className="group flex items-center gap-2 text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium text-sm">
+                            <ArrowLeft size={16} />
+                            Projects &gt; Case Studies
                         </Link>
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-12 items-start">
+                    <div className="grid lg:grid-cols-3 gap-8 items-start mb-8">
                         {/* Left Column: Title & Metadata */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
+                            className="lg:col-span-2"
                         >
                             <div className="flex items-start justify-between mb-4">
                                 <div className="text-emerald-600 dark:text-emerald-400 font-bold tracking-widest text-sm uppercase flex items-center gap-2">
                                     <span className="w-8 h-0.5 bg-emerald-600 dark:text-emerald-400 inline-block"></span>
                                     {headerEyebrow}
                                 </div>
-                                {study.visualType && (
-                                    <div className="ml-4 opacity-60">
-                                        <ProjectVisual visualType={study.visualType} size="md" />
-                                    </div>
-                                )}
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 dark:text-white mb-4 leading-tight">
+                            {/* Phase 4 Wireframe: H1 - e.g. "BRITA — Shopware → Shopify modernization" */}
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-3 leading-tight">
                                 {headerTitle}
                             </h1>
-                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed max-w-2xl">
-                                {challengeContent.situation.split('.').slice(0, 2).join('.') + '.'}
+                            {/* Phase 4 Wireframe: Subhead - 1 sentence */}
+                            <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                {challengeContent.situation.split('.').slice(0, 1).join('.') + '.'}
                             </p>
-
-                            {/* Tags */}
-                            <div className="flex flex-wrap gap-2 mb-8 text-sm">
-                                <span className="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium text-slate-700 dark:text-slate-300">
-                                    {clientType}
-                                </span>
-                                <span className="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 font-medium text-slate-700 dark:text-slate-300">
-                                    {clientIndustry}
-                                </span>
-                                {study.domains.slice(0, 2).map((domain, idx) => (
-                                    <span key={idx} className="px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 font-medium text-emerald-700 dark:text-emerald-400">
-                                        {domain}
-                                    </span>
-                                ))}
-                            </div>
                         </motion.div>
 
-                        {/* Right Column: Hero Metric Card */}
+                        {/* Right Column: Phase 4 Wireframe: 3 Proof Chips (Outcome, Scope, Constraints) */}
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="relative mt-8 lg:mt-0"
+                            className="flex flex-col gap-3"
                         >
-                            <div className="absolute inset-0 bg-emerald-500 blur-[80px] opacity-20 dark:opacity-10 rounded-full"></div>
-                            <div className="bg-gradient-to-br from-emerald-600 to-emerald-800 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden ring-1 ring-white/20">
-                                <div className="relative z-10">
-                                    <div className="flex items-start justify-between mb-8">
-                                        <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
-                                            <span className="text-3xl">{study.outcomes.hero_metric.icon || '🚀'}</span>
-                                        </div>
-                                        <div className="text-right">
-                                            <div className="text-emerald-100 text-sm font-medium uppercase tracking-wider mb-1">Impact</div>
-                                            <div className="text-5xl lg:text-6xl font-bold tracking-tight">{study.outcomes.hero_metric.value}</div>
-                                        </div>
-                                    </div>
-
-                                    <h3 className="text-2xl font-medium leading-snug mb-8 text-white/90">
-                                        {heroMetricLabel}
-                                    </h3>
-
-                                    <div className="grid grid-cols-2 gap-6 pt-8 border-t border-white/10">
-                                        {study.outcomes.secondary_metrics.slice(0, 2).map((metric, idx) => (
-                                            <div key={idx}>
-                                                <div className="text-2xl font-bold mb-1">{metric.value}</div>
-                                                <div className="text-sm text-emerald-100/80 font-medium">
-                                                    {getLocalized(metric.label, locale)}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                            {/* Outcome */}
+                            <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">Outcome</div>
+                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                    {study.outcomes.hero_metric.value} {getLocalized(study.outcomes.hero_metric.label, locale)}
                                 </div>
-                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-                                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-black/10 rounded-full blur-3xl"></div>
+                            </div>
+                            {/* Scope */}
+                            <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">Scope</div>
+                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                    {study.projectType === 'migration' ? 'Platform re-architecture' :
+                                     study.projectType === 'standard' ? 'Standards framework' :
+                                     study.projectType === 'product' ? 'Product build' :
+                                     study.domains[0] || 'Transformation'}
+                                </div>
+                            </div>
+                            {/* Constraints */}
+                            <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">Constraints</div>
+                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                    {study.executiveSnapshot?.keyTensions 
+                                        ? getLocalizedArrayUtil(study.executiveSnapshot.keyTensions, locale)[0]?.split(' ').slice(0, 4).join(' ') + '...'
+                                        : 'Compliance + vendor'}
+                                </div>
                             </div>
                         </motion.div>
+                    </div>
+
+                    {/* Phase 4 Wireframe: CTA Row - Primary (Book Discovery Call) + Secondary (Request Artifacts Pack) */}
+                    <div className="flex flex-col sm:flex-row gap-4 items-start mb-8">
+                        <a
+                            href="https://calendly.com/prasad-sgsits/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
+                            onClick={() => trackEvent('case_study_cta_click', { cta: 'primary', section: 'hero', slug: study.slug })}
+                        >
+                            Book Discovery Call
+                            <ArrowRight size={18} />
+                        </a>
+                        {study.artifactPreviews && study.artifactPreviews.length > 0 && (
+                            <button
+                                onClick={() => {
+                                    setArtifactRequestModalOpen(true);
+                                    trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug });
+                                }}
+                                className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
+                            >
+                                Request Artifacts Pack
+                                <ArrowRight size={18} />
+                            </button>
+                        )}
                     </div>
                 </div>
             </section>
 
-            {/* Executive Summary Card */}
+            {/* SECTION 3: EXECUTIVE SNAPSHOT - Phase 4 Wireframe: Always visible, compact, 2-column grid (max 6 blocks) */}
             <section className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
-                        <div className="grid md:grid-cols-3 gap-8">
+                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+                        {/* Phase 4 Wireframe: 2-column card grid (max 6 blocks) */}
+                        <div className="grid md:grid-cols-2 gap-4">
                             <div className="text-center md:text-left">
                                 <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
                                     <Target className="text-emerald-600 dark:text-emerald-400" size={20} />
@@ -559,69 +563,7 @@ const CaseStudyPage: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Executive Snapshot - Phase 2: Always visible, compact */}
-                    {study.executiveSnapshot && (
-                        <div className="mb-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                                <Target className="text-emerald-600" size={20} />
-                                {t('caseStudy.executiveSnapshot.title', 'Executive Snapshot')}
-                            </h3>
-                            
-                            {/* Phase 3.4C: Credibility Strip (if available) */}
-                            {study.credibilitySignals && (
-                                <div className="mb-6">
-                                    <CredibilityStrip signals={study.credibilitySignals} locale={locale} />
-                                </div>
-                            )}
-                            
-                            <div className="grid md:grid-cols-3 gap-6">
-                                {/* Why It Mattered */}
-                                <div>
-                                    <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
-                                        {t('caseStudy.executiveSnapshot.whyItMattered', 'Why it mattered')}
-                                    </h4>
-                                    <ul className="space-y-2">
-                                        {getLocalizedArrayUtil(study.executiveSnapshot.whyItMattered, locale).slice(0, 3).map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
-                                                <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 shrink-0" />
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
 
-                                {/* Key Tensions */}
-                                <div>
-                                    <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
-                                        {t('caseStudy.executiveSnapshot.keyTensions', 'Key tensions')}
-                                    </h4>
-                                    <ul className="space-y-2">
-                                        {getLocalizedArrayUtil(study.executiveSnapshot.keyTensions, locale).slice(0, 3).map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
-                                                <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                {/* Metric Callout */}
-                                <div className="flex items-center justify-center md:justify-end">
-                                    <div className="bg-emerald-600 text-white rounded-xl p-6 text-center min-w-[140px]">
-                                        <div className="text-3xl font-bold mb-1">
-                                            {getLocalizedValue(study.executiveSnapshot.metricCallout.value, locale)}
-                                        </div>
-                                        <div className="text-sm text-emerald-100">
-                                            {getLocalizedValue(study.executiveSnapshot.metricCallout.label, locale)}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Phase 4 D4: NDA Disclaimer - Subtle inline note (removed heavy component for density reduction) */}
-                    {/* NDA disclaimer is now shown inline in Trust Layer section above */}
 
                     {/* Phase 3.1: Trust Layer Section */}
                     {study.trustLayer && (
@@ -895,72 +837,74 @@ const CaseStudyPage: React.FC = () => {
                 </section>
             )}
 
-            {/* What I Delivered Section - Compact */}
-            <section id="delivery" className="py-16 bg-slate-50 dark:bg-slate-800 scroll-mt-24">
+            {/* SECTION 7: WHAT I DELIVERED - Phase 4 Wireframe: Compact first (6-8 bullets), expandable */}
+            <section id="delivery" className="py-12 bg-slate-50 dark:bg-slate-800 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionHeader 
-                        title={t('caseStudy.whatIDelivered.title')} 
+                        title={t('caseStudy.whatIDelivered.title', 'What I Delivered')} 
                     />
                     
-                    <div className="grid md:grid-cols-2 gap-4">
-                        {phasesToShow.map((phase, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.05 }}
-                                className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm shrink-0">
-                                        {phase.number}
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <h3 className="font-bold text-slate-900 dark:text-white mb-1">
-                                            {getLocalized(phase.title, locale)}
-                                        </h3>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-2 line-clamp-2">
-                                            {getLocalized(phase.deliverable, locale)}
-                                        </p>
-                                        <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
-                                            <span className="flex items-center gap-1">
-                                                <Clock size={12} />
-                                                {phase.duration}
-                                            </span>
-                                            {phase.outcome && (
-                                                <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                                                    → {getLocalized(phase.outcome, locale)}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    {/* Phase 4 Wireframe: Show deliverables_compact first (6-8 bullets), or derive from approach.phases */}
+                    {(() => {
+                        // Get deliverables_compact if exists, otherwise derive from approach.phases (first 8)
+                        const deliverablesList = study.deliverables_compact 
+                            ? study.deliverables_compact.map(d => getLocalized(d.title, locale))
+                            : study.approach.phases.slice(0, 8).map(p => getLocalized(p.deliverable, locale));
+                        
+                        const compactDeliverables = deliverablesList.slice(0, 8);
+                        const hasMoreDeliverables = deliverablesList.length > 8 || study.approach.phases.length > 8;
+                        
+                        return (
+                            <>
+                                {/* Default view: deliverables_compact (6-8 bullets) */}
+                                <ul className="grid md:grid-cols-2 gap-3 mb-6">
+                                    {compactDeliverables.slice(0, showFullDeliverables ? deliverablesList.length : 8).map((deliverable, idx) => (
+                                        <motion.li
+                                            key={idx}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: idx * 0.05 }}
+                                            className="flex items-start gap-3 bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700"
+                                        >
+                                            <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
+                                            <span className="text-sm text-slate-700 dark:text-slate-300">{deliverable}</span>
+                                        </motion.li>
+                                    ))}
+                                </ul>
 
-                    {/* Show More Button */}
-                    {hasMorePhases && (
-                        <div className="mt-6 text-center">
-                            <button
-                                onClick={() => setShowAllApproach(!showAllApproach)}
-                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-                            >
-                                {showAllApproach ? (
-                                    <>
-                                        {t('caseStudy.showLess', 'Show less')}
-                                        <ChevronUp size={16} />
-                                    </>
-                                ) : (
-                                    <>
-                                        {t('caseStudy.showMore', 'Show more')} ({study.approach.phases.length - initialItemCount} more)
-                                        <ChevronDown size={16} />
-                                    </>
+                                {/* Phase 4 Wireframe: Button to expand full deliverables */}
+                                {hasMoreDeliverables && !showFullDeliverables && (
+                                    <div className="text-center">
+                                        <button
+                                            onClick={() => {
+                                                setShowFullDeliverables(true);
+                                                trackEvent('show_more_clicked', { section: 'deliverables', page: 'case_study', slug: study.slug });
+                                            }}
+                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                        >
+                                            Show full deliverables ({study.approach.phases.length - 8} more)
+                                            <ChevronDown size={16} />
+                                        </button>
+                                    </div>
                                 )}
-                            </button>
-                        </div>
-                    )}
+                                {showFullDeliverables && hasMoreDeliverables && (
+                                    <div className="text-center">
+                                        <button
+                                            onClick={() => {
+                                                setShowFullDeliverables(false);
+                                                trackEvent('show_more_clicked', { section: 'deliverables', page: 'case_study', action: 'collapse', slug: study.slug });
+                                            }}
+                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                        >
+                                            Show less
+                                            <ChevronUp size={16} />
+                                        </button>
+                                    </div>
+                                )}
+                            </>
+                        );
+                    })()}
 
                     {/* Key Differentiator */}
                     {uniqueDifferentiator && (
@@ -1400,34 +1344,59 @@ const CaseStudyPage: React.FC = () => {
                 />
             )}
 
-            {/* Contact CTA Block */}
-            <section id="contact" className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white scroll-mt-24">
-                <div className="max-w-4xl mx-auto px-4 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        {t('caseStudy.cta.title')}
-                    </h2>
-                    <p className="text-lg text-emerald-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-                        {t('caseStudy.cta.text')}
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="https://calendly.com/prasad-sgsits/30min"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+            {/* SECTION 11: FINAL CTA - Phase 4 Wireframe: Split (Consulting | Hiring) */}
+            <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900 text-white scroll-mt-24">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Phase 4 Wireframe: Two CTAs split */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {/* Consulting CTA */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-700 text-center"
                         >
-                            {t('caseStudy.cta.primary')}
-                            <ArrowRight size={20} />
-                        </a>
-                        {riskRadarFlag.enabled && (
-                            <Link
-                                to="/risk-radar"
-                                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2"
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                Ready to de-risk your decision?
+                            </h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
+                                Book a 30-min discovery call to explore how we can help.
+                            </p>
+                            <a
+                                href="https://calendly.com/prasad-sgsits/30min"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl"
+                                onClick={() => trackEvent('case_study_final_cta_click', { cta: 'consulting', slug: study.slug })}
                             >
-                                {t('caseStudy.cta.secondary')}
-                                <ArrowRight size={20} />
+                                Book Discovery Call
+                                <ArrowRight size={18} />
+                            </a>
+                        </motion.div>
+
+                        {/* Hiring CTA */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-700 text-center"
+                        >
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                Want the short version?
+                            </h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
+                                View my full profile, resume, and hiring details.
+                            </p>
+                            <Link
+                                to="/hiring"
+                                className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl"
+                                onClick={() => trackEvent('case_study_final_cta_click', { cta: 'hiring', slug: study.slug })}
+                            >
+                                View Hiring Profile
+                                <ArrowRight size={18} />
                             </Link>
-                        )}
+                        </motion.div>
                     </div>
                 </div>
             </section>
