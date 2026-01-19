@@ -403,6 +403,84 @@ const ProjectsPage: React.FC = () => {
                     </motion.div>
                 )}
 
+                {/* Phase 4 E1: All Projects Section (when filters are active or showing all) */}
+                {!showFeatured && filteredProjects.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="mb-12"
+                    >
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredProjects.map((project, idx) => (
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 + idx * 0.05 }}
+                                >
+                                    <ProjectCard project={project} />
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* Phase 4 E1: All Other Projects (when no filters and not showing featured) */}
+                {showFeatured && otherProjects.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="mb-12"
+                    >
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
+                                {t('projectsPage.allProjects.title', { defaultValue: 'All Projects' })}
+                            </h2>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                            {displayedOtherProjects.map((project, idx) => (
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 + idx * 0.05 }}
+                                >
+                                    <ProjectCard project={project} />
+                                </motion.div>
+                            ))}
+                        </div>
+                        {hasMoreProjects && (
+                            <div className="text-center mt-6">
+                                <button
+                                    onClick={() => {
+                                        setShowAllProjects(!showAllProjects);
+                                        trackEvent('projects_show_all_toggled', {
+                                            showAll: !showAllProjects,
+                                            locale
+                                        });
+                                    }}
+                                    className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 
+                                               bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 
+                                               rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                                >
+                                    {showAllProjects ? (
+                                        <>
+                                            {t('projectsPage.showLess', { defaultValue: 'Show Less' })}
+                                            <ChevronUp size={16} />
+                                        </>
+                                    ) : (
+                                        <>
+                                            {t('projectsPage.showMore', { defaultValue: `Show ${otherProjects.length - 9} More` })}
+                                            <ChevronDown size={16} />
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        )}
+                    </motion.div>
+                )}
 
                 {/* Empty State */}
                 {filteredProjects.length === 0 && (
