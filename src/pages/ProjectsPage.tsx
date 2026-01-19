@@ -496,6 +496,37 @@ const ProjectsPage: React.FC = () => {
                         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{t('caseStudies.noResultsHint')}</p>
                     </motion.div>
                 )}
+
+                {/* Phase 4 E: SECTION 5 — CTA (Pattern break) */}
+                {(filteredProjects.length > 0 || showFeatured) && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                        className="mt-16 bg-gradient-to-br from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 rounded-2xl p-8 md:p-12 text-white text-center"
+                    >
+                        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                            {t('projectsPage.cta.title', { defaultValue: 'Need more examples relevant to your industry?' })}
+                        </h2>
+                        <p className="text-base text-emerald-100 mb-8 max-w-2xl mx-auto">
+                            {t('projectsPage.cta.text', { defaultValue: 'I can provide a tailored case study shortlist based on your specific challenges and industry context.' })}
+                        </p>
+                        <Link
+                            to="/contact?interest=case-studies"
+                            onClick={() => {
+                                trackEvent('projects_cta_clicked', {
+                                    cta: 'tailored_shortlist',
+                                    locale
+                                });
+                            }}
+                            className="inline-flex items-center gap-2 bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-4 rounded-xl font-bold text-base transition-all shadow-xl hover:shadow-2xl"
+                        >
+                            {t('projectsPage.cta.primary', { defaultValue: 'Request tailored case study shortlist' })}
+                            <ArrowRight size={20} />
+                        </Link>
+                    </motion.div>
+                )}
             </div>
 
             {/* Click outside to close dropdown */}
