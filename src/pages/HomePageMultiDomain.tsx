@@ -13,7 +13,10 @@ import {
     Play,
     Briefcase,
     User,
-    BookOpen
+    BookOpen,
+    CheckCircle2,
+    Mail,
+    Quote
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
@@ -34,6 +37,8 @@ const HomePageMultiDomain: React.FC = () => {
     const { t } = useTranslation();
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [toolkitEmail, setToolkitEmail] = useState('');
+    const [toolkitFormState, setToolkitFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
     
     // Get persona from URL param or localStorage, default to 'consult'
     const getInitialPersona = (): PersonaType => {
@@ -96,8 +101,8 @@ const HomePageMultiDomain: React.FC = () => {
             />
 
             <div className="min-h-screen font-sans">
-                {/* SECTION 1: HERO */}
-                <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 lg:py-48 overflow-hidden">
+                {/* SECTION 1: HERO - Phase 4 Wireframe: 2-Column Layout */}
+                <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 lg:py-48 overflow-hidden min-h-[70vh]">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0" style={{
                             backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
@@ -105,86 +110,85 @@ const HomePageMultiDomain: React.FC = () => {
                         }} />
                     </div>
 
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="text-center"
+                            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
                         >
-                            {/* Phase 3.1: Persona Tabs - Larger and more prominent */}
-                            {showPersonaTabs && (
-                                <div className="mb-12 flex justify-center">
-                                    <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-xl p-1.5 border border-white/20 shadow-lg">
-                                        <button
-                                            onClick={() => handlePersonaChange('hire')}
-                                            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all flex items-center gap-2 ${
-                                                selectedPersona === 'hire'
-                                                    ? 'bg-white text-slate-900 shadow-md'
-                                                    : 'text-white hover:bg-white/10'
-                                            }`}
-                                        >
-                                            <Briefcase size={20} />
-                                            {t('homepage.personaTabs.hiring')}
-                                        </button>
-                                        <button
-                                            onClick={() => handlePersonaChange('consult')}
-                                            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all flex items-center gap-2 ${
-                                                selectedPersona === 'consult'
-                                                    ? 'bg-white text-slate-900 shadow-md'
-                                                    : 'text-white hover:bg-white/10'
-                                            }`}
-                                        >
-                                            <User size={20} />
-                                            {t('homepage.personaTabs.consulting')}
-                                        </button>
-                                        <button
-                                            onClick={() => handlePersonaChange('toolkit')}
-                                            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all flex items-center gap-2 ${
-                                                selectedPersona === 'toolkit'
-                                                    ? 'bg-white text-slate-900 shadow-md'
-                                                    : 'text-white hover:bg-white/10'
-                                            }`}
-                                        >
-                                            <BookOpen size={20} />
-                                            {t('homepage.personaTabs.toolkit')}
-                                        </button>
+                            {/* Left Column: Content */}
+                            <div className="text-left">
+                                {/* Phase 4 Wireframe: Persona Tabs - Small pills */}
+                                {showPersonaTabs && (
+                                    <div className="mb-6">
+                                        <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-lg p-1 border border-white/20">
+                                            <button
+                                                onClick={() => handlePersonaChange('hire')}
+                                                className={`px-4 py-1.5 rounded text-sm font-medium transition-all ${
+                                                    selectedPersona === 'hire'
+                                                        ? 'bg-white text-slate-900'
+                                                        : 'text-white/80 hover:bg-white/10'
+                                                }`}
+                                            >
+                                                Hiring
+                                            </button>
+                                            <button
+                                                onClick={() => handlePersonaChange('consult')}
+                                                className={`px-4 py-1.5 rounded text-sm font-medium transition-all ${
+                                                    selectedPersona === 'consult'
+                                                        ? 'bg-white text-slate-900'
+                                                        : 'text-white/80 hover:bg-white/10'
+                                                }`}
+                                            >
+                                                Consulting
+                                            </button>
+                                            <button
+                                                onClick={() => handlePersonaChange('toolkit')}
+                                                className={`px-4 py-1.5 rounded text-sm font-medium transition-all ${
+                                                    selectedPersona === 'toolkit'
+                                                        ? 'bg-white text-slate-900'
+                                                        : 'text-white/80 hover:bg-white/10'
+                                                }`}
+                                            >
+                                                Toolkit
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Phase 4 Wireframe: H1 + Subhead + Proof Chips + Persona Tabs + CTAs */}
+                                {/* H1: "Reduce risk before committing budget" */}
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                                    Reduce risk before committing budget.
+                                </h1>
+
+                                {/* Subheadline: 2 lines max - "Independent architecture consultant. Cloud + AI + compliance-heavy delivery." */}
+                                <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
+                                    Independent architecture consultant. Cloud + AI + compliance-heavy delivery.
+                                </p>
+
+                                {/* Phase 4 Wireframe: 3 Proof Chips - "€415K saved", "50+ engagements", "EU compliance-ready" */}
+                                <div className="flex flex-wrap gap-3 mb-6">
+                                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                                        <span className="text-emerald-300 font-semibold text-sm">€415K</span>
+                                        <span className="text-white/80 text-sm">saved</span>
+                                    </div>
+                                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                                        <span className="text-emerald-300 font-semibold text-sm">50+</span>
+                                        <span className="text-white/80 text-sm">engagements</span>
+                                    </div>
+                                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                                        <span className="text-emerald-300 font-semibold text-sm">EU</span>
+                                        <span className="text-white/80 text-sm">compliance-ready</span>
                                     </div>
                                 </div>
-                            )}
 
-                            {/* Phase 4 C1: Simplified Hero - Better Hierarchy */}
-                            {/* H1: One clear promise */}
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight max-w-4xl mx-auto">
-                                {t('hero.headline')}
-                            </h1>
-
-                            {/* Subheadline: 2 lines max */}
-                            <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-                                {t('hero.subtitle')}
-                            </p>
-
-                            {/* Phase 4 C1: 3 Quick Proof Chips */}
-                            <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-                                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
-                                    <span className="text-emerald-300 font-semibold text-sm">€415K+</span>
-                                    <span className="text-white/80 text-sm">saved</span>
-                                </div>
-                                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
-                                    <span className="text-emerald-300 font-semibold text-sm">Cloud + AI</span>
-                                    <span className="text-white/80 text-sm">expertise</span>
-                                </div>
-                                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
-                                    <span className="text-emerald-300 font-semibold text-sm">EU</span>
-                                    <span className="text-white/80 text-sm">compliance</span>
-                                </div>
-                            </div>
-
-                            {/* Phase 3.1: Persona-Specific CTAs */}
-                            {showPersonaTabs ? (
-                                <>
-                                    {selectedPersona === 'hire' && (
-                                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                                {/* Phase 4 Wireframe: CTA Row - Primary (persona-based) + Secondary ("View Case Studies") */}
+                                {showPersonaTabs ? (
+                                    <>
+                                        {selectedPersona === 'hire' && (
+                                            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
                                             {/* Phase 4 C2: Primary CTA for hire persona */}
                                             <Link
                                                 to="/hiring"
@@ -205,8 +209,8 @@ const HomePageMultiDomain: React.FC = () => {
                                             </Link>
                                         </div>
                                     )}
-                                    {selectedPersona === 'consult' && (
-                                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                                        {selectedPersona === 'consult' && (
+                                            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
                                             {/* Phase 4 C2: Primary CTA for consult persona */}
                                             <a
                                                 href="https://calendly.com/prasad-sgsits/30min"
@@ -229,8 +233,8 @@ const HomePageMultiDomain: React.FC = () => {
                                             </Link>
                                         </div>
                                     )}
-                                    {selectedPersona === 'toolkit' && (
-                                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                                        {selectedPersona === 'toolkit' && (
+                                            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
                                             {/* Phase 4 C2: Primary CTA for toolkit persona */}
                                             {isPromoted('TOOLKIT_LIBRARY') ? (
                                                 <Link
@@ -262,49 +266,57 @@ const HomePageMultiDomain: React.FC = () => {
                                             </Link>
                                         </div>
                                     )}
-                                </>
-                            ) : (
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                                    <a
-                                        href="https://calendly.com/prasad-sgsits/30min"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero' })}
-                                        className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
-                                    >
-                                        {t('hero.cta')}
-                                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                                    </a>
-                                    <Link
-                                        to="/services"
-                                        className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
-                                    >
-                                        {t('hero.ctaSecondary')}
-                                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-                                    </Link>
-                                </div>
-                            )}
-
-                            {/* Video CTA */}
-                            <div className="mb-8">
-                                <button
-                                    onClick={() => {
-                                        setIsVideoModalOpen(true);
-                                        trackEvent(AnalyticsEvents.CTA_VIDEO_CLICK, { source: 'hero' });
-                                    }}
-                                    className="group inline-flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
-                                >
-                                    <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                        <Play size={14} className="ml-0.5" />
-                                    </span>
-                                    {t('hero.watchVideo', { defaultValue: 'Watch 75-sec overview' })}
-                                </button>
+                                    </>
+                                ) : (
+                                    <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
+                                        <a
+                                            href="https://calendly.com/prasad-sgsits/30min"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero' })}
+                                            className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl"
+                                        >
+                                            Book Discovery Call
+                                            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                                        </a>
+                                        <Link
+                                            to="/projects"
+                                            className="group text-white/80 hover:text-white px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-white/20 hover:border-white/40"
+                                        >
+                                            View Case Studies
+                                            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={14} />
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Trust Note */}
-                            <p className="text-sm text-slate-400 max-w-2xl mx-auto">
-                                {t('hero.trustNote')}
-                            </p>
+                            {/* Right Column: Hero Evidence Card - Phase 4 Wireframe */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 lg:p-8 border border-white/20 shadow-lg"
+                            >
+                                <h3 className="text-xl font-bold text-white mb-4">What you get</h3>
+                                <ul className="space-y-3 mb-6">
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
+                                        <span className="text-white/90 text-sm">Clear decision: build vs buy vs modernize</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
+                                        <span className="text-white/90 text-sm">Architecture blueprint + phased roadmap</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
+                                        <span className="text-white/90 text-sm">Stakeholder-ready executive narrative</span>
+                                    </li>
+                                </ul>
+                                {/* Micro trust line */}
+                                <p className="text-xs text-white/70 border-t border-white/10 pt-4">
+                                    Ex-BRITA / Siemens / PACT/WBCSD
+                                </p>
+                            </motion.div>
                         </motion.div>
                     </div>
                 </section>
@@ -582,12 +594,12 @@ const HomePageMultiDomain: React.FC = () => {
                     </section>
                 )}
 
-                {/* Phase 4 B1: Full-bleed Trust Strip - Visual pattern break */}
+                {/* SECTION 2: TRUST STRIP - Phase 4 Wireframe: Pattern break with one-line text */}
                 <section className="w-full bg-slate-100 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                             <p className="text-sm font-medium text-slate-600 dark:text-slate-400 text-center md:text-left whitespace-nowrap">
-                                Trusted by enterprise teams across Fortune 100 companies
+                                Enterprise delivery across e-commerce, healthcare, insurance, ESG.
                             </p>
                             <div className="flex-1 max-w-4xl">
                                 <LogoCarousel compact={true} />
@@ -596,37 +608,9 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Phase 3.3E: Impact Dashboard */}
+                {/* SECTION 3: IMPACT DASHBOARD - Phase 4 Wireframe: 4 cards max + microcopy */}
                 <section id="impact-dashboard" className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 scroll-mt-24">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-center mb-8"
-                        >
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                {t('impactDashboard.title', { defaultValue: 'Impact at a Glance' })}
-                            </h2>
-                            <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                {t('impactDashboard.subtitle', { defaultValue: 'Measurable outcomes from real engagements' })}
-                            </p>
-                        </motion.div>
-                        <ImpactDashboard
-                            metrics={[
-                                { value: '€2M+', label: t('impactDashboard.savings', { defaultValue: 'Cost Saved' }), type: 'savings' },
-                                { value: '50+', label: t('impactDashboard.projects', { defaultValue: 'Projects' }), type: 'scope' },
-                                { value: '100%', label: t('impactDashboard.compliance', { defaultValue: 'Compliance Rate' }), type: 'risk' },
-                                { value: 'Zero', label: t('impactDashboard.breaches', { defaultValue: 'Data Breaches' }), type: 'risk' },
-                            ]}
-                            compact={true}
-                        />
-                    </div>
-                </section>
-
-                {/* Phase 3.3F: Testimonials Carousel */}
-                <section className="py-8 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -634,13 +618,55 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-6"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                {t('testimonials.title', { defaultValue: 'What Clients Say' })}
+                                Impact at a glance
                             </h2>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">
-                                {t('testimonials.subtitle', { defaultValue: 'Hover to read full testimonials' })}
-                            </p>
                         </motion.div>
-                        <TestimonialsRotator />
+                        <ImpactDashboard
+                            metrics={[
+                                { value: '€415K+', label: 'Cost Saved', type: 'savings' },
+                                { value: '50+', label: 'Engagements', type: 'scope' },
+                                { value: '100%', label: 'Compliance Rate', type: 'risk' },
+                                { value: 'Zero', label: 'Data Breaches', type: 'risk' },
+                            ]}
+                            compact={true}
+                        />
+                        <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4">
+                            Representative outcomes (anonymized).
+                        </p>
+                    </div>
+                </section>
+
+                {/* SECTION 5: TESTIMONIAL PATTERN BREAK - Phase 4 Wireframe: Two-column split */}
+                <section className="py-12 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="grid md:grid-cols-2 gap-8 items-center"
+                        >
+                            {/* Left: Hero quote - One strong testimonial (large) */}
+                            <div className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg">
+                                <Quote className="text-emerald-600 dark:text-emerald-400 mb-4" size={32} />
+                                <blockquote className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-6 leading-relaxed">
+                                    "Best architecture review we've had. Saved us €400K+ by avoiding the wrong platform choice."
+                                </blockquote>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                                        <User className="text-emerald-600 dark:text-emerald-400" size={20} />
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-slate-900 dark:text-white">Head of Technology</div>
+                                        <div className="text-sm text-slate-600 dark:text-slate-400">Pharma Company</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right: TestimonialsRotator (compact) */}
+                            <div>
+                                <TestimonialsRotator />
+                            </div>
+                        </motion.div>
                     </div>
                 </section>
 
@@ -825,7 +851,7 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>}
 
-                {/* Phase 4 C3: Featured Case Studies - Max 5 hero projects */}
+                {/* SECTION 4: FEATURED CASE STUDIES - Phase 4 Wireframe: 2 rows (2 large + 3 small) */}
                 <section className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
@@ -835,51 +861,68 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-10"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
-                                {t('homepage.featuredCaseStudies.title', { defaultValue: 'Featured Case Studies' })}
+                                Featured case studies
                             </h2>
-                            <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                                {t('homepage.featuredCaseStudies.subtitle', { defaultValue: 'Deep-dive case studies with executive snapshots, trust layers, and artifact previews' })}
-                            </p>
                         </motion.div>
 
-                        {/* Get hero projects (max 5) */}
+                        {/* Phase 4 Wireframe: Row 1 - 2 large cards (BRITA + Insurance) */}
                         {(() => {
-                            const HERO_SLUGS = ['brita-ecommerce', 'delivery-hero-ads', 'insurance-performance', 'pact-pcf-data-exchange-network', 'photography-coach-ai'];
-                            const featuredProjects = projects
-                                .filter(p => HERO_SLUGS.includes(p.slug))
-                                .slice(0, 5);
+                            const LARGE_SLUGS = ['brita-ecommerce', 'insurance-performance'];
+                            const largeProjects = projects.filter(p => LARGE_SLUGS.includes(p.slug));
+                            
+                            const SMALL_SLUGS = ['delivery-hero-ads', 'photography-coach-ai', 'pact-pcf-data-exchange-network'];
+                            const smallProjects = projects.filter(p => SMALL_SLUGS.includes(p.slug)).slice(0, 3);
 
                             return (
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                                    {featuredProjects.map((project, idx) => (
-                                        <motion.div
-                                            key={project.slug}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: idx * 0.1 }}
-                                        >
-                                            <ProjectCard project={project} />
-                                        </motion.div>
-                                    ))}
-                                </div>
+                                <>
+                                    {/* Row 1: 2 large featured cards */}
+                                    <div className="grid md:grid-cols-2 gap-6 mb-6">
+                                        {largeProjects.map((project, idx) => (
+                                            <motion.div
+                                                key={project.slug}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: idx * 0.1 }}
+                                            >
+                                                <ProjectCard project={project} />
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    {/* Row 2: 3 smaller cards (Delivery Hero, Photography AI, SINE) */}
+                                    <div className="grid md:grid-cols-3 gap-6 mb-8">
+                                        {smallProjects.map((project, idx) => (
+                                            <motion.div
+                                                key={project.slug}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: 0.2 + idx * 0.1 }}
+                                            >
+                                                <ProjectCard project={project} />
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </>
                             );
                         })()}
 
+                        {/* Phase 4 Wireframe: "View all projects →" below section */}
                         <div className="text-center">
                             <Link
                                 to="/projects"
                                 className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold transition-colors"
                                 onClick={() => trackEvent('homepage_view_all_projects_click', { source: 'featured_section' })}
                             >
-                                {t('homepage.featuredCaseStudies.viewAll', { defaultValue: 'View All Case Studies' })}
+                                View all projects
                                 <ArrowRight size={18} />
                             </Link>
                         </div>
                     </div>
                 </section>
 
-                {/* SECTION 6: LEAD MAGNET CTA */}
+                {/* SECTION 6: TOOLKIT LEAD MAGNET - Phase 4 Wireframe: Email form */}
                 <section className="py-20 bg-slate-50 dark:bg-slate-800">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
@@ -888,46 +931,75 @@ const HomePageMultiDomain: React.FC = () => {
                             viewport={{ once: true }}
                             className="text-center"
                         >
-                            <div className="inline-block bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-full mb-6">
-                                <FileText className="text-emerald-600 dark:text-emerald-400" size={48} />
-                            </div>
-                            
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-                                {t('homepage.leadMagnetCta.title', { defaultValue: 'Free Download' })}
+                            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-slate-900 dark:text-white">
+                                Free resource
                             </h2>
                             
-                            <h3 className="text-xl md:text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
-                                {t('homepage.leadMagnetCta.subtitle', { defaultValue: 'Vendor Proposal Review Checklist' })}
+                            <h3 className="text-xl md:text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mb-6">
+                                Vendor Proposal Review Checklist
                             </h3>
                             
-                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-                                {t('homepage.leadMagnetCta.description', { defaultValue: 'Professional checklist to identify gaps, risks, and over-engineering in cloud, platform, and AI proposals before signing.' })}
-                            </p>
+                            {/* Phase 4 Wireframe: 3 bullets */}
+                            <ul className="flex flex-col items-center gap-3 mb-8 text-left max-w-md mx-auto">
+                                <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                                    <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
+                                    <span>Catch red flags</span>
+                                </li>
+                                <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                                    <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
+                                    <span>Prevent lock-in</span>
+                                </li>
+                                <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
+                                    <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
+                                    <span>Stakeholder-ready questions</span>
+                                </li>
+                            </ul>
                             
-                            <div className="mb-4">
-                                <Link
-                                    to="/checklist"
-                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-lg hover:shadow-xl"
-                                >
-                                    <FileText size={20} />
-                                    {t('homepage.leadMagnetCta.button', { defaultValue: 'Download PDF' })}
-                                </Link>
-                            </div>
-                            
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">
-                                {t('homepage.leadMagnetCta.privacy', { defaultValue: 'One-time send. No newsletter. Unsubscribe option included.' })}
-                            </p>
-                            
-                            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-slate-600 dark:text-slate-400">
-                                <span>✓ {t('homepage.leadMagnetCta.features.1', { defaultValue: '7 assessment categories' })}</span>
-                                <span>✓ {t('homepage.leadMagnetCta.features.2', { defaultValue: 'Red flag patterns' })}</span>
-                                <span>✓ {t('homepage.leadMagnetCta.features.3', { defaultValue: 'Vendor-neutral' })}</span>
-                            </div>
+                            {/* Phase 4 Wireframe: Email form */}
+                            <form
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    setToolkitFormState('submitting');
+                                    // Redirect to checklist page (or handle submission)
+                                    setTimeout(() => {
+                                        setToolkitFormState('success');
+                                        window.location.href = '/checklist';
+                                    }, 500);
+                                }}
+                                className="max-w-md mx-auto mb-6"
+                            >
+                                <div className="flex flex-col sm:flex-row gap-3">
+                                    <input
+                                        type="email"
+                                        value={toolkitEmail}
+                                        onChange={(e) => setToolkitEmail(e.target.value)}
+                                        placeholder="Your email"
+                                        required
+                                        className="flex-1 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={toolkitFormState === 'submitting' || toolkitFormState === 'success'}
+                                        className="bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-400 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                                    >
+                                        {toolkitFormState === 'submitting' ? (
+                                            <>Sending...</>
+                                        ) : toolkitFormState === 'success' ? (
+                                            <>Sent!</>
+                                        ) : (
+                                            <>
+                                                Send me the checklist
+                                                <Mail size={18} />
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                            </form>
                         </motion.div>
                     </div>
                 </section>
 
-                {/* SECTION 7: FINAL CTA */}
+                {/* SECTION 7: FINAL CTA - Phase 4 Wireframe: Persona-based banner CTA */}
                 <section className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                         <motion.div
@@ -935,29 +1007,71 @@ const HomePageMultiDomain: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                                {t('homepage.finalCta.title')}
-                            </h2>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                                <a
-                                    href="https://calendly.com/prasad-sgsits/30min"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
-                                >
-                                    {t('homepage.finalCta.cta')}
-                                    <ArrowRight size={20} />
-                                </a>
-                                <Link
-                                    to="/checklist"
-                                    className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-semibold text-lg transition-all"
-                                >
-                                    {t('guide.homepageCta.button')}
-                                </Link>
-                            </div>
-                            <p className="text-slate-300 text-sm">
-                                {t('homepage.finalCta.trustNote')}
-                            </p>
+                            {/* Phase 4 Wireframe: Persona-based message + CTA */}
+                            {selectedPersona === 'hire' && (
+                                <>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                                        Want the short version? Download resume
+                                    </h2>
+                                    <Link
+                                        to="/hiring"
+                                        className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                                        onClick={() => trackEvent('homepage_final_cta_click', { persona: 'hire', cta: 'download_resume' })}
+                                    >
+                                        View Hiring Profile
+                                        <ArrowRight size={20} />
+                                    </Link>
+                                </>
+                            )}
+                            {selectedPersona === 'consult' && (
+                                <>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                                        Ready to de-risk your decision? Book a discovery call.
+                                    </h2>
+                                    <a
+                                        href="https://calendly.com/prasad-sgsits/30min"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                                        onClick={() => trackEvent('homepage_final_cta_click', { persona: 'consult', cta: 'book_call' })}
+                                    >
+                                        Book Discovery Call
+                                        <ArrowRight size={20} />
+                                    </a>
+                                </>
+                            )}
+                            {selectedPersona === 'toolkit' && (
+                                <>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                                        Browse toolkits and frameworks.
+                                    </h2>
+                                    <Link
+                                        to="/resources"
+                                        className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                                        onClick={() => trackEvent('homepage_final_cta_click', { persona: 'toolkit', cta: 'browse_resources' })}
+                                    >
+                                        Browse Resources
+                                        <ArrowRight size={20} />
+                                    </Link>
+                                </>
+                            )}
+                            {!showPersonaTabs && (
+                                <>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                                        Ready to de-risk your decision? Book a discovery call.
+                                    </h2>
+                                    <a
+                                        href="https://calendly.com/prasad-sgsits/30min"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                                        onClick={() => trackEvent('homepage_final_cta_click', { persona: 'default', cta: 'book_call' })}
+                                    >
+                                        Book Discovery Call
+                                        <ArrowRight size={20} />
+                                    </a>
+                                </>
+                            )}
                         </motion.div>
                     </div>
                 </section>
