@@ -3130,7 +3130,22 @@ app.post('/api/leadstore/test-write', devOnlyMiddleware, async (req, res) => {
 /**
  * POST /api/artifact-request
  * Phase 3.3: Artifact request endpoint - stores requests in Google Sheets
+ * Phase 3.4B: Hardened with honeypot, rate limiting, and stricter validation
  */
+// Rate limiting store for artifact requests (in-memory, best effort)
+const artifactRequestRateLimit = new Map();
+const ARTIFACT_RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const ARTIFACT_RATE_LIMIT_MAX = 5; // 5 requests per hour per IP
+
+// Hero case studies list (must match frontend)
+const HERO_CASE_STUDIES = [
+    'brita-ecommerce',
+    'delivery-hero-ads',
+    'insurance-performance',
+    'pact-pcf-data-exchange-network',
+    'photography-coach-ai'
+];
+
 app.post('/api/artifact-request', async (req, res) => {
     try {
         const {
@@ -3143,10 +3158,52 @@ app.post('/api/artifact-request', async (req, res) => {
             caseStudySlug: rawCaseStudySlug,
             artifactIds: rawArtifactIds,
             attribution: rawAttribution,
+            // Phase 3.4B: Honeypot fields
+            website: rawWebsite,
+            companyUrl: rawCompanyUrl,
         } = req.body;
+
+        // Phase 3.4B: Honeypot check - silently reject if filled
+        if ((rawWebsite && String(rawWebsite).trim().length > 0) || 
+            (rawCompanyUrl && String(rawCompanyUrl).trim().length > 0)) {
+            // Silently return 200 OK (don't reveal it's a honeypot)
+            return res.status(200).json({ success: true, message: 'Request submitted successfully' });
+        }
+
+        // Get client info for rate limiting
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        const ipHash = crypto.createHash('sha256').update(clientIp).digest('hex').substring(0, 16);
+
+        // Phase 3.4B: Rate limiting check
+        const now = Date.now();
+        const rateLimitKey = `artifact_${ipHash}`;
+        const rateLimitRecord = artifactRequestRateLimit.get(rateLimitKey);
+
+        if (rateLimitRecord) {
+            // Check if within time window
+            if (now - rateLimitRecord.firstRequest < ARTIFACT_RATE_LIMIT_WINDOW) {
+                if (rateLimitRecord.count >= ARTIFACT_RATE_LIMIT_MAX) {
+                    return res.status(429).json({ 
+                        error: 'Too many requests. Please try again later.',
+                        retryAfter: Math.ceil((ARTIFACT_RATE_LIMIT_WINDOW - (now - rateLimitRecord.firstRequest)) / 1000)
+                    });
+                }
+                rateLimitRecord.count++;
+            } else {
+                // Reset window
+                artifactRequestRateLimit.set(rateLimitKey, { firstRequest: now, count: 1 });
+            }
+        } else {
+            artifactRequestRateLimit.set(rateLimitKey, { firstRequest: now, count: 1 });
+        }
 
         // Validate required fields
         if (!rawEmail || !rawEmail.includes('@')) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+        // Phase 3.4B: Stricter email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(String(rawEmail).trim())) {
             return res.status(400).json({ error: 'Invalid input.' });
         }
         if (!rawName || !rawName.trim()) {
@@ -3168,9 +3225,16 @@ app.post('/api/artifact-request', async (req, res) => {
         const caseStudySlug = safeStr(rawCaseStudySlug, 100);
         const artifactIds = Array.isArray(rawArtifactIds) ? rawArtifactIds.join(',') : safeStr(rawArtifactIds, 500);
 
-        // Get client info
-        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
-        const ipHash = crypto.createHash('sha256').update(clientIp).digest('hex').substring(0, 16);
+        // Phase 3.4B: Stricter validation - caseStudySlug must be in hero list
+        if (!caseStudySlug || !HERO_CASE_STUDIES.includes(caseStudySlug)) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
+
+        // Phase 3.4B: Validate artifactIds (basic check - should match case study artifacts)
+        // Note: Full validation would require loading project data, keeping it simple for now
+        if (!artifactIds || artifactIds.trim().length === 0) {
+            return res.status(400).json({ error: 'Invalid input.' });
+        }
 
         // Prepare artifact request record
         const artifactRequest = {
@@ -3222,8 +3286,14 @@ app.post('/api/artifact-request', async (req, res) => {
             };
 
             await leadStore.saveLead(artifactLead);
-            const maskedEmail = email.substring(0, 3) + '***';
-            console.log('[ARTIFACT REQUEST] Request saved:', maskedEmail, caseStudySlug);
+            // Phase 3.4B: Server logging (no email, no PII)
+            const artifactCount = artifactIds.split(',').length;
+            console.log('[ARTIFACT REQUEST] Request saved:', {
+                timestamp: new Date().toISOString(),
+                slug: caseStudySlug,
+                artifactCount,
+                ipHash,
+            });
         } catch (saveErr) {
             console.error('[ARTIFACT REQUEST] Error saving to store:', saveErr.message);
             // Continue - don't block response
@@ -3292,6 +3362,25 @@ app.get('/health', (req, res) => {
         status: 'ok',
         timestamp: new Date().toISOString(),
         service: 'portfolio-api',
+    });
+});
+
+/**
+ * GET /api/version
+ * Phase 3.4E: Deployment diagnostics endpoint
+ */
+app.get('/api/version', (req, res) => {
+    const gitSha = process.env.GIT_SHA || process.env.COMMIT_SHA || 'unknown';
+    const buildTimestamp = process.env.BUILD_TIMESTAMP || process.env.BUILD_DATE || 'unknown';
+    const nodeEnv = process.env.NODE_ENV || 'unknown';
+    const leadStoreProvider = process.env.LEAD_STORE_PROVIDER || 'json';
+
+    res.status(200).json({
+        gitSha,
+        buildTimestamp,
+        nodeEnv,
+        leadStoreProvider,
+        timestamp: new Date().toISOString(),
     });
 });
 

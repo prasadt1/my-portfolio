@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Search } from 'lucide-react';
+import { Menu, X, Sun, Moon, Search, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import { getNavItems } from '../config/featureRouting';
+import { isCompetitionMode } from '../config/competition';
+import { trackEvent } from '../services/analytics';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,10 +32,25 @@ const Navigation: React.FC = () => {
     label: t(item.labelKey),
   }));
 
+  const competitionMode = isCompetitionMode();
+
   return (
     <>
+      {/* Phase 3.4A: Competition Mode Ribbon */}
+      {competitionMode && (
+        <div className="fixed top-0 left-0 right-0 h-8 bg-emerald-600 dark:bg-emerald-700 z-50 flex items-center justify-center">
+          <Link
+            to="/competition"
+            className="text-white text-xs font-semibold hover:underline flex items-center gap-2"
+            onClick={() => trackEvent('competition_ribbon_clicked')}
+          >
+            <span>{t('competition.ribbon', { defaultValue: 'Competition Mode' })}</span>
+            <ChevronRight size={12} />
+          </Link>
+        </div>
+      )}
       <nav
-        className={`fixed top-0 left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
+        className={`fixed ${competitionMode ? 'top-8' : 'top-0'} left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
           ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-slate-200 dark:border-slate-800 shadow-sm'
           : 'bg-transparent border-transparent'
           }`}

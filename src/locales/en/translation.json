@@ -1606,5 +1606,93 @@
         "title": "What Clients Say",
         "subtitle": "Hover to read full testimonials",
         "viewMore": "More testimonials"
+    },
+    "competition": {
+        "badge": "Google AI Portfolio Challenge Submission",
+        "ribbon": "Competition Mode",
+        "startHere": {
+            "title": "Start Here",
+            "subtitle": "This portfolio demonstrates enterprise architecture expertise, AI integration with Gemini, and a production-ready platform deployed on Google Cloud Run.",
+            "cta1": {
+                "title": "Explore 5 Hero Case Studies",
+                "description": "Deep-dive case studies with executive snapshots, trust layers, and artifact previews",
+                "button": "View Case Studies"
+            },
+            "cta2": {
+                "title": "Try AI Tool",
+                "description": "Vendor Proposal Checklist - AI-powered proposal review tool",
+                "button": "Try Checklist"
+            },
+            "cta3": {
+                "title": "Watch Executive Summary",
+                "description": "View executive snapshot modal from any hero case study",
+                "button": "View Example"
+            }
+        },
+        "page": {
+            "title": "Competition Submission",
+            "description": "Google AI Portfolio Challenge submission walkthrough",
+            "badge": "Google AI Portfolio Challenge",
+            "subtitle": "A production-ready portfolio demonstrating enterprise architecture expertise, AI integration with Gemini, and Cloud Run deployment.",
+            "whatIs": {
+                "title": "What This Site Is",
+                "description": "An independent architecture consultant portfolio built with React + TypeScript, featuring AI-powered tools (Gemini 3 Pro), feature flags for phased rollout, GDPR-safe analytics, and production deployment on Google Cloud Run. The site demonstrates real-world enterprise architecture expertise through detailed case studies."
+            },
+            "aiFeatures": {
+                "title": "AI Features",
+                "description": "This portfolio integrates Google Gemini 3 Pro for:",
+                "feature1": "Vendor Proposal Review Checklist generation",
+                "feature2": "Architecture decision recommendations",
+                "feature3": "Risk assessment and mitigation planning",
+                "tryChecklist": "Try Checklist",
+                "tryArchEngine": "Try Architecture Engine"
+            },
+            "evidence": {
+                "title": "Evidence System",
+                "description": "Each hero case study includes:",
+                "item1": "Trust Layer: My role, scope owned, team collaboration, NDA disclaimers",
+                "item2": "Artifact Previews: 6+ artifacts per case study (ADRs, diagrams, roadmaps)",
+                "item3": "Credibility Signals: Duration, team size, region, engagement type",
+                "viewCaseStudies": "View Hero Case Studies"
+            },
+            "metrics": {
+                "title": "Metrics Dashboard",
+                "description": "Impact metrics displayed on homepage: cost saved, projects delivered, compliance rate, data breaches prevented.",
+                "viewDashboard": "View Dashboard"
+            },
+            "leadCapture": {
+                "title": "Lead Capture Demo",
+                "description": "GDPR-safe lead capture with email delivery and Google Sheets storage. Includes attribution tracking (UTM params, referrer, landing path) without PII in analytics.",
+                "tryChecklist": "Try Checklist Download"
+            },
+            "quickLinks": {
+                "title": "Quick Links",
+                "homepage": "Homepage",
+                "homepageDesc": "Start here",
+                "caseStudies": "Case Studies",
+                "caseStudiesDesc": "5 hero case studies",
+                "checklist": "AI Checklist",
+                "checklistDesc": "Try AI tool",
+                "github": "GitHub Repo",
+                "githubDesc": "View source code"
+            }
+        }
+    },
+    "credibilityStrip": {
+        "duration": "Duration",
+        "teamSize": "Team Size",
+        "region": "Region",
+        "engagementType": "Engagement",
+        "decisionAuthority": "Decision Authority"
+    },
+    "caseStudy": {
+        "cta": {
+            "hiring": {
+                "primary": "Download Resume"
+            },
+            "toolkit": {
+                "primary": "Download Checklist"
+            }
+        }
     }
 }

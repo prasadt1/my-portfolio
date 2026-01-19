@@ -32,8 +32,21 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
 const DiagnosticsPage: React.FC = () => {
     const { t, i18n } = useTranslation();
     const [persona, setPersona] = useState<string>('unknown');
+    const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
 
     useEffect(() => {
+        // Phase 3.4E: Token gate check
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const expectedToken = import.meta.env.VITE_ADMIN_TOKEN;
+
+        if (!token || token !== expectedToken) {
+            setIsAuthorized(false);
+            return;
+        }
+
+        setIsAuthorized(true);
+
         // Get persona from localStorage
         if (typeof window !== 'undefined') {
             const stored = localStorage.getItem('pt_home_persona');
@@ -47,13 +60,24 @@ const DiagnosticsPage: React.FC = () => {
         }
     }, []);
 
-    // Block in production
-    if (process.env.NODE_ENV === 'production') {
+    // Phase 3.4E: Token gate - show 404 if not authorized
+    if (isAuthorized === false || (process.env.NODE_ENV === 'production' && !isAuthorized)) {
         return (
             <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4">
                 <div className="max-w-4xl mx-auto text-center">
                     <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">404</h1>
                     <p className="text-slate-600 dark:text-slate-400">Page not found</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Show loading while checking auth
+    if (isAuthorized === null) {
+        return (
+            <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4">
+                <div className="max-w-4xl mx-auto text-center">
+                    <p className="text-slate-600 dark:text-slate-400">Loading...</p>
                 </div>
             </div>
         );

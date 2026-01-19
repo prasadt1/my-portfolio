@@ -14,10 +14,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Download } from 'lucide-react';
 import { trackEvent } from '../services/analytics';
 import { setAttributionContext } from '../utils/attribution';
 import { useFeatureFlag } from '../context/FeatureFlagsProvider';
+import { getGlobalPersona } from '../utils/personaPersistence';
 
 export interface CaseStudyCTAProps {
     variant: 'primary' | 'secondary' | 'tertiary';
@@ -45,6 +46,9 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
     // Feature flag for Risk Radar (secondary CTA)
     const riskRadarFlag = useFeatureFlag('risk_radar');
 
+    // Phase 3.4D: Get active persona for CTA resolution
+    const activePersona = React.useMemo(() => getGlobalPersona(), []);
+
     const handleClick = (ctaType: string, href?: string) => {
         // Update attribution context with CTA source
         if (caseStudySlug) {
@@ -61,6 +65,7 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
             caseStudySlug: caseStudySlug || undefined,
             locale,
             href: href || undefined,
+            persona: activePersona || undefined,
         });
 
         // Call optional onClick handler
@@ -69,8 +74,101 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
         }
     };
 
-    // Primary CTA: Book Discovery Call (Calendly)
+    // Phase 3.4D: Primary CTA resolution based on persona
+    const getPrimaryCTA = () => {
+        if (activePersona === 'hire') {
+            // Hiring persona: Download Resume / Schedule hiring intro
+            return {
+                text: primaryText || t('caseStudy.cta.hiring.primary', { defaultValue: 'Download Resume' }),
+                href: '/hiring',
+                icon: <Download size={18} />,
+                type: 'resume',
+            };
+        } else if (activePersona === 'toolkit') {
+            // Toolkit persona: Download Checklist
+            return {
+                text: primaryText || t('caseStudy.cta.toolkit.primary', { defaultValue: 'Download Checklist' }),
+                href: '/checklist',
+                icon: <Download size={18} />,
+                type: 'checklist',
+            };
+        } else {
+            // Consulting persona (default): Book Discovery Call
+            return {
+                text: primaryText || t('caseStudy.cta.primary', 'Book Discovery Call'),
+                href: 'https://calendly.com/prasad-sgsits/30min',
+                icon: <ArrowRight size={18} />,
+                type: 'calendly',
+                external: true,
+            };
+        }
+    };
+
+    // Primary CTA: Resolved based on persona
     if (variant === 'primary') {
+        const primaryCTA = getPrimaryCTA();
+        
+        // Track primary CTA rendered
+        React.useEffect(() => {
+            trackEvent('primary_cta_rendered', {
+                persona: activePersona || 'consult',
+                ctaType: primaryCTA.type,
+                caseStudySlug: caseStudySlug || undefined,
+            });
+        }, [activePersona, primaryCTA.type, caseStudySlug]);
+
+        if (primaryCTA.external) {
+            return (
+                <a
+                    href={primaryCTA.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                        handleClick(primaryCTA.type, primaryCTA.href);
+                        trackEvent('primary_cta_clicked', {
+                            persona: activePersona || 'consult',
+                            ctaType: primaryCTA.type,
+                            caseStudySlug: caseStudySlug || undefined,
+                        });
+                    }}
+                    className={`
+                        inline-flex items-center justify-center gap-2
+                        bg-emerald-600 hover:bg-emerald-700 text-white
+                        px-6 py-3 rounded-lg font-semibold
+                        transition-all shadow-lg hover:shadow-xl
+                        ${className}
+                    `}
+                >
+                    {primaryCTA.text}
+                    {primaryCTA.icon}
+                </a>
+            );
+        } else {
+            return (
+                <Link
+                    to={primaryCTA.href}
+                    onClick={() => {
+                        handleClick(primaryCTA.type, primaryCTA.href);
+                        trackEvent('primary_cta_clicked', {
+                            persona: activePersona || 'consult',
+                            ctaType: primaryCTA.type,
+                            caseStudySlug: caseStudySlug || undefined,
+                        });
+                    }}
+                    className={`
+                        inline-flex items-center justify-center gap-2
+                        bg-emerald-600 hover:bg-emerald-700 text-white
+                        px-6 py-3 rounded-lg font-semibold
+                        transition-all shadow-lg hover:shadow-xl
+                        ${className}
+                    `}
+                >
+                    {primaryCTA.text}
+                    {primaryCTA.icon}
+                </Link>
+            );
+        }
+    }
         return (
             <a
                 href="https://calendly.com/prasad-sgsits/30min"

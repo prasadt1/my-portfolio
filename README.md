@@ -749,11 +749,26 @@ curl https://your-service-url.run.app/health
 
 **Server Endpoints:**
 - `/api/lead` - Lead capture (guide download)
-- `/api/artifact-request` - Artifact access requests (Phase 3.3)
+- `/api/artifact-request` - Artifact access requests (Phase 3.3, hardened in Phase 3.4B)
 - `/api/chat` - AI chat assistant
 - `/api/risk-radar` - Risk assessment tool
 - `/api/architecture/generate` - Architecture generator
+- `/api/version` - Deployment diagnostics (Phase 3.4E)
 - `/health` - Health check endpoint
+
+**Admin Endpoints (Phase 3.4E):**
+- `/admin/diagnostics?token=YOUR_TOKEN` - Diagnostics page (requires `VITE_ADMIN_TOKEN`)
+- `/admin/feature-flags` - Feature flags admin (dev-only)
+
+**Setting Admin Token:**
+```bash
+# In .env.local
+VITE_ADMIN_TOKEN=your-secure-random-token-here
+
+# Or in Cloud Run
+gcloud run services update portfolio-service \
+  --set-env-vars VITE_ADMIN_TOKEN=your-secure-random-token-here
+```
 
 ### Deploy to:
 - **Vercel**: `vercel deploy`

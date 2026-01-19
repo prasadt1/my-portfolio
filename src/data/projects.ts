@@ -287,7 +287,15 @@ export const projects: CaseStudy[] = [
             }
         ],
         // Phase 3.3: Visibility tier
-        visibilityTier: 'hero'
+        visibilityTier: 'hero',
+        // Phase 3.4C: Credibility signals
+        credibilitySignals: {
+            duration: { en: '10 months', de: '10 Monate' },
+            teamSize: { en: '18 engineers', de: '18 Ingenieure' },
+            region: { en: 'EMEA (6 markets)', de: 'EMEA (6 Märkte)' },
+            engagementType: { en: 'Internal transformation program', de: 'Interne Transformationsprogramm' },
+            decisionAuthority: { en: 'Lead Architect, final design approval', de: 'Lead-Architekt, finale Design-Freigabe' }
+        }
     },
     // --- TIER 1: FLAGSHIP ---
     {
@@ -389,7 +397,15 @@ export const projects: CaseStudy[] = [
             secondary: { text: 'GitHub Repo', action: 'https://github.com/wbcsd/pact-conformance-testing' }
         },
         // Phase 3.3: Visibility tier (SINE climate tech project)
-        visibilityTier: 'hero'
+        visibilityTier: 'hero',
+        // Phase 3.4C: Credibility signals
+        credibilitySignals: {
+            duration: { en: '18 months', de: '18 Monate' },
+            teamSize: { en: '25+ stakeholders', de: '25+ Stakeholder' },
+            region: { en: 'Global (Fortune 100)', de: 'Global (Fortune 100)' },
+            engagementType: { en: 'Standards development consortium', de: 'Standards-Entwicklungskonsortium' },
+            decisionAuthority: { en: 'Technical specification lead, consensus builder', de: 'Technischer Spezifikations-Lead, Konsens-Builder' }
+        }
     },
     {
         id: 'brita-ecommerce',
@@ -799,7 +815,15 @@ export const projects: CaseStudy[] = [
             }
         ],
         // Phase 3.3: Visibility tier
-        visibilityTier: 'hero'
+        visibilityTier: 'hero',
+        // Phase 3.4C: Credibility signals
+        credibilitySignals: {
+            duration: { en: '10 months', de: '10 Monate' },
+            teamSize: { en: '18 engineers', de: '18 Ingenieure' },
+            region: { en: 'EMEA (6 markets)', de: 'EMEA (6 Märkte)' },
+            engagementType: { en: 'Internal transformation program', de: 'Interne Transformationsprogramm' },
+            decisionAuthority: { en: 'Lead Architect, final design approval', de: 'Lead-Architekt, finale Design-Freigabe' }
+        }
     },
     {
         id: 'delivery-hero-ads',
@@ -1207,7 +1231,15 @@ export const projects: CaseStudy[] = [
             }
         ],
         // Phase 3.3: Visibility tier
-        visibilityTier: 'hero'
+        visibilityTier: 'hero',
+        // Phase 3.4C: Credibility signals
+        credibilitySignals: {
+            duration: { en: '6 months', de: '6 Monate' },
+            teamSize: { en: '12 engineers', de: '12 Ingenieure' },
+            region: { en: 'Global', de: 'Global' },
+            engagementType: { en: 'Performance optimization program', de: 'Performance-Optimierungsprogramm' },
+            decisionAuthority: { en: 'Technical Lead, architecture decisions', de: 'Technical Lead, Architektur-Entscheidungen' }
+        }
     },
     // =============================================================================
     // INSURANCE PERFORMANCE IMPROVEMENT - NEW CASE STUDY (Phase 2)
@@ -1642,7 +1674,15 @@ export const projects: CaseStudy[] = [
             }
         ],
         // Phase 3.3: Visibility tier
-        visibilityTier: 'hero'
+        visibilityTier: 'hero',
+        // Phase 3.4C: Credibility signals
+        credibilitySignals: {
+            duration: { en: '3 months', de: '3 Monate' },
+            teamSize: { en: 'Solo project', de: 'Solo-Projekt' },
+            region: { en: 'Global (competition)', de: 'Global (Wettbewerb)' },
+            engagementType: { en: 'Competition entry / Product', de: 'Wettbewerbseintrag / Produkt' },
+            decisionAuthority: { en: 'Full-stack developer, all decisions', de: 'Full-Stack-Entwickler, alle Entscheidungen' }
+        }
     },
     {
         id: 'ai-photography-coach',

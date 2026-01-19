@@ -1567,5 +1567,93 @@
         "title": "Was Kunden sagen",
         "subtitle": "Bewegen Sie die Maus, um vollständige Testimonials zu lesen",
         "viewMore": "Weitere Testimonials"
+    },
+    "competition": {
+        "badge": "Google AI Portfolio Challenge Submission",
+        "ribbon": "Competition Mode",
+        "startHere": {
+            "title": "Start Here",
+            "subtitle": "Dieses Portfolio demonstriert Enterprise-Architektur-Expertise, AI-Integration mit Gemini und eine Production-Ready-Plattform auf Google Cloud Run.",
+            "cta1": {
+                "title": "5 Hero Case Studies erkunden",
+                "description": "Tiefgehende Fallstudien mit Executive Snapshots, Trust Layers und Artifact Previews",
+                "button": "Case Studies ansehen"
+            },
+            "cta2": {
+                "title": "AI Tool ausprobieren",
+                "description": "Vendor Proposal Checklist - AI-gestütztes Vorschlags-Review-Tool",
+                "button": "Checklist ausprobieren"
+            },
+            "cta3": {
+                "title": "Executive Summary ansehen",
+                "description": "Executive Snapshot Modal von jeder Hero Case Study ansehen",
+                "button": "Beispiel ansehen"
+            }
+        },
+        "page": {
+            "title": "Wettbewerbseinreichung",
+            "description": "Google AI Portfolio Challenge Einreichungs-Walkthrough",
+            "badge": "Google AI Portfolio Challenge",
+            "subtitle": "Ein Production-Ready-Portfolio, das Enterprise-Architektur-Expertise, AI-Integration mit Gemini und Cloud Run Deployment demonstriert.",
+            "whatIs": {
+                "title": "Was diese Seite ist",
+                "description": "Ein unabhängiges Architektur-Berater-Portfolio, gebaut mit React + TypeScript, mit AI-gestützten Tools (Gemini 3 Pro), Feature Flags für phasenweisen Rollout, GDPR-sichere Analytics und Production-Deployment auf Google Cloud Run. Die Seite demonstriert reale Enterprise-Architektur-Expertise durch detaillierte Fallstudien."
+            },
+            "aiFeatures": {
+                "title": "AI-Features",
+                "description": "Dieses Portfolio integriert Google Gemini 3 Pro für:",
+                "feature1": "Vendor Proposal Review Checklist-Generierung",
+                "feature2": "Architektur-Entscheidungsempfehlungen",
+                "feature3": "Risikobewertung und Mitigationsplanung",
+                "tryChecklist": "Checklist ausprobieren",
+                "tryArchEngine": "Architecture Engine ausprobieren"
+            },
+            "evidence": {
+                "title": "Evidence-System",
+                "description": "Jede Hero Case Study enthält:",
+                "item1": "Trust Layer: Meine Rolle, Scope Owned, Team-Kollaboration, NDA-Disclaimers",
+                "item2": "Artifact Previews: 6+ Artefakte pro Fallstudie (ADRs, Diagramme, Roadmaps)",
+                "item3": "Credibility Signals: Dauer, Team-Größe, Region, Engagement-Typ",
+                "viewCaseStudies": "Hero Case Studies ansehen"
+            },
+            "metrics": {
+                "title": "Metrics Dashboard",
+                "description": "Impact-Metriken auf Homepage: Kosten gespart, Projekte geliefert, Compliance-Rate, Datenpannen verhindert.",
+                "viewDashboard": "Dashboard ansehen"
+            },
+            "leadCapture": {
+                "title": "Lead Capture Demo",
+                "description": "GDPR-sichere Lead-Erfassung mit E-Mail-Versand und Google Sheets-Speicherung. Enthält Attribution-Tracking (UTM-Params, Referrer, Landing Path) ohne PII in Analytics.",
+                "tryChecklist": "Checklist-Download ausprobieren"
+            },
+            "quickLinks": {
+                "title": "Quick Links",
+                "homepage": "Homepage",
+                "homepageDesc": "Hier starten",
+                "caseStudies": "Case Studies",
+                "caseStudiesDesc": "5 Hero Case Studies",
+                "checklist": "AI Checklist",
+                "checklistDesc": "AI Tool ausprobieren",
+                "github": "GitHub Repo",
+                "githubDesc": "Source Code ansehen"
+            }
+        }
+    },
+    "credibilityStrip": {
+        "duration": "Dauer",
+        "teamSize": "Team-Größe",
+        "region": "Region",
+        "engagementType": "Engagement",
+        "decisionAuthority": "Entscheidungsautorität"
+    },
+    "caseStudy": {
+        "cta": {
+            "hiring": {
+                "primary": "Resume herunterladen"
+            },
+            "toolkit": {
+                "primary": "Checklist herunterladen"
+            }
+        }
     }
 }

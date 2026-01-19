@@ -35,7 +35,9 @@ import { trackEvent } from '../services/analytics';
 import { useFeatureFlag } from '../context/FeatureFlagsProvider';
 import ArtifactRequestModal from '../components/ArtifactRequestModal';
 import NDADisclaimer from '../components/NDADisclaimer';
+import CredibilityStrip from '../components/CredibilityStrip';
 import { isPromoted } from '../config/featureUtils';
+import { getGlobalPersona } from '../utils/personaPersistence';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -135,6 +137,7 @@ const CaseStudyPage: React.FC = () => {
     const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
     const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
+    const [activePersona, setActivePersona] = useState<'hire' | 'consult' | 'toolkit' | null>(null); // Phase 3.4D: For CTA resolution
     
     // Feature flag for sticky CTAs
     const stickyCtaFlag = useFeatureFlag('sticky_cta');
@@ -163,6 +166,14 @@ const CaseStudyPage: React.FC = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [slug]);
+
+    // Phase 3.4D: Get active persona for CTA resolution
+    useEffect(() => {
+        const globalPersona = getGlobalPersona();
+        if (globalPersona) {
+            setActivePersona(globalPersona);
+        }
+    }, []);
 
     // Phase 3.0 B: Track scroll position for sticky CTAs
     useEffect(() => {
@@ -488,6 +499,13 @@ const CaseStudyPage: React.FC = () => {
                                 {t('caseStudy.executiveSnapshot.title', 'Executive Snapshot')}
                             </h3>
                             
+                            {/* Phase 3.4C: Credibility Strip (if available) */}
+                            {study.credibilitySignals && (
+                                <div className="mb-6">
+                                    <CredibilityStrip signals={study.credibilitySignals} locale={locale} />
+                                </div>
+                            )}
+                            
                             <div className="grid md:grid-cols-3 gap-6">
                                 {/* Why It Mattered */}
                                 <div>
@@ -792,8 +810,10 @@ const CaseStudyPage: React.FC = () => {
                                 {t('caseStudy.cta.inlineText', 'I offer independent reviews to help identify risks, gaps, and optimization opportunities before committing budget.')}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
+                                {/* Phase 3.4D: Only ONE primary CTA based on persona */}
                                 <CaseStudyCTA variant="primary" caseStudySlug={slug} />
-                                <CaseStudyCTA variant="tertiary" caseStudySlug={slug} />
+                                {/* Secondary CTA (visually weaker) */}
+                                <CaseStudyCTA variant="tertiary" caseStudySlug={slug} className="opacity-75 hover:opacity-100" />
                             </div>
                         </div>
                     </div>

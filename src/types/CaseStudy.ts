@@ -289,6 +289,20 @@ export interface CaseStudy {
 
     // Phase 3.3: Visibility tier for hero projects strategy
     visibilityTier?: 'hero' | 'catalog' | 'summaryOnly';
+
+    // Phase 3.4C: Credibility signals for hero case studies
+    credibilitySignals?: CredibilitySignals;
+}
+
+/**
+ * Phase 3.4C: Credibility Signals - compact metadata for hero case studies
+ */
+export interface CredibilitySignals {
+    duration: LocalizedString; // e.g. "9 months"
+    teamSize: LocalizedString; // e.g. "18 engineers"
+    region: LocalizedString; // e.g. "DACH"
+    engagementType: LocalizedString; // e.g. "Internal transformation program"
+    decisionAuthority: LocalizedString; // e.g. "Architecture lead, final design approval"
 }
 
 // =============================================================================

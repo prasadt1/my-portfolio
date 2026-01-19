@@ -30,6 +30,9 @@ const ArtifactRequestModal: React.FC<ArtifactRequestModalProps> = ({
         role: '',
         reason: '',
         understandsNDA: false,
+        // Phase 3.4B: Honeypot fields (hidden from users)
+        website: '',
+        companyUrl: '',
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
@@ -64,6 +67,9 @@ const ArtifactRequestModal: React.FC<ArtifactRequestModalProps> = ({
                     understandsNDA: formData.understandsNDA,
                     caseStudySlug,
                     artifactIds,
+                    // Phase 3.4B: Honeypot fields (always empty, bots may fill)
+                    website: formData.website,
+                    companyUrl: formData.companyUrl,
                     // Attribution (no PII)
                     attribution: {
                         utm_source: attribution.utm_source,
@@ -96,6 +102,8 @@ const ArtifactRequestModal: React.FC<ArtifactRequestModalProps> = ({
                     role: '',
                     reason: '',
                     understandsNDA: false,
+                    website: '',
+                    companyUrl: '',
                 });
                 setSubmitSuccess(false);
             }, 2000);
@@ -242,6 +250,26 @@ const ArtifactRequestModal: React.FC<ArtifactRequestModalProps> = ({
                                             <option value="reference">{t('artifactRequest.reasonReference', { defaultValue: 'Reference for project' })}</option>
                                             <option value="other">{t('artifactRequest.reasonOther', { defaultValue: 'Other' })}</option>
                                         </select>
+                                    </div>
+
+                                    {/* Phase 3.4B: Honeypot fields (hidden, bots may fill) */}
+                                    <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+                                        <input
+                                            type="text"
+                                            name="website"
+                                            tabIndex={-1}
+                                            autoComplete="off"
+                                            value={formData.website}
+                                            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                                        />
+                                        <input
+                                            type="text"
+                                            name="companyUrl"
+                                            tabIndex={-1}
+                                            autoComplete="off"
+                                            value={formData.companyUrl}
+                                            onChange={(e) => setFormData({ ...formData, companyUrl: e.target.value })}
+                                        />
                                     </div>
 
                                     {/* NDA Checkbox */}
