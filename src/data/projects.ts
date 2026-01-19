@@ -290,11 +290,11 @@ export const projects: CaseStudy[] = [
         visibilityTier: 'hero',
         // Phase 3.4C: Credibility signals
         credibilitySignals: {
-            duration: { en: '10 months', de: '10 Monate' },
-            teamSize: { en: '18 engineers', de: '18 Ingenieure' },
-            region: { en: 'EMEA (6 markets)', de: 'EMEA (6 Märkte)' },
-            engagementType: { en: 'Internal transformation program', de: 'Interne Transformationsprogramm' },
-            decisionAuthority: { en: 'Lead Architect, final design approval', de: 'Lead-Architekt, finale Design-Freigabe' }
+            duration: { en: '2.5 weeks', de: '2,5 Wochen' },
+            teamSize: { en: 'Solo project', de: 'Solo-Projekt' },
+            region: { en: 'Global (competition)', de: 'Global (Wettbewerb)' },
+            engagementType: { en: 'Competition entry / Product', de: 'Wettbewerbseintrag / Produkt' },
+            decisionAuthority: { en: 'Full-stack developer, all decisions', de: 'Full-Stack-Entwickler, alle Entscheidungen' }
         }
     },
     // --- TIER 1: FLAGSHIP ---
@@ -1234,11 +1234,11 @@ export const projects: CaseStudy[] = [
         visibilityTier: 'hero',
         // Phase 3.4C: Credibility signals
         credibilitySignals: {
-            duration: { en: '6 months', de: '6 Monate' },
-            teamSize: { en: '12 engineers', de: '12 Ingenieure' },
-            region: { en: 'Global', de: 'Global' },
-            engagementType: { en: 'Performance optimization program', de: 'Performance-Optimierungsprogramm' },
-            decisionAuthority: { en: 'Technical Lead, architecture decisions', de: 'Technical Lead, Architektur-Entscheidungen' }
+            duration: { en: '8 months', de: '8 Monate' },
+            teamSize: { en: '10 engineers', de: '10 Ingenieure' },
+            region: { en: 'DACH', de: 'DACH' },
+            engagementType: { en: 'High-scale platform optimization', de: 'High-Scale-Plattform-Optimierung' },
+            decisionAuthority: { en: 'Lead Architect, technical decisions', de: 'Lead-Architekt, technische Entscheidungen' }
         }
     },
     // =============================================================================
@@ -1677,11 +1677,11 @@ export const projects: CaseStudy[] = [
         visibilityTier: 'hero',
         // Phase 3.4C: Credibility signals
         credibilitySignals: {
-            duration: { en: '3 months', de: '3 Monate' },
-            teamSize: { en: 'Solo project', de: 'Solo-Projekt' },
-            region: { en: 'Global (competition)', de: 'Global (Wettbewerb)' },
-            engagementType: { en: 'Competition entry / Product', de: 'Wettbewerbseintrag / Produkt' },
-            decisionAuthority: { en: 'Full-stack developer, all decisions', de: 'Full-Stack-Entwickler, alle Entscheidungen' }
+            duration: { en: '4 months', de: '4 Monate' },
+            teamSize: { en: '8 engineers', de: '8 Ingenieure' },
+            region: { en: 'DACH', de: 'DACH' },
+            engagementType: { en: 'Performance improvement consulting', de: 'Performance-Verbesserungsberatung' },
+            decisionAuthority: { en: 'Performance Engineering Lead, optimization decisions', de: 'Performance Engineering Lead, Optimierungsentscheidungen' }
         }
     },
     {

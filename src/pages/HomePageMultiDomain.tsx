@@ -593,7 +593,7 @@ const HomePageMultiDomain: React.FC = () => {
                 <LogoCarousel />
 
                 {/* Phase 3.3E: Impact Dashboard */}
-                <section className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                <section id="impact-dashboard" className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 scroll-mt-24">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

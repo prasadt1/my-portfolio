@@ -217,9 +217,18 @@ const CompetitionPage: React.FC = () => {
                                     {t('competition.page.metrics.description', { defaultValue: 'Impact metrics displayed on homepage: cost saved, projects delivered, compliance rate, data breaches prevented.' })}
                                 </p>
                                 <Link
-                                    to="/"
-                                    onClick={() => trackEvent('competition_cta_clicked', { cta: 'metrics' })}
-                                    className="inline-flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium"
+                                    to="/#impact-dashboard"
+                                    onClick={() => {
+                                        trackEvent('competition_cta_clicked', { cta: 'metrics' });
+                                        // Smooth scroll to dashboard section after navigation
+                                        setTimeout(() => {
+                                            const element = document.getElementById('impact-dashboard');
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                            }
+                                        }, 100);
+                                    }}
+                                    className="inline-flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors"
                                 >
                                     {t('competition.page.metrics.viewDashboard', { defaultValue: 'View Dashboard' })}
                                     <ArrowRight size={14} />

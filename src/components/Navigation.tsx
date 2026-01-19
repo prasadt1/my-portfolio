@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Search, ChevronRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, Search, ChevronRight, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
@@ -36,21 +36,25 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      {/* Phase 3.4A: Competition Mode Ribbon */}
+      {/* Phase 3.4A: Competition Mode Ribbon - Enhanced visibility */}
       {competitionMode && (
-        <div className="fixed top-0 left-0 right-0 h-8 bg-emerald-600 dark:bg-emerald-700 z-50 flex items-center justify-center">
+        <div className="fixed top-0 left-0 right-0 h-12 bg-gradient-to-r from-emerald-600 to-emerald-500 dark:from-emerald-700 dark:to-emerald-600 z-50 flex items-center justify-center shadow-lg border-b-2 border-emerald-400 dark:border-emerald-500">
           <Link
             to="/competition"
-            className="text-white text-xs font-semibold hover:underline flex items-center gap-2"
+            className="text-white text-sm font-bold hover:text-emerald-100 dark:hover:text-emerald-200 transition-colors flex items-center gap-2 px-4 py-2 rounded-md hover:bg-emerald-500/20 dark:hover:bg-emerald-600/20"
             onClick={() => trackEvent('competition_ribbon_clicked')}
           >
-            <span>{t('competition.ribbon', { defaultValue: 'Competition Mode' })}</span>
-            <ChevronRight size={12} />
+            <span className="inline-flex items-center gap-2">
+              <Sparkles size={16} className="animate-pulse" />
+              <span>{t('competition.ribbon', { defaultValue: 'Competition Mode' })}</span>
+              <span className="text-xs font-normal opacity-90">• Google AI Portfolio Challenge Submission</span>
+            </span>
+            <ChevronRight size={16} className="ml-1" />
           </Link>
         </div>
       )}
       <nav
-        className={`fixed ${competitionMode ? 'top-8' : 'top-0'} left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
+        className={`fixed ${competitionMode ? 'top-12' : 'top-0'} left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
           ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-slate-200 dark:border-slate-800 shadow-sm'
           : 'bg-transparent border-transparent'
           }`}

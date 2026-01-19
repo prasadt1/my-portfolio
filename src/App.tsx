@@ -45,7 +45,7 @@ const DiagnosticsPage = lazy(() => import('./pages/admin/DiagnosticsPage'));
 // Layout Component
 const Layout: React.FC = () => {
   const location = useLocation();
-  const competitionMode = typeof import.meta !== 'undefined' && import.meta.env?.VITE_COMPETITION_MODE === 'true';
+  const competitionMode = typeof import.meta !== 'undefined' && (import.meta.env?.VITE_COMPETITION_MODE === 'true' || import.meta.env?.VITE_COMPETITION_MODE === '1');
   
   // Conditionally show ChatAssistant only on specific pages
   const showChatAssistant = ['/', '/services', '/contact'].includes(location.pathname);
@@ -56,7 +56,7 @@ const Layout: React.FC = () => {
         <CommandPalette />
       </Suspense>
       <Navigation />
-      <main className={competitionMode ? 'pt-28' : 'pt-20'}>
+      <main className={competitionMode ? 'pt-32' : 'pt-20'}>
         <ErrorBoundary>
           <Suspense
             fallback={
