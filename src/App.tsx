@@ -39,6 +39,7 @@ const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 // Admin pages (dev-only, hidden in production)
 const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));
+const DiagnosticsPage = lazy(() => import('./pages/admin/DiagnosticsPage'));
 
 // Layout Component
 const Layout: React.FC = () => {
@@ -94,8 +95,6 @@ const App: React.FC = () => {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="projects" element={<ProjectsPage />} />
                 <Route path="projects/:slug" element={<CaseStudyPage />} />
-                <Route path="architecture-engine" element={<ArchitectureEngine />} />
-                <Route path="risk-radar" element={<RiskRadarPage />} />
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="hiring" element={<HiringPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />
@@ -121,8 +120,9 @@ const App: React.FC = () => {
                     <RiskRadarPage />
                   </FeatureRouteGuard>
                 } />
-                {/* Admin routes (dev-only, FeatureFlagsPage hides itself in production) */}
+                {/* Admin routes (dev-only) */}
                 <Route path="admin/feature-flags" element={<FeatureFlagsPage />} />
+                <Route path="admin/diagnostics" element={<DiagnosticsPage />} />
               </Route>
             </Routes>
             <Suspense fallback={null}>

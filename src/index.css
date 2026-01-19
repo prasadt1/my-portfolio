@@ -36,11 +36,15 @@
 
 .animate-scroll {
   animation: scroll 30s linear infinite;
-  min-width: 100%;
   display: flex;
 }
 
 /* Pause animation on hover for better UX */
 .group:hover .animate-scroll {
+  animation-play-state: paused;
+}
+
+/* Alternative: pause on direct hover of animated element */
+.animate-scroll:hover {
   animation-play-state: paused;
 }

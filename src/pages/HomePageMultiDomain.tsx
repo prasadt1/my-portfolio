@@ -18,8 +18,11 @@ import {
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
 import VideoModal from '../components/VideoModal';
+import TestimonialsRotator from '../components/TestimonialsRotator';
+import ImpactDashboard from '../components/ImpactDashboard';
 import { trackEvent, AnalyticsEvents } from '../services/analytics';
 import { isEnabled, isPromoted } from '../config/featureUtils';
+import { setGlobalPersona, getGlobalPersona } from '../utils/personaPersistence';
 import i18n from '../i18n';
 
 type PersonaType = 'hire' | 'consult' | 'toolkit';
@@ -59,9 +62,10 @@ const HomePageMultiDomain: React.FC = () => {
         }
     }, [selectedPersona, searchParams, setSearchParams]);
 
-    // Track persona selection
+    // Track persona selection and persist globally (Phase 3.3D)
     const handlePersonaChange = (persona: PersonaType, source: 'tabs' | 'url' = 'tabs') => {
         setSelectedPersona(persona);
+        setGlobalPersona(persona); // Phase 3.3D: Persist globally
         if (source === 'tabs') {
             trackEvent('homepage_persona_selected', {
                 selectedPersona: persona,
@@ -70,6 +74,14 @@ const HomePageMultiDomain: React.FC = () => {
             });
         }
     };
+
+    // Initialize from global persona if available (Phase 3.3D)
+    useEffect(() => {
+        const globalPersona = getGlobalPersona();
+        if (globalPersona && globalPersona !== selectedPersona) {
+            setSelectedPersona(globalPersona);
+        }
+    }, []);
 
     return (
         <>
@@ -469,6 +481,54 @@ const HomePageMultiDomain: React.FC = () => {
 
                 {/* SECTION 2: TRUST BAR */}
                 <LogoCarousel />
+
+                {/* Phase 3.3E: Impact Dashboard */}
+                <section className="py-12 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-8"
+                        >
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                                {t('impactDashboard.title', { defaultValue: 'Impact at a Glance' })}
+                            </h2>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm">
+                                {t('impactDashboard.subtitle', { defaultValue: 'Measurable outcomes from real engagements' })}
+                            </p>
+                        </motion.div>
+                        <ImpactDashboard
+                            metrics={[
+                                { value: '€2M+', label: t('impactDashboard.savings', { defaultValue: 'Cost Saved' }), type: 'savings' },
+                                { value: '50+', label: t('impactDashboard.projects', { defaultValue: 'Projects' }), type: 'scope' },
+                                { value: '100%', label: t('impactDashboard.compliance', { defaultValue: 'Compliance Rate' }), type: 'risk' },
+                                { value: 'Zero', label: t('impactDashboard.breaches', { defaultValue: 'Data Breaches' }), type: 'risk' },
+                            ]}
+                            compact={true}
+                        />
+                    </div>
+                </section>
+
+                {/* Phase 3.3F: Testimonials Carousel */}
+                <section className="py-8 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-6"
+                        >
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                                {t('testimonials.title', { defaultValue: 'What Clients Say' })}
+                            </h2>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">
+                                {t('testimonials.subtitle', { defaultValue: 'Hover to read full testimonials' })}
+                            </p>
+                        </motion.div>
+                        <TestimonialsRotator />
+                    </div>
+                </section>
 
                 {/* SECTION 3: THE PROBLEM */}
                 <section className="py-20 bg-white dark:bg-slate-900">

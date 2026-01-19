@@ -1047,6 +1047,15 @@
             "availableOnRequest": "Available on request",
             "requestAccess": "Request full artifacts",
             "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures."
+        },
+        "ndaDisclaimer": {
+            "title": "NDA & Ownership Disclaimer",
+            "whatPublic": "What I can share publicly",
+            "whatPublicDesc": "Generalized patterns, anonymized outcomes, and architectural approaches",
+            "whatRequest": "What I share on request",
+            "whatRequestDesc": "Detailed artifacts, ADRs, and implementation patterns (NDA-safe)",
+            "teamCredit": "Where team credit applies",
+            "teamCreditDesc": "All outcomes were delivered collaboratively. The \"Scope Owned\" section clarifies my specific contributions."
         }
     },
     "independentAdvisory": {
@@ -1556,5 +1565,46 @@
         "benefit3": "Get concrete recommendations within 48 hours",
         "cta": "Open Calendar to Schedule",
         "note": "Opens in a new window"
+    },
+    "artifactRequest": {
+        "title": "Request Artifact Access",
+        "description": "To protect client confidentiality, detailed artifacts are shared selectively. Please provide your details and we'll review your request.",
+        "name": "Name",
+        "namePlaceholder": "Your full name",
+        "email": "Email",
+        "emailPlaceholder": "your.email@example.com",
+        "company": "Company",
+        "optional": "Optional",
+        "companyPlaceholder": "Your company name",
+        "role": "Role",
+        "rolePlaceholder": "e.g. CTO, Engineering Lead",
+        "reason": "Reason for Request",
+        "reasonSelect": "Select a reason...",
+        "reasonEvaluation": "Evaluating similar architecture",
+        "reasonLearning": "Learning best practices",
+        "reasonReference": "Reference for project",
+        "reasonOther": "Other",
+        "ndaCheckbox": "I understand that materials are shared selectively due to NDA and client confidentiality requirements.",
+        "cancel": "Cancel",
+        "submit": "Submit Request",
+        "submitting": "Submitting...",
+        "error": "Failed to submit request. Please try again.",
+        "success": {
+            "title": "Request Submitted",
+            "message": "We'll review your request and get back to you within 48 hours."
+        }
+    },
+    "impactDashboard": {
+        "title": "Impact at a Glance",
+        "subtitle": "Measurable outcomes from real engagements",
+        "savings": "Cost Saved",
+        "projects": "Projects",
+        "compliance": "Compliance Rate",
+        "breaches": "Data Breaches"
+    },
+    "testimonials": {
+        "title": "What Clients Say",
+        "subtitle": "Hover to read full testimonials",
+        "viewMore": "More testimonials"
     }
 }

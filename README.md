@@ -162,17 +162,35 @@ All styles are inline for simplicity. You can:
 > Example URL: `https://docs.google.com/spreadsheets/d/1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY/edit`
 > The ID is: `1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY`
 
-### Feature Flags Configuration
+### Feature Flags Configuration (Phase 3.2)
 
+**Phase 3.1 Core Flags:**
 | Variable | Description | Values | Required |
 |----------|-------------|--------|----------|
-| `FEATURE_PROPOSAL_REVIEW` | Proposal Review feature | `on`, `off`, `rollout` | No (default: `off`) |
-| `FEATURE_RISK_RADAR` | Risk Radar feature | `on`, `off`, `rollout` | No (default: `off`) |
-| `FEATURE_RISK_RADAR_EXPORT` | Risk Radar export functionality | `on`, `off`, `rollout` | No (default: `off`) |
-| `FEATURE_ARCH_GENERATOR` | Architecture Generator feature | `on`, `off`, `rollout` | No (default: `off`) |
-| `FEATURE_EXEC_MODAL` | Executive Summary Modal | `on`, `off`, `rollout` | No (default: `off`) |
-| `FEATURE_STICKY_CTA` | Sticky CTA buttons on case studies | `on`, `off`, `rollout` | No (default: `off`) |
-| `ROLLOUT_*_PERCENT` | Rollout percentage (0-100) for `rollout` mode | `0-100` | No |
+| `VITE_PROMOTE_AI_CHECKLIST` | Promote Checklist in nav/home | `true`, `false` | No (default: `true`) |
+| `VITE_PROMOTE_AI_ARCH_ENGINE` | Promote Architecture Engine | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_AI_RISK_RADAR` | Promote Risk Radar | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_TOOLKIT_LIBRARY` | Promote Toolkit Library | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_ARTIFACT_GATE` | Promote Artifact Previews | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_PERSONA_TABS` | Promote Persona Tabs | `true`, `false` | No (default: `false`) |
+
+**Phase 3.2 Extended Flags:**
+| Variable | Description | Values | Required |
+|----------|-------------|--------|----------|
+| `VITE_PROMOTE_AI_TOOLS` | Promote AI Tools Section | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_TOOLKITS` | Promote Toolkits Section | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_FULL_CATALOG` | Promote Full Case Studies Catalog | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_ARTIFACTS_DOWNLOAD` | Enable Public Artifact Downloads | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_ARTIFACTS_REQUEST` | Enable Artifact Request Flow | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_TESTIMONIALS` | Enable Testimonials Rotator | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_IMPACT_DASHBOARDS` | Enable Impact Dashboards | `true`, `false` | No (default: `false`) |
+
+**Competition Mode (Phase 3.2B):**
+| Variable | Description | Values | Required |
+|----------|-------------|--------|----------|
+| `VITE_COMPETITION_MODE` | Auto-promote all major features | `true`, `false` | No (default: `false`) |
+
+When `VITE_COMPETITION_MODE=true`, all major features are automatically promoted regardless of individual flags.
 
 **Feature Flag Modes:**
 - `on` - Feature enabled for all users
@@ -591,6 +609,59 @@ Currently gated features:
 
 All flags default to `off` if not configured (safe fallback behavior).
 
+## 🎯 Phase 3.2-3.3: Competition Readiness & Artifact System
+
+### Competition Mode
+
+For DEV.to submission and competition judging, enable competition mode:
+
+```bash
+VITE_COMPETITION_MODE=true
+```
+
+This automatically promotes all major features, ensuring judges see full platform depth.
+
+### Artifact Request Workflow (Phase 3.3)
+
+The portfolio includes a tiered artifact system:
+
+1. **Public Artifacts** - Direct download available
+2. **Gated Artifacts** - Require access request
+3. **On-Request Artifacts** - Shared selectively via NDA
+
+**Request Flow:**
+1. User clicks "Request Access" on artifact preview
+2. Modal opens with form (name, email, company, role, reason)
+3. User acknowledges NDA understanding
+4. Request saved to Google Sheets (same as leads, filtered by `leadMagnet: 'artifact-request'`)
+5. Email notifications sent (requester + you)
+6. You review and share artifacts selectively
+
+**Server Endpoint:** `POST /api/artifact-request`
+
+**Google Sheets Storage:**
+- Uses same lead store system
+- Filter by `leadMagnet = 'artifact-request'`
+- Includes case study slug, artifact IDs, attribution data
+- No PII in analytics events
+
+### Hero Projects Strategy (Phase 3.3A)
+
+Five hero case studies have full content:
+- `brita-ecommerce`
+- `delivery-hero-ads`
+- `insurance-performance`
+- `pact-pcf-data-exchange-network` (SINE climate tech)
+- `photography-coach-ai`
+
+Hero projects include:
+- Full `executiveSnapshot`
+- Complete `personaChallenges`
+- Comprehensive `trustLayer`
+- 6+ `artifactPreviews`/`artifacts`
+
+Other projects use `visibilityTier: 'catalog'` or `'summaryOnly'` for NDA-safe presentation.
+
 ## 🚨 Troubleshooting
 
 ### "VITE_GEMINI_API_KEY not configured"
@@ -654,10 +725,40 @@ npm run build
 
 This creates a `dist/` folder with optimized static files.
 
+### Deploy to Google Cloud Run (Phase 3.2C)
+
+```bash
+# Build and deploy with Cloud Build
+gcloud builds submit --config cloudbuild.yaml
+
+# Or deploy directly with Docker
+docker build -t gcr.io/$PROJECT_ID/portfolio-service .
+docker push gcr.io/$PROJECT_ID/portfolio-service
+gcloud run deploy portfolio-service \
+  --image gcr.io/$PROJECT_ID/portfolio-service \
+  --region europe-west1 \
+  --platform managed \
+  --allow-unauthenticated \
+  --labels dev-tutorial=devnewyear2026
+```
+
+**Health Check:**
+```bash
+curl https://your-service-url.run.app/health
+```
+
+**Server Endpoints:**
+- `/api/lead` - Lead capture (guide download)
+- `/api/artifact-request` - Artifact access requests (Phase 3.3)
+- `/api/chat` - AI chat assistant
+- `/api/risk-radar` - Risk assessment tool
+- `/api/architecture/generate` - Architecture generator
+- `/health` - Health check endpoint
+
 ### Deploy to:
 - **Vercel**: `vercel deploy`
 - **Netlify**: Drag & drop `dist/` folder
-- **Google Cloud Run**: See documentation
+- **Google Cloud Run**: See above
 - **GitHub Pages**: Enable in repository settings
 
 Remember to set `VITE_GEMINI_API_KEY` in your hosting platform's environment variables!

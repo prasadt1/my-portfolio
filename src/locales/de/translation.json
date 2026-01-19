@@ -1008,6 +1008,15 @@
             "onRequest": "Auf Anfrage",
             "requestAccess": "Artefakte anfragen",
             "privacyNote": "Zum Schutz der Vertraulichkeit der Kunden werden detaillierte Artefakte selektiv geteilt."
+        },
+        "ndaDisclaimer": {
+            "title": "NDA & Ownership Disclaimer",
+            "whatPublic": "Was ich öffentlich teilen kann",
+            "whatPublicDesc": "Verallgemeinerte Patterns, anonymisierte Ergebnisse und Architektur-Ansätze",
+            "whatRequest": "Was ich auf Anfrage teile",
+            "whatRequestDesc": "Detaillierte Artefakte, ADRs und Implementierungsmuster (NDA-sicher)",
+            "teamCredit": "Wo Team-Credit gilt",
+            "teamCreditDesc": "Alle Ergebnisse wurden kollaborativ erzielt. Der Abschnitt \"Scope Owned\" klärt meine spezifischen Beiträge."
         }
     },
     "independentAdvisory": {
@@ -1517,5 +1526,46 @@
         "benefit3": "Erhalten Sie konkrete Empfehlungen innerhalb von 48 Stunden",
         "cta": "Kalender öffnen zum Buchen",
         "note": "Öffnet in einem neuen Fenster"
+    },
+    "artifactRequest": {
+        "title": "Artifact-Zugang anfordern",
+        "description": "Zum Schutz der Vertraulichkeit von Kunden werden detaillierte Artefakte selektiv geteilt. Bitte geben Sie Ihre Daten an und wir prüfen Ihre Anfrage.",
+        "name": "Name",
+        "namePlaceholder": "Ihr vollständiger Name",
+        "email": "E-Mail",
+        "emailPlaceholder": "ihre.email@beispiel.com",
+        "company": "Unternehmen",
+        "optional": "Optional",
+        "companyPlaceholder": "Ihr Unternehmensname",
+        "role": "Rolle",
+        "rolePlaceholder": "z.B. CTO, Engineering Lead",
+        "reason": "Grund für Anfrage",
+        "reasonSelect": "Grund auswählen...",
+        "reasonEvaluation": "Bewertung ähnlicher Architektur",
+        "reasonLearning": "Best Practices lernen",
+        "reasonReference": "Referenz für Projekt",
+        "reasonOther": "Andere",
+        "ndaCheckbox": "Ich verstehe, dass Materialien aufgrund von NDA und Vertraulichkeitsanforderungen selektiv geteilt werden.",
+        "cancel": "Abbrechen",
+        "submit": "Anfrage absenden",
+        "submitting": "Wird gesendet...",
+        "error": "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+        "success": {
+            "title": "Anfrage gesendet",
+            "message": "Wir prüfen Ihre Anfrage und melden uns innerhalb von 48 Stunden."
+        }
+    },
+    "impactDashboard": {
+        "title": "Impact auf einen Blick",
+        "subtitle": "Messbare Ergebnisse aus echten Engagements",
+        "savings": "Kosten gespart",
+        "projects": "Projekte",
+        "compliance": "Compliance-Rate",
+        "breaches": "Datenpannen"
+    },
+    "testimonials": {
+        "title": "Was Kunden sagen",
+        "subtitle": "Bewegen Sie die Maus, um vollständige Testimonials zu lesen",
+        "viewMore": "Weitere Testimonials"
     }
 }

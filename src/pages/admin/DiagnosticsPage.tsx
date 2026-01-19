@@ -1,0 +1,188 @@
+// src/pages/admin/DiagnosticsPage.tsx
+// Dev-only diagnostics page - Phase 3.1
+
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { getFeatureDiagnostics, getFeatureSummary } from '../../utils/featureDiagnostics';
+import { isCompetitionMode } from '../../config/competition';
+import SEO from '../../components/SEO';
+
+// Simple analytics event cache (last 10 events)
+const MAX_CACHED_EVENTS = 10;
+let cachedEvents: Array<{ name: string; props?: Record<string, any>; timestamp: string }> = [];
+
+// Intercept analytics events for diagnostics
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    const originalTrackEvent = (window as any).__trackEvent;
+    if (originalTrackEvent) {
+        (window as any).__trackEvent = (...args: any[]) => {
+            cachedEvents.push({
+                name: args[0],
+                props: args[1],
+                timestamp: new Date().toISOString(),
+            });
+            if (cachedEvents.length > MAX_CACHED_EVENTS) {
+                cachedEvents = cachedEvents.slice(-MAX_CACHED_EVENTS);
+            }
+            return originalTrackEvent(...args);
+        };
+    }
+}
+
+const DiagnosticsPage: React.FC = () => {
+    const { t, i18n } = useTranslation();
+    const [persona, setPersona] = useState<string>('unknown');
+
+    useEffect(() => {
+        // Get persona from localStorage
+        if (typeof window !== 'undefined') {
+            const stored = localStorage.getItem('pt_home_persona');
+            if (stored) {
+                setPersona(stored.replace('v1_', ''));
+            }
+            const globalPersona = localStorage.getItem('pt_persona_global');
+            if (globalPersona) {
+                setPersona(globalPersona.replace('v1_', ''));
+            }
+        }
+    }, []);
+
+    // Block in production
+    if (process.env.NODE_ENV === 'production') {
+        return (
+            <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">404</h1>
+                    <p className="text-slate-600 dark:text-slate-400">Page not found</p>
+                </div>
+            </div>
+        );
+    }
+
+    const diagnostics = getFeatureDiagnostics();
+    const summary = getFeatureSummary();
+    const competitionMode = isCompetitionMode();
+
+    return (
+        <>
+            <SEO
+                title="Diagnostics (Dev Only) | Prasad Tilloo"
+                description="Development diagnostics page"
+            />
+            <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                        🔧 Diagnostics (Dev Only)
+                    </h1>
+
+                    {/* Current State */}
+                    <div className="grid md:grid-cols-2 gap-6 mb-8">
+                        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Current State</h2>
+                            <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                    <span className="text-slate-600 dark:text-slate-400">Locale:</span>
+                                    <span className="font-mono text-slate-900 dark:text-white">{i18n.language}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-slate-600 dark:text-slate-400">Active Persona:</span>
+                                    <span className="font-mono text-slate-900 dark:text-white">{persona || 'none'}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-slate-600 dark:text-slate-400">Competition Mode:</span>
+                                    <span className="font-mono text-slate-900 dark:text-white">{competitionMode ? 'ON' : 'OFF'}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Feature Summary</h2>
+                            <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                    <span className="text-slate-600 dark:text-slate-400">Total Features:</span>
+                                    <span className="font-mono text-slate-900 dark:text-white">{summary.total}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-slate-600 dark:text-slate-400">Enabled:</span>
+                                    <span className="font-mono text-emerald-600 dark:text-emerald-400">{summary.enabled}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-slate-600 dark:text-slate-400">Promoted:</span>
+                                    <span className="font-mono text-blue-600 dark:text-blue-400">{summary.promoted}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Feature Flags Table */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 mb-8">
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Feature Flags</h2>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm">
+                                <thead>
+                                    <tr className="border-b border-slate-200 dark:border-slate-700">
+                                        <th className="text-left py-2 px-4 text-slate-600 dark:text-slate-400">Feature</th>
+                                        <th className="text-center py-2 px-4 text-slate-600 dark:text-slate-400">Enabled</th>
+                                        <th className="text-center py-2 px-4 text-slate-600 dark:text-slate-400">Promoted</th>
+                                        <th className="text-center py-2 px-4 text-slate-600 dark:text-slate-400">Accessible</th>
+                                        <th className="text-center py-2 px-4 text-slate-600 dark:text-slate-400">Visible</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {diagnostics.map((diag) => (
+                                        <tr key={diag.key} className="border-b border-slate-100 dark:border-slate-800">
+                                            <td className="py-2 px-4 font-mono text-slate-900 dark:text-white">{diag.key}</td>
+                                            <td className="py-2 px-4 text-center">
+                                                {diag.enabled ? '✅' : '❌'}
+                                            </td>
+                                            <td className="py-2 px-4 text-center">
+                                                {diag.promoted ? '✅' : '❌'}
+                                            </td>
+                                            <td className="py-2 px-4 text-center">
+                                                {diag.accessible ? '✅' : '❌'}
+                                            </td>
+                                            <td className="py-2 px-4 text-center">
+                                                {diag.visible ? '✅' : '❌'}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {/* Analytics Debug */}
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
+                            Analytics Debug (Last {cachedEvents.length} events)
+                        </h2>
+                        {cachedEvents.length === 0 ? (
+                            <p className="text-sm text-slate-500 dark:text-slate-400">No events cached yet</p>
+                        ) : (
+                            <div className="space-y-2">
+                                {cachedEvents.map((event, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="bg-slate-50 dark:bg-slate-900 rounded p-3 text-xs font-mono"
+                                    >
+                                        <div className="text-slate-900 dark:text-white font-semibold">{event.name}</div>
+                                        <div className="text-slate-500 dark:text-slate-400 text-xs mt-1">
+                                            {event.timestamp}
+                                        </div>
+                                        {event.props && (
+                                            <pre className="text-slate-600 dark:text-slate-400 mt-1 text-xs overflow-x-auto">
+                                                {JSON.stringify(event.props, null, 2)}
+                                            </pre>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default DiagnosticsPage;

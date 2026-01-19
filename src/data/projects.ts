@@ -1,5 +1,5 @@
 import { CaseStudy } from "../types/CaseStudy";
-import { runProjectValidation } from "../utils/validateProjects";
+import { runProjectValidation } from "../utils/validateCaseStudies";
 
 export const projects: CaseStudy[] = [
     {
@@ -78,7 +78,216 @@ export const projects: CaseStudy[] = [
         cta: {
             primary: { text: 'Try Live Demo', action: 'https://aistudio.google.com/app/apikey', context: 'See it in action.' },
             secondary: { text: 'View Code', action: 'https://github.com/prasadt1/photography-coach-ai' }
-        }
+        },
+        // Phase 2: Executive Snapshot
+        executiveSnapshot: {
+            whyItMattered: {
+                en: [
+                    'AI tools need production-grade cost control to be viable for real users.',
+                    'Transparency builds trust—users need to see why AI made specific recommendations.',
+                    'Competition entry required demonstrating end-to-end engineering excellence, not just demos.'
+                ],
+                de: [
+                    'AI-Tools benötigen Production-Grade-Kostenkontrolle, um für echte Nutzer tragbar zu sein.',
+                    'Transparenz schafft Vertrauen—Nutzer müssen sehen, warum AI spezifische Empfehlungen gab.',
+                    'Wettbewerbseintrag erforderte End-to-End-Engineering-Exzellenz, nicht nur Demos.'
+                ]
+            },
+            keyTensions: {
+                en: [
+                    'Token cost control vs. model quality and reasoning depth.',
+                    'Real-time analysis vs. batch processing for cost efficiency.',
+                    'User trust through transparency vs. keeping prompts proprietary.'
+                ],
+                de: [
+                    'Token-Kostenkontrolle vs. Modellqualität und Reasoning-Tiefe.',
+                    'Echtzeit-Analyse vs. Batch-Processing für Kosteneffizienz.',
+                    'Nutzervertrauen durch Transparenz vs. Prompts proprietär halten.'
+                ]
+            },
+            metricCallout: {
+                value: { en: '75%', de: '75%' },
+                label: { en: 'cost reduction', de: 'Kostenreduzierung' }
+            }
+        },
+        // Phase 2: Persona Challenges
+        personaChallenges: {
+            executive: {
+                challenges: {
+                    en: [
+                        'Prove AI can be production-ready, not just a demo.',
+                        'Control costs while maintaining quality.',
+                        'Build user trust through transparency.'
+                    ],
+                    de: [
+                        'Beweisen, dass AI production-ready sein kann, nicht nur Demo.',
+                        'Kosten kontrollieren bei gleichbleibender Qualität.',
+                        'Nutzervertrauen durch Transparenz aufbauen.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Unviable unit economics.',
+                        'Low user engagement due to distrust.'
+                    ],
+                    de: [
+                        'Nicht tragfähige Unit-Economics.',
+                        'Geringes Nutzerengagement durch Misstrauen.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Context caching strategy.',
+                        'Transparency vs. proprietary prompts.'
+                    ],
+                    de: [
+                        'Context-Caching-Strategie.',
+                        'Transparenz vs. proprietäre Prompts.'
+                    ]
+                }
+            },
+            technical: {
+                challenges: {
+                    en: [
+                        'Implement context caching for 32KB system prompt.',
+                        'Structure JSON responses for predictable parsing.',
+                        'Optimize vision API calls for cost efficiency.'
+                    ],
+                    de: [
+                        'Context-Caching für 32KB System-Prompt implementieren.',
+                        'JSON-Antworten strukturieren für vorhersagbares Parsing.',
+                        'Vision-API-Calls für Kosteneffizienz optimieren.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'High token costs make product unviable.',
+                        'Unstructured responses break UI.'
+                    ],
+                    de: [
+                        'Hohe Token-Kosten machen Produkt untragbar.',
+                        'Unstrukturierte Antworten brechen UI.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Caching strategy (memory vs. session).',
+                        'Response schema design.'
+                    ],
+                    de: [
+                        'Caching-Strategie (Memory vs. Session).',
+                        'Response-Schema-Design.'
+                    ]
+                }
+            },
+            delivery: {
+                challenges: {
+                    en: [
+                        'Deliver competition entry on time.',
+                        'Ensure production-quality code.',
+                        'Document architecture decisions.'
+                    ],
+                    de: [
+                        'Wettbewerbseintrag rechtzeitig liefern.',
+                        'Production-Quality-Code sicherstellen.',
+                        'Architektur-Entscheidungen dokumentieren.'
+                    ]
+                },
+                riskIfIgnored: {
+                    en: [
+                        'Miss competition deadline.',
+                        'Submit incomplete solution.'
+                    ],
+                    de: [
+                        'Wettbewerbs-Deadline verpassen.',
+                        'Unvollständige Lösung einreichen.'
+                    ]
+                },
+                decisionPoints: {
+                    en: [
+                        'Sprint planning and prioritization.',
+                        'Quality vs. speed trade-offs.'
+                    ],
+                    de: [
+                        'Sprint-Planung und Priorisierung.',
+                        'Qualität vs. Geschwindigkeit Trade-offs.'
+                    ]
+                }
+            }
+        },
+        // Phase 3.1: Trust Layer
+        trustLayer: {
+            myRole: { en: 'Solo Developer / AI Engineer', de: 'Solo-Entwickler / AI-Ingenieur' },
+            scopeOwned: {
+                en: [
+                    'Full-stack implementation (React frontend, Gemini API integration)',
+                    'Context caching strategy and cost optimization',
+                    'UI/UX design for transparency (glass-box reasoning)',
+                    'Architecture decisions and documentation',
+                    'Competition submission and presentation'
+                ],
+                de: [
+                    'Full-Stack-Implementierung (React Frontend, Gemini API Integration)',
+                    'Context-Caching-Strategie und Kostenoptimierung',
+                    'UI/UX-Design für Transparenz (Glass-Box Reasoning)',
+                    'Architektur-Entscheidungen und Dokumentation',
+                    'Wettbewerbseinreichung und Präsentation'
+                ]
+            },
+            deliveredWithTeam: {
+                en: [
+                    'N/A - Solo project for competition',
+                ],
+                de: [
+                    'N/A - Solo-Projekt für Wettbewerb',
+                ]
+            },
+            confidentialityNote: {
+                en: 'This is a competition entry project. All code is open source. No client confidential information.',
+                de: 'Dies ist ein Wettbewerbsprojekt. Der gesamte Code ist Open Source. Keine vertraulichen Client-Informationen.'
+            }
+        },
+        // Phase 3.1: Artifact Previews (6+ for hero)
+        artifactPreviews: [
+            {
+                title: { en: 'Context Caching Architecture', de: 'Context-Caching-Architektur' },
+                description: { en: 'System design for caching 32KB system prompt to reduce token costs', de: 'System-Design für Caching von 32KB System-Prompt zur Token-Kostenreduzierung' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'Cost Optimization Analysis', de: 'Kostenoptimierungs-Analyse' },
+                description: { en: 'Token cost breakdown and optimization strategies', de: 'Token-Kostenaufschlüsselung und Optimierungsstrategien' },
+                type: 'TCO',
+                gated: true
+            },
+            {
+                title: { en: 'Glass-Box UI Design', de: 'Glass-Box-UI-Design' },
+                description: { en: 'User interface patterns for transparent AI reasoning display', de: 'User-Interface-Patterns für transparente AI-Reasoning-Anzeige' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'Gemini API Integration Guide', de: 'Gemini-API-Integrations-Leitfaden' },
+                description: { en: 'Production-ready integration patterns for Gemini 3 Pro', de: 'Production-Ready-Integrationsmuster für Gemini 3 Pro' },
+                type: 'ADR',
+                gated: true
+            },
+            {
+                title: { en: 'Performance Benchmarks', de: 'Performance-Benchmarks' },
+                description: { en: 'Response time and cost metrics before/after optimization', de: 'Antwortzeit- und Kostenmetriken vor/nach Optimierung' },
+                type: 'TCO',
+                gated: true
+            },
+            {
+                title: { en: 'Competition Submission Package', de: 'Wettbewerbs-Einreichungspaket' },
+                description: { en: 'Complete submission documentation and presentation materials', de: 'Vollständige Einreichungsdokumentation und Präsentationsmaterialien' },
+                type: 'DOC',
+                gated: true
+            }
+        ],
+        // Phase 3.3: Visibility tier
+        visibilityTier: 'hero'
     },
     // --- TIER 1: FLAGSHIP ---
     {
@@ -178,7 +387,9 @@ export const projects: CaseStudy[] = [
         cta: {
             primary: { text: 'View Ecosystem', action: 'https://carbon-transparency.org/network', context: 'See the live network.' },
             secondary: { text: 'GitHub Repo', action: 'https://github.com/wbcsd/pact-conformance-testing' }
-        }
+        },
+        // Phase 3.3: Visibility tier (SINE climate tech project)
+        visibilityTier: 'hero'
     },
     {
         id: 'brita-ecommerce',
@@ -567,8 +778,28 @@ export const projects: CaseStudy[] = [
                 description: { en: 'Comprehensive checklist for preserving SEO during platform migration', de: 'Umfassende Checkliste zur SEO-Erhaltung während Plattform-Migration' },
                 type: 'Checklist',
                 gated: true
+            },
+            {
+                title: { en: 'Multi-Tenant Architecture Blueprint', de: 'Multi-Tenant-Architektur-Blueprint' },
+                description: { en: 'Reference architecture for centralized core with market-specific flexibility', de: 'Referenzarchitektur für zentralisierten Core mit marktspezifischer Flexibilität' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'Integration Layer Design', de: 'Integrationsschicht-Design' },
+                description: { en: 'Headless integration patterns for ERP, OMS, and fulfillment systems', de: 'Headless-Integrationsmuster für ERP, OMS und Fulfillment-Systeme' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'Cutover Runbook', de: 'Cutover-Runbook' },
+                description: { en: 'Step-by-step cutover procedure with rollback and monitoring checkpoints', de: 'Schritt-für-Schritt Cutover-Prozedur mit Rollback- und Monitoring-Checkpoints' },
+                type: 'Checklist',
+                gated: true
             }
-        ]
+        ],
+        // Phase 3.3: Visibility tier
+        visibilityTier: 'hero'
     },
     {
         id: 'delivery-hero-ads',
@@ -955,8 +1186,28 @@ export const projects: CaseStudy[] = [
                 description: { en: 'Pattern documentation for ensuring billing accuracy in distributed ad serving', de: 'Pattern-Dokumentation für Abrechnungsgenauigkeit im verteilten Ad-Serving' },
                 type: 'ADR',
                 gated: true
+            },
+            {
+                title: { en: 'Auto-Scaling Configuration', de: 'Auto-Scaling-Konfiguration' },
+                description: { en: 'Kubernetes HPA and VPA settings for dynamic scaling based on traffic patterns', de: 'Kubernetes HPA und VPA Einstellungen für dynamisches Scaling basierend auf Traffic-Mustern' },
+                type: 'Diagram',
+                gated: true
+            },
+            {
+                title: { en: 'Canary Deployment Runbook', de: 'Canary-Deployment-Runbook' },
+                description: { en: 'Step-by-step canary deployment procedure with rollback and monitoring', de: 'Schritt-für-Schritt Canary-Deployment-Prozedur mit Rollback und Monitoring' },
+                type: 'Checklist',
+                gated: true
+            },
+            {
+                title: { en: 'Load Testing Results', de: 'Load-Testing-Ergebnisse' },
+                description: { en: 'Performance test results and capacity validation for peak traffic scenarios', de: 'Performance-Test-Ergebnisse und Kapazitätsvalidierung für Peak-Traffic-Szenarien' },
+                type: 'TCO',
+                gated: true
             }
-        ]
+        ],
+        // Phase 3.3: Visibility tier
+        visibilityTier: 'hero'
     },
     // =============================================================================
     // INSURANCE PERFORMANCE IMPROVEMENT - NEW CASE STUDY (Phase 2)
@@ -1370,8 +1621,28 @@ export const projects: CaseStudy[] = [
                 description: { en: 'Distributed tracing setup and performance monitoring dashboard configuration', de: 'Distributed-Tracing-Setup und Performance-Monitoring-Dashboard-Konfiguration' },
                 type: 'Diagram',
                 gated: true
+            },
+            {
+                title: { en: 'Query Optimization Guide', de: 'Query-Optimierungs-Leitfaden' },
+                description: { en: 'Database query patterns and indexing strategy for high-throughput workflows', de: 'Datenbank-Query-Patterns und Indexierungsstrategie für High-Throughput-Workflows' },
+                type: 'Checklist',
+                gated: true
+            },
+            {
+                title: { en: 'Async Processing Patterns', de: 'Async-Processing-Patterns' },
+                description: { en: 'Event-driven architecture patterns for non-blocking claims processing', de: 'Event-Driven-Architektur-Patterns für non-blocking Schadenverarbeitung' },
+                type: 'ADR',
+                gated: true
+            },
+            {
+                title: { en: 'Performance Testing Strategy', de: 'Performance-Testing-Strategie' },
+                description: { en: 'Load testing approach and regression prevention methodology', de: 'Load-Testing-Ansatz und Regressions-Präventions-Methodik' },
+                type: 'Checklist',
+                gated: true
             }
-        ]
+        ],
+        // Phase 3.3: Visibility tier
+        visibilityTier: 'hero'
     },
     {
         id: 'ai-photography-coach',

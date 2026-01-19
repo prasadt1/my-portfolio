@@ -33,6 +33,9 @@ import { getLocalizedValue, getLocalizedArray as getLocalizedArrayUtil } from '.
 import { setAttributionContext } from '../utils/attribution';
 import { trackEvent } from '../services/analytics';
 import { useFeatureFlag } from '../context/FeatureFlagsProvider';
+import ArtifactRequestModal from '../components/ArtifactRequestModal';
+import NDADisclaimer from '../components/NDADisclaimer';
+import { isPromoted } from '../config/featureUtils';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -131,6 +134,7 @@ const CaseStudyPage: React.FC = () => {
     const [showAllApproach, setShowAllApproach] = useState(false);
     const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
+    const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
     
     // Feature flag for sticky CTAs
     const stickyCtaFlag = useFeatureFlag('sticky_cta');
@@ -528,6 +532,11 @@ const CaseStudyPage: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+                    )}
+
+                    {/* Phase 3.3C: NDA Disclaimer (always shown if trustLayer exists) */}
+                    {study.trustLayer && (
+                        <NDADisclaimer trustLayer={study.trustLayer} locale={locale} />
                     )}
 
                     {/* Phase 3.1: Trust Layer Section */}
@@ -1208,24 +1217,50 @@ const CaseStudyPage: React.FC = () => {
                                         {t('caseStudy.artifacts.privacyNote', 'Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.')}
                                     </p>
                                 </div>
-                                <Link
-                                    to="/contact?interest=artifacts"
-                                    onClick={() => {
-                                        setAttributionContext({ ctaSource: 'artifact_gate' });
-                                        trackEvent('artifact_gate_cta_click', {
-                                            slug: study.slug,
-                                            locale: locale
-                                        });
-                                    }}
-                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
-                                >
-                                    {t('caseStudy.artifacts.requestAccess', 'Request full artifacts')}
-                                    <ArrowRight size={18} />
-                                </Link>
+                                {isPromoted('CASE_STUDY_ARTIFACTS_REQUEST') ? (
+                                    <button
+                                        onClick={() => {
+                                            setArtifactRequestModalOpen(true);
+                                            trackEvent('artifact_request_opened', {
+                                                slug: study.slug,
+                                                locale: locale,
+                                            });
+                                        }}
+                                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                                    >
+                                        {t('caseStudy.artifacts.requestAccess', 'Request full artifacts')}
+                                        <ArrowRight size={18} />
+                                    </button>
+                                ) : (
+                                    <Link
+                                        to="/contact?interest=artifacts"
+                                        onClick={() => {
+                                            setAttributionContext({ ctaSource: 'artifact_gate' });
+                                            trackEvent('artifact_gate_cta_click', {
+                                                slug: study.slug,
+                                                locale: locale
+                                            });
+                                        }}
+                                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                                    >
+                                        {t('caseStudy.artifacts.requestAccess', 'Request full artifacts')}
+                                        <ArrowRight size={18} />
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
                 </section>
+            )}
+
+            {/* Phase 3.3: Artifact Request Modal */}
+            {isPromoted('CASE_STUDY_ARTIFACTS_REQUEST') && study.artifactPreviews && (
+                <ArtifactRequestModal
+                    isOpen={artifactRequestModalOpen}
+                    onClose={() => setArtifactRequestModalOpen(false)}
+                    caseStudySlug={study.slug}
+                    artifactIds={study.artifactPreviews.map((_, idx) => `artifact-${idx}`)}
+                />
             )}
 
             {/* CTA Block */}

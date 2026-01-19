@@ -286,6 +286,9 @@ export interface CaseStudy {
 
     // Phase 3.1: Artifact Previews (gated content)
     artifactPreviews?: ArtifactPreviewItem[];
+
+    // Phase 3.3: Visibility tier for hero projects strategy
+    visibilityTier?: 'hero' | 'catalog' | 'summaryOnly';
 }
 
 // =============================================================================
@@ -304,10 +307,26 @@ export interface TrustLayer {
 
 /**
  * Artifact Preview Item - shows preview but requires access request
+ * @deprecated Use ArtifactItem for Phase 3.3
  */
 export interface ArtifactPreviewItem {
     title: LocalizedString;
     description: LocalizedString;
     type: 'ADR' | 'Diagram' | 'Checklist' | 'Roadmap' | 'TCO' | 'Risk';
     gated: boolean; // always true for deep artifacts
+}
+
+/**
+ * Phase 3.3: Artifact Item with tiering (public/gated/onRequest)
+ */
+export interface ArtifactItem {
+    id: string;
+    title: LocalizedString;
+    description: LocalizedString;
+    type: 'ADR' | 'Diagram' | 'Roadmap' | 'Checklist' | 'TCO' | 'MigrationPlan' | 'RiskAssessment' | 'WorkshopOutput';
+    access: 'public' | 'gated' | 'onRequest';
+    format: 'PDF' | 'PNG' | 'DOC' | 'LINK';
+    previewImage?: string;
+    downloadUrl?: string; // Only for public artifacts
+    estimatedValue?: string; // e.g. "€1,200 consulting equivalent"
 }
