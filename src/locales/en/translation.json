@@ -19,7 +19,13 @@
         "engagement": "Engagement",
         "contact": "Contact",
         "consulting": "Consulting",
+        "consultation": "Consultation",
         "architectureEngine": "Architecture Assistant (Beta)",
+        "riskRadar": "Risk Radar",
+        "checklist": "Checklist",
+        "hiring": "Hiring",
+        "hireMe": "Hire Me",
+        "resources": "Resources",
         "labs": "Labs",
         "bookDiscoveryCall": "Book Architecture Review",
         "toggleLanguage": "Toggle Language",
@@ -1038,8 +1044,9 @@
         "artifacts": {
             "title": "Artifacts (Preview)",
             "onRequest": "On request",
+            "availableOnRequest": "Available on request",
             "requestAccess": "Request full artifacts",
-            "privacyNote": "To protect client confidentiality, detailed artifacts are shared selectively."
+            "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures."
         }
     },
     "independentAdvisory": {
@@ -1210,6 +1217,28 @@
                 "2": "Red flag patterns",
                 "3": "Vendor-neutral"
             }
+        },
+        "personaTabs": {
+            "hiring": "Hiring",
+            "consulting": "Consulting",
+            "toolkit": "Toolkit",
+            "hiringPrimary": "View Resume / Hiring Snapshot",
+            "hiringSecondary": "Featured Case Studies",
+            "hiringTitle": "Hiring Snapshot",
+            "hiringSubtitle": "Senior Engineering Leader open to new opportunities",
+            "hiringYears": "Years experience",
+            "hiringIndustries": "Industries",
+            "hiringStrengths": "Strengths",
+            "hiringAvailability": "Availability",
+            "hiringBilingual": "German/English bilingual",
+            "consultingPrimary": "Book Discovery Call",
+            "consultingSecondary": "Try Vendor Proposal Checklist",
+            "consultingTitle": "Consulting Services",
+            "consultingSubtitle": "Independent validation of architecture, modernization, and AI enablement decisions",
+            "toolkitPrimary": "Browse Toolkits",
+            "toolkitSecondary": "Download Checklist",
+            "toolkitTitle": "Toolkits & Resources",
+            "toolkitSubtitle": "Free tools and resources to help you make better architecture decisions"
         }
     },
     "hiringPage": {
@@ -1511,32 +1540,21 @@
         },
         "lastUpdated": "Last updated: January 2026"
     },
-    "homepage": {
-        "personaTabs": {
-            "hiring": "Hiring",
-            "consulting": "Consulting",
-            "toolkit": "Toolkit",
-            "hiringPrimary": "View Resume / Hiring Snapshot",
-            "hiringSecondary": "Featured Case Studies",
-            "hiringTitle": "Hiring Snapshot",
-            "hiringYears": "Years experience",
-            "hiringIndustries": "Industries",
-            "hiringStrengths": "Strengths",
-            "hiringAvailability": "Availability",
-            "hiringBilingual": "German/English bilingual",
-            "consultingPrimary": "Book Discovery Call",
-            "consultingSecondary": "Try Vendor Proposal Checklist",
-            "consultingTitle": "Consulting Services",
-            "toolkitPrimary": "Browse Toolkits",
-            "toolkitSecondary": "Download Checklist",
-            "toolkitTitle": "Toolkits & Resources"
-        }
-    },
     "features": {
         "unavailable": {
             "title": "Feature Temporarily Unavailable",
             "message": "This feature is currently disabled. Please contact support if you need access.",
-            "contact": "Contact Support"
+            "contact": "Contact Support",
+            "goHome": "Go Back Home"
         }
+    },
+    "consultationPage": {
+        "title": "Book a Discovery Call",
+        "subtitle": "Schedule a 30-minute strategy call to discuss your enterprise transformation needs and explore how I can help.",
+        "benefit1": "Quick, focused discussion of your specific challenge",
+        "benefit2": "Explore options without any obligation",
+        "benefit3": "Get concrete recommendations within 48 hours",
+        "cta": "Open Calendar to Schedule",
+        "note": "Opens in a new window"
     }
 }

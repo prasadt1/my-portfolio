@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { COMPETITION_CONFIG } from '../config/competition';
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
@@ -124,15 +125,28 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-slate-500 text-sm text-center md:text-left">
-                        © {currentYear} Prasad Tilloo. {t('footer.rights')}
-                    </p>
-                    <div className="flex items-center gap-2 text-xs text-slate-400">
-                        <span>{t('footer.builtWith')}</span>
-                        <span className="w-1 h-1 bg-slate-400 rounded-full" />
-                        <span>React & Tailwind</span>
+                <div className="border-t border-slate-200 dark:border-slate-800 pt-8">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
+                        <p className="text-slate-500 text-sm text-center md:text-left">
+                            © {currentYear} Prasad Tilloo. {t('footer.rights')}
+                        </p>
+                        <div className="flex items-center gap-2 text-xs text-slate-400">
+                            <span>{t('footer.builtWith')}</span>
+                            <span className="w-1 h-1 bg-slate-400 rounded-full" />
+                            <span>React & Tailwind</span>
+                        </div>
                     </div>
+                    {/* Competition mode badge and deployment info */}
+                    {COMPETITION_CONFIG.enabled && (
+                        <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-slate-400 pt-4 border-t border-slate-200 dark:border-slate-800">
+                            <span className="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-slate-600 dark:text-slate-400">
+                                {COMPETITION_CONFIG.badgeText.en}
+                            </span>
+                            <span className="text-slate-500">
+                                {COMPETITION_CONFIG.footerText.en}
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
         </footer>

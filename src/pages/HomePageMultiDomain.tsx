@@ -19,7 +19,7 @@ import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
 import VideoModal from '../components/VideoModal';
 import { trackEvent, AnalyticsEvents } from '../services/analytics';
-import { isEnabled } from '../config/featureUtils';
+import { isEnabled, isPromoted } from '../config/featureUtils';
 import i18n from '../i18n';
 
 type PersonaType = 'hire' | 'consult' | 'toolkit';
@@ -97,41 +97,41 @@ const HomePageMultiDomain: React.FC = () => {
                             transition={{ duration: 0.6 }}
                             className="text-center"
                         >
-                            {/* Phase 3.1: Persona Tabs */}
+                            {/* Phase 3.1: Persona Tabs - Larger and more prominent */}
                             {showPersonaTabs && (
-                                <div className="mb-8 flex justify-center">
-                                    <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-lg p-1 border border-white/20">
+                                <div className="mb-12 flex justify-center">
+                                    <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-xl p-1.5 border border-white/20 shadow-lg">
                                         <button
                                             onClick={() => handlePersonaChange('hire')}
-                                            className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                                            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all flex items-center gap-2 ${
                                                 selectedPersona === 'hire'
-                                                    ? 'bg-white text-slate-900'
+                                                    ? 'bg-white text-slate-900 shadow-md'
                                                     : 'text-white hover:bg-white/10'
                                             }`}
                                         >
-                                            <Briefcase size={16} />
+                                            <Briefcase size={20} />
                                             {t('homepage.personaTabs.hiring')}
                                         </button>
                                         <button
                                             onClick={() => handlePersonaChange('consult')}
-                                            className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                                            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all flex items-center gap-2 ${
                                                 selectedPersona === 'consult'
-                                                    ? 'bg-white text-slate-900'
+                                                    ? 'bg-white text-slate-900 shadow-md'
                                                     : 'text-white hover:bg-white/10'
                                             }`}
                                         >
-                                            <User size={16} />
+                                            <User size={20} />
                                             {t('homepage.personaTabs.consulting')}
                                         </button>
                                         <button
                                             onClick={() => handlePersonaChange('toolkit')}
-                                            className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                                            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all flex items-center gap-2 ${
                                                 selectedPersona === 'toolkit'
-                                                    ? 'bg-white text-slate-900'
+                                                    ? 'bg-white text-slate-900 shadow-md'
                                                     : 'text-white hover:bg-white/10'
                                             }`}
                                         >
-                                            <BookOpen size={16} />
+                                            <BookOpen size={20} />
                                             {t('homepage.personaTabs.toolkit')}
                                         </button>
                                     </div>
@@ -203,31 +203,57 @@ const HomePageMultiDomain: React.FC = () => {
                                                 {t('homepage.personaTabs.consultingPrimary')}
                                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                                             </a>
-                                            <Link
-                                                to="/checklist"
-                                                className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
-                                            >
-                                                {t('homepage.personaTabs.consultingSecondary')}
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-                                            </Link>
+                                            {/* Only show checklist CTA if promoted */}
+                                            {isPromoted('AI_CHECKLIST') && (
+                                                <Link
+                                                    to="/checklist"
+                                                    className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
+                                                >
+                                                    {t('homepage.personaTabs.consultingSecondary')}
+                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                                                </Link>
+                                            )}
+                                            {/* Show promoted AI tool CTAs if available */}
+                                            {isPromoted('AI_ARCH_ENGINE') && (
+                                                <Link
+                                                    to="/architecture-engine"
+                                                    className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
+                                                >
+                                                    {t('homepage.personaTabs.consultingArchEngine', { defaultValue: 'Try Architecture Engine' })}
+                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                                                </Link>
+                                            )}
                                         </div>
                                     )}
                                     {selectedPersona === 'toolkit' && (
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                                            <Link
-                                                to="/services"
-                                                className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
-                                            >
-                                                {t('homepage.personaTabs.toolkitPrimary')}
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                                            </Link>
-                                            <Link
-                                                to="/checklist"
-                                                className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
-                                            >
-                                                {t('homepage.personaTabs.toolkitSecondary')}
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-                                            </Link>
+                                            {/* Only show toolkit library CTA if promoted */}
+                                            {isPromoted('TOOLKIT_LIBRARY') ? (
+                                                <Link
+                                                    to="/services"
+                                                    className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                                                >
+                                                    {t('homepage.personaTabs.toolkitPrimary')}
+                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                                                </Link>
+                                            ) : (
+                                                <Link
+                                                    to="/services"
+                                                    className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                                                >
+                                                    {t('homepage.personaTabs.toolkitPrimary', { defaultValue: 'Browse Services' })}
+                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                                                </Link>
+                                            )}
+                                            {isPromoted('AI_CHECKLIST') && (
+                                                <Link
+                                                    to="/checklist"
+                                                    className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline"
+                                                >
+                                                    {t('homepage.personaTabs.toolkitSecondary')}
+                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                                                </Link>
+                                            )}
                                         </div>
                                     )}
                                 </>
@@ -277,36 +303,59 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Phase 3.1: Persona-Specific Content Block */}
+                {/* Phase 3.1: Persona-Specific Content Block - More prominent and useful */}
                 {showPersonaTabs && selectedPersona && (
-                    <section className="py-16 bg-white/5 backdrop-blur-sm border-b border-white/10">
+                    <section className="py-20 bg-white/10 backdrop-blur-sm border-b border-white/20">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             {selectedPersona === 'hire' && (
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="max-w-4xl mx-auto text-white"
+                                    className="text-white"
                                 >
-                                    <h2 className="text-2xl font-bold mb-6 text-center">
+                                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                                         {t('homepage.personaTabs.hiringTitle')}
                                     </h2>
-                                    <div className="grid md:grid-cols-2 gap-6 text-white/90">
-                                        <div>
-                                            <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringYears')}</div>
-                                            <div className="text-sm">15+ years</div>
+                                    <p className="text-center text-white/80 mb-10 max-w-2xl mx-auto">
+                                        {t('homepage.personaTabs.hiringSubtitle', { defaultValue: 'Senior Engineering Leader open to new opportunities' })}
+                                    </p>
+                                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">15+</div>
+                                            <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringYears')}</div>
+                                            <div className="text-xs text-white/70">Enterprise architecture & transformation</div>
                                         </div>
-                                        <div>
-                                            <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringIndustries')}</div>
-                                            <div className="text-sm">Healthcare, Pharma, eCommerce, Financial Services, Climate Tech</div>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">50+</div>
+                                            <div className="text-sm font-semibold mb-1">Projects</div>
+                                            <div className="text-xs text-white/70">Fortune 100 clients across industries</div>
                                         </div>
-                                        <div>
-                                            <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringStrengths')}</div>
-                                            <div className="text-sm">Architecture validation, Cloud migration, AI enablement, Risk mitigation</div>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">€2M+</div>
+                                            <div className="text-sm font-semibold mb-1">Cost Savings</div>
+                                            <div className="text-xs text-white/70">Delivered through optimization</div>
                                         </div>
-                                        <div>
-                                            <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringAvailability')}</div>
-                                            <div className="text-sm">{t('homepage.personaTabs.hiringBilingual')}</div>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">100%</div>
+                                            <div className="text-sm font-semibold mb-1">Compliance</div>
+                                            <div className="text-xs text-white/70">Zero HIPAA violations, zero breaches</div>
                                         </div>
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                            <Link
+                                                to="/hiring"
+                                                className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
+                                            >
+                                                View Full Profile
+                                                <ArrowRight size={18} />
+                                            </Link>
+                                        <Link
+                                            to="/projects"
+                                            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors"
+                                        >
+                                            View Case Studies
+                                            <ArrowRight size={18} />
+                                        </Link>
                                     </div>
                                 </motion.div>
                             )}
@@ -314,24 +363,48 @@ const HomePageMultiDomain: React.FC = () => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="max-w-4xl mx-auto text-white"
+                                    className="text-white"
                                 >
-                                    <h2 className="text-2xl font-bold mb-6 text-center">
+                                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                                         {t('homepage.personaTabs.consultingTitle')}
                                     </h2>
-                                    <div className="grid md:grid-cols-3 gap-6 text-white/90">
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                            <h3 className="font-bold mb-2">Architecture Review</h3>
-                                            <p className="text-sm">Independent validation of architecture decisions before commitment</p>
-                                        </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                            <h3 className="font-bold mb-2">Cloud Migration</h3>
-                                            <p className="text-sm">Risk reduction and cost optimization for cloud transformation</p>
-                                        </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                            <h3 className="font-bold mb-2">AI Enablement</h3>
-                                            <p className="text-sm">Strategic guidance for AI/ML adoption and integration</p>
-                                        </div>
+                                    <p className="text-center text-white/80 mb-10 max-w-2xl mx-auto">
+                                        {t('homepage.personaTabs.consultingSubtitle', { defaultValue: 'Independent validation of architecture, modernization, and AI enablement decisions' })}
+                                    </p>
+                                    <div className="grid md:grid-cols-3 gap-6 mb-10">
+                                        <Link
+                                            to="/services"
+                                            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                        >
+                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Architecture Review</h3>
+                                            <p className="text-sm text-white/80 mb-4">Independent validation of architecture decisions before commitment</p>
+                                            <div className="text-xs text-emerald-300 font-medium">Learn more →</div>
+                                        </Link>
+                                        <Link
+                                            to="/services"
+                                            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                        >
+                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Cloud Migration</h3>
+                                            <p className="text-sm text-white/80 mb-4">Risk reduction and cost optimization for cloud transformation</p>
+                                            <div className="text-xs text-emerald-300 font-medium">Learn more →</div>
+                                        </Link>
+                                        <Link
+                                            to="/services"
+                                            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                        >
+                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">AI Enablement</h3>
+                                            <p className="text-sm text-white/80 mb-4">Strategic guidance for AI/ML adoption and integration</p>
+                                            <div className="text-xs text-emerald-300 font-medium">Learn more →</div>
+                                        </Link>
+                                    </div>
+                                    <div className="flex justify-center">
+                                        <Link
+                                            to="/consulting"
+                                            className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg"
+                                        >
+                                            Explore Consulting Services
+                                            <ArrowRight size={20} />
+                                        </Link>
                                     </div>
                                 </motion.div>
                             )}
@@ -339,24 +412,54 @@ const HomePageMultiDomain: React.FC = () => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="max-w-4xl mx-auto text-white"
+                                    className="text-white"
                                 >
-                                    <h2 className="text-2xl font-bold mb-6 text-center">
+                                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                                         {t('homepage.personaTabs.toolkitTitle')}
                                     </h2>
-                                    <div className="grid md:grid-cols-3 gap-6 text-white/90">
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                            <h3 className="font-bold mb-2">Vendor Proposal Checklist</h3>
-                                            <p className="text-sm">7-area framework for evaluating vendor proposals</p>
-                                        </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                            <h3 className="font-bold mb-2">Architecture Patterns</h3>
-                                            <p className="text-sm">Reusable patterns for common transformation scenarios</p>
-                                        </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                            <h3 className="font-bold mb-2">Risk Assessment Tools</h3>
-                                            <p className="text-sm">Templates and frameworks for risk identification</p>
-                                        </div>
+                                    <p className="text-center text-white/80 mb-10 max-w-2xl mx-auto">
+                                        {t('homepage.personaTabs.toolkitSubtitle', { defaultValue: 'Free tools and resources to help you make better architecture decisions' })}
+                                    </p>
+                                    <div className="grid md:grid-cols-3 gap-6 mb-10">
+                                        {isPromoted('AI_CHECKLIST') && (
+                                            <Link
+                                                to="/checklist"
+                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            >
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Vendor Proposal Checklist</h3>
+                                                <p className="text-sm text-white/80 mb-4">7-area framework for evaluating vendor proposals</p>
+                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                            </Link>
+                                        )}
+                                        {isPromoted('AI_ARCH_ENGINE') && (
+                                            <Link
+                                                to="/architecture-engine"
+                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            >
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Architecture Engine</h3>
+                                                <p className="text-sm text-white/80 mb-4">Generate architecture diagrams and documentation</p>
+                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                            </Link>
+                                        )}
+                                        {isPromoted('AI_RISK_RADAR') && (
+                                            <Link
+                                                to="/risk-radar"
+                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            >
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Risk Radar</h3>
+                                                <p className="text-sm text-white/80 mb-4">Identify and mitigate project risks</p>
+                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                            </Link>
+                                        )}
+                                    </div>
+                                    <div className="flex justify-center">
+                                        <Link
+                                            to="/resources"
+                                            className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg"
+                                        >
+                                            Browse All Resources
+                                            <ArrowRight size={20} />
+                                        </Link>
                                     </div>
                                 </motion.div>
                             )}
