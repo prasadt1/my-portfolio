@@ -31,6 +31,8 @@ const HiringPage = lazy(() => import('./pages/HiringPage'));
 const GuidePage = lazy(() => import('./pages/GuidePage'));
 const ChecklistPage = lazy(() => import('./pages/ChecklistPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+// Admin pages (dev-only, hidden in production)
+const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));
 
 // Layout Component
 const Layout: React.FC = () => {
@@ -94,6 +96,8 @@ const App: React.FC = () => {
                 <Route path="guide" element={<GuidePage />} />
                 <Route path="checklist" element={<ChecklistPage />} />
                 <Route path="privacy" element={<PrivacyPage />} />
+                {/* Admin routes (dev-only, FeatureFlagsPage hides itself in production) */}
+                <Route path="admin/feature-flags" element={<FeatureFlagsPage />} />
               </Route>
             </Routes>
             <Suspense fallback={null}>

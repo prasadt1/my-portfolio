@@ -162,6 +162,31 @@ All styles are inline for simplicity. You can:
 > Example URL: `https://docs.google.com/spreadsheets/d/1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY/edit`
 > The ID is: `1haP11eMsvEVjbLsJYUD7MlalBYxmUathYvXUHe7JsKY`
 
+### Feature Flags Configuration
+
+| Variable | Description | Values | Required |
+|----------|-------------|--------|----------|
+| `FEATURE_PROPOSAL_REVIEW` | Proposal Review feature | `on`, `off`, `rollout` | No (default: `off`) |
+| `FEATURE_RISK_RADAR` | Risk Radar feature | `on`, `off`, `rollout` | No (default: `off`) |
+| `FEATURE_RISK_RADAR_EXPORT` | Risk Radar export functionality | `on`, `off`, `rollout` | No (default: `off`) |
+| `FEATURE_ARCH_GENERATOR` | Architecture Generator feature | `on`, `off`, `rollout` | No (default: `off`) |
+| `FEATURE_EXEC_MODAL` | Executive Summary Modal | `on`, `off`, `rollout` | No (default: `off`) |
+| `FEATURE_STICKY_CTA` | Sticky CTA buttons on case studies | `on`, `off`, `rollout` | No (default: `off`) |
+| `ROLLOUT_*_PERCENT` | Rollout percentage (0-100) for `rollout` mode | `0-100` | No |
+
+**Feature Flag Modes:**
+- `on` - Feature enabled for all users
+- `off` - Feature disabled (default if not set)
+- `rollout` - Percentage-based rollout (requires `ROLLOUT_*_PERCENT`)
+
+**Example rollout configuration:**
+```bash
+FEATURE_PROPOSAL_REVIEW=rollout
+ROLLOUT_PROPOSAL_REVIEW_PERCENT=10  # Enable for 10% of users
+```
+
+See [Feature Flags & Phased Release](#-feature-flags--phased-release) section for detailed usage.
+
 ### Example `.env.local` Configuration
 
 ```bash
@@ -193,6 +218,18 @@ CONTACT_EMAIL=prasad.sgsits@gmail.com
 # GSHEETS_SHEET_NAME=Leads
 # GSHEETS_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
 # GSHEETS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBg...\n-----END PRIVATE KEY-----\n"
+
+# Feature Flags (MVP defaults - enable features progressively)
+# See "Feature Flags & Phased Release" section for detailed usage
+FEATURE_STICKY_CTA=on
+FEATURE_EXEC_MODAL=on
+FEATURE_ARCH_GENERATOR=off
+FEATURE_PROPOSAL_REVIEW=off
+FEATURE_RISK_RADAR=on
+FEATURE_RISK_RADAR_EXPORT=on
+
+# Rollout percentages (for features in 'rollout' mode)
+# ROLLOUT_PROPOSAL_REVIEW_PERCENT=10
 ```
 
 ## 📧 Email Configuration Note
@@ -431,6 +468,128 @@ curl -X POST http://localhost:3001/api/leadstore/test-write
 ```
 
 > **Security Note:** Diagnostic endpoints are blocked in production (`NODE_ENV=production`). No secrets are logged.
+
+## 🎛️ Feature Flags & Phased Release
+
+The portfolio includes a robust feature flag system for progressive rollouts and safe feature releases.
+
+### Overview
+
+Feature flags allow you to:
+- Enable/disable features without code changes
+- Gradually roll out features to a percentage of users
+- Test features in production with minimal risk
+- Quickly disable features if issues arise
+
+### Quick Start
+
+1. **Enable a feature for all users:**
+   ```bash
+   FEATURE_STICKY_CTA=on
+   ```
+
+2. **Disable a feature:**
+   ```bash
+   FEATURE_ARCH_GENERATOR=off
+   ```
+
+3. **Enable for a percentage of users (rollout):**
+   ```bash
+   FEATURE_PROPOSAL_REVIEW=rollout
+   ROLLOUT_PROPOSAL_REVIEW_PERCENT=10  # 10% of users
+   ```
+
+### Recommended MVP Defaults
+
+For initial production launch, use these conservative defaults:
+
+```bash
+FEATURE_STICKY_CTA=on           # Core UX improvement
+FEATURE_EXEC_MODAL=on            # Core feature
+FEATURE_ARCH_GENERATOR=off       # Beta feature - disable initially
+FEATURE_PROPOSAL_REVIEW=off      # New feature - disable initially
+FEATURE_RISK_RADAR=on            # Core feature
+FEATURE_RISK_RADAR_EXPORT=on     # Core feature
+```
+
+### Progressive Rollout Process
+
+To safely enable a new feature:
+
+1. **Start small (1%):**
+   ```bash
+   FEATURE_PROPOSAL_REVIEW=rollout
+   ROLLOUT_PROPOSAL_REVIEW_PERCENT=1
+   ```
+
+2. **Monitor** - Check analytics, error logs, performance
+
+3. **Increase gradually:**
+   - 1% → 10% (if no issues)
+   - 10% → 25% (if stable)
+   - 25% → 50% (if performing well)
+   - 50% → 100% (if ready for full rollout)
+
+4. **Enable for all:**
+   ```bash
+   FEATURE_PROPOSAL_REVIEW=on  # Removes rollout logic overhead
+   ```
+
+### Deterministic Rollout
+
+The rollout system uses SHA256 hashing to ensure:
+- **Same user, same result**: A user will always get the same flag value (enabled/disabled)
+- **Consistent assignment**: Changing percentage doesn't affect users already in the rollout
+- **No PII**: Uses anonymous IDs, never email addresses
+
+### Admin UI (Dev Only)
+
+Access the feature flags admin UI at `/admin/feature-flags` (development only):
+
+- View all current flags and their status
+- Toggle local overrides (stored in localStorage)
+- Simulate rollouts with different anon IDs and percentages
+- Test deterministic behavior
+
+**Note:** Admin page is automatically hidden in production builds.
+
+### Setting Flags in Cloud Run / Production
+
+**Via Environment Variables:**
+```bash
+gcloud run services update portfolio-service \
+  --set-env-vars "FEATURE_PROPOSAL_REVIEW=rollout,ROLLOUT_PROPOSAL_REVIEW_PERCENT=10"
+```
+
+**Via Secret Manager (recommended for sensitive flags):**
+1. Store flags in Secret Manager
+2. Reference in Cloud Run env vars or load at runtime
+
+### Testing Feature Flags
+
+```bash
+# Test API endpoint
+curl http://localhost:3001/api/featureflags
+
+# Should return JSON with all flags:
+# {
+#   "flags": {
+#     "sticky_cta": { "enabled": true, "reason": "env" },
+#     ...
+#   }
+# }
+```
+
+### Gated Features
+
+Currently gated features:
+- **Sticky CTAs** - `FEATURE_STICKY_CTA`
+- **Executive Modal** - `FEATURE_EXEC_MODAL`
+- **Architecture Generator** - `FEATURE_ARCH_GENERATOR`
+- **Risk Radar CTAs** - `FEATURE_RISK_RADAR`
+- **Risk Radar Exports** - `FEATURE_RISK_RADAR_EXPORT` (when implemented)
+
+All flags default to `off` if not configured (safe fallback behavior).
 
 ## 🚨 Troubleshooting
 
