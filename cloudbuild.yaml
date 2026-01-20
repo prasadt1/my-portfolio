@@ -8,6 +8,8 @@ steps:
       - "gcr.io/$PROJECT_ID/portfolio-service:$COMMIT_SHA"
       - "--build-arg"
       - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY}"
+      - "--build-arg"
+      - "VITE_COMPETITION_MODE=${_VITE_COMPETITION_MODE}"
       - "."
 
   # Push the container image to Container Registry
@@ -40,6 +42,7 @@ steps:
 # Sensitive values are stored in Secret Manager (not here) so they persist across builds
 substitutions:
   _VITE_GEMINI_API_KEY: ""
+  _VITE_COMPETITION_MODE: "true"
   _LEAD_STORE_PROVIDER: "gsheets"
   _GSHEETS_SHEET_NAME: "Leads"
   _EMAIL_PROVIDER: "smtp"
