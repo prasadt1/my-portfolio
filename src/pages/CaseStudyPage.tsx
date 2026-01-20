@@ -1,4 +1,4 @@
-import { User, Code, Briefcase, ChevronDown, ChevronUp, Truck } fromimport { User, Code, Briefcase, ChevronDown, ChevronUp, Truck } from 'lucide-react';
+import { User, Code, Briefcase, ChevronDown, ChevronUp, Truck } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
