@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { PageShell, PageHeader, Container } from '../components/layout';
 import IndependentAdvisorySection from '../components/sections/IndependentAdvisorySection';
+import { usePersonaCTAs } from '../utils/personaCTAs';
 
 // Good/Better/Best service tiers
 const serviceTiers = [
@@ -65,6 +66,7 @@ const serviceTiers = [
 
 const ServicesPage: React.FC = () => {
     const { t } = useTranslation();
+    const { primary: primaryCTA, secondary: secondaryCTA } = usePersonaCTAs();
 
     return (
         <>
@@ -207,17 +209,33 @@ const ServicesPage: React.FC = () => {
                                             </p>
                                         </div>
 
-                                        <Link
-                                            to="/contact"
-                                            className={`w-full text-center px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
-                                                isPopular 
-                                                    ? 'bg-emerald-600 hover:bg-emerald-700 text-white' 
-                                                    : 'bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900'
-                                            }`}
-                                        >
-                                            {t('servicesPage.bookCall')}
-                                            <ArrowRight size={18} />
-                                        </Link>
+                                        {primaryCTA.path.startsWith('http') ? (
+                                            <a
+                                                href={primaryCTA.path}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={`w-full text-center px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
+                                                    isPopular 
+                                                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white' 
+                                                        : 'bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900'
+                                                }`}
+                                            >
+                                                {primaryCTA.label}
+                                                <ArrowRight size={18} />
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                to={primaryCTA.path}
+                                                className={`w-full text-center px-6 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
+                                                    isPopular 
+                                                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white' 
+                                                        : 'bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900'
+                                                }`}
+                                            >
+                                                {primaryCTA.label}
+                                                <ArrowRight size={18} />
+                                            </Link>
+                                        )}
                                     </div>
                                 </motion.div>
                             );
@@ -270,20 +288,46 @@ const ServicesPage: React.FC = () => {
                             {t('servicesPage.ctaSubtitle')}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
-                                to="/contact"
-                                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
-                            >
-                                {t('servicesPage.bookDiscoveryCall')}
-                                <ArrowRight size={20} />
-                            </Link>
-                            <Link
-                                to="/risk-radar"
-                                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all"
-                            >
-                                Try Risk Radar
-                                <ArrowRight size={20} />
-                            </Link>
+                            {/* Primary CTA - Persona-based */}
+                            {primaryCTA.path.startsWith('http') ? (
+                                <a
+                                    href={primaryCTA.path}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
+                                >
+                                    {primaryCTA.label}
+                                    <ArrowRight size={20} />
+                                </a>
+                            ) : (
+                                <Link
+                                    to={primaryCTA.path}
+                                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
+                                >
+                                    {primaryCTA.label}
+                                    <ArrowRight size={20} />
+                                </Link>
+                            )}
+                            {/* Secondary CTA */}
+                            {secondaryCTA.path.startsWith('http') ? (
+                                <a
+                                    href={secondaryCTA.path}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all"
+                                >
+                                    {secondaryCTA.label}
+                                    <ArrowRight size={20} />
+                                </a>
+                            ) : (
+                                <Link
+                                    to={secondaryCTA.path}
+                                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all"
+                                >
+                                    {secondaryCTA.label}
+                                    <ArrowRight size={20} />
+                                </Link>
+                            )}
                         </div>
                     </motion.div>
                 </Container>

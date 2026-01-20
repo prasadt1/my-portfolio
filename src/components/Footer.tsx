@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { COMPETITION_CONFIG } from '../config/competition';
+import { usePersonaCTAs } from '../utils/personaCTAs';
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
     const { t } = useTranslation();
+    const { primary: primaryCTA } = usePersonaCTAs();
 
     return (
         <>
@@ -108,20 +110,29 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* Contact CTA */}
+                    {/* Contact CTA - Phase 4.1: Persona-based */}
                     <div>
                         <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.contact')}</h3>
                         <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
                             Ready to transform your business or solve a complex architectural challenge?
                         </p>
-                        <a
-                            href="https://calendly.com/prasad-sgsits/30min"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
-                        >
-                            Schedule Consultation
-                        </a>
+                        {primaryCTA.path.startsWith('http') ? (
+                            <a
+                                href={primaryCTA.path}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                            >
+                                {primaryCTA.label}
+                            </a>
+                        ) : (
+                            <Link
+                                to={primaryCTA.path}
+                                className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                            >
+                                {primaryCTA.label}
+                            </Link>
+                        )}
                     </div>
                 </div>
 

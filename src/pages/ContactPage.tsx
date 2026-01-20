@@ -229,6 +229,39 @@ const ContactPage: React.FC = () => {
                   {t('contactPage.form.redirect')}
                 </p>
               )}
+
+              {/* Phase 4.1: What happens next section */}
+              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
+                  {t('contact.whatHappensNext.title', 'What happens next')}
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">1</span>
+                    </div>
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      {t('contact.whatHappensNext.step1', 'Step 1: Confirm scope')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">2</span>
+                    </div>
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      {t('contact.whatHappensNext.step2', 'Step 2: NDA/constraints check')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">3</span>
+                    </div>
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      {t('contact.whatHappensNext.step3', 'Step 3: Delivery within X days')}
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </form>
           </motion.div>
         </div>

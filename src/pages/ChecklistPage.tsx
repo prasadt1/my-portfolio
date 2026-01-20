@@ -354,6 +354,70 @@ const ChecklistPage: React.FC = () => {
                             </motion.div>
                         ))}
                     </div>
+
+                    {/* Phase 4.1: Preview Thumbnails Section */}
+                    <div className="mt-16">
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-8">
+                            {t('checklist.preview.title', 'Preview')}
+                        </h3>
+                        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                            {/* Red flags page */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                            >
+                                <div className="aspect-[3/4] bg-slate-100 dark:bg-slate-700 rounded-lg mb-4 flex items-center justify-center">
+                                    <div className="text-center p-4">
+                                        <div className="text-4xl mb-2">🚩</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-400">PDF Preview</div>
+                                    </div>
+                                </div>
+                                <h4 className="font-semibold text-slate-900 dark:text-white text-sm">
+                                    {t('checklist.preview.redFlags', 'Red flags page')}
+                                </h4>
+                            </motion.div>
+
+                            {/* Scoring rubric page */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                            >
+                                <div className="aspect-[3/4] bg-slate-100 dark:bg-slate-700 rounded-lg mb-4 flex items-center justify-center">
+                                    <div className="text-center p-4">
+                                        <div className="text-4xl mb-2">📊</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-400">PDF Preview</div>
+                                    </div>
+                                </div>
+                                <h4 className="font-semibold text-slate-900 dark:text-white text-sm">
+                                    {t('checklist.preview.scoringRubric', 'Scoring rubric page')}
+                                </h4>
+                            </motion.div>
+
+                            {/* Stakeholder questions page */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                            >
+                                <div className="aspect-[3/4] bg-slate-100 dark:bg-slate-700 rounded-lg mb-4 flex items-center justify-center">
+                                    <div className="text-center p-4">
+                                        <div className="text-4xl mb-2">❓</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-400">PDF Preview</div>
+                                    </div>
+                                </div>
+                                <h4 className="font-semibold text-slate-900 dark:text-white text-sm">
+                                    {t('checklist.preview.stakeholderQuestions', 'Stakeholder questions page')}
+                                </h4>
+                            </motion.div>
+                        </div>
+                    </div>
                 </Container>
 
                 {/* Who Is This For Section */}

@@ -19,6 +19,7 @@ import { trackEvent } from '../services/analytics';
 import { setAttributionContext } from '../utils/attribution';
 import { useFeatureFlag } from '../context/FeatureFlagsProvider';
 import { getGlobalPersona } from '../utils/personaPersistence';
+import { usePersonaCTAs } from '../utils/personaCTAs';
 
 export interface CaseStudyCTAProps {
     variant: 'primary' | 'secondary' | 'tertiary';
@@ -48,6 +49,8 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
 
     // Phase 3.4D: Get active persona for CTA resolution
     const activePersona = React.useMemo(() => getGlobalPersona(), []);
+    // Phase 4.1: Use persona CTAs helper for consistency
+    const { primary: personaPrimaryCTA, secondary: personaSecondaryCTA } = usePersonaCTAs(activePersona);
 
     const handleClick = (ctaType: string, href?: string) => {
         // Update attribution context with CTA source
@@ -74,34 +77,17 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
         }
     };
 
-    // Phase 3.4D: Primary CTA resolution based on persona
+    // Phase 4.1: Primary CTA resolution using persona helper
     const getPrimaryCTA = () => {
-        if (activePersona === 'hire') {
-            // Hiring persona: Download Resume / Schedule hiring intro
-            return {
-                text: primaryText || t('caseStudy.cta.hiring.primary', { defaultValue: 'Download Resume' }),
-                href: '/hiring',
-                icon: <Download size={18} />,
-                type: 'resume',
-            };
-        } else if (activePersona === 'toolkit') {
-            // Toolkit persona: Download Checklist
-            return {
-                text: primaryText || t('caseStudy.cta.toolkit.primary', { defaultValue: 'Download Checklist' }),
-                href: '/checklist',
-                icon: <Download size={18} />,
-                type: 'checklist',
-            };
-        } else {
-            // Consulting persona (default): Book Discovery Call
-            return {
-                text: primaryText || t('caseStudy.cta.primary', 'Book Discovery Call'),
-                href: 'https://calendly.com/prasad-sgsits/30min',
-                icon: <ArrowRight size={18} />,
-                type: 'calendly',
-                external: true,
-            };
-        }
+        const cta = personaPrimaryCTA;
+        const isExternal = cta.path.startsWith('http');
+        return {
+            text: primaryText || cta.label,
+            href: cta.path,
+            icon: isExternal ? <ArrowRight size={18} /> : <ArrowRight size={18} />,
+            type: activePersona === 'hire' ? 'resume' : activePersona === 'toolkit' ? 'checklist' : 'calendly',
+            external: isExternal,
+        };
     };
 
     // Primary CTA: Resolved based on persona
@@ -170,17 +156,38 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
         }
     }
 
-    // Secondary CTA: Try Risk Radar (gated by feature flag)
+    // Phase 4.1: Secondary CTA using persona helper
     if (variant === 'secondary') {
-        // Don't render if Risk Radar feature is disabled
-        if (!riskRadarFlag.enabled) {
-            return null;
+        const cta = personaSecondaryCTA;
+        const isExternal = cta.path.startsWith('http');
+        
+        if (isExternal) {
+            return (
+                <a
+                    href={cta.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleClick('secondary', cta.path)}
+                    className={`
+                        inline-flex items-center justify-center gap-2
+                        bg-white dark:bg-slate-800 border-2 border-emerald-600 text-emerald-600
+                        dark:text-emerald-400 dark:border-emerald-400
+                        hover:bg-emerald-50 dark:hover:bg-emerald-900/20
+                        px-6 py-3 rounded-lg font-semibold
+                        transition-all
+                        ${className}
+                    `}
+                >
+                    {secondaryText || cta.label}
+                    <ArrowRight size={18} />
+                </a>
+            );
         }
         
         return (
             <Link
-                to="/risk-radar"
-                onClick={() => handleClick('risk-radar', '/risk-radar')}
+                to={cta.path}
+                onClick={() => handleClick('secondary', cta.path)}
                 className={`
                     inline-flex items-center justify-center gap-2
                     bg-white dark:bg-slate-800 border-2 border-emerald-600 text-emerald-600
@@ -191,7 +198,7 @@ const CaseStudyCTA: React.FC<CaseStudyCTAProps> = ({
                     ${className}
                 `}
             >
-                {secondaryText || t('caseStudy.cta.secondary', 'Try Risk Radar')}
+                {secondaryText || cta.label}
                 <ArrowRight size={18} />
             </Link>
         );
