@@ -38,6 +38,7 @@ import NDADisclaimer from '../components/NDADisclaimer';
 import CredibilityStrip from '../components/CredibilityStrip';
 import { isPromoted } from '../config/featureUtils';
 import { getGlobalPersona } from '../utils/personaPersistence';
+import { usePersonaCTAs } from '../utils/personaCTAs';
 import CaseStudyNavigation, { type CaseStudySection } from '../components/CaseStudyNavigation';
 
 // =============================================================================
@@ -137,10 +138,12 @@ const CaseStudyPage: React.FC = () => {
     const [showAllApproach, setShowAllApproach] = useState(false);
     const [showPersonaDetails, setShowPersonaDetails] = useState(false); // Phase 2: collapsed by default
     const [showFullDeliverables, setShowFullDeliverables] = useState(false); // Phase 4 Wireframe: Deliverables compact/expand
+    const [showFullChallenge, setShowFullChallenge] = useState(false); // Phase 4.1: Challenge collapsed by default
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
     const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
     const [activePersona, setActivePersona] = useState<'hire' | 'consult' | 'toolkit' | null>(null); // Phase 3.4D: For CTA resolution
     const [activeNavSection, setActiveNavSection] = useState<CaseStudySection>('snapshot'); // Phase 4 D1: Active section for nav pills
+    const { primary: primaryCTA, secondary: secondaryCTA } = usePersonaCTAs(activePersona || getGlobalPersona());
     
     // Feature flag for sticky CTAs
     const stickyCtaFlag = useFeatureFlag('sticky_cta');
@@ -457,19 +460,32 @@ const CaseStudyPage: React.FC = () => {
                         </motion.div>
                     </div>
 
-                    {/* Phase 4 Wireframe: CTA Row - Primary (Book Discovery Call) + Secondary (Request Artifacts Pack) */}
+                    {/* Phase 4.1: Persona-based CTA Row */}
                     <div className="flex flex-col sm:flex-row gap-4 items-start mb-8">
-                        <a
-                            href="https://calendly.com/prasad-sgsits/30min"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
-                            onClick={() => trackEvent('case_study_cta_click', { cta: 'primary', section: 'hero', slug: study.slug })}
-                        >
-                            Book Discovery Call
-                            <ArrowRight size={18} />
-                        </a>
-                        {study.artifactPreviews && study.artifactPreviews.length > 0 && (
+                        {/* Primary CTA */}
+                        {primaryCTA.path.startsWith('http') ? (
+                            <a
+                                href={primaryCTA.path}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
+                                onClick={() => trackEvent('case_study_cta_click', { cta: 'primary', section: 'hero', slug: study.slug })}
+                            >
+                                {primaryCTA.label}
+                                <ArrowRight size={18} />
+                            </a>
+                        ) : (
+                            <Link
+                                to={primaryCTA.path}
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
+                                onClick={() => trackEvent('case_study_cta_click', { cta: 'primary', section: 'hero', slug: study.slug })}
+                            >
+                                {primaryCTA.label}
+                                <ArrowRight size={18} />
+                            </Link>
+                        )}
+                        {/* Secondary CTA */}
+                        {secondaryCTA.path === '/projects' && study.artifactPreviews && study.artifactPreviews.length > 0 ? (
                             <button
                                 onClick={() => {
                                     setArtifactRequestModalOpen(true);
@@ -480,6 +496,15 @@ const CaseStudyPage: React.FC = () => {
                                 {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
                                 <ArrowRight size={18} />
                             </button>
+                        ) : (
+                            <Link
+                                to={secondaryCTA.path}
+                                className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
+                                onClick={() => trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug })}
+                            >
+                                {secondaryCTA.label}
+                                <ArrowRight size={18} />
+                            </Link>
                         )}
                     </div>
                 </div>
@@ -775,51 +800,120 @@ const CaseStudyPage: React.FC = () => {
                         </div>
                     )}
 
-                    {/* Legacy Challenge Display - for projects without new structure */}
+                    {/* Phase 4.1: Legacy Challenge Display - Collapsed by default */}
                     {!study.executiveSnapshot && !study.personaChallenges && (
                         <div className="max-w-4xl">
-                            {/* Legacy Narrative Box */}
-                            <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                                    {challengeContent.situation}
-                                </p>
-                            </div>
+                            {/* Collapsed View (Default) */}
+                            {!showFullChallenge && (
+                                <div className="space-y-4">
+                                    {/* One-liner summary */}
+                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        {challengeContent.situation.split('.').slice(0, 1).join('.') + '.'}
+                                    </p>
 
-                            {/* Legacy Key Tensions List */}
-                            {challengeContent.keyTensions.length > 0 && (
-                                <div className="mt-8">
-                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
-                                        {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
-                                    </h3>
-                                    {/* Phase 4 D2: Max 4 key tensions in 2-column */}
-                                    <div className="grid md:grid-cols-2 gap-3">
-                                        {challengeContent.keyTensions.slice(0, 4).map((tension, idx) => (
-                                            <div 
-                                                key={idx}
-                                                className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
-                                            >
-                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                                                <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                    {/* Key Tensions - Max 4 */}
+                                    {challengeContent.keyTensions.length > 0 && (
+                                        <div>
+                                            <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                                                {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
+                                            </h3>
+                                            <div className="grid md:grid-cols-2 gap-3">
+                                                {challengeContent.keyTensions.slice(0, 4).map((tension, idx) => (
+                                                    <div 
+                                                        key={idx}
+                                                        className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
+                                                    >
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                                        <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
+                                        </div>
+                                    )}
+
+                                    {/* Expand Button */}
+                                    <button
+                                        onClick={() => {
+                                            setShowFullChallenge(true);
+                                            trackEvent('case_study_challenge_expanded', { slug: study.slug });
+                                        }}
+                                        className="w-full flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                    >
+                                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                            {t('caseStudy.challenge.viewFullChallenge', 'View full challenge by persona')}
+                                        </span>
+                                        <ChevronDown className="text-slate-500" size={20} />
+                                    </button>
                                 </div>
                             )}
 
-                            {/* Legacy Urgency Callout */}
-                            {challengeContent.urgency && (
-                                <div className="mt-6">
-                                    <div className="bg-amber-50 dark:bg-amber-900/20 px-4 py-3 rounded-lg border border-amber-200 dark:border-amber-700/50 flex items-center gap-3">
-                                        <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0" size={18} />
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">
-                                                {t('caseStudy.challenge.urgency', 'Urgency')}:
-                                            </span>
-                                            <span className="text-sm text-slate-700 dark:text-slate-300">{challengeContent.urgency}</span>
+                            {/* Expanded View */}
+                            <AnimatePresence>
+                                {showFullChallenge && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="space-y-6 mt-4">
+                                            {/* Full Narrative */}
+                                            <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                                                    {challengeContent.situation}
+                                                </p>
+                                            </div>
+
+                                            {/* All Key Tensions */}
+                                            {challengeContent.keyTensions.length > 0 && (
+                                                <div>
+                                                    <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
+                                                        {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
+                                                    </h3>
+                                                    <div className="grid md:grid-cols-2 gap-3">
+                                                        {challengeContent.keyTensions.map((tension, idx) => (
+                                                            <div 
+                                                                key={idx}
+                                                                className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
+                                                            >
+                                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                                                <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* Urgency Callout */}
+                                            {challengeContent.urgency && (
+                                                <div>
+                                                    <div className="bg-amber-50 dark:bg-amber-900/20 px-4 py-3 rounded-lg border border-amber-200 dark:border-amber-700/50 flex items-center gap-3">
+                                                        <AlertCircle className="text-amber-600 dark:text-amber-500 shrink-0" size={18} />
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">
+                                                                {t('caseStudy.challenge.urgency', 'Urgency')}:
+                                                            </span>
+                                                            <span className="text-sm text-slate-700 dark:text-slate-300">{challengeContent.urgency}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* Collapse Button */}
+                                            <button
+                                                onClick={() => setShowFullChallenge(false)}
+                                                className="w-full flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                            >
+                                                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                                    {t('caseStudy.challenge.hideFullChallenge', 'Hide full challenge')}
+                                                </span>
+                                                <ChevronUp className="text-slate-500" size={20} />
+                                            </button>
                                         </div>
-                                    </div>
-                                </div>
-                            )}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     )}
                 </div>
@@ -1220,6 +1314,11 @@ const CaseStudyPage: React.FC = () => {
                         <SectionHeader 
                             title={t('caseStudy.artifacts.title', 'Artifacts (Preview)')}
                         />
+                        
+                        {/* Phase 4.1: Explanation text above artifact cards */}
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 text-center max-w-2xl mx-auto">
+                            {t('caseStudy.artifacts.explanation', { defaultValue: 'Artifacts are shared after a short fit call and NDA constraints check.' })}
+                        </p>
                         
                         {/* Phase 4 D5: Horizontal scroll on mobile, 2x3 grid on desktop */}
                         <div className="mb-8">

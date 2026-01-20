@@ -30,7 +30,23 @@
         "bookDiscoveryCall": "Book Architecture Review",
         "toggleLanguage": "Toggle Language",
         "toggleTheme": "Toggle Theme",
-        "forRecruiters": "For Recruiters"
+        "forRecruiters": "For Recruiters",
+        "tools": "Tools",
+        "howIWork": "How I Work"
+    },
+    "cta": {
+        "hiring": {
+            "primary": "View Hiring Snapshot",
+            "secondary": "View Case Studies"
+        },
+        "consulting": {
+            "primary": "Book Discovery Call",
+            "secondary": "Request Artifacts Pack"
+        },
+        "toolkit": {
+            "primary": "Browse Resources",
+            "secondary": "Get Checklist (PDF)"
+        }
     },
     "hero": {
         "badge": "Independent Validator • Vendor-Neutral",
@@ -993,7 +1009,9 @@
             "urgency": "Urgency",
             "challenges": "Challenges",
             "riskIfIgnored": "Risk if ignored",
-            "decisionPoints": "Decision points"
+            "decisionPoints": "Decision points",
+            "viewFullChallenge": "View full challenge by persona",
+            "hideFullChallenge": "Hide full challenge"
         },
         "persona": {
             "standard": "Standard",
@@ -1074,7 +1092,8 @@
             "availableOnRequest": "Available on request",
             "requestAccess": "Request full artifacts",
             "requestFullPack": "Request Full Artifacts Pack",
-            "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures."
+            "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.",
+            "explanation": "Artifacts are shared after a short fit call and NDA constraints check."
         },
         "ndaDisclaimer": {
             "title": "NDA & Ownership Disclaimer",
@@ -1401,6 +1420,9 @@
         },
         "homepageCta": {
             "button": "Download free guide"
+        },
+        "toolkit": {
+            "socialProof": "Used by CTOs across EU mid-market."
         }
     },
     "checklist": {
@@ -1423,6 +1445,12 @@
             "submitButton": "Download Checklist (PDF)",
             "privacy": "One-time send. No newsletter. Unsubscribe option included.",
             "trustNote": "Used by CTOs at mid-market companies across EU. Independent consultant • No vendor partnerships."
+        },
+        "preview": {
+            "title": "Preview",
+            "redFlags": "Red flags page",
+            "scoringRubric": "Scoring rubric page",
+            "stakeholderQuestions": "Stakeholder questions page"
         },
         "whatsInside": {
             "title": "What's Inside",

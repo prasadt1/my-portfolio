@@ -24,11 +24,13 @@ import VideoModal from '../components/VideoModal';
 import TestimonialsRotator from '../components/TestimonialsRotator';
 import ImpactDashboard from '../components/ImpactDashboard';
 import ProjectCard from '../components/ProjectCard/ProjectCard';
+import SignatureMeshBackground from '../components/SignatureMeshBackground';
 import { projects } from '../data/projects';
 import { trackEvent, AnalyticsEvents } from '../services/analytics';
 import { isEnabled, isPromoted } from '../config/featureUtils';
 import { setGlobalPersona, getGlobalPersona } from '../utils/personaPersistence';
 import { isCompetitionMode } from '../config/competition';
+import { usePersonaCTAs } from '../utils/personaCTAs';
 import i18n from '../i18n';
 
 type PersonaType = 'hire' | 'consult' | 'toolkit';
@@ -56,6 +58,7 @@ const HomePageMultiDomain: React.FC = () => {
 
     const [selectedPersona, setSelectedPersona] = useState<PersonaType>(getInitialPersona);
     const showPersonaTabs = isEnabled('HOMEPAGE_PERSONA_TABS');
+    const { primary: primaryCTA, secondary: secondaryCTA } = usePersonaCTAs(selectedPersona);
 
     // Update URL and localStorage when persona changes
     useEffect(() => {
@@ -103,6 +106,8 @@ const HomePageMultiDomain: React.FC = () => {
             <div className="min-h-screen font-sans">
                 {/* SECTION 1: HERO - Phase 4 Wireframe: 2-Column Layout */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white py-20 md:py-32 lg:py-48 overflow-hidden min-h-[70vh]">
+                    {/* Phase 4.1: Signature Mesh Background */}
+                    <SignatureMeshBackground opacity={0.05} className="text-white" />
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0" style={{
                             backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
@@ -168,105 +173,84 @@ const HomePageMultiDomain: React.FC = () => {
                                     Independent architecture consultant. Cloud + AI + compliance-heavy delivery.
                                 </p>
 
-                                {/* Phase 4 Wireframe: 3 Proof Chips - "€415K saved", "50+ engagements", "EU compliance-ready" */}
+                                {/* Phase 4.1: Clickable Proof Chips - scroll to sections */}
                                 <div className="flex flex-wrap gap-3 mb-6">
-                                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                                    <button
+                                        onClick={() => {
+                                            const element = document.getElementById('impact-dashboard');
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                trackEvent('proof_chip_clicked', { chip: 'savings', target: 'impact-dashboard' });
+                                            }
+                                        }}
+                                        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
+                                    >
                                         <span className="text-emerald-300 font-semibold text-sm">€415K</span>
                                         <span className="text-white/80 text-sm">saved</span>
-                                    </div>
-                                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            const element = document.getElementById('testimonials');
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                trackEvent('proof_chip_clicked', { chip: 'engagements', target: 'testimonials' });
+                                            }
+                                        }}
+                                        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
+                                    >
                                         <span className="text-emerald-300 font-semibold text-sm">50+</span>
                                         <span className="text-white/80 text-sm">engagements</span>
-                                    </div>
-                                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            const element = document.getElementById('featured-case-studies');
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                trackEvent('proof_chip_clicked', { chip: 'compliance', target: 'featured-case-studies' });
+                                            }
+                                        }}
+                                        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
+                                    >
                                         <span className="text-emerald-300 font-semibold text-sm">EU</span>
                                         <span className="text-white/80 text-sm">compliance-ready</span>
-                                    </div>
+                                    </button>
                                 </div>
 
-                                {/* Phase 4 Wireframe: CTA Row - Primary (persona-based) + Secondary ("View Case Studies") */}
+                                {/* Phase 4.1: Persona-based CTAs using helper */}
                                 {showPersonaTabs ? (
-                                    <>
-                                        {selectedPersona === 'hire' && (
-                                            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
-                                            {/* Phase 4 C2: Primary CTA for hire persona */}
-                                            <Link
-                                                to="/hiring"
-                                                className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
-                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'hire', cta: 'primary' })}
-                                            >
-                                                {t('homepage.personaTabs.hiringPrimary')}
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                                            </Link>
-                                            {/* Phase 4 C2: Secondary CTA always "View Case Studies" */}
-                                            <Link
-                                                to="/projects"
-                                                className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline border border-white/20 hover:border-white/40"
-                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'hire', cta: 'secondary' })}
-                                            >
-                                                View Case Studies
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-                                            </Link>
-                                        </div>
-                                    )}
-                                        {selectedPersona === 'consult' && (
-                                            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
-                                            {/* Phase 4 C2: Primary CTA for consult persona */}
+                                    <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
+                                        {/* Primary CTA */}
+                                        {primaryCTA.path.startsWith('http') ? (
                                             <a
-                                                href="https://calendly.com/prasad-sgsits/30min"
+                                                href={primaryCTA.path}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'consult', cta: 'primary' })}
                                                 className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: selectedPersona, cta: 'primary' })}
                                             >
-                                                {t('homepage.personaTabs.consultingPrimary')}
+                                                {primaryCTA.label}
                                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                                             </a>
-                                            {/* Phase 4 C2: Secondary CTA always "View Case Studies" */}
+                                        ) : (
                                             <Link
-                                                to="/projects"
-                                                className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline border border-white/20 hover:border-white/40"
-                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'consult', cta: 'secondary' })}
+                                                to={primaryCTA.path}
+                                                className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
+                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: selectedPersona, cta: 'primary' })}
                                             >
-                                                View Case Studies
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                                                {primaryCTA.label}
+                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                                             </Link>
-                                        </div>
-                                    )}
-                                        {selectedPersona === 'toolkit' && (
-                                            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
-                                            {/* Phase 4 C2: Primary CTA for toolkit persona */}
-                                            {isPromoted('TOOLKIT_LIBRARY') ? (
-                                                <Link
-                                                    to="/services"
-                                                    className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
-                                                    onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'toolkit', cta: 'primary' })}
-                                                >
-                                                    {t('homepage.personaTabs.toolkitPrimary')}
-                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                                                </Link>
-                                            ) : (
-                                                <Link
-                                                    to="/checklist"
-                                                    className="group bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
-                                                    onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'toolkit', cta: 'primary' })}
-                                                >
-                                                    Get Free Toolkit
-                                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                                                </Link>
-                                            )}
-                                            {/* Phase 4 C2: Secondary CTA always "View Case Studies" */}
-                                            <Link
-                                                to="/projects"
-                                                className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline border border-white/20 hover:border-white/40"
-                                                onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: 'toolkit', cta: 'secondary' })}
-                                            >
-                                                View Case Studies
-                                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-                                            </Link>
-                                        </div>
-                                    )}
-                                    </>
+                                        )}
+                                        {/* Secondary CTA */}
+                                        <Link
+                                            to={secondaryCTA.path}
+                                            className="group text-white/80 hover:text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center gap-2 underline-offset-4 hover:underline border border-white/20 hover:border-white/40"
+                                            onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero', persona: selectedPersona, cta: 'secondary' })}
+                                        >
+                                            {secondaryCTA.label}
+                                            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                                        </Link>
+                                    </div>
                                 ) : (
                                     <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
                                         <a
@@ -637,7 +621,7 @@ const HomePageMultiDomain: React.FC = () => {
                 </section>
 
                 {/* SECTION 5: TESTIMONIAL PATTERN BREAK - Phase 4 Wireframe: Two-column split */}
-                <section className="py-12 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                <section id="testimonials" className="py-12 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 scroll-mt-24">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -852,7 +836,7 @@ const HomePageMultiDomain: React.FC = () => {
                 </section>}
 
                 {/* SECTION 4: FEATURED CASE STUDIES - Phase 4 Wireframe: 2 rows (2 large + 3 small) */}
-                <section className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                <section id="featured-case-studies" className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 scroll-mt-24">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -995,6 +979,11 @@ const HomePageMultiDomain: React.FC = () => {
                                     </button>
                                 </div>
                             </form>
+                            
+                            {/* Phase 4.1: Social proof line */}
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mt-4">
+                                {t('homepage.toolkit.socialProof', { defaultValue: 'Used by CTOs across EU mid-market.' })}
+                            </p>
                         </motion.div>
                     </div>
                 </section>

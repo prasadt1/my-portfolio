@@ -30,7 +30,23 @@
         "bookDiscoveryCall": "Architektur-Review buchen",
         "toggleLanguage": "Sprache wechseln",
         "toggleTheme": "Design wechseln",
-        "forRecruiters": "Für Recruiter"
+        "forRecruiters": "Für Recruiter",
+        "tools": "Tools",
+        "howIWork": "Wie ich arbeite"
+    },
+    "cta": {
+        "hiring": {
+            "primary": "Karriere-Profil ansehen",
+            "secondary": "Fallstudien ansehen"
+        },
+        "consulting": {
+            "primary": "Entdeckungsgespräch buchen",
+            "secondary": "Artefakt-Paket anfordern"
+        },
+        "toolkit": {
+            "primary": "Ressourcen durchsuchen",
+            "secondary": "Checkliste (PDF) erhalten"
+        }
     },
     "hero": {
         "badge": "Unabhängiger Validator • Vendor-neutral",
@@ -345,11 +361,19 @@
             "name": "Name",
             "email": "E-Mail",
             "message": "Nachricht",
-            "placeholder": "Erzählen Sie mir von Ihren Projektanforderungen...",
+            "placeholder": "Erzählen Sie mir von Ihrem Projekt, Zeitplan und was Sie erreichen möchten...",
             "submit": "Nachricht senden",
-            "sending": "Senden...",
+            "sending": "Wird gesendet...",
             "sent": "Nachricht gesendet!",
-            "redirect": "Öffne E-Mail-Programm..."
+            "redirect": "E-Mail-Client wird geöffnet..."
+        }
+    },
+    "contact": {
+        "whatHappensNext": {
+            "title": "Was als Nächstes passiert",
+            "step1": "Schritt 1: Umfang bestätigen",
+            "step2": "Schritt 2: NDA/Einschränkungen prüfen",
+            "step3": "Schritt 3: Lieferung innerhalb von X Tagen"
         }
     },
     "climateTech": {
@@ -942,7 +966,9 @@
             "urgency": "Dringlichkeit",
             "challenges": "Herausforderungen",
             "riskIfIgnored": "Risiko bei Ignorieren",
-            "decisionPoints": "Entscheidungspunkte"
+            "decisionPoints": "Entscheidungspunkte",
+            "viewFullChallenge": "Vollständige Herausforderung nach Persona ansehen",
+            "hideFullChallenge": "Vollständige Herausforderung ausblenden"
         },
         "persona": {
             "standard": "Standard",
@@ -1023,7 +1049,8 @@
             "availableOnRequest": "Auf Anfrage verfügbar",
             "requestAccess": "Artefakte anfragen",
             "requestFullPack": "Vollständiges Artefaktpaket anfragen",
-            "privacyNote": "Artefakte sind anonymisiert und werden selektiv geteilt, um die Vertraulichkeit der Kunden zu schützen. Alle Diagramme werden aus dem Gedächtnis neu erstellt und stellen Patterns dar, nicht interne Architekturen."
+            "privacyNote": "Artefakte sind anonymisiert und werden selektiv geteilt, um die Vertraulichkeit der Kunden zu schützen. Alle Diagramme werden aus dem Gedächtnis neu erstellt und stellen Patterns dar, nicht interne Architekturen.",
+            "explanation": "Artefakte werden nach kurzem Fit-Call und NDA-Abklärung geteilt."
         },
         "ndaDisclaimer": {
             "title": "NDA & Ownership Disclaimer",
@@ -1350,6 +1377,9 @@
         },
         "homepageCta": {
             "button": "Guide herunterladen"
+        },
+        "toolkit": {
+            "socialProof": "Von CTOs im EU-Mittelstand genutzt."
         }
     },
     "checklist": {
@@ -1372,6 +1402,12 @@
             "submitButton": "Checkliste Herunterladen (PDF)",
             "privacy": "Einmalige Zusendung. Kein Newsletter. Abmeldemöglichkeit inklusive.",
             "trustNote": "Genutzt von CTOs mittelständischer Unternehmen in der EU. Unabhängiger Berater • Keine Herstellerpartnerschaften."
+        },
+        "preview": {
+            "title": "Vorschau",
+            "redFlags": "Warnzeichen-Seite",
+            "scoringRubric": "Bewertungsrubrik-Seite",
+            "stakeholderQuestions": "Stakeholder-Fragen-Seite"
         },
         "whatsInside": {
             "title": "Was Enthalten Ist",
