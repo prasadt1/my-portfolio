@@ -17,6 +17,7 @@ const ChatAssistant = lazy(() => import('./components/ChatAssistant'));
 const CommandPalette = lazy(() => import('./components/CommandPalette'));
 const ExitIntentPopup = lazy(() => import('./components/ExitIntentPopup'));
 const HireMeBanner = lazy(() => import('./components/HireMeBanner'));
+const StartHereDrawer = lazy(() => import('./components/StartHereDrawer'));
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import('./pages/HomePageMultiDomain'));
@@ -38,6 +39,7 @@ const ConsultingPage = lazy(() => import('./pages/ConsultingPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const CompetitionPage = lazy(() => import('./pages/CompetitionPage'));
+const CaseStudyBriefPage = lazy(() => import('./pages/CaseStudyBriefPage'));
 // Admin pages (dev-only, hidden in production)
 const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));
 const DiagnosticsPage = lazy(() => import('./pages/admin/DiagnosticsPage'));
@@ -78,6 +80,9 @@ const Layout: React.FC = () => {
       <Suspense fallback={null}>
         <HireMeBanner />
       </Suspense>
+      <Suspense fallback={null}>
+        <StartHereDrawer />
+      </Suspense>
     </div>
   );
 };
@@ -97,6 +102,7 @@ const App: React.FC = () => {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="projects" element={<ProjectsPage />} />
                 <Route path="projects/:slug" element={<CaseStudyPage />} />
+                <Route path="brief/:slug" element={<CaseStudyBriefPage />} />
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="hiring" element={<HiringPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />

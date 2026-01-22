@@ -21,7 +21,12 @@ export type FeatureKey =
   | 'CASE_STUDY_ARTIFACTS_DOWNLOAD'
   | 'CASE_STUDY_ARTIFACTS_REQUEST'
   | 'TESTIMONIALS_ROTATOR'
-  | 'IMPACT_DASHBOARDS';
+  | 'IMPACT_DASHBOARDS'
+  // Phase 4.5: Engagement Layer
+  | 'NAVIGATION_DRAWER'
+  | 'OUTCOME_BADGES'
+  | 'BEFORE_AFTER_DIAGRAM'
+  | 'CASE_STUDY_PDF_EXPORT';
 
 export type FeatureFlag = {
   enabled: boolean;   // Controls if feature works (competition judges can access if enabled=true)
@@ -115,5 +120,22 @@ export const FEATURES: Record<FeatureKey, FeatureFlag> = {
   IMPACT_DASHBOARDS: {
     enabled: true,
     promoted: getPromotionFlag('VITE_PROMOTE_IMPACT_DASHBOARDS', 'IMPACT_DASHBOARDS', false),
+  },
+  // Phase 4.5: Engagement Layer
+  NAVIGATION_DRAWER: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_NAVIGATION_DRAWER', 'NAVIGATION_DRAWER', true),
+  },
+  OUTCOME_BADGES: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_OUTCOME_BADGES', 'OUTCOME_BADGES', true),
+  },
+  BEFORE_AFTER_DIAGRAM: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_BEFORE_AFTER_DIAGRAM', 'BEFORE_AFTER_DIAGRAM', true),
+  },
+  CASE_STUDY_PDF_EXPORT: {
+    enabled: true,
+    promoted: getPromotionFlag('VITE_PROMOTE_CASE_STUDY_PDF_EXPORT', 'CASE_STUDY_PDF_EXPORT', true),
   },
 };

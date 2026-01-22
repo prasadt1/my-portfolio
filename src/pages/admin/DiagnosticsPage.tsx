@@ -40,12 +40,26 @@ const DiagnosticsPage: React.FC = () => {
         const token = urlParams.get('token');
         const expectedToken = import.meta.env.VITE_ADMIN_TOKEN;
 
-        if (!token || token !== expectedToken) {
-            setIsAuthorized(false);
-            return;
+        // In development, allow access without token for easier local testing
+        if (import.meta.env.DEV || process.env.NODE_ENV === 'development') {
+            // If token is provided and matches, use it; otherwise allow access in dev
+            if (expectedToken && token && token === expectedToken) {
+                setIsAuthorized(true);
+            } else if (!expectedToken || !token) {
+                // Allow access in dev if no token is required or no token provided
+                setIsAuthorized(true);
+            } else {
+                // Token provided but doesn't match - still allow in dev but could show warning
+                setIsAuthorized(true);
+            }
+        } else {
+            // In production, require token
+            if (!token || token !== expectedToken) {
+                setIsAuthorized(false);
+                return;
+            }
+            setIsAuthorized(true);
         }
-
-        setIsAuthorized(true);
 
         // Get persona from localStorage
         if (typeof window !== 'undefined') {
@@ -61,12 +75,28 @@ const DiagnosticsPage: React.FC = () => {
     }, []);
 
     // Phase 3.4E: Token gate - show 404 if not authorized
-    if (isAuthorized === false || (process.env.NODE_ENV === 'production' && !isAuthorized)) {
+    if (isAuthorized === false) {
+        const isDev = process.env.NODE_ENV === 'development';
+        const expectedToken = import.meta.env.VITE_ADMIN_TOKEN;
+        
         return (
             <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-20 px-4">
                 <div className="max-w-4xl mx-auto text-center">
-                    <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">404</h1>
-                    <p className="text-slate-600 dark:text-slate-400">Page not found</p>
+                    <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                        {isDev ? 'Access Restricted' : '404'}
+                    </h1>
+                    <p className="text-slate-600 dark:text-slate-400 mb-4">
+                        {isDev 
+                            ? expectedToken 
+                                ? 'This page requires an admin token. Add ?token=YOUR_TOKEN to the URL.'
+                                : 'This page is protected. Set VITE_ADMIN_TOKEN in your .env file to enable access.'
+                            : 'Page not found'}
+                    </p>
+                    {isDev && expectedToken && (
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                            Expected token starts with: {expectedToken.substring(0, 4)}...
+                        </p>
+                    )}
                 </div>
             </div>
         );

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Target, Lightbulb, Package, TrendingUp, ShieldCheck } from 'lucide-react';
 import { 
     CaseStudy, 
+    type LocalizedString,
     getLocalizedString, 
     getLocalizedStringArray,
     isLocalizedPersonaChallenge,
@@ -37,7 +38,7 @@ const ExecutiveSummaryModal: React.FC<ExecutiveSummaryModalProps> = ({ project, 
     }, [isOpen, handleKeyDown]);
 
     // Get localized string helper
-    const getStr = (value: string | { en: string; de: string } | undefined): string => {
+    const getStr = (value: string | LocalizedString | undefined): string => {
         if (!value) return '';
         if (typeof value === 'string') return value;
         return getLocalizedString(value, locale);

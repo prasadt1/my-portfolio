@@ -1052,6 +1052,26 @@
             "privacyNote": "Artefakte sind anonymisiert und werden selektiv geteilt, um die Vertraulichkeit der Kunden zu schützen. Alle Diagramme werden aus dem Gedächtnis neu erstellt und stellen Patterns dar, nicht interne Architekturen.",
             "explanation": "Artefakte werden nach kurzem Fit-Call und NDA-Abklärung geteilt."
         },
+        "pdfBrief": {
+            "button": "1-seitiges Executive Brief herunterladen (PDF)",
+            "modalTitle": "1-seitiges Executive Brief herunterladen",
+            "modalSubtitle": "Erhalten Sie eine prägnante PDF-Zusammenfassung dieser Fallstudie",
+            "consent": "Ich stimme zu, das PDF-Brief per E-Mail zu erhalten und verstehe, dass es nur anonymisierte Patterns enthält.",
+            "submit": "PDF Brief herunterladen",
+            "generating": "Wird generiert...",
+            "success": "PDF Brief generiert!",
+            "downloadStarted": "Ihr Download sollte automatisch starten. Falls nicht, prüfen Sie Ihre E-Mail.",
+            "emailSent": "Das PDF-Brief wurde an Ihre E-Mail gesendet.",
+            "downloadAgain": "Erneut herunterladen",
+            "emailRequired": "E-Mail ist erforderlich",
+            "consentRequired": "Bitte stimmen Sie dem Erhalt des PDF-Briefs zu",
+            "error": "PDF konnte nicht generiert werden. Bitte versuchen Sie es erneut."
+        },
+        "beforeAfter": {
+            "before": "Vorher",
+            "after": "Nachher",
+            "deltaLabel": "Verbesserungen"
+        },
         "ndaDisclaimer": {
             "title": "NDA & Ownership Disclaimer",
             "whatPublic": "Was ich öffentlich teilen kann",
@@ -1568,6 +1588,19 @@
             "message": "Diese Funktion ist derzeit deaktiviert. Bitte kontaktieren Sie den Support, wenn Sie Zugriff benötigen.",
             "contact": "Support kontaktieren",
             "goHome": "Zurück zur Startseite"
+        }
+    },
+    "startHere": {
+        "title": "Wo soll ich anfangen?",
+        "subtitle": "Schnelllinks für den größten Nutzen",
+        "button": "Start hier",
+        "recommended": "Empfohlen für Sie",
+        "links": {
+            "competition": "Wettbewerbseinreichung",
+            "caseStudies": "Top 5 Fallstudien",
+            "checklist": "Kostenlose Checkliste",
+            "hiring": "Karriere-Profil",
+            "bookCall": "Anruf buchen"
         }
     },
     "consultationPage": {
