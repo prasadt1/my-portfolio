@@ -1060,12 +1060,15 @@
             "submit": "PDF Brief herunterladen",
             "generating": "Wird generiert...",
             "success": "PDF Brief generiert!",
-            "downloadStarted": "Ihr Download sollte automatisch starten. Falls nicht, prüfen Sie Ihre E-Mail.",
+            "downloadStarted": "Die Brief-Seite sollte in einem neuen Tab geöffnet werden. Verwenden Sie \"Drucken\" → \"Als PDF speichern\" zum Herunterladen.",
             "emailSent": "Das PDF-Brief wurde an Ihre E-Mail gesendet.",
+            "openBrief": "Brief-Seite öffnen",
             "downloadAgain": "Erneut herunterladen",
             "emailRequired": "E-Mail ist erforderlich",
             "consentRequired": "Bitte stimmen Sie dem Erhalt des PDF-Briefs zu",
-            "error": "PDF konnte nicht generiert werden. Bitte versuchen Sie es erneut."
+            "error": "PDF konnte nicht generiert werden. Bitte versuchen Sie es erneut.",
+            "serverError": "Keine Verbindung zum Server. Bitte stellen Sie sicher, dass der Server läuft und versuchen Sie es erneut.",
+            "popupBlocked": "Popup blockiert. Bitte erlauben Sie Popups und versuchen Sie es erneut, oder klicken Sie auf die Schaltfläche unten."
         },
         "beforeAfter": {
             "before": "Vorher",

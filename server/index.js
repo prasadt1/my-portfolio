@@ -2520,9 +2520,18 @@ app.post('/api/case-study-brief', async (req, res) => {
 
         // Lightweight, dependency-free "PDF export":
         // return a print-optimized brief route; user can "Save as PDF" from the browser.
+        const downloadUrl = `/brief/${caseStudySlug}?lang=${locale || 'en'}&autoprint=1`;
+        
+        console.log('[PDF Brief] Request processed:', {
+            email: email.substring(0, 3) + '***',
+            caseStudySlug,
+            locale,
+            downloadUrl
+        });
+        
         res.json({
             ok: true,
-            downloadUrl: `/brief/${caseStudySlug}?lang=${locale || 'en'}&autoprint=1`,
+            downloadUrl: downloadUrl,
         });
     } catch (error) {
         console.error('PDF Brief error:', error);

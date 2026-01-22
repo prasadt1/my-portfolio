@@ -1103,12 +1103,15 @@
             "submit": "Download PDF Brief",
             "generating": "Generating...",
             "success": "PDF Brief Generated!",
-            "downloadStarted": "Your download should start automatically. If not, check your email.",
+            "downloadStarted": "The brief page should open in a new tab. Use your browser's \"Print\" → \"Save as PDF\" to download.",
             "emailSent": "The PDF brief has been sent to your email.",
+            "openBrief": "Open Brief Page",
             "downloadAgain": "Download Again",
             "emailRequired": "Email is required",
             "consentRequired": "Please agree to receive the PDF brief",
-            "error": "Failed to generate PDF. Please try again."
+            "error": "Failed to generate PDF. Please try again.",
+            "serverError": "Cannot connect to server. Please make sure the server is running and try again.",
+            "popupBlocked": "Popup blocked. Please allow popups and try again, or click the download button below."
         },
         "beforeAfter": {
             "before": "Before",
