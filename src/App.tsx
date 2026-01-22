@@ -39,6 +39,7 @@ const ConsultingPage = lazy(() => import('./pages/ConsultingPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const CompetitionPage = lazy(() => import('./pages/CompetitionPage'));
+// Phase 5: Lazy load CaseStudyBriefPage for performance
 const CaseStudyBriefPage = lazy(() => import('./pages/CaseStudyBriefPage'));
 // Admin pages (dev-only, hidden in production)
 const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));

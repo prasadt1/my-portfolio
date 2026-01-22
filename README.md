@@ -124,6 +124,85 @@ All styles are inline for simplicity. You can:
 5. Wait 10-20 seconds for AI to analyze
 6. View the comprehensive recommendations
 
+## 📖 How to Review the Portfolio in 5 Minutes
+
+### Quick Navigation
+
+1. **StartHereDrawer** - Click the floating "Start Here" button (bottom-right) for quick access to:
+   - Competition Submission
+   - Top 5 Case Studies
+   - Free Checklist
+   - Hiring Snapshot
+   - Book Call
+
+2. **Open BRITA Case Study** - Navigate to `/projects/brita-ecommerce` to see:
+   - Outcome badges (cost, performance, reliability)
+   - Before/After transformation diagram
+   - Executive Summary modal
+   - PDF Brief export
+
+3. **Open Executive Summary Modal** - Click the "Executive Summary" button on any hero case study card to see:
+   - Business context
+   - Key decisions
+   - Deliverables
+   - Impact metrics
+
+4. **Export PDF Brief** - On any hero case study page:
+   - Click "Download 1-page Executive Brief (PDF)"
+   - Enter email (or use saved email)
+   - Brief page opens in new tab
+   - Use browser "Print → Save as PDF"
+
+5. **Download Checklist (Lead Magnet)** - Navigate to `/checklist`:
+   - Enter email to download
+   - Get AI-powered vendor proposal review checklist
+
+## 🏆 Google AI Challenge Submission
+
+### Competition Mode
+
+Set `VITE_COMPETITION_MODE=true` in your environment to:
+- Auto-promote all Phase 4.5 features (Navigation Drawer, Outcome Badges, Before/After Diagram, PDF Export)
+- Enable all major AI features in navigation
+- Show competition-specific badges and messaging
+
+### Cloud Run Deployment
+
+The portfolio is deployed on Google Cloud Run. To deploy:
+
+1. **Build and push Docker image:**
+   ```bash
+   gcloud builds submit --config cloudbuild.yaml
+   ```
+
+2. **Environment variables in Cloud Build:**
+   - Set `_VITE_COMPETITION_MODE: "true"` in `cloudbuild.yaml` substitutions
+   - All `VITE_PROMOTE_*` flags can be set via Cloud Build substitutions
+
+3. **Cloud Run label:**
+   Add to your Cloud Run service:
+   ```
+   google-ai-challenge-submission=true
+   ```
+
+### Embed Snippet
+
+For competition submission, you can embed a snippet in your submission document:
+
+```html
+<!-- Portfolio deployed on Google Cloud Run -->
+<iframe src="https://your-cloud-run-url.run.app" width="100%" height="600" frameborder="0"></iframe>
+```
+
+Or link directly:
+```
+https://your-cloud-run-url.run.app
+```
+
+### Phase 5 = Freeze
+
+**⚠️ Important:** Phase 5 represents a feature freeze. Only bugfixes are allowed from this point forward. No new features, pages, or major layout changes should be added.
+
 ## 📝 Environment Variables
 
 ### Core Configuration
@@ -185,12 +264,20 @@ All styles are inline for simplicity. You can:
 | `VITE_PROMOTE_TESTIMONIALS` | Enable Testimonials Rotator | `true`, `false` | No (default: `false`) |
 | `VITE_PROMOTE_IMPACT_DASHBOARDS` | Enable Impact Dashboards | `true`, `false` | No (default: `false`) |
 
+**Phase 4.5 Engagement Layer Flags:**
+| Variable | Description | Values | Required |
+|----------|-------------|--------|----------|
+| `VITE_PROMOTE_NAVIGATION_DRAWER` | Show "Start Here" drawer | `true`, `false` | No (default: `true`) |
+| `VITE_PROMOTE_OUTCOME_BADGES` | Show outcome badges | `true`, `false` | No (default: `true`) |
+| `VITE_PROMOTE_BEFORE_AFTER_DIAGRAM` | Show before/after diagrams | `true`, `false` | No (default: `true`) |
+| `VITE_PROMOTE_CASE_STUDY_PDF_EXPORT` | Enable PDF Brief export | `true`, `false` | No (default: `true`) |
+
 **Competition Mode (Phase 3.2B):**
 | Variable | Description | Values | Required |
 |----------|-------------|--------|----------|
 | `VITE_COMPETITION_MODE` | Auto-promote all major features | `true`, `false` | No (default: `false`) |
 
-When `VITE_COMPETITION_MODE=true`, all major features are automatically promoted regardless of individual flags.
+When `VITE_COMPETITION_MODE=true`, all major features (including Phase 4.5) are automatically promoted regardless of individual flags.
 
 **Feature Flag Modes:**
 - `on` - Feature enabled for all users
