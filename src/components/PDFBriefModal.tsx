@@ -63,6 +63,12 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
     try {
       const attribution = getAttributionSnapshot(locale);
       
+      console.log('[PDFBriefModal] Submitting request:', {
+        email: emailToUse.substring(0, 3) + '***',
+        caseStudySlug,
+        locale
+      });
+      
       const response = await fetch('/api/case-study-brief', {
         method: 'POST',
         headers: {
@@ -78,11 +84,17 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
         }),
       });
 
+      console.log('[PDFBriefModal] Response status:', response.status, response.statusText);
+
       if (!response.ok) {
-        throw new Error('Failed to request PDF brief');
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('[PDFBriefModal] Server error:', errorData);
+        throw new Error(errorData.error || `Server error: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
+
+      console.log('[PDFBriefModal] Response received:', data);
 
       trackEvent('case_study_pdf_brief_requested', {
         caseStudySlug,
@@ -101,10 +113,26 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
           caseStudySlug,
           locale,
         });
+        
+        // Ensure absolute URL if relative
+        const url = data.downloadUrl.startsWith('http') 
+          ? data.downloadUrl 
+          : `${window.location.origin}${data.downloadUrl}`;
+        
+        console.log('[PDFBriefModal] Opening brief URL:', url);
+        
         // Open print-optimized brief in a new tab (user can Save as PDF)
-        window.open(data.downloadUrl, '_blank', 'noopener,noreferrer');
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+        
+        if (!newWindow) {
+          // Popup blocked - show error
+          setError(t('caseStudy.pdfBrief.popupBlocked', { defaultValue: 'Popup blocked. Please allow popups and try again, or click the download button below.' }));
+          setIsSubmitting(false);
+          return;
+        }
       } else {
-        // PDF will be emailed
+        // PDF will be emailed (not implemented yet - just stores to Sheets)
+        console.warn('[PDFBriefModal] No downloadUrl in response - email sending not implemented yet');
         trackEvent('case_study_pdf_brief_emailed', {
           caseStudySlug,
           locale,
@@ -113,8 +141,23 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
 
       setIsSuccess(true);
     } catch (err) {
-      setError(t('caseStudy.pdfBrief.error', { defaultValue: 'Failed to generate PDF. Please try again.' }));
-      console.error('PDF Brief error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      console.error('[PDFBriefModal] Error:', err);
+      
+      // More specific error messages
+      if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
+        setError(t('caseStudy.pdfBrief.serverError', { 
+          defaultValue: 'Cannot connect to server. Please make sure the server is running and try again.' 
+        }));
+      } else if (errorMessage.includes('Server error')) {
+        setError(t('caseStudy.pdfBrief.error', { 
+          defaultValue: 'Server error. Please try again or contact support.' 
+        }));
+      } else {
+        setError(t('caseStudy.pdfBrief.error', { 
+          defaultValue: 'Failed to generate PDF. Please try again.' 
+        }));
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -223,8 +266,11 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
                       </div>
                     )}
 
-                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3 text-xs text-amber-700 dark:text-amber-400">
-                      {disclaimer}
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3 text-xs text-amber-700 dark:text-amber-400 space-y-2">
+                      <p>{disclaimer}</p>
+                      <p className="font-semibold mt-2">
+                        Note: The brief will open in a new tab. Use your browser's "Print" → "Save as PDF" to download.
+                      </p>
                     </div>
 
                     <button
@@ -254,18 +300,24 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
                   </h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
                     {downloadUrl
-                      ? t('caseStudy.pdfBrief.downloadStarted', { defaultValue: 'Your download should start automatically. If not, check your email.' })
+                      ? t('caseStudy.pdfBrief.downloadStarted', { defaultValue: 'The brief page should open in a new tab. Use your browser\'s "Print" → "Save as PDF" to download.' })
                       : t('caseStudy.pdfBrief.emailSent', { defaultValue: 'The PDF brief has been sent to your email.' })}
                   </p>
                   {downloadUrl && (
                     <a
-                      href={downloadUrl}
+                      href={downloadUrl.startsWith('http') ? downloadUrl : `${window.location.origin}${downloadUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                      onClick={() => {
+                        trackEvent('case_study_pdf_brief_manual_open', {
+                          caseStudySlug,
+                          locale,
+                        });
+                      }}
                     >
                       <Download size={18} />
-                      {t('caseStudy.pdfBrief.downloadAgain', { defaultValue: 'Download Again' })}
+                      {t('caseStudy.pdfBrief.openBrief', { defaultValue: 'Open Brief Page' })}
                     </a>
                   )}
                   <button
