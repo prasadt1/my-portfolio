@@ -43,6 +43,8 @@ import { usePersonaCTAs } from '../utils/personaCTAs';
 import CaseStudyNavigation, { type CaseStudySection } from '../components/CaseStudyNavigation';
 import OutcomeBadges from '../components/OutcomeBadges';
 import BeforeAfterMiniDiagram from '../components/BeforeAfterMiniDiagram';
+import ExpandableContent from '../components/ui/ExpandableContent';
+import SectionHeader from '../components/ui/SectionHeader';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -112,21 +114,7 @@ function getLocalizedArray(value: LocalizedStringArray | string[] | undefined, l
     return locale === 'de' ? localized.de : localized.en;
 }
 
-// Section Header component for consistent styling
-const SectionHeader: React.FC<{ title: string; subtitle?: string; className?: string }> = ({ 
-    title, 
-    subtitle,
-    className = ''
-}) => (
-    <div className={`mb-8 ${className}`}>
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
-            {title}
-        </h2>
-        {subtitle && (
-            <p className="mt-2 text-slate-600 dark:text-slate-400">{subtitle}</p>
-        )}
-    </div>
-);
+// SectionHeader is now imported from ui components
 
 // =============================================================================
 // MAIN COMPONENT
@@ -146,6 +134,7 @@ const CaseStudyPage: React.FC = () => {
     const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
     const [pdfBriefModalOpen, setPdfBriefModalOpen] = useState(false); // Phase 4.5: PDF Brief modal
     const [activePersona, setActivePersona] = useState<'hire' | 'consult' | 'toolkit' | null>(null); // Phase 3.4D: For CTA resolution
+    const [showAllArtifacts, setShowAllArtifacts] = useState(false); // Phase 5: Artifacts collapsed by default
     const [activeNavSection, setActiveNavSection] = useState<CaseStudySection>('snapshot'); // Phase 4 D1: Active section for nav pills
     const { primary: primaryCTA, secondary: secondaryCTA } = usePersonaCTAs(activePersona || getGlobalPersona());
     
@@ -477,9 +466,9 @@ const CaseStudyPage: React.FC = () => {
                         </motion.div>
                     </div>
 
-                    {/* Phase 4.1: Persona-based CTA Row */}
+                    {/* Phase 5: CTA Discipline - ONE primary CTA per viewport */}
                     <div className="flex flex-col sm:flex-row gap-4 items-start mb-8">
-                        {/* Primary CTA */}
+                        {/* Primary CTA - Only one filled button */}
                         {primaryCTA.path.startsWith('http') ? (
                             <a
                                 href={primaryCTA.path}
@@ -501,43 +490,41 @@ const CaseStudyPage: React.FC = () => {
                                 <ArrowRight size={18} />
                             </Link>
                         )}
-                        {/* Secondary CTA */}
-                        {secondaryCTA.path === '/projects' && study.artifactPreviews && study.artifactPreviews.length > 0 ? (
-                            <>
+                        {/* Phase 5: Secondary CTAs as links/outline only - no filled buttons */}
+                        <div className="flex flex-wrap gap-3 text-sm">
+                            {secondaryCTA.path === '/projects' && study.artifactPreviews && study.artifactPreviews.length > 0 && (
                                 <button
                                     onClick={() => {
                                         setArtifactRequestModalOpen(true);
                                         trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug });
                                     }}
-                                    className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
+                                    className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium underline decoration-2 underline-offset-2 transition-colors"
                                 >
-                                    {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
-                                    <ArrowRight size={18} />
+                                    {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Artifacts Pack' })}
                                 </button>
-                                {/* Phase 4.5: PDF Brief CTA */}
-                                {isPromoted('CASE_STUDY_PDF_EXPORT') && study.pdfBrief?.enabled !== false && (
-                                    <button
-                                        onClick={() => {
-                                            setPdfBriefModalOpen(true);
-                                            trackEvent('case_study_pdf_brief_cta_clicked', { section: 'hero', slug: study.slug });
-                                        }}
-                                        className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
-                                    >
-                                        {t('caseStudy.pdfBrief.button', { defaultValue: 'Download PDF Brief' })}
-                                        <ArrowRight size={18} />
-                                    </button>
-                                )}
-                            </>
-                        ) : (
-                            <Link
-                                to={secondaryCTA.path}
-                                className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
-                                onClick={() => trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug })}
-                            >
-                                {secondaryCTA.label}
-                                <ArrowRight size={18} />
-                            </Link>
-                        )}
+                            )}
+                            {/* Phase 4.5: PDF Brief CTA - as link */}
+                            {isPromoted('CASE_STUDY_PDF_EXPORT') && study.pdfBrief?.enabled !== false && (
+                                <button
+                                    onClick={() => {
+                                        setPdfBriefModalOpen(true);
+                                        trackEvent('case_study_pdf_brief_cta_clicked', { section: 'hero', slug: study.slug });
+                                    }}
+                                    className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium underline decoration-2 underline-offset-2 transition-colors"
+                                >
+                                    {t('caseStudy.pdfBrief.button', { defaultValue: 'Download PDF Brief' })}
+                                </button>
+                            )}
+                            {secondaryCTA.path !== '/projects' && (
+                                <Link
+                                    to={secondaryCTA.path}
+                                    className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium underline decoration-2 underline-offset-2 transition-colors"
+                                    onClick={() => trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug })}
+                                >
+                                    {secondaryCTA.label}
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -609,26 +596,24 @@ const CaseStudyPage: React.FC = () => {
             <section id="challenge" className="py-16 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header Row with Context Chips */}
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
-                            {t('caseStudy.challenge.title', 'The Challenge')}
-                        </h2>
-                        
-                        {/* Context Chips - Max 6 */}
-                        {challengeContent.contextChips.length > 0 && (
-                            <div className="flex flex-wrap gap-2">
-                                {challengeContent.contextChips.slice(0, 6).map((chip, idx) => (
-                                    <div 
-                                        key={idx}
-                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium"
-                                    >
-                                        <span className="text-slate-500 dark:text-slate-400">{chip.label}:</span>
-                                        <span className="text-slate-900 dark:text-white">{chip.value}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <SectionHeader
+                        title={t('caseStudy.challenge.title', 'The Challenge')}
+                        rightSlot={
+                            challengeContent.contextChips.length > 0 ? (
+                                <div className="flex flex-wrap gap-2">
+                                    {challengeContent.contextChips.slice(0, 6).map((chip, idx) => (
+                                        <div 
+                                            key={idx}
+                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full text-xs font-medium"
+                                        >
+                                            <span className="text-slate-500 dark:text-slate-400">{chip.label}:</span>
+                                            <span className="text-slate-900 dark:text-white">{chip.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : undefined
+                        }
+                    />
 
 
 
@@ -697,10 +682,15 @@ const CaseStudyPage: React.FC = () => {
                                         </ul>
                                     </div>
 
-                                    {/* Phase 4 D4: Subtle inline NDA note (not full heavy component) */}
+                                    {/* Phase 5: Improved Trust Layer - shorter, more credible NDA note */}
                                     <div className="bg-amber-50/50 dark:bg-amber-900/10 rounded-lg p-2 border border-amber-200/50 dark:border-amber-800/50">
                                         <p className="text-xs text-amber-700 dark:text-amber-400 leading-snug">
-                                            <span className="font-semibold">NDA:</span> {getLocalized(study.trustLayer.confidentialityNote, locale).slice(0, 80)}...
+                                            <span className="font-semibold">Note:</span> {(() => {
+                                                const note = getLocalized(study.trustLayer.confidentialityNote, locale);
+                                                // Phase 5: Extract first sentence only for brevity
+                                                const firstSentence = note.split('.')[0];
+                                                return firstSentence.length < 100 ? firstSentence + '.' : firstSentence.slice(0, 97) + '...';
+                                            })()}
                                         </p>
                                     </div>
                                 </div>
@@ -890,30 +880,42 @@ const CaseStudyPage: React.FC = () => {
                                         className="overflow-hidden"
                                     >
                                         <div className="space-y-6 mt-4">
-                                            {/* Full Narrative */}
+                                            {/* Full Narrative - Phase 5: ExpandableContent */}
                                             <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                                                    {challengeContent.situation}
-                                                </p>
+                                                <ExpandableContent
+                                                    initialLines={5}
+                                                    showMoreKey="common.showMore"
+                                                    showLessKey="common.showLess"
+                                                >
+                                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                                                        {challengeContent.situation}
+                                                    </p>
+                                                </ExpandableContent>
                                             </div>
 
-                                            {/* All Key Tensions */}
+                                            {/* All Key Tensions - Phase 5: ExpandableContent */}
                                             {challengeContent.keyTensions.length > 0 && (
                                                 <div>
                                                     <h3 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
                                                         {t('caseStudy.challenge.keyTensions', 'Key Tensions')}
                                                     </h3>
-                                                    <div className="grid md:grid-cols-2 gap-3">
-                                                        {challengeContent.keyTensions.map((tension, idx) => (
-                                                            <div 
-                                                                key={idx}
-                                                                className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
-                                                            >
-                                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                                                                <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
+                                                    <ExpandableContent
+                                                        initialLines={3}
+                                                        showMoreKey="common.showMore"
+                                                        showLessKey="common.showLess"
+                                                    >
+                                                        <div className="grid md:grid-cols-2 gap-3">
+                                                            {challengeContent.keyTensions.map((tension, idx) => (
+                                                                <div 
+                                                                    key={idx}
+                                                                    className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg"
+                                                                >
+                                                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                                                    <span className="text-sm text-slate-700 dark:text-slate-300">{tension}</span>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </ExpandableContent>
                                                 </div>
                                             )}
 
@@ -992,52 +994,29 @@ const CaseStudyPage: React.FC = () => {
                         
                         return (
                             <>
-                                {/* Default view: deliverables_compact (6-8 bullets) */}
-                                <ul className="grid md:grid-cols-2 gap-3 mb-6">
-                                    {compactDeliverables.slice(0, showFullDeliverables ? deliverablesList.length : 8).map((deliverable, idx) => (
-                                        <motion.li
-                                            key={idx}
-                                            initial={{ opacity: 0, y: 10 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: idx * 0.05 }}
-                                            className="flex items-start gap-3 bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700"
-                                        >
-                                            <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                            <span className="text-sm text-slate-700 dark:text-slate-300">{deliverable}</span>
-                                        </motion.li>
-                                    ))}
-                                </ul>
-
-                                {/* Phase 4 Wireframe: Button to expand full deliverables */}
-                                {hasMoreDeliverables && !showFullDeliverables && (
-                                    <div className="text-center">
-                                        <button
-                                            onClick={() => {
-                                                setShowFullDeliverables(true);
-                                                trackEvent('show_more_clicked', { section: 'deliverables', page: 'case_study', slug: study.slug });
-                                            }}
-                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-                                        >
-                                            Show full deliverables ({study.approach.phases.length - 8} more)
-                                            <ChevronDown size={16} />
-                                        </button>
-                                    </div>
-                                )}
-                                {showFullDeliverables && hasMoreDeliverables && (
-                                    <div className="text-center">
-                                        <button
-                                            onClick={() => {
-                                                setShowFullDeliverables(false);
-                                                trackEvent('show_more_clicked', { section: 'deliverables', page: 'case_study', action: 'collapse', slug: study.slug });
-                                            }}
-                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-                                        >
-                                            Show less
-                                            <ChevronUp size={16} />
-                                        </button>
-                                    </div>
-                                )}
+                                {/* Phase 5: ExpandableContent for deliverables - max 6-8 visible */}
+                                <ExpandableContent
+                                    initialLines={4}
+                                    showMoreKey="common.showMore"
+                                    showLessKey="common.showLess"
+                                    onExpand={() => trackEvent('deliverables_expanded', { slug: study.slug })}
+                                >
+                                    <ul className="grid md:grid-cols-2 gap-3">
+                                        {deliverablesList.map((deliverable, idx) => (
+                                            <motion.li
+                                                key={idx}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: idx * 0.05 }}
+                                                className="flex items-start gap-3 bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700"
+                                            >
+                                                <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
+                                                <span className="text-sm text-slate-700 dark:text-slate-300">{deliverable}</span>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+                                </ExpandableContent>
                             </>
                         );
                     })()}
@@ -1271,22 +1250,29 @@ const CaseStudyPage: React.FC = () => {
                 </section>
             )}
 
-            {/* How I would approach this today */}
+            {/* How I would approach this today - Phase 5: ExpandableContent */}
             {study.approachToday && (
                 <section className="py-16 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-700">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 md:p-10 border border-slate-200 dark:border-slate-700">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6">
-                                {t('projects.approachToday.title')}
-                            </h2>
-                            <ul className="space-y-3">
-                                {(locale === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-                                        <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={18} />
-                                        <span className="text-sm">{bullet}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <SectionHeader
+                                title={t('projects.approachToday.title')}
+                            />
+                            {/* Phase 5: ExpandableContent - max 3 bullets visible */}
+                            <ExpandableContent
+                                initialLines={3}
+                                showMoreKey="common.showMore"
+                                showLessKey="common.showLess"
+                            >
+                                <ul className="space-y-3">
+                                    {(locale === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
+                                        <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+                                            <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={18} />
+                                            <span className="text-sm">{bullet}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </ExpandableContent>
                         </div>
                     </div>
                 </section>
@@ -1362,11 +1348,11 @@ const CaseStudyPage: React.FC = () => {
                             {t('caseStudy.artifacts.explanation', { defaultValue: 'Artifacts are shared after a short fit call and NDA constraints check.' })}
                         </p>
                         
-                        {/* Phase 4 D5: Horizontal scroll on mobile, 2x3 grid on desktop */}
+                        {/* Phase 5: Show max 6 artifacts, rest collapsed */}
                         <div className="mb-8">
-                            {/* Desktop: 2x3 grid */}
+                            {/* Desktop: 2x3 grid - max 6 visible */}
                             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                                {study.artifactPreviews.map((artifact, idx) => {
+                                {study.artifactPreviews.slice(0, 6).map((artifact, idx) => {
                                     const iconMap: Record<string, string> = {
                                         'ADR': '📋',
                                         'Diagram': '📊',
@@ -1401,12 +1387,78 @@ const CaseStudyPage: React.FC = () => {
                                         </motion.div>
                                     );
                                 })}
+                                
+                                {/* Phase 5: Show more artifacts if > 6 */}
+                                {study.artifactPreviews.length > 6 && !showAllArtifacts && (
+                                    <div className="col-span-full text-center mt-4">
+                                        <button
+                                            onClick={() => {
+                                                setShowAllArtifacts(true);
+                                                trackEvent('artifacts_expanded', { slug: study.slug, total: study.artifactPreviews?.length || 0 });
+                                            }}
+                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                        >
+                                            {t('caseStudy.artifacts.showMore', { defaultValue: 'Show more artifacts' })} ({study.artifactPreviews.length - 6} more)
+                                            <ChevronDown size={16} />
+                                        </button>
+                                    </div>
+                                )}
+                                
+                                {/* Additional artifacts when expanded */}
+                                {showAllArtifacts && study.artifactPreviews.length > 6 && (
+                                    <>
+                                        {study.artifactPreviews?.slice(6).map((artifact, idx) => {
+                                            const iconMap: Record<string, string> = {
+                                                'ADR': '📋',
+                                                'Diagram': '📊',
+                                                'Checklist': '✅',
+                                                'Roadmap': '🗺️',
+                                                'TCO': '💰',
+                                                'Risk': '⚠️'
+                                            };
+                                            return (
+                                                <motion.div
+                                                    key={idx + 6}
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ delay: idx * 0.05 }}
+                                                    className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                                                >
+                                                    <div className="flex items-start gap-3 mb-2">
+                                                        <div className="text-2xl flex-shrink-0">{iconMap[artifact.type] || '📄'}</div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <h3 className="font-semibold text-slate-900 dark:text-white text-sm mb-1 line-clamp-1">
+                                                                {getLocalized(artifact.title, locale)}
+                                                            </h3>
+                                                            <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
+                                                                {getLocalized(artifact.description, locale)}
+                                                            </p>
+                                                            <span className="inline-block mt-2 px-2 py-0.5 rounded text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400">
+                                                                {t('caseStudy.artifacts.onRequest', 'On request')}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            );
+                                        })}
+                                        <div className="col-span-full text-center mt-4">
+                                            <button
+                                                onClick={() => setShowAllArtifacts(false)}
+                                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                            >
+                                                {t('common.showLess', 'Show less')}
+                                                <ChevronUp size={16} />
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             
-                            {/* Mobile: Horizontal scroll */}
+                            {/* Mobile: Horizontal scroll - max 6 visible */}
                             <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 pb-4">
                                 <div className="flex gap-4" style={{ width: 'max-content' }}>
-                                    {study.artifactPreviews.map((artifact, idx) => {
+                                    {study.artifactPreviews?.slice(0, showAllArtifacts ? study.artifactPreviews.length : 6).map((artifact, idx) => {
                                         const iconMap: Record<string, string> = {
                                             'ADR': '📋',
                                             'Diagram': '📊',
@@ -1439,9 +1491,35 @@ const CaseStudyPage: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </motion.div>
-                                        );
-                                    })}
+                                    );
+                                })}
                                 </div>
+                                {/* Phase 5: Show more button for mobile if > 6 */}
+                                {study.artifactPreviews.length > 6 && !showAllArtifacts && (
+                                    <div className="text-center mt-4 px-4">
+                                        <button
+                                            onClick={() => {
+                                                setShowAllArtifacts(true);
+                                                trackEvent('artifacts_expanded', { slug: study.slug, total: study.artifactPreviews?.length || 0 });
+                                            }}
+                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                        >
+                                            {t('caseStudy.artifacts.showMore', { defaultValue: 'Show more artifacts' })} ({study.artifactPreviews.length - 6} more)
+                                            <ChevronDown size={16} />
+                                        </button>
+                                    </div>
+                                )}
+                                {showAllArtifacts && study.artifactPreviews.length > 6 && (
+                                    <div className="text-center mt-4 px-4">
+                                        <button
+                                            onClick={() => setShowAllArtifacts(false)}
+                                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                        >
+                                            {t('common.showLess', 'Show less')}
+                                            <ChevronUp size={16} />
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         

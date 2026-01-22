@@ -63,11 +63,13 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
     try {
       const attribution = getAttributionSnapshot(locale);
       
-      console.log('[PDFBriefModal] Submitting request:', {
-        email: emailToUse.substring(0, 3) + '***',
-        caseStudySlug,
-        locale
-      });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[PDFBriefModal] Submitting request:', {
+          email: emailToUse.substring(0, 3) + '***',
+          caseStudySlug,
+          locale
+        });
+      }
       
       const response = await fetch('/api/case-study-brief', {
         method: 'POST',
@@ -84,17 +86,23 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
         }),
       });
 
-      console.log('[PDFBriefModal] Response status:', response.status, response.statusText);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[PDFBriefModal] Response status:', response.status, response.statusText);
+      }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-        console.error('[PDFBriefModal] Server error:', errorData);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('[PDFBriefModal] Server error:', errorData);
+        }
         throw new Error(errorData.error || `Server error: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
 
-      console.log('[PDFBriefModal] Response received:', data);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[PDFBriefModal] Response received:', data);
+      }
 
       trackEvent('case_study_pdf_brief_requested', {
         caseStudySlug,
@@ -119,7 +127,9 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
           ? data.downloadUrl 
           : `${window.location.origin}${data.downloadUrl}`;
         
-        console.log('[PDFBriefModal] Opening brief URL:', url);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[PDFBriefModal] Opening brief URL:', url);
+        }
         
         // Open print-optimized brief in a new tab (user can Save as PDF)
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
@@ -132,7 +142,9 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
         }
       } else {
         // PDF will be emailed (not implemented yet - just stores to Sheets)
-        console.warn('[PDFBriefModal] No downloadUrl in response - email sending not implemented yet');
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('[PDFBriefModal] No downloadUrl in response - email sending not implemented yet');
+        }
         trackEvent('case_study_pdf_brief_emailed', {
           caseStudySlug,
           locale,
@@ -142,7 +154,9 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
       setIsSuccess(true);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-      console.error('[PDFBriefModal] Error:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[PDFBriefModal] Error:', err);
+      }
       
       // More specific error messages
       if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {

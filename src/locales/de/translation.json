@@ -8,7 +8,9 @@
         "readMore": "Weiterlesen",
         "close": "Schließen",
         "viewProject": "Projekt ansehen",
-        "viewAllProjects": "Alle Projekte ansehen"
+        "viewAllProjects": "Alle Projekte ansehen",
+        "showMore": "Mehr anzeigen",
+        "showLess": "Weniger anzeigen"
     },
     "nav": {
         "home": "Startseite",
@@ -954,7 +956,7 @@
             "role": "Meine Rolle"
         },
         "executiveSnapshot": {
-            "title": "Executive Snapshot",
+            "title": "Kurzüberblick",
             "whyItMattered": "Warum es wichtig war",
             "keyTensions": "Kernspannungen",
             "viewPersonaDetails": "Herausforderungen nach Persona",
@@ -1048,7 +1050,8 @@
             "onRequest": "Auf Anfrage",
             "availableOnRequest": "Auf Anfrage verfügbar",
             "requestAccess": "Artefakte anfragen",
-            "requestFullPack": "Vollständiges Artefaktpaket anfragen",
+            "requestFullPack": "Artefakt-Paket anfordern",
+            "showMore": "Mehr Artefakte anzeigen",
             "privacyNote": "Artefakte sind anonymisiert und werden selektiv geteilt, um die Vertraulichkeit der Kunden zu schützen. Alle Diagramme werden aus dem Gedächtnis neu erstellt und stellen Patterns dar, nicht interne Architekturen.",
             "explanation": "Artefakte werden nach kurzem Fit-Call und NDA-Abklärung geteilt."
         },
@@ -1403,6 +1406,9 @@
         },
         "toolkit": {
             "socialProof": "Von CTOs im EU-Mittelstand genutzt."
+        },
+        "impact": {
+            "representative": "Repräsentative Ergebnisse — anonymisiert"
         }
     },
     "checklist": {

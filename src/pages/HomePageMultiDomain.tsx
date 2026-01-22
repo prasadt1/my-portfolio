@@ -614,8 +614,9 @@ const HomePageMultiDomain: React.FC = () => {
                             ]}
                             compact={true}
                         />
-                        <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4">
-                            Representative outcomes (anonymized).
+                        {/* Phase 5: Ensure "Representative outcomes — anonymized" remains visible but subtle */}
+                        <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-4 opacity-75">
+                            {t('homepage.impact.representative', { defaultValue: 'Representative outcomes — anonymized' })}
                         </p>
                     </div>
                 </section>

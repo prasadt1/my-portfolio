@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { PageShell, PageHeader, Container } from '../components/layout';
 import IndependentAdvisorySection from '../components/sections/IndependentAdvisorySection';
 import { usePersonaCTAs } from '../utils/personaCTAs';
+import ExpandableContent from '../components/ui/ExpandableContent';
+import SectionHeader from '../components/ui/SectionHeader';
 
 // Good/Better/Best service tiers
 const serviceTiers = [
@@ -135,9 +137,18 @@ const ServicesPage: React.FC = () => {
                                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
                                             {t(service.titleKey)}
                                         </h3>
-                                        <p className="text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
-                                            {t(service.subtitleKey)}
-                                        </p>
+                                        {/* Phase 5: ExpandableContent for long descriptions */}
+                                        <div className="mb-6 flex-grow">
+                                            <ExpandableContent
+                                                initialLines={3}
+                                                showMoreKey="common.showMore"
+                                                showLessKey="common.showLess"
+                                            >
+                                                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                                    {t(service.subtitleKey)}
+                                                </p>
+                                            </ExpandableContent>
+                                        </div>
 
                                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-4">
                                             <div>
@@ -249,9 +260,10 @@ const ServicesPage: React.FC = () => {
                         viewport={{ once: true }}
                         className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 md:p-12 mb-16 border border-slate-200 dark:border-slate-700"
                     >
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-                            {t('services.whatHappensNext.title', { defaultValue: 'How I Work' })}
-                        </h2>
+                        <SectionHeader
+                            title={t('services.whatHappensNext.title', { defaultValue: 'How I Work' })}
+                            className="text-center"
+                        />
                         {/* Phase 4 Wireframe: 3 steps only */}
                         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                             {(t('services.whatHappensNext.steps', { returnObjects: true }) as string[]).slice(0, 3).map((step, idx) => (

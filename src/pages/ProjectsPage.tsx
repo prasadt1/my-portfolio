@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 import { isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, type CaseStudy, type LocalizedString } from '../types/CaseStudy';
 import ProjectCard from '../components/ProjectCard';
 import { trackEvent } from '../services/analytics';
+import SectionHeader from '../components/ui/SectionHeader';
 
 // Helper to get situation text from any challenge structure
 function getChallengeSituation(challenge: CaseStudy['challenge'], locale: string): string {
@@ -384,9 +385,9 @@ const ProjectsPage: React.FC = () => {
                         className="mb-12"
                     >
                         <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
-                                {t('projectsPage.featured.title', { defaultValue: 'Featured Case Studies' })}
-                            </h2>
+                            <SectionHeader
+                                title={t('projectsPage.featured.title', { defaultValue: 'Featured Case Studies' })}
+                            />
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                             {featuredProjects.map((project, idx) => (
@@ -435,9 +436,9 @@ const ProjectsPage: React.FC = () => {
                         className="mb-12"
                     >
                         <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
-                                {t('projectsPage.allProjects.title', { defaultValue: 'All Projects' })}
-                            </h2>
+                            <SectionHeader
+                                title={t('projectsPage.allProjects.title', { defaultValue: 'All Projects' })}
+                            />
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                             {displayedOtherProjects.map((project, idx) => (

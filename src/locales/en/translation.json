@@ -8,7 +8,9 @@
         "readMore": "Read More",
         "close": "Close",
         "viewProject": "View Project",
-        "viewAllProjects": "View All Projects"
+        "viewAllProjects": "View All Projects",
+        "showMore": "Show more",
+        "showLess": "Show less"
     },
     "nav": {
         "home": "Home",
@@ -997,7 +999,7 @@
             "role": "My Role"
         },
         "executiveSnapshot": {
-            "title": "Executive Snapshot",
+            "title": "Executive Summary",
             "whyItMattered": "Why it mattered",
             "keyTensions": "Key tensions",
             "viewPersonaDetails": "View challenges by persona",
@@ -1091,7 +1093,8 @@
             "onRequest": "On request",
             "availableOnRequest": "Available on request",
             "requestAccess": "Request full artifacts",
-            "requestFullPack": "Request Full Artifacts Pack",
+            "requestFullPack": "Request Artifacts Pack",
+            "showMore": "Show more artifacts",
             "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.",
             "explanation": "Artifacts are shared after a short fit call and NDA constraints check."
         },
@@ -1446,6 +1449,9 @@
         },
         "toolkit": {
             "socialProof": "Used by CTOs across EU mid-market."
+        },
+        "impact": {
+            "representative": "Representative outcomes — anonymized"
         }
     },
     "checklist": {

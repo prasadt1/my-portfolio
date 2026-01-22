@@ -43,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     // Feature flag for Executive Modal
     const execModalFlag = useFeatureFlag('exec_modal');
     
-    // Debug: log flag status (remove in production)
+    // Debug: log flag status (dev only)
     React.useEffect(() => {
         if (process.env.NODE_ENV === 'development') {
             console.log('[ProjectCard] exec_modal flag:', execModalFlag);
