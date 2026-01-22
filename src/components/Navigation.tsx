@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import { isCompetitionMode } from '../config/competition';
 import { trackEvent } from '../services/analytics';
-import { isPromoted } from '../config/featureUtils';
+import { isPromoted, type FeatureKey } from '../config/featureUtils';
 import { usePersonaCTAs } from '../utils/personaCTAs';
 
 const Navigation: React.FC = () => {
@@ -39,10 +39,10 @@ const Navigation: React.FC = () => {
   ];
 
   // Dropdown items
-  const toolsItems = [
-    { path: '/checklist', labelKey: 'nav.checklist', featureKey: 'AI_CHECKLIST' },
-    { path: '/risk-radar', labelKey: 'nav.riskRadar', featureKey: 'AI_RISK_RADAR' },
-    { path: '/architecture-engine', labelKey: 'nav.architectureEngine', featureKey: 'AI_ARCH_ENGINE' },
+  const toolsItems: Array<{ path: string; labelKey: string; featureKey?: FeatureKey }> = [
+    { path: '/checklist', labelKey: 'nav.checklist', featureKey: 'AI_CHECKLIST' as FeatureKey },
+    { path: '/risk-radar', labelKey: 'nav.riskRadar', featureKey: 'AI_RISK_RADAR' as FeatureKey },
+    { path: '/architecture-engine', labelKey: 'nav.architectureEngine', featureKey: 'AI_ARCH_ENGINE' as FeatureKey },
   ].filter(item => !item.featureKey || isPromoted(item.featureKey));
 
   const consultingItems = [
@@ -50,8 +50,8 @@ const Navigation: React.FC = () => {
     { path: '/services', labelKey: 'nav.howIWork' },
   ];
 
-  const hiringItems = [
-    { path: '/hiring', labelKey: 'nav.hiring', featureKey: 'HOMEPAGE_PERSONA_TABS' },
+  const hiringItems: Array<{ path: string; labelKey: string; featureKey?: FeatureKey }> = [
+    { path: '/hiring', labelKey: 'nav.hiring', featureKey: 'HOMEPAGE_PERSONA_TABS' as FeatureKey },
   ].filter(item => !item.featureKey || isPromoted(item.featureKey));
 
   // Dropdown state

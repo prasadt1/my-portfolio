@@ -292,6 +292,11 @@ export interface CaseStudy {
 
     // Phase 3.4C: Credibility signals for hero case studies
     credibilitySignals?: CredibilitySignals;
+
+    // Phase 4.5: Engagement Layer
+    outcomeBadges?: OutcomeBadge[]; // max 4
+    beforeAfterDiagram?: BeforeAfterDiagram;
+    pdfBrief?: CaseStudyPDFBrief;
 }
 
 /**
@@ -343,4 +348,40 @@ export interface ArtifactItem {
     previewImage?: string;
     downloadUrl?: string; // Only for public artifacts
     estimatedValue?: string; // e.g. "€1,200 consulting equivalent"
+}
+
+// =============================================================================
+// PHASE 4.5: ENGAGEMENT LAYER TYPES
+// =============================================================================
+
+/**
+ * Phase 4.5: Outcome Badge - visual proof indicators
+ */
+export interface OutcomeBadge {
+    label: LocalizedString; // e.g. {en:"€415K saved", de:"€415T eingespart"}
+    type: 'cost' | 'performance' | 'compliance' | 'reliability' | 'speed' | 'ai';
+}
+
+/**
+ * Phase 4.5: Before/After Mini Diagram - visual transformation proof
+ */
+export interface BeforeAfterDiagram {
+    title?: LocalizedString;
+    before: {
+        title: LocalizedString; // "Before"
+        bullets: LocalizedStringArray; // max 4
+    };
+    after: {
+        title: LocalizedString; // "After"
+        bullets: LocalizedStringArray; // max 4
+    };
+    deltaBadges?: OutcomeBadge[]; // max 3
+}
+
+/**
+ * Phase 4.5: Case Study PDF Brief - gated export configuration
+ */
+export interface CaseStudyPDFBrief {
+    enabled?: boolean; // default true for hero case studies
+    disclaimer: LocalizedString; // NDA + anonymized note
 }

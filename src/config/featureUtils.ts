@@ -3,6 +3,8 @@
 
 import { FEATURES, type FeatureKey, type FeatureFlag } from './features';
 
+export type { FeatureKey } from './features';
+
 /**
  * Check if a feature is enabled (can be accessed, even if not promoted)
  */

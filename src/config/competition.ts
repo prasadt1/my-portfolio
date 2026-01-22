@@ -40,6 +40,11 @@ export const COMPETITION_CONFIG = {
     'CASE_STUDY_ARTIFACTS_REQUEST',
     'TESTIMONIALS_ROTATOR',
     'IMPACT_DASHBOARDS',
+    // Phase 4.5: Engagement Layer
+    'NAVIGATION_DRAWER',
+    'OUTCOME_BADGES',
+    'BEFORE_AFTER_DIAGRAM',
+    'CASE_STUDY_PDF_EXPORT',
   ] as const,
   
   // Badge text

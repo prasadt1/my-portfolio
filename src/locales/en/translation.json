@@ -1095,6 +1095,26 @@
             "privacyNote": "Artifacts are anonymized and shared selectively to protect client confidentiality. All diagrams are recreated from memory and represent patterns, not internal architectures.",
             "explanation": "Artifacts are shared after a short fit call and NDA constraints check."
         },
+        "pdfBrief": {
+            "button": "Download 1-page Executive Brief (PDF)",
+            "modalTitle": "Download 1-page Executive Brief",
+            "modalSubtitle": "Get a concise PDF summary of this case study",
+            "consent": "I agree to receive the PDF brief by email and understand it contains anonymized patterns only.",
+            "submit": "Download PDF Brief",
+            "generating": "Generating...",
+            "success": "PDF Brief Generated!",
+            "downloadStarted": "Your download should start automatically. If not, check your email.",
+            "emailSent": "The PDF brief has been sent to your email.",
+            "downloadAgain": "Download Again",
+            "emailRequired": "Email is required",
+            "consentRequired": "Please agree to receive the PDF brief",
+            "error": "Failed to generate PDF. Please try again."
+        },
+        "beforeAfter": {
+            "before": "Before",
+            "after": "After",
+            "deltaLabel": "Improvements"
+        },
         "ndaDisclaimer": {
             "title": "NDA & Ownership Disclaimer",
             "whatPublic": "What I can share publicly",
@@ -1611,6 +1631,19 @@
             "message": "This feature is currently disabled. Please contact support if you need access.",
             "contact": "Contact Support",
             "goHome": "Go Back Home"
+        }
+    },
+    "startHere": {
+        "title": "Where should I start?",
+        "subtitle": "Quick links to get the most value",
+        "button": "Start Here",
+        "recommended": "Recommended for you",
+        "links": {
+            "competition": "Competition Submission",
+            "caseStudies": "Top 5 Case Studies",
+            "checklist": "Free Checklist",
+            "hiring": "Hiring Snapshot",
+            "bookCall": "Book Call"
         }
     },
     "consultationPage": {

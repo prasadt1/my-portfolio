@@ -38,4 +38,4 @@ const CardStandard: React.FC<CardStandardProps> = ({
 export default CardStandard;
 
 // Re-export for convenience
-export { Card as CardStandardBase } from './Card';
+export { default as CardStandardBase } from './Card';

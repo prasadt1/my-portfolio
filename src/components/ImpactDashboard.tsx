@@ -2,13 +2,13 @@
 // Phase 3.3E: Mini impact dashboard component
 
 import React from 'react';
-import { TrendingUp, DollarSign, Clock, Shield, Target } from 'lucide-react';
+import { DollarSign, Clock, Shield, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ImpactMetric {
     value: string;
     label: string;
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
     type?: 'savings' | 'time' | 'risk' | 'scope';
 }
 

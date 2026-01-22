@@ -282,7 +282,7 @@ export const projects: CaseStudy[] = [
             {
                 title: { en: 'Competition Submission Package', de: 'Wettbewerbs-Einreichungspaket' },
                 description: { en: 'Complete submission documentation and presentation materials', de: 'Vollständige Einreichungsdokumentation und Präsentationsmaterialien' },
-                type: 'DOC',
+                type: 'ADR',
                 gated: true
             }
         ],
@@ -295,6 +295,59 @@ export const projects: CaseStudy[] = [
             region: { en: 'Global (competition)', de: 'Global (Wettbewerb)' },
             engagementType: { en: 'Competition entry / Product', de: 'Wettbewerbseintrag / Produkt' },
             decisionAuthority: { en: 'Full-stack developer, all decisions', de: 'Full-Stack-Entwickler, alle Entscheidungen' }
+        },
+        // Phase 4.5: Engagement Layer
+        outcomeBadges: [
+            { label: { en: '75% cost reduction', de: '75% Kostenreduzierung' }, type: 'cost' },
+            { label: { en: '2.5s analysis speed', de: '2,5s Analysegeschwindigkeit' }, type: 'speed' },
+            { label: { en: '100% observability', de: '100% Observability' }, type: 'performance' }
+        ],
+        beforeAfterDiagram: {
+            before: {
+                title: { en: 'Before', de: 'Vorher' },
+                bullets: {
+                    en: [
+                        'Standard LLM calls with full context each time',
+                        'High token costs (~$2.00 per 1k images)',
+                        'Black box AI responses',
+                        'No cost visibility or optimization'
+                    ],
+                    de: [
+                        'Standard-LLM-Calls mit vollem Kontext jedes Mal',
+                        'Hohe Token-Kosten (~$2,00 pro 1k Bilder)',
+                        'Black-Box-AI-Antworten',
+                        'Keine Kosten-Transparenz oder Optimierung'
+                    ]
+                }
+            },
+            after: {
+                title: { en: 'After', de: 'Nachher' },
+                bullets: {
+                    en: [
+                        'Context caching for 32KB system prompt',
+                        '75% reduction in input token costs',
+                        'Glass-box reasoning UI with explanations',
+                        'Structured JSON responses for reliability'
+                    ],
+                    de: [
+                        'Context-Caching für 32KB System-Prompt',
+                        '75% Reduzierung der Input-Token-Kosten',
+                        'Glass-Box-Reasoning-UI mit Erklärungen',
+                        'Strukturierte JSON-Antworten für Zuverlässigkeit'
+                    ]
+                }
+            },
+            deltaBadges: [
+                { label: { en: '75% cost reduction', de: '75% Kostenreduzierung' }, type: 'cost' },
+                { label: { en: '2.5s response time', de: '2,5s Antwortzeit' }, type: 'speed' }
+            ]
+        },
+        pdfBrief: {
+            enabled: true,
+            disclaimer: {
+                en: 'This executive brief contains anonymized patterns and generic architecture decisions. All specific client details and proprietary information have been removed. Diagrams are recreated from memory and represent industry-standard patterns, not internal architectures.',
+                de: 'Dieses Executive Brief enthält anonymisierte Patterns und generische Architektur-Entscheidungen. Alle spezifischen Client-Details und proprietären Informationen wurden entfernt. Diagramme wurden aus dem Gedächtnis neu erstellt und repräsentieren branchenübliche Patterns, nicht interne Architekturen.'
+            }
         }
     },
     // --- TIER 1: FLAGSHIP ---
@@ -405,6 +458,59 @@ export const projects: CaseStudy[] = [
             region: { en: 'Global (Fortune 100)', de: 'Global (Fortune 100)' },
             engagementType: { en: 'Standards development consortium', de: 'Standards-Entwicklungskonsortium' },
             decisionAuthority: { en: 'Technical specification lead, consensus builder', de: 'Technischer Spezifikations-Lead, Konsens-Builder' }
+        },
+        // Phase 4.5: Engagement Layer
+        outcomeBadges: [
+            { label: { en: '60% faster integration', de: '60% schnellere Integration' }, type: 'speed' },
+            { label: { en: '90+ Fortune 100 adopters', de: '90+ Fortune-100-Adopter' }, type: 'compliance' },
+            { label: { en: '25% adoption increase', de: '25% Adoptionssteigerung' }, type: 'performance' }
+        ],
+        beforeAfterDiagram: {
+            before: {
+                title: { en: 'Before', de: 'Vorher' },
+                bullets: {
+                    en: [
+                        'Fragmented manual email/spreadsheet exchanges',
+                        'No API standard for carbon data',
+                        'Inconsistent data formats across vendors',
+                        'High integration friction for new participants'
+                    ],
+                    de: [
+                        'Fragmentierte manuelle E-Mail/Tabellen-Austausche',
+                        'Kein API-Standard für Carbon-Daten',
+                        'Inkonsistente Datenformate über Vendor hinweg',
+                        'Hohe Integrations-Reibung für neue Teilnehmer'
+                    ]
+                }
+            },
+            after: {
+                title: { en: 'After', de: 'Nachher' },
+                bullets: {
+                    en: [
+                        'Standardized PACT API for carbon data exchange',
+                        'Automated conformance testing and verification',
+                        'Decentralized network preserving data sovereignty',
+                        'Streamlined vendor onboarding process'
+                    ],
+                    de: [
+                        'Standardisierte PACT-API für Carbon-Daten-Austausch',
+                        'Automatisierte Conformance-Tests und Verifizierung',
+                        'Dezentrales Netzwerk mit Daten-Souveränität',
+                        'Vereinfachter Vendor-Onboarding-Prozess'
+                    ]
+                }
+            },
+            deltaBadges: [
+                { label: { en: '60% faster integration', de: '60% schnellere Integration' }, type: 'speed' },
+                { label: { en: '90+ adopters', de: '90+ Adopter' }, type: 'compliance' }
+            ]
+        },
+        pdfBrief: {
+            enabled: true,
+            disclaimer: {
+                en: 'This executive brief contains anonymized patterns and generic architecture decisions. All specific client details and proprietary information have been removed. Diagrams are recreated from memory and represent industry-standard patterns, not internal architectures.',
+                de: 'Dieses Executive Brief enthält anonymisierte Patterns und generische Architektur-Entscheidungen. Alle spezifischen Client-Details und proprietären Informationen wurden entfernt. Diagramme wurden aus dem Gedächtnis neu erstellt und repräsentieren branchenübliche Patterns, nicht interne Architekturen.'
+            }
         }
     },
     {
@@ -731,9 +837,9 @@ export const projects: CaseStudy[] = [
             de: 'Migration der 6-Markt-eCommerce-Landschaft von Shopware zu Shopify Plus mit Zero-Downtime und stabilen Integrationsmustern in EMEA.'
         },
         listingMetrics: [
-            { en: '6 markets', de: '6 Märkte' },
-            { en: 'Zero-downtime cutover', de: 'Zero-Downtime Cutover' },
-            { en: 'Shopware → Shopify Plus', de: 'Shopware → Shopify Plus' }
+            { label: { en: 'Scope', de: 'Scope' }, value: { en: '6 markets', de: '6 Märkte' }, type: 'scope' },
+            { label: { en: 'Cutover', de: 'Cutover' }, value: { en: 'Zero downtime', de: 'Zero Downtime' }, type: 'constraint' },
+            { label: { en: 'Platform', de: 'Plattform' }, value: { en: 'Shopware → Shopify Plus', de: 'Shopware → Shopify Plus' }, type: 'scope' }
         ],
         // Phase 3.1: Trust Layer
         trustLayer: {
@@ -823,6 +929,59 @@ export const projects: CaseStudy[] = [
             region: { en: 'EMEA (6 markets)', de: 'EMEA (6 Märkte)' },
             engagementType: { en: 'Internal transformation program', de: 'Interne Transformationsprogramm' },
             decisionAuthority: { en: 'Lead Architect, final design approval', de: 'Lead-Architekt, finale Design-Freigabe' }
+        },
+        // Phase 4.5: Engagement Layer
+        outcomeBadges: [
+            { label: { en: 'Zero downtime migration', de: 'Zero-Downtime-Migration' }, type: 'reliability' },
+            { label: { en: '30% faster deployments', de: '30% schnellere Deployments' }, type: 'speed' },
+            { label: { en: '15+ markets supported', de: '15+ Märkte unterstützt' }, type: 'performance' }
+        ],
+        beforeAfterDiagram: {
+            before: {
+                title: { en: 'Before', de: 'Vorher' },
+                bullets: {
+                    en: [
+                        'Monolithic Shopware platform',
+                        'On-premise infrastructure with scalability limits',
+                        'High maintenance overhead',
+                        'Slow release cycles blocking market launches'
+                    ],
+                    de: [
+                        'Monolithische Shopware-Plattform',
+                        'On-Premise-Infrastruktur mit Skalierbarkeitsgrenzen',
+                        'Hoher Wartungsaufwand',
+                        'Langsame Release-Zyklen blockieren Markt-Launches'
+                    ]
+                }
+            },
+            after: {
+                title: { en: 'After', de: 'Nachher' },
+                bullets: {
+                    en: [
+                        'Headless Shopify Plus architecture',
+                        'Cloud-native infrastructure with global scalability',
+                        'Decoupled frontend enabling faster iterations',
+                        'Multi-tenant governance model for market flexibility'
+                    ],
+                    de: [
+                        'Headless Shopify Plus Architektur',
+                        'Cloud-native Infrastruktur mit globaler Skalierbarkeit',
+                        'Entkoppeltes Frontend für schnellere Iterationen',
+                        'Multi-Tenant-Governance-Modell für Markt-Flexibilität'
+                    ]
+                }
+            },
+            deltaBadges: [
+                { label: { en: 'Zero downtime', de: 'Zero Downtime' }, type: 'reliability' },
+                { label: { en: '30% faster', de: '30% schneller' }, type: 'speed' }
+            ]
+        },
+        pdfBrief: {
+            enabled: true,
+            disclaimer: {
+                en: 'This executive brief contains anonymized patterns and generic architecture decisions. All specific client details and proprietary information have been removed. Diagrams are recreated from memory and represent industry-standard patterns, not internal architectures.',
+                de: 'Dieses Executive Brief enthält anonymisierte Patterns und generische Architektur-Entscheidungen. Alle spezifischen Client-Details und proprietären Informationen wurden entfernt. Diagramme wurden aus dem Gedächtnis neu erstellt und repräsentieren branchenübliche Patterns, nicht interne Architekturen.'
+            }
         }
     },
     {
@@ -1147,9 +1306,9 @@ export const projects: CaseStudy[] = [
             de: 'Re-Architektur der Ad-Serving-Plattform von PHP/MySQL zu Go/Redis, Skalierung auf 5M+ tägliche Transaktionen mit <20ms Latenz und 99,99% Verfügbarkeit.'
         },
         listingMetrics: [
-            { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' },
-            { en: '99.99% SLA', de: '99,99% SLA' },
-            { en: 'Revenue +20%', de: 'Umsatz +20%' }
+            { label: { en: 'Scale', de: 'Skalierung' }, value: { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' }, type: 'scope' },
+            { label: { en: 'Reliability', de: 'Zuverlässigkeit' }, value: { en: '99.99% SLA', de: '99,99% SLA' }, type: 'constraint' },
+            { label: { en: 'Impact', de: 'Impact' }, value: { en: 'Revenue +20%', de: 'Umsatz +20%' }, type: 'outcome' }
         ],
         // Phase 3.1: Trust Layer
         trustLayer: {
@@ -1239,6 +1398,59 @@ export const projects: CaseStudy[] = [
             region: { en: 'DACH', de: 'DACH' },
             engagementType: { en: 'High-scale platform optimization', de: 'High-Scale-Plattform-Optimierung' },
             decisionAuthority: { en: 'Lead Architect, technical decisions', de: 'Lead-Architekt, technische Entscheidungen' }
+        },
+        // Phase 4.5: Engagement Layer
+        outcomeBadges: [
+            { label: { en: '20% revenue increase', de: '20% Umsatzsteigerung' }, type: 'performance' },
+            { label: { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' }, type: 'speed' },
+            { label: { en: '99.9% uptime SLA', de: '99,9% Uptime SLA' }, type: 'reliability' }
+        ],
+        beforeAfterDiagram: {
+            before: {
+                title: { en: 'Before', de: 'Vorher' },
+                bullets: {
+                    en: [
+                        'Ad server latency during peak hours',
+                        'Revenue loss from failed ad requests',
+                        'Scalability bottlenecks at 2M transactions/day',
+                        'Inconsistent performance across regions'
+                    ],
+                    de: [
+                        'Ad-Server-Latenz während Peak-Stunden',
+                        'Umsatzverluste durch fehlgeschlagene Ad-Requests',
+                        'Skalierbarkeits-Engpässe bei 2M Transaktionen/Tag',
+                        'Inkonsistente Performance über Regionen hinweg'
+                    ]
+                }
+            },
+            after: {
+                title: { en: 'After', de: 'Nachher' },
+                bullets: {
+                    en: [
+                        'Exactly-once processing with Redis deduplication',
+                        'Horizontal scaling to 5M+ transactions/day',
+                        '99.9% uptime SLA maintained',
+                        '20% revenue increase from improved ad delivery'
+                    ],
+                    de: [
+                        'Exactly-Once-Processing mit Redis-Deduplizierung',
+                        'Horizontale Skalierung auf 5M+ Transaktionen/Tag',
+                        '99,9% Uptime SLA eingehalten',
+                        '20% Umsatzsteigerung durch verbesserte Ad-Auslieferung'
+                    ]
+                }
+            },
+            deltaBadges: [
+                { label: { en: '20% revenue increase', de: '20% Umsatzsteigerung' }, type: 'performance' },
+                { label: { en: '5M+ transactions/day', de: '5M+ Transaktionen/Tag' }, type: 'speed' }
+            ]
+        },
+        pdfBrief: {
+            enabled: true,
+            disclaimer: {
+                en: 'This executive brief contains anonymized patterns and generic architecture decisions. All specific client details and proprietary information have been removed. Diagrams are recreated from memory and represent industry-standard patterns, not internal architectures.',
+                de: 'Dieses Executive Brief enthält anonymisierte Patterns und generische Architektur-Entscheidungen. Alle spezifischen Client-Details und proprietären Informationen wurden entfernt. Diagramme wurden aus dem Gedächtnis neu erstellt und repräsentieren branchenübliche Patterns, nicht interne Architekturen.'
+            }
         }
     },
     // =============================================================================
@@ -1590,9 +1802,9 @@ export const projects: CaseStudy[] = [
             de: 'Optimierung der Schaden- und Policen-Workflows zur Erreichung von 80% schnellerem Durchsatz durch gezielte Bottleneck-Behebung und Async-Processing-Patterns, ohne risikoreiche Rewrites.'
         },
         listingMetrics: [
-            { en: '80% faster processing', de: '80% schnellere Verarbeitung' },
-            { en: 'Claims workflow automation', de: 'Automatisierung Claims-Workflow' },
-            { en: 'Reduced operational load', de: 'Reduzierte operative Last' }
+            { label: { en: 'Throughput', de: 'Durchsatz' }, value: { en: '80% faster processing', de: '80% schnellere Verarbeitung' }, type: 'outcome' },
+            { label: { en: 'Scope', de: 'Scope' }, value: { en: 'Claims workflow automation', de: 'Automatisierung Claims-Workflow' }, type: 'scope' },
+            { label: { en: 'Ops', de: 'Betrieb' }, value: { en: 'Reduced operational load', de: 'Reduzierte operative Last' }, type: 'outcome' }
         ],
         // Phase 3.1: Trust Layer
         trustLayer: {
@@ -1682,6 +1894,59 @@ export const projects: CaseStudy[] = [
             region: { en: 'DACH', de: 'DACH' },
             engagementType: { en: 'Performance improvement consulting', de: 'Performance-Verbesserungsberatung' },
             decisionAuthority: { en: 'Performance Engineering Lead, optimization decisions', de: 'Performance Engineering Lead, Optimierungsentscheidungen' }
+        },
+        // Phase 4.5: Engagement Layer
+        outcomeBadges: [
+            { label: { en: '3x faster queries', de: '3x schnellere Queries' }, type: 'performance' },
+            { label: { en: '30% cost reduction', de: '30% Kostenreduzierung' }, type: 'cost' },
+            { label: { en: '99.95% uptime', de: '99,95% Uptime' }, type: 'reliability' }
+        ],
+        beforeAfterDiagram: {
+            before: {
+                title: { en: 'Before', de: 'Vorher' },
+                bullets: {
+                    en: [
+                        'Slow database queries (5-10s response times)',
+                        'High infrastructure costs',
+                        'Frequent performance degradation',
+                        'Limited observability into bottlenecks'
+                    ],
+                    de: [
+                        'Langsame Datenbank-Queries (5-10s Antwortzeiten)',
+                        'Hohe Infrastrukturkosten',
+                        'Häufige Performance-Degradation',
+                        'Begrenzte Observability in Bottlenecks'
+                    ]
+                }
+            },
+            after: {
+                title: { en: 'After', de: 'Nachher' },
+                bullets: {
+                    en: [
+                        '3x faster queries with optimized indexes',
+                        '30% cost reduction through caching strategy',
+                        '99.95% uptime with improved reliability',
+                        'Full observability with performance dashboards'
+                    ],
+                    de: [
+                        '3x schnellere Queries mit optimierten Indizes',
+                        '30% Kostenreduzierung durch Caching-Strategie',
+                        '99,95% Uptime mit verbesserter Zuverlässigkeit',
+                        'Vollständige Observability mit Performance-Dashboards'
+                    ]
+                }
+            },
+            deltaBadges: [
+                { label: { en: '3x faster', de: '3x schneller' }, type: 'performance' },
+                { label: { en: '30% cost reduction', de: '30% Kostenreduzierung' }, type: 'cost' }
+            ]
+        },
+        pdfBrief: {
+            enabled: true,
+            disclaimer: {
+                en: 'This executive brief contains anonymized patterns and generic architecture decisions. All specific client details and proprietary information have been removed. Diagrams are recreated from memory and represent industry-standard patterns, not internal architectures.',
+                de: 'Dieses Executive Brief enthält anonymisierte Patterns und generische Architektur-Entscheidungen. Alle spezifischen Client-Details und proprietären Informationen wurden entfernt. Diagramme wurden aus dem Gedächtnis neu erstellt und repräsentieren branchenübliche Patterns, nicht interne Architekturen.'
+            }
         }
     },
     {

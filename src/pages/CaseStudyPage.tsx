@@ -34,12 +34,15 @@ import { setAttributionContext } from '../utils/attribution';
 import { trackEvent } from '../services/analytics';
 import { useFeatureFlag } from '../context/FeatureFlagsProvider';
 import ArtifactRequestModal from '../components/ArtifactRequestModal';
+import PDFBriefModal from '../components/PDFBriefModal';
 import NDADisclaimer from '../components/NDADisclaimer';
 import CredibilityStrip from '../components/CredibilityStrip';
 import { isPromoted } from '../config/featureUtils';
 import { getGlobalPersona } from '../utils/personaPersistence';
 import { usePersonaCTAs } from '../utils/personaCTAs';
 import CaseStudyNavigation, { type CaseStudySection } from '../components/CaseStudyNavigation';
+import OutcomeBadges from '../components/OutcomeBadges';
+import BeforeAfterMiniDiagram from '../components/BeforeAfterMiniDiagram';
 
 // =============================================================================
 // HELPER FUNCTIONS FOR LOCALIZED CONTENT
@@ -141,6 +144,7 @@ const CaseStudyPage: React.FC = () => {
     const [showFullChallenge, setShowFullChallenge] = useState(false); // Phase 4.1: Challenge collapsed by default
     const [isSticky, setIsSticky] = useState(false); // Phase 3.0 B: Track sticky state for CTAs
     const [artifactRequestModalOpen, setArtifactRequestModalOpen] = useState(false); // Phase 3.3: Artifact request modal
+    const [pdfBriefModalOpen, setPdfBriefModalOpen] = useState(false); // Phase 4.5: PDF Brief modal
     const [activePersona, setActivePersona] = useState<'hire' | 'consult' | 'toolkit' | null>(null); // Phase 3.4D: For CTA resolution
     const [activeNavSection, setActiveNavSection] = useState<CaseStudySection>('snapshot'); // Phase 4 D1: Active section for nav pills
     const { primary: primaryCTA, secondary: secondaryCTA } = usePersonaCTAs(activePersona || getGlobalPersona());
@@ -419,9 +423,22 @@ const CaseStudyPage: React.FC = () => {
                                 {headerTitle}
                             </h1>
                             {/* Phase 4 Wireframe: Subhead - 1 sentence */}
-                            <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                            <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
                                 {challengeContent.situation.split('.').slice(0, 1).join('.') + '.'}
                             </p>
+                            
+                            {/* Phase 4.5: Outcome Badges (max 4) */}
+                            {isPromoted('OUTCOME_BADGES') && study.outcomeBadges && study.outcomeBadges.length > 0 && (
+                                <div className="mb-6">
+                                    <OutcomeBadges
+                                        badges={study.outcomeBadges}
+                                        max={4}
+                                        size="md"
+                                        caseStudySlug={study.slug}
+                                        page="case-study"
+                                    />
+                                </div>
+                            )}
                         </motion.div>
 
                         {/* Right Column: Phase 4 Wireframe: 3 Proof Chips (Outcome, Scope, Constraints) */}
@@ -486,16 +503,31 @@ const CaseStudyPage: React.FC = () => {
                         )}
                         {/* Secondary CTA */}
                         {secondaryCTA.path === '/projects' && study.artifactPreviews && study.artifactPreviews.length > 0 ? (
-                            <button
-                                onClick={() => {
-                                    setArtifactRequestModalOpen(true);
-                                    trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug });
-                                }}
-                                className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
-                            >
-                                {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
-                                <ArrowRight size={18} />
-                            </button>
+                            <>
+                                <button
+                                    onClick={() => {
+                                        setArtifactRequestModalOpen(true);
+                                        trackEvent('case_study_cta_click', { cta: 'secondary', section: 'hero', slug: study.slug });
+                                    }}
+                                    className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
+                                >
+                                    {t('caseStudy.artifacts.requestFullPack', { defaultValue: 'Request Full Artifacts Pack' })}
+                                    <ArrowRight size={18} />
+                                </button>
+                                {/* Phase 4.5: PDF Brief CTA */}
+                                {isPromoted('CASE_STUDY_PDF_EXPORT') && study.pdfBrief?.enabled !== false && (
+                                    <button
+                                        onClick={() => {
+                                            setPdfBriefModalOpen(true);
+                                            trackEvent('case_study_pdf_brief_cta_clicked', { section: 'hero', slug: study.slug });
+                                        }}
+                                        className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-emerald-500 text-slate-700 dark:text-white px-8 py-4 rounded-xl font-semibold text-base transition-all flex items-center gap-2"
+                                    >
+                                        {t('caseStudy.pdfBrief.button', { defaultValue: 'Download PDF Brief' })}
+                                        <ArrowRight size={18} />
+                                    </button>
+                                )}
+                            </>
                         ) : (
                             <Link
                                 to={secondaryCTA.path}
@@ -1136,6 +1168,16 @@ const CaseStudyPage: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionHeader title={t('caseStudy.technical.title', 'Technical Transformation')} />
 
+                    {/* Phase 4.5: Before/After Mini Diagram */}
+                    {isPromoted('BEFORE_AFTER_DIAGRAM') && study.beforeAfterDiagram && (
+                        <div className="mb-8">
+                            <BeforeAfterMiniDiagram
+                                diagram={study.beforeAfterDiagram}
+                                caseStudySlug={study.slug}
+                            />
+                        </div>
+                    )}
+
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Before */}
                         <div className="space-y-4">
@@ -1450,6 +1492,18 @@ const CaseStudyPage: React.FC = () => {
                     onClose={() => setArtifactRequestModalOpen(false)}
                     caseStudySlug={study.slug}
                     artifactIds={study.artifactPreviews.map((_, idx) => `artifact-${idx}`)}
+                />
+            )}
+
+            {/* Phase 4.5: PDF Brief Modal */}
+            {isPromoted('CASE_STUDY_PDF_EXPORT') && study.pdfBrief && study.pdfBrief.enabled !== false && (
+                <PDFBriefModal
+                    isOpen={pdfBriefModalOpen}
+                    onClose={() => setPdfBriefModalOpen(false)}
+                    caseStudySlug={study.slug}
+                    disclaimer={typeof study.pdfBrief.disclaimer === 'string' 
+                        ? study.pdfBrief.disclaimer 
+                        : getLocalizedValue(study.pdfBrief.disclaimer, locale)}
                 />
             )}
 

@@ -2488,6 +2488,48 @@ const generateNurtureEmail3 = (lang = 'en') => {
     `.trim();
 };
 
+// Phase 4.5: Case Study PDF Brief endpoint
+app.post('/api/case-study-brief', async (req, res) => {
+    try {
+        const { email, caseStudySlug, locale, attribution } = req.body;
+
+        if (!email || !caseStudySlug) {
+            return res.status(400).json({ error: 'Email and caseStudySlug are required' });
+        }
+
+        // Store request in Google Sheets (reuse lead store)
+        const leadData = {
+            email,
+            language: locale || 'en',
+            sourcePath: `/projects/${caseStudySlug}`,
+            leadMagnet: `case-study-pdf-brief-${caseStudySlug}`,
+            consent: true,
+            consentTimestamp: new Date().toISOString(),
+            utm_source: attribution?.utm_source || '',
+            utm_medium: attribution?.utm_medium || '',
+            utm_campaign: attribution?.utm_campaign || '',
+            utm_content: attribution?.utm_content || '',
+            utm_term: attribution?.utm_term || '',
+            landingPath: attribution?.landingPath || '',
+            currentPath: attribution?.currentPath || '',
+            caseStudySlug,
+            ctaSource: 'pdf-brief-modal',
+        };
+
+        await leadStore.saveLead(leadData);
+
+        // Lightweight, dependency-free "PDF export":
+        // return a print-optimized brief route; user can "Save as PDF" from the browser.
+        res.json({
+            ok: true,
+            downloadUrl: `/brief/${caseStudySlug}?lang=${locale || 'en'}&autoprint=1`,
+        });
+    } catch (error) {
+        console.error('PDF Brief error:', error);
+        res.status(500).json({ error: 'Failed to process PDF brief request' });
+    }
+});
+
 app.post('/api/lead', async (req, res) => {
     try {
         const { 

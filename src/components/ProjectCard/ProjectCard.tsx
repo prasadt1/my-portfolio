@@ -7,6 +7,8 @@ import { CaseStudy, isLocalizedPersonaChallenge, isLegacyChallenge, getLocalized
 import { trackEvent } from '../../services/analytics';
 import { useFeatureFlag } from '../../context/FeatureFlagsProvider';
 import { shouldShowFeaturedBadge } from '../../config/featureRouting';
+import { isPromoted } from '../../config/featureUtils';
+import OutcomeBadges from '../OutcomeBadges';
 
 // Lazy-load ExecutiveSummaryModal for better initial bundle size (gated by feature flag)
 const ExecutiveSummaryModal = lazy(() => import('../ExecutiveSummaryModal'));
@@ -184,6 +186,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-2 min-h-[2.5rem]">
                         {subtitle}
                     </p>
+
+                    {/* Phase 4.5: Outcome Badges (max 2) */}
+                    {isPromoted('OUTCOME_BADGES') && project.outcomeBadges && project.outcomeBadges.length > 0 && (
+                        <div className="mb-4">
+                            <OutcomeBadges
+                                badges={project.outcomeBadges}
+                                max={2}
+                                size="sm"
+                                caseStudySlug={project.slug}
+                                page="projects"
+                            />
+                        </div>
+                    )}
 
                     {/* Executive Snapshot: Outcome, Scope, Constraints */}
                     <div className="bg-slate-50 dark:bg-slate-700/30 rounded-lg p-3 mb-4 space-y-2">
