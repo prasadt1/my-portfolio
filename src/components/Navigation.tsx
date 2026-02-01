@@ -246,10 +246,10 @@ const Navigation: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 bg-white border-b border-slate-200 shadow-lg z-40 xl:hidden overflow-hidden transition-colors`}
+            className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 bg-white border-b border-slate-200 shadow-lg z-40 xl:hidden overflow-hidden`}
             style={{ backgroundColor: 'white !important' }}
           >
-            <div className="p-4 flex flex-col gap-2">
+            <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: 'white !important' }}>
               {/* Core nav items */}
               {coreNavItems.map((item) => (
                 <Link
@@ -257,9 +257,10 @@ const Navigation: React.FC = () => {
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`p-3 rounded-lg text-base font-medium transition-colors ${isActive(item.path)
-                    ? 'bg-slate-100 dark:bg-slate-200 text-slate-900 dark:text-slate-900'
-                    : 'text-slate-700 dark:text-slate-800 hover:bg-slate-50 dark:hover:bg-slate-100 hover:text-slate-900 dark:hover:text-slate-900'
+                    ? 'bg-slate-100 text-slate-900'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                     }`}
+                  style={{ color: isActive(item.path) ? '#0f172a !important' : '#334155 !important' }}
                 >
                   {t(item.labelKey)}
                 </Link>
@@ -268,8 +269,8 @@ const Navigation: React.FC = () => {
               {/* Tools section */}
               {toolsItems.length > 0 && (
                 <>
-                  <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
-                  <div className="px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  <div className="h-px bg-slate-100 my-2" />
+                  <div className="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                     {t('nav.tools')}
                   </div>
                   {toolsItems.map((item) => (
@@ -278,9 +279,10 @@ const Navigation: React.FC = () => {
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`p-3 rounded-lg text-base font-medium transition-colors pl-6 ${isActive(item.path)
-                        ? 'bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white'
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-slate-50 text-slate-900'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                         }`}
+                      style={{ color: isActive(item.path) ? '#0f172a !important' : '#475569 !important' }}
                     >
                       {t(item.labelKey)}
                     </Link>
@@ -291,8 +293,8 @@ const Navigation: React.FC = () => {
               {/* Consulting section */}
               {consultingItems.length > 0 && (
                 <>
-                  <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
-                  <div className="px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  <div className="h-px bg-slate-100 my-2" />
+                  <div className="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                     {t('nav.consulting')}
                   </div>
                   {consultingItems.map((item) => (
@@ -301,9 +303,10 @@ const Navigation: React.FC = () => {
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`p-3 rounded-lg text-base font-medium transition-colors pl-6 ${isActive(item.path)
-                        ? 'bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white'
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-slate-50 text-slate-900'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                         }`}
+                      style={{ color: isActive(item.path) ? '#0f172a !important' : '#475569 !important' }}
                     >
                       {t(item.labelKey)}
                     </Link>
@@ -314,8 +317,8 @@ const Navigation: React.FC = () => {
               {/* Hiring section */}
               {hiringItems.length > 0 && (
                 <>
-                  <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
-                  <div className="px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  <div className="h-px bg-slate-100 my-2" />
+                  <div className="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                     {t('nav.hiring')}
                   </div>
                   {hiringItems.map((item) => (
@@ -324,9 +327,10 @@ const Navigation: React.FC = () => {
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`p-3 rounded-lg text-base font-medium transition-colors pl-6 ${isActive(item.path)
-                        ? 'bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white'
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-slate-50 text-slate-900'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                         }`}
+                      style={{ color: isActive(item.path) ? '#0f172a !important' : '#475569 !important' }}
                     >
                       {t(item.labelKey)}
                     </Link>
@@ -334,13 +338,14 @@ const Navigation: React.FC = () => {
                 </>
               )}
 
-              <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
+              <div className="h-px bg-slate-100 my-2" />
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   window.dispatchEvent(new CustomEvent('open-command-palette'));
                 }}
-                className="w-full text-left p-3 rounded-lg text-base font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white flex items-center gap-2"
+                className="w-full text-left p-3 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 flex items-center gap-2"
+                style={{ color: '#475569 !important' }}
               >
                 <Search size={20} />
                 <span>Search...</span>

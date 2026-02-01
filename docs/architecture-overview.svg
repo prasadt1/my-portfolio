@@ -1,0 +1,102 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Portfolio Architecture - Google Cloud Run + Gemini AI</text>
+  
+  <!-- User/Browser -->
+  <rect x="50" y="80" width="120" height="60" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="110" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Browser</text>
+  <text x="110" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">User Interface</text>
+  
+  <!-- React Frontend -->
+  <rect x="250" y="80" width="120" height="60" rx="8" fill="#e8f5e8" stroke="#4caf50" stroke-width="2"/>
+  <text x="310" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">React App</text>
+  <text x="310" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Vite + TypeScript</text>
+  
+  <!-- Cloud Run Backend -->
+  <rect x="450" y="80" width="150" height="60" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+  <text x="525" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Cloud Run</text>
+  <text x="525" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Node.js Backend</text>
+  
+  <!-- API Endpoints -->
+  <rect x="100" y="200" width="100" height="50" rx="6" fill="#f3e5f5" stroke="#9c27b0" stroke-width="1"/>
+  <text x="150" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Portfolio API</text>
+  <text x="150" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Case Studies</text>
+  
+  <rect x="220" y="200" width="100" height="50" rx="6" fill="#f3e5f5" stroke="#9c27b0" stroke-width="1"/>
+  <text x="270" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Similarity API</text>
+  <text x="270" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">AI Matching</text>
+  
+  <rect x="340" y="200" width="100" height="50" rx="6" fill="#f3e5f5" stroke="#9c27b0" stroke-width="1"/>
+  <text x="390" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Lead Capture</text>
+  <text x="390" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Email Gating</text>
+  
+  <rect x="460" y="200" width="100" height="50" rx="6" fill="#f3e5f5" stroke="#9c27b0" stroke-width="1"/>
+  <text x="510" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Analytics</text>
+  <text x="510" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">GDPR Safe</text>
+  
+  <!-- Gemini AI -->
+  <rect x="200" y="320" width="150" height="60" rx="8" fill="#fff8e1" stroke="#ffc107" stroke-width="2"/>
+  <text x="275" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Gemini 1.5 Pro</text>
+  <text x="275" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">AI Processing</text>
+  
+  <!-- Project Database -->
+  <rect x="400" y="320" width="120" height="60" rx="8" fill="#fff8e1" stroke="#ffc107" stroke-width="2"/>
+  <text x="460" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Project DB</text>
+  <text x="460" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">15+ Years Data</text>
+  
+  <!-- External Services -->
+  <rect x="50" y="420" width="100" height="50" rx="6" fill="#ffebee" stroke="#f44336" stroke-width="1"/>
+  <text x="100" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Google Sheets</text>
+  <text x="100" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Lead Storage</text>
+  
+  <rect x="170" y="420" width="100" height="50" rx="6" fill="#ffebee" stroke="#f44336" stroke-width="1"/>
+  <text x="220" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">SendGrid</text>
+  <text x="220" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Email Delivery</text>
+  
+  <rect x="290" y="420" width="100" height="50" rx="6" fill="#ffebee" stroke="#f44336" stroke-width="1"/>
+  <text x="340" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Namecheap</text>
+  <text x="340" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">DNS + Domain</text>
+  
+  <rect x="410" y="420" width="100" height="50" rx="6" fill="#ffebee" stroke="#f44336" stroke-width="1"/>
+  <text x="460" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">GitHub</text>
+  <text x="460" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">CI/CD</text>
+  
+  <!-- Arrows -->
+  <line x1="170" y1="110" x2="250" y2="110" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="210" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">HTTPS</text>
+  
+  <line x1="370" y1="110" x2="450" y2="110" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="410" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">API</text>
+  
+  <line x1="525" y1="140" x2="270" y2="200" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="400" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Routes</text>
+  
+  <line x1="270" y1="250" x2="275" y2="320" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="290" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">AI Query</text>
+  
+  <line x1="350" y1="350" x2="400" y2="350" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="375" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Match</text>
+  
+  <line x1="390" y1="250" x2="220" y2="420" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="300" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Email</text>
+  
+  <line x1="390" y1="250" x2="100" y2="420" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="240" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Store</text>
+  
+  <!-- Legend -->
+  <rect x="580" y="200" width="180" height="120" rx="6" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+  <text x="670" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Key Features</text>
+  
+  <text x="590" y="240" text-anchor="start" font-family="Arial, sans-serif" font-size="11" fill="#333">• Experience-driven AI</text>
+  <text x="590" y="255" text-anchor="start" font-family="Arial, sans-serif" font-size="11" fill="#333">• GDPR-safe lead capture</text>
+  <text x="590" y="270" text-anchor="start" font-family="Arial, sans-serif" font-size="11" fill="#333">• Feature flag rollouts</text>
+  <text x="590" y="285" text-anchor="start" font-family="Arial, sans-serif" font-size="11" fill="#333">• Custom domain + SSL</text>
+  <text x="590" y="300" text-anchor="start" font-family="Arial, sans-serif" font-size="11" fill="#333">• Auto-scaling backend</text>
+  
+</svg>
