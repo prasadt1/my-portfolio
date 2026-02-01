@@ -14,6 +14,38 @@ This is not a demo site. It is a fully deployed consulting platform with:
 
 ---
 
+## 🏆 Google AI Portfolio Challenge Submission
+
+This project was built for the **Google AI "New Year, New You" Portfolio Challenge**.
+
+Key goals:
+
+- Demonstrate production Gemini integration
+- Show real-world architecture decision making
+- Build an experience-driven AI system (not generic chat)
+- Deploy end-to-end on Google Cloud Run
+- Capture leads safely with GDPR compliance
+
+Live deployment: https://prasadtilloo.com
+
+Primary AI feature for judges: 👉 Project Similarity Matcher (`/tools/project-similarity`)
+
+---
+
+## 👀 How to Explore This Portfolio
+
+Recommended flow:
+
+1. Homepage → Featured Case Studies
+2. Open any hero case study (BRITA / Insurance)
+3. Try Project Similarity Matcher
+4. Review Architecture Diagram
+5. Read this README AI section
+
+Only one AI feature is enabled intentionally to showcase experience-driven reasoning.
+
+---
+
 ## 🧠 Core Concept
 
 Instead of generic AI chat, this portfolio uses **experience-driven AI**.
@@ -124,7 +156,66 @@ Artifacts are gated to protect IP.
 - Google Sheets API
 - SendGrid
 
-Development used an AI-assisted workflow with Gemini + Antigravity ("vibe coding") for rapid iteration, while architecture and production hardening were manual.
+---
+
+## 🧠 AI-Assisted Development (Gemini + Antigravity)
+
+Development used Google Gemini and Antigravity in a "vibe coding" workflow:
+
+- Gemini for architectural reasoning and refactoring suggestions
+- Antigravity for rapid UI iteration
+- Human-led design for:
+  - UX structure
+  - Domain modeling
+  - Compliance boundaries
+  - Production hardening
+
+AI accelerated implementation. Architecture decisions remained manual.
+
+---
+
+## 🌐 Custom Domain + Cloud Run
+
+Domain: Namecheap  
+Hosting: Google Cloud Run  
+
+Setup:
+- Cloud Run custom domain mapping
+- Namecheap DNS A + CNAME records
+- Google-managed SSL
+
+Frontend + backend run as a single Cloud Run service.
+
+This allows:
+- Zero-infra ops
+- Automatic HTTPS
+- Simple CI/CD
+
+---
+
+## 📧 Email Delivery
+
+SendGrid handles transactional email:
+
+- Similarity results unlock
+- Artifact requests
+- Lead confirmations
+
+Design goals:
+- GDPR-safe
+- No marketing automation
+- Pure transactional delivery
+
+---
+
+## 🛡 Production Considerations
+
+- Rate limiting on AI endpoints
+- Feature flags for staged rollout
+- GDPR-safe analytics
+- Email gating before AI results
+- Google Sheets as lightweight CRM
+- Structured prompts (no hallucinated architectures)
 
 ---
 
@@ -195,8 +286,7 @@ This highlights real delivery thinking rather than model novelty.
 
 ---
 
-## 📄 License
+Built by Prasad Tilloo  
+Independent Architecture & Transformation Consultant  
 
-Personal portfolio project. Not intended as a reusable framework.
-
-Built by Prasad Tilloo. Independent Architecture & Transformation Consultant.
+This portfolio represents real delivery patterns accumulated over 15+ years across enterprise cloud, compliance-heavy systems, and AI-assisted platforms.
