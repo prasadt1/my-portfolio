@@ -29,11 +29,12 @@ const Navigation: React.FC = () => {
   const competitionMode = isCompetitionMode();
   const { primary: primaryCTA } = usePersonaCTAs();
 
-  // Phase 4.1: Simplified navigation - max 5 top-level items
+  // Phase 4.1: Simplified navigation - max 6 top-level items
   const coreNavItems = [
     { path: '/', labelKey: 'nav.home' },
     { path: '/services', labelKey: 'nav.services' },
     { path: '/projects', labelKey: 'nav.projects' },
+    { path: '/about', labelKey: 'nav.about' },
     { path: '/resources', labelKey: 'nav.resources' },
     { path: '/contact', labelKey: 'nav.contact' },
   ];

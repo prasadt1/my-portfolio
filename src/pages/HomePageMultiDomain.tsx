@@ -298,7 +298,7 @@ const HomePageMultiDomain: React.FC = () => {
                                 </ul>
                                 {/* Micro trust line */}
                                 <p className="text-xs text-white/70 border-t border-white/10 pt-4">
-                                    Ex-BRITA / Siemens / PACT/WBCSD
+                                    Ex-BRITA / Siemens / PwC / PACT/WBCSD
                                 </p>
                             </motion.div>
                         </motion.div>
