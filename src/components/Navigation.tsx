@@ -246,7 +246,8 @@ const Navigation: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-lg z-40 xl:hidden overflow-hidden transition-colors`}
+            className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 bg-white border-b border-slate-200 shadow-lg z-40 xl:hidden overflow-hidden transition-colors`}
+            style={{ backgroundColor: 'white !important' }}
           >
             <div className="p-4 flex flex-col gap-2">
               {/* Core nav items */}
@@ -256,8 +257,8 @@ const Navigation: React.FC = () => {
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`p-3 rounded-lg text-base font-medium transition-colors ${isActive(item.path)
-                    ? 'bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white'
-                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-slate-100 dark:bg-slate-200 text-slate-900 dark:text-slate-900'
+                    : 'text-slate-700 dark:text-slate-800 hover:bg-slate-50 dark:hover:bg-slate-100 hover:text-slate-900 dark:hover:text-slate-900'
                     }`}
                 >
                   {t(item.labelKey)}
