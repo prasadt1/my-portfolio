@@ -13,7 +13,13 @@ import {
     BarChart3, 
     Mail,
     CheckCircle2,
-    ExternalLink
+    ExternalLink,
+    Code2,
+    Bot,
+    Cloud,
+    Palette,
+    Wrench,
+    Rocket
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { trackEvent } from '../services/analytics';
@@ -63,14 +69,14 @@ const CompetitionPage: React.FC = () => {
                     >
                         <div className="inline-block bg-emerald-100 dark:bg-emerald-900/30 px-4 py-1 rounded-full mb-4">
                             <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
-                                {t('competition.page.badge', { defaultValue: 'Google AI Portfolio Challenge' })}
+                                Google AI Portfolio Challenge 2025
                             </span>
                         </div>
                         <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                            {t('competition.page.title', { defaultValue: 'Competition Submission' })}
+                            🎉 New Year, New Portfolio
                         </h1>
                         <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                            {t('competition.page.subtitle', { defaultValue: 'A production-ready portfolio demonstrating enterprise architecture expertise, AI integration with Gemini, and Cloud Run deployment.' })}
+                            A production-ready portfolio demonstrating enterprise architecture expertise, AI integration with Gemini, and Google Cloud deployment. Built to showcase real-world application of Google's AI technologies.
                         </p>
                     </motion.div>
 
@@ -115,24 +121,97 @@ const CompetitionPage: React.FC = () => {
 
                     {/* Phase 4 F1: 2-Column Grid Layout on Desktop */}
                     <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    {/* What This Site Is */}
+                    {/* What This Site Is - Enhanced with tech details */}
                     <motion.section
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
+                        className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700"
                     >
-                        <div className="flex items-start gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
-                                <FileText className="text-emerald-600 dark:text-emerald-400" size={20} />
+                        <div className="flex items-start gap-4 mb-6">
+                            <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                                <FileText className="text-emerald-600 dark:text-emerald-400" size={24} />
                             </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                            <div className="flex-1">
+                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                                     {t('competition.page.whatIs.title', { defaultValue: 'What This Site Is' })}
                                 </h2>
-                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    {t('competition.page.whatIs.description', { defaultValue: 'An independent architecture consultant portfolio built with React + TypeScript, featuring experience-driven tools (Gemini 3 Pro), feature flags for phased rollout, GDPR-safe analytics, and production deployment on Google Cloud Run. The site demonstrates real-world enterprise architecture expertise through detailed case studies based on real delivery.' })}
+                                <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                                    An independent architecture consultant portfolio built with modern web technologies, featuring AI-powered tools based on 15+ years of real enterprise delivery experience. This site demonstrates practical application of Google's AI technologies in a professional context.
                                 </p>
+                                
+                                {/* Tech Stack */}
+                                <div className="mb-6">
+                                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Technology Stack</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
+                                            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <Code2 className="text-blue-600 dark:text-blue-400" size={18} />
+                                            </div>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">React + TypeScript</span>
+                                        </div>
+                                        <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
+                                            <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <Bot className="text-emerald-600 dark:text-emerald-400" size={18} />
+                                            </div>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Gemini AI</span>
+                                        </div>
+                                        <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
+                                            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <Cloud className="text-orange-600 dark:text-orange-400" size={18} />
+                                            </div>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Google Cloud Run</span>
+                                        </div>
+                                        <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
+                                            <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <Palette className="text-purple-600 dark:text-purple-400" size={18} />
+                                            </div>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Tailwind CSS</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Development Process */}
+                                <div className="mb-6">
+                                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Built with Google AI Tools</h3>
+                                    <div className="space-y-3">
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <Sparkles className="text-emerald-600 dark:text-emerald-400" size={12} />
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-slate-900 dark:text-white">AI-Assisted Development</div>
+                                                <div className="text-sm text-slate-600 dark:text-slate-400">Used Gemini for feature design, UX optimization, and code generation</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <Wrench className="text-emerald-600 dark:text-emerald-400" size={12} />
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-slate-900 dark:text-white">Experience-Driven AI Tools</div>
+                                                <div className="text-sm text-slate-600 dark:text-slate-400">AI features trained on real enterprise architecture patterns and delivery outcomes</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <Rocket className="text-emerald-600 dark:text-emerald-400" size={12} />
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-slate-900 dark:text-white">Cloud-Native Deployment</div>
+                                                <div className="text-sm text-slate-600 dark:text-slate-400">Containerized deployment on Google Cloud Run with automatic scaling</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Example Prompt */}
+                                <div className="bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
+                                    <h4 className="font-medium text-slate-900 dark:text-white mb-2">Example AI Prompt Used:</h4>
+                                    <div className="text-sm text-slate-600 dark:text-slate-400 font-mono bg-white dark:bg-slate-800 rounded p-3 border">
+                                        "Create a persona-based navigation system that adapts content for hiring managers vs. project leaders, with smooth UX transitions and analytics tracking"
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </motion.section>

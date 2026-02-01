@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
     }
   }, [selectedPersona, searchParams, setSearchParams]);
 
-  // Track persona selection
+  // Track persona selection and scroll to content
   const handlePersonaChange = (persona: PersonaType, source: 'tabs' | 'url' = 'tabs') => {
     setSelectedPersona(persona);
     if (source === 'tabs') {
@@ -69,6 +69,29 @@ const HomePage: React.FC = () => {
         source: 'tabs',
         locale: i18n.language || 'en',
       });
+      
+      // Smooth scroll to persona content section with improved reliability
+      setTimeout(() => {
+        const personaSection = document.getElementById('persona-content');
+        if (personaSection) {
+          // Calculate offset to account for fixed navigation
+          const navHeight = 96; // 80px nav + 16px competition banner
+          const elementPosition = personaSection.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        } else {
+          // Fallback: scroll to approximate position if element not found
+          const heroHeight = window.innerHeight * 0.8; // Approximate hero section height
+          window.scrollTo({
+            top: heroHeight,
+            behavior: 'smooth'
+          });
+        }
+      }, 150); // Increased delay to ensure content is rendered
     }
   };
 
@@ -276,86 +299,146 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* Phase 3.1: Persona-Specific Content Block */}
+        {/* Phase 3.1: Persona-Specific Content Block - Enhanced visibility */}
         {showPersonaTabs && selectedPersona && (
-          <section className="py-16 bg-white/5 backdrop-blur-sm border-b border-white/10">
+          <section id="persona-content" className="py-20 bg-gradient-to-br from-emerald-50 to-slate-50 dark:from-slate-800 dark:to-slate-900 border-b border-emerald-200 dark:border-slate-700">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {selectedPersona === 'hire' && (
                 <motion.div
+                  key="hire-content"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="max-w-4xl mx-auto"
+                  transition={{ duration: 0.5 }}
+                  className="max-w-5xl mx-auto"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-6 text-center">
-                    {t('homepage.personaTabs.hiringTitle')}
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6 text-white/90">
-                    <div>
-                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringYears')}</div>
-                      <div className="text-sm">15+ years</div>
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                      <Briefcase size={16} />
+                      For Hiring Managers & Recruiters
                     </div>
-                    <div>
-                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringIndustries')}</div>
-                      <div className="text-sm">Healthcare, Pharma, eCommerce, Financial Services, Climate Tech</div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                      {t('homepage.personaTabs.hiringTitle')}
+                    </h2>
+                    <p className="text-lg text-slate-600 dark:text-slate-300">
+                      Ready to hire? Here's what you need to know about my background and availability.
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                      <div className="font-bold text-slate-900 dark:text-white mb-3">{t('homepage.personaTabs.hiringYears')}</div>
+                      <div className="text-slate-600 dark:text-slate-300 text-lg">15+ years in enterprise architecture</div>
                     </div>
-                    <div>
-                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringStrengths')}</div>
-                      <div className="text-sm">Architecture validation, Cloud migration, AI enablement, Risk mitigation</div>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                      <div className="font-bold text-slate-900 dark:text-white mb-3">{t('homepage.personaTabs.hiringIndustries')}</div>
+                      <div className="text-slate-600 dark:text-slate-300">Healthcare, Pharma, eCommerce, Financial Services, Climate Tech</div>
                     </div>
-                    <div>
-                      <div className="font-semibold mb-2">{t('homepage.personaTabs.hiringAvailability')}</div>
-                      <div className="text-sm">{t('homepage.personaTabs.hiringBilingual')}</div>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                      <div className="font-bold text-slate-900 dark:text-white mb-3">{t('homepage.personaTabs.hiringStrengths')}</div>
+                      <div className="text-slate-600 dark:text-slate-300">Architecture validation, Cloud migration, AI enablement, Risk mitigation</div>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                      <div className="font-bold text-slate-900 dark:text-white mb-3">{t('homepage.personaTabs.hiringAvailability')}</div>
+                      <div className="text-slate-600 dark:text-slate-300">{t('homepage.personaTabs.hiringBilingual')}</div>
                     </div>
                   </div>
                 </motion.div>
               )}
               {selectedPersona === 'consult' && (
                 <motion.div
+                  key="consult-content"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="max-w-4xl mx-auto"
+                  transition={{ duration: 0.5 }}
+                  className="max-w-5xl mx-auto"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-6 text-center">
-                    {t('homepage.personaTabs.consultingTitle')}
-                  </h2>
-                  <div className="grid md:grid-cols-3 gap-6 text-white/90">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                      <h3 className="font-bold mb-2">Architecture Review</h3>
-                      <p className="text-sm">Independent validation of architecture decisions before commitment</p>
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                      <User size={16} />
+                      For Project Leaders & CTOs
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                      <h3 className="font-bold mb-2">Cloud Migration</h3>
-                      <p className="text-sm">Risk reduction and cost optimization for cloud transformation</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                      {t('homepage.personaTabs.consultingTitle')}
+                    </h2>
+                    <p className="text-lg text-slate-600 dark:text-slate-300">
+                      Need independent architecture expertise? Here's how I can help your project succeed.
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm text-center">
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <Shield className="text-emerald-600 dark:text-emerald-400" size={24} />
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-3">Architecture Review</h3>
+                      <p className="text-slate-600 dark:text-slate-300">Independent validation of architecture decisions before commitment</p>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                      <h3 className="font-bold mb-2">AI Enablement</h3>
-                      <p className="text-sm">Strategic guidance for AI/ML adoption and integration</p>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm text-center">
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <TrendingDown className="text-emerald-600 dark:text-emerald-400" size={24} />
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-3">Cloud Migration</h3>
+                      <p className="text-slate-600 dark:text-slate-300">Risk reduction and cost optimization for cloud transformation</p>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm text-center">
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle2 className="text-emerald-600 dark:text-emerald-400" size={24} />
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-3">AI Enablement</h3>
+                      <p className="text-slate-600 dark:text-slate-300">Strategic guidance for AI/ML adoption and integration</p>
                     </div>
                   </div>
                 </motion.div>
               )}
               {selectedPersona === 'toolkit' && (
                 <motion.div
+                  key="toolkit-content"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="max-w-4xl mx-auto"
+                  transition={{ duration: 0.5 }}
+                  className="max-w-5xl mx-auto"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-6 text-center">
-                    {t('homepage.personaTabs.toolkitTitle')}
-                  </h2>
-                  <div className="grid md:grid-cols-3 gap-6 text-white/90">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                      <h3 className="font-bold mb-2">Vendor Proposal Checklist</h3>
-                      <p className="text-sm">7-area framework for evaluating vendor proposals</p>
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                      <BookOpen size={16} />
+                      For Architects & Engineers
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                      <h3 className="font-bold mb-2">Architecture Patterns</h3>
-                      <p className="text-sm">Reusable patterns for common transformation scenarios</p>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                      <h3 className="font-bold mb-2">Risk Assessment Tools</h3>
-                      <p className="text-sm">Templates and frameworks for risk identification</p>
-                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                      {t('homepage.personaTabs.toolkitTitle')}
+                    </h2>
+                    <p className="text-lg text-slate-600 dark:text-slate-300">
+                      Looking for practical tools? Access frameworks and templates from real enterprise projects.
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <Link to="/checklist" className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all group">
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle2 className="text-emerald-600 dark:text-emerald-400" size={24} />
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Vendor Proposal Checklist</h3>
+                      <p className="text-slate-600 dark:text-slate-300 mb-4">7-area framework for evaluating vendor proposals</p>
+                      <div className="flex items-center text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                        Try it free <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                    <Link to="/architecture-engine" className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all group">
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <BookOpen className="text-emerald-600 dark:text-emerald-400" size={24} />
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Architecture Patterns</h3>
+                      <p className="text-slate-600 dark:text-slate-300 mb-4">Reusable patterns for common transformation scenarios</p>
+                      <div className="flex items-center text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                        Explore tools <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                    <Link to="/risk-radar" className="bg-white dark:bg-slate-800 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all group">
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <AlertCircle className="text-emerald-600 dark:text-emerald-400" size={24} />
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Risk Assessment Tools</h3>
+                      <p className="text-slate-600 dark:text-slate-300 mb-4">Templates and frameworks for risk identification</p>
+                      <div className="flex items-center text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                        Try it free <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
                   </div>
                 </motion.div>
               )}

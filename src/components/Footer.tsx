@@ -90,10 +90,7 @@ const Footer: React.FC = () => {
                         <h3 className="font-bold text-slate-900 dark:text-white mb-4">Tools & Resources</h3>
                         <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                             <li><Link to="/services" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.services')}</Link></li>
-                            <li><Link to="/risk-radar" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Risk Radar</Link></li>
                             <li><Link to="/checklist" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Proposal Checklist</Link></li>
-                            <li><Link to="/architecture-engine" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('nav.labs')} (Architecture Assistant)</Link></li>
-                            <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
                             <li><Link to="/privacy" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">{t('footer.privacy', { defaultValue: 'Privacy Policy' })}</Link></li>
                         </ul>
                     </div>
@@ -103,7 +100,6 @@ const Footer: React.FC = () => {
                         <h3 className="font-bold text-slate-900 dark:text-white mb-4">{t('footer.expertise')}</h3>
                         <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                             <li><Link to="/projects?tag=Cloud" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Cloud Migration</Link></li>
-                            <li><Link to="/climate-tech" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Climate Tech</Link></li>
                             <li><Link to="/projects?tag=Compliance" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">HIPAA Compliance</Link></li>
                             <li><Link to="/projects?tag=AI" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">AI & Data Mesh</Link></li>
                         </ul>

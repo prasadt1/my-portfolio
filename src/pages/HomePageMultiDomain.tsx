@@ -83,6 +83,29 @@ const HomePageMultiDomain: React.FC = () => {
                 source: 'tabs',
                 locale: i18n.language || 'en',
             });
+            
+            // Smooth scroll to persona content section with improved reliability
+            setTimeout(() => {
+                const personaSection = document.getElementById('persona-content');
+                if (personaSection) {
+                    // Calculate offset to account for fixed navigation
+                    const navHeight = 96; // 80px nav + 16px competition banner
+                    const elementPosition = personaSection.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navHeight;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback: scroll to approximate position if element not found
+                    const heroHeight = window.innerHeight * 0.8; // Approximate hero section height
+                    window.scrollTo({
+                        top: heroHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 150); // Increased delay to ensure content is rendered
         }
     };
 
@@ -298,7 +321,7 @@ const HomePageMultiDomain: React.FC = () => {
                                 </ul>
                                 {/* Micro trust line */}
                                 <p className="text-xs text-white/70 border-t border-white/10 pt-4">
-                                    Ex-BRITA / Siemens / PwC / PACT/WBCSD
+                                    Ex-PwC / BRITA / Boehringer Ingelheim / Delivery Hero / Bank of America
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -307,7 +330,7 @@ const HomePageMultiDomain: React.FC = () => {
 
                 {/* Phase 3.1: Persona-Specific Content Block - More prominent and useful */}
                 {showPersonaTabs && selectedPersona && (
-                    <section className="py-20 bg-white/10 backdrop-blur-sm border-b border-white/20">
+                    <section id="persona-content" className="py-20 bg-white/10 backdrop-blur-sm border-b border-white/20">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             {selectedPersona === 'hire' && (
                                 <motion.div

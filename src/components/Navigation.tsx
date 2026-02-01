@@ -39,29 +39,25 @@ const Navigation: React.FC = () => {
     { path: '/contact', labelKey: 'nav.contact' },
   ];
 
-  // Dropdown items
-  const toolsItems: Array<{ path: string; labelKey: string; featureKey?: FeatureKey }> = [
-    { path: '/checklist', labelKey: 'nav.checklist', featureKey: 'AI_CHECKLIST' as FeatureKey },
-    { path: '/risk-radar', labelKey: 'nav.riskRadar', featureKey: 'AI_RISK_RADAR' as FeatureKey },
-    { path: '/architecture-engine', labelKey: 'nav.architectureEngine', featureKey: 'AI_ARCH_ENGINE' as FeatureKey },
-    { path: '/tools/project-similarity', labelKey: 'nav.projectSimilarity', featureKey: 'PROJECT_SIMILARITY_MATCHER' as FeatureKey },
-  ].filter(item => !item.featureKey || isPromoted(item.featureKey));
-
-  const consultingItems = [
-    { path: '/consultation', labelKey: 'nav.consultation' },
-    { path: '/services', labelKey: 'nav.howIWork' },
-  ];
-
-  const hiringItems: Array<{ path: string; labelKey: string; featureKey?: FeatureKey }> = [
-    { path: '/hiring', labelKey: 'nav.hiring', featureKey: 'HOMEPAGE_PERSONA_TABS' as FeatureKey },
+  // Dropdown items - Merged Work With Me dropdown
+  const workWithMeItems: Array<{ path: string; labelKey: string; featureKey?: FeatureKey; description?: string }> = [
+    { 
+      path: '/consultation', 
+      labelKey: 'nav.consultation',
+      description: 'Short-term projects & freelance work'
+    },
+    { 
+      path: '/hiring', 
+      labelKey: 'nav.hiring', 
+      featureKey: 'HOMEPAGE_PERSONA_TABS' as FeatureKey,
+      description: 'Full-time opportunities & recruiting'
+    },
   ].filter(item => !item.featureKey || isPromoted(item.featureKey));
 
   // Dropdown state
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = {
-    tools: useRef<HTMLDivElement>(null),
-    consulting: useRef<HTMLDivElement>(null),
-    hiring: useRef<HTMLDivElement>(null),
+    workWithMe: useRef<HTMLDivElement>(null),
   };
 
   // Close dropdowns when clicking outside
@@ -82,25 +78,27 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      {/* Phase 3.4A: Competition Mode Ribbon - Enhanced visibility */}
+      {/* Phase 3.4A: Competition Mode Ribbon - Enhanced visibility and size */}
       {competitionMode && (
-        <div className="fixed top-0 left-0 right-0 h-12 bg-gradient-to-r from-emerald-600 to-emerald-500 dark:from-emerald-700 dark:to-emerald-600 z-50 flex items-center justify-center shadow-lg border-b-2 border-emerald-400 dark:border-emerald-500">
+        <div className="fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 dark:from-emerald-700 dark:to-emerald-600 z-50 flex items-center justify-center shadow-xl border-b-4 border-emerald-400 dark:border-emerald-500">
           <Link
             to="/competition"
-            className="text-white text-sm font-bold hover:text-emerald-100 dark:hover:text-emerald-200 transition-colors flex items-center gap-2 px-4 py-2 rounded-md hover:bg-emerald-500/20 dark:hover:bg-emerald-600/20"
+            className="text-white hover:text-emerald-100 dark:hover:text-emerald-200 transition-colors flex items-center gap-3 px-6 py-3 rounded-lg hover:bg-emerald-500/20 dark:hover:bg-emerald-600/20"
             onClick={() => trackEvent('competition_ribbon_clicked')}
           >
-            <span className="inline-flex items-center gap-2">
-              <Sparkles size={16} className="animate-pulse" />
-              <span>{t('competition.ribbon', { defaultValue: 'Competition Mode' })}</span>
-              <span className="text-xs font-normal opacity-90">• Google AI Portfolio Challenge Submission</span>
+            <span className="inline-flex items-center gap-3">
+              <Sparkles size={20} className="animate-pulse" />
+              <div className="text-center">
+                <div className="text-lg font-bold">🎉 New Year, New Portfolio Challenge</div>
+                <div className="text-sm font-normal opacity-90">Google AI Portfolio Challenge Submission • Click to explore</div>
+              </div>
             </span>
-            <ChevronRight size={16} className="ml-1" />
+            <ChevronRight size={20} className="ml-2" />
           </Link>
         </div>
       )}
       <nav
-        className={`fixed ${competitionMode ? 'top-12' : 'top-0'} left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
+        className={`fixed ${competitionMode ? 'top-16' : 'top-0'} left-0 right-0 h-20 z-50 transition-all duration-300 ease-in-out border-b ${isScrolled
           ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-slate-200 dark:border-slate-800 shadow-sm'
           : 'bg-transparent border-transparent'
           }`}
@@ -142,124 +140,45 @@ const Navigation: React.FC = () => {
                 </Link>
               ))}
 
-              {/* Tools Dropdown */}
-              {toolsItems.length > 0 && (
-                <div ref={dropdownRefs.tools} className="relative">
+              {/* Work With Me Dropdown - Merged Hiring & Consultation */}
+              {workWithMeItems.length > 0 && (
+                <div ref={dropdownRefs.workWithMe} className="relative">
                   <button
-                    onClick={() => setOpenDropdown(openDropdown === 'tools' ? null : 'tools')}
+                    onClick={() => setOpenDropdown(openDropdown === 'workWithMe' ? null : 'workWithMe')}
                     className={`text-sm font-medium transition-colors relative py-1 whitespace-nowrap flex items-center gap-1 ${
-                      toolsItems.some(item => isActive(item.path))
+                      workWithMeItems.some(item => isActive(item.path))
                         ? 'text-slate-900 dark:text-white'
                         : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
-                    {t('nav.tools')}
-                    <ChevronDown size={14} className={`transition-transform ${openDropdown === 'tools' ? 'rotate-180' : ''}`} />
+                    Work With Me
+                    <ChevronDown size={14} className={`transition-transform ${openDropdown === 'workWithMe' ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence>
-                    {openDropdown === 'tools' && (
+                    {openDropdown === 'workWithMe' && (
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-2 z-50"
+                        className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-2 z-50"
                       >
-                        {toolsItems.map((item) => (
+                        {workWithMeItems.map((item) => (
                           <Link
                             key={item.path}
                             to={item.path}
                             onClick={() => setOpenDropdown(null)}
-                            className={`block px-4 py-2 text-sm transition-colors ${
+                            className={`block px-4 py-3 text-sm transition-colors ${
                               isActive(item.path)
                                 ? 'bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white'
                                 : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
                             }`}
                           >
-                            {t(item.labelKey)}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )}
-
-              {/* Consulting Dropdown */}
-              {consultingItems.length > 0 && (
-                <div ref={dropdownRefs.consulting} className="relative">
-                  <button
-                    onClick={() => setOpenDropdown(openDropdown === 'consulting' ? null : 'consulting')}
-                    className={`text-sm font-medium transition-colors relative py-1 whitespace-nowrap flex items-center gap-1 ${
-                      consultingItems.some(item => isActive(item.path))
-                        ? 'text-slate-900 dark:text-white'
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
-                  >
-                    {t('nav.consulting')}
-                    <ChevronDown size={14} className={`transition-transform ${openDropdown === 'consulting' ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {openDropdown === 'consulting' && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-2 z-50"
-                      >
-                        {consultingItems.map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            onClick={() => setOpenDropdown(null)}
-                            className={`block px-4 py-2 text-sm transition-colors ${
-                              isActive(item.path)
-                                ? 'bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white'
-                                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
-                            }`}
-                          >
-                            {t(item.labelKey)}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )}
-
-              {/* Hiring Dropdown */}
-              {hiringItems.length > 0 && (
-                <div ref={dropdownRefs.hiring} className="relative">
-                  <button
-                    onClick={() => setOpenDropdown(openDropdown === 'hiring' ? null : 'hiring')}
-                    className={`text-sm font-medium transition-colors relative py-1 whitespace-nowrap flex items-center gap-1 ${
-                      hiringItems.some(item => isActive(item.path))
-                        ? 'text-slate-900 dark:text-white'
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
-                  >
-                    {t('nav.hiring')}
-                    <ChevronDown size={14} className={`transition-transform ${openDropdown === 'hiring' ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {openDropdown === 'hiring' && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-2 z-50"
-                      >
-                        {hiringItems.map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            onClick={() => setOpenDropdown(null)}
-                            className={`block px-4 py-2 text-sm transition-colors ${
-                              isActive(item.path)
-                                ? 'bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white'
-                                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
-                            }`}
-                          >
-                            {t(item.labelKey)}
+                            <div className="font-medium">{t(item.labelKey)}</div>
+                            {item.description && (
+                              <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                {item.description}
+                              </div>
+                            )}
                           </Link>
                         ))}
                       </motion.div>
