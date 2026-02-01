@@ -65,7 +65,7 @@ This accelerated development while keeping architectural decisions manual.
 
 **🏗️ System Overview**:
 
-![Architecture Diagram](https://raw.githubusercontent.com/prasadt1/my-portfolio/main/docs/architecture-overview.svg)
+![Architecture Diagram](https://raw.githubusercontent.com/prasadt1/my-portfolio/main/docs/architecture-diagram.svg)
 
 ```
 Browser (React + Vite)

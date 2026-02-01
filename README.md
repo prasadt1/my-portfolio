@@ -71,7 +71,7 @@ This creates meaningful differentiation versus generic LLM advice.
 
 ## 🏗 Architecture Overview
 
-![Architecture Overview](docs/architecture-overview.svg)
+![Architecture Diagram](docs/architecture-diagram.svg)
 
 Frontend and backend are deployed as a single Cloud Run service.
 
