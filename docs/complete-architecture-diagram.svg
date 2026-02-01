@@ -1,0 +1,187 @@
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .frontend-box { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 8; }
+      .backend-box { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 8; }
+      .ai-box { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 8; }
+      .data-box { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 2; rx: 8; }
+      .external-box { fill: #fecaca; stroke: #dc2626; stroke-width: 2; rx: 8; }
+      .text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+      .small-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; fill: #64748b; text-anchor: middle; }
+      .tiny-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 9px; fill: #64748b; text-anchor: middle; }
+      .arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .flow-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 10px; fill: #64748b; text-anchor: middle; }
+      .section-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text class="section-title" x="450" y="25" style="font-size: 18px;">Complete Portfolio Architecture - Google Cloud Run + Gemini AI</text>
+  
+  <!-- Frontend Layer -->
+  <text class="section-title" x="150" y="60">Frontend Layer</text>
+  
+  <!-- Browser/User -->
+  <rect class="frontend-box" x="50" y="80" width="100" height="50"/>
+  <text class="text" x="100" y="100">Browser</text>
+  <text class="small-text" x="100" y="115">Visitors</text>
+  
+  <!-- React App -->
+  <rect class="frontend-box" x="200" y="80" width="120" height="50"/>
+  <text class="text" x="260" y="100">React + Vite</text>
+  <text class="small-text" x="260" y="115">SPA Frontend</text>
+  
+  <!-- Backend Layer -->
+  <text class="section-title" x="450" y="180">Google Cloud Run Backend</text>
+  
+  <!-- Cloud Run Service -->
+  <rect class="backend-box" x="350" y="200" width="200" height="60"/>
+  <text class="text" x="450" y="220">Cloud Run Service</text>
+  <text class="small-text" x="450" y="235">Node.js + Express</text>
+  <text class="tiny-text" x="450" y="250">Auto-scaling • Custom Domain</text>
+  
+  <!-- API Endpoints -->
+  <rect class="backend-box" x="50" y="300" width="100" height="40"/>
+  <text class="small-text" x="100" y="315">Portfolio API</text>
+  <text class="tiny-text" x="100" y="330">Case Studies</text>
+  
+  <rect class="backend-box" x="170" y="300" width="100" height="40"/>
+  <text class="small-text" x="220" y="315">Lead Capture</text>
+  <text class="tiny-text" x="220" y="330">Email Gating</text>
+  
+  <rect class="backend-box" x="290" y="300" width="100" height="40"/>
+  <text class="small-text" x="340" y="315">Similarity API</text>
+  <text class="tiny-text" x="340" y="330">AI Matching</text>
+  
+  <rect class="backend-box" x="410" y="300" width="100" height="40"/>
+  <text class="small-text" x="460" y="315">Artifact Gate</text>
+  <text class="tiny-text" x="460" y="330">NDA Content</text>
+  
+  <rect class="backend-box" x="530" y="300" width="100" height="40"/>
+  <text class="small-text" x="580" y="315">Analytics</text>
+  <text class="tiny-text" x="580" y="330">GDPR Safe</text>
+  
+  <rect class="backend-box" x="650" y="300" width="100" height="40"/>
+  <text class="small-text" x="700" y="315">Feature Flags</text>
+  <text class="tiny-text" x="700" y="330">Rollout Control</text>
+  
+  <!-- AI Layer -->
+  <text class="section-title" x="450" y="400">AI Integration Layer</text>
+  
+  <!-- Gemini AI -->
+  <rect class="ai-box" x="200" y="420" width="150" height="60"/>
+  <text class="text" x="275" y="440">Google Gemini 1.5 Pro</text>
+  <text class="small-text" x="275" y="455">Natural Language Processing</text>
+  <text class="tiny-text" x="275" y="470">Constrained by Project Data</text>
+  
+  <!-- AI Features -->
+  <rect class="ai-box" x="380" y="420" width="120" height="60"/>
+  <text class="text" x="440" y="440">Similarity Engine</text>
+  <text class="small-text" x="440" y="455">Pattern Matching</text>
+  <text class="tiny-text" x="440" y="470">Experience-Driven</text>
+  
+  <rect class="ai-box" x="520" y="420" width="120" height="60"/>
+  <text class="text" x="580" y="440">Project Database</text>
+  <text class="small-text" x="580" y="455">15+ Years Data</text>
+  <text class="tiny-text" x="580" y="470">Structured Signals</text>
+  
+  <!-- Data & External Services -->
+  <text class="section-title" x="450" y="520">Data & External Services</text>
+  
+  <!-- Google Sheets -->
+  <rect class="data-box" x="50" y="540" width="120" height="50"/>
+  <text class="text" x="110" y="560">Google Sheets</text>
+  <text class="small-text" x="110" y="575">CRM + Lead Storage</text>
+  
+  <!-- SendGrid -->
+  <rect class="external-box" x="200" y="540" width="120" height="50"/>
+  <text class="text" x="260" y="560">SendGrid</text>
+  <text class="small-text" x="260" y="575">Email Delivery</text>
+  
+  <!-- Namecheap DNS -->
+  <rect class="external-box" x="350" y="540" width="120" height="50"/>
+  <text class="text" x="410" y="560">Namecheap DNS</text>
+  <text class="small-text" x="410" y="575">Custom Domain</text>
+  
+  <!-- Static Assets -->
+  <rect class="data-box" x="500" y="540" width="120" height="50"/>
+  <text class="text" x="560" y="560">Static Assets</text>
+  <text class="small-text" x="560" y="575">Case Studies + PDFs</text>
+  
+  <!-- GitHub -->
+  <rect class="external-box" x="650" y="540" width="120" height="50"/>
+  <text class="text" x="710" y="560">GitHub</text>
+  <text class="small-text" x="710" y="575">Source Code + CI/CD</text>
+  
+  <!-- Arrows and Connections -->
+  
+  <!-- Frontend Flow -->
+  <line class="arrow" x1="150" y1="105" x2="200" y2="105"/>
+  <text class="flow-text" x="175" y="100">HTTPS</text>
+  
+  <line class="arrow" x1="260" y1="130" x2="450" y2="200"/>
+  <text class="flow-text" x="355" y="165">API Calls</text>
+  
+  <!-- Backend to APIs -->
+  <line class="arrow" x1="400" y1="260" x2="100" y2="300"/>
+  <line class="arrow" x1="420" y1="260" x2="220" y2="300"/>
+  <line class="arrow" x1="440" y1="260" x2="340" y2="300"/>
+  <line class="arrow" x1="460" y1="260" x2="460" y2="300"/>
+  <line class="arrow" x1="480" y1="260" x2="580" y2="300"/>
+  <line class="arrow" x1="500" y1="260" x2="700" y2="300"/>
+  
+  <!-- AI Integration -->
+  <line class="arrow" x1="340" y1="340" x2="275" y2="420"/>
+  <text class="flow-text" x="300" y="380">AI Query</text>
+  
+  <line class="arrow" x1="350" y1="450" x2="380" y2="450"/>
+  <text class="flow-text" x="365" y="445">Process</text>
+  
+  <line class="arrow" x1="500" y1="450" x2="520" y2="450"/>
+  <text class="flow-text" x="510" y="445">Match</text>
+  
+  <!-- Data Connections -->
+  <line class="arrow" x1="220" y1="340" x2="110" y2="540"/>
+  <text class="flow-text" x="150" y="440">Store Leads</text>
+  
+  <line class="arrow" x1="220" y1="340" x2="260" y2="540"/>
+  <text class="flow-text" x="240" y="440">Send Email</text>
+  
+  <line class="arrow" x1="450" y1="260" x2="410" y2="540"/>
+  <text class="flow-text" x="430" y="400">Domain</text>
+  
+  <line class="arrow" x1="580" y1="480" x2="560" y2="540"/>
+  <text class="flow-text" x="570" y="510">Assets</text>
+  
+  <!-- Legend -->
+  <rect fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="4" x="20" y="20" width="200" height="120"/>
+  <text class="tiny-text" x="120" y="35" style="font-weight: 600;">Architecture Legend</text>
+  
+  <rect class="frontend-box" x="30" y="45" width="15" height="10"/>
+  <text class="tiny-text" x="55" y="53" text-anchor="start">Frontend (React)</text>
+  
+  <rect class="backend-box" x="30" y="60" width="15" height="10"/>
+  <text class="tiny-text" x="55" y="68" text-anchor="start">Backend (Cloud Run)</text>
+  
+  <rect class="ai-box" x="30" y="75" width="15" height="10"/>
+  <text class="tiny-text" x="55" y="83" text-anchor="start">AI Services (Gemini)</text>
+  
+  <rect class="data-box" x="30" y="90" width="15" height="10"/>
+  <text class="tiny-text" x="55" y="98" text-anchor="start">Data Storage</text>
+  
+  <rect class="external-box" x="30" y="105" width="15" height="10"/>
+  <text class="tiny-text" x="55" y="113" text-anchor="start">External Services</text>
+  
+  <!-- Key Features -->
+  <rect fill="#f0fdf4" stroke="#16a34a" stroke-width="2" rx="6" x="680" y="80" width="200" height="100"/>
+  <text class="small-text" x="780" y="100" style="font-weight: 600;">Key Features</text>
+  <text class="tiny-text" x="780" y="115">• Experience-driven AI matching</text>
+  <text class="tiny-text" x="780" y="130">• GDPR-safe lead capture</text>
+  <text class="tiny-text" x="780" y="145">• Feature-flagged rollouts</text>
+  <text class="tiny-text" x="780" y="160">• Production monitoring</text>
+  <text class="tiny-text" x="780" y="175">• Custom domain + SSL</text>
+  
+</svg>
