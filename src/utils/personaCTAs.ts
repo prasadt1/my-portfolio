@@ -17,60 +17,26 @@ export interface PersonaCTA {
  * Get primary CTA for a persona
  */
 export function getPersonaPrimaryCTA(persona: PersonaType | null): PersonaCTA {
-  switch (persona) {
-    case 'hire':
-      return {
-        label: 'View Hiring Snapshot',
-        labelKey: 'cta.hiring.primary',
-        path: '/hiring',
-        variant: 'primary',
-      };
-    case 'toolkit':
-      return {
-        label: 'Browse Resources',
-        labelKey: 'cta.toolkit.primary',
-        path: '/resources',
-        variant: 'primary',
-      };
-    case 'consult':
-    default:
-      return {
-        label: 'Book Discovery Call',
-        labelKey: 'cta.consulting.primary',
-        path: 'https://calendly.com/prasad-sgsits/30min',
-        variant: 'primary',
-      };
-  }
+  // Final submission: Primary CTA = View Hiring Snapshot for all personas
+  return {
+    label: 'View Hiring Snapshot',
+    labelKey: 'cta.hiring.primary',
+    path: '/hiring',
+    variant: 'primary',
+  };
 }
 
 /**
  * Get secondary CTA for a persona
  */
 export function getPersonaSecondaryCTA(persona: PersonaType | null): PersonaCTA {
-  switch (persona) {
-    case 'hire':
-      return {
-        label: 'View Case Studies',
-        labelKey: 'cta.hiring.secondary',
-        path: '/projects',
-        variant: 'secondary',
-      };
-    case 'toolkit':
-      return {
-        label: 'Get Checklist (PDF)',
-        labelKey: 'cta.toolkit.secondary',
-        path: '/checklist',
-        variant: 'secondary',
-      };
-    case 'consult':
-    default:
-      return {
-        label: 'Request Artifacts Pack',
-        labelKey: 'cta.consulting.secondary',
-        path: '/projects',
-        variant: 'secondary',
-      };
-  }
+  // Final submission: Secondary CTA = View Case Studies for all personas
+  return {
+    label: 'View Case Studies',
+    labelKey: 'cta.hiring.secondary',
+    path: '/projects',
+    variant: 'secondary',
+  };
 }
 
 /**

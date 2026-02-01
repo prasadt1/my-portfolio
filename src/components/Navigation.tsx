@@ -43,6 +43,7 @@ const Navigation: React.FC = () => {
     { path: '/checklist', labelKey: 'nav.checklist', featureKey: 'AI_CHECKLIST' as FeatureKey },
     { path: '/risk-radar', labelKey: 'nav.riskRadar', featureKey: 'AI_RISK_RADAR' as FeatureKey },
     { path: '/architecture-engine', labelKey: 'nav.architectureEngine', featureKey: 'AI_ARCH_ENGINE' as FeatureKey },
+    { path: '/tools/project-similarity', labelKey: 'nav.projectSimilarity', featureKey: 'PROJECT_SIMILARITY_MATCHER' as FeatureKey },
   ].filter(item => !item.featureKey || isPromoted(item.featureKey));
 
   const consultingItems = [

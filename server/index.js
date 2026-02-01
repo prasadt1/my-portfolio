@@ -9,6 +9,8 @@ import { fileURLToPath } from 'url';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import createLeadStore, { logLeadStoreConfig } from './leadStore/index.js';
+import { JsonToolRequestStore } from './toolRequestStore/JsonToolRequestStore.js';
+import { computeProjectSimilarity } from './similarityMatcher.js';
 import { safeStr } from './utils.js';
 import { getFeatureFlags, logFeatureFlagsConfig } from './featureFlags.js';
 
@@ -45,6 +47,7 @@ logLeadStoreConfig();
 logFeatureFlagsConfig();
 
 const leadStore = createLeadStore();
+const toolRequestStore = new JsonToolRequestStore();
 
 app.use(cors());
 app.use(express.json());
@@ -67,7 +70,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 // Rate limiting (simple in-memory store - use Redis in production)
 const rateLimitStore = new Map();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const RATE_LIMIT_MAX = 10; // 10 requests per minute
+const RATE_LIMIT_MAX = 50; // 50 requests per minute (increased for better UX)
 
 // Separate rate limiting for semantic search (more lenient)
 const semanticSearchRateLimitStore = new Map();
@@ -106,6 +109,24 @@ const checkSemanticSearchRateLimit = (ip) => {
         return false;
     }
 
+    record.count++;
+    return true;
+};
+
+// Phase 5 Enhanced: Project Similarity Matcher rate limit (stricter: 3 req / 5 min)
+const projectSimilarityRateLimitStore = new Map();
+const PROJECT_SIMILARITY_WINDOW = 5 * 60 * 1000; // 5 minutes
+const PROJECT_SIMILARITY_MAX = 15; // 15 requests per 5 minutes (more reasonable)
+
+const checkProjectSimilarityRateLimit = (ip) => {
+    const now = Date.now();
+    const key = `project_similarity_${ip}`;
+    const record = projectSimilarityRateLimitStore.get(key);
+    if (!record || now - record.firstRequest > PROJECT_SIMILARITY_WINDOW) {
+        projectSimilarityRateLimitStore.set(key, { firstRequest: now, count: 1 });
+        return true;
+    }
+    if (record.count >= PROJECT_SIMILARITY_MAX) return false;
     record.count++;
     return true;
 };
@@ -2536,6 +2557,98 @@ app.post('/api/case-study-brief', async (req, res) => {
     } catch (error) {
         console.error('PDF Brief error:', error);
         res.status(500).json({ error: 'Failed to process PDF brief request' });
+    }
+});
+
+// Phase 5 Enhanced: Project Similarity Matcher
+app.post('/api/project-similarity', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection?.remoteAddress || req.socket?.remoteAddress || 'unknown';
+
+        if (!checkProjectSimilarityRateLimit(clientIp)) {
+            return res.status(429).json({ error: 'Rate limit exceeded. Please try again in 5 minutes.' });
+        }
+
+        const { query, email, attribution, persona, locale } = req.body;
+
+        if (!query || typeof query !== 'string') {
+            return res.status(400).json({ error: 'Query is required.' });
+        }
+        const q = query.trim();
+        if (q.length < 20 || q.length > 2000) {
+            return res.status(400).json({ error: 'Query must be between 20 and 2000 characters.' });
+        }
+
+        if (!email || !String(email).includes('@')) {
+            return res.json({ gated: true });
+        }
+
+        const emailSanitized = String(email).trim().toLowerCase().substring(0, 160);
+        const localeSafe = (locale === 'de' ? 'de' : 'en');
+
+        const leadData = {
+            email: emailSanitized,
+            language: localeSafe,
+            sourcePath: attribution?.currentPath || '/tools/project-similarity',
+            leadMagnet: 'project-similarity-matcher',
+            consent: true,
+            consentTimestamp: new Date().toISOString(),
+            utm_source: attribution?.utm_source || '',
+            utm_medium: attribution?.utm_medium || '',
+            utm_campaign: attribution?.utm_campaign || '',
+            utm_content: attribution?.utm_content || '',
+            utm_term: attribution?.utm_term || '',
+            landingPath: attribution?.landingPath || '',
+            currentPath: attribution?.currentPath || '',
+            ctaSource: 'project_similarity_gate',
+            queryText: q.substring(0, 500),
+        };
+        await leadStore.saveLead(leadData);
+
+        let matcherOutput;
+        try {
+          matcherOutput = await computeProjectSimilarity(q, localeSafe);
+        } catch (err) {
+          console.error('[Project Similarity] Matcher error:', err.message);
+          return res.status(500).json({
+            error: 'Failed to analyze your situation. Please try again.',
+            details: process.env.NODE_ENV === 'development' ? err.message : undefined,
+          });
+        }
+
+        const results = Array.isArray(matcherOutput?.results) ? matcherOutput.results : [];
+        const source = matcherOutput?.source || 'keyword';
+
+        if (results.length === 0) {
+          return res.json({
+            gated: false,
+            results: [],
+            source: 'keyword',
+            message: 'No similar projects found. Try adding more details about your challenge, industry, or constraints.',
+          });
+        }
+
+        const toolRequest = {
+            timestamp: new Date().toISOString(),
+            toolKey: 'project_similarity',
+            email: emailSanitized,
+            locale: localeSafe,
+            persona: persona || '',
+            queryText: q.substring(0, 500),
+            topMatchSlug: results[0]?.slug || '',
+            topMatchScore: results[0]?.score ?? 0,
+            attribution: attribution ? JSON.stringify(attribution).substring(0, 500) : '',
+        };
+        await toolRequestStore.saveToolRequest(toolRequest);
+
+        if (process.env.NODE_ENV === 'development') {
+            console.log('[Project Similarity] Processed:', { email: emailSanitized.substring(0, 3) + '***', topSlug: results[0]?.slug, count: results.length, source });
+        }
+
+        return res.json({ gated: false, results, source });
+    } catch (err) {
+        console.error('Project Similarity error:', err);
+        return res.status(500).json({ error: 'Failed to generate similarity results. Please try again.' });
     }
 });
 

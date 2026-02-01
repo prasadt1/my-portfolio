@@ -297,6 +297,10 @@ export interface CaseStudy {
     outcomeBadges?: OutcomeBadge[]; // max 4
     beforeAfterDiagram?: BeforeAfterDiagram;
     pdfBrief?: CaseStudyPDFBrief;
+
+    // Phase 5 Enhanced: Project Similarity Matcher
+    similaritySignals?: SimilaritySignal;
+    retrospectiveLite?: ProjectRetrospectiveLite;
 }
 
 /**
@@ -384,4 +388,45 @@ export interface BeforeAfterDiagram {
 export interface CaseStudyPDFBrief {
     enabled?: boolean; // default true for hero case studies
     disclaimer: LocalizedString; // NDA + anonymized note
+}
+
+// =============================================================================
+// PHASE 5 ENHANCED: PROJECT SIMILARITY MATCHER
+// =============================================================================
+
+/**
+ * SimilaritySignal - structured signals for project similarity matching
+ * Used by Project Similarity Matcher; safe fallback if missing.
+ */
+export interface SimilaritySignal {
+    industries: string[];
+    problemPatterns: string[];
+    constraints: string[];
+    levers: string[];
+    deliverablePatterns: string[];
+    antiPatternsSeen: string[];
+    decisionFrameworks: string[];
+    teamSizes: string[];
+    budgetRanges: string[];
+    timelines: string[];
+    riskProfiles: string[];
+    prasadFrameworks: Array<{
+        name: string;
+        description: LocalizedString;
+        whenToUse: LocalizedString;
+    }>;
+}
+
+/**
+ * ProjectRetrospectiveLite - compact retrospective for similarity results
+ */
+export interface ProjectRetrospectiveLite {
+    whatWentWrong?: LocalizedStringArray;
+    whatWorked?: LocalizedStringArray;
+    lessonsLearned?: LocalizedStringArray;
+    whatIdDoToday?: LocalizedStringArray;
+    prasadInsight?: LocalizedString;
+    applicableFramework?: string;
+    estimatedEffort?: string;
+    riskMitigation?: LocalizedStringArray;
 }

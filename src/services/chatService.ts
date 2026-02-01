@@ -74,7 +74,7 @@ const functions: Record<string, Function> = {
         const filtered = category ? products.filter(p => p.category === category) : products;
         return filtered.map(p => ({
             title: i18n.t(`products.${p.id}.title`),
-            price: p.price,
+            // price: p.price, // REMOVED - pricing uncertain
             link: `/products/${p.slug}`
         }));
     },
@@ -91,10 +91,8 @@ const functions: Record<string, Function> = {
         };
     },
     get_roi_estimate: ({ spend, type }: { spend: number, type: string }) => {
-        if (type === 'migration') {
-            return { savings: spend * 12 * 0.4, message: "Estimated 40% annual savings on total cost of ownership." };
-        }
-        return { savings: spend * 0.6, message: "Estimated 60% reduction in maintenance costs." };
+        // REMOVED - pricing estimates uncertain
+        return { message: "Please contact us for a customized assessment and ROI estimate based on your specific requirements." };
     }
 };
 

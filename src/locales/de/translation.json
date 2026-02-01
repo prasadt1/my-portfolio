@@ -24,6 +24,7 @@
         "consultation": "Beratung",
         "architectureEngine": "Architektur-Assistent (Beta)",
         "riskRadar": "Risiko-Radar",
+        "projectSimilarity": "Projekt-Similaritäts-Matcher",
         "checklist": "Checkliste",
         "hiring": "Karriere",
         "hireMe": "Mich einstellen",
@@ -1526,6 +1527,100 @@
             "softCtaLink": "Architektur-Review-Services ansehen"
         }
     },
+    "tools": {
+        "projectSimilarity": {
+            "seo": {
+                "title": "Projekt-Similaritäts-Matcher | Prasad Tilloo",
+                "description": "Ähnliche Projekte aus 15+ Jahren Enterprise-Architektur-Erfahrung finden. Maßgeschneiderte Einblicke und Schlüsselentscheidungen."
+            },
+            "heroTitle": "Ähnliche Projekte aus Prasads Erfahrung finden",
+            "heroSubhead": "Einblicke aus 15+ Jahren Enterprise-Architektur-Projekten. Was funktioniert hat, was nicht—und was Prasad heute anders machen würde.",
+            "proof": {
+                "realProjects": "Echte Projekte, anonymisiert",
+                "fastMatch": "Schneller, erfahrungsbasierter Match",
+                "confidential": "Vertraulich, kein Spam"
+            },
+            "form": {
+                "queryLabel": "Beschreiben Sie Ihre Herausforderung oder Ihr Projekt",
+                "queryPlaceholder": "z.B. Migration einer Legacy-eCommerce-Plattform in die Cloud mit GDPR-Compliance...",
+                "queryMinLength": "Bitte beschreiben Sie Ihre Herausforderung mit mindestens 20 Zeichen.",
+                "queryMaxLength": "Die Eingabe darf maximal 2000 Zeichen haben.",
+                "industryLabel": "Branche (optional)",
+                "constraintsLabel": "Constraints / Ziele (optional)",
+                "submitButton": "Ähnliche Projekte finden",
+                "examplePrompts": "Beispiel ausprobieren:"
+            },
+            "examples": {
+                "ecommerceMigration": "eCommerce + Migration + AWS",
+                "insurancePerformance": "Versicherung + Performance",
+                "aiCostControl": "AI + Kostenkontrolle",
+                "climateData": "Klima + Datenaustausch",
+                "adScale": "AdTech + Skalierung"
+            },
+            "chips": {
+                "ecommerce": "eCommerce",
+                "insurance": "Versicherung",
+                "adtech": "AdTech",
+                "climate": "Klima / Nachhaltigkeit",
+                "ai": "AI / Produkt",
+                "tightTimeline": "Enger Zeitplan",
+                "zeroDowntime": "Zero Downtime",
+                "budgetConscious": "Budgetbewusst",
+                "compliance": "Compliance",
+                "costReduction": "Kostenreduzierung",
+                "scalability": "Skalierbarkeit",
+                "migration": "Migration",
+                "performance": "Performance"
+            },
+            "errors": {
+                "rateLimit": "Zu viele Anfragen. Bitte warten Sie einen Moment und versuchen Sie es erneut.",
+                "retry": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut—bei Fortdauer versuchen Sie eine andere oder ausführlichere Beschreibung Ihrer Herausforderung."
+            },
+            "gate": {
+                "title": "Prasads Projekt-Insights freischalten",
+                "subtitle": "Personalisierte Analyse basierend auf echter Projekterfahrung",
+                "emailLabel": "E-Mail-Adresse",
+                "consentText": "Ich stimme zu, Projekt-Insights und gelegentliche Updates zu erhalten",
+                "unlockButton": "Ergebnisse freischalten",
+                "confidentialityNote": "Ihre Anfrage und Ergebnisse sind vertraulich. Kein Spam, jederzeit abbestellbar.",
+                "emailRequired": "Gültige E-Mail ist erforderlich",
+                "consentRequired": "Bitte stimmen Sie dem Erhalt von Insights zu"
+            },
+            "results": {
+                "title": "Ihre Matches",
+                "subtitle": "Basierend auf Ihrer Beschreibung und Prasads Projekterfahrung.",
+                "portfolioBased": "Basierend auf meiner Portfolio-Erfahrung und Wissensbasis—hier die relevantesten Fallstudien und Tipps für Ihre Situation.",
+                "analyzing": "Analysiere Ihre Situation mit AI...",
+                "noMatches": "Keine Matches gefunden. Versuchen Sie, Ihre Anfrage mit mehr Details zu verfeinern.",
+                "error": "Fehler",
+                "confidence": {
+                    "high": "Hohe Übereinstimmung",
+                    "medium": "Mittlere Übereinstimmung",
+                    "low": "Geringe Übereinstimmung"
+                },
+                "whyMatches": "Warum dies zu Ihrer Situation passt:",
+                "keyDecisions": "Entscheidungen, die zählten:",
+                "prasadInsight": "Prasads zentrale Erkenntnis:",
+                "applicableFramework": "Anwendbares Framework:",
+                "retrospectiveExpand": "Was schiefging / Was ich heute anders mache",
+                "whatWentWrong": "Was schiefging",
+                "whatWorked": "Was gut funktionierte",
+                "whatIdDoToday": "Was ich heute anders machen würde",
+                "riskMitigation": "Risikominimierung",
+                "estimatedEffort": "Geschätzter Aufwand:",
+                "budgetRange": "Budget-Range:",
+                "redFlags": "🚨 Rote Flaggen die ich sehe:",
+                "diagnosticQuestions": "Fragen die Prasad stellen würde:",
+                "viewCaseStudy": "Vollständige Fallstudie ansehen",
+                "requestArtifacts": "Artefakt-Paket anfordern"
+            },
+            "cta": {
+                "text": "Möchten Sie Ihre Situation vertiefen? Buchen Sie ein Erstgespräch.",
+                "bookCall": "Erstgespräch buchen",
+                "matchProject": "Mein Projekt matchen"
+            }
+        }
+    },
     "proof": {
         "title": "Echte Ergebnisse",
         "subtitle": "Qualitative Ergebnisse aus echten Engagements",
@@ -1675,7 +1770,7 @@
             },
             "cta2": {
                 "title": "AI Tool ausprobieren",
-                "description": "Vendor Proposal Checklist - AI-gestütztes Vorschlags-Review-Tool",
+                "description": "Vendor Proposal Checklist - Erfahrungsbasiertes Vorschlags-Review-Tool",
                 "button": "Checklist ausprobieren"
             },
             "cta3": {
@@ -1691,7 +1786,7 @@
             "subtitle": "Ein Production-Ready-Portfolio, das Enterprise-Architektur-Expertise, AI-Integration mit Gemini und Cloud Run Deployment demonstriert.",
             "whatIs": {
                 "title": "Was diese Seite ist",
-                "description": "Ein unabhängiges Architektur-Berater-Portfolio, gebaut mit React + TypeScript, mit AI-gestützten Tools (Gemini 3 Pro), Feature Flags für phasenweisen Rollout, GDPR-sichere Analytics und Production-Deployment auf Google Cloud Run. Die Seite demonstriert reale Enterprise-Architektur-Expertise durch detaillierte Fallstudien."
+                "description": "Ein unabhängiges Architektur-Berater-Portfolio, gebaut mit React + TypeScript, mit erfahrungsbasierten Tools (Gemini 3 Pro), Feature Flags für phasenweisen Rollout, GDPR-sichere Analytics und Production-Deployment auf Google Cloud Run. Die Seite demonstriert reale Enterprise-Architektur-Expertise durch detaillierte Fallstudien basierend auf echter Delivery."
             },
             "aiFeatures": {
                 "title": "AI-Features",

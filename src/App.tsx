@@ -17,7 +17,6 @@ const ChatAssistant = lazy(() => import('./components/ChatAssistant'));
 const CommandPalette = lazy(() => import('./components/CommandPalette'));
 const ExitIntentPopup = lazy(() => import('./components/ExitIntentPopup'));
 const HireMeBanner = lazy(() => import('./components/HireMeBanner'));
-const StartHereDrawer = lazy(() => import('./components/StartHereDrawer'));
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import('./pages/HomePageMultiDomain'));
@@ -41,6 +40,8 @@ const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const CompetitionPage = lazy(() => import('./pages/CompetitionPage'));
 // Phase 5: Lazy load CaseStudyBriefPage for performance
 const CaseStudyBriefPage = lazy(() => import('./pages/CaseStudyBriefPage'));
+// Phase 5 Enhanced: Project Similarity Matcher
+const ProjectSimilarityPage = lazy(() => import('./pages/ProjectSimilarityPage'));
 // Admin pages (dev-only, hidden in production)
 const FeatureFlagsPage = lazy(() => import('./pages/admin/FeatureFlagsPage'));
 const DiagnosticsPage = lazy(() => import('./pages/admin/DiagnosticsPage'));
@@ -50,8 +51,8 @@ const Layout: React.FC = () => {
   const location = useLocation();
   const competitionMode = typeof import.meta !== 'undefined' && (import.meta.env?.VITE_COMPETITION_MODE === 'true' || import.meta.env?.VITE_COMPETITION_MODE === '1');
   
-  // Conditionally show ChatAssistant only on specific pages
-  const showChatAssistant = ['/', '/services', '/contact'].includes(location.pathname);
+  // Final submission: Chat Assistant disabled
+  const showChatAssistant = false;
   
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
@@ -80,9 +81,6 @@ const Layout: React.FC = () => {
       )}
       <Suspense fallback={null}>
         <HireMeBanner />
-      </Suspense>
-      <Suspense fallback={null}>
-        <StartHereDrawer />
       </Suspense>
     </div>
   );
@@ -118,6 +116,8 @@ const App: React.FC = () => {
                 <Route path="hire-me" element={<HireMePage />} />
                 <Route path="consulting" element={<ConsultingPage />} />
                 <Route path="resources" element={<ResourcesPage />} />
+                {/* Phase 5 Enhanced: Project Similarity Matcher */}
+                <Route path="tools/project-similarity" element={<ProjectSimilarityPage />} />
                 {/* Phase 3.4A: Competition page */}
                 <Route path="competition" element={<CompetitionPage />} />
                 {/* Feature routes with guards */}

@@ -4,7 +4,7 @@ export interface Product {
     id: string;
     slug: string;
     // title & description will be pulled from i18n
-    price: number;
+    // price: number; // REMOVED - pricing uncertain
     icon: string; // Lucide icon name
     // features will be pulled from i18n
     category: 'industry40' | 'compliance' | 'consulting' | 'carbon' | 'ecommerce' | 'architecture' | 'data';
@@ -21,7 +21,7 @@ export const products: Product[] = [
     {
         id: 'ecommerce-blueprint',
         slug: 'ecommerce-blueprint',
-        price: 15000,
+        // price: 15000, // REMOVED - pricing uncertain
         icon: 'ShoppingBag',
         category: 'ecommerce',
         ctaLink: '#',
@@ -34,7 +34,7 @@ export const products: Product[] = [
     {
         id: 'pact-starter-kit',
         slug: 'pact-starter-kit',
-        price: 9500,
+        // price: 9500, // REMOVED - pricing uncertain
         icon: 'Leaf',
         category: 'carbon',
         ctaLink: '#',
@@ -48,7 +48,7 @@ export const products: Product[] = [
     {
         id: 'data-lake-architecture',
         slug: 'data-lake-architecture',
-        price: 18000,
+        // price: 18000, // REMOVED - pricing uncertain
         icon: 'Database',
         category: 'data',
         ctaLink: '#',
@@ -61,7 +61,7 @@ export const products: Product[] = [
     {
         id: 'display-ads-architecture',
         slug: 'display-ads-architecture',
-        price: 12000,
+        // price: 12000, // REMOVED - pricing uncertain
         icon: 'Zap',
         category: 'architecture',
         ctaLink: '#',
@@ -74,7 +74,7 @@ export const products: Product[] = [
     {
         id: 'hipaa-compliance-package',
         slug: 'hipaa-compliance-package',
-        price: 8000,
+        // price: 8000, // REMOVED - pricing uncertain
         icon: 'Shield',
         category: 'compliance',
         ctaLink: '#',
@@ -87,7 +87,7 @@ export const products: Product[] = [
     {
         id: 'industry40-toolkit',
         slug: 'industry40-toolkit',
-        price: 12000,
+        // price: 12000, // REMOVED - pricing uncertain
         icon: 'Factory',
         category: 'industry40',
         ctaLink: '#',
@@ -100,7 +100,7 @@ export const products: Product[] = [
     {
         id: 'it-effectiveness-assessment',
         slug: 'it-effectiveness-assessment',
-        price: 5000,
+        // price: 5000, // REMOVED - pricing uncertain
         icon: 'BarChart',
         category: 'consulting',
         ctaLink: '#',
@@ -113,7 +113,7 @@ export const products: Product[] = [
     {
         id: 'devops-maturity-assessment',
         slug: 'devops-maturity-assessment',
-        price: 8000,
+        // price: 8000, // REMOVED - pricing uncertain
         icon: 'Loop', // Will need to map to Infinity/Loop symbol
         category: 'consulting',
         ctaLink: '#',
@@ -127,7 +127,7 @@ export const products: Product[] = [
     {
         id: 'architecture-assessment',
         slug: 'architecture-assessment',
-        price: 15000,
+        // price: 15000, // REMOVED - pricing uncertain
         icon: 'Structure', // Will need to map to Layout/Building
         category: 'architecture',
         ctaLink: '#',
@@ -141,7 +141,7 @@ export const products: Product[] = [
     {
         id: 'agile-maturity-assessment',
         slug: 'agile-maturity-assessment',
-        price: 6000,
+        // price: 6000, // REMOVED - pricing uncertain
         icon: 'Users',
         category: 'consulting',
         ctaLink: '#',

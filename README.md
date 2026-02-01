@@ -1,10 +1,10 @@
 # Prasad Tilloo Portfolio - Architecture Engine
 
-A professional portfolio website featuring an AI-powered Architecture Decision Engine built with React, TypeScript, Vite, and Google Gemini AI.
+A professional portfolio website featuring an Experience-driven Architecture Decision Engine built with React, TypeScript, Vite, and Google Gemini AI.
 
 ## ✨ Features
 
-- 🎯 **AI-Powered Architecture Engine** - Get expert recommendations based on 15+ years of experience
+- 🎯 **Experience-driven Architecture Engine** - Get expert recommendations based on 15+ years of experience
 - 🏥 **Multi-Industry Support** - Healthcare, Financial Services, eCommerce, AI/ML
 - 📱 **Fully Responsive** - Works on desktop, tablet, and mobile
 - ⚡ **Fast & Modern** - Built with Vite for lightning-fast development
@@ -203,6 +203,99 @@ https://your-cloud-run-url.run.app
 
 **⚠️ Important:** Phase 5 represents a feature freeze. Only bugfixes are allowed from this point forward. No new features, pages, or major layout changes should be added.
 
+## 🎯 Phase 5 Enhanced: Project Similarity Matcher
+
+### What is Project Similarity Matcher?
+
+The Project Similarity Matcher is an **AI-driven diagnostic tool** powered by Google Gemini that analyzes user situations using Prasad's real project experience. Unlike simple keyword matching, it:
+
+- **Thinks like Prasad**: Uses AI to understand context, not just match tags
+- **Identifies failure modes**: Recognizes anti-patterns from real project failures
+- **Provides specific recommendations**: Based on what actually worked in similar situations
+- **Asks diagnostic questions**: When more context is needed
+- **Gives realistic estimates**: Based on actual project timelines and budgets
+- **Applies decision frameworks**: Uses Prasad's specific approaches from real projects
+
+**Key Features:**
+- **Experience-driven analysis** using Google Gemini (not keyword matching)
+- Email-gated results (GDPR-safe lead capture)
+- Top 3 matches with confidence levels (High/Medium/Low)
+- **Red flags identification**: Specific risks from similar situations
+- **Diagnostic questions**: When AI needs more context
+- Retrospective insights: what went wrong, what worked, what Prasad would do today
+- Realistic timelines and budget ranges based on actual projects
+- Risk mitigation strategies and estimated effort
+- Direct links to full case studies and artifact requests
+
+### How to Promote It
+
+Set in `.env.local`:
+```bash
+VITE_PROMOTE_PROJECT_SIMILARITY=true
+```
+
+Or enable competition mode (auto-promotes all features):
+```bash
+VITE_COMPETITION_MODE=true
+```
+
+**Entry Points:**
+- Homepage hero: "Match my project" secondary CTA (if promoted)
+- Homepage Toolkit section: Project Similarity Matcher card (if promoted)
+- Navigation → Tools dropdown: "Project Similarity Matcher" (if promoted)
+- Resources page: Tool tile (if promoted)
+- Direct route: `/tools/project-similarity` (always accessible if enabled)
+
+### How to Add Similarity Signals to New Case Studies
+
+1. **Update `src/types/CaseStudy.ts`** - Types already include `SimilaritySignal` and `ProjectRetrospectiveLite`.
+
+2. **Add to `src/data/projects.ts`** - For each case study, add:
+   ```typescript
+   similaritySignals: {
+     industries: ['ecommerce', 'retail'],
+     problemPatterns: ['legacy-migration', 'vendor-lock-in'],
+     constraints: ['zero-downtime', 'multi-language'],
+     levers: ['cost-reduction', 'scalability'],
+     // ... (see spec for full structure)
+   },
+   retrospectiveLite: {
+     whatWentWrong: { en: [...], de: [...] },
+     whatWorked: { en: [...], de: [...] },
+     whatIdDoToday: { en: [...], de: [...] },
+     prasadInsight: { en: '...', de: '...' },
+     estimatedEffort: '6-8 months, 5-7 people',
+     riskMitigation: { en: [...], de: [...] },
+   }
+   ```
+
+3. **Update `server/similarity-data.json`** - Add the project's similarity data to the JSON file (or create a script to generate it from `projects.ts`).
+
+### Cloud Run Ready Checklist
+
+- ✅ TypeScript strict mode passes
+- ✅ Production build succeeds
+- ✅ Server endpoints handle errors gracefully
+- ✅ Rate limiting configured (3 req / 5 min for similarity)
+- ✅ Tool requests stored to JSON (fallback) or Google Sheets
+- ✅ Email gate flow tested
+- ✅ Analytics events tracked (no PII)
+- ✅ i18n complete (EN+DE)
+- ✅ Feature flags work (promotion controlled)
+
+### API Endpoints
+
+**POST `/api/project-similarity`**
+- **Request:** `{ query, email?, attribution, persona, locale }`
+- **Response (gated):** `{ gated: true }`
+- **Response (unlocked):** `{ gated: false, results: SimilarityResultItem[] }`
+- **Rate limit:** 3 requests per 5 minutes per IP
+- **Validation:** Query must be 20-2000 characters
+
+**Storage:**
+- Lead saved via `/api/lead` (existing endpoint)
+- Tool request saved to `server/tool-requests.json` (or Google Sheets "ToolRequests" tab if configured)
+
 ## 📝 Environment Variables
 
 ### Core Configuration
@@ -272,12 +365,18 @@ https://your-cloud-run-url.run.app
 | `VITE_PROMOTE_BEFORE_AFTER_DIAGRAM` | Show before/after diagrams | `true`, `false` | No (default: `true`) |
 | `VITE_PROMOTE_CASE_STUDY_PDF_EXPORT` | Enable PDF Brief export | `true`, `false` | No (default: `true`) |
 
+**Phase 5 Enhanced: Project Similarity Matcher**
+| Variable | Description | Values | Required |
+|----------|-------------|--------|----------|
+| `VITE_PROMOTE_PROJECT_SIMILARITY` | Show Project Similarity Matcher in nav/home | `true`, `false` | No (default: `false`) |
+| `VITE_PROMOTE_TOOLS_SECTION` | Show Tools section in navigation | `true`, `false` | No (default: `false`) |
+
 **Competition Mode (Phase 3.2B):**
 | Variable | Description | Values | Required |
 |----------|-------------|--------|----------|
 | `VITE_COMPETITION_MODE` | Auto-promote all major features | `true`, `false` | No (default: `false`) |
 
-When `VITE_COMPETITION_MODE=true`, all major features (including Phase 4.5) are automatically promoted regardless of individual flags.
+When `VITE_COMPETITION_MODE=true`, all major features (including Phase 4.5 and Phase 5 Enhanced) are automatically promoted regardless of individual flags.
 
 **Feature Flag Modes:**
 - `on` - Feature enabled for all users

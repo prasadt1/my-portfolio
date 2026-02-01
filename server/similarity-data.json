@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "photography-coach-ai",
+    "title": { "en": "Photography Coach AI: Productionizing Gemini 3 Pro", "de": "Photography Coach AI: Gemini 3 Pro in Produktion" },
+    "similaritySignals": {
+      "industries": ["ai", "product", "consumer-apps"],
+      "problemPatterns": ["high-inference-costs", "black-box-ai", "token-cost-control"],
+      "constraints": ["budget-conscious", "real-time-analysis", "transparency-requirement"],
+      "levers": ["cost-reduction", "user-trust", "observability"],
+      "deliverablePatterns": ["context-caching", "glass-box-ui", "cost-optimized-backend"],
+      "antiPatternsSeen": ["unbounded-token-usage", "opaque-scoring"],
+      "decisionFrameworks": ["transparent-ai-architecture"],
+      "teamSizes": ["2-5"],
+      "budgetRanges": ["100K-500K"],
+      "timelines": ["3-6mo"],
+      "riskProfiles": ["startup"],
+      "prasadFrameworks": [{ "name": "Transparent AI Architecture", "description": { "en": "Context caching and glass-box UX for production AI", "de": "Context Caching und Glass-Box-UX für Production-AI" }, "whenToUse": { "en": "When building AI features with cost and trust constraints", "de": "Bei AI-Features mit Kosten- und Vertrauens-Constraints" } }]
+    },
+    "retrospectiveLite": {
+      "whatWorked": { "en": ["Context caching cut costs 75%", "Glass-box UI built trust"], "de": ["Context Caching senkte Kosten um 75%", "Glass-Box-UI schuf Vertrauen"] },
+      "whatIdDoToday": { "en": ["Add evaluation harness earlier", "Define golden set from day 1"], "de": ["Evaluation-Harness früher aufsetzen", "Golden Set von Tag 1 definieren"] },
+      "prasadInsight": { "en": "Transparency and cost control are first-class architecture concerns for production AI.", "de": "Transparenz und Kostenkontrolle sind Architektur-Constraints erster Klasse für Production-AI." },
+      "estimatedEffort": "2–4 months, 2–4 people",
+      "riskMitigation": { "en": ["Cap token usage per request", "Monitor cost per user"], "de": ["Token-Nutzung pro Request begrenzen", "Kosten pro User überwachen"] }
+    }
+  },
+  {
+    "slug": "pact-pcf-data-exchange-network",
+    "title": { "en": "Global PCF Data Exchange Network", "de": "Globales PCF-Datenaustausch-Netzwerk" },
+    "similaritySignals": {
+      "industries": ["climate-tech", "standards", "sustainability"],
+      "problemPatterns": ["data-silos", "integration-costs", "scope-3-tracking", "interoperability"],
+      "constraints": ["multi-stakeholder", "sovereignty-preserving", "global-adoption"],
+      "levers": ["cost-reduction", "compliance", "adoption"],
+      "deliverablePatterns": ["open-api-spec", "conformance-testkit", "decentralized-network"],
+      "antiPatternsSeen": ["central-database-single-point", "vendor-specific-schemas"],
+      "decisionFrameworks": ["decentralized-data-space"],
+      "teamSizes": ["10-20", "50+"],
+      "budgetRanges": ["500K-1M"],
+      "timelines": ["12mo+"],
+      "riskProfiles": ["enterprise", "regulated"],
+      "prasadFrameworks": [{ "name": "Decentralized Data Space", "description": { "en": "Sovereignty-preserving network architecture for cross-org data exchange", "de": "Souveränitätserhaltende Netzwerk-Architektur für cross-org Datenaustausch" }, "whenToUse": { "en": "When building standards for multi-party carbon or ESG data exchange", "de": "Bei Standards für Multi-Party Carbon- oder ESG-Datenaustausch" } }]
+    },
+    "retrospectiveLite": {
+      "whatWorked": { "en": ["OpenAPI-first spec", "Conformance testbed accelerated adoption"], "de": ["OpenAPI-first Spec", "Conformance-Testbed beschleunigte Adoption"] },
+      "whatIdDoToday": { "en": ["Align scope boundaries earlier", "Define versioning strategy up front"], "de": ["Scope-Grenzen früher abstimmen", "Versionierungsstrategie von Anfang an definieren"] },
+      "prasadInsight": { "en": "Decentralized, sovereignty-preserving design beat central-database approaches for cross-org adoption.", "de": "Dezentraler, souveränitätserhaltender Ansatz schlug Zentral-Datenbank-Ansätze bei cross-org Adoption." },
+      "estimatedEffort": "12–18 months, 10–25 stakeholders",
+      "riskMitigation": { "en": ["Governance operating model from day 1", "Backward-compat versioning"], "de": ["Governance-Betriebsmodell von Tag 1", "Rückwärtskompatible Versionierung"] }
+    }
+  },
+  {
+    "slug": "brita-ecommerce",
+    "title": { "en": "Modernizing Global eCommerce: Headless Architecture", "de": "Globales eCommerce modernisieren: Headless-Architektur" },
+    "similaritySignals": {
+      "industries": ["ecommerce", "retail", "consumer-goods"],
+      "problemPatterns": ["legacy-platform-migration", "multi-market-complexity", "vendor-lock-in", "headless-architecture-need"],
+      "constraints": ["zero-downtime-requirement", "multi-language-support", "existing-customer-data", "tight-timeline"],
+      "levers": ["cost-reduction", "scalability", "market-expansion"],
+      "deliverablePatterns": ["adr-pack", "target-architecture", "blueprint-sprint", "integration-layer"],
+      "antiPatternsSeen": ["big-bang-cutover", "seo-ignored-during-migration"],
+      "decisionFrameworks": ["headless-migration-phasing", "multi-tenant-governance"],
+      "teamSizes": ["5-10", "10-20"],
+      "budgetRanges": ["500K-1M"],
+      "timelines": ["6-12mo"],
+      "riskProfiles": ["enterprise"],
+      "prasadFrameworks": [{ "name": "Headless Commerce Migration", "description": { "en": "My 4-phase approach to platform migration without business disruption", "de": "Mein 4-Phasen-Ansatz für Plattform-Migration ohne Geschäftsunterbrechung" }, "whenToUse": { "en": "When migrating from monolithic to headless commerce with multiple markets", "de": "Bei der Migration von monolithischem zu Headless Commerce mit mehreren Märkten" } }]
+    },
+    "retrospectiveLite": {
+      "whatWentWrong": { "en": ["Underestimated data migration complexity", "Third-party integration delays"], "de": ["Komplexität der Datenmigration unterschätzt", "Verzögerungen bei Drittanbieter-Integrationen"] },
+      "whatWorked": { "en": ["Phased rollout by market", "Early stakeholder alignment", "Headless architecture decision"], "de": ["Stufenweise Einführung nach Märkten", "Frühe Stakeholder-Abstimmung", "Headless-Architektur-Entscheidung"] },
+      "whatIdDoToday": { "en": ["Start with data audit in week 1", "Build integration sandbox earlier", "Add more automated testing"], "de": ["Datenaudit in Woche 1 beginnen", "Integrations-Sandbox früher aufbauen", "Mehr automatisierte Tests hinzufügen"] },
+      "prasadInsight": { "en": "The key insight: headless architecture isn't just technical—it's about organizational readiness for multi-market complexity.", "de": "Die wichtigste Erkenntnis: Headless-Architektur ist nicht nur technisch—es geht um organisatorische Bereitschaft für Multi-Markt-Komplexität." },
+      "estimatedEffort": "6-8 months, 5-7 people",
+      "riskMitigation": { "en": ["Always audit data quality first", "Build integration sandbox in parallel", "Plan for 20% buffer on third-party integrations"], "de": ["Datenqualität immer zuerst prüfen", "Integrations-Sandbox parallel aufbauen", "20% Puffer für Drittanbieter-Integrationen einplanen"] }
+    }
+  },
+  {
+    "slug": "delivery-hero-ads",
+    "title": { "en": "Scaling Display Ads to 5M+ Daily Transactions", "de": "Display Ads auf 5M+ tägliche Transaktionen skalieren" },
+    "similaritySignals": {
+      "industries": ["adtech", "ecommerce", "high-scale"],
+      "problemPatterns": ["latency-spikes", "revenue-loss-from-failures", "scalability-bottlenecks"],
+      "constraints": ["99.99-availability", "sub-20ms-latency", "5m-daily-transactions"],
+      "levers": ["revenue-growth", "reliability", "speed"],
+      "deliverablePatterns": ["exactly-once-processing", "redis-deduplication", "horizontal-scaling"],
+      "antiPatternsSeen": ["single-node-ad-server", "no-deduplication"],
+      "decisionFrameworks": ["high-scale-ad-platform"],
+      "teamSizes": ["10-20"],
+      "budgetRanges": ["500K-1M"],
+      "timelines": ["6-12mo"],
+      "riskProfiles": ["enterprise"],
+      "prasadFrameworks": [{ "name": "High-Scale Ad Platform", "description": { "en": "Exactly-once processing and horizontal scaling for ad serving", "de": "Exactly-Once-Processing und horizontale Skalierung für Ad-Serving" }, "whenToUse": { "en": "When scaling ad or transaction platforms to millions of daily events", "de": "Bei Skalierung von Ad- oder Transaktionsplattformen auf Millionen täglicher Events" } }]
+    },
+    "retrospectiveLite": {
+      "whatWorked": { "en": ["Redis deduplication", "Phased rollout by region"], "de": ["Redis-Deduplizierung", "Stufenweiser Rollout nach Region"] },
+      "whatIdDoToday": { "en": ["Add load tests earlier", "Define SLOs from day 1"], "de": ["Load-Tests früher einplanen", "SLOs von Tag 1 definieren"] },
+      "prasadInsight": { "en": "Exactly-once semantics and horizontal scaling were the key to revenue-safe ad delivery at 5M+ daily transactions.", "de": "Exactly-Once-Semantik und horizontale Skalierung waren der Schlüssel zu umsatzsicherem Ad-Delivery bei 5M+ täglichen Transaktionen." },
+      "estimatedEffort": "6–9 months, 8–12 people",
+      "riskMitigation": { "en": ["Deduplication before scale", "Regional rollout with rollback"], "de": ["Deduplizierung vor Skalierung", "Regionaler Rollout mit Rollback"] }
+    }
+  },
+  {
+    "slug": "insurance-performance",
+    "title": { "en": "Insurance Performance: Claims & Policy Optimization", "de": "Insurance Performance: Schaden- & Policen-Optimierung" },
+    "similaritySignals": {
+      "industries": ["insurance", "finserv", "performance"],
+      "problemPatterns": ["slow-queries", "high-infra-costs", "performance-degradation", "limited-observability"],
+      "constraints": ["audit-safe", "non-disruptive", "sla-targets"],
+      "levers": ["cost-reduction", "speed", "reliability"],
+      "deliverablePatterns": ["query-optimization", "caching-strategy", "observability-framework"],
+      "antiPatternsSeen": ["big-rewrite", "no-baseline-metrics"],
+      "decisionFrameworks": ["performance-optimization-without-rewrite"],
+      "teamSizes": ["5-10", "10-20"],
+      "budgetRanges": ["100K-500K", "500K-1M"],
+      "timelines": ["3-6mo", "6-12mo"],
+      "riskProfiles": ["enterprise", "regulated"],
+      "prasadFrameworks": [{ "name": "Performance Optimization Without Rewrite", "description": { "en": "Query optimization, caching, and observability for legacy workflows", "de": "Query-Optimierung, Caching und Observability für Legacy-Workflows" }, "whenToUse": { "en": "When improving claims or policy processing without full replatform", "de": "Bei Verbesserung von Schaden- oder Policen-Verarbeitung ohne vollständiges Replatforming" } }]
+    },
+    "retrospectiveLite": {
+      "whatWorked": { "en": ["Index optimization", "Caching layer", "Performance dashboards"], "de": ["Index-Optimierung", "Caching-Schicht", "Performance-Dashboards"] },
+      "whatIdDoToday": { "en": ["Establish baseline metrics week 1", "Load test before change"], "de": ["Baseline-Metriken in Woche 1 etablieren", "Load-Test vor Änderung"] },
+      "prasadInsight": { "en": "Targeted optimization beats full rewrites for legacy claims workflows when constraints are clear.", "de": "Gezielte Optimierung schlägt Full-Rewrites bei Legacy-Schaden-Workflows, wenn Constraints klar sind." },
+      "estimatedEffort": "4–6 months, 6–8 people",
+      "riskMitigation": { "en": ["Audit-safe changes only", "Rollback plan for each phase"], "de": ["Nur audit-sichere Änderungen", "Rollback-Plan pro Phase"] }
+    }
+  }
+]

@@ -26,7 +26,10 @@ export type FeatureKey =
   | 'NAVIGATION_DRAWER'
   | 'OUTCOME_BADGES'
   | 'BEFORE_AFTER_DIAGRAM'
-  | 'CASE_STUDY_PDF_EXPORT';
+  | 'CASE_STUDY_PDF_EXPORT'
+  // Phase 5 Enhanced: Project Similarity Matcher
+  | 'PROJECT_SIMILARITY_MATCHER'
+  | 'TOOLS_SECTION';
 
 export type FeatureFlag = {
   enabled: boolean;   // Controls if feature works (competition judges can access if enabled=true)
@@ -57,12 +60,12 @@ export const FEATURES: Record<FeatureKey, FeatureFlag> = {
     promoted: getPromotionFlag('VITE_PROMOTE_AI_CHECKLIST', 'AI_CHECKLIST', true), // Always promoted (default exception)
   },
   AI_ARCH_ENGINE: {
-    enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_AI_ARCH_ENGINE', 'AI_ARCH_ENGINE', false),
+    enabled: false, // DISABLED for final submission
+    promoted: false,
   },
   AI_RISK_RADAR: {
-    enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_AI_RISK_RADAR', 'AI_RISK_RADAR', false),
+    enabled: false, // DISABLED for final submission
+    promoted: false,
   },
   TOOLKIT_LIBRARY: {
     enabled: true,
@@ -82,20 +85,20 @@ export const FEATURES: Record<FeatureKey, FeatureFlag> = {
   },
   // Phase 3.2: Extended feature flags
   AI_TOOLS_SECTION: {
-    enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_AI_TOOLS', 'AI_TOOLS_SECTION', false),
+    enabled: false, // DISABLED for final submission - hide chat assistant
+    promoted: false,
   },
   TOOLKIT_LIBRARY_SECTION: {
     enabled: true,
     promoted: getPromotionFlag('VITE_PROMOTE_TOOLKITS', 'TOOLKIT_LIBRARY_SECTION', false),
   },
   RISK_RADAR_TOOL: {
-    enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_RISK_RADAR_TOOL', 'RISK_RADAR_TOOL', false),
+    enabled: false, // DISABLED for final submission
+    promoted: false,
   },
   ARCH_ENGINE_TOOL: {
-    enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_ARCH_ENGINE_TOOL', 'ARCH_ENGINE_TOOL', false),
+    enabled: false, // DISABLED for final submission
+    promoted: false,
   },
   FIT_CHECK_TOOL: {
     enabled: true,
@@ -123,8 +126,8 @@ export const FEATURES: Record<FeatureKey, FeatureFlag> = {
   },
   // Phase 4.5: Engagement Layer
   NAVIGATION_DRAWER: {
-    enabled: true,
-    promoted: getPromotionFlag('VITE_PROMOTE_NAVIGATION_DRAWER', 'NAVIGATION_DRAWER', true),
+    enabled: false, // DISABLED for final submission - remove StartHereDrawer
+    promoted: false,
   },
   OUTCOME_BADGES: {
     enabled: true,
@@ -137,5 +140,14 @@ export const FEATURES: Record<FeatureKey, FeatureFlag> = {
   CASE_STUDY_PDF_EXPORT: {
     enabled: true,
     promoted: getPromotionFlag('VITE_PROMOTE_CASE_STUDY_PDF_EXPORT', 'CASE_STUDY_PDF_EXPORT', true),
+  },
+  // Phase 5 Enhanced: Project Similarity Matcher
+  PROJECT_SIMILARITY_MATCHER: {
+    enabled: true, // KEEP ACTIVE for final submission
+    promoted: true, // PROMOTE for final submission
+  },
+  TOOLS_SECTION: {
+    enabled: true, // KEEP ACTIVE for final submission
+    promoted: true, // PROMOTE for final submission
   },
 };

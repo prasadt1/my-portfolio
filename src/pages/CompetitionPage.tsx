@@ -83,24 +83,16 @@ const CompetitionPage: React.FC = () => {
                     >
                         <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                             <CheckCircle2 className="text-emerald-600 dark:text-emerald-400" size={20} />
-                            {t('competition.page.startHere.title', { defaultValue: 'Start Here - Quick Checklist' })}
+                            Start Here
                         </h2>
                         <div className="grid md:grid-cols-2 gap-3 mb-4">
                             <Link
-                                to="/checklist"
-                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'try_checklist' })}
+                                to="/tools/project-similarity"
+                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'project_similarity' })}
                                 className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                             >
                                 <CheckCircle2 size={14} className="text-emerald-500" />
-                                <span>{t('competition.page.startHere.item1', { defaultValue: 'Try AI Checklist' })}</span>
-                            </Link>
-                            <Link
-                                to="/architecture-engine"
-                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'try_arch_engine' })}
-                                className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
-                            >
-                                <CheckCircle2 size={14} className="text-emerald-500" />
-                                <span>{t('competition.page.startHere.item2', { defaultValue: 'Try Architecture Assistant' })}</span>
+                                <span>Try Project Similarity Matcher</span>
                             </Link>
                             <Link
                                 to="/projects"
@@ -108,15 +100,15 @@ const CompetitionPage: React.FC = () => {
                                 className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                             >
                                 <CheckCircle2 size={14} className="text-emerald-500" />
-                                <span>{t('competition.page.startHere.item3', { defaultValue: 'View Hero Case Studies' })}</span>
+                                <span>View Hero Case Studies</span>
                             </Link>
                             <Link
-                                to="/projects/brita-ecommerce#artifacts"
-                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'see_artifacts' })}
+                                to="/projects"
+                                onClick={() => trackEvent('competition_cta_clicked', { cta: 'evidence_system' })}
                                 className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                             >
                                 <CheckCircle2 size={14} className="text-emerald-500" />
-                                <span>{t('competition.page.startHere.item4', { defaultValue: 'See Artifacts Gating + Request' })}</span>
+                                <span>Review Evidence System</span>
                             </Link>
                         </div>
                     </motion.section>
@@ -139,7 +131,7 @@ const CompetitionPage: React.FC = () => {
                                     {t('competition.page.whatIs.title', { defaultValue: 'What This Site Is' })}
                                 </h2>
                                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    {t('competition.page.whatIs.description', { defaultValue: 'An independent architecture consultant portfolio built with React + TypeScript, featuring AI-powered tools (Gemini 3 Pro), feature flags for phased rollout, GDPR-safe analytics, and production deployment on Google Cloud Run. The site demonstrates real-world enterprise architecture expertise through detailed case studies.' })}
+                                    {t('competition.page.whatIs.description', { defaultValue: 'An independent architecture consultant portfolio built with React + TypeScript, featuring experience-driven tools (Gemini 3 Pro), feature flags for phased rollout, GDPR-safe analytics, and production deployment on Google Cloud Run. The site demonstrates real-world enterprise architecture expertise through detailed case studies based on real delivery.' })}
                                 </p>
                             </div>
                         </div>
@@ -158,46 +150,37 @@ const CompetitionPage: React.FC = () => {
                             </div>
                             <div>
                                 <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('competition.page.aiFeatures.title', { defaultValue: 'AI Features' })}
+                                    Experience-Driven AI (Active)
                                 </h2>
                                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
-                                    {t('competition.page.aiFeatures.description', { defaultValue: 'This portfolio integrates Google Gemini 3 Pro for:' })}
+                                    This portfolio currently offers one production AI feature:
                                 </p>
                                 <ul className="space-y-2 mb-4">
                                     <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400">
                                         <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                        <span>{t('competition.page.aiFeatures.feature1', { defaultValue: 'Vendor Proposal Review Checklist generation' })}</span>
+                                        <span>Project Similarity Matcher — matches visitor challenges to Prasad's real delivery projects</span>
                                     </li>
                                     <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400">
                                         <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                        <span>{t('competition.page.aiFeatures.feature2', { defaultValue: 'Architecture decision recommendations' })}</span>
+                                        <span>Uses anonymized retrospectives and decision frameworks</span>
                                     </li>
                                     <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400">
                                         <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                        <span>{t('competition.page.aiFeatures.feature3', { defaultValue: 'Risk assessment and mitigation planning' })}</span>
+                                        <span>Email-gated professional assessment flow</span>
                                     </li>
                                 </ul>
+                                <p className="text-xs text-slate-500 dark:text-slate-500 mb-4">
+                                    Experimental tools (Chat, Risk Radar, Architecture Assessment) are coming soon.
+                                </p>
                                 <div className="flex flex-wrap gap-3">
-                                    {isPromoted('AI_CHECKLIST') && (
-                                        <Link
-                                            to="/checklist"
-                                            onClick={() => trackEvent('competition_cta_clicked', { cta: 'checklist' })}
-                                            className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                                        >
-                                            {t('competition.page.aiFeatures.tryChecklist', { defaultValue: 'Try Checklist' })}
-                                            <ArrowRight size={14} />
-                                        </Link>
-                                    )}
-                                    {isPromoted('AI_ARCH_ENGINE') && (
-                                        <Link
-                                            to="/architecture-engine"
-                                            onClick={() => trackEvent('competition_cta_clicked', { cta: 'arch_engine' })}
-                                            className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                                        >
-                                            {t('competition.page.aiFeatures.tryArchEngine', { defaultValue: 'Try Architecture Engine' })}
-                                            <ArrowRight size={14} />
-                                        </Link>
-                                    )}
+                                    <Link
+                                        to="/tools/project-similarity"
+                                        onClick={() => trackEvent('competition_cta_clicked', { cta: 'project_similarity' })}
+                                        className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                                    >
+                                        Try Project Similarity Matcher
+                                        <ArrowRight size={14} />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +246,7 @@ const CompetitionPage: React.FC = () => {
                                     {t('competition.page.metrics.title', { defaultValue: 'Metrics Dashboard' })}
                                 </h2>
                                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
-                                    {t('competition.page.metrics.description', { defaultValue: 'Impact metrics displayed on homepage: cost saved, projects delivered, compliance rate, data breaches prevented.' })}
+                                    Representative anonymized delivery metrics.
                                 </p>
                                 <Link
                                     to="/#impact-dashboard"
@@ -299,10 +282,10 @@ const CompetitionPage: React.FC = () => {
                             </div>
                             <div>
                                 <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('competition.page.leadCapture.title', { defaultValue: 'Lead Capture Demo' })}
+                                    GDPR-Compliant Contact Flow
                                 </h2>
                                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
-                                    {t('competition.page.leadCapture.description', { defaultValue: 'GDPR-safe lead capture with email delivery and Google Sheets storage. Includes attribution tracking (UTM params, referrer, landing path) without PII in analytics.' })}
+                                    Email-gated artifact requests with consent-first storage and Google Sheets backend. Includes attribution tracking without PII analytics.
                                 </p>
                                 <div className="flex flex-wrap gap-3">
                                     <Link
@@ -359,16 +342,16 @@ const CompetitionPage: React.FC = () => {
                                 </div>
                             </Link>
                             <Link
-                                to="/checklist"
+                                to="/tools/project-similarity"
                                 className="flex items-center gap-3 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all"
                             >
                                 <Sparkles className="text-blue-600 dark:text-blue-400" size={20} />
                                 <div>
                                     <div className="font-semibold text-slate-900 dark:text-white">
-                                        {t('competition.page.quickLinks.checklist', { defaultValue: 'AI Checklist' })}
+                                        Project Similarity Matcher
                                     </div>
                                     <div className="text-xs text-slate-600 dark:text-slate-400">
-                                        {t('competition.page.quickLinks.checklistDesc', { defaultValue: 'Try AI tool' })}
+                                        Try AI tool
                                     </div>
                                 </div>
                             </Link>

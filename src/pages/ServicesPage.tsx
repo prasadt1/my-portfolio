@@ -153,7 +153,7 @@ const ServicesPage: React.FC = () => {
                                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-6 space-y-4">
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                                                    {t('servicesPage.timeline')}
+                                                    Typical Engagement
                                                 </div>
                                                 <div className="text-lg font-bold text-slate-900 dark:text-white">
                                                     {t(service.timelineKey)}
@@ -162,10 +162,10 @@ const ServicesPage: React.FC = () => {
 
                                             <div>
                                                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                                                    {t('servicesPage.startingAt')}
+                                                    Pricing
                                                 </div>
-                                                <div className="text-2xl font-bold text-slate-900 dark:text-white">
-                                                    {t(service.priceKey)}
+                                                <div className="text-lg font-bold text-slate-900 dark:text-white">
+                                                    Custom pricing based on scope
                                                 </div>
                                             </div>
 

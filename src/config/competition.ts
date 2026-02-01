@@ -45,6 +45,9 @@ export const COMPETITION_CONFIG = {
     'OUTCOME_BADGES',
     'BEFORE_AFTER_DIAGRAM',
     'CASE_STUDY_PDF_EXPORT',
+    // Phase 5 Enhanced
+    'PROJECT_SIMILARITY_MATCHER',
+    'TOOLS_SECTION',
   ] as const,
   
   // Badge text

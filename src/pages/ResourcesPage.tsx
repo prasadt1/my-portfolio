@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FileText, Download, BookOpen, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { FileText, Download, BookOpen, ArrowRight, CheckCircle2, Search } from 'lucide-react';
 import SEO from '../components/SEO';
 import { PageShell, PageHeader, Container } from '../components/layout';
 import { trackEvent } from '../services/analytics';
@@ -26,7 +26,7 @@ const ResourcesPage: React.FC = () => {
     const freeResources = [
         {
             title: t('resourcesPage.resources.checklist.title', { defaultValue: 'Vendor Proposal Checklist' }),
-            description: t('resourcesPage.resources.checklist.desc', { defaultValue: 'AI-powered checklist to evaluate vendor proposals' }),
+            description: t('resourcesPage.resources.checklist.desc', { defaultValue: 'Experience-driven checklist to evaluate vendor proposals' }),
             link: '/checklist',
             icon: CheckCircle2,
             promoted: isPromoted('AI_CHECKLIST'),
@@ -45,7 +45,14 @@ const ResourcesPage: React.FC = () => {
             icon: FileText,
             promoted: isPromoted('AI_RISK_RADAR'),
         },
-    ];
+        {
+            title: t('tools.projectSimilarity.heroTitle', { defaultValue: 'Project Similarity Matcher' }),
+            description: t('tools.projectSimilarity.heroSubhead', { defaultValue: 'Find similar projects from 15+ years of experience' }),
+            link: '/tools/project-similarity',
+            icon: Search,
+            promoted: isPromoted('PROJECT_SIMILARITY_MATCHER'),
+        },
+    ].filter(r => r.promoted);
 
     return (
         <>
@@ -119,6 +126,79 @@ const ResourcesPage: React.FC = () => {
                                         </motion.div>
                                     );
                                 })}
+                            </div>
+                        </div>
+
+                        {/* FINAL SUBMISSION: Experimental AI — Coming Soon */}
+                        <div className="mb-12">
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                                    Experimental AI — Coming Soon
+                                </h2>
+                                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                    Experience-driven
+                                </span>
+                            </div>
+                            <div className="grid md:grid-cols-3 gap-6">
+                                {/* Chat Assistant */}
+                                <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 opacity-60">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                            <BookOpen className="text-slate-400" size={24} />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                                                Chat Assistant
+                                            </h3>
+                                            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                                                Coming Soon
+                                            </p>
+                                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                                Based on real delivery patterns, not generic AI responses
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Risk Radar */}
+                                <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 opacity-60">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                            <FileText className="text-slate-400" size={24} />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                                                Risk Radar
+                                            </h3>
+                                            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                                                Coming Soon
+                                            </p>
+                                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                                Experience-driven risk assessment from 15+ years of delivery
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Architecture Assessment */}
+                                <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 opacity-60">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                            <CheckCircle2 className="text-slate-400" size={24} />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                                                Architecture Assessment
+                                            </h3>
+                                            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                                                Coming Soon
+                                            </p>
+                                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                                Based on real delivery patterns from enterprise transformations
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

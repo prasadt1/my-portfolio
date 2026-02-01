@@ -453,130 +453,30 @@ const HomePageMultiDomain: React.FC = () => {
                                                 <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
                                             </Link>
                                         )}
+                                        {/* Phase 5 Enhanced: Project Similarity Matcher */}
+                                        {isPromoted('PROJECT_SIMILARITY_MATCHER') && (
+                                            <Link
+                                                to="/tools/project-similarity"
+                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            >
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">
+                                                    {t('tools.projectSimilarity.heroTitle', { defaultValue: 'Project Similarity Matcher' })}
+                                                </h3>
+                                                <p className="text-sm text-white/80 mb-4">
+                                                    {t('tools.projectSimilarity.heroSubhead', { defaultValue: 'Find similar projects from 15+ years of experience' })}
+                                                </p>
+                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                            </Link>
+                                        )}
                                     </div>
-                                    <div className="flex justify-center">
-                                        <Link
-                                            to="/resources"
-                                            className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg"
-                                        >
-                                            Browse All Resources
-                                            <ArrowRight size={20} />
-                                        </Link>
-                                    </div>
+                                    {/* FINAL SUBMISSION: Removed large Browse Resources button - Resources in top nav only */}
                                 </motion.div>
                             )}
                         </div>
                     </section>
                 )}
 
-                {/* Phase 3.4A: "Start Here" Competition Section */}
-                {isCompetitionMode() && (
-                    <section className="py-16 bg-gradient-to-br from-emerald-50 to-slate-50 dark:from-emerald-900/20 dark:to-slate-800 border-b border-emerald-200 dark:border-emerald-800">
-                        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="text-center mb-8"
-                            >
-                                <div className="inline-block bg-emerald-100 dark:bg-emerald-900/30 px-4 py-1 rounded-full mb-4">
-                                    <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
-                                        {t('competition.badge', { defaultValue: 'Google AI Portfolio Challenge Submission' })}
-                                    </span>
-                                </div>
-                                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                                    {t('competition.startHere.title', { defaultValue: 'Start Here' })}
-                                </h2>
-                                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                                    {t('competition.startHere.subtitle', { defaultValue: 'This portfolio demonstrates enterprise architecture expertise, AI integration with Gemini, and a production-ready platform deployed on Google Cloud Run.' })}
-                                </p>
-                            </motion.div>
-
-                            <div className="grid md:grid-cols-3 gap-6">
-                                {/* CTA 1: Explore Hero Case Studies */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.1 }}
-                                    className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all"
-                                >
-                                    <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
-                                        <FileText className="text-emerald-600 dark:text-emerald-400" size={24} />
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                        {t('competition.startHere.cta1.title', { defaultValue: 'Explore 5 Hero Case Studies' })}
-                                    </h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                                        {t('competition.startHere.cta1.description', { defaultValue: 'Deep-dive case studies with executive snapshots, trust layers, and artifact previews' })}
-                                    </p>
-                                    <Link
-                                        to="/projects"
-                                        onClick={() => trackEvent('competition_cta_clicked', { cta: 'hero_case_studies' })}
-                                        className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold text-sm"
-                                    >
-                                        {t('competition.startHere.cta1.button', { defaultValue: 'View Case Studies' })}
-                                        <ArrowRight size={16} />
-                                    </Link>
-                                </motion.div>
-
-                                {/* CTA 2: Try AI Tool */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2 }}
-                                    className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all"
-                                >
-                                    <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
-                                        <Target className="text-blue-600 dark:text-blue-400" size={24} />
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                        {t('competition.startHere.cta2.title', { defaultValue: 'Try AI Tool' })}
-                                    </h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                                        {t('competition.startHere.cta2.description', { defaultValue: 'Vendor Proposal Checklist - AI-powered proposal review tool' })}
-                                    </p>
-                                    <Link
-                                        to="/checklist"
-                                        onClick={() => trackEvent('competition_cta_clicked', { cta: 'ai_tool' })}
-                                        className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold text-sm"
-                                    >
-                                        {t('competition.startHere.cta2.button', { defaultValue: 'Try Checklist' })}
-                                        <ArrowRight size={16} />
-                                    </Link>
-                                </motion.div>
-
-                                {/* CTA 3: Watch Executive Summary */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3 }}
-                                    className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all"
-                                >
-                                    <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
-                                        <Play className="text-purple-600 dark:text-purple-400" size={24} />
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                        {t('competition.startHere.cta3.title', { defaultValue: 'Watch Executive Summary' })}
-                                    </h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                                        {t('competition.startHere.cta3.description', { defaultValue: 'View executive snapshot modal from any hero case study' })}
-                                    </p>
-                                    <Link
-                                        to="/projects/brita-ecommerce"
-                                        onClick={() => trackEvent('competition_cta_clicked', { cta: 'executive_summary' })}
-                                        className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold text-sm"
-                                    >
-                                        {t('competition.startHere.cta3.button', { defaultValue: 'View Example' })}
-                                        <ArrowRight size={16} />
-                                    </Link>
-                                </motion.div>
-                            </div>
-                        </div>
-                    </section>
-                )}
+                {/* FINAL SUBMISSION: Removed Start Here section - keeping only Competition Mode banner */}
 
                 {/* SECTION 2: TRUST STRIP - Phase 4 Wireframe: Pattern break with one-line text */}
                 <section className="w-full bg-slate-100 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700">
