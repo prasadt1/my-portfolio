@@ -246,7 +246,7 @@ const Navigation: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed top-20 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg z-40 xl:hidden overflow-hidden transition-colors"
+            className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-lg z-40 xl:hidden overflow-hidden transition-colors`}
           >
             <div className="p-4 flex flex-col gap-2">
               {/* Core nav items */}
