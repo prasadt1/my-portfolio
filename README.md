@@ -39,19 +39,7 @@ This creates meaningful differentiation versus generic LLM advice.
 
 ## 🏗 Architecture Overview
 
-```
-Browser (React + Vite)
-↓
-Cloud Run (Node API)
-↓
-Gemini 1.5 Pro
-↓
-Project Similarity Engine
-↓
-Google Sheets (Leads + Tool Requests)
-↓
-SendGrid (Email Delivery)
-```
+![Architecture Diagram](docs/architecture-diagram.svg)
 
 Frontend and backend are deployed as a single Cloud Run service.
 
