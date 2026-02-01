@@ -63,48 +63,36 @@ This accelerated development while keeping architectural decisions manual.
 
 ### Production Architecture
 
-**🏗️ System Overview**:
+**🏗️ System Architecture**:
 
-```
-┌─────────────┐    HTTPS     ┌─────────────┐    JSON/API    ┌─────────────┐
-│   Browser   │ ──────────► │  React SPA  │ ─────────────► │ Cloud Run   │
-│   (User)    │             │ TypeScript  │                │  Node.js    │
-└─────────────┘             │    Vite     │                │  Express    │
-                            └─────────────┘                └─────────────┘
-                                                                   │
-                            ┌─────────────────────────────────────┼─────────────────────────────────────┐
-                            │                                     │                                     │
-                            ▼                                     ▼                                     ▼
-                    ┌─────────────┐                      ┌─────────────┐                      ┌─────────────┐
-                    │   Google    │                      │   Google    │                      │  SendGrid   │
-                    │   Gemini    │                      │   Sheets    │                      │   Email     │
-                    │ 1.5 Pro AI  │                      │ Lead Store  │                      │  Delivery   │
-                    └─────────────┘                      └─────────────┘                      └─────────────┘
-                            │
-                            ▼
-                    ┌─────────────┐
-                    │  Project    │
-                    │ Experience  │
-                    │ Database    │
-                    │(15+ years)  │
-                    └─────────────┘
-```
+**Frontend Layer**
+- React 18 + TypeScript SPA hosted on Google Cloud Run
+- Vite build system with Tailwind CSS
+- Responsive design with mobile-first approach
 
-**Key Components:**
-- **Frontend**: React + TypeScript + Vite SPA
-- **Backend**: Node.js API on Google Cloud Run  
-- **AI Engine**: Google Gemini 1.5 Pro for similarity matching
-- **Data Storage**: Google Sheets for CRM + Static JSON for projects
-- **Email**: SendGrid for transactional delivery
-- **Infrastructure**: Custom domain + SSL via Cloud Run
+**Backend Layer**  
+- Node.js + Express API on Google Cloud Run
+- RESTful endpoints for portfolio data and AI features
+- Feature flags for controlled rollouts
 
-**Data Flow:**
-1. **User** describes project challenge via React interface
-2. **Cloud Run API** processes request and queries project database  
-3. **Gemini AI** analyzes similarity patterns against 15+ years of experience
-4. **System** generates personalized insights and recommendations
-5. **SendGrid** delivers results via email after lead capture
-6. **Google Sheets** stores lead information for follow-up
+**AI Integration**
+- Google Gemini 1.5 Pro for natural language processing
+- Experience-driven similarity matching (not generic chat)
+- Structured prompts constrained by real project metadata
+
+**Data & External Services**
+- Google Sheets API for CRM and lead storage
+- SendGrid for transactional email delivery
+- Static JSON files for project and case study data
+- Namecheap DNS with custom domain mapping
+
+**Infrastructure**
+- Single Cloud Run service (frontend + backend)
+- Custom domain with Google-managed SSL
+- Auto-scaling based on traffic
+- Environment-based configuration
+
+**Request Flow**: User describes project → API processes against experience database → Gemini generates similarity insights → Results delivered via email → Lead stored in Google Sheets
 
 ```
 Browser (React + Vite)
