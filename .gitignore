@@ -34,25 +34,52 @@ dist-ssr
 *-service-account.json
 service-account*.json
 
-# Backups
+# Backups and duplicates
 src_backup*
 *_backup*
 *.zip
 *.tar.gz
+my-portfolio/
+.reverts/
 
 # Documentation/Review files (keep locally, don't track in git)
 codebase_for_review.md
 full_codebase_context.md
-REFACTORING_*.md
+*REFACTORING*.md
+*PHASE*.md
+*DEBUG*.md
+*FIX*.md
+*KILL*.md
+*QUICK*.md
+*TROUBLESHOOT*.md
+*TESTING*.md
+*SUBMISSION*.md
+*COMPETITION*.md
+*CODEBASE*.md
+*SHARING*.md
+*SITE_REVIEW*.md
+*ENABLE*.md
+*FINAL*.md
+*IMPLEMENTATION*.md
+*BLUEPRINT*.md
+*COMPLETE*.md
+*STATUS*.md
+*CHECKLIST*.md
+*TEMPLATE*.md
+*ENHANCED*.md
 SETUP.md
-SHARING_CODE_WITH_AI.md
-SITE_REVIEW_REPORT.md
+UI_UX_REVIEW*.md
 
 # Utility scripts (keep locally, don't track in git)
 export_codebase*.sh
 generate_resume.py
 create-pr.sh
+test-changes*.js
 
-# Lead data
+# Lead data and logs
 leads.json
 **/tool-requests.json
+**/similarity-data.json
+*.log
+preview.log
+server.log
