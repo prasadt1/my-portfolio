@@ -71,7 +71,9 @@ This creates meaningful differentiation versus generic LLM advice.
 
 ## 🏗 Architecture Overview
 
-![Architecture Diagram](docs/architecture-diagram.svg)
+**Architecture Diagram**
+<img width="1536" height="1024" alt="ChatGPT Image Feb 2, 2026, 08_19_14 AM" src="https://github.com/user-attachments/assets/8ce6ab12-43b1-42d2-920f-1f425ae19332" />
+
 
 Frontend and backend are deployed as a single Cloud Run service.
 
