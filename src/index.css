@@ -31,6 +31,28 @@
   }
 }
 
+/* Force mobile menu to be white in iframe contexts */
+@layer utilities {
+  .mobile-menu-iframe-fix {
+    background-color: #ffffff !important;
+    color: #334155 !important;
+  }
+  
+  .mobile-menu-iframe-fix * {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+  
+  .mobile-menu-iframe-fix a {
+    color: #334155 !important;
+  }
+  
+  .mobile-menu-iframe-fix a:hover {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+  }
+}
+
 /* React Flow Styles */
 .react-flow__attribution {
   display: none;
