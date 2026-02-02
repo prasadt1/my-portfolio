@@ -13,9 +13,15 @@ import { usePersonaCTAs } from '../utils/personaCTAs';
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isInIframe, setIsInIframe] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    // Detect if we're in an iframe
+    setIsInIframe(window.self !== window.top);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -242,127 +248,200 @@ const Navigation: React.FC = () => {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 border-b border-slate-200 shadow-lg z-40 xl:hidden overflow-hidden mobile-menu-iframe-fix`}
-            style={{ 
-              backgroundColor: '#ffffff',
-              color: '#334155',
-              minHeight: 'auto'
-            }}
-          >
-            <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: '#ffffff' }}>
-              {/* Core nav items */}
-              {coreNavItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-3 rounded-lg text-base font-medium transition-colors hover:bg-slate-50"
-                  style={{ 
-                    color: isActive(item.path) ? '#0f172a' : '#334155',
-                    backgroundColor: isActive(item.path) ? '#f1f5f9' : 'transparent'
-                  }}
-                >
-                  {t(item.labelKey)}
-                </Link>
-              ))}
-
-              {/* Tools section */}
-              {toolsItems.length > 0 && (
-                <>
-                  <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
-                  <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
-                    {t('nav.tools')}
-                  </div>
-                  {toolsItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-3 rounded-lg text-base font-medium transition-colors pl-6 hover:bg-slate-50"
-                      style={{ 
-                        color: isActive(item.path) ? '#0f172a' : '#475569',
-                        backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent'
-                      }}
-                    >
-                      {t(item.labelKey)}
-                    </Link>
-                  ))}
-                </>
-              )}
-
-              {/* Consulting section */}
-              {consultingItems.length > 0 && (
-                <>
-                  <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
-                  <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
-                    {t('nav.consulting')}
-                  </div>
-                  {consultingItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-3 rounded-lg text-base font-medium transition-colors pl-6 hover:bg-slate-50"
-                      style={{ 
-                        color: isActive(item.path) ? '#0f172a' : '#475569',
-                        backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent'
-                      }}
-                    >
-                      {t(item.labelKey)}
-                    </Link>
-                  ))}
-                </>
-              )}
-
-              {/* Hiring section */}
-              {hiringItems.length > 0 && (
-                <>
-                  <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
-                  <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
-                    {t('nav.hiring')}
-                  </div>
-                  {hiringItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-3 rounded-lg text-base font-medium transition-colors pl-6 hover:bg-slate-50"
-                      style={{ 
-                        color: isActive(item.path) ? '#0f172a' : '#475569',
-                        backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent'
-                      }}
-                    >
-                      {t(item.labelKey)}
-                    </Link>
-                  ))}
-                </>
-              )}
-
-              <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  window.dispatchEvent(new CustomEvent('open-command-palette'));
+          <>
+            {isInIframe ? (
+              // Simple non-animated menu for iframe contexts
+              <div
+                className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 border-b border-slate-200 shadow-lg z-50 xl:hidden`}
+                style={{ 
+                  backgroundColor: 'white',
+                  color: '#334155',
+                  zIndex: 9999
                 }}
-                className="w-full text-left p-3 rounded-lg text-base font-medium hover:bg-slate-50 flex items-center gap-2"
-                style={{ color: '#475569' }}
               >
-                <Search size={20} />
-                <span>Search...</span>
-              </button>
-              <Link
-                to={primaryCTA.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-3 bg-emerald-600 text-white rounded-lg text-center font-semibold text-base shadow-sm active:scale-95 transition-transform"
+                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: 'white' }}>
+                  {/* Core nav items */}
+                  {coreNavItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-3 rounded-lg text-base font-medium"
+                      style={{ 
+                        color: isActive(item.path) ? '#0f172a' : '#334155',
+                        backgroundColor: isActive(item.path) ? '#f1f5f9' : 'transparent',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      {t(item.labelKey)}
+                    </Link>
+                  ))}
+
+                  {/* Tools section */}
+                  {toolsItems.length > 0 && (
+                    <>
+                      <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
+                      <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
+                        {t('nav.tools')}
+                      </div>
+                      {toolsItems.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="p-3 rounded-lg text-base font-medium pl-6"
+                          style={{ 
+                            color: isActive(item.path) ? '#0f172a' : '#475569',
+                            backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent',
+                            textDecoration: 'none'
+                          }}
+                        >
+                          {t(item.labelKey)}
+                        </Link>
+                      ))}
+                    </>
+                  )}
+
+                  <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
+                  <Link
+                    to={primaryCTA.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-3 rounded-lg text-center font-semibold text-base"
+                    style={{
+                      backgroundColor: '#059669',
+                      color: 'white',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    {primaryCTA.label}
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              // Animated menu for normal contexts
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 border-b border-slate-200 shadow-lg z-40 xl:hidden overflow-hidden`}
+                style={{ 
+                  backgroundColor: '#ffffff',
+                  color: '#334155',
+                  minHeight: 'auto'
+                }}
               >
-                {primaryCTA.label}
-              </Link>
-            </div>
-          </motion.div>
+                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: '#ffffff' }}>
+                  {/* Core nav items */}
+                  {coreNavItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-3 rounded-lg text-base font-medium transition-colors hover:bg-slate-50"
+                      style={{ 
+                        color: isActive(item.path) ? '#0f172a' : '#334155',
+                        backgroundColor: isActive(item.path) ? '#f1f5f9' : 'transparent'
+                      }}
+                    >
+                      {t(item.labelKey)}
+                    </Link>
+                  ))}
+
+                  {/* Tools section */}
+                  {toolsItems.length > 0 && (
+                    <>
+                      <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
+                      <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
+                        {t('nav.tools')}
+                      </div>
+                      {toolsItems.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="p-3 rounded-lg text-base font-medium transition-colors pl-6 hover:bg-slate-50"
+                          style={{ 
+                            color: isActive(item.path) ? '#0f172a' : '#475569',
+                            backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent'
+                          }}
+                        >
+                          {t(item.labelKey)}
+                        </Link>
+                      ))}
+                    </>
+                  )}
+
+                  {/* Consulting section */}
+                  {consultingItems.length > 0 && (
+                    <>
+                      <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
+                      <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
+                        {t('nav.consulting')}
+                      </div>
+                      {consultingItems.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="p-3 rounded-lg text-base font-medium transition-colors pl-6 hover:bg-slate-50"
+                          style={{ 
+                            color: isActive(item.path) ? '#0f172a' : '#475569',
+                            backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent'
+                          }}
+                        >
+                          {t(item.labelKey)}
+                        </Link>
+                      ))}
+                    </>
+                  )}
+
+                  {/* Hiring section */}
+                  {hiringItems.length > 0 && (
+                    <>
+                      <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
+                      <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: '#64748b' }}>
+                        {t('nav.hiring')}
+                      </div>
+                      {hiringItems.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="p-3 rounded-lg text-base font-medium transition-colors pl-6 hover:bg-slate-50"
+                          style={{ 
+                            color: isActive(item.path) ? '#0f172a' : '#475569',
+                            backgroundColor: isActive(item.path) ? '#f8fafc' : 'transparent'
+                          }}
+                        >
+                          {t(item.labelKey)}
+                        </Link>
+                      ))}
+                    </>
+                  )}
+
+                  <div className="h-px my-2" style={{ backgroundColor: '#e2e8f0' }} />
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      window.dispatchEvent(new CustomEvent('open-command-palette'));
+                    }}
+                    className="w-full text-left p-3 rounded-lg text-base font-medium hover:bg-slate-50 flex items-center gap-2"
+                    style={{ color: '#475569' }}
+                  >
+                    <Search size={20} />
+                    <span>Search...</span>
+                  </button>
+                  <Link
+                    to={primaryCTA.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-3 bg-emerald-600 text-white rounded-lg text-center font-semibold text-base shadow-sm active:scale-95 transition-transform"
+                  >
+                    {primaryCTA.label}
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </>
         )}
       </AnimatePresence>
     </>

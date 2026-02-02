@@ -36,20 +36,41 @@
   .mobile-menu-iframe-fix {
     background-color: #ffffff !important;
     color: #334155 !important;
+    z-index: 9999 !important;
   }
   
   .mobile-menu-iframe-fix * {
-    background-color: inherit !important;
-    color: inherit !important;
+    background-color: transparent !important;
+    color: #334155 !important;
   }
   
   .mobile-menu-iframe-fix a {
     color: #334155 !important;
+    background-color: transparent !important;
   }
   
   .mobile-menu-iframe-fix a:hover {
     background-color: #f8fafc !important;
     color: #0f172a !important;
+  }
+  
+  .mobile-menu-iframe-fix button {
+    color: #475569 !important;
+    background-color: transparent !important;
+  }
+  
+  .mobile-menu-iframe-fix button:hover {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+  }
+  
+  /* Force iframe mobile menu visibility */
+  body iframe .mobile-menu-iframe-fix,
+  iframe .mobile-menu-iframe-fix {
+    background: white !important;
+    color: #334155 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
