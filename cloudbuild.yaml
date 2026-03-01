@@ -43,7 +43,7 @@ steps:
 substitutions:
   _GEMINI_API_KEY: ""
   _VITE_API_URL: ""
-  _VITE_COMPETITION_MODE: "true"
+  _VITE_COMPETITION_MODE: "false"
   _LEAD_STORE_PROVIDER: "gsheets"
   _GSHEETS_SHEET_NAME: "Leads"
   _EMAIL_PROVIDER: "smtp"
