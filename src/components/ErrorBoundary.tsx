@@ -23,6 +23,9 @@ class ErrorBoundary extends Component<Props, State> {
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
         console.error('Error caught by boundary:', error, errorInfo);
+        if (errorInfo?.componentStack) {
+            console.error('Component stack:', errorInfo.componentStack);
+        }
         // Log to analytics service for production debugging
         if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
             try {
@@ -51,6 +54,7 @@ class ErrorBoundary extends Component<Props, State> {
 
     render() {
         if (this.state.hasError) {
+            const showDebug = typeof window !== 'undefined' && window.location.search.includes('debug=1');
             return (
                 <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
                     <div className="max-w-md w-full bg-white rounded-xl shadow-xl p-8 text-center">
@@ -61,11 +65,16 @@ class ErrorBoundary extends Component<Props, State> {
                         <p className="text-slate-600 mb-4">
                             We're sorry, but something unexpected happened. Please try refreshing the page.
                         </p>
-                        {this.state.error && process.env.NODE_ENV === 'development' && (
+                        {this.state.error && (process.env.NODE_ENV === 'development' || showDebug) && (
                             <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800 text-left">
                                 <p className="text-xs font-mono text-red-800 dark:text-red-200 break-all">
                                     {this.state.error.message}
                                 </p>
+                                {showDebug && (
+                                    <p className="text-[10px] font-mono text-red-700 dark:text-red-300 break-all mt-2 whitespace-pre-wrap">
+                                        {this.state.error.stack}
+                                    </p>
+                                )}
                             </div>
                         )}
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
