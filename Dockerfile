@@ -3,9 +3,9 @@ FROM node:20-alpine as builder
 
 WORKDIR /app
 
-# Accept API Key and Competition Mode as build arguments
-ARG VITE_GEMINI_API_KEY
-ENV VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY
+# Accept build-time vars for the frontend bundle
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 ARG VITE_COMPETITION_MODE
 ENV VITE_COMPETITION_MODE=$VITE_COMPETITION_MODE
 
@@ -17,7 +17,7 @@ RUN npm ci
 COPY . .
 
 # Build the frontend
-RUN echo "VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY" > .env && \
+RUN echo "VITE_API_URL=$VITE_API_URL" > .env && \
     echo "VITE_COMPETITION_MODE=$VITE_COMPETITION_MODE" >> .env
 RUN npm run build
 

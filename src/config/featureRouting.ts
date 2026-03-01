@@ -36,12 +36,12 @@ const FEATURE_NAV_ITEMS: NavItem[] = [
   { path: '/architecture-engine', labelKey: 'nav.architectureEngine', featureKey: 'AI_ARCH_ENGINE' },
   { path: '/risk-radar', labelKey: 'nav.riskRadar', featureKey: 'AI_RISK_RADAR' },
   { path: '/checklist', labelKey: 'nav.checklist', featureKey: 'AI_CHECKLIST' },
-  { path: '/hiring', labelKey: 'nav.hiring', featureKey: 'HOMEPAGE_PERSONA_TABS' },
+  { path: '/hire', labelKey: 'nav.hiring', featureKey: 'HOMEPAGE_PERSONA_TABS' },
   { path: '/consultation', labelKey: 'nav.consultation' },
 ];
 
 // Competition mode routes (always accessible if enabled, but only promoted if competition mode is on)
-// Note: /hire-me redirects to /hiring, so it's not included here
+// Note: /hire-me redirects to /hire, so it's not included here
 const COMPETITION_ROUTES: NavItem[] = [
   { path: '/consulting', labelKey: 'nav.consulting' },
   { path: '/resources', labelKey: 'nav.resources' },

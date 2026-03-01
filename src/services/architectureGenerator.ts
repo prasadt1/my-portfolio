@@ -1,12 +1,10 @@
 import type { ArchitectureRequest, GeneratedArchitecture } from '../types';
+import { buildApiUrl } from './apiBase';
 
 export const generateArchitecture = async (
   request: ArchitectureRequest
 ): Promise<GeneratedArchitecture> => {
-  // Use relative URL for API - works in both dev (via Vite proxy) and production (same server)
-  // If VITE_API_URL is set, use it; otherwise use relative URL
-  const apiUrl = import.meta.env.VITE_API_URL || '';
-  const apiEndpoint = apiUrl ? `${apiUrl}/api/architecture/generate` : '/api/architecture/generate';
+  const apiEndpoint = buildApiUrl('/api/architecture/generate');
   
   try {
     const response = await fetch(apiEndpoint, {

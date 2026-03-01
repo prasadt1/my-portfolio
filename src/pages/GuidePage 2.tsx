@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import { PageShell, PageHeader, Container } from '../components/layout';
 import GuideContent from '../components/GuideContent';
 import i18n from '../i18n';
+import { buildApiUrl } from '../services/apiBase';
 
 const GuidePage: React.FC = () => {
     const { t } = useTranslation();
@@ -28,7 +29,7 @@ const GuidePage: React.FC = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/lead', {
+            const response = await fetch(buildApiUrl('/api/lead'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

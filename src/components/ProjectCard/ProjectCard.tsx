@@ -227,6 +227,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         ))}
                     </div>
 
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-4">
+                        Context • Decision • Execution • Outcome • Metrics
+                    </p>
+
                     {/* CTA Row - pushed to bottom */}
                     <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700 flex gap-2">
                         <Link

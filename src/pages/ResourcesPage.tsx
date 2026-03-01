@@ -54,6 +54,24 @@ const ResourcesPage: React.FC = () => {
         },
     ].filter(r => r.promoted);
 
+    const topicGuides = [
+        {
+            title: 'Enterprise Architecture in Healthcare IT',
+            description: 'Modernize regulated systems without compromising compliance or uptime.',
+            link: '/topics/enterprise-architecture-healthcare-it'
+        },
+        {
+            title: 'Acting Fractional CTO for Scaling Startups',
+            description: 'What hands-on leadership looks like at seed to Series B.',
+            link: '/topics/fractional-cto-startup-scale'
+        },
+        {
+            title: 'AI Modernization in Regulated Environments',
+            description: 'Governance, auditability, and rollout patterns that de-risk AI adoption.',
+            link: '/topics/ai-modernization-compliance'
+        }
+    ];
+
     return (
         <>
             <SEO
@@ -70,6 +88,41 @@ const ResourcesPage: React.FC = () => {
                 />
 
                 <Container maxWidth="7xl">
+                    {/* Topic Guides */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-16"
+                    >
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                                Topic Guides for Hiring Teams
+                            </h2>
+                            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                SEO-ready
+                            </span>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {topicGuides.map((guide) => (
+                                <Link
+                                    key={guide.link}
+                                    to={guide.link}
+                                    className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all shadow-sm hover:shadow-md group"
+                                >
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                                        {guide.title}
+                                    </h3>
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                        {guide.description}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                                        Read guide
+                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </motion.section>
                     {/* Phase 4 Wireframe: GRID OF TOOLKITS - Organized by tiers: Free | Pro (email required) | Premium (call required) */}
                     <motion.section
                         initial={{ opacity: 0, y: 20 }}

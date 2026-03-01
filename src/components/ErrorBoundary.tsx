@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { buildApiUrl } from '../services/apiBase';
 
 interface Props {
     children: ReactNode;
@@ -25,7 +26,7 @@ class ErrorBoundary extends Component<Props, State> {
         // Log to analytics service for production debugging
         if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
             try {
-                fetch('/api/events', {
+                fetch(buildApiUrl('/api/events'), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

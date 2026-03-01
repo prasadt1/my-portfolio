@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { X, Download, CheckCircle2, Loader2 } from 'lucide-react';
 import { trackEvent } from '../services/analytics';
+import { buildApiUrl } from '../services/apiBase';
 import { getAttributionSnapshot } from '../utils/attribution';
 import i18n from '../i18n';
 
@@ -71,7 +72,7 @@ const PDFBriefModal: React.FC<PDFBriefModalProps> = ({
         });
       }
       
-      const response = await fetch('/api/case-study-brief', {
+      const response = await fetch(buildApiUrl('/api/case-study-brief'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

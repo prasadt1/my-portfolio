@@ -1630,7 +1630,7 @@ const CaseStudyPage: React.FC = () => {
                                 View my full profile, resume, and hiring details.
                             </p>
                             <Link
-                                to="/hiring"
+                                to="/hire"
                                 className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg hover:shadow-xl"
                                 onClick={() => trackEvent('case_study_final_cta_click', { cta: 'hiring', slug: study.slug })}
                             >

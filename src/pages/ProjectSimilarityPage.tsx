@@ -13,6 +13,7 @@ import EmailGateModal from '../components/EmailGateModal';
 import SimilarityResultCard from '../components/SimilarityResultCard';
 import i18n from '../i18n';
 import { trackEvent } from '../services/analytics';
+import { buildApiUrl } from '../services/apiBase';
 import { getAttributionSnapshot } from '../utils/attribution';
 import { getGlobalPersona } from '../utils/personaPersistence';
 import ArtifactRequestModal from '../components/ArtifactRequestModal';
@@ -104,7 +105,7 @@ const ProjectSimilarityPage: React.FC = () => {
       const attribution = getAttributionSnapshot(locale);
       const persona = getGlobalPersona();
 
-      const res = await fetch('/api/project-similarity', {
+      const res = await fetch(buildApiUrl('/api/project-similarity'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -182,7 +183,7 @@ const ProjectSimilarityPage: React.FC = () => {
         console.log('[ProjectSimilarityPage] Unlocking with email:', email.substring(0, 3) + '***');
       }
 
-      const res = await fetch('/api/project-similarity', {
+      const res = await fetch(buildApiUrl('/api/project-similarity'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

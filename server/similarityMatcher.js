@@ -12,7 +12,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Initialize Gemini (reuse from server context)
-const apiKey = process.env.VITE_GEMINI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 const model = genAI ? genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" }) : null;
 
@@ -120,7 +120,7 @@ Antworte IMMER im JSON-Format mit dieser Struktur:
 }
 
 Wenn die Situation unklar ist, setze needsMoreInfo=true und stelle spezifische diagnostische Fragen.`
-    : `You are Prasad Tilloo, a Senior IT Leader with 15+ years of experience in enterprise architecture, cloud migration, and digital transformation. You analyze the user's situation based on your real project experience.
+    : `You are Prasad Tilloo, a Fractional CTO & Enterprise Architect with 15+ years of experience in enterprise architecture, cloud migration, and digital transformation. You analyze the user's situation based on your real project experience.
 
 CRITICAL: You must think like Prasad - be SPECIFIC, not generic:
 1. Identify potential failure modes (based on real failures you've witnessed)

@@ -203,7 +203,7 @@ const HomePage: React.FC = () => {
                   {selectedPersona === 'hire' && (
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                       <Link
-                        to="/hiring"
+                        to="/hire"
                         className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
                       >
                         {t('homepage.personaTabs.hiringPrimary')}
@@ -258,7 +258,7 @@ const HomePage: React.FC = () => {
               ) : (
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                   <Link
-                    to="/hiring"
+                    to="/hire"
                     className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl hover:scale-105"
                   >
                     View Hiring Snapshot

@@ -1,5 +1,5 @@
 steps:
-  # Build the container image with the API key as a build argument
+  # Build the container image with build-time vars for the frontend bundle
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "build"
@@ -7,7 +7,7 @@ steps:
       - "-t"
       - "gcr.io/$PROJECT_ID/portfolio-service:$COMMIT_SHA"
       - "--build-arg"
-      - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY}"
+      - "VITE_API_URL=${_VITE_API_URL}"
       - "--build-arg"
       - "VITE_COMPETITION_MODE=${_VITE_COMPETITION_MODE}"
       - "."
@@ -33,7 +33,7 @@ steps:
       - "--allow-unauthenticated"
       # Non-sensitive env vars only - sensitive ones come from Secret Manager
       - "--set-env-vars"
-      - "VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY},LEAD_STORE_PROVIDER=${_LEAD_STORE_PROVIDER},GSHEETS_SHEET_NAME=${_GSHEETS_SHEET_NAME},EMAIL_PROVIDER=${_EMAIL_PROVIDER},SMTP_HOST=${_SMTP_HOST},SMTP_PORT=${_SMTP_PORT},FROM_NAME=${_FROM_NAME}"
+      - "GEMINI_API_KEY=${_GEMINI_API_KEY},LEAD_STORE_PROVIDER=${_LEAD_STORE_PROVIDER},GSHEETS_SHEET_NAME=${_GSHEETS_SHEET_NAME},EMAIL_PROVIDER=${_EMAIL_PROVIDER},SMTP_HOST=${_SMTP_HOST},SMTP_PORT=${_SMTP_PORT},FROM_NAME=${_FROM_NAME}"
       # All sensitive credentials stored in Secret Manager - these persist across builds
       - "--update-secrets"
       - "GSHEETS_PRIVATE_KEY=gsheets-private-key:latest,GSHEETS_SPREADSHEET_ID=gsheets-spreadsheet-id:latest,GSHEETS_CLIENT_EMAIL=gsheets-client-email:latest,SMTP_USER=smtp-user:latest,SMTP_PASS=smtp-pass:latest,FROM_EMAIL=from-email:latest,REPLY_TO_EMAIL=reply-to-email:latest,CONTACT_EMAIL=contact-email:latest"
@@ -41,7 +41,8 @@ steps:
 # Substitutions - only non-sensitive defaults that rarely change
 # Sensitive values are stored in Secret Manager (not here) so they persist across builds
 substitutions:
-  _VITE_GEMINI_API_KEY: ""
+  _GEMINI_API_KEY: ""
+  _VITE_API_URL: ""
   _VITE_COMPETITION_MODE: "true"
   _LEAD_STORE_PROVIDER: "gsheets"
   _GSHEETS_SHEET_NAME: "Leads"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
@@ -39,6 +39,7 @@ const HomePageMultiDomain: React.FC = () => {
     const { t } = useTranslation();
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
     const [toolkitEmail, setToolkitEmail] = useState('');
     const [toolkitFormState, setToolkitFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
     
@@ -49,9 +50,13 @@ const HomePageMultiDomain: React.FC = () => {
             return urlPersona;
         }
         if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem('pt_home_persona');
-            if (stored === 'v1_hire') return 'hire';
-            if (stored === 'v1_toolkit') return 'toolkit';
+            try {
+                const stored = localStorage.getItem('pt_home_persona');
+                if (stored === 'v1_hire') return 'hire';
+                if (stored === 'v1_toolkit') return 'toolkit';
+            } catch (e) {
+                // Ignore storage errors (privacy mode, blocked storage)
+            }
         }
         return 'consult'; // default
     };
@@ -60,15 +65,30 @@ const HomePageMultiDomain: React.FC = () => {
     const showPersonaTabs = isEnabled('HOMEPAGE_PERSONA_TABS');
     const { primary: primaryCTA, secondary: secondaryCTA } = usePersonaCTAs(selectedPersona);
 
-    // Update URL and localStorage when persona changes
+    // Redirect legacy hire persona query to canonical /hire
+    useEffect(() => {
+        const urlPersona = searchParams.get('persona') as PersonaType | null;
+        if (urlPersona === 'hire') {
+            navigate('/hire', { replace: true });
+        }
+    }, [navigate, searchParams]);
+
+    // Update URL (only if persona param already exists) and localStorage when persona changes
     useEffect(() => {
         if (selectedPersona) {
-            const newParams = new URLSearchParams(searchParams);
-            newParams.set('persona', selectedPersona);
-            setSearchParams(newParams, { replace: true });
+            const currentParam = searchParams.get('persona');
+            if (searchParams.has('persona') && currentParam !== selectedPersona) {
+                const newParams = new URLSearchParams(searchParams);
+                newParams.set('persona', selectedPersona);
+                setSearchParams(newParams, { replace: true });
+            }
             
             if (typeof window !== 'undefined') {
-                localStorage.setItem('pt_home_persona', `v1_${selectedPersona}`);
+                try {
+                    localStorage.setItem('pt_home_persona', `v1_${selectedPersona}`);
+                } catch (e) {
+                    // Ignore storage errors
+                }
             }
         }
     }, [selectedPersona, searchParams, setSearchParams]);
@@ -120,9 +140,9 @@ const HomePageMultiDomain: React.FC = () => {
     return (
         <>
             <SEO
-                title="Prasad Tilloo | Independent Architecture Consultant"
-                description="Independent architecture assessments for EU mid-market companies. Validate cloud migration, platform modernization, and architecture decisions before committing to the wrong path."
-                keywords="architecture consultant, architecture assessment, technical due diligence, cloud migration readiness, platform evaluation, enterprise architect, AWS, Azure, GCP"
+                title="Prasad Tilloo | Principal Architect"
+                description="Principal architect and digital transformation leader, acting fractional CTO (hands-on) helping teams scale modernization, AI, and compliance programs with clear executive outcomes."
+                keywords="principal architect, digital transformation, acting fractional CTO, enterprise architecture, healthtech, telemedicine, technical due diligence, cloud migration readiness, platform evaluation, AI modernization, AWS, Azure, GCP"
                 type="website"
             />
 
@@ -188,12 +208,12 @@ const HomePageMultiDomain: React.FC = () => {
                                 {/* Phase 4 Wireframe: H1 + Subhead + Proof Chips + Persona Tabs + CTAs */}
                                 {/* H1: "Reduce risk before committing budget" */}
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                                    Reduce risk before committing budget.
+                                    Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)
                                 </h1>
 
-                                {/* Subheadline: 2 lines max - "Independent architecture consultant. Cloud + AI + compliance-heavy delivery." */}
+                                {/* Subheadline: 2 lines max */}
                                 <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
-                                    Independent architecture consultant. Cloud + AI + compliance-heavy delivery.
+                                    I align strategy, architecture, and delivery so teams scale without compliance, reliability, or cost surprises.
                                 </p>
 
                                 {/* Phase 4.1: Clickable Proof Chips - scroll to sections */}
@@ -208,7 +228,7 @@ const HomePageMultiDomain: React.FC = () => {
                                         }}
                                         className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
                                     >
-                                        <span className="text-emerald-300 font-semibold text-sm">€415K</span>
+                                        <span className="text-emerald-300 font-semibold text-sm">$1M+</span>
                                         <span className="text-white/80 text-sm">saved</span>
                                     </button>
                                     <button
@@ -221,8 +241,8 @@ const HomePageMultiDomain: React.FC = () => {
                                         }}
                                         className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
                                     >
-                                        <span className="text-emerald-300 font-semibold text-sm">50+</span>
-                                        <span className="text-white/80 text-sm">engagements</span>
+                                        <span className="text-emerald-300 font-semibold text-sm">30%</span>
+                                        <span className="text-white/80 text-sm">faster deploys</span>
                                     </button>
                                     <button
                                         onClick={() => {
@@ -234,8 +254,8 @@ const HomePageMultiDomain: React.FC = () => {
                                         }}
                                         className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
                                     >
-                                        <span className="text-emerald-300 font-semibold text-sm">EU</span>
-                                        <span className="text-white/80 text-sm">compliance-ready</span>
+                                        <span className="text-emerald-300 font-semibold text-sm">99.99%</span>
+                                        <span className="text-white/80 text-sm">SLA uptime</span>
                                     </button>
                                 </div>
 
@@ -308,20 +328,20 @@ const HomePageMultiDomain: React.FC = () => {
                                 <ul className="space-y-3 mb-6">
                                     <li className="flex items-start gap-3">
                                         <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
-                                        <span className="text-white/90 text-sm">Clear decision: build vs buy vs modernize</span>
+                                        <span className="text-white/90 text-sm">Executive decision memo: build vs buy vs modernize</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
-                                        <span className="text-white/90 text-sm">Architecture blueprint + phased roadmap</span>
+                                        <span className="text-white/90 text-sm">Architecture blueprint + 90-day delivery roadmap</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
-                                        <span className="text-white/90 text-sm">Stakeholder-ready executive narrative</span>
+                                        <span className="text-white/90 text-sm">Stakeholder-ready narrative and hiring plan</span>
                                     </li>
                                 </ul>
                                 {/* Micro trust line */}
                                 <p className="text-xs text-white/70 border-t border-white/10 pt-4">
-                                    Ex-PwC / BRITA / Boehringer Ingelheim / Delivery Hero / Bank of America
+                                    Delivery experience: tetrapy, PwC, BRITA, Boehringer Ingelheim, Delivery Hero
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -348,30 +368,30 @@ const HomePageMultiDomain: React.FC = () => {
                                         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                                             <div className="text-3xl font-bold text-emerald-300 mb-2">15+</div>
                                             <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringYears')}</div>
-                                            <div className="text-xs text-white/70">Enterprise architecture & transformation</div>
+                                            <div className="text-xs text-white/70">Principal architecture & digital transformation delivery</div>
                                         </div>
                                         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">50+</div>
-                                            <div className="text-sm font-semibold mb-1">Projects</div>
-                                            <div className="text-xs text-white/70">Fortune 100 clients across industries</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">5M+</div>
+                                            <div className="text-sm font-semibold mb-1">Daily Transactions</div>
+                                            <div className="text-xs text-white/70">High-scale platforms</div>
                                         </div>
                                         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">€2M+</div>
-                                            <div className="text-sm font-semibold mb-1">Cost Savings</div>
-                                            <div className="text-xs text-white/70">Delivered through optimization</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">$1M+</div>
+                                            <div className="text-sm font-semibold mb-1">Cost Saved</div>
+                                            <div className="text-xs text-white/70">Documented savings</div>
                                         </div>
                                         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">100%</div>
-                                            <div className="text-sm font-semibold mb-1">Compliance</div>
-                                            <div className="text-xs text-white/70">Zero HIPAA violations, zero breaches</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">99.99%</div>
+                                            <div className="text-sm font-semibold mb-1">SLA Uptime</div>
+                                            <div className="text-xs text-white/70">Patient-critical delivery</div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                             <Link
-                                                to="/hiring"
+                                                to="/hire"
                                                 className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
                                             >
-                                                View Full Profile
+                                            View Hiring Snapshot
                                                 <ArrowRight size={18} />
                                             </Link>
                                         <Link
@@ -501,6 +521,55 @@ const HomePageMultiDomain: React.FC = () => {
 
                 {/* FINAL SUBMISSION: Removed Start Here section - keeping only Competition Mode banner */}
 
+                {/* Executive Summary - Principal Architect Focus */}
+                <section id="executive-summary" className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-10"
+                        >
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
+                                Executive Summary
+                            </h2>
+                            <p className="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                                Principal architect leadership for organizations that need senior direction without full-time overhead.
+                                I lead strategy, architecture, and delivery to align teams around measurable outcomes, including acting fractional CTO support when needed.
+                            </p>
+                        </motion.div>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                                <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
+                                    <Briefcase className="text-emerald-600 dark:text-emerald-400" size={24} />
+                                </div>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Strategy & Stakeholders</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    Translate board goals into a clear technical roadmap and executive narrative.
+                                </p>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                                <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+                                    <Target className="text-blue-600 dark:text-blue-400" size={24} />
+                                </div>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Architecture & Risk</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    Make build-buy-modernize decisions with compliance, cost, and scale tradeoffs mapped.
+                                </p>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+                                <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                                    <TrendingUp className="text-purple-600 dark:text-purple-400" size={24} />
+                                </div>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Delivery & Outcomes</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    De-risk execution with a 90-day plan, critical hires, and measurable KPIs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* SECTION 2: TRUST STRIP - Phase 4 Wireframe: Pattern break with one-line text */}
                 <section className="w-full bg-slate-100 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -525,15 +594,15 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-6"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                Impact at a glance
+                                Impact highlights
                             </h2>
                         </motion.div>
                         <ImpactDashboard
                             metrics={[
-                                { value: '€415K+', label: 'Cost Saved', type: 'savings' },
-                                { value: '50+', label: 'Engagements', type: 'scope' },
-                                { value: '100%', label: 'Compliance Rate', type: 'risk' },
-                                { value: 'Zero', label: 'Data Breaches', type: 'risk' },
+                                { value: '$1M+', label: 'Cost Saved', type: 'savings' },
+                                { value: '30%', label: 'Faster Deployments', type: 'scope' },
+                                { value: '5M+', label: 'Daily Transactions', type: 'scope' },
+                                { value: '99.99%', label: 'SLA Uptime', type: 'risk' },
                             ]}
                             compact={true}
                         />
@@ -557,7 +626,7 @@ const HomePageMultiDomain: React.FC = () => {
                             <div className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg">
                                 <Quote className="text-emerald-600 dark:text-emerald-400 mb-4" size={32} />
                                 <blockquote className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-6 leading-relaxed">
-                                    "Best architecture review we've had. Saved us €400K+ by avoiding the wrong platform choice."
+                                    "He turned a stalled modernization into a board‑approved plan in weeks, with clear tradeoffs and ROI."
                                 </blockquote>
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
@@ -674,9 +743,8 @@ const HomePageMultiDomain: React.FC = () => {
                     </div>
                 </section>}
 
-                {/* Phase 4 C3: Hide "How I Work" section - too dense for scanning */}
-                {/* SECTION 4: HOW I WORK - HIDDEN FOR DENSITY REDUCTION */}
-                {false && <section className="py-20 bg-slate-50 dark:bg-slate-800">
+                {/* SECTION: HOW I OPERATE */}
+                <section className="py-20 bg-slate-50 dark:bg-slate-800">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -685,10 +753,10 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-12"
                         >
                             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-                                {t('homepage.howIWork.title')}
+                                How I operate
                             </h2>
                             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                                {t('homepage.howIWork.subtitle')}
+                                A focused 3-phase engagement that aligns executives, architects, and delivery teams.
                             </p>
                         </motion.div>
 
@@ -704,13 +772,13 @@ const HomePageMultiDomain: React.FC = () => {
                                     <Search className="text-emerald-600 dark:text-emerald-400" size={32} />
                                 </div>
                                 <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
-                                    STEP 1
+                                    PHASE 1
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    {t('homepage.howIWork.step1.title')}
+                                    Diagnose & align
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-400">
-                                    {t('homepage.howIWork.step1.desc')}
+                                    Clarify business goals, constraints, and risks. Produce a decision memo and success metrics.
                                 </p>
                             </motion.div>
 
@@ -725,13 +793,13 @@ const HomePageMultiDomain: React.FC = () => {
                                     <TrendingUp className="text-blue-600 dark:text-blue-400" size={32} />
                                 </div>
                                 <div className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">
-                                    STEP 2
+                                    PHASE 2
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    {t('homepage.howIWork.step2.title')}
+                                    Architect the plan
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-400">
-                                    {t('homepage.howIWork.step2.desc')}
+                                    Define target architecture, hiring plan, and 90-day roadmap with measurable checkpoints.
                                 </p>
                             </motion.div>
 
@@ -746,18 +814,18 @@ const HomePageMultiDomain: React.FC = () => {
                                     <Package className="text-purple-600 dark:text-purple-400" size={32} />
                                 </div>
                                 <div className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-2">
-                                    STEP 3
+                                    PHASE 3
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                    {t('homepage.howIWork.step3.title')}
+                                    Execute & de-risk
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-400">
-                                    {t('homepage.howIWork.step3.desc')}
+                                    Run delivery, remove blockers, and build momentum with weekly executive updates.
                                 </p>
                             </motion.div>
                         </div>
                     </div>
-                </section>}
+                </section>
 
                 {/* SECTION 4: FEATURED CASE STUDIES - Phase 4 Wireframe: 2 rows (2 large + 3 small) */}
                 <section id="featured-case-studies" className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 scroll-mt-24">
@@ -769,7 +837,7 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-10"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
-                                Featured case studies
+                                Executive case studies
                             </h2>
                         </motion.div>
 
@@ -924,14 +992,14 @@ const HomePageMultiDomain: React.FC = () => {
                             {selectedPersona === 'hire' && (
                                 <>
                                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                                        Want the short version? Download resume
+                                        Prefer the short version? View the hiring snapshot.
                                     </h2>
                                     <Link
-                                        to="/hiring"
+                                        to="/hire"
                                         className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105"
                                         onClick={() => trackEvent('homepage_final_cta_click', { persona: 'hire', cta: 'download_resume' })}
                                     >
-                                        View Hiring Profile
+                                        View Hiring Snapshot
                                         <ArrowRight size={20} />
                                     </Link>
                                 </>

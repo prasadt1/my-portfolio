@@ -1,12 +1,7 @@
 
 import React, { useState } from 'react';
 import { Search, Loader2 } from 'lucide-react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
-// Initialize Gemini
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey || '');
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+import { buildApiUrl } from '../services/apiBase';
 
 interface SmartFiltersProps {
     onFilter: (tags: string[]) => void;
@@ -23,29 +18,29 @@ const SmartProjectFilter: React.FC<SmartFiltersProps> = ({ onFilter, availableTa
 
         setIsAnalyzing(true);
         try {
-            const prompt = `
-        User Query: "${query}"
-        Available Tags: ${JSON.stringify(availableTags)}
-        
-        TASK:
-        Identify which tags from the list are relevant to the user's query.
-        Return ONLY a JSON array of strings. Even if only one tag matches, return an array.
-        If no tags match, return an empty array [].
-      `;
-
-            const result = await model.generateContent({
-                contents: [{ role: 'user', parts: [{ text: prompt }] }],
-                generationConfig: { responseMimeType: 'application/json' }
+            const response = await fetch(buildApiUrl('/api/smart-tags'), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query, availableTags })
             });
 
-            const response = result.response.text();
-            const tags = JSON.parse(response);
-
-            if (Array.isArray(tags)) {
-                onFilter(tags);
+            if (response.ok) {
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    onFilter(data);
+                    return;
+                }
             }
+
+            // Fallback: simple tag match when AI is unavailable
+            const lowerQuery = query.toLowerCase();
+            const fallbackTags = availableTags.filter(tag => lowerQuery.includes(tag.toLowerCase()));
+            onFilter(fallbackTags);
         } catch (error) {
             console.error('Smart Search Error:', error);
+            const lowerQuery = query.toLowerCase();
+            const fallbackTags = availableTags.filter(tag => lowerQuery.includes(tag.toLowerCase()));
+            onFilter(fallbackTags);
         } finally {
             setIsAnalyzing(false);
         }

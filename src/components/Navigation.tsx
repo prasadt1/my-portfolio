@@ -20,7 +20,12 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     // Detect if we're in an iframe
-    setIsInIframe(window.self !== window.top);
+    try {
+      setIsInIframe(window.self !== window.top);
+    } catch (e) {
+      // Cross-origin access can throw; assume iframe in that case
+      setIsInIframe(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -53,7 +58,7 @@ const Navigation: React.FC = () => {
       description: 'Short-term projects & freelance work'
     },
     { 
-      path: '/hiring', 
+      path: '/hire', 
       labelKey: 'nav.hiring', 
       featureKey: 'HOMEPAGE_PERSONA_TABS' as FeatureKey,
       description: 'Full-time opportunities & recruiting'

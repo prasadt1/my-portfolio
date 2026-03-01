@@ -18,18 +18,26 @@ const ChatAssistant: React.FC = () => {
 
     // Load history from local storage on mount
     useEffect(() => {
-        const saved = localStorage.getItem('chat_history');
-        if (saved) {
-            setMessages(JSON.parse(saved));
-        } else {
-            setMessages([{ role: 'model', content: "Hello! I'm Prasad's Digital Assistant. I can answer questions about his architectural experience, leadership style, and technical skills. How can I help you today?" }]);
+        try {
+            const saved = localStorage.getItem('chat_history');
+            if (saved) {
+                setMessages(JSON.parse(saved));
+                return;
+            }
+        } catch (e) {
+            // Ignore storage errors
         }
+        setMessages([{ role: 'model', content: "Hello! I'm Prasad's Digital Assistant. I can answer questions about his architectural experience, leadership style, and technical skills. How can I help you today?" }]);
     }, []);
 
     // Save history to local storage whenever messages change
     useEffect(() => {
         if (messages.length > 0) {
-            localStorage.setItem('chat_history', JSON.stringify(messages));
+            try {
+                localStorage.setItem('chat_history', JSON.stringify(messages));
+            } catch (e) {
+                // Ignore storage errors
+            }
         }
     }, [messages]);
 

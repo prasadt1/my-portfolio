@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
 
-const apiKey = process.env.VITE_GEMINI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
 console.log("Checking API Key:", apiKey ? "Present (" + apiKey.substring(0, 5) + "...)" : "MISSING");
 
 const genAI = new GoogleGenerativeAI(apiKey);

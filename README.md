@@ -1,6 +1,6 @@
 # Prasad Tilloo — Experience-Driven AI Portfolio
 
-Production portfolio demonstrating enterprise architecture expertise and AI integration using Google Gemini and Cloud Run.
+Production portfolio demonstrating enterprise architecture expertise with Gemini-powered search via a lightweight Cloud Run API and static hosting for the frontend.
 
 This is not a demo site. It is a fully deployed consulting platform with:
 
@@ -11,24 +11,6 @@ This is not a demo site. It is a fully deployed consulting platform with:
 - Feature-flagged production deployment
 
 **Live**: https://prasadtilloo.com
-
----
-
-## 🏆 Google AI Portfolio Challenge Submission
-
-This project was built for the **Google AI "New Year, New You" Portfolio Challenge**.
-
-Key goals:
-
-- Demonstrate production Gemini integration
-- Show real-world architecture decision making
-- Build an experience-driven AI system (not generic chat)
-- Deploy end-to-end on Google Cloud Run
-- Capture leads safely with GDPR compliance
-
-Live deployment: https://prasadtilloo.com
-
-Primary AI feature for judges: 👉 Project Similarity Matcher (`/tools/project-similarity`)
 
 ---
 
@@ -75,13 +57,16 @@ This creates meaningful differentiation versus generic LLM advice.
 <img width="1536" height="1024" alt="ChatGPT Image Feb 2, 2026, 08_19_14 AM" src="https://github.com/user-attachments/assets/8ce6ab12-43b1-42d2-920f-1f425ae19332" />
 
 
-Frontend and backend are deployed as a single Cloud Run service.
+Recommended deployment split:
+
+- Static frontend (Cloudflare Pages or similar)
+- Serverless API (Cloud Run) for Gemini-powered endpoints
 
 ---
 
 ## 🤖 AI Usage (Google Gemini)
 
-**Model**: Gemini 1.5 Pro
+**Model**: Gemini 2.0 Flash (configurable)
 
 **Used for**:
 - Natural language reasoning
@@ -118,7 +103,7 @@ AI outputs are constrained using structured project metadata.
 - Qualify serious leads
 - Showcase delivery experience
 
-Other tools (Chat, Risk Radar, Architecture Assessment) are intentionally disabled for submission.
+Other tools (Chat, Risk Radar, Architecture Assessment) are intentionally disabled by default.
 
 ---
 
@@ -153,45 +138,44 @@ Artifacts are gated to protect IP.
 - Vite
 - Tailwind CSS
 - Node.js
-- Google Gemini 1.5 Pro
-- Google Cloud Run
+- Google Gemini 2.0 Flash (configurable)
+- Google Cloud Run (API)
+- Cloudflare Pages (static hosting)
 - Google Sheets API
 - SendGrid
 
 ---
 
-## 🧠 AI-Assisted Development (Gemini + Antigravity)
+## 🧠 AI-Assisted Development
 
-Development used Google Gemini and Antigravity in a "vibe coding" workflow:
-
-- Gemini for architectural reasoning and refactoring suggestions
-- Antigravity for rapid UI iteration
-- Human-led design for:
-  - UX structure
-  - Domain modeling
-  - Compliance boundaries
-  - Production hardening
-
-AI accelerated implementation. Architecture decisions remained manual.
+AI tools were used to accelerate implementation. Architecture decisions and delivery tradeoffs remained human-led.
 
 ---
 
-## 🌐 Custom Domain + Cloud Run
+## 🌐 Hosting (Recommended Split)
 
 Domain: Namecheap  
-Hosting: Google Cloud Run  
+Static hosting: Cloudflare Pages  
+API: Google Cloud Run  
 
 Setup:
-- Cloud Run custom domain mapping
-- Namecheap DNS A + CNAME records
-- Google-managed SSL
+- Cloudflare Pages serves the static frontend at `prasadtilloo.com`
+- Cloud Run serves API endpoints at `api.prasadtilloo.com`
+- Namecheap DNS: CNAME/ALIAS to Cloudflare, CNAME for `api` to Cloud Run
+- Separate SSL: Cloudflare for the site, Google-managed SSL for the API
 
-Frontend + backend run as a single Cloud Run service.
+Benefits:
+- Lower operational cost
+- Faster global delivery (edge caching)
+- Independent scaling for AI endpoints
 
-This allows:
-- Zero-infra ops
-- Automatic HTTPS
-- Simple CI/CD
+### Frontend API Base
+
+When hosting the frontend separately, set:
+
+```
+VITE_API_URL=https://api.prasadtilloo.com
+```
 
 ---
 
@@ -221,32 +205,17 @@ Design goals:
 
 ---
 
-## 🧪 Feature Flags
-
-Competition mode:
-
-```bash
-VITE_COMPETITION_MODE=true
-```
-
-Automatically promotes key features and hides experimental ones.
-
----
-
 ## 🧑‍💻 Local Development
 
 ```bash
 npm install
-cp .env.example .env
+cp .env.local.example .env.local
 npm run dev
 ```
 
 **Required env**:
 ```
 GEMINI_API_KEY=
-SENDGRID_API_KEY=
-GOOGLE_SHEETS_ID=
-GOOGLE_SERVICE_ACCOUNT_JSON=
 ```
 
 ---
@@ -280,7 +249,7 @@ gcloud run deploy prasad-portfolio \
 
 ## 🏁 Why Only One AI Feature?
 
-For this submission, only the Project Similarity Matcher is enabled.
+Only the Project Similarity Matcher is enabled by default.
 
 **Reason**: To focus on experience-backed AI instead of generic tools.
 

@@ -14,8 +14,9 @@ const HiringPage: React.FC = () => {
     return (
         <>
             <SEO
-                title="For Recruiters | Prasad Tilloo"
-                description="Open to senior engineering leadership, architecture, and transformation roles. 15+ years experience with Fortune 100 clients."
+                title="Hiring Snapshot | Prasad Tilloo"
+                description="Principal architect and digital transformation leader, acting fractional CTO (hands-on). 15+ years across regulated enterprise and scale-up delivery."
+                canonical={`${import.meta.env.VITE_SITE_URL || 'https://prasadtilloo.com'}/hire`}
             />
             <PageShell background="muted" containerMaxWidth="6xl" className="pt-24">
                 <PageHeader
@@ -34,6 +35,29 @@ const HiringPage: React.FC = () => {
                             {t('hiringPage.hero.note')}
                         </p>
                     </motion.div>
+
+                    {/* Quick Pitch */}
+                    <motion.section
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.05 }}
+                        className="mb-16"
+                    >
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                            Quick pitch
+                        </h2>
+                        <ul className="grid md:grid-cols-3 gap-4">
+                            <li className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                                Principal architect and acting fractional CTO aligning strategy, architecture, and delivery.
+                            </li>
+                            <li className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                                $1M+ savings and 30% faster deployments across regulated teams.
+                            </li>
+                            <li className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                                99.99% SLA delivery with 5M+ daily transactions.
+                            </li>
+                        </ul>
+                    </motion.section>
 
                     {/* Roles Section */}
                     <motion.section

@@ -26,7 +26,7 @@
         "riskRadar": "Risiko-Radar",
         "projectSimilarity": "Projekt-Similaritäts-Matcher",
         "checklist": "Checkliste",
-        "hiring": "Karriere",
+        "hiring": "Hiring Snapshot",
         "hireMe": "Mich einstellen",
         "resources": "Ressourcen",
         "labs": "Labs",
@@ -53,9 +53,9 @@
     },
     "hero": {
         "badge": "Unabhängiger Validator • Vendor-neutral",
-        "headline": "Risiken reduzieren, bevor Budget gebunden wird",
-        "tagline": "Unabhängige Architektur- & Transformationsberatung",
-        "subtitle": "Ich helfe CTOs und Engineering-Leads, Architektur-, Modernisierungs-, Cloud-Migrations- und AI-Enablement-Entscheidungen zu validieren — bevor Budget und Roadmap festgelegt werden.",
+        "headline": "Principal Architect | Digitale Transformation | Acting Fractional CTO (Hands-on)",
+        "tagline": "Principal-Architektur und Delivery Leadership",
+        "subtitle": "I help executives align teams, architecture, and delivery so modernization and AI initiatives scale without compliance or reliability surprises.",
         "cta": "Architektur-Review buchen",
         "ctaSecondary": "Leistungen ansehen",
         "watchVideo": "75-Sekunden-Überblick ansehen",
@@ -92,8 +92,8 @@
     },
     "about": {
         "title": "Prasad Tilloo",
-        "role": "Senior Engineering Leader & Enterprise Architect",
-        "description": "15+ Jahre Erfahrung in der Lieferung transformativer Ergebnisse in Cloud-Modernisierung, Legacy-System-Migration und KI/ML-Infrastruktur für Fortune-100-Kunden.",
+        "role": "Principal Architect | Digitale Transformation | Acting Fractional CTO (Hands-on)",
+        "description": "15+ years leading modernization, cloud, and AI programs for Fortune 100 and scale-ups, with a focus on measurable business outcomes.",
         "buttons": {
             "contact": "Kontaktieren",
             "linkedin": "LinkedIn",
@@ -101,9 +101,9 @@
         },
         "stats": {
             "exp": "Jahre Erfahrung",
-            "value": "Projektwert",
-            "industries": "Branchen",
-            "delivery": "Lieferquote"
+            "value": "Cost Savings",
+            "industries": "Daily Transactions",
+            "delivery": "SLA Uptime"
         },
         "philosophy": {
             "title": "Meine Führungsphilosophie",
@@ -128,19 +128,19 @@
         },
         "proof": {
             "title": "Der Beweis des Architekten",
-            "p1": "Ich entwerfe nicht nur Systeme; ich sichere ihr Überleben und ihre Skalierbarkeit in der realen Welt.",
-            "p2": "Meine Karriere ist definiert durch komplexe Transformationen – von der Migration von Legacy-Code bis zur Architektur globaler Standards.",
-            "quote": "Prasad kombiniert tiefes technisches Fachwissen mit der seltenen Fähigkeit, komplexe Architekturen C-Level-Stakeholdern zu erklären."
+            "p1": "Als acting, hands-on Fractional CTO in regulierter Healthtech aligniere ich Executives, Architektur und Delivery für patientenkritische Systeme.",
+            "p2": "My track record includes 30% faster deployments, $1M+ in savings, and compliance-first programs across GDPR, HIPAA, and ISO 27001.",
+            "quote": "Prasad combines executive alignment with hands-on delivery and clear, board-ready technical decisions."
         },
         "consulting": {
-            "title": "Tier-1 Beratungshintergrund",
-            "role": "Managementberater bei PricewaterhouseCoopers (PwC)",
-            "desc": "Verbrachte 5+ Jahre mit der Leitung digitaler Transformationsinitiativen.",
+            "title": "Principal Architecture & Digital Transformation Advisory",
+            "role": "Principal Architect / Acting Fractional CTO (Hands-on)",
+            "desc": "Lead modernization, observability, and compliance programs for regulated and high-growth teams.",
             "highlights": [
-                "Leitete $50M+ Pharma RFPs",
-                "Industrie 4.0 Strategieimplementierung",
-                "Cloud Center of Excellence (CCoE) Aufbau",
-                "Experte für regulatorische Compliance (GxP/HIPAA)"
+                "Stabilized telemedicine platform on AWS Fargate, RDS, Terraform",
+                "GDPR Art.9 compliance for special category health data",
+                "LLM, RAG, and agentic AI production engineering",
+                "Cloud modernization + observability selection (Dynatrace, Datadog, Grafana)"
             ]
         },
         "journey": {
@@ -440,7 +440,7 @@
         }
     },
     "footer": {
-        "tagline": "Unabhängiger Architektur- & Transformationsberater",
+        "tagline": "Principal Architect • Digitale Transformation • Acting Fractional CTO",
         "explore": "Entdecken",
         "expertise": "Expertise",
         "contact": "Kontakt aufnehmen",
@@ -745,7 +745,7 @@
     },
     "quickStats": {
         "title": "Auf einen Blick",
-        "available": "Unabhängiger Berater",
+        "available": "Principal Architect (Acting Fractional CTO)",
         "schedule": "Interview vereinbaren",
         "resume": "Lebenslauf herunterladen",
         "labels": {
@@ -1265,7 +1265,7 @@
             "hiringPrimary": "Lebenslauf / Recruiting-Snapshot ansehen",
             "hiringSecondary": "Ausgewählte Case Studies",
             "hiringTitle": "Recruiting-Snapshot",
-            "hiringSubtitle": "Senior Engineering Leader offen für neue Möglichkeiten",
+            "hiringSubtitle": "Principal Architect für regulierte Healthtech-Teams (acting Fractional CTO, hands-on)",
             "hiringYears": "Jahre Erfahrung",
             "hiringIndustries": "Branchen",
             "hiringStrengths": "Stärken",
@@ -1283,28 +1283,28 @@
     },
     "hiringPage": {
         "hero": {
-            "title": "Offen für Senior-Rollen",
-            "subtitle": "Ich bin offen für Senior Engineering Leadership-, Architektur- und Transformationsrollen bei innovativen Unternehmen.",
-            "note": "Aktuell verfügbar für Vollzeit-, Teilzeit- oder Fractional-Engagements."
+            "title": "Principal Architect | Digitale Transformation | Acting Fractional CTO (Hands-on)",
+            "subtitle": "Hands-on Leadership für regulierte Healthtech-Teams und skalierende Plattformen. Telemedizin, E-Rezept und Compliance-first Delivery.",
+            "note": "Currently available for fractional and advisory engagements. Full-time considered for the right mission."
         },
         "roles": {
             "title": "Rollen, für die ich offen bin",
             "items": [
                 {
+                    "title": "Acting Fractional CTO (Hands-on)",
+                    "desc": "Leadership, um Produkt, Architektur und Delivery in regulierten Umfeldern auszurichten."
+                },
+                {
                     "title": "VP Engineering / Head of Engineering",
-                    "desc": "Führung von Engineering-Organisationen, Aufbau leistungsstarker Teams und Entwicklung technischer Strategien."
+                    "desc": "Build high-performing teams, delivery systems, and technical strategy for growth."
                 },
                 {
-                    "title": "Principal / Staff Architect",
-                    "desc": "Enterprise-Architektur, Plattformdesign und technische Führung für komplexe Transformationen."
+                    "title": "Enterprise Architect / Platform Strategy",
+                    "desc": "Modernize platforms, reduce risk, and define the target architecture."
                 },
                 {
-                    "title": "Engineering Director / Tech Lead",
-                    "desc": "Hands-on technische Führung, Architektur-Entscheidungen und Lieferqualität."
-                },
-                {
-                    "title": "Transformation Lead / CTO Advisory",
-                    "desc": "Fractional oder Vollzeit-Rollen zur Unterstützung von Unternehmen bei großen technischen Transformationen."
+                    "title": "Transformation Lead",
+                    "desc": "Lead multi-quarter modernization and compliance programs with measurable outcomes."
                 }
             ]
         },
@@ -1312,20 +1312,20 @@
             "title": "Was ich mitbringe",
             "items": [
                 {
-                    "title": "15+ Jahre Erfahrung",
-                    "desc": "Fortune-100-Kunden, Tier-1-Beratung (PwC) und Hands-on-Delivery-Führung."
+                    "title": "15+ Years Delivery Experience",
+                    "desc": "Banking, telecom, e‑commerce, healthcare, and AdTech."
                 },
                 {
-                    "title": "Full-Stack Leadership",
-                    "desc": "Von Architektur bis Code bis Deployment. Ich setze um, nicht nur strategisiere."
+                    "title": "$1M+ Savings + 30% Faster Deployments",
+                    "desc": "Cloud-first transformations on AWS/Azure with measurable business impact."
                 },
                 {
-                    "title": "Business-First Denkweise",
-                    "desc": "Jede Entscheidung wird am Geschäftsergebnis gemessen, nicht am technischen Ego."
+                    "title": "99.99% SLA Delivery",
+                    "desc": "Scaled platforms to 5M+ daily transactions with reliability and observability."
                 },
                 {
-                    "title": "Globale Erfahrung",
-                    "desc": "Nordamerika, Europa, Asien und Südamerika (remote + onsite)"
+                    "title": "Compliance + AI Engineering",
+                    "desc": "GDPR (Art. 9), HIPAA, ISO 27001 with LLM, RAG, and agentic systems."
                 }
             ]
         },
@@ -1338,7 +1338,7 @@
         },
         "cta": {
             "title": "Lassen Sie uns sprechen",
-            "subtitle": "Wenn Sie jemanden suchen, der tiefes technisches Fachwissen mit Geschäftssinn und Hands-on-Umsetzung verbindet, lassen Sie uns in Kontakt treten.",
+            "subtitle": "Wenn Sie einen Principal Architect oder acting Fractional CTO brauchen, der Strategie, Architektur und Delivery verbindet, lassen Sie uns sprechen.",
             "button": "E-Mail senden"
         }
     },

@@ -74,7 +74,7 @@ const ServicesPage: React.FC = () => {
         <>
             <SEO
                 title="Architecture Assessment Services | Prasad Tilloo"
-                description="Independent architecture assessments for EU mid-market companies. Technical due diligence, cloud migration readiness, and platform evaluation."
+                description="Principal architecture and digital transformation advisory, including acting fractional CTO engagements. Technical due diligence, cloud migration readiness, and platform evaluation."
             />
             <PageShell background="muted" containerMaxWidth="7xl" className="pt-24">
                 <PageHeader

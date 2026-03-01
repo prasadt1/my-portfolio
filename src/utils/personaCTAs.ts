@@ -21,7 +21,7 @@ export function getPersonaPrimaryCTA(persona: PersonaType | null): PersonaCTA {
   return {
     label: 'View Hiring Snapshot',
     labelKey: 'cta.hiring.primary',
-    path: '/hiring',
+    path: '/hire',
     variant: 'primary',
   };
 }

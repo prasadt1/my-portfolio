@@ -1,4 +1,5 @@
 import { isLocalizedPersonaChallenge, isLegacyChallenge, getLocalizedString, type CaseStudy, type LocalizedString } from '../types/CaseStudy';
+import { buildApiUrl } from './apiBase';
 
 interface SearchResult {
     slug: string;
@@ -28,7 +29,7 @@ function getChallengeSituation(challenge: CaseStudy['challenge']): string {
 export const semanticSearch = async (query: string): Promise<SearchResult[]> => {
     // Try server-side endpoint first, but always fallback to client-side if it fails
     try {
-        const response = await fetch('/api/semantic-search', {
+        const response = await fetch(buildApiUrl('/api/search'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

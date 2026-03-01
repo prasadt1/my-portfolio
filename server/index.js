@@ -53,7 +53,7 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize Gemini API
-const apiKey = process.env.VITE_GEMINI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
 console.log('----------------------------------------');
 console.log('Server Context:', {
     cwd: process.cwd(),
@@ -135,7 +135,7 @@ app.post('/api/chat', async (req, res) => {
     try {
         const { message, history } = req.body;
 
-        if (!process.env.VITE_GEMINI_API_KEY) {
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
             return res.status(500).json({ error: 'API Key not configured' });
         }
 
@@ -192,7 +192,7 @@ app.post('/api/risk-radar', async (req, res) => {
             });
         }
 
-        if (!process.env.VITE_GEMINI_API_KEY) {
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
             return res.status(500).json({ error: 'API Key not configured' });
         }
 
@@ -322,6 +322,390 @@ Return ONLY valid JSON matching the schema.
     }
 });
 
+// Content rewrite endpoint (server-side)
+app.post('/api/content-rewrite', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        if (!checkRateLimit(clientIp)) {
+            return res.status(429).json({ error: 'Rate limit exceeded. Please try again in a minute.' });
+        }
+
+        const { currentText, sectionType, persona } = req.body || {};
+
+        if (!currentText || typeof currentText !== 'string') {
+            return res.status(400).json({ error: 'currentText is required' });
+        }
+
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
+            return res.json({ text: currentText });
+        }
+
+        if (!model) {
+            return res.json({ text: currentText });
+        }
+
+        let prompt = '';
+        if (persona === 'executive') {
+            prompt = `
+Rewrite the following text for a C-level executive (CEO/CTO).
+Focus on: ROI, business impact, risk mitigation, strategy.
+Remove: low-level technical jargon.
+Tone: professional, concise, strategic.
+Output ONLY the rewritten text. Do not include markers.
+Section type: ${sectionType || 'unknown'}
+Text: "${currentText}"
+`;
+        } else if (persona === 'technical') {
+            prompt = `
+Rewrite the following text for a senior software engineer.
+Focus on: architecture, tech stack, patterns, complexity, performance.
+Add: technical specifics.
+Tone: technical, detailed.
+Output ONLY the rewritten text. Do not include markers.
+Section type: ${sectionType || 'unknown'}
+Text: "${currentText}"
+`;
+        } else {
+            prompt = `
+Rewrite the following text for a technical recruiter involved in hiring.
+Focus on: key skills, keywords, leadership, project management.
+Tone: professional, resume-style.
+Output ONLY the rewritten text. Do not include markers.
+Section type: ${sectionType || 'unknown'}
+Text: "${currentText}"
+`;
+        }
+
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        });
+
+        res.json({ text: result.response.text() });
+    } catch (error) {
+        console.error('Content rewrite error:', error);
+        res.status(200).json({ text: req.body?.currentText || '' });
+    }
+});
+
+// Skills match endpoint (server-side)
+app.post('/api/skills-match', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        if (!checkRateLimit(clientIp)) {
+            return res.status(429).json({ error: 'Rate limit exceeded. Please try again in a minute.' });
+        }
+
+        const { jobDescription } = req.body || {};
+        if (!jobDescription || typeof jobDescription !== 'string') {
+            return res.status(400).json({ error: 'jobDescription is required' });
+        }
+
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
+            return res.status(500).json({ error: 'API Key not configured' });
+        }
+
+        if (!model) {
+            return res.status(500).json({ error: 'API Key not configured' });
+        }
+
+        const prompt = `
+Analyze the following job description against Prasad Tilloo's profile.
+
+PRASAD'S PROFILE (summary):
+- 15+ years experience: Fractional CTO, Enterprise Architect, AI Engineer
+- Core Skills: AWS, Azure, GCP, Kubernetes, Docker, Terraform
+- Languages: Python, TypeScript, React, Java, Golang, C#
+- Compliance: GDPR (Art. 9), HIPAA, ISO 27001, PCI-DSS, SOC 2
+- Leadership: led cross-platform teams (10+), $1M+ savings delivered
+- Outcomes: 30% faster deployments, 99.99% SLA, 5M+ daily transactions
+- AI/ML: RAG, Vector DBs, LLM integration, agentic systems
+
+JOB DESCRIPTION:
+${jobDescription}
+
+TASK:
+- Calculate a match percentage (0-100).
+- Identify key matching skills mentioned in the JD.
+- Identify missing skills or gaps.
+- Provide a 1-sentence explanation of the fit.
+
+OUTPUT JSON ONLY:
+{
+  "matchScore": number,
+  "matchLevel": "Low" | "Medium" | "High" | "Perfect",
+  "explanation": "string",
+  "missingSkills": ["string"],
+  "matchingSkills": ["string"]
+}
+`;
+
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: 'application/json' },
+        });
+
+        let text = result.response.text();
+        text = text.replace(/```json\\n?|\\n?```/g, '').trim();
+        const data = JSON.parse(text);
+        res.json(data);
+    } catch (error) {
+        console.error('Skills match error:', error);
+        res.status(500).json({
+            matchScore: 0,
+            matchLevel: 'Low',
+            explanation: 'Unable to analyze at the moment. Please try again.',
+            missingSkills: [],
+            matchingSkills: []
+        });
+    }
+});
+
+const buildFitCheckFallback = (jobDescription) => {
+    const jd = (jobDescription || '').toLowerCase();
+    const keywordMap = [
+        { key: 'hipaa', label: 'HIPAA' },
+        { key: 'gdpr', label: 'GDPR' },
+        { key: 'iso 27001', label: 'ISO 27001' },
+        { key: 'soc 2', label: 'SOC 2' },
+        { key: 'pci', label: 'PCI-DSS' },
+        { key: 'aws', label: 'AWS' },
+        { key: 'azure', label: 'Azure' },
+        { key: 'gcp', label: 'GCP' },
+        { key: 'kubernetes', label: 'Kubernetes' },
+        { key: 'terraform', label: 'Terraform' },
+        { key: 'react', label: 'React' },
+        { key: 'typescript', label: 'TypeScript' },
+        { key: 'java', label: 'Java' },
+        { key: 'python', label: 'Python' },
+        { key: 'golang', label: 'Golang' },
+        { key: 'cto', label: 'CTO leadership' },
+        { key: 'architect', label: 'Enterprise architecture' },
+        { key: 'healthcare', label: 'Healthcare domain' },
+        { key: 'telemedicine', label: 'Telemedicine' },
+        { key: 'compliance', label: 'Regulated compliance' },
+        { key: 'ai', label: 'AI/LLM' },
+        { key: 'rag', label: 'RAG' },
+        { key: 'observability', label: 'Observability' },
+    ];
+
+    const matched = keywordMap.filter((k) => jd.includes(k.key)).map((k) => k.label);
+    const missing = keywordMap.filter((k) => !jd.includes(k.key)).map((k) => k.label);
+
+    const score = Math.min(90, 20 + matched.length * 6);
+    const matchLevel = score < 40 ? 'Low' : score < 60 ? 'Medium' : score < 80 ? 'High' : 'Perfect';
+
+    const recommendedProjects = [];
+    const addProject = (slug) => {
+        if (!recommendedProjects.includes(slug)) {
+            recommendedProjects.push(slug);
+        }
+    };
+
+    if (jd.includes('healthcare') || jd.includes('hipaa') || jd.includes('fhir')) {
+        addProject('pwc-healthcare-modernization');
+        addProject('boehringer-aiml-platform');
+    }
+
+    if (jd.includes('ecommerce') || jd.includes('retail') || jd.includes('shopify') || jd.includes('headless')) {
+        addProject('brita-ecommerce');
+    }
+
+    if (jd.includes('ads') || jd.includes('adtech') || jd.includes('marketing')) {
+        addProject('delivery-hero-ads');
+    }
+
+    if (jd.includes('carbon') || jd.includes('sustainability') || jd.includes('esg')) {
+        addProject('pact-pcf-data-exchange-network');
+    }
+
+    if (jd.includes('cloud') || jd.includes('migration') || jd.includes('rationalization')) {
+        addProject('app-rationalization-cloud-readiness');
+    }
+
+    if (recommendedProjects.length < 3) {
+        ['pwc-healthcare-modernization', 'brita-ecommerce', 'delivery-hero-ads'].forEach(addProject);
+    }
+
+    return {
+        score,
+        matchSummary: matched.length
+            ? `Strong overlap with ${matched.slice(0, 4).join(', ')}. Recommended to validate scope and compliance depth.`
+            : 'General leadership and architecture overlap. Recommend a deeper review against domain-specific requirements.',
+        keyMatches: matched.slice(0, 8),
+        missingSkills: missing.slice(0, 6),
+        coverLetter: `Hello Hiring Team,\n\nI bring 15+ years as a Fractional CTO and enterprise architect, leading cloud modernization, compliance-heavy programs, and cross-functional delivery. Your role aligns well with my experience across regulated environments, cloud platforms, and executive stakeholder management.\n\nI have delivered measurable outcomes including $1M+ cost savings, 30% faster deployments, and platforms at 5M+ daily transactions. I would welcome a discussion to map priorities, risks, and an execution plan that balances speed with compliance.\n\nBest regards,\nPrasad Tilloo`,
+        recommendedProjects: recommendedProjects.slice(0, 3),
+    };
+};
+
+// Fit check endpoint (server-side)
+app.post('/api/fit-check', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        if (!checkRateLimit(clientIp)) {
+            return res.status(429).json({ error: 'Rate limit exceeded. Please try again in a minute.' });
+        }
+
+        const { jobDescription } = req.body || {};
+        if (!jobDescription || typeof jobDescription !== 'string') {
+            return res.status(400).json({ error: 'jobDescription is required' });
+        }
+
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
+            return res.json(buildFitCheckFallback(jobDescription));
+        }
+
+        if (!model) {
+            return res.json(buildFitCheckFallback(jobDescription));
+        }
+
+        const { SchemaType } = await import('@google/generative-ai');
+
+        const FIT_CHECK_CONTEXT = `
+USER: Prasad Tilloo
+ROLE: Fractional CTO & Enterprise Architect (15+ years)
+HIGHLIGHTS:
+- tetrapy: Regulated telemedicine platform stabilization (AWS Fargate, RDS, ElastiCache)
+- BRITA: Headless e-commerce across 6 EMEA markets (Shopware to Shopify Plus)
+- PACT PCF Network: Global standard with Fortune 100 adoption
+- Delivery Hero: Display Ads platform, 5M+ daily transactions, 99.99% SLA
+- Boehringer Ingelheim: AI/ML enterprise data lake, GDPR-compliant
+- PwC: $500K annual savings, HIPAA/FHIR/PCI compliance
+OUTCOMES:
+- 30% faster deployments, $1M+ savings, 5M+ daily transactions
+COMPLIANCE:
+- GDPR (Art. 9), HIPAA, ISO 27001, SOC 2, PCI-DSS
+STACK:
+- AWS, Azure, GCP, Kubernetes, Terraform, React, TypeScript, Java, Python, Golang
+AI:
+- RAG, vector DBs, LLM integration, agentic systems
+`;
+
+        const prompt = `
+ACT AS: A senior technical recruiter and hiring manager.
+
+TASK: Analyze Prasad Tilloo's profile against the provided job description (JD).
+
+JD:
+"${jobDescription}"
+
+PROFILE:
+${FIT_CHECK_CONTEXT}
+
+OUTPUT:
+1. Match Score (0-100).
+2. Summary of why he is a good fit (or not).
+3. Key matching skills (technical and leadership).
+4. Missing skills (gaps).
+5. A persuasive, professional cover letter (300 words max) tailored to this specific JD, citing specific projects from the profile.
+6. List of 3 relevant project IDs (pact-pcf-network, brita-platform, etc.) that prove the fit.
+
+Return JSON only.
+`;
+
+        const schema = {
+            type: SchemaType.OBJECT,
+            properties: {
+                score: { type: SchemaType.NUMBER },
+                matchSummary: { type: SchemaType.STRING },
+                keyMatches: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                missingSkills: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+                coverLetter: { type: SchemaType.STRING },
+                recommendedProjects: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+            },
+            required: ['score', 'matchSummary', 'keyMatches', 'missingSkills', 'coverLetter', 'recommendedProjects']
+        };
+
+        try {
+            const result = await model.generateContent({
+                contents: [{ role: 'user', parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: 'application/json',
+                    responseSchema: schema
+                }
+            });
+
+            const data = JSON.parse(result.response.text());
+            res.json(data);
+        } catch (error) {
+            console.warn('Fit check fallback (Gemini error):', error?.message || error);
+            res.json(buildFitCheckFallback(jobDescription));
+        }
+    } catch (error) {
+        console.error('Fit check error:', error);
+        res.json(buildFitCheckFallback(req.body?.jobDescription || ''));
+    }
+});
+
+// Smart tags endpoint (server-side)
+app.post('/api/smart-tags', async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+        if (!checkRateLimit(clientIp)) {
+            return res.status(429).json({ error: 'Rate limit exceeded. Please try again in a minute.' });
+        }
+
+        const { query, availableTags } = req.body || {};
+        if (!query || typeof query !== 'string') {
+            return res.status(400).json({ error: 'query is required' });
+        }
+
+        const safeTags = Array.isArray(availableTags)
+            ? availableTags.filter((tag) => typeof tag === 'string').slice(0, 80)
+            : [];
+
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
+            const fallbackTags = safeTags.filter((tag) => query.toLowerCase().includes(tag.toLowerCase()));
+            return res.json(fallbackTags);
+        }
+
+        if (!model) {
+            const fallbackTags = safeTags.filter((tag) => query.toLowerCase().includes(tag.toLowerCase()));
+            return res.json(fallbackTags);
+        }
+
+        const prompt = `
+User Query: "${query}"
+Available Tags: ${JSON.stringify(safeTags)}
+
+TASK:
+Identify which tags from the list are relevant to the user's query.
+Return ONLY a JSON array of strings. Even if only one tag matches, return an array.
+If no tags match, return an empty array [].
+`;
+
+        const result = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: 'application/json' }
+        });
+
+        let text = result.response.text();
+        text = text.replace(/```json\\n?|\\n?```/g, '').trim();
+        const data = JSON.parse(text);
+
+        if (!Array.isArray(data)) {
+            return res.json([]);
+        }
+
+        const filtered = data.filter((tag) => safeTags.includes(tag));
+        res.json(filtered);
+    } catch (error) {
+        console.error('Smart tags error:', error);
+        try {
+            const { query, availableTags } = req.body || {};
+            const safeTags = Array.isArray(availableTags)
+                ? availableTags.filter((tag) => typeof tag === 'string').slice(0, 80)
+                : [];
+            const fallbackTags = typeof query === 'string'
+                ? safeTags.filter((tag) => query.toLowerCase().includes(tag.toLowerCase()))
+                : [];
+            res.status(200).json(fallbackTags);
+        } catch {
+            res.status(500).json([]);
+        }
+    }
+});
+
 // Architecture generation endpoint (server-side)
 app.post('/api/architecture/generate', async (req, res) => {
     try {
@@ -357,7 +741,7 @@ app.post('/api/architecture/generate', async (req, res) => {
             });
         }
 
-        if (!process.env.VITE_GEMINI_API_KEY) {
+        if (!process.env.GEMINI_API_KEY && !process.env.VITE_GEMINI_API_KEY) {
             return res.status(500).json({ error: 'API Key not configured' });
         }
 
@@ -517,86 +901,177 @@ Return ONLY valid JSON matching the schema.
     }
 });
 
-// Semantic search endpoint (server-side)
-app.post('/api/semantic-search', async (req, res) => {
+// Semantic search caching (simple in-memory cache)
+const SEMANTIC_SEARCH_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+const semanticSearchCache = new Map();
+
+const getCachedSemanticSearch = (query) => {
+    const key = query.trim().toLowerCase();
+    const cached = semanticSearchCache.get(key);
+    if (!cached) return null;
+    if (Date.now() - cached.timestamp > SEMANTIC_SEARCH_CACHE_TTL) {
+        semanticSearchCache.delete(key);
+        return null;
+    }
+    return cached.results;
+};
+
+const setCachedSemanticSearch = (query, results) => {
+    const key = query.trim().toLowerCase();
+    semanticSearchCache.set(key, { timestamp: Date.now(), results });
+};
+
+const buildFallbackSearchResults = (query, projects) => {
+    const lowerQuery = query.toLowerCase();
+    const tokens = lowerQuery.split(/[^a-z0-9+.-]+/).filter(Boolean);
+
+    const matches = projects
+        .map((project) => {
+            const title = project.header?.title || '';
+            const situation = project.challenge?.situation || '';
+            const stack = project.technical?.after?.stack || [];
+            const tags = project.seoTags || [];
+            const domains = project.domains || [];
+            const searchText = [title, situation, ...stack, ...tags, ...domains].join(' ').toLowerCase();
+
+            let score = 0;
+            const matchedTokens = [];
+            tokens.forEach((token) => {
+                if (searchText.includes(token)) {
+                    score += 18;
+                    matchedTokens.push(token);
+                }
+                if (title.toLowerCase().includes(token)) {
+                    score += 12;
+                }
+            });
+
+            return { project, score, matchedTokens };
+        })
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map((item) => ({
+            slug: item.project.slug,
+            title: item.project.header?.title || 'Project',
+            relevance: `Matches your search for "${query}" based on ${item.matchedTokens.slice(0, 3).join(', ') || 'project details'}.`,
+            score: Math.min(95, item.score),
+        }));
+
+    return matches;
+};
+
+const generateSemanticSearchResults = async (query) => {
+    // Load projects data - curated list for search and fallback
+    const projects = [
+        {
+            id: 'brita-ecommerce',
+            slug: 'brita-ecommerce',
+            domains: ['eCommerce', 'Retail', 'Cloud'],
+            seoTags: ['Shopify Plus', 'Headless', 'Multi-market', 'Azure'],
+            header: { title: 'BRITA eCommerce Platform' },
+            technical: { after: { stack: ['Shopify', 'Vue.js', 'Azure', 'Cloud'] } },
+            outcomes: { hero_metric: { value: '6', label: 'Markets' }, secondary_metrics: [] },
+            challenge: { situation: 'Shopware to Shopify Plus migration for 6 EMEA markets with cloud infrastructure' }
+        },
+        {
+            id: 'pact-pcf-network',
+            slug: 'pact-pcf-data-exchange-network',
+            domains: ['Sustainability', 'Standards', 'Cloud'],
+            seoTags: ['WBCSD', 'Carbon Footprint', 'Global Standard'],
+            header: { title: 'PACT PCF Data Exchange Network' },
+            technical: { after: { stack: ['Next.js', 'React', 'Java', 'Cloud'] } },
+            outcomes: { hero_metric: { value: '20+', label: 'Adopted' }, secondary_metrics: [] },
+            challenge: { situation: 'Global Product Carbon Footprint data exchange standard' }
+        },
+        {
+            id: 'delivery-hero-ads',
+            slug: 'delivery-hero-ads',
+            domains: ['AdTech', 'High Scale', 'Cloud'],
+            seoTags: ['AWS', 'Kubernetes', 'SLA', 'Low Latency'],
+            header: { title: 'Delivery Hero Display Ads' },
+            technical: { after: { stack: ['AWS', 'Kubernetes', 'Cloud'] } },
+            outcomes: { hero_metric: { value: '20%', label: 'Revenue Increase' }, secondary_metrics: [] },
+            challenge: { situation: 'High-scale display ads platform with 5M+ daily transactions on cloud infrastructure' }
+        },
+        {
+            id: 'boehringer-aiml',
+            slug: 'boehringer-aiml-platform',
+            domains: ['Healthcare', 'AI/ML', 'Compliance'],
+            seoTags: ['GDPR', 'Azure', 'Data Lake'],
+            header: { title: 'Boehringer Ingelheim AI/ML Platform' },
+            technical: { after: { stack: ['Azure', 'Spark', 'Kafka', 'Cloud'] } },
+            outcomes: { hero_metric: { value: '50%', label: 'Faster Insights' }, secondary_metrics: [] },
+            challenge: { situation: 'Enterprise AI/ML Data Lake implementation with GDPR compliance on Azure cloud' }
+        },
+        {
+            id: 'pwc-healthcare-mod',
+            slug: 'pwc-healthcare-modernization',
+            domains: ['Healthcare', 'Compliance', 'Cloud'],
+            seoTags: ['HIPAA', 'Azure', 'Modernization'],
+            header: { title: 'PwC Healthcare Modernization' },
+            technical: { after: { stack: ['Azure', 'C#', '.NET', 'Cloud'] } },
+            outcomes: { hero_metric: { value: '$650K', label: 'Savings' }, secondary_metrics: [] },
+            challenge: { situation: 'Legacy e-commerce and healthcare systems modernization with HIPAA compliance on cloud' }
+        },
+        {
+            id: 'app-rationalization-cloud-readiness',
+            slug: 'app-rationalization-cloud-readiness',
+            domains: ['Enterprise', 'Cloud Migration'],
+            seoTags: ['App Rationalization', 'Migration'],
+            header: { title: 'Application Rationalization & Cloud Readiness Framework' },
+            technical: { after: { stack: ['AWS', 'Azure', 'Migration Tools', 'Cloud'] } },
+            outcomes: { hero_metric: { value: '1000+', label: 'Apps Analyzed' }, secondary_metrics: [] },
+            challenge: { situation: 'Enterprises with 1000+ apps struggled to decide what to move to cloud, leading to stalled migrations or lift-and-shift cost disasters' }
+        }
+    ];
+
+    const fallbackResults = buildFallbackSearchResults(query, projects);
+    const hasApiKey = !!(process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY);
+
+    if (!hasApiKey || !model) {
+        return fallbackResults;
+    }
+
+    const { SchemaType } = await import('@google/generative-ai');
+
+    // Flatten projects for context
+    const PROJECT_CONTEXT = projects.map(p => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.header.title,
+        technologies: p.technical.after?.stack || [],
+        outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m) => m.value + ' ' + m.label)],
+        summary: p.challenge.situation
+    })).map(p => JSON.stringify(p)).join('\n');
+
+    const prompt = `
+CONTEXT:
+${PROJECT_CONTEXT}
+
+TASK:
+Find the top 3 projects from the list above that are most relevant to this user query: "${query}".
+Return a relevance score (0-100) and a 1-sentence explanation of why it matches.
+If no project matches, return an empty array.
+
+OUTPUT JSON ONLY.
+`;
+
+    const schema = {
+        type: SchemaType.ARRAY,
+        items: {
+            type: SchemaType.OBJECT,
+            properties: {
+                slug: { type: SchemaType.STRING },
+                title: { type: SchemaType.STRING },
+                relevance: { type: SchemaType.STRING },
+                score: { type: SchemaType.NUMBER }
+            },
+            required: ['slug', 'title', 'relevance', 'score']
+        }
+    };
+
     try {
-        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
-        
-        // Rate limiting (more lenient for search) - disabled in development
-        // In production, uncomment the following lines:
-        // if (!checkSemanticSearchRateLimit(clientIp)) {
-        //     return res.status(429).json({ 
-        //         error: 'Rate limit exceeded. Please try again in a minute.' 
-        //     });
-        // }
-
-        const { query } = req.body;
-
-        // Input validation
-        if (!query || typeof query !== 'string' || query.trim().length < 3) {
-            return res.status(400).json({ 
-                error: 'Query must be a string with at least 3 characters' 
-            });
-        }
-
-        if (query.length > 200) {
-            return res.status(400).json({ 
-                error: 'Query must be under 200 characters' 
-            });
-        }
-
-        if (!process.env.VITE_GEMINI_API_KEY) {
-            return res.status(500).json({ error: 'API Key not configured' });
-        }
-
-        const { SchemaType } = await import('@google/generative-ai');
-        
-        // Load projects data - use comprehensive fallback list with cloud-related projects
-        const projects = [
-            { id: 'brita-ecommerce', slug: 'brita-ecommerce', header: { title: 'BRITA eCommerce Platform' }, technical: { after: { stack: ['Shopify', 'Vue.js', 'Azure', 'Cloud'] } }, outcomes: { hero_metric: { value: '6', label: 'Markets' }, secondary_metrics: [] }, challenge: { situation: 'Shopware to Shopify Plus migration for 6 EMEA markets with cloud infrastructure' } },
-            { id: 'pact-protocol', slug: 'pact-protocol', header: { title: 'PACT PCF Network' }, technical: { after: { stack: ['Next.js', 'React', 'Java', 'Cloud'] } }, outcomes: { hero_metric: { value: '20+', label: 'Adopted' }, secondary_metrics: [] }, challenge: { situation: 'Global Product Carbon Footprint data exchange standard' } },
-            { id: 'delivery-hero-ads', slug: 'delivery-hero-ads', header: { title: 'Delivery Hero Display Ads' }, technical: { after: { stack: ['AWS', 'Kubernetes', 'Cloud'] } }, outcomes: { hero_metric: { value: '20%', label: 'Revenue Increase' }, secondary_metrics: [] }, challenge: { situation: 'High-scale display ads platform with 5M+ daily transactions on cloud infrastructure' } },
-            { id: 'boehringer-aiml', slug: 'boehringer-aiml', header: { title: 'Boehringer Ingelheim AI/ML Platform' }, technical: { after: { stack: ['Azure', 'Spark', 'Kafka', 'Cloud'] } }, outcomes: { hero_metric: { value: '50%', label: 'Faster Insights' }, secondary_metrics: [] }, challenge: { situation: 'Enterprise AI/ML Data Lake implementation with GDPR compliance on Azure cloud' } },
-            { id: 'pwc-healthcare', slug: 'pwc-healthcare', header: { title: 'PwC Healthcare Modernization' }, technical: { after: { stack: ['Azure', 'C#', '.NET', 'Cloud'] } }, outcomes: { hero_metric: { value: '$650K', label: 'Savings' }, secondary_metrics: [] }, challenge: { situation: 'Legacy e-commerce and healthcare systems modernization with HIPAA compliance on cloud' } },
-            { id: 'app-rationalization-cloud-readiness', slug: 'app-rationalization-cloud-readiness', header: { title: 'Application Rationalization & Cloud Readiness Framework' }, technical: { after: { stack: ['AWS', 'Azure', 'Migration Tools', 'Cloud'] } }, outcomes: { hero_metric: { value: '1000+', label: 'Apps Analyzed' }, secondary_metrics: [] }, challenge: { situation: 'Enterprises with 1000+ apps struggled to decide what to move to cloud, leading to stalled migrations or lift-and-shift cost disasters' } }
-        ];
-
-        // Flatten projects for context
-        const PROJECT_CONTEXT = projects.map(p => ({
-            id: p.id,
-            slug: p.slug,
-            title: p.header.title,
-            technologies: p.technical.after?.stack || [],
-            outcomes: [p.outcomes.hero_metric.value + ' ' + p.outcomes.hero_metric.label, ...p.outcomes.secondary_metrics.map((m) => m.value + ' ' + m.label)],
-            summary: p.challenge.situation
-        })).map(p => JSON.stringify(p)).join('\n');
-
-        const prompt = `
-    CONTEXT:
-    ${PROJECT_CONTEXT}
-
-    TASK:
-    Find the top 3 projects from the list above that are most relevant to this user query: "${query}".
-    Return a relevance score (0-100) and a 1-sentence explanation of why it matches.
-    If no project matches, return an empty array.
-
-    OUTPUT JSON ONLY.
-    `;
-
-        const schema = {
-            type: SchemaType.ARRAY,
-            items: {
-                type: SchemaType.OBJECT,
-                properties: {
-                    slug: { type: SchemaType.STRING },
-                    title: { type: SchemaType.STRING },
-                    relevance: { type: SchemaType.STRING },
-                    score: { type: SchemaType.NUMBER }
-                },
-                required: ['slug', 'title', 'relevance', 'score']
-            }
-        };
-
         const result = await model.generateContent({
             contents: [{ role: 'user', parts: [{ text: prompt }] }],
             generationConfig: {
@@ -604,20 +1079,58 @@ app.post('/api/semantic-search', async (req, res) => {
                 responseSchema: schema
             }
         });
-        
+
         const responseText = result.response.text();
         if (!responseText || responseText.trim() === '') {
-            return res.json([]);
+            return fallbackResults;
         }
-        
+
         const parsed = JSON.parse(responseText);
-        
-        // Validate results
         if (!Array.isArray(parsed)) {
-            return res.json([]);
+            return fallbackResults;
         }
-        
-        res.json(parsed);
+
+        return parsed;
+    } catch (error) {
+        console.warn('Semantic search fallback (Gemini error):', error?.message || error);
+        return fallbackResults;
+    }
+};
+
+const handleSemanticSearch = async (req, res) => {
+    try {
+        const clientIp = req.ip || req.connection.remoteAddress || 'unknown';
+
+        if (process.env.NODE_ENV === 'production' && !checkSemanticSearchRateLimit(clientIp)) {
+            return res.status(429).json({
+                error: 'Rate limit exceeded. Please try again in a minute.'
+            });
+        }
+
+        const { query } = req.body;
+
+        if (!query || typeof query !== 'string' || query.trim().length < 3) {
+            return res.status(400).json({
+                error: 'Query must be a string with at least 3 characters'
+            });
+        }
+
+        if (query.length > 200) {
+            return res.status(400).json({
+                error: 'Query must be under 200 characters'
+            });
+        }
+
+        const cached = getCachedSemanticSearch(query);
+        if (cached) {
+            res.set('Cache-Control', 'public, max-age=600');
+            return res.json(cached);
+        }
+
+        const results = await generateSemanticSearchResults(query);
+        setCachedSemanticSearch(query, results);
+        res.set('Cache-Control', 'public, max-age=600');
+        return res.json(results);
     } catch (error) {
         console.error('Semantic search error:', error);
         if (error instanceof Error) {
@@ -628,9 +1141,13 @@ app.post('/api/semantic-search', async (req, res) => {
                 return res.status(429).json({ error: 'API quota exceeded. Please try again later.' });
             }
         }
-        res.status(500).json({ error: 'Failed to perform search. Please try again.' });
+        return res.status(500).json({ error: 'Failed to perform search. Please try again.' });
     }
-});
+};
+
+// Semantic search endpoints (server-side)
+app.post('/api/semantic-search', handleSemanticSearch);
+app.post('/api/search', handleSemanticSearch);
 
 // Lead capture endpoint
 // Get __dirname for ES modules

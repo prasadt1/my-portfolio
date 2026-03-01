@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { PageShell, PageHeader, Container } from '../components/layout';
+import { buildApiUrl } from '../services/apiBase';
 
 interface RiskRadarInputs {
   industry: string;
@@ -73,7 +74,7 @@ const RiskRadarPage: React.FC = () => {
     setResult(null);
 
     try {
-      const response = await fetch('/api/risk-radar', {
+      const response = await fetch(buildApiUrl('/api/risk-radar'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

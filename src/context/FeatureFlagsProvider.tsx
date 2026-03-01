@@ -9,6 +9,7 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 import { getOrCreateAnonId } from '../utils/rollout';
 import { trackEvent } from '../services/analytics';
 import i18n from '../i18n';
+import { buildApiUrl } from '../services/apiBase';
 
 export interface FeatureFlagValue {
     enabled: boolean;
@@ -63,7 +64,7 @@ export const FeatureFlagsProvider: React.FC<FeatureFlagsProviderProps> = ({ chil
             }
 
             // Fetch from server
-            const response = await fetch('/api/featureflags', {
+            const response = await fetch(buildApiUrl('/api/featureflags'), {
                 headers: {
                     'X-PT-Anon-ID': id,
                 },

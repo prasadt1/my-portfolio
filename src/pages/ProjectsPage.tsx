@@ -211,7 +211,7 @@ const ProjectsPage: React.FC = () => {
             <SEO
                 title={t('projectsPage.title') + ' | Prasad Tilloo'}
                 description={t('projectsPage.subtitle')}
-                keywords="enterprise architecture, case studies, legacy modernization, digital transformation portfolio"
+                keywords="executive case studies, principal architect, digital transformation, acting fractional CTO, enterprise architecture, legacy modernization"
             />
             
             <div className="max-w-7xl mx-auto">

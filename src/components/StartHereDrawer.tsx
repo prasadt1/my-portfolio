@@ -89,7 +89,7 @@ const StartHereDrawer: React.FC = () => {
     },
     {
       id: 'hiring',
-      path: '/hiring',
+      path: '/hire',
       icon: User,
       labelKey: 'startHere.links.hiring',
       highlight: persona === 'hire',

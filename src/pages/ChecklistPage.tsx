@@ -8,6 +8,7 @@ import { PageShell, PageHeader, Container } from '../components/layout';
 import i18n from '../i18n';
 import { trackEvent, AnalyticsEvents } from '../services/analytics';
 import { getAttributionSnapshot } from '../utils/attribution';
+import { buildApiUrl } from '../services/apiBase';
 
 const ChecklistPage: React.FC = () => {
     const { t } = useTranslation();
@@ -47,7 +48,7 @@ const ChecklistPage: React.FC = () => {
             // Get attribution snapshot for lead attribution
             const attribution = getAttributionSnapshot(i18n.language || 'en');
             
-            const response = await fetch('/api/lead', {
+            const response = await fetch(buildApiUrl('/api/lead'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

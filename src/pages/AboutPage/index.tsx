@@ -42,14 +42,14 @@ const AboutPage: React.FC = () => {
     {
       company: 'SINE Foundation',
       role: t('about.journey.items.sine.role'),
-      period: 'Jan 2024 - Apr 2024',
+      period: 'Oct 2022 - Jun 2024',
       location: 'Berlin, Germany',
       businessChallenge: t('about.journey.items.sine.challenge'),
       deliverables: t('about.journey.items.sine.deliverables', { returnObjects: true }) as string[],
       outcomes: [
         { value: '20+', label: t('about.journey.items.sine.outcomes.adopted') },
         { value: 'WBCSD', label: t('about.journey.items.sine.outcomes.standard') },
-        { value: '10x', label: t('about.journey.items.sine.outcomes.boost') },
+        { value: '25%', label: t('about.journey.items.sine.outcomes.boost') },
       ],
       links: {
         caseStudy: '/projects/pact-protocol',
@@ -59,7 +59,7 @@ const AboutPage: React.FC = () => {
     {
       company: 'Delivery Hero',
       role: t('about.journey.items.deliveryHero.role'),
-      period: 'Jun 2022 - Dec 2023',
+      period: 'Mar 2022 - Sep 2022',
       location: 'Berlin, Germany',
       businessChallenge: t('about.journey.items.deliveryHero.challenge'),
       deliverables: t('about.journey.items.deliveryHero.deliverables', { returnObjects: true }) as string[],
@@ -74,7 +74,7 @@ const AboutPage: React.FC = () => {
     {
       company: 'Boehringer Ingelheim',
       role: t('about.journey.items.boehringer.role'),
-      period: 'Mar 2021 - May 2022',
+      period: 'Nov 2020 - Feb 2022',
       location: 'Ingelheim, Germany',
       businessChallenge: t('about.journey.items.boehringer.challenge'),
       deliverables: t('about.journey.items.boehringer.deliverables', { returnObjects: true }) as string[],
@@ -89,8 +89,8 @@ const AboutPage: React.FC = () => {
     {
       company: 'PwC',
       role: t('about.journey.items.pwc.role'),
-      period: 'May 2016 - Feb 2021',
-      location: 'Mumbai, India',
+      period: 'Mar 2015 - Oct 2020',
+      location: 'Chicago, USA',
       businessChallenge: t('about.journey.items.pwc.challenge'),
       deliverables: t('about.journey.items.pwc.deliverables', { returnObjects: true }) as string[],
       outcomes: [
@@ -131,9 +131,9 @@ const AboutPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800">
               {[
                 { value: '15+', label: t('about.stats.exp') },
-                { value: '€2M+', label: t('about.stats.value') },
-                { value: '8', label: t('about.stats.industries') },
-                { value: '100%', label: t('about.stats.delivery') }
+                { value: '$1M+', label: t('about.stats.value') },
+                { value: '5M+', label: t('about.stats.industries') },
+                { value: '99.99%', label: t('about.stats.delivery') }
               ].map((stat, idx) => (
                 <div key={idx} className="py-8 text-center">
                   <div className="text-3xl font-bold text-emerald-400 font-serif mb-1">{stat.value}</div>

@@ -1,4 +1,4 @@
-import { Zap, Clock, Users, Building, Euro, Cloud, Download } from 'lucide-react';
+import { Zap, Clock, Users, Building, DollarSign, Cloud, Download } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const QuickStats: React.FC = () => {
@@ -6,11 +6,11 @@ const QuickStats: React.FC = () => {
 
     const stats = [
         { icon: <Clock className="text-emerald-500" />, value: '15+', label: t('quickStats.labels.experience') },
-        { icon: <Building className="text-blue-500" />, value: '25+', label: t('quickStats.labels.projects') },
-        { icon: <Euro className="text-amber-500" />, value: '€2M+', label: t('quickStats.labels.savings') },
-        { icon: <Users className="text-purple-500" />, value: '30+', label: t('quickStats.labels.teamSize') },
-        { icon: <Cloud className="text-sky-500" />, value: '8+', label: t('quickStats.labels.industries') },
-        { icon: <Zap className="text-rose-500" />, value: '5+', label: t('quickStats.labels.certifications') }
+        { icon: <Building className="text-blue-500" />, value: '50+', label: t('quickStats.labels.projects') },
+        { icon: <DollarSign className="text-amber-500" />, value: '$1M+', label: t('quickStats.labels.savings') },
+        { icon: <Users className="text-purple-500" />, value: '10+', label: t('quickStats.labels.teamSize') },
+        { icon: <Cloud className="text-sky-500" />, value: '5', label: t('quickStats.labels.industries') },
+        { icon: <Zap className="text-rose-500" />, value: '4', label: t('quickStats.labels.certifications') }
     ];
 
     return (

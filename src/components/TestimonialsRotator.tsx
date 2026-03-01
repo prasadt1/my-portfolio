@@ -19,36 +19,36 @@ interface Testimonial {
 // Sample testimonials with gists
 const TESTIMONIALS: Testimonial[] = [
     {
-        quote: "Prasad delivered exactly what we needed: a clear architecture decision package that our board could approve. No fluff, just actionable recommendations.",
-        gist: "Clear architecture decision package for board approval",
+        quote: "Prasad aligned executives and engineers around a 90‑day plan that de‑risked our modernization and improved deployment speed.",
+        gist: "Aligned execs with a 90‑day modernization plan",
         author: "CTO",
-        role: "Fortune 100 Healthcare",
+        role: "Regulated Healthcare",
         company: "Anonymous"
     },
     {
-        quote: "The migration strategy was flawless. Zero downtime, zero SEO loss. Exactly as promised.",
-        gist: "Flawless migration with zero downtime and SEO loss",
+        quote: "He surfaced tradeoffs early and saved us from a costly platform rewrite.",
+        gist: "Prevented a costly platform rewrite",
         author: "VP Engineering",
-        role: "Global eCommerce",
+        role: "Global Commerce",
         company: "Anonymous"
     },
     {
-        quote: "Best architecture review we've had. Saved us €400K+ by avoiding the wrong platform choice.",
-        gist: "Saved €400K+ by avoiding wrong platform choice",
+        quote: "Board‑ready architecture decisions, clear risk posture, and a hiring plan we could execute.",
+        gist: "Board‑ready architecture decisions and hiring plan",
         author: "Head of Technology",
-        role: "Pharma Company",
+        role: "Pharma",
         company: "Anonymous"
     },
     {
-        quote: "The performance optimization work exceeded expectations. We achieved 80% faster processing without any rewrites.",
-        gist: "80% faster processing without rewrites",
+        quote: "Improved platform reliability to 99.99% uptime without slowing delivery.",
+        gist: "99.99% uptime without slowing delivery",
         author: "Engineering Director",
-        role: "Insurance Company",
+        role: "Insurance",
         company: "Anonymous"
     },
     {
-        quote: "Prasad's vendor-neutral approach helped us make the right cloud decision. No vendor lock-in, just honest technical guidance.",
-        gist: "Vendor-neutral guidance prevented lock-in",
+        quote: "Vendor‑neutral guidance clarified ROI and prevented lock‑in.",
+        gist: "Vendor‑neutral ROI guidance",
         author: "CTO",
         role: "Scale-up",
         company: "Anonymous"

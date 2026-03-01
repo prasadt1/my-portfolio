@@ -7,6 +7,7 @@
 
 import { getAttributionSnapshot } from '../utils/attribution';
 import i18n from '../i18n';
+import { buildApiUrl } from './apiBase';
 
 interface EventProps {
   [key: string]: string | number | boolean | undefined;
@@ -32,7 +33,7 @@ interface AnalyticsEvent {
 }
 
 const isDev = import.meta.env.DEV;
-const API_ENDPOINT = '/api/events';
+const API_ENDPOINT = buildApiUrl('/api/events');
 
 /**
  * Track an analytics event

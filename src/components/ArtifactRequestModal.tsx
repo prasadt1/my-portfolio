@@ -2,6 +2,7 @@
 // Phase 3.3: Artifact request modal for gated/onRequest artifacts
 
 import React, { useState } from 'react';
+import { buildApiUrl } from '../services/apiBase';
 import { X, FileText, Mail, Building, User, AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -53,7 +54,7 @@ const ArtifactRequestModal: React.FC<ArtifactRequestModalProps> = ({
             // Get attribution snapshot
             const attribution = getAttributionSnapshot(i18n.language || 'en');
 
-            const response = await fetch('/api/artifact-request', {
+            const response = await fetch(buildApiUrl('/api/artifact-request'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

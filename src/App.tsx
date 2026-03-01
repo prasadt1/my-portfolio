@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
 import { AnalyticsProvider } from './components/AnalyticsProvider';
@@ -38,6 +38,7 @@ const ConsultingPage = lazy(() => import('./pages/ConsultingPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const CompetitionPage = lazy(() => import('./pages/CompetitionPage'));
+const TopicPage = lazy(() => import('./pages/TopicPage'));
 // Phase 5: Lazy load CaseStudyBriefPage for performance
 const CaseStudyBriefPage = lazy(() => import('./pages/CaseStudyBriefPage'));
 // Phase 5 Enhanced: Project Similarity Matcher
@@ -103,7 +104,9 @@ const App: React.FC = () => {
                 <Route path="projects/:slug" element={<CaseStudyPage />} />
                 <Route path="brief/:slug" element={<CaseStudyBriefPage />} />
                 <Route path="contact" element={<ContactPage />} />
-                <Route path="hiring" element={<HiringPage />} />
+                <Route path="hire" element={<HiringPage />} />
+                <Route path="hiring" element={<Navigate to="/hire" replace />} />
+                <Route path="topics/:slug" element={<TopicPage />} />
                 <Route path="consultation" element={<ConsultationPage />} />
                 <Route path="guide" element={<GuidePage />} />
                 <Route path="checklist" element={
@@ -148,4 +151,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
