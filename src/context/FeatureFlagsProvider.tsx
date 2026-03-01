@@ -134,28 +134,23 @@ export const useFeatureFlag = (flagName: string): FeatureFlagValue => {
     const { flags, anonId } = useFeatureFlagsContext();
     
     const normalizedName = flagName.toLowerCase();
-    const flag = flags[normalizedName];
-
-    // Default behavior: if flag is undefined, return disabled (backwards compatible)
-    if (!flag) {
-        return {
-            enabled: false,
-            reason: 'explicit', // Explicitly disabled if not configured
-        };
-    }
+    const resolvedFlag = flags[normalizedName] || {
+        enabled: false,
+        reason: 'explicit' as const, // Explicitly disabled if not configured
+    };
 
     // Track feature impression when enabled
     React.useEffect(() => {
-        if (flag.enabled) {
+        if (resolvedFlag.enabled) {
             trackEvent('feature_impression', {
                 flag: normalizedName,
-                flagValue: flag.enabled,
-                reason: flag.reason,
+                flagValue: resolvedFlag.enabled,
+                reason: resolvedFlag.reason,
                 anonId,
                 locale: i18n.language || 'en',
             });
         }
-    }, [flag.enabled, normalizedName, flag.reason, anonId]);
+    }, [resolvedFlag.enabled, normalizedName, resolvedFlag.reason, anonId]);
 
-    return flag;
+    return resolvedFlag;
 };
