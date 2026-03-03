@@ -11,6 +11,7 @@ export const projects: CaseStudy[] = [
             iconBg: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
             backgroundImage: '/assets/bg/bg-ai.png'
         },
+        cardImage: '/hero-project-images/photography-coach.png',
         domains: ['AI & GenAI', 'Product Engineering', 'Cost Optimization'],
         projectType: 'product',
         visualType: 'ai',
@@ -385,6 +386,7 @@ export const projects: CaseStudy[] = [
             iconBg: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
             backgroundImage: '/assets/bg/bg-eco.png'
         },
+        cardImage: '/hero-project-images/esg-sustainability.png',
         domains: ['Climate Tech', 'Standards Development'],
         projectType: 'standard',
         visualType: 'governance',
@@ -571,6 +573,7 @@ export const projects: CaseStudy[] = [
             gradient: 'from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10',
             iconBg: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
         },
+        cardImage: '/hero-project-images/brita.png',
         domains: ['eCommerce', 'Digital Transformation'],
         projectType: 'migration',
         visualType: 'modernization',
@@ -1068,6 +1071,7 @@ export const projects: CaseStudy[] = [
             gradient: 'from-rose-50 to-red-50 dark:from-rose-900/20 dark:to-red-900/10',
             iconBg: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400'
         },
+        cardImage: '/hero-project-images/delivery-hero.png',
         domains: ['AdTech', 'eCommerce', 'High-Scale'],
         projectType: 'product',
         visualType: 'performance',
@@ -1565,6 +1569,7 @@ export const projects: CaseStudy[] = [
             gradient: 'from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10',
             iconBg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
         },
+        cardImage: '/hero-project-images/insurance.png',
         domains: ['FinServ', 'Insurance', 'Performance Engineering'],
         projectType: 'consulting',
         visualType: 'performance',

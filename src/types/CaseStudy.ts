@@ -272,6 +272,9 @@ export interface CaseStudy {
         backgroundImage?: string;
     };
 
+    // Card visuals
+    cardImage?: string;
+
     // Phase 2.5: Listing card fields (optional, for executive-first cards)
     tags?: string[];  // For filtering: 'cloud-modernization', 'ai-genai', 'compliance', etc.
     listingSummary?: LocalizedString;  // One-liner for card subtitle

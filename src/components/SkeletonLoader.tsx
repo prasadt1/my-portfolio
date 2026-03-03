@@ -1,6 +1,7 @@
 
 export const ProjectCardSkeleton = () => (
     <div className="bg-white rounded-xl p-6 border border-slate-200 animate-pulse">
+        <div className="h-32 bg-slate-200 rounded mb-4" />
         <div className="h-6 bg-slate-200 rounded w-3/4 mb-4" />
         <div className="h-4 bg-slate-200 rounded w-1/2 mb-4" />
         <div className="space-y-2 mb-4">

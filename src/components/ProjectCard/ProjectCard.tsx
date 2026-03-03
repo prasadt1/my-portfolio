@@ -163,6 +163,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 {/* Top accent bar */}
                 <div className={`h-1 bg-gradient-to-r ${theme.gradient}`} />
 
+                {/* Hero image */}
+                {project.cardImage && (
+                    <div className="relative h-40 w-full overflow-hidden bg-slate-100 dark:bg-slate-700">
+                        <img
+                            src={project.cardImage}
+                            alt={title}
+                            loading="lazy"
+                            className="h-full w-full object-cover"
+                        />
+                    </div>
+                )}
+
                 <div className="p-5 flex flex-col flex-1">
                     {/* Header: Title + Subtitle */}
                     <div className="mb-4">
