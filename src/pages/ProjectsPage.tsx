@@ -42,6 +42,7 @@ const CATEGORIES = [
 const ProjectsPage: React.FC = () => {
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
+    const contentLocale = 'en';
     
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -169,9 +170,9 @@ const ProjectsPage: React.FC = () => {
             // Search filter
             if (searchQuery.trim()) {
                 const query = searchQuery.toLowerCase();
-                const title = getLocalizedValue(project.header.title, locale).toLowerCase();
-                const industry = getLocalizedValue(project.header.client.industry, locale).toLowerCase();
-                const situation = getChallengeSituation(project.challenge, locale).toLowerCase();
+                const title = getLocalizedValue(project.header.title, contentLocale).toLowerCase();
+                const industry = getLocalizedValue(project.header.client.industry, contentLocale).toLowerCase();
+                const situation = getChallengeSituation(project.challenge, contentLocale).toLowerCase();
                 const tags = [...project.domains, ...project.seoTags, ...(project.tags || [])].join(' ').toLowerCase();
                 
                 if (!title.includes(query) && !industry.includes(query) && !situation.includes(query) && !tags.includes(query)) {

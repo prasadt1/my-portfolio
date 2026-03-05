@@ -38,6 +38,7 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
+    const contentLocale = 'en';
     const [showExecutiveSummary, setShowExecutiveSummary] = useState(false);
     
     // Feature flag for Executive Modal
@@ -57,16 +58,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     };
 
     // Get title
-    const title = getStr(project.header.title, locale);
+    const title = getStr(project.header.title, contentLocale);
     
     // Get company/client info
-    const clientType = getStr(project.header.client.type, locale);
-    const industry = getStr(project.header.client.industry, locale);
+    const clientType = getStr(project.header.client.type, contentLocale);
+    const industry = getStr(project.header.client.industry, contentLocale);
     
     // Get one-liner subtitle
     const subtitle = project.listingSummary 
-        ? getStr(project.listingSummary, locale)
-        : getChallengeSituation(project.challenge, locale).slice(0, 120) + (getChallengeSituation(project.challenge, locale).length > 120 ? '...' : '');
+        ? getStr(project.listingSummary, contentLocale)
+        : getChallengeSituation(project.challenge, contentLocale).slice(0, 120) + (getChallengeSituation(project.challenge, contentLocale).length > 120 ? '...' : '');
 
     // Get executive snapshot metrics
     const getExecutiveSnapshot = () => {
@@ -77,7 +78,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             snapshot.push({
                 icon: <TrendingUp size={14} className="text-emerald-500" />,
                 label: t('caseStudies.outcome'),
-                value: `${project.outcomes.hero_metric.value} ${getStr(project.outcomes.hero_metric.label, locale)}`,
+                value: `${project.outcomes.hero_metric.value} ${getStr(project.outcomes.hero_metric.label, contentLocale)}`,
                 type: 'outcome'
             });
         }
@@ -97,14 +98,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         // Constraints from executiveSnapshot key tensions or compliance
         let constraint = '';
         if (project.executiveSnapshot?.keyTensions) {
-            const tensions = getLocalizedStringArray(project.executiveSnapshot.keyTensions, locale);
+            const tensions = getLocalizedStringArray(project.executiveSnapshot.keyTensions, contentLocale);
             if (tensions[0]) {
                 constraint = tensions[0].split(' ').slice(0, 4).join(' ') + '...';
             }
         } else if (project.outcomes?.compliance?.length) {
             constraint = project.outcomes.compliance[0].standard;
         } else if (isLocalizedPersonaChallenge(project.challenge)) {
-            const tensions = getLocalizedStringArray(project.challenge.standard.keyTensions, locale);
+            const tensions = getLocalizedStringArray(project.challenge.standard.keyTensions, contentLocale);
             if (tensions[0]) {
                 constraint = tensions[0].split(' ').slice(0, 4).join(' ') + '...';
             }
