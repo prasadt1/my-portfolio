@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Linkedin } from 'lucide-react';
 
-type Rec = {
+export type Rec = {
   name: string;
   title: string;
   date: string;
@@ -11,7 +11,7 @@ type Rec = {
   profileUrl?: string;
 };
 
-const RECOMMENDATIONS: Rec[] = [
+export const RECOMMENDATIONS: Rec[] = [
   {
     name: 'Steven Li',
     title: 'Product @ KP',
@@ -149,7 +149,11 @@ const RECOMMENDATIONS: Rec[] = [
   }
 ];
 
-const RecommendationsCarousel: React.FC = () => {
+interface RecommendationsCarouselProps {
+  onVisibleStartChange?: (startIndex: number) => void;
+}
+
+const RecommendationsCarousel: React.FC<RecommendationsCarouselProps> = ({ onVisibleStartChange }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [itemsPerView, setItemsPerView] = useState(1);
@@ -199,6 +203,13 @@ const RecommendationsCarousel: React.FC = () => {
     }
     touchStartX.current = null;
   };
+
+  // Inform parent which item is currently featured (first visible card)
+  useEffect(() => {
+    if (!onVisibleStartChange) return;
+    const startIndex = currentIndex * itemsPerView;
+    onVisibleStartChange(startIndex);
+  }, [currentIndex, itemsPerView, onVisibleStartChange]);
 
   return (
     <div 

@@ -5,9 +5,10 @@ import { Globe } from 'lucide-react';
 
 const LanguageSwitcher: React.FC = () => {
     const { i18n, t } = useTranslation();
+    const normalizedLang = i18n.language?.startsWith('de') ? 'de' : 'en';
 
     const toggleLanguage = () => {
-        const newLang = i18n.language === 'en' ? 'de' : 'en';
+        const newLang = normalizedLang === 'en' ? 'de' : 'en';
         i18n.changeLanguage(newLang);
     };
 
@@ -18,7 +19,7 @@ const LanguageSwitcher: React.FC = () => {
             aria-label={t('nav.toggleLanguage')}
         >
             <Globe size={16} />
-            {i18n.language === 'en' ? 'DE' : 'EN'}
+            {normalizedLang === 'en' ? 'DE' : 'EN'}
         </button>
     );
 };

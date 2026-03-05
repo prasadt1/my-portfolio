@@ -6,6 +6,7 @@
   body {
     @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Phase 4 G1: Improved Typography Hierarchy System */

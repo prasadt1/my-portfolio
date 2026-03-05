@@ -363,15 +363,15 @@ const ProjectsPage: React.FC = () => {
                         className="flex items-center justify-center gap-2 mb-6 text-sm text-slate-500 dark:text-slate-400"
                     >
                         <span>
-                            {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
-                            {searchQuery && ` matching "${searchQuery}"`}
-                            {selectedCategory !== 'all' && ` in ${t(`projectsPage.categories.${selectedCategory}`)}`}
+                            {filteredProjects.length} {filteredProjects.length === 1 ? t('projectsPage.results.single', { defaultValue: 'project' }) : t('projectsPage.results.plural', { defaultValue: 'projects' })}
+                            {searchQuery && ` ${t('projectsPage.results.matching', { defaultValue: 'matching' })} "${searchQuery}"`}
+                            {selectedCategory !== 'all' && ` ${t('projectsPage.results.in', { defaultValue: 'in' })} ${t(`projectsPage.categories.${selectedCategory}`)}`}
                         </span>
                         <button
                             onClick={handleClearFilters}
                             className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
                         >
-                            Clear
+                            {t('projectsPage.results.clear', { defaultValue: 'Clear' })}
                         </button>
                     </motion.div>
                 )}
@@ -473,7 +473,7 @@ const ProjectsPage: React.FC = () => {
                                         </>
                                     ) : (
                                         <>
-                                            {t('projectsPage.showMore', { defaultValue: `Show ${otherProjects.length - 9} More` })}
+                                            {t('projectsPage.showMoreWithCount', { count: otherProjects.length - 9, defaultValue: `Show ${otherProjects.length - 9} More` })}
                                             <ChevronDown size={16} />
                                         </>
                                     )}

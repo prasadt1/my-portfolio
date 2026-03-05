@@ -25,7 +25,7 @@ export function PageHeader({
         {title}
       </h1>
       {subtitle && (
-        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+        <p className="text-xl md:text-2xl text-slate-900 dark:text-slate-200 max-w-3xl mx-auto leading-relaxed mb-8 font-semibold">
           {subtitle}
         </p>
       )}

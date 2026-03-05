@@ -24,6 +24,9 @@ i18n
     .init({
         resources,
         fallbackLng: 'en', // use en if detected lng is not available
+        supportedLngs: ['en', 'de'],
+        nonExplicitSupportedLngs: true,
+        load: 'languageOnly',
         interpolation: {
             escapeValue: false // react already safes from xss
         },

@@ -56,18 +56,15 @@ const ResourcesPage: React.FC = () => {
 
     const topicGuides = [
         {
-            title: 'Enterprise Architecture in Healthcare IT',
-            description: 'Modernize regulated systems without compromising compliance or uptime.',
+            key: 'healthcare',
             link: '/topics/enterprise-architecture-healthcare-it'
         },
         {
-            title: 'Acting Fractional CTO for Scaling Startups',
-            description: 'What hands-on leadership looks like at seed to Series B.',
+            key: 'fractionalCto',
             link: '/topics/fractional-cto-startup-scale'
         },
         {
-            title: 'AI Modernization in Regulated Environments',
-            description: 'Governance, auditability, and rollout patterns that de-risk AI adoption.',
+            key: 'aiModernization',
             link: '/topics/ai-modernization-compliance'
         }
     ];
@@ -96,10 +93,10 @@ const ResourcesPage: React.FC = () => {
                     >
                         <div className="flex items-center justify-between mb-6">
                             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                                Topic Guides for Hiring Teams
+                                {t('resourcesPage.topicGuides.title', { defaultValue: 'Topic Guides for Hiring Teams' })}
                             </h2>
                             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                SEO-ready
+                                {t('resourcesPage.topicGuides.badge', { defaultValue: 'SEO-ready' })}
                             </span>
                         </div>
                         <div className="grid md:grid-cols-3 gap-6">
@@ -110,13 +107,13 @@ const ResourcesPage: React.FC = () => {
                                     className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all shadow-sm hover:shadow-md group"
                                 >
                                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                                        {guide.title}
+                                        {t(`resourcesPage.topicGuides.items.${guide.key}.title`, { defaultValue: '' })}
                                     </h3>
-                                    <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
-                                        {guide.description}
+                                    <p className="text-slate-800 dark:text-slate-300 text-sm mb-4 font-medium">
+                                        {t(`resourcesPage.topicGuides.items.${guide.key}.desc`, { defaultValue: '' })}
                                     </p>
                                     <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
-                                        Read guide
+                                        {t('resourcesPage.topicGuides.read', { defaultValue: 'Read guide' })}
                                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </Link>
@@ -165,7 +162,7 @@ const ResourcesPage: React.FC = () => {
                                                         <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">
                                                             {t('resourcesPage.outcome.free', { defaultValue: 'Free Tool' })}
                                                         </p>
-                                                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                                                        <p className="text-slate-800 dark:text-slate-300 text-sm mb-4 line-clamp-2 font-medium">
                                                             {resource.description}
                                                         </p>
                                                         {/* Phase 4 Wireframe: CTA */}
@@ -186,10 +183,10 @@ const ResourcesPage: React.FC = () => {
                         <div className="mb-12">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                                    Experimental AI — Coming Soon
+                                    {t('resourcesPage.experimental.title', { defaultValue: 'Experimental AI — Coming Soon' })}
                                 </h2>
                                 <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                    Experience-driven
+                                    {t('resourcesPage.experimental.badge', { defaultValue: 'Experience-driven' })}
                                 </span>
                             </div>
                             <div className="grid md:grid-cols-3 gap-6">
@@ -201,13 +198,13 @@ const ResourcesPage: React.FC = () => {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                                Chat Assistant
+                                                {t('resourcesPage.experimental.items.chatAssistant.title', { defaultValue: 'Chat Assistant' })}
                                             </h3>
                                             <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                                Coming Soon
+                                                {t('resourcesPage.experimental.items.comingSoon', { defaultValue: 'Coming Soon' })}
                                             </p>
-                                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
-                                                Based on real delivery patterns, not generic AI responses
+                                            <p className="text-slate-800 dark:text-slate-300 text-sm mb-4 font-medium">
+                                                {t('resourcesPage.experimental.items.chatAssistant.desc', { defaultValue: 'Based on real delivery patterns, not generic AI responses' })}
                                             </p>
                                         </div>
                                     </div>
@@ -221,13 +218,13 @@ const ResourcesPage: React.FC = () => {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                                Risk Radar
+                                                {t('resourcesPage.experimental.items.riskRadar.title', { defaultValue: 'Risk Radar' })}
                                             </h3>
                                             <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                                Coming Soon
+                                                {t('resourcesPage.experimental.items.comingSoon', { defaultValue: 'Coming Soon' })}
                                             </p>
-                                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
-                                                Experience-driven risk assessment from 15+ years of delivery
+                                            <p className="text-slate-800 dark:text-slate-300 text-sm mb-4 font-medium">
+                                                {t('resourcesPage.experimental.items.riskRadar.desc', { defaultValue: 'Experience-driven risk assessment from 15+ years of delivery' })}
                                             </p>
                                         </div>
                                     </div>
@@ -241,13 +238,13 @@ const ResourcesPage: React.FC = () => {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                                Architecture Assessment
+                                                {t('resourcesPage.experimental.items.archAssessment.title', { defaultValue: 'Architecture Assessment' })}
                                             </h3>
                                             <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                                Coming Soon
+                                                {t('resourcesPage.experimental.items.comingSoon', { defaultValue: 'Coming Soon' })}
                                             </p>
-                                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
-                                                Based on real delivery patterns from enterprise transformations
+                                            <p className="text-slate-800 dark:text-slate-300 text-sm mb-4 font-medium">
+                                                {t('resourcesPage.experimental.items.archAssessment.desc', { defaultValue: 'Based on real delivery patterns from enterprise transformations' })}
                                             </p>
                                         </div>
                                     </div>
@@ -323,7 +320,7 @@ const ResourcesPage: React.FC = () => {
                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                             {t('resourcesPage.cta.title', { defaultValue: 'Need More Help?' })}
                         </h3>
-                        <p className="text-slate-600 dark:text-slate-400 mb-6">
+                        <p className="text-slate-800 dark:text-slate-300 mb-6 font-medium">
                             {t('resourcesPage.cta.subtitle', { defaultValue: 'Book a consultation to discuss your specific challenges.' })}
                         </p>
                         <Link

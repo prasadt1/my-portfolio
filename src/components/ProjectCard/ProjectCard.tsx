@@ -240,7 +240,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     </div>
 
                     <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-4">
-                        Context • Decision • Execution • Outcome • Metrics
+                        {t('projectsPage.card.contextLine', { defaultValue: 'Context • Decision • Execution • Outcome • Metrics' })}
                     </p>
 
                     {/* CTA Row - pushed to bottom */}

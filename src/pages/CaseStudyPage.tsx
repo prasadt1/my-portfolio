@@ -101,7 +101,8 @@ function getChallengeContent(
 function getLocalized(value: LocalizedString | string | undefined, locale: string): string {
     if (!value) return '';
     if (typeof value === 'string') return value;
-    return locale === 'de' ? value.de : value.en;
+    const normalized = locale?.startsWith('de') ? 'de' : 'en';
+    return normalized === 'de' ? value.de : value.en;
 }
 
 // Helper to get localized array
@@ -111,7 +112,8 @@ function getLocalizedArray(value: LocalizedStringArray | string[] | undefined, l
         return value as string[];
     }
     const localized = value as LocalizedStringArray;
-    return locale === 'de' ? localized.de : localized.en;
+    const normalized = locale?.startsWith('de') ? 'de' : 'en';
+    return normalized === 'de' ? localized.de : localized.en;
 }
 
 // SectionHeader is now imported from ui components
@@ -124,6 +126,7 @@ const CaseStudyPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t, i18n } = useTranslation();
     const locale = i18n.language;
+    const normalizedLocale = locale?.startsWith('de') ? 'de' : 'en';
     const [persona, setPersona] = useState<'executive' | 'technical' | 'delivery'>('executive');
     const [showAllDeliverables, setShowAllDeliverables] = useState(false);
     const [showAllApproach, setShowAllApproach] = useState(false);
@@ -1265,7 +1268,7 @@ const CaseStudyPage: React.FC = () => {
                                 showLessKey="common.showLess"
                             >
                                 <ul className="space-y-3">
-                                    {(locale === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
+                                    {(normalizedLocale === 'de' ? study.approachToday.bulletsDe : study.approachToday.bullets).map((bullet, idx) => (
                                         <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 leading-relaxed">
                                             <CheckCircle2 className="text-emerald-500 mt-1 shrink-0" size={18} />
                                             <span className="text-sm">{bullet}</span>

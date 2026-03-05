@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
     ArrowRight,
@@ -21,7 +21,7 @@ import {
 import SEO from '../components/SEO';
 import LogoCarousel from '../components/LogoCarousel';
 import VideoModal from '../components/VideoModal';
-import TestimonialsRotator from '../components/TestimonialsRotator';
+import RecommendationsCarousel, { RECOMMENDATIONS } from '../components/RecommendationsCarousel';
 import ImpactDashboard from '../components/ImpactDashboard';
 import ProjectCard from '../components/ProjectCard/ProjectCard';
 import SignatureMeshBackground from '../components/SignatureMeshBackground';
@@ -37,6 +37,8 @@ type PersonaType = 'hire' | 'consult' | 'toolkit';
 
 const HomePageMultiDomain: React.FC = () => {
     const { t } = useTranslation();
+    const [featuredRecommendationIndex, setFeaturedRecommendationIndex] = useState(0);
+    const featuredRecommendation = RECOMMENDATIONS[featuredRecommendationIndex] || RECOMMENDATIONS[0];
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -179,7 +181,7 @@ const HomePageMultiDomain: React.FC = () => {
                                                         : 'text-white/80 hover:bg-white/10'
                                                 }`}
                                             >
-                                                Hiring
+                                                {t('homepage.personaTabs.hiring')}
                                             </button>
                                             <button
                                                 onClick={() => handlePersonaChange('consult')}
@@ -189,7 +191,7 @@ const HomePageMultiDomain: React.FC = () => {
                                                         : 'text-white/80 hover:bg-white/10'
                                                 }`}
                                             >
-                                                Consulting
+                                                {t('homepage.personaTabs.consulting')}
                                             </button>
                                             <button
                                                 onClick={() => handlePersonaChange('toolkit')}
@@ -199,7 +201,7 @@ const HomePageMultiDomain: React.FC = () => {
                                                         : 'text-white/80 hover:bg-white/10'
                                                 }`}
                                             >
-                                                Toolkit
+                                                {t('homepage.personaTabs.toolkit')}
                                             </button>
                                         </div>
                                     </div>
@@ -207,13 +209,13 @@ const HomePageMultiDomain: React.FC = () => {
 
                                 {/* Phase 4 Wireframe: H1 + Subhead + Proof Chips + Persona Tabs + CTAs */}
                                 {/* H1: "Reduce risk before committing budget" */}
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                                    Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-white">
+                                    {t('homepage.hero.title')}
                                 </h1>
 
                                 {/* Subheadline: 2 lines max */}
                                 <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
-                                    I align strategy, architecture, and delivery so teams scale without compliance, reliability, or cost surprises.
+                                    {t('homepage.hero.subtitle')}
                                 </p>
 
                                 {/* Phase 4.1: Clickable Proof Chips - scroll to sections */}
@@ -228,8 +230,8 @@ const HomePageMultiDomain: React.FC = () => {
                                         }}
                                         className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
                                     >
-                                        <span className="text-emerald-300 font-semibold text-sm">$1M+</span>
-                                        <span className="text-white/80 text-sm">saved</span>
+                                        <span className="text-emerald-300 font-semibold text-sm">{t('homepage.hero.proof.savings.value')}</span>
+                                        <span className="text-white/80 text-sm">{t('homepage.hero.proof.savings.label')}</span>
                                     </button>
                                     <button
                                         onClick={() => {
@@ -241,8 +243,8 @@ const HomePageMultiDomain: React.FC = () => {
                                         }}
                                         className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
                                     >
-                                        <span className="text-emerald-300 font-semibold text-sm">30%</span>
-                                        <span className="text-white/80 text-sm">faster deploys</span>
+                                        <span className="text-emerald-300 font-semibold text-sm">{t('homepage.hero.proof.speed.value')}</span>
+                                        <span className="text-white/80 text-sm">{t('homepage.hero.proof.speed.label')}</span>
                                     </button>
                                     <button
                                         onClick={() => {
@@ -254,8 +256,8 @@ const HomePageMultiDomain: React.FC = () => {
                                         }}
                                         className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg hover:bg-white/20 transition-colors cursor-pointer"
                                     >
-                                        <span className="text-emerald-300 font-semibold text-sm">99.99%</span>
-                                        <span className="text-white/80 text-sm">SLA uptime</span>
+                                        <span className="text-emerald-300 font-semibold text-sm">{t('homepage.hero.proof.sla.value')}</span>
+                                        <span className="text-white/80 text-sm">{t('homepage.hero.proof.sla.label')}</span>
                                     </button>
                                 </div>
 
@@ -303,14 +305,14 @@ const HomePageMultiDomain: React.FC = () => {
                                             onClick={() => trackEvent(AnalyticsEvents.CTA_BOOK_CALL_CLICK, { source: 'hero' })}
                                             className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl"
                                         >
-                                            Book Discovery Call
+                                            {t('homepage.hero.cta.primary')}
                                             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                                         </a>
                                         <Link
                                             to="/projects"
                                             className="group text-white/80 hover:text-white px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-white/20 hover:border-white/40"
                                         >
-                                            View Case Studies
+                                            {t('homepage.hero.cta.secondary')}
                                             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={14} />
                                         </Link>
                                     </div>
@@ -324,24 +326,24 @@ const HomePageMultiDomain: React.FC = () => {
                                 transition={{ duration: 0.6, delay: 0.2 }}
                                 className="bg-white/10 backdrop-blur-sm rounded-xl p-6 lg:p-8 border border-white/20 shadow-lg"
                             >
-                                <h3 className="text-xl font-bold text-white mb-4">What you get</h3>
+                                <h3 className="text-xl font-bold text-white mb-4">{t('homepage.hero.whatYouGet.title')}</h3>
                                 <ul className="space-y-3 mb-6">
                                     <li className="flex items-start gap-3">
                                         <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
-                                        <span className="text-white/90 text-sm">Executive decision memo: build vs buy vs modernize</span>
+                                        <span className="text-white/90 text-sm">{t('homepage.hero.whatYouGet.items.0')}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
-                                        <span className="text-white/90 text-sm">Architecture blueprint + 90-day delivery roadmap</span>
+                                        <span className="text-white/90 text-sm">{t('homepage.hero.whatYouGet.items.1')}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <CheckCircle2 className="text-emerald-300 flex-shrink-0 mt-0.5" size={18} />
-                                        <span className="text-white/90 text-sm">Stakeholder-ready narrative and hiring plan</span>
+                                        <span className="text-white/90 text-sm">{t('homepage.hero.whatYouGet.items.2')}</span>
                                     </li>
                                 </ul>
                                 {/* Micro trust line */}
                                 <p className="text-xs text-white/70 border-t border-white/10 pt-4">
-                                    Delivery experience: tetrapy, PwC, BRITA, Boehringer Ingelheim, Delivery Hero
+                                    {t('homepage.hero.whatYouGet.trustLine')}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -350,55 +352,55 @@ const HomePageMultiDomain: React.FC = () => {
 
                 {/* Phase 3.1: Persona-Specific Content Block - More prominent and useful */}
                 {showPersonaTabs && selectedPersona && (
-                    <section id="persona-content" className="py-20 bg-white/10 backdrop-blur-sm border-b border-white/20">
+                    <section id="persona-content" className="py-20 bg-slate-50 dark:bg-white/10 dark:backdrop-blur-sm border-b border-slate-200 dark:border-white/20">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             {selectedPersona === 'hire' && (
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="text-white"
+                                    className="text-slate-900 dark:text-white"
                                 >
                                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                                         {t('homepage.personaTabs.hiringTitle')}
                                     </h2>
-                                    <p className="text-center text-white/80 mb-10 max-w-2xl mx-auto">
+                                    <p className="text-center text-slate-600 dark:text-white/80 mb-10 max-w-2xl mx-auto">
                                         {t('homepage.personaTabs.hiringSubtitle', { defaultValue: 'Senior Engineering Leader open to new opportunities' })}
                                     </p>
                                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                        <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
                                             <div className="text-3xl font-bold text-emerald-300 mb-2">15+</div>
                                             <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringYears')}</div>
-                                            <div className="text-xs text-white/70">Principal architecture & digital transformation delivery</div>
+                                            <div className="text-xs text-slate-600 dark:text-white/70">Principal architecture & digital transformation delivery</div>
                                         </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                        <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
                                             <div className="text-3xl font-bold text-emerald-300 mb-2">5M+</div>
-                                            <div className="text-sm font-semibold mb-1">Daily Transactions</div>
-                                            <div className="text-xs text-white/70">High-scale platforms</div>
+                                            <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.dailyTransactions.label')}</div>
+                                            <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.dailyTransactions.desc')}</div>
                                         </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                        <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
                                             <div className="text-3xl font-bold text-emerald-300 mb-2">$1M+</div>
-                                            <div className="text-sm font-semibold mb-1">Cost Saved</div>
-                                            <div className="text-xs text-white/70">Documented savings</div>
+                                            <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.costSaved.label')}</div>
+                                            <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.costSaved.desc')}</div>
                                         </div>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                                        <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
                                             <div className="text-3xl font-bold text-emerald-300 mb-2">99.99%</div>
-                                            <div className="text-sm font-semibold mb-1">SLA Uptime</div>
-                                            <div className="text-xs text-white/70">Patient-critical delivery</div>
+                                            <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.slaUptime.label')}</div>
+                                            <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.slaUptime.desc')}</div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                             <Link
                                                 to="/hire"
-                                                className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
+                                                className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors border border-slate-200 dark:border-white/20"
                                             >
-                                            View Hiring Snapshot
+                                            {t('cta.hiring.primary')}
                                                 <ArrowRight size={18} />
                                             </Link>
                                         <Link
                                             to="/projects"
-                                            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors"
+                                            className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 border border-slate-200 px-6 py-3 rounded-lg font-semibold hover:bg-slate-200 transition-colors dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20"
                                         >
-                                            View Case Studies
+                                            {t('cta.hiring.secondary')}
                                             <ArrowRight size={18} />
                                         </Link>
                                     </div>
@@ -408,46 +410,64 @@ const HomePageMultiDomain: React.FC = () => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="text-white"
+                                    className="text-slate-900 dark:text-white"
                                 >
                                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                                         {t('homepage.personaTabs.consultingTitle')}
                                     </h2>
-                                    <p className="text-center text-white/80 mb-10 max-w-2xl mx-auto">
+                                    <p className="text-center text-slate-600 dark:text-white/80 mb-10 max-w-2xl mx-auto">
                                         {t('homepage.personaTabs.consultingSubtitle', { defaultValue: 'Independent validation of architecture, modernization, and AI enablement decisions' })}
                                     </p>
                                     <div className="grid md:grid-cols-3 gap-6 mb-10">
                                         <Link
                                             to="/services"
-                                            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                         >
-                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Architecture Review</h3>
-                                            <p className="text-sm text-white/80 mb-4">Independent validation of architecture decisions before commitment</p>
-                                            <div className="text-xs text-emerald-300 font-medium">Learn more →</div>
+                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                                                {t('homepage.consulting.cards.archReview.title', { defaultValue: 'Architecture Review' })}
+                                            </h3>
+                                            <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
+                                                {t('homepage.consulting.cards.archReview.desc', { defaultValue: 'Independent validation of architecture decisions before commitment' })}
+                                            </p>
+                                            <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                {t('homepage.consulting.cards.learnMore', { defaultValue: 'Learn more →' })}
+                                            </div>
                                         </Link>
                                         <Link
                                             to="/services"
-                                            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                         >
-                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Cloud Migration</h3>
-                                            <p className="text-sm text-white/80 mb-4">Risk reduction and cost optimization for cloud transformation</p>
-                                            <div className="text-xs text-emerald-300 font-medium">Learn more →</div>
+                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                                                {t('homepage.consulting.cards.cloudMigration.title', { defaultValue: 'Cloud Migration' })}
+                                            </h3>
+                                            <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
+                                                {t('homepage.consulting.cards.cloudMigration.desc', { defaultValue: 'Risk reduction and cost optimization for cloud transformation' })}
+                                            </p>
+                                            <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                {t('homepage.consulting.cards.learnMore', { defaultValue: 'Learn more →' })}
+                                            </div>
                                         </Link>
                                         <Link
                                             to="/services"
-                                            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                            className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                         >
-                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">AI Enablement</h3>
-                                            <p className="text-sm text-white/80 mb-4">Strategic guidance for AI/ML adoption and integration</p>
-                                            <div className="text-xs text-emerald-300 font-medium">Learn more →</div>
+                                            <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                                                {t('homepage.consulting.cards.aiEnablement.title', { defaultValue: 'AI Enablement' })}
+                                            </h3>
+                                            <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
+                                                {t('homepage.consulting.cards.aiEnablement.desc', { defaultValue: 'Strategic guidance for AI/ML adoption and integration' })}
+                                            </p>
+                                            <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                {t('homepage.consulting.cards.learnMore', { defaultValue: 'Learn more →' })}
+                                            </div>
                                         </Link>
                                     </div>
                                     <div className="flex justify-center">
                                         <Link
                                             to="/consulting"
-                                            className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg"
+                                            className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg border border-slate-200 dark:border-white/20"
                                         >
-                                            Explore Consulting Services
+                                            {t('homepage.consulting.cta', { defaultValue: 'Explore Consulting Services' })}
                                             <ArrowRight size={20} />
                                         </Link>
                                     </div>
@@ -457,58 +477,78 @@ const HomePageMultiDomain: React.FC = () => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="text-white"
+                                    className="text-slate-900 dark:text-white"
                                 >
                                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                                         {t('homepage.personaTabs.toolkitTitle')}
                                     </h2>
-                                    <p className="text-center text-white/80 mb-10 max-w-2xl mx-auto">
+                                    <p className="text-center text-slate-600 dark:text-white/80 mb-10 max-w-2xl mx-auto">
                                         {t('homepage.personaTabs.toolkitSubtitle', { defaultValue: 'Free tools and resources to help you make better architecture decisions' })}
                                     </p>
                                     <div className="grid md:grid-cols-3 gap-6 mb-10">
                                         {isPromoted('AI_CHECKLIST') && (
                                             <Link
                                                 to="/checklist"
-                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                                className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                             >
-                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Vendor Proposal Checklist</h3>
-                                                <p className="text-sm text-white/80 mb-4">7-area framework for evaluating vendor proposals</p>
-                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                                                    {t('resourcesPage.resources.checklist.title', { defaultValue: 'Vendor Proposal Checklist' })}
+                                                </h3>
+                                                <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
+                                                    {t('homepage.toolkit.cards.checklist.desc', { defaultValue: '7-area framework for evaluating vendor proposals' })}
+                                                </p>
+                                                <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                    {t('homepage.toolkit.cards.try', { defaultValue: 'Try it free →' })}
+                                                </div>
                                             </Link>
                                         )}
                                         {isPromoted('AI_ARCH_ENGINE') && (
                                             <Link
                                                 to="/architecture-engine"
-                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                                className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                             >
-                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Architecture Engine</h3>
-                                                <p className="text-sm text-white/80 mb-4">Generate architecture diagrams and documentation</p>
-                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                                                    {t('resourcesPage.resources.architecture.title', { defaultValue: 'Architecture Engine' })}
+                                                </h3>
+                                                <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
+                                                    {t('resourcesPage.resources.architecture.desc', { defaultValue: 'Generate architecture diagrams and documentation' })}
+                                                </p>
+                                                <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                    {t('homepage.toolkit.cards.try', { defaultValue: 'Try it free →' })}
+                                                </div>
                                             </Link>
                                         )}
                                         {isPromoted('AI_RISK_RADAR') && (
                                             <Link
                                                 to="/risk-radar"
-                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                                className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                             >
-                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">Risk Radar</h3>
-                                                <p className="text-sm text-white/80 mb-4">Identify and mitigate project risks</p>
-                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                                <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                                                    {t('resourcesPage.resources.riskRadar.title', { defaultValue: 'Risk Radar' })}
+                                                </h3>
+                                                <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
+                                                    {t('resourcesPage.resources.riskRadar.desc', { defaultValue: 'Identify and mitigate project risks' })}
+                                                </p>
+                                                <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                    {t('homepage.toolkit.cards.try', { defaultValue: 'Try it free →' })}
+                                                </div>
                                             </Link>
                                         )}
                                         {/* Phase 5 Enhanced: Project Similarity Matcher */}
                                         {isPromoted('PROJECT_SIMILARITY_MATCHER') && (
                                             <Link
                                                 to="/tools/project-similarity"
-                                                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors group"
+                                                className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20 hover:bg-slate-50 dark:hover:bg-white/20 transition-colors group"
                                             >
                                                 <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-300 transition-colors">
                                                     {t('tools.projectSimilarity.heroTitle', { defaultValue: 'Project Similarity Matcher' })}
                                                 </h3>
-                                                <p className="text-sm text-white/80 mb-4">
+                                                <p className="text-sm text-slate-600 dark:text-white/80 mb-4">
                                                     {t('tools.projectSimilarity.heroSubhead', { defaultValue: 'Find similar projects from 15+ years of experience' })}
                                                 </p>
-                                                <div className="text-xs text-emerald-300 font-medium">Try it free →</div>
+                                                <div className="text-xs text-emerald-600 dark:text-emerald-300 font-medium">
+                                                    {t('homepage.toolkit.cards.try', { defaultValue: 'Try it free →' })}
+                                                </div>
                                             </Link>
                                         )}
                                     </div>
@@ -561,9 +601,11 @@ const HomePageMultiDomain: React.FC = () => {
                                 <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
                                     <TrendingUp className="text-purple-600 dark:text-purple-400" size={24} />
                                 </div>
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Delivery & Outcomes</h3>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                                    {t('homepage.impact.cards.delivery.title', { defaultValue: 'Delivery & Outcomes' })}
+                                </h3>
                                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    De-risk execution with a 90-day plan, critical hires, and measurable KPIs.
+                                    {t('homepage.impact.cards.delivery.desc', { defaultValue: 'De-risk execution with a 90-day plan, critical hires, and measurable KPIs.' })}
                                 </p>
                             </div>
                         </div>
@@ -575,7 +617,7 @@ const HomePageMultiDomain: React.FC = () => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                             <p className="text-sm font-medium text-slate-600 dark:text-slate-400 text-center md:text-left whitespace-nowrap">
-                                Enterprise delivery across e-commerce, healthcare, insurance, ESG.
+                                {t('homepage.trustStrip', { defaultValue: 'Enterprise delivery across e-commerce, healthcare, insurance, ESG.' })}
                             </p>
                             <div className="flex-1 max-w-4xl">
                                 <LogoCarousel compact={true} />
@@ -594,15 +636,15 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center mb-6"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                Impact highlights
+                                {t('homepage.impact.title', { defaultValue: 'Impact highlights' })}
                             </h2>
                         </motion.div>
                         <ImpactDashboard
                             metrics={[
-                                { value: '$1M+', label: 'Cost Saved', type: 'savings' },
-                                { value: '30%', label: 'Faster Deployments', type: 'scope' },
-                                { value: '5M+', label: 'Daily Transactions', type: 'scope' },
-                                { value: '99.99%', label: 'SLA Uptime', type: 'risk' },
+                                { value: t('homepage.impact.metrics.cost.value', { defaultValue: '$1M+' }), label: t('homepage.impact.metrics.cost.label', { defaultValue: 'Cost Saved' }), type: 'savings' },
+                                { value: t('homepage.impact.metrics.speed.value', { defaultValue: '30%' }), label: t('homepage.impact.metrics.speed.label', { defaultValue: 'Faster Deployments' }), type: 'scope' },
+                                { value: t('homepage.impact.metrics.transactions.value', { defaultValue: '5M+' }), label: t('homepage.impact.metrics.transactions.label', { defaultValue: 'Daily Transactions' }), type: 'scope' },
+                                { value: t('homepage.impact.metrics.sla.value', { defaultValue: '99.99%' }), label: t('homepage.impact.metrics.sla.label', { defaultValue: 'SLA Uptime' }), type: 'risk' },
                             ]}
                             compact={true}
                         />
@@ -624,24 +666,38 @@ const HomePageMultiDomain: React.FC = () => {
                         >
                             {/* Left: Hero quote - One strong testimonial (large) */}
                             <div className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg">
-                                <Quote className="text-emerald-600 dark:text-emerald-400 mb-4" size={32} />
-                                <blockquote className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-6 leading-relaxed">
-                                    "He turned a stalled modernization into a board‑approved plan in weeks, with clear tradeoffs and ROI."
-                                </blockquote>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                                        <User className="text-emerald-600 dark:text-emerald-400" size={20} />
-                                    </div>
-                                    <div>
-                                        <div className="font-semibold text-slate-900 dark:text-white">Head of Technology</div>
-                                        <div className="text-sm text-slate-600 dark:text-slate-400">Pharma Company</div>
-                                    </div>
-                                </div>
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={featuredRecommendationIndex}
+                                        initial={{ opacity: 0, y: 6 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -6 }}
+                                        transition={{ duration: 0.25 }}
+                                    >
+                                        <Quote className="text-emerald-600 dark:text-emerald-400 mb-4" size={32} />
+                                        <blockquote className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-6 leading-relaxed">
+                                            “{featuredRecommendation.text}”
+                                        </blockquote>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                                                <User className="text-emerald-600 dark:text-emerald-400" size={20} />
+                                            </div>
+                                            <div>
+                                                <div className="font-semibold text-slate-900 dark:text-white">
+                                                    {featuredRecommendation.title}
+                                                </div>
+                                                <div className="text-sm text-slate-600 dark:text-slate-400">
+                                                    {featuredRecommendation.name}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
                             </div>
 
-                            {/* Right: TestimonialsRotator (compact) */}
+                            {/* Right: Recommendations Carousel (from About page) */}
                             <div>
-                                <TestimonialsRotator />
+                                <RecommendationsCarousel onVisibleStartChange={setFeaturedRecommendationIndex} />
                             </div>
                         </motion.div>
                     </div>
@@ -908,26 +964,26 @@ const HomePageMultiDomain: React.FC = () => {
                             className="text-center"
                         >
                             <h2 className="text-2xl md:text-3xl font-bold mb-2 text-slate-900 dark:text-white">
-                                Free resource
+                                {t('homepage.leadMagnetCta.title')}
                             </h2>
                             
                             <h3 className="text-xl md:text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mb-6">
-                                Vendor Proposal Review Checklist
+                                {t('homepage.leadMagnetCta.subtitle')}
                             </h3>
                             
                             {/* Phase 4 Wireframe: 3 bullets */}
                             <ul className="flex flex-col items-center gap-3 mb-8 text-left max-w-md mx-auto">
                                 <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                                     <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                    <span>Catch red flags</span>
+                                    <span>{t('homepage.leadMagnetCta.features.2', { defaultValue: 'Red flag patterns' })}</span>
                                 </li>
                                 <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                                     <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                    <span>Prevent lock-in</span>
+                                    <span>{t('homepage.leadMagnetCta.features.3', { defaultValue: 'Vendor-neutral' })}</span>
                                 </li>
                                 <li className="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                                     <CheckCircle2 className="text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                                    <span>Stakeholder-ready questions</span>
+                                    <span>{t('homepage.leadMagnetCta.features.1', { defaultValue: '7 assessment categories' })}</span>
                                 </li>
                             </ul>
                             
@@ -949,7 +1005,7 @@ const HomePageMultiDomain: React.FC = () => {
                                         type="email"
                                         value={toolkitEmail}
                                         onChange={(e) => setToolkitEmail(e.target.value)}
-                                        placeholder="Your email"
+                                        placeholder={t('guide.form.emailPlaceholder', { defaultValue: 'work@company.com' })}
                                         required
                                         className="flex-1 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                                     />
@@ -959,12 +1015,12 @@ const HomePageMultiDomain: React.FC = () => {
                                         className="bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-400 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                                     >
                                         {toolkitFormState === 'submitting' ? (
-                                            <>Sending...</>
+                                            <>{t('guide.form.submitting', { defaultValue: 'Sending...' })}</>
                                         ) : toolkitFormState === 'success' ? (
-                                            <>Sent!</>
+                                            <>{t('guide.success.title', { defaultValue: 'Guide sent to your email' })}</>
                                         ) : (
                                             <>
-                                                Send me the checklist
+                                                {t('homepage.leadMagnetCta.button')}
                                                 <Mail size={18} />
                                             </>
                                         )}

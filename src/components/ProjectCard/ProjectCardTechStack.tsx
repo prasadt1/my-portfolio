@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Layers } from 'lucide-react';
 import { CaseStudy } from '../../types/CaseStudy';
 
@@ -7,12 +8,13 @@ interface ProjectCardTechStackProps {
 }
 
 const ProjectCardTechStack: React.FC<ProjectCardTechStackProps> = ({ project }) => {
+    const { t } = useTranslation();
     if (!project.technical.after?.stack) return null;
 
     return (
         <div className="border-t border-slate-100 dark:border-slate-700 pt-4 mt-auto">
             <div className="flex items-center gap-2 mb-3 text-xs font-medium text-slate-400 dark:text-slate-500">
-                <Layers size={14} /> Technology Stack
+                <Layers size={14} /> {t('projectsPage.card.techStack', { defaultValue: 'Technology Stack' })}
             </div>
             <div className="flex flex-wrap gap-1.5">
                 {project.technical.after.stack.slice(0, 5).map((tech) => (

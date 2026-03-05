@@ -35,7 +35,12 @@
         "toggleTheme": "Toggle Theme",
         "forRecruiters": "For Recruiters",
         "tools": "Tools",
-        "howIWork": "How I Work"
+        "howIWork": "How I Work",
+        "workWithMe": "Work With Me",
+        "workWithMeDesc": {
+            "consultation": "Short-term projects & freelance work",
+            "hiring": "Full-time opportunities & recruiting"
+        }
     },
     "cta": {
         "hiring": {
@@ -92,6 +97,9 @@
         }
     },
     "about": {
+        "recommendations": {
+            "title": "Recommendations"
+        },
         "title": "Prasad Tilloo",
         "role": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
         "description": "15+ years leading modernization, cloud, and AI programs for Fortune 100 and scale-ups, with a focus on measurable business outcomes.",
@@ -1065,6 +1073,18 @@
                 "description": "Trade-off analysis and recommended options"
             }
         },
+        "card": {
+            "contextLine": "Context • Decision • Execution • Outcome • Metrics",
+            "techStack": "Technology Stack"
+        },
+        "results": {
+            "single": "project",
+            "plural": "projects",
+            "matching": "matching",
+            "in": "in",
+            "clear": "Clear"
+        },
+        "showMoreWithCount": "Show {{count}} More",
         "cta": {
             "title": "Want similar results?",
             "text": "Book a discovery call. I'll review 2–3 key artifacts and share concrete next steps within 48 hours.",
@@ -1225,6 +1245,77 @@
         }
     },
     "homepage": {
+        "trustStrip": "Enterprise delivery across e-commerce, healthcare, insurance, ESG.",
+        "consulting": {
+            "cards": {
+                "learnMore": "Learn more →",
+                "archReview": {
+                    "title": "Architecture Review",
+                    "desc": "Independent validation of architecture decisions before commitment"
+                },
+                "cloudMigration": {
+                    "title": "Cloud Migration",
+                    "desc": "Risk reduction and cost optimization for cloud transformation"
+                },
+                "aiEnablement": {
+                    "title": "AI Enablement",
+                    "desc": "Strategic guidance for AI/ML adoption and integration"
+                }
+            },
+            "cta": "Explore Consulting Services"
+        },
+        "toolkit": {
+            "cards": {
+                "try": "Try it free →",
+                "checklist": {
+                    "desc": "7-area framework for evaluating vendor proposals"
+                }
+            }
+        },
+        "impact": {
+            "title": "Impact highlights",
+            "metrics": {
+                "cost": { "value": "$1M+", "label": "Cost Saved" },
+                "speed": { "value": "30%", "label": "Faster Deployments" },
+                "transactions": { "value": "5M+", "label": "Daily Transactions" },
+                "sla": { "value": "99.99%", "label": "SLA Uptime" }
+            },
+            "cards": {
+                "delivery": {
+                    "title": "Delivery & Outcomes",
+                    "desc": "De-risk execution with a 90-day plan, critical hires, and measurable KPIs."
+                }
+            }
+        },
+        "testimonials": {
+            "featured": {
+                "quote": "\"He turned a stalled modernization into a board‑approved plan in weeks, with clear tradeoffs and ROI.\"",
+                "role": "Head of Technology",
+                "company": "Pharma Company"
+            }
+        },
+        "hero": {
+            "title": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
+            "subtitle": "I align strategy, architecture, and delivery so teams scale without compliance, reliability, or cost surprises.",
+            "proof": {
+                "savings": { "value": "$1M+", "label": "saved" },
+                "speed": { "value": "30%", "label": "faster deploys" },
+                "sla": { "value": "99.99%", "label": "SLA uptime" }
+            },
+            "cta": {
+                "primary": "Book Discovery Call",
+                "secondary": "View Case Studies"
+            },
+            "whatYouGet": {
+                "title": "What you get",
+                "items": [
+                    "Executive decision memo: build vs buy vs modernize",
+                    "Architecture blueprint + 90-day delivery roadmap",
+                    "Stakeholder-ready narrative and hiring plan"
+                ],
+                "trustLine": "Delivery experience: tetrapy, PwC, BRITA, Boehringer Ingelheim, Delivery Hero"
+            }
+        },
         "problem": {
             "title": "Why Companies Struggle with Architecture Decisions",
             "bullet1": {
@@ -1321,7 +1412,21 @@
             "toolkitPrimary": "Browse Toolkits",
             "toolkitSecondary": "Download Checklist",
             "toolkitTitle": "Toolkits & Resources",
-            "toolkitSubtitle": "Free tools and resources to help you make better architecture decisions"
+            "toolkitSubtitle": "Free tools and resources to help you make better architecture decisions",
+            "hiringStats": {
+                "dailyTransactions": {
+                    "label": "Daily Transactions",
+                    "desc": "High-scale platforms"
+                },
+                "costSaved": {
+                    "label": "Cost Saved",
+                    "desc": "Documented savings"
+                },
+                "slaUptime": {
+                    "label": "SLA Uptime",
+                    "desc": "Patient-critical delivery"
+                }
+            }
         }
     },
     "hiringPage": {
@@ -1876,6 +1981,94 @@
                 "item3": "View Hero Case Studies",
                 "item4": "See Artifacts Gating + Request"
             }
+        }
+    },
+    "resourcesPage": {
+        "seo": {
+            "title": "Resources & Toolkits | Prasad Tilloo",
+            "description": "Free resources and toolkits for enterprise architects and engineering leaders."
+        },
+        "hero": {
+            "title": "Toolkits & Resources",
+            "subtitle": "Reusable frameworks from real delivery."
+        },
+        "topicGuides": {
+            "title": "Topic Guides for Hiring Teams",
+            "badge": "SEO-ready",
+            "read": "Read guide",
+            "items": {
+                "healthcare": {
+                    "title": "Enterprise Architecture in Healthcare IT",
+                    "desc": "Modernize regulated systems without compromising compliance or uptime."
+                },
+                "fractionalCto": {
+                    "title": "Acting Fractional CTO for Scaling Startups",
+                    "desc": "What hands-on leadership looks like at seed to Series B."
+                },
+                "aiModernization": {
+                    "title": "AI Modernization in Regulated Environments",
+                    "desc": "Governance, auditability, and rollout patterns that de-risk AI adoption."
+                }
+            }
+        },
+        "experimental": {
+            "title": "Experimental AI — Coming Soon",
+            "badge": "Experience-driven",
+            "items": {
+                "comingSoon": "Coming Soon",
+                "chatAssistant": {
+                    "title": "Chat Assistant",
+                    "desc": "Based on real delivery patterns, not generic AI responses"
+                },
+                "riskRadar": {
+                    "title": "Risk Radar",
+                    "desc": "Experience-driven risk assessment from 15+ years of delivery"
+                },
+                "archAssessment": {
+                    "title": "Architecture Assessment",
+                    "desc": "Based on real delivery patterns from enterprise transformations"
+                }
+            }
+        },
+        "tiers": {
+            "free": {
+                "title": "Free",
+                "subtitle": "No signup required"
+            },
+            "pro": {
+                "title": "Pro",
+                "subtitle": "Email required",
+                "comingSoon": "Pro toolkits coming soon"
+            },
+            "premium": {
+                "title": "Premium",
+                "subtitle": "Call required",
+                "comingSoon": "Premium toolkits available on request",
+                "cta": "Request Access"
+            }
+        },
+        "outcome": {
+            "free": "Free Tool"
+        },
+        "resources": {
+            "try": "Try it",
+            "checklist": {
+                "title": "Vendor Proposal Checklist",
+                "desc": "Experience-driven checklist to evaluate vendor proposals"
+            },
+            "architecture": {
+                "title": "Architecture Engine",
+                "desc": "Generate architecture diagrams and documentation"
+            },
+            "riskRadar": {
+                "title": "Risk Radar",
+                "desc": "Identify and mitigate project risks"
+            }
+        },
+        "cta": {
+            "title": "Need More Help?",
+            "subtitle": "Book a consultation to discuss your specific challenges.",
+            "button": "Get in Touch"
         }
     },
     "credibilityStrip": {

@@ -117,7 +117,7 @@ export function AboutContent({ experiences, certifications, techCategories }: Ab
           <section>
             <h2 className="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 md:mb-8 flex items-center gap-3">
               <Users className="text-emerald-600 dark:text-emerald-500" size={28} />
-              Recommendations
+              {t('about.recommendations.title', { defaultValue: 'Recommendations' })}
             </h2>
             <RecommendationsCarousel />
           </section>

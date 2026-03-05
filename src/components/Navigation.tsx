@@ -55,13 +55,13 @@ const Navigation: React.FC = () => {
     { 
       path: '/consultation', 
       labelKey: 'nav.consultation',
-      description: 'Short-term projects & freelance work'
+      description: t('nav.workWithMeDesc.consultation', { defaultValue: 'Short-term projects & freelance work' })
     },
     { 
       path: '/hire', 
       labelKey: 'nav.hiring', 
       featureKey: 'HOMEPAGE_PERSONA_TABS' as FeatureKey,
-      description: 'Full-time opportunities & recruiting'
+      description: t('nav.workWithMeDesc.hiring', { defaultValue: 'Full-time opportunities & recruiting' })
     },
   ].filter(item => !item.featureKey || isPromoted(item.featureKey));
 
@@ -162,7 +162,7 @@ const Navigation: React.FC = () => {
                         : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
-                    Work With Me
+                    {t('nav.workWithMe')}
                     <ChevronDown size={14} className={`transition-transform ${openDropdown === 'workWithMe' ? 'rotate-180' : ''}`} />
                   </button>
                   <AnimatePresence>

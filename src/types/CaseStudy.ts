@@ -23,7 +23,8 @@ export function getLocalizedString(content: LocalizedString | string, locale: st
     if (typeof content === 'string') {
         return content; // Backward compatibility for non-localized strings
     }
-    return locale === 'de' ? content.de : content.en;
+    const normalized = locale?.startsWith('de') ? 'de' : 'en';
+    return normalized === 'de' ? content.de : content.en;
 }
 
 // Helper to get string array for current locale
@@ -32,7 +33,8 @@ export function getLocalizedStringArray(content: LocalizedStringArray | string[]
         return content as string[]; // Backward compatibility
     }
     const localized = content as LocalizedStringArray;
-    return locale === 'de' ? localized.de : localized.en;
+    const normalized = locale?.startsWith('de') ? 'de' : 'en';
+    return normalized === 'de' ? localized.de : localized.en;
 }
 
 // =============================================================================

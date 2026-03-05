@@ -26,6 +26,7 @@ export function getLocalizedValue(
     content: LocalizedString | string | undefined | null,
     locale: string
 ): string {
+    const normalized = locale?.startsWith('de') ? 'de' : DEFAULT_LOCALE;
     // Handle null/undefined
     if (content === null || content === undefined) {
         if (process.env.NODE_ENV === 'development') {
@@ -43,14 +44,14 @@ export function getLocalizedValue(
     const localizedContent = content as LocalizedString;
 
     // Try requested locale
-    if (localizedContent[locale] !== undefined && localizedContent[locale] !== '') {
-        return localizedContent[locale];
+    if (localizedContent[normalized] !== undefined && localizedContent[normalized] !== '') {
+        return localizedContent[normalized];
     }
 
     // Fallback to English
-    if (locale !== DEFAULT_LOCALE && localizedContent[DEFAULT_LOCALE] !== undefined && localizedContent[DEFAULT_LOCALE] !== '') {
+    if (normalized !== DEFAULT_LOCALE && localizedContent[DEFAULT_LOCALE] !== undefined && localizedContent[DEFAULT_LOCALE] !== '') {
         if (process.env.NODE_ENV === 'development') {
-            console.warn(`[localization] Missing '${locale}' translation, falling back to '${DEFAULT_LOCALE}'`);
+            console.warn(`[localization] Missing '${normalized}' translation, falling back to '${DEFAULT_LOCALE}'`);
         }
         return localizedContent[DEFAULT_LOCALE];
     }
@@ -90,6 +91,7 @@ export function getLocalizedArray(
     content: LocalizedStringArray | string[] | undefined | null,
     locale: string
 ): string[] {
+    const normalized = locale?.startsWith('de') ? 'de' : DEFAULT_LOCALE;
     // Handle null/undefined
     if (content === null || content === undefined) {
         if (process.env.NODE_ENV === 'development') {
@@ -107,14 +109,14 @@ export function getLocalizedArray(
     const localizedContent = content as LocalizedStringArray;
 
     // Try requested locale
-    if (localizedContent[locale] !== undefined && Array.isArray(localizedContent[locale]) && localizedContent[locale].length > 0) {
-        return localizedContent[locale];
+    if (localizedContent[normalized] !== undefined && Array.isArray(localizedContent[normalized]) && localizedContent[normalized].length > 0) {
+        return localizedContent[normalized];
     }
 
     // Fallback to English
-    if (locale !== DEFAULT_LOCALE && localizedContent[DEFAULT_LOCALE] !== undefined && Array.isArray(localizedContent[DEFAULT_LOCALE]) && localizedContent[DEFAULT_LOCALE].length > 0) {
+    if (normalized !== DEFAULT_LOCALE && localizedContent[DEFAULT_LOCALE] !== undefined && Array.isArray(localizedContent[DEFAULT_LOCALE]) && localizedContent[DEFAULT_LOCALE].length > 0) {
         if (process.env.NODE_ENV === 'development') {
-            console.warn(`[localization] Missing '${locale}' array translation, falling back to '${DEFAULT_LOCALE}'`);
+            console.warn(`[localization] Missing '${normalized}' array translation, falling back to '${DEFAULT_LOCALE}'`);
         }
         return localizedContent[DEFAULT_LOCALE];
     }
