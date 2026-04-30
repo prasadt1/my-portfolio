@@ -40,14 +40,9 @@
     z-index: 9999 !important;
   }
   
-  .mobile-menu-iframe-fix * {
-    background-color: transparent !important;
-    color: #334155 !important;
-  }
-  
-  .mobile-menu-iframe-fix a {
-    color: #334155 !important;
-    background-color: transparent !important;
+  .mobile-menu-iframe-fix a,
+  .mobile-menu-iframe-fix button {
+    color: inherit;
   }
   
   .mobile-menu-iframe-fix a:hover {

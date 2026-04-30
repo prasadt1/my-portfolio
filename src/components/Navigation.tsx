@@ -36,6 +36,10 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const isActive = (path: string) => location.pathname === path;
   const competitionMode = isCompetitionMode();
   const { primary: primaryCTA } = usePersonaCTAs();
@@ -64,6 +68,15 @@ const Navigation: React.FC = () => {
       description: t('nav.workWithMeDesc.hiring', { defaultValue: 'Full-time opportunities & recruiting' })
     },
   ].filter(item => !item.featureKey || isPromoted(item.featureKey));
+
+  const toolsItems = [
+    { path: '/architecture-engine', labelKey: 'nav.architectureEngine', featureKey: 'AI_ARCH_ENGINE' as FeatureKey },
+    { path: '/risk-radar', labelKey: 'nav.riskRadar', featureKey: 'AI_RISK_RADAR' as FeatureKey },
+    { path: '/checklist', labelKey: 'nav.checklist', featureKey: 'AI_CHECKLIST' as FeatureKey },
+  ].filter(item => isPromoted(item.featureKey));
+
+  const consultingItems = workWithMeItems.filter(item => item.path === '/consultation');
+  const hiringItems = workWithMeItems.filter(item => item.path === '/hire');
 
   // Dropdown state
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -257,14 +270,17 @@ const Navigation: React.FC = () => {
             {isInIframe ? (
               // Simple non-animated menu for iframe contexts
               <div
-                className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 border-b border-slate-200 shadow-lg z-50 xl:hidden`}
+                className="mobile-menu-iframe-fix fixed left-0 right-0 border-b border-slate-200 shadow-lg z-50 xl:hidden overflow-y-auto"
                 style={{ 
                   backgroundColor: 'white',
                   color: '#334155',
-                  zIndex: 9999
+                  top: competitionMode ? '9rem' : '5rem',
+                  zIndex: 9999,
+                  maxHeight: competitionMode ? 'calc(100dvh - 9rem)' : 'calc(100dvh - 5rem)',
+                  WebkitOverflowScrolling: 'touch'
                 }}
               >
-                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: 'white' }}>
+                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: 'white', color: '#334155' }}>
                   {/* Core nav items */}
                   {coreNavItems.map((item) => (
                     <Link
@@ -325,17 +341,22 @@ const Navigation: React.FC = () => {
             ) : (
               // Animated menu for normal contexts
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className={`fixed ${competitionMode ? 'top-36' : 'top-20'} left-0 right-0 border-b border-slate-200 shadow-lg z-40 xl:hidden overflow-hidden`}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.18 }}
+                className="mobile-menu-iframe-fix fixed left-0 right-0 border-b border-slate-200 shadow-lg z-50 xl:hidden overflow-y-auto"
                 style={{ 
                   backgroundColor: '#ffffff',
                   color: '#334155',
-                  minHeight: 'auto'
+                  top: competitionMode ? '9rem' : '5rem',
+                  minHeight: 'auto',
+                  zIndex: 9999,
+                  maxHeight: competitionMode ? 'calc(100dvh - 9rem)' : 'calc(100dvh - 5rem)',
+                  WebkitOverflowScrolling: 'touch'
                 }}
               >
-                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: '#ffffff' }}>
+                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: '#ffffff', color: '#334155' }}>
                   {/* Core nav items */}
                   {coreNavItems.map((item) => (
                     <Link
