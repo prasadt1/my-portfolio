@@ -138,8 +138,7 @@
         "proof": {
             "title": "The Architect's Proof",
             "p1": "As fractional CTO for a regulated telemedicine platform, I align executives, architecture, and delivery for patient-critical systems.",
-            "p2": "My track record includes 30% faster deployments, $1M+ in savings, and compliance-first programs across GDPR, HIPAA, and ISO 27001.",
-            "quote": "Prasad combines executive alignment with delivery discipline and clear, board-ready technical decisions."
+            "p2": "My track record includes 30% faster deployments, roughly \u20ac500K in documented cost savings, and compliance-first programs across GDPR, HIPAA, and ISO 27001."
         },
         "consulting": {
             "title": "Principal Architecture & Digital Transformation Advisory",
@@ -1275,7 +1274,7 @@
         "impact": {
             "title": "Impact highlights",
             "metrics": {
-                "cost": { "value": "$1M+", "label": "Cost Saved" },
+                "cost": { "value": "\u20ac500K+", "label": "Cost Saved" },
                 "speed": { "value": "30%", "label": "Faster Deployments" },
                 "transactions": { "value": "5M+", "label": "Daily Transactions" },
                 "sla": { "value": "99.99%", "label": "SLA Uptime" }
@@ -1298,7 +1297,7 @@
             "title": "Ship AI into the EU without guessing what the AI Act requires.",
             "subtitle": "I'm an enterprise architect who assesses AI systems against the EU AI Act and your existing CRM/ERP landscape. You get a fixed-scope assessment, a classification of every AI feature, and a 90-day plan your engineers can execute.",
             "proof": {
-                "savings": { "value": "$1M+", "label": "saved" },
+                "savings": { "value": "\u20ac500K+", "label": "saved" },
                 "speed": { "value": "30%", "label": "faster deploys" },
                 "sla": { "value": "99.99%", "label": "SLA uptime" }
             },
@@ -1464,7 +1463,7 @@
                     "desc": "Banking, telecom, e‑commerce, healthcare, and AdTech."
                 },
                 {
-                    "title": "$1M+ Savings + 30% Faster Deployments",
+                    "title": "\u20ac500K+ Savings + 30% Faster Deployments",
                     "desc": "Cloud-first transformations on AWS/Azure with measurable business impact."
                 },
                 {

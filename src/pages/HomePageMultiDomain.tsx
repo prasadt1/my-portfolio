@@ -378,7 +378,7 @@ const HomePageMultiDomain: React.FC = () => {
                                             <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.dailyTransactions.desc')}</div>
                                         </div>
                                         <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">$1M+</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">€500K+</div>
                                             <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.costSaved.label')}</div>
                                             <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.costSaved.desc')}</div>
                                         </div>
@@ -641,7 +641,7 @@ const HomePageMultiDomain: React.FC = () => {
                         </motion.div>
                         <ImpactDashboard
                             metrics={[
-                                { value: t('homepage.impact.metrics.cost.value', { defaultValue: '$1M+' }), label: t('homepage.impact.metrics.cost.label', { defaultValue: 'Cost Saved' }), type: 'savings' },
+                                { value: t('homepage.impact.metrics.cost.value', { defaultValue: '€500K+' }), label: t('homepage.impact.metrics.cost.label', { defaultValue: 'Cost Saved' }), type: 'savings' },
                                 { value: t('homepage.impact.metrics.speed.value', { defaultValue: '30%' }), label: t('homepage.impact.metrics.speed.label', { defaultValue: 'Faster Deployments' }), type: 'scope' },
                                 { value: t('homepage.impact.metrics.transactions.value', { defaultValue: '5M+' }), label: t('homepage.impact.metrics.transactions.label', { defaultValue: 'Daily Transactions' }), type: 'scope' },
                                 { value: t('homepage.impact.metrics.sla.value', { defaultValue: '99.99%' }), label: t('homepage.impact.metrics.sla.label', { defaultValue: 'SLA Uptime' }), type: 'risk' },

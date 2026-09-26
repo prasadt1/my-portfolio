@@ -131,7 +131,7 @@ const AboutPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800">
               {[
                 { value: '15+', label: t('about.stats.exp') },
-                { value: '$1M+', label: t('about.stats.value') },
+                { value: '€500K+', label: t('about.stats.value') },
                 { value: '5M+', label: t('about.stats.industries') },
                 { value: '99.99%', label: t('about.stats.delivery') }
               ].map((stat, idx) => (
