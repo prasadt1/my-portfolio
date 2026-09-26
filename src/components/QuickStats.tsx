@@ -7,7 +7,7 @@ const QuickStats: React.FC = () => {
     const stats = [
         { icon: <Clock className="text-emerald-500" />, value: '15+', label: t('quickStats.labels.experience') },
         { icon: <Building className="text-blue-500" />, value: '50+', label: t('quickStats.labels.projects') },
-        { icon: <DollarSign className="text-amber-500" />, value: '€500K+', label: t('quickStats.labels.savings') },
+        { icon: <DollarSign className="text-amber-500" />, value: 'Cost-Focused', label: t('quickStats.labels.savings') },
         { icon: <Users className="text-purple-500" />, value: '10+', label: t('quickStats.labels.teamSize') },
         { icon: <Cloud className="text-sky-500" />, value: '5', label: t('quickStats.labels.industries') },
         { icon: <Zap className="text-rose-500" />, value: '4', label: t('quickStats.labels.certifications') }

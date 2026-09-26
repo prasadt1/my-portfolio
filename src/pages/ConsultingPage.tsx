@@ -54,10 +54,10 @@ const ConsultingPage: React.FC = () => {
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
                                 <TrendingUp className="text-emerald-600 dark:text-emerald-400 mx-auto mb-4" size={32} />
                                 <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('consultingPage.metrics.savings', { defaultValue: '€500K+' })}
+                                    {t('consultingPage.metrics.savings', { defaultValue: 'Enterprise & AI' })}
                                 </div>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                    {t('consultingPage.metrics.savingsDesc', { defaultValue: 'Cost Savings Delivered' })}
+                                    {t('consultingPage.metrics.savingsDesc', { defaultValue: 'Architecture Advisory' })}
                                 </p>
                             </div>
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
@@ -72,10 +72,10 @@ const ConsultingPage: React.FC = () => {
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
                                 <Calendar className="text-emerald-600 dark:text-emerald-400 mx-auto mb-4" size={32} />
                                 <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('consultingPage.metrics.projects', { defaultValue: '99.99%' })}
+                                    {t('consultingPage.metrics.projects', { defaultValue: 'EU AI Act' })}
                                 </div>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                    {t('consultingPage.metrics.projectsDesc', { defaultValue: 'SLA Uptime at 5M+ Daily Transactions' })}
+                                    {t('consultingPage.metrics.projectsDesc', { defaultValue: '& ISO 42001 Readiness' })}
                                 </p>
                             </div>
                         </div>

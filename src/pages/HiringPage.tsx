@@ -51,10 +51,10 @@ const HiringPage: React.FC = () => {
                                 Principal architect and acting fractional CTO aligning strategy, architecture, and delivery.
                             </li>
                             <li className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
-                                €500K+ in documented savings and 30% faster deployments across regulated teams.
+                                Documented cost savings and faster deployment cadence across regulated teams.
                             </li>
                             <li className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
-                                99.99% SLA delivery with 5M+ daily transactions.
+                                High-scale, patient-critical delivery, from ad-tech platforms to healthcare systems.
                             </li>
                         </ul>
                     </motion.section>

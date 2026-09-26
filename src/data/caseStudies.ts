@@ -85,10 +85,6 @@ export const caseStudies: CaseStudy[] = [
                 innovation: 'First-of-kind "Glass Box" interface builds user trust by exposing AI reasoning'
             }
         },
-        testimonial: {
-            quote: 'This project demonstrates not just technical skill, but a deep understanding of production constraints like cost and user trust.',
-            author: { name: 'Competition Judge', role: 'Reviewer', company: 'Google DeepMind Hackathon' }
-        },
         technical: {
             before: { stack: ['Standard LLM API'], infrastructure: 'Stateless Requests', issues: ['High Cost', 'No Memory'] },
             after: { stack: ['Gemini 3 Pro', 'React + Vite', 'Tailwind', 'Recharts'], infrastructure: 'Context-Aware Caching', improvements: ['Structured JSON', 'Spatial Overlays', 'Streaming Responses'] },
@@ -190,10 +186,6 @@ export const caseStudies: CaseStudy[] = [
                 efficiency: 'Unified 6 disparate markets onto one code base'
             }
         },
-        testimonial: {
-            quote: 'Prasad’s architectural leadership was crucial. He navigated the complexity of our legacy systems and guided us to a modern, future-proof headless solution.',
-            author: { name: 'eCommerce Lead', role: 'Head of Digital', company: 'BRITA' }
-        },
         technical: {
             before: { stack: ['Shopware (Monolith)', 'On-premise Hosting', 'PHP'], infrastructure: 'Legacy Datacenter', issues: ['Scaling limits', 'High maintenance'] },
             after: { stack: ['Shopify Plus', 'Vue.js / Nuxt', 'Azure Functions', 'Magnolia CMS'], infrastructure: 'SaaS / Cloud Native', improvements: ['Auto-scaling', 'Headless flexibility', 'Modern DX'] },
@@ -247,7 +239,7 @@ export const caseStudies: CaseStudy[] = [
                     duration: '3 months',
                     activities: ['Defined JSON-LD Schema', 'Created API Swagger/OpenAPI specs'],
                     deliverable: 'PACT Data Model v1.0',
-                    outcome: 'Adopted by 50+ major pilots'
+                    outcome: 'Adopted across multiple industry pilots'
                 },
                 {
                     number: 2,
@@ -261,10 +253,9 @@ export const caseStudies: CaseStudy[] = [
             unique_differentiator: 'Designed a "Peer-to-Peer" architecture that keeps data ownership with the supplier, solving the trust issue.'
         },
         outcomes: {
-            hero_metric: { value: '2,500+', label: 'Organizations Adopting', icon: '🌍' },
+            hero_metric: { value: '1st', label: 'Global Standard for Carbon Data Exchange', icon: '🌍' },
             secondary_metrics: [
-                { value: '1st', label: 'Global Standard', icon: '🏆' },
-                { value: '100%', label: 'Open Source', icon: '🔓' }
+                { value: 'Open Source', label: 'Reference Implementation', icon: '🔓' }
             ],
             compliance: [
                 {
@@ -278,10 +269,6 @@ export const caseStudies: CaseStudy[] = [
                 efficiency: 'Eliminated manual data entry for carbon reporting',
                 risk_reduction: 'Ensured compliance with CSRD regulations'
             }
-        },
-        testimonial: {
-            quote: 'The PACT standard is the HTTP of carbon data. It simply works.',
-            author: { name: 'Executive Director', role: 'Innovation Lead', company: 'SINE Foundation' }
         },
         technical: {
             before: { stack: ['Excel', 'Email'], infrastructure: 'Manual', issues: [] },
@@ -300,8 +287,8 @@ export const caseStudies: CaseStudy[] = [
         projectType: 'devops',
         seoTags: ['Golang', 'Kubernetes', 'High Scale', 'AdTech'],
         header: {
-            eyebrow: '$20M REVENUE UPLIFT',
-            title: 'Scaling Display Ads Platform to 5M+ Daily Transactions',
+            eyebrow: 'HIGH-SCALE PERFORMANCE ENGINEERING',
+            title: "Rebuilding Delivery Hero's Display Ads Platform for Peak-Hour Reliability",
             client: {
                 type: 'Global Food Delivery',
                 size: 'DAX Listed',
@@ -325,21 +312,17 @@ export const caseStudies: CaseStudy[] = [
             unique_differentiator: 'Custom RTB (Real-Time Bidding) engine'
         },
         outcomes: {
-            hero_metric: { value: '20%', label: 'Revenue Increase', icon: '📈' },
+            hero_metric: { value: '<20ms', label: 'Peak Latency (from 200ms+)', icon: '⚡' },
             secondary_metrics: [
-                { value: '5M+', label: 'Daily Transactions', icon: '🔢' },
-                { value: '<20ms', label: 'Latency', icon: '⚡' }
+                { value: 'Zero', label: 'Crashes at Peak Load', icon: '✅' },
+                { value: 'Event-Driven', label: 'Architecture Rebuild', icon: '🚀' }
             ],
             compliance: [],
             timeline: { planned: '3 months', actual: '3 months', variance: 'On time' },
             business_impact: {
-                revenue: '$20M projected annual uplift from increased impression yield',
+                revenue: 'Recovered ad impressions previously lost to peak-hour crashes and timeouts',
                 efficiency: 'Reduced server costs via Go optimization'
             }
-        },
-        testimonial: {
-            quote: 'Scaled seamlessly to 5M transactions. Rock solid stability.',
-            author: { name: 'Engineering Lead', role: 'Staff Engineer', company: 'Delivery Hero' }
         },
         technical: {
             before: { stack: ['PHP', 'MySQL'], infrastructure: '', issues: [] },
@@ -384,21 +367,16 @@ export const caseStudies: CaseStudy[] = [
             unique_differentiator: 'Automated PII detection and masking pipeline that satisfied strict German Works Council requirements'
         },
         outcomes: {
-            hero_metric: { value: '50%', label: 'Faster Time-to-Insight', icon: '⚡' },
+            hero_metric: { value: 'Faster', label: 'Time-to-Insight for R&D Teams', icon: '⚡' },
             secondary_metrics: [
-                { value: '€2M', label: 'Infra Savings', icon: '💰' },
-                { value: '100%', label: 'GDPR Compliant', icon: '🛡️' }
+                { value: 'Zero', label: 'Compliance Breaches', icon: '🛡️' }
             ],
             compliance: [],
             timeline: { planned: '6 months', actual: '6 months', variance: 'On time' },
             business_impact: {
-                savings: '€2M reduction in legacy infrastructure costs',
+                efficiency: 'Reduced dependence on siloed, on-premise infrastructure',
                 risk_reduction: 'Zero compliance breaches via automated governance'
             }
-        },
-        testimonial: {
-            quote: 'The automated governance Prasad built allowed us to unlock 10 years of R&D data safely. It’s a game changer.',
-            author: { name: 'Head of Data Science', role: 'Director', company: 'Boehringer Ingelheim' }
         },
         technical: {
             before: { stack: [], infrastructure: '', issues: [] },
@@ -417,7 +395,7 @@ export const caseStudies: CaseStudy[] = [
         projectType: 'migration',
         seoTags: ['HIPAA', 'AWS', 'Healthcare', 'Compliance'],
         header: {
-            eyebrow: '$500K SAVED ANNUALLY',
+            eyebrow: 'HIPAA-COMPLIANT CLOUD MIGRATION',
             title: 'Modernizing Legacy Healthcare System to HIPAA-Compliant Cloud',
             client: {
                 type: 'Fortune 500 Professional Services',
@@ -428,7 +406,7 @@ export const caseStudies: CaseStudy[] = [
         challenge: {
             situation: '15-year-old e-commerce and healthcare management platform facing compliance audit failures, performance issues, and escalating maintenance costs. Board deadline: 6 months to achieve compliance.',
             pain_points: [
-                { icon: '💸', title: 'Audit Failures', description: 'Monthly audit findings costing €50K', impact: '€600K annual burden' },
+                { icon: '💸', title: 'Audit Failures', description: 'Recurring monthly audit findings', impact: 'Escalating compliance costs' },
                 { icon: '🐌', title: 'Legacy EOL', description: 'Vendor end-of-support imminent', impact: 'Operational risk' }
             ],
             urgency: 'Board mandate: Achieve compliance within 6 months',
@@ -440,26 +418,22 @@ export const caseStudies: CaseStudy[] = [
                 { number: 1, title: 'Compliance Audit', duration: '3 weeks', activities: ['HIPAA gap analysis'], deliverable: 'Architecture Plan', outcome: 'Board approval' },
                 { number: 2, title: 'Migration', duration: '8 weeks', activities: ['AWS setup', 'Data migration'], deliverable: 'Production Cloud', outcome: 'Zero downtime' }
             ],
-            unique_differentiator: 'Proposed and built a pharmacy mobile app addition that became the top revenue driver.'
+            unique_differentiator: 'Proposed and built a pharmacy mobile app addition that became a strong engagement channel.'
         },
         outcomes: {
-            hero_metric: { value: '$500K', label: 'Annual Savings', icon: '💰' },
+            hero_metric: { value: 'Zero', label: 'Downtime During Migration', icon: '✅' },
             secondary_metrics: [
                 { value: 'Zero', label: 'Audit Findings', icon: '✅' },
-                { value: '70%', label: 'Traffic Boost', icon: '📈' }
+                { value: 'Blue-Green', label: 'Deployment Strategy', icon: '🚀' }
             ],
             compliance: [
-                { standard: 'HIPAA', result: '100% Compliant', details: 'Zero findings in independent audit' }
+                { standard: 'HIPAA', result: 'Compliant', details: 'Zero findings in independent audit' }
             ],
             timeline: { planned: '6 months', actual: '5 months', variance: '4 weeks early' },
             business_impact: {
-                savings: '$500K annual reduction in maintenance and audit costs',
-                revenue: '70% increase in mobile engagement via new pharmacy app'
+                savings: 'Reduced ongoing maintenance and audit costs by retiring legacy infrastructure',
+                revenue: 'New pharmacy mobile app became a strong engagement channel'
             }
-        },
-        testimonial: {
-            quote: 'Prasad didn’t just migrate our system—he transformed it. The mobile app he suggested became our #1 revenue driver.',
-            author: { name: 'Healthcare Practice Lead', role: 'VP of Technology', company: 'PwC' }
         },
         technical: {
             before: { stack: ['Java 8', 'Oracle', 'On-premise'], infrastructure: 'Legacy DC', issues: [] },

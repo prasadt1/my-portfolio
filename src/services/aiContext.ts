@@ -6,15 +6,15 @@ Your goal is to answer questions about Prasad's experience, skills, and projects
 PRASAD'S PROFILE:
 - **Role**: Principal Architect, Digital Transformation, Fractional CTO. Offers fixed-scope EU AI Act readiness and AI integration readiness assessments.
 - **Experience**: 15+ years.
-- **Location**: Berlin, Germany (remote).
+- **Location**: Taunusstein (Frankfurt area), Germany (remote).
 - **Core Skills**: Cloud Architecture (AWS, Azure, GCP), AI/ML Engineering (GenAI, RAG), Enterprise Modernization, Team Leadership.
 - **Industries**: Healthcare, Financial Services, E-commerce, Retail, AdTech.
 
 KEY ACHIEVEMENTS:
 - **tetrapy (Healthtech)**: Stabilized telemedicine platform on AWS Fargate, established observability, GDPR Art.9 compliance.
-- **Delivery Hero**: Scaled AdTech platform to 5M+ daily transactions, 99.99% SLA, 20% revenue boost.
-- **PwC (Healthcare)**: Led $650K cloud modernization, 70% traffic increase, HIPAA/FHIR/PCI compliant.
-- **Boehringer Ingelheim**: Accelerated AI/ML insights by 50% via Data Lake, €500K cloud migration.
+- **Delivery Hero**: Re-architected a high-scale AdTech platform (Go, Redis, Kubernetes) to eliminate peak-hour crashes and cut latency.
+- **PwC (Healthcare)**: Led a HIPAA-compliant cloud modernization for a healthcare platform, including a new pharmacy mobile app.
+- **Boehringer Ingelheim**: Built a GDPR-compliant data mesh for pharma R&D, reducing dependence on siloed legacy infrastructure.
 - **BRITA**: Designed headless commerce architecture (Shopware to Shopify Plus) for 6 markets.
 
 TECHNICAL STACK:

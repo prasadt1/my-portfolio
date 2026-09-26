@@ -1,30 +1,33 @@
-# Hosting Architecture (Low Cost + High Availability)
+# Hosting Architecture (Actual)
 
-Recommended split:
+Single-service deployment:
 
-- Static frontend hosted on Cloudflare Pages
-- API hosted on Google Cloud Run
+- One Express app (`server/index.js`), containerized and deployed to Google Cloud Run (`portfolio-service`, `europe-west1`)
+- That Express app serves the built static SPA, the server-side SEO/meta rendering (`server/seo.js`), and the `/api/*` endpoints — there is no separate static-hosting tier
 - DNS managed in Namecheap
 
 ## Architecture
 
 ```
 Browser
-  -> Cloudflare Pages (static site, edge cached)
-  -> api.prasadtilloo.com (Cloud Run API for Gemini search + forms)
+  -> prasadtilloo.com (Cloud Run, Express)
+       - static assets from the Vite build (dist/)
+       - server-rendered <title>/meta/OG tags per route (server/seo.js)
+       - /api/* (Gemini search, project similarity, lead capture)
 ```
 
 ## DNS Setup (Namecheap)
 
-- Apex/root (`prasadtilloo.com`) -> Cloudflare Pages (CNAME/ALIAS)
-- `www` -> Cloudflare Pages
-- `api` -> Cloud Run custom domain mapping (CNAME to `ghs.googlehosted.com`)
+- Apex/root (`prasadtilloo.com`) -> Cloud Run custom domain mapping (Google-managed SSL)
+- `www` -> redirects/maps to the same Cloud Run service
 
-## Why this split works
+There is no `api.prasadtilloo.com` subdomain in production; the frontend calls the API on the same origin.
 
-- Static assets are served from the edge (fast + free tier)
-- Serverless API scales independently and only incurs cost on usage
-- Gemini API keys stay server-side
+## Why this works
+
+- One container to build, deploy, and monitor
+- Server-side route rendering means crawlers get real per-page `<title>`/meta tags and a real HTTP 404 for unknown paths, without a full SSR framework
+- Gemini API keys and other secrets stay server-side, injected via Secret Manager at deploy time (see `cloudbuild.yaml`)
 
 ## API Endpoints
 

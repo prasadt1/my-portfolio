@@ -47,9 +47,9 @@ const AboutPage: React.FC = () => {
       businessChallenge: t('about.journey.items.sine.challenge'),
       deliverables: t('about.journey.items.sine.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '20+', label: t('about.journey.items.sine.outcomes.adopted') },
+        { value: 'Adopted', label: t('about.journey.items.sine.outcomes.adopted') },
         { value: 'WBCSD', label: t('about.journey.items.sine.outcomes.standard') },
-        { value: '25%', label: t('about.journey.items.sine.outcomes.boost') },
+        { value: 'Ongoing', label: t('about.journey.items.sine.outcomes.boost') },
       ],
       links: {
         caseStudy: '/projects/pact-protocol',
@@ -64,8 +64,8 @@ const AboutPage: React.FC = () => {
       businessChallenge: t('about.journey.items.deliveryHero.challenge'),
       deliverables: t('about.journey.items.deliveryHero.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '+20%', label: t('about.journey.items.deliveryHero.outcomes.revenue') },
-        { value: '5M+', label: t('about.journey.items.deliveryHero.outcomes.transactions') },
+        { value: 'Zero', label: t('about.journey.items.deliveryHero.outcomes.revenue') },
+        { value: 'Event-Driven', label: t('about.journey.items.deliveryHero.outcomes.transactions') },
         { value: '<20ms', label: t('about.journey.items.deliveryHero.outcomes.latency') },
       ],
       links: {},
@@ -79,8 +79,8 @@ const AboutPage: React.FC = () => {
       businessChallenge: t('about.journey.items.boehringer.challenge'),
       deliverables: t('about.journey.items.boehringer.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '50%', label: t('about.journey.items.boehringer.outcomes.insights') },
-        { value: '100%', label: t('about.journey.items.boehringer.outcomes.migration') },
+        { value: 'Faster', label: t('about.journey.items.boehringer.outcomes.insights') },
+        { value: 'Serverless', label: t('about.journey.items.boehringer.outcomes.migration') },
         { value: 'Zero', label: t('about.journey.items.boehringer.outcomes.gdpr') },
       ],
       links: {},
@@ -94,8 +94,8 @@ const AboutPage: React.FC = () => {
       businessChallenge: t('about.journey.items.pwc.challenge'),
       deliverables: t('about.journey.items.pwc.deliverables', { returnObjects: true }) as string[],
       outcomes: [
-        { value: '$650K', label: t('about.journey.items.pwc.outcomes.savings') },
-        { value: '+70%', label: t('about.journey.items.pwc.outcomes.traffic') },
+        { value: 'HIPAA', label: t('about.journey.items.pwc.outcomes.savings') },
+        { value: 'New', label: t('about.journey.items.pwc.outcomes.traffic') },
         { value: 'Zero', label: t('about.journey.items.pwc.outcomes.audit') },
       ],
       links: {},
@@ -131,9 +131,9 @@ const AboutPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800">
               {[
                 { value: '15+', label: t('about.stats.exp') },
-                { value: '€500K+', label: t('about.stats.value') },
-                { value: '5M+', label: t('about.stats.industries') },
-                { value: '99.99%', label: t('about.stats.delivery') }
+                { value: 'Enterprise & AI', label: t('about.stats.value') },
+                { value: 'High-Scale', label: t('about.stats.industries') },
+                { value: 'EU AI Act', label: t('about.stats.delivery') }
               ].map((stat, idx) => (
                 <div key={idx} className="py-8 text-center">
                   <div className="text-3xl font-bold text-emerald-400 font-serif mb-1">{stat.value}</div>
