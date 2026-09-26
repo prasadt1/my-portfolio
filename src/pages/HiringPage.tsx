@@ -15,7 +15,7 @@ const HiringPage: React.FC = () => {
         <>
             <SEO
                 title="Hiring Snapshot | Prasad Tilloo"
-                description="Principal architect and digital transformation leader, acting fractional CTO (hands-on). 15+ years across regulated enterprise and scale-up delivery."
+                description="Principal architect and digital transformation leader, fractional CTO. 15+ years across regulated enterprise and scale-up delivery."
                 canonical={`${import.meta.env.VITE_SITE_URL || 'https://prasadtilloo.com'}/hire`}
             />
             <PageShell background="muted" containerMaxWidth="6xl" className="pt-24">

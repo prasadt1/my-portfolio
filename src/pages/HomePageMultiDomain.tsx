@@ -142,9 +142,9 @@ const HomePageMultiDomain: React.FC = () => {
     return (
         <>
             <SEO
-                title="Prasad Tilloo | Principal Architect"
-                description="Principal architect and digital transformation leader, acting fractional CTO (hands-on) helping teams scale modernization, AI, and compliance programs with clear executive outcomes."
-                keywords="principal architect, digital transformation, acting fractional CTO, enterprise architecture, healthtech, telemedicine, technical due diligence, cloud migration readiness, platform evaluation, AI modernization, AWS, Azure, GCP"
+                title="EU AI Act Readiness & AI Architecture | Prasad Tilloo"
+                description="Fixed-scope EU AI Act readiness and AI integration assessments for software companies selling into Europe. Delivered remotely, in English, in two weeks."
+                keywords="EU AI Act readiness assessment, EU AI Act gap analysis, AI Act compliance for US companies, AI governance consultant, AI integration readiness, enterprise architecture"
                 type="website"
             />
 
@@ -309,7 +309,7 @@ const HomePageMultiDomain: React.FC = () => {
                                             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                                         </a>
                                         <Link
-                                            to="/projects"
+                                            to="/eu-ai-act-readiness"
                                             className="group text-white/80 hover:text-white px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-white/20 hover:border-white/40"
                                         >
                                             {t('homepage.hero.cta.secondary')}

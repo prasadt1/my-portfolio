@@ -13,6 +13,7 @@ import { JsonToolRequestStore } from './toolRequestStore/JsonToolRequestStore.js
 import { computeProjectSimilarity } from './similarityMatcher.js';
 import { safeStr } from './utils.js';
 import { getFeatureFlags, logFeatureFlagsConfig } from './featureFlags.js';
+import { renderPage, loadTemplate } from './seo.js';
 
 dotenv.config({ path: '../.env.local' });
 
@@ -4068,13 +4069,26 @@ app.get('/api/version', (req, res) => {
 // Serve static files from the React app
 // (__filename and __dirname already declared above for lead capture endpoint)
 
-// Serve static files from the dist directory (one level up from server)
-app.use(express.static(path.join(__dirname, '../dist')));
+// Serve static files from the dist directory (one level up from server).
+// index: false so "/" goes through the SEO renderer below instead of the raw shell.
+app.use(express.static(path.join(__dirname, '../dist'), { index: false }));
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
+// The "catchall" handler: render index.html with per-route head tags and a
+// crawlable HTML summary; unknown paths get a real 404 (see server/seo.js).
+let indexTemplate = null;
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+    // Missing static assets should 404 plainly, not return the app shell.
+    if (/\.[a-z0-9]{2,5}$/i.test(req.path)) {
+        return res.status(404).send('Not found');
+    }
+    try {
+        if (!indexTemplate) indexTemplate = loadTemplate(path.join(__dirname, '../dist/index.html'));
+        const { status, html } = renderPage(indexTemplate, req.path);
+        res.status(status).type('html').send(html);
+    } catch (err) {
+        console.error('SEO render failed, falling back to raw index.html:', err);
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
+    }
 });
 
 app.listen(port, () => {

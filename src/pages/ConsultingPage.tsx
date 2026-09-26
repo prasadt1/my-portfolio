@@ -54,7 +54,7 @@ const ConsultingPage: React.FC = () => {
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
                                 <TrendingUp className="text-emerald-600 dark:text-emerald-400 mx-auto mb-4" size={32} />
                                 <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('consultingPage.metrics.savings', { defaultValue: '€2M+' })}
+                                    {t('consultingPage.metrics.savings', { defaultValue: '$1M+' })}
                                 </div>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
                                     {t('consultingPage.metrics.savingsDesc', { defaultValue: 'Cost Savings Delivered' })}
@@ -63,19 +63,19 @@ const ConsultingPage: React.FC = () => {
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
                                 <Shield className="text-emerald-600 dark:text-emerald-400 mx-auto mb-4" size={32} />
                                 <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('consultingPage.metrics.compliance', { defaultValue: '100%' })}
+                                    {t('consultingPage.metrics.compliance', { defaultValue: '15+' })}
                                 </div>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                    {t('consultingPage.metrics.complianceDesc', { defaultValue: 'Compliance Rate' })}
+                                    {t('consultingPage.metrics.complianceDesc', { defaultValue: 'Years of Enterprise Delivery' })}
                                 </p>
                             </div>
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 text-center">
                                 <Calendar className="text-emerald-600 dark:text-emerald-400 mx-auto mb-4" size={32} />
                                 <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                    {t('consultingPage.metrics.projects', { defaultValue: '50+' })}
+                                    {t('consultingPage.metrics.projects', { defaultValue: '99.99%' })}
                                 </div>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                    {t('consultingPage.metrics.projectsDesc', { defaultValue: 'Projects Delivered' })}
+                                    {t('consultingPage.metrics.projectsDesc', { defaultValue: 'SLA Uptime at 5M+ Daily Transactions' })}
                                 </p>
                             </div>
                         </div>
