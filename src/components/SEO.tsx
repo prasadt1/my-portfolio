@@ -20,9 +20,10 @@ const SEO: React.FC<SEOProps> = ({
     type = 'website',
     structuredData
 }) => {
-    const siteName = import.meta.env.VITE_SITE_NAME || 'Prasad Tilloo - Principal Architect';
+    const siteName = import.meta.env.VITE_SITE_NAME || 'Prasad Tilloo';
     const siteUrl = import.meta.env.VITE_SITE_URL || 'https://prasadtilloo.com';
-    const fullTitle = `${title} | ${siteName}`;
+    // Avoid "Prasad Tilloo | ... | Prasad Tilloo" when a page title already names the site.
+    const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     
     // Build full OG image URL
     const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
@@ -33,7 +34,7 @@ const SEO: React.FC<SEOProps> = ({
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Prasad Tilloo",
-            "jobTitle": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
+            "jobTitle": "Enterprise and AI Architect",
             "description": description,
             "url": siteUrl,
             "sameAs": [
@@ -41,36 +42,32 @@ const SEO: React.FC<SEOProps> = ({
                 "https://github.com/prasadt1"
             ],
             "knowsAbout": [
-                "Principal Architecture",
-                "Digital Transformation",
-                "Acting Fractional CTO",
+                "EU AI Act",
+                "AI governance",
+                "AI solution architecture",
                 "Enterprise Architecture",
-                "Healthtech",
-                "Telemedicine",
+                "CRM and ERP integration",
+                "GDPR",
+                "Digital Transformation",
                 "Cloud Modernization",
-                "AI/ML Engineering",
-                "HIPAA Compliance",
-                "PCI-DSS",
-                "AWS",
-                "Azure",
-                "GCP"
+                "Healthtech",
+                "AWS"
             ]
         },
         {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Prasad Tilloo Consulting",
-            "description": "Principal architecture, digital transformation, and acting fractional CTO advisory.",
-            "priceRange": "€300 - €15000",
-            "url": siteUrl,
+            "description": "EU AI Act readiness assessments, AI integration readiness assessments for CRM and ERP, and enterprise architecture advisory.",
+                        "url": siteUrl,
             "hasOfferCatalog": {
                 "@type": "OfferCatalog",
                 "name": "Consulting Services",
                 "itemListElement": [
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acting Fractional CTO (Hands-on)" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "EU AI Act Readiness Assessment", "url": `${siteUrl}/eu-ai-act-readiness` } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Integration Readiness Assessment", "url": `${siteUrl}/ai-integration-readiness` } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architecture Review" } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Migration" } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Platform Modernization" } }
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fractional Architecture Leadership" } }
                 ]
             }
         },

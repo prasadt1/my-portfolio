@@ -142,9 +142,9 @@ const HomePageMultiDomain: React.FC = () => {
     return (
         <>
             <SEO
-                title="Prasad Tilloo | Principal Architect"
-                description="Principal architect and digital transformation leader, acting fractional CTO (hands-on) helping teams scale modernization, AI, and compliance programs with clear executive outcomes."
-                keywords="principal architect, digital transformation, acting fractional CTO, enterprise architecture, healthtech, telemedicine, technical due diligence, cloud migration readiness, platform evaluation, AI modernization, AWS, Azure, GCP"
+                title="EU AI Act Readiness & AI Architecture | Prasad Tilloo"
+                description="Fixed-scope EU AI Act readiness and AI integration assessments for software companies selling into Europe. Delivered remotely, in English, in two weeks."
+                keywords="EU AI Act readiness assessment, EU AI Act gap analysis, AI Act compliance for US companies, AI governance consultant, AI integration readiness, enterprise architecture"
                 type="website"
             />
 
@@ -309,7 +309,7 @@ const HomePageMultiDomain: React.FC = () => {
                                             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                                         </a>
                                         <Link
-                                            to="/projects"
+                                            to="/eu-ai-act-readiness"
                                             className="group text-white/80 hover:text-white px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-white/20 hover:border-white/40"
                                         >
                                             {t('homepage.hero.cta.secondary')}
@@ -373,17 +373,17 @@ const HomePageMultiDomain: React.FC = () => {
                                             <div className="text-xs text-slate-600 dark:text-white/70">Principal architecture & digital transformation delivery</div>
                                         </div>
                                         <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">5M+</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">High-Scale</div>
                                             <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.dailyTransactions.label')}</div>
                                             <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.dailyTransactions.desc')}</div>
                                         </div>
                                         <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">$1M+</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">Enterprise & AI</div>
                                             <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.costSaved.label')}</div>
                                             <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.costSaved.desc')}</div>
                                         </div>
                                         <div className="bg-white dark:bg-white/10 rounded-xl p-6 border border-slate-200 dark:border-white/20">
-                                            <div className="text-3xl font-bold text-emerald-300 mb-2">99.99%</div>
+                                            <div className="text-3xl font-bold text-emerald-300 mb-2">EU AI Act</div>
                                             <div className="text-sm font-semibold mb-1">{t('homepage.personaTabs.hiringStats.slaUptime.label')}</div>
                                             <div className="text-xs text-slate-600 dark:text-white/70">{t('homepage.personaTabs.hiringStats.slaUptime.desc')}</div>
                                         </div>
@@ -641,10 +641,10 @@ const HomePageMultiDomain: React.FC = () => {
                         </motion.div>
                         <ImpactDashboard
                             metrics={[
-                                { value: t('homepage.impact.metrics.cost.value', { defaultValue: '$1M+' }), label: t('homepage.impact.metrics.cost.label', { defaultValue: 'Cost Saved' }), type: 'savings' },
-                                { value: t('homepage.impact.metrics.speed.value', { defaultValue: '30%' }), label: t('homepage.impact.metrics.speed.label', { defaultValue: 'Faster Deployments' }), type: 'scope' },
-                                { value: t('homepage.impact.metrics.transactions.value', { defaultValue: '5M+' }), label: t('homepage.impact.metrics.transactions.label', { defaultValue: 'Daily Transactions' }), type: 'scope' },
-                                { value: t('homepage.impact.metrics.sla.value', { defaultValue: '99.99%' }), label: t('homepage.impact.metrics.sla.label', { defaultValue: 'SLA Uptime' }), type: 'risk' },
+                                { value: t('homepage.impact.metrics.cost.value', { defaultValue: 'Enterprise & AI' }), label: t('homepage.impact.metrics.cost.label', { defaultValue: 'Architecture Advisory' }), type: 'savings' },
+                                { value: t('homepage.impact.metrics.speed.value', { defaultValue: '90-Day' }), label: t('homepage.impact.metrics.speed.label', { defaultValue: 'Delivery Plans' }), type: 'scope' },
+                                { value: t('homepage.impact.metrics.transactions.value', { defaultValue: 'High-Scale' }), label: t('homepage.impact.metrics.transactions.label', { defaultValue: '& Regulated Systems' }), type: 'scope' },
+                                { value: t('homepage.impact.metrics.sla.value', { defaultValue: 'EU AI Act' }), label: t('homepage.impact.metrics.sla.label', { defaultValue: '& ISO 42001 Readiness' }), type: 'risk' },
                             ]}
                             compact={true}
                         />

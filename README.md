@@ -1,6 +1,6 @@
 # Prasad Tilloo — Experience-Driven AI Portfolio
 
-Production portfolio demonstrating enterprise architecture expertise with Gemini-powered search via a lightweight Cloud Run API and static hosting for the frontend.
+Production portfolio demonstrating enterprise architecture expertise with Gemini-powered search, served entirely from a single Express app on Google Cloud Run.
 
 This is not a demo site. It is a fully deployed consulting platform with:
 
@@ -58,20 +58,17 @@ This creates meaningful differentiation versus generic LLM advice.
 ```mermaid
 flowchart LR
     user["User Browser"]
-    cf["Cloudflare Pages (Static Frontend)"]
-    api["Cloud Run API (Gemini + Lead Capture)"]
+    cr["Cloud Run (Express: static SPA + SEO rendering + API)"]
     gs["Google Sheets (Leads)"]
 
-    user --> cf
-    cf --> api
-    api --> gs
+    user --> cr
+    cr --> gs
 ```
 
+Actual deployment (single service):
 
-Recommended deployment split:
-
-- Static frontend (Cloudflare Pages or similar)
-- Serverless API (Cloud Run) for Gemini-powered endpoints
+- One Express app on Google Cloud Run serves everything: the built static SPA, the server-side SEO/meta rendering (`server/seo.js`), and the Gemini-powered API endpoints
+- There is no separate static-hosting tier; Namecheap DNS points `prasadtilloo.com` directly at the Cloud Run service
 
 ---
 
@@ -150,8 +147,7 @@ Artifacts are gated to protect IP.
 - Tailwind CSS
 - Node.js
 - Google Gemini 2.0 Flash (configurable)
-- Google Cloud Run (API)
-- Cloudflare Pages (static hosting)
+- Google Cloud Run (single Express service: static hosting + SEO rendering + API)
 - Google Sheets API
 - SendGrid
 
@@ -163,30 +159,20 @@ AI tools were used to accelerate implementation. Architecture decisions and deli
 
 ---
 
-## 🌐 Hosting (Recommended Split)
+## 🌐 Hosting (Actual)
 
-Domain: Namecheap  
-Static hosting: Cloudflare Pages  
-API: Google Cloud Run  
+Domain: Namecheap
+Service: Google Cloud Run (single service, `portfolio-service`, `europe-west1`)
 
 Setup:
-- Cloudflare Pages serves the static frontend at `prasadtilloo.com`
-- Cloud Run serves API endpoints at `api.prasadtilloo.com`
-- Namecheap DNS: CNAME/ALIAS to Cloudflare, CNAME for `api` to Cloud Run
-- Separate SSL: Cloudflare for the site, Google-managed SSL for the API
-
-Benefits:
-- Lower operational cost
-- Faster global delivery (edge caching)
-- Independent scaling for AI endpoints
+- The build (see `Dockerfile`/`cloudbuild.yaml`) builds the Vite frontend and bundles it into the same container as the Express server
+- That one Express app (`server/index.js`) serves the static SPA, the server-side SEO/meta rendering, and the `/api/*` endpoints — all from `prasadtilloo.com`
+- Namecheap DNS: `prasadtilloo.com` maps directly to the Cloud Run service (Google-managed SSL)
+- There is no separate static-hosting provider and no `api.` subdomain in production
 
 ### Frontend API Base
 
-When hosting the frontend separately, set:
-
-```
-VITE_API_URL=https://api.prasadtilloo.com
-```
+The frontend calls the API on the same origin by default. `VITE_API_URL` only needs to be set if the frontend is ever split out to call a differently-hosted API.
 
 ---
 

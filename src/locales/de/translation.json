@@ -110,8 +110,8 @@
         "stats": {
             "exp": "Jahre Erfahrung",
             "value": "Cost Savings",
-            "industries": "Daily Transactions",
-            "delivery": "SLA Uptime"
+            "industries": "& Regulated Systems",
+            "delivery": "& ISO 42001 Readiness"
         },
         "philosophy": {
             "title": "Meine Führungsphilosophie",
@@ -136,9 +136,8 @@
         },
         "proof": {
             "title": "Der Beweis des Architekten",
-            "p1": "Als acting, hands-on Fractional CTO in regulierter Healthtech aligniere ich Executives, Architektur und Delivery für patientenkritische Systeme.",
-            "p2": "My track record includes 30% faster deployments, $1M+ in savings, and compliance-first programs across GDPR, HIPAA, and ISO 27001.",
-            "quote": "Prasad combines executive alignment with hands-on delivery and clear, board-ready technical decisions."
+            "p1": "Als Fractional CTO in regulierter Healthtech aligniere ich Executives, Architektur und Delivery für patientenkritische Systeme.",
+            "p2": "Mein Track Record umfasst eine schnellere Deployment-Kadenz, dokumentierte Kosteneinsparungen bei Cloud- und Infrastrukturausgaben sowie Compliance-first-Programme über GDPR, HIPAA und ISO 27001."
         },
         "consulting": {
             "title": "Principal Architecture & Digital Transformation Advisory",
@@ -179,7 +178,7 @@
                     "deliverables": [
                         "Definierte globale Tech-Spezifikation für Product Carbon Footprint mit Microsoft, SAP, Siemens",
                         "Baute PACT Online Catalog Cloud-Marktplatz von Grund auf neu",
-                        "Leitete WBCSD PACT Standard Adoption mit 20+ Fortune 100 Firmen"
+                        "Leitete WBCSD PACT Standard Adoption bei großen globalen Unternehmen"
                     ],
                     "outcomes": {
                         "adopted": "Unternehmen haben adaptiert",
@@ -189,7 +188,7 @@
                 },
                 "deliveryHero": {
                     "role": "Senior Engineering Manager (Freelance)",
-                    "challenge": "Ad-Server-Latenz kostete Umsatz zu Spitzenzeiten. Skalierung auf 5M+ tägliche Transaktionen nötig.",
+                    "challenge": "Ad-Server-Latenz kostete Umsatz zu Spitzenzeiten; die Plattform musste zuverlässig skalieren.",
                     "deliverables": [
                         "Re-Architektur auf Go + Redis für <20ms Latenz",
                         "Implementierung von sekundengenauer Abrechnung und Exact-Once Processing",
@@ -535,172 +534,6 @@
                 "Executive Summary Vorlage",
                 "Inklusive 1 Std. Beratung"
             ]
-        }
-    },
-    "homeHealthcare": {
-        "hero": {
-            "title": "Stecken Sie in der <0>HIPAA-Compliance-Hölle</0>\nwährend der Cloud-Migration?",
-            "subtitle": "Ich habe erfolgreich <0>12 Gesundheitssysteme</0> zu AWS migriert, ohne eine einzige <1>HIPAA-Verletzung</1>, <2>Datenpanne</2> oder <3>Ausfallzeit</3>.",
-            "trustedBy": "Vertraut von Fortune 500 Healthcare & Pharma",
-            "cta": {
-                "primary": "Sehen Sie, wie ich es gemacht habe",
-                "secondary": "Berechnen Sie Ihre Einsparungen"
-            },
-            "stats": {
-                "migrations": {
-                    "value": "12",
-                    "label": "Healthcare Migrationen"
-                },
-                "compliance": {
-                    "value": "100%",
-                    "label": "HIPAA-konform"
-                },
-                "savings": {
-                    "value": "€2M+",
-                    "label": "Kosteneinsparungen"
-                },
-                "breaches": {
-                    "value": "Null",
-                    "label": "Datenpannen"
-                }
-            }
-        },
-        "problems": {
-            "title": "Kommt Ihnen das bekannt vor?",
-            "subtitle": "Dies sind die Top 3 Herausforderungen, denen sich Gesundheitsorganisationen bei der Cloud-Migration stellen müssen.",
-            "item1": {
-                "title": "Wir bestehen HIPAA-Audits nicht",
-                "desc": "Ihr On-Premise-System kann moderne Compliance-Anforderungen nicht erfüllen.",
-                "impact": "Jedes Audit ist ein Glücksspiel, das Sie €50K+ an Feststellungen kosten könnte."
-            },
-            "item2": {
-                "title": "Cloud-Migration scheint zu riskant",
-                "desc": "Sie haben es zweimal versucht. Beide Male wegen Bedenken hinsichtlich Datenpannen gestoppt.",
-                "impact": "Ihr Vorstand wird keinen weiteren gescheiterten Versuch genehmigen."
-            },
-            "item3": {
-                "title": "Uns läuft die Zeit davon",
-                "desc": "Neue HIPAA-Anforderungen in 6 Monaten. Legacy-Anbieter EOL in 12 Monaten.",
-                "impact": "Wenn Sie nicht bald migrieren, drohen Strafen UND Ausfallzeiten."
-            },
-            "solution": "Ich habe das 100 Mal gehört. Hier ist, wie wir es lösen."
-        },
-        "process": {
-            "title": "Der Null-Downtime, 100% konforme Migrationsprozess",
-            "subtitle": "Ein bewährter 4-Phasen-Ansatz, der 12 Mal ohne einen einzigen Vorfall funktioniert hat",
-            "phase1": {
-                "title": "Compliance Audit",
-                "duration": "2 Wochen",
-                "activities": [
-                    "Überprüfung aller HIPAA/FHIR-Kontrollen gegen das aktuelle System",
-                    "Identifizierung von Lücken und Migrationsblockern",
-                    "Erstellung eines konformen AWS-Architektur-Blueprints",
-                    "Definition von Sicherheitskontrollen (IAM, Verschlüsselung, Logging)"
-                ],
-                "deliverable": "20-seitiger Compliance-Bericht (Vorstandsreif)",
-                "outcome": "Klarer Fahrplan ohne Compliance-Risiko"
-            },
-            "phase2": {
-                "title": "AWS Architektur Design",
-                "duration": "2 Wochen",
-                "activities": [
-                    "Design der Produktionsinfrastruktur auf AWS",
-                    "Konfiguration von Sicherheitskontrollen und Monitoring",
-                    "Planung der Datenmigrationsstrategie (Risikominimierung)",
-                    "Erstellung von Rollback-Verfahren für jeden Schritt"
-                ],
-                "deliverable": "Technischer Migrationsplan + Disaster Recovery",
-                "outcome": "Vorstandsgenehmigung gesichert, Risiken gemindert"
-            },
-            "phase3": {
-                "title": "Migration Ausführung",
-                "duration": "8-12 Wochen",
-                "activities": [
-                    "Woche 1-4: Migration nicht-kritischer Systeme (Testprozess)",
-                    "Woche 5-8: Kernsysteme (validiert & überwacht)",
-                    "Woche 9-12: Patientendaten (nur am Wochenende, 24/7 Überwachung)",
-                    "Kontinuierliche Validierung bei jedem Schritt"
-                ],
-                "deliverable": "Vollständig migriertes, betriebsbereites System",
-                "outcome": "Null Ausfallzeit, alle Systeme laufen auf AWS"
-            },
-            "phase4": {
-                "title": "Optimierung & Validierung",
-                "duration": "4 Wochen",
-                "activities": [
-                    "Kostenoptimierung (Ziel 30% Einsparung)",
-                    "Performance-Tuning (3x schnellere Abfragen)",
-                    "Vollständige Compliance-Dokumentation",
-                    "Schulung Ihres Teams im AWS-Betrieb"
-                ],
-                "deliverable": "Optimiertes, dokumentiertes, konformes System",
-                "outcome": "30% Kostenreduktion + prüfungssichere Dokumentation"
-            },
-            "labels": {
-                "deliverable": "LIEFEROBJEKT",
-                "outcome": "ERGEBNIS",
-                "activities": "Aktivitäten:"
-            },
-            "stats": {
-                "migrations": "Erfolgreiche Migrationen",
-                "breaches": "Datenpannen",
-                "auditRate": "Audit-Bestehensquote",
-                "savings": "Kundeneinsparungen"
-            }
-        },
-        "roi": {
-            "title": "Berechnen Sie Ihre potenziellen Einsparungen",
-            "subtitle": "Sehen Sie, was Sie mit einer korrekt durchgeführten Healthcare-Cloud-Migration sparen könnten"
-        },
-        "proof": {
-            "title": "Echte Ergebnisse von echten Projekten",
-            "subtitle": "Nehmen Sie mich nicht beim Wort – hier ist der Beweis",
-            "cta": "Vollständige Fallstudie ansehen",
-            "seeAll": "Alle Projekte ansehen"
-        },
-        "faq": {
-            "title": "Häufige Fragen",
-            "subtitle": "Antworten auf Ihre Bedenken zur Cloud-Migration im Gesundheitswesen",
-            "q1": {
-                "q": "Was, wenn wir während der Migration eine Datenpanne haben?",
-                "a": "Null-Downtime-Strategie bedeutet, dass Ihr Produktionssystem nie offline geht. Daten werden während der Übertragung (TLS 1.3) und im Ruhezustand (AES-256) verschlüsselt. Wir migrieren in Phasen mit Rollback-Verfahren bei jedem Schritt. In 12 Migrationen hatten wir nie eine Panne. Jede Migration beinhaltet ein umfassendes Sicherheitsaudit vor, während und nach dem Prozess."
-            },
-            "q2": {
-                "q": "Wie lange werden wir offline sein?",
-                "a": "Null Ausfallzeit. Migrationen finden außerhalb der Geschäftszeiten statt, während parallele Systeme laufen. Benutzer bemerken keine Unterbrechung. Wir verwenden Blue-Green-Deployment-Strategien und können bei Bedarf sofort zurückrollen. Ihr Team arbeitet während des gesamten Prozesses normal weiter."
-            },
-            "q3": {
-                "q": "Was, wenn sich die HIPAA-Anforderungen während der Migration ändern?",
-                "a": "Die Architektur ist auf Compliance-Flexibilität ausgelegt. Wir überwachen regulatorische Änderungen kontinuierlich und passen den Plan proaktiv an. Ihr System wird aktuelle UND zukünftige Anforderungen erfüllen. Wir planen Pufferzeiten und Notfallpläne für regulatorische Updates ein."
-            },
-            "q4": {
-                "q": "Wir haben kein Budget dafür.",
-                "a": "Der durchschnittliche ROI beträgt 285% im ersten Jahr. Die meisten Kunden sparen genug, um das Projekt innerhalb von 8 Monaten allein durch Infrastrukturoptimierung zu bezahlen. Nutzen Sie den ROI-Rechner oben, um IHRE potenziellen Einsparungen zu sehen. Viele Organisationen stellen fest, dass sich die Migration durch vermiedene Audit-Strafen und reduzierte Betriebskosten selbst bezahlt."
-            },
-            "q5": {
-                "q": "Wie kann ich sicher sein, dass Sie uns nicht hängen lassen?",
-                "a": "Jedes Projekt beinhaltet 90 Tage Support nach der Migration und vollständige Dokumentation. Ich schule Ihr Team, damit es das neue System unabhängig betreiben kann. Sie erhalten Runbooks, Architekturdiagramme und Zugang zu mir für Fragen. Mehrere Kunden von vor 3+ Jahren melden sich gelegentlich immer noch – ich bin immer erreichbar."
-            }
-        },
-        "finalCta": {
-            "title": "Lassen Sie uns Ihre Migration besprechen",
-            "subtitle": "Wählen Sie den Weg, der am besten zu Ihnen passt",
-            "urgent": {
-                "title": "Ich brauche das jetzt",
-                "desc": "Für dringende Migrationen mit engen Fristen",
-                "cta": "30-Min Strategiegespräch buchen",
-                "note": "Verfügbar diese Woche: Di 14 Uhr, Do 10 Uhr, Fr 15 Uhr MEZ"
-            },
-            "research": {
-                "title": "Noch am Recherchieren",
-                "desc": "Holen Sie sich kostenlose Ressourcen, um Ihre Optionen zu bewerten",
-                "cta": "HIPAA-Compliance-Checkliste erhalten",
-                "note": "Kostenloses PDF + E-Mail-Nurture-Sequenz"
-            },
-            "riskReversal": {
-                "free": "Die ersten 30 Minuten sind kostenlos, unverbindlich",
-                "referral": "Wenn ich nicht helfen kann, verweise ich Sie an jemanden, der es kann"
-            }
         }
     },
     "roiCalculator": {
@@ -1206,9 +1039,18 @@
             "title": "Principal Architect | Digitale Transformation | Acting Fractional CTO (Hands-on)",
             "subtitle": "Ich verbinde Strategie, Architektur und Delivery, damit Teams skalieren – ohne Compliance-, Zuverlässigkeits- oder Kostenüberraschungen.",
             "proof": {
-                "savings": { "value": "$1M+", "label": "gespart" },
-                "speed": { "value": "30%", "label": "schnellere Deployments" },
-                "sla": { "value": "99,99%", "label": "SLA‑Uptime" }
+                "savings": {
+                    "value": "Enterprise & KI",
+                    "label": "Architekturberatung"
+                },
+                "speed": {
+                    "value": "30%",
+                    "label": "schnellere Deployments"
+                },
+                "sla": {
+                    "value": "EU AI Act",
+                    "label": "Readiness"
+                }
             },
             "cta": {
                 "primary": "Discovery Call buchen",
@@ -1254,10 +1096,22 @@
         "impact": {
             "title": "Impact‑Highlights",
             "metrics": {
-                "cost": { "value": "$1M+", "label": "Kosten gespart" },
-                "speed": { "value": "30%", "label": "Schnellere Deployments" },
-                "transactions": { "value": "5M+", "label": "Tägliche Transaktionen" },
-                "sla": { "value": "99,99%", "label": "SLA‑Uptime" }
+                "cost": {
+                    "value": "Enterprise & KI",
+                    "label": "Architekturberatung"
+                },
+                "speed": {
+                    "value": "30%",
+                    "label": "Schnellere Deployments"
+                },
+                "transactions": {
+                    "value": "High-Scale",
+                    "label": "& regulierte Systeme"
+                },
+                "sla": {
+                    "value": "EU AI Act",
+                    "label": "Readiness"
+                }
             },
             "cards": {
                 "delivery": {
@@ -1372,16 +1226,16 @@
             "toolkitSubtitle": "Kostenlose Tools und Ressourcen, um bessere Architektur-Entscheidungen zu treffen",
             "hiringStats": {
                 "dailyTransactions": {
-                    "label": "Tägliche Transaktionen",
-                    "desc": "High‑Scale‑Plattformen"
+                    "label": "Plattformen & Systeme",
+                    "desc": "Gebaut für Spitzenlast und Zuverlässigkeit"
                 },
                 "costSaved": {
-                    "label": "Kostenersparnis",
-                    "desc": "Dokumentierte Einsparungen"
+                    "label": "Architekturberatung",
+                    "desc": "Kosten- und risikofokussierte Delivery"
                 },
                 "slaUptime": {
-                    "label": "SLA‑Uptime",
-                    "desc": "Patientenkritische Delivery"
+                    "label": "& ISO 42001",
+                    "desc": "Patientenkritische & regulierte Delivery"
                 }
             }
         }
@@ -1421,12 +1275,12 @@
                     "desc": "Banking, telecom, e‑commerce, healthcare, and AdTech."
                 },
                 {
-                    "title": "$1M+ Savings + 30% Faster Deployments",
+                    "title": "Cloud-First-Transformationen",
                     "desc": "Cloud-first transformations on AWS/Azure with measurable business impact."
                 },
                 {
-                    "title": "99.99% SLA Delivery",
-                    "desc": "Scaled platforms to 5M+ daily transactions with reliability and observability."
+                    "title": "Hochskalierbare Zuverlässigkeit",
+                    "desc": "Plattformen für Spitzenlast und Observability neu architektiert."
                 },
                 {
                     "title": "Compliance + AI Engineering",
@@ -1959,8 +1813,8 @@
                     "desc": "Regulierte Systeme modernisieren – ohne Compliance oder Uptime zu gefährden."
                 },
                 "fractionalCto": {
-                    "title": "Acting Fractional CTO für Scale-ups",
-                    "desc": "Wie hands-on Leadership von Seed bis Series B aussieht."
+                    "title": "Fractional CTO für Scale-ups",
+                    "desc": "Wie eng geführte Leadership von Seed bis Series B aussieht."
                 },
                 "aiModernization": {
                     "title": "KI-Modernisierung in regulierten Umfeldern",

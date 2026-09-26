@@ -39,6 +39,10 @@ const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const UnavailablePage = lazy(() => import('./pages/UnavailablePage'));
 const CompetitionPage = lazy(() => import('./pages/CompetitionPage'));
 const TopicPage = lazy(() => import('./pages/TopicPage'));
+const EuAiActReadinessPage = lazy(() => import('./pages/EuAiActReadinessPage'));
+const AiIntegrationReadinessPage = lazy(() => import('./pages/AiIntegrationReadinessPage'));
+const ImpressumPage = lazy(() => import('./pages/ImpressumPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 // Phase 5: Lazy load CaseStudyBriefPage for performance
 const CaseStudyBriefPage = lazy(() => import('./pages/CaseStudyBriefPage'));
 // Phase 5 Enhanced: Project Similarity Matcher
@@ -98,6 +102,9 @@ const App: React.FC = () => {
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
                 <Route path="services" element={<ServicesPage />} />
+                <Route path="eu-ai-act-readiness" element={<EuAiActReadinessPage />} />
+                <Route path="ai-integration-readiness" element={<AiIntegrationReadinessPage />} />
+                <Route path="impressum" element={<ImpressumPage />} />
                 <Route path="climate-tech" element={<ClimateTechPage />} />
                 <Route path="about" element={<AboutPage />} />
                 <Route path="projects" element={<ProjectsPage />} />
@@ -137,6 +144,7 @@ const App: React.FC = () => {
                 {/* Admin routes (dev-only) */}
                 <Route path="admin/feature-flags" element={<FeatureFlagsPage />} />
                 <Route path="admin/diagnostics" element={<DiagnosticsPage />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>
             <Suspense fallback={null}>

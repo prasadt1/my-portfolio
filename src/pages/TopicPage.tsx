@@ -42,7 +42,7 @@ const TOPICS: Record<string, TopicContent> = {
     },
     'fractional-cto-startup-scale': {
         title: 'Acting Fractional CTO for Scaling Startups',
-        description: 'What an acting, hands-on fractional CTO delivers at seed to Series B when the architecture must scale fast.',
+        description: 'What a fractional CTO delivers at seed to Series B when the architecture must scale fast.',
         intro: 'Startups often need senior technical leadership before they can justify a full-time CTO. This page outlines the executive deliverables and decision frameworks an acting fractional CTO should provide.',
         bullets: [
             'Align product roadmap with architecture and team capabilities.',

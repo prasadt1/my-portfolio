@@ -58,14 +58,14 @@
     },
     "hero": {
         "badge": "Independent Validator • Vendor-Neutral",
-        "headline": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
+        "headline": "Enterprise & AI Architect | EU AI Act Readiness | Fractional CTO",
         "tagline": "Principal architecture and delivery leadership",
         "subtitle": "I help executives align teams, architecture, and delivery so modernization and AI initiatives scale without compliance or reliability surprises.",
         "cta": "Book Architecture Review",
         "ctaSecondary": "See Services",
         "watchVideo": "Watch 75-sec overview",
         "videoTitle": "75-Second Overview",
-        "trustNote": "Global delivery (NA • EU • Asia • South America) • Hands-on execution support • Vendor-neutral • PACT/WBCSD credibility",
+        "trustNote": "Global delivery (NA • EU • Asia • South America) • Delivery-grounded advice • Vendor-neutral • PACT/WBCSD credibility",
         "differentiator": "Not just assessment — delivery and execution experience across Fortune 100 transformations.",
         "proofLine": "Delivered across complex enterprise environments — distributed teams, multiple stakeholders, and high-stakes systems."
     },
@@ -90,8 +90,8 @@
                 "example": "PACT: Aligned 100+ competing companies through facilitation, not force"
             },
             "4": {
-                "title": "Hands-On Execution",
-                "desc": "I don't just advise—I architect, code, and deploy. From design to production.",
+                "title": "Grounded in Delivery",
+                "desc": "I don't just advise. I design the architecture, review what teams build, and stay with delivery until it runs in production.",
                 "example": "SINE: Designed AND implemented PACT Catalog (Next.js, React, Java Spring Boot)"
             }
         }
@@ -101,7 +101,7 @@
             "title": "Recommendations"
         },
         "title": "Prasad Tilloo",
-        "role": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
+        "role": "Enterprise & AI Architect | EU AI Act Readiness | Fractional CTO",
         "description": "15+ years leading modernization, cloud, and AI programs for Fortune 100 and scale-ups, with a focus on measurable business outcomes.",
         "buttons": {
             "contact": "Contact Me",
@@ -110,9 +110,9 @@
         },
         "stats": {
             "exp": "Years Experience",
-            "value": "Cost Savings",
-            "industries": "Daily Transactions",
-            "delivery": "SLA Uptime"
+            "value": "Architecture Advisory",
+            "industries": "& Regulated Systems",
+            "delivery": "& ISO 42001 Readiness"
         },
         "philosophy": {
             "title": "My Leadership Philosophy",
@@ -131,19 +131,18 @@
                 "desc": "I lead by enabling others, not commanding them. My role is to remove obstacles, provide context, and empower teams."
             },
             "execution": {
-                "title": "Hands-On Execution",
-                "desc": "I don't just strategize—I execute. I write code, design architectures, and deploy to production."
+                "title": "Grounded in Delivery",
+                "desc": "I stay close to delivery. I design architectures, review what teams build, and build working prototypes by directing AI coding agents."
             }
         },
         "proof": {
             "title": "The Architect's Proof",
-            "p1": "As an acting, hands-on fractional CTO in regulated healthtech, I align executives, architecture, and delivery for patient-critical systems.",
-            "p2": "My track record includes 30% faster deployments, $1M+ in savings, and compliance-first programs across GDPR, HIPAA, and ISO 27001.",
-            "quote": "Prasad combines executive alignment with hands-on delivery and clear, board-ready technical decisions."
+            "p1": "As fractional CTO for a regulated telemedicine platform, I align executives, architecture, and delivery for patient-critical systems.",
+            "p2": "My track record includes faster deployment cadence, documented cost savings on cloud and infrastructure spend, and compliance-first programs across GDPR, HIPAA, and ISO 27001."
         },
         "consulting": {
             "title": "Principal Architecture & Digital Transformation Advisory",
-            "role": "Principal Architect / Acting Fractional CTO (Hands-on)",
+            "role": "Enterprise & AI Architect / Fractional CTO",
             "desc": "Lead modernization, observability, and compliance programs for regulated and high-growth teams.",
             "highlights": [
                 "Stabilized telemedicine platform on AWS Fargate, RDS, Terraform",
@@ -180,25 +179,25 @@
                     "deliverables": [
                         "Defined global Tech Specification for Product Carbon Footprint with Microsoft, SAP, Siemens",
                         "Built PACT Online Catalog cloud marketplace from scratch",
-                        "Led WBCSD PACT Standard adoption with 20+ Fortune 100 firms"
+                        "Led WBCSD PACT Standard adoption across major global enterprises"
                     ],
                     "outcomes": {
-                        "adopted": "Companies Adopted",
+                        "adopted": "By Major Global Enterprises",
                         "standard": "Standard Created",
-                        "boost": "Adoption Boost"
+                        "boost": "Adoption Growth"
                     }
                 },
                 "deliveryHero": {
                     "role": "Senior Engineering Manager (Freelance)",
-                    "challenge": "Ad server latency costing revenue during peak hours. Need to scale to 5M+ daily transactions.",
+                    "challenge": "Ad server latency costing revenue during peak hours, with the platform needing to scale reliably.",
                     "deliverables": [
                         "Re-architected to Go + Redis for <20ms latency",
                         "Implemented per-second billing and exact-once processing",
                         "Led 10-member cross-functional team (iOS, Android, Golang)"
                     ],
                     "outcomes": {
-                        "revenue": "Revenue Increase",
-                        "transactions": "Daily Transactions",
+                        "revenue": "Crashes at Peak Load",
+                        "transactions": "Architecture Rebuild",
                         "latency": "Latency"
                     }
                 },
@@ -211,9 +210,9 @@
                         "Automated PII masking and access controls"
                     ],
                     "outcomes": {
-                        "insights": "Faster Insights",
-                        "migration": "Cloud Migration",
-                        "gdpr": "GDPR Compliant"
+                        "insights": "Time-to-Insight",
+                        "migration": "Data Mesh Migration",
+                        "gdpr": "Compliance Breaches"
                     }
                 },
                 "pwc": {
@@ -225,8 +224,8 @@
                         "Co-developed cloud-based Enterprise Data Lake and domain-driven microservices"
                     ],
                     "outcomes": {
-                        "savings": "Annual Savings",
-                        "traffic": "Traffic Boost",
+                        "savings": "Healthcare Platform Delivery",
+                        "traffic": "Mobile Engagement Channel",
                         "audit": "Audit Findings"
                     }
                 }
@@ -322,7 +321,7 @@
         }
     },
     "footer": {
-        "tagline": "Principal Architect • Digital Transformation • Acting Fractional CTO",
+        "tagline": "Enterprise & AI Architect • EU AI Act Readiness • Fractional CTO",
         "explore": "Explore",
         "expertise": "Expertise",
         "contact": "Get in Touch",
@@ -442,172 +441,6 @@
             ]
         }
     },
-    "homeHealthcare": {
-        "hero": {
-            "title": "Stuck in <0>HIPAA Compliance Hell</0>\nDuring Cloud Migration?",
-            "subtitle": "I've successfully migrated <0>12 healthcare systems</0> to AWS without a single <1>HIPAA violation</1>, <2>data breach</2>, or <3>downtime incident</3>.",
-            "trustedBy": "Trusted by Fortune 500 Healthcare & Pharma",
-            "cta": {
-                "primary": "See How I Did It",
-                "secondary": "Calculate Your Savings"
-            },
-            "stats": {
-                "migrations": {
-                    "value": "12",
-                    "label": "Healthcare Migrations"
-                },
-                "compliance": {
-                    "value": "100%",
-                    "label": "HIPAA Compliant"
-                },
-                "savings": {
-                    "value": "€2M+",
-                    "label": "Cost Savings"
-                },
-                "breaches": {
-                    "value": "Zero",
-                    "label": "Breaches"
-                }
-            }
-        },
-        "problems": {
-            "title": "Sound Familiar?",
-            "subtitle": "These are the top 3 challenges healthcare organizations face during cloud migration.",
-            "item1": {
-                "title": "We Keep Failing HIPAA Audits",
-                "desc": "Your on-premise system can't meet modern compliance requirements.",
-                "impact": "Every audit is a gamble that could cost you €50K+ in findings."
-            },
-            "item2": {
-                "title": "Cloud Migration Seems Too Risky",
-                "desc": "You've tried twice. Both times stopped due to data breach concerns.",
-                "impact": "Your board won't approve another failed attempt."
-            },
-            "item3": {
-                "title": "We're Running Out of Time",
-                "desc": "New HIPAA requirements in 6 months. Legacy vendor EOL in 12 months.",
-                "impact": "If you don't migrate soon, you'll face penalties AND downtime."
-            },
-            "solution": "I've heard this 100 times. Here's how we solve it."
-        },
-        "process": {
-            "title": "The Zero-Downtime, 100% Compliant Migration Process",
-            "subtitle": "A proven 4-phase approach that's worked 12 times without a single incident",
-            "phase1": {
-                "title": "Compliance Audit",
-                "duration": "2 weeks",
-                "activities": [
-                    "Review all HIPAA/FHIR controls against current system",
-                    "Identify gaps and migration blockers",
-                    "Create compliant AWS architecture blueprint",
-                    "Define security controls (IAM, encryption, logging)"
-                ],
-                "deliverable": "20-page compliance report (Board-ready)",
-                "outcome": "Clear roadmap with zero compliance risk"
-            },
-            "phase2": {
-                "title": "AWS Architecture Design",
-                "duration": "2 weeks",
-                "activities": [
-                    "Design production infrastructure on AWS",
-                    "Configure security controls and monitoring",
-                    "Plan data migration strategy (minimize risk)",
-                    "Create rollback procedures for every step"
-                ],
-                "deliverable": "Technical migration plan + disaster recovery",
-                "outcome": "Board approval secured, risks mitigated"
-            },
-            "phase3": {
-                "title": "Migration Execution",
-                "duration": "8-12 weeks",
-                "activities": [
-                    "Week 1-4: Migrate non-critical systems (test process)",
-                    "Week 5-8: Core systems (validated & monitored)",
-                    "Week 9-12: Patient data (weekends only, 24/7 watch)",
-                    "Continuous validation at every step"
-                ],
-                "deliverable": "Fully migrated, operational system",
-                "outcome": "Zero downtime, all systems running on AWS"
-            },
-            "phase4": {
-                "title": "Optimization & Validation",
-                "duration": "4 weeks",
-                "activities": [
-                    "Cost optimization (target 30% savings)",
-                    "Performance tuning (3x faster queries)",
-                    "Complete compliance documentation",
-                    "Train your team on AWS operations"
-                ],
-                "deliverable": "Optimized, documented, compliant system",
-                "outcome": "30% cost reduction + audit-ready documentation"
-            },
-            "labels": {
-                "deliverable": "DELIVERABLE",
-                "outcome": "OUTCOME",
-                "activities": "Activities:"
-            },
-            "stats": {
-                "migrations": "Successful Migrations",
-                "breaches": "Data Breaches",
-                "auditRate": "Audit Pass Rate",
-                "savings": "Client Savings"
-            }
-        },
-        "roi": {
-            "title": "Calculate Your Potential Savings",
-            "subtitle": "See what you could save with a properly executed healthcare cloud migration"
-        },
-        "proof": {
-            "title": "Real Results from Real Projects",
-            "subtitle": "Don't just take my word for it—here's the proof",
-            "cta": "View Full Case Study",
-            "seeAll": "See All Projects"
-        },
-        "faq": {
-            "title": "Common Questions",
-            "subtitle": "Addressing your concerns about healthcare cloud migration",
-            "q1": {
-                "q": "What if we have a data breach during migration?",
-                "a": "Zero-downtime strategy means your production system never goes offline. Data is encrypted in transit (TLS 1.3) and at rest (AES-256). We migrate in phases with rollback procedures at every step. In 12 migrations, we've never had a breach. Every migration includes a comprehensive security audit before, during, and after."
-            },
-            "q2": {
-                "q": "How long will we be down?",
-                "a": "Zero downtime. Migrations happen during off-hours with parallel systems running. Users never see disruption. We use blue-green deployment strategies and can roll back instantly if needed. Your team continues working normally throughout the entire process."
-            },
-            "q3": {
-                "q": "What if HIPAA requirements change mid-migration?",
-                "a": "Architecture is designed for compliance flexibility. We monitor regulatory changes continuously and adapt the plan proactively. Your system will meet current AND future requirements. We include buffer time and contingency plans for regulatory updates."
-            },
-            "q4": {
-                "q": "We don't have budget for this.",
-                "a": "Average ROI is 285% in year 1. Most clients save enough to pay for the project within 8 months through infrastructure optimization alone. Use the ROI calculator above to see YOUR potential savings. Many organizations find the migration pays for itself through avoided audit penalties and reduced operational costs."
-            },
-            "q5": {
-                "q": "How do I know you won't leave us stranded?",
-                "a": "Every project includes 90 days post-migration support and complete documentation. I train your team to operate the new system independently. You get runbooks, architecture diagrams, and access to me for questions. Several clients from 3+ years ago still reach out occasionally—I'm always available."
-            }
-        },
-        "finalCta": {
-            "title": "Let's Discuss Your Migration",
-            "subtitle": "Choose the path that works best for you",
-            "urgent": {
-                "title": "I Need This Now",
-                "desc": "For urgent migrations with tight deadlines",
-                "cta": "Book 30-Min Strategy Call",
-                "note": "Available this week: Tue 2pm, Thu 10am, Fri 3pm CET"
-            },
-            "research": {
-                "title": "Still Researching",
-                "desc": "Get free resources to evaluate your options",
-                "cta": "Get HIPAA Compliance Checklist",
-                "note": "Free PDF + enters email nurture sequence"
-            },
-            "riskReversal": {
-                "free": "First 30 minutes are free, no obligation",
-                "referral": "If I can't help, I'll refer you to someone who can"
-            }
-        }
-    },
     "roiCalculator": {
         "tabs": {
             "cloud": "Cloud Migration",
@@ -713,8 +546,8 @@
                     "desc": "Empathetic, collaborative approach that empowers teams"
                 },
                 "handsOn": {
-                    "title": "Hands-On",
-                    "desc": "From strategy to code to deployment—I execute, not just advise"
+                    "title": "Close to Delivery",
+                    "desc": "From strategy to architecture to working prototypes, built by directing AI coding agents"
                 }
             }
         },
@@ -735,7 +568,7 @@
         "ctaTitle": "Ready to Validate Your Architecture Decisions?",
         "ctaSubtitle": "Book a free discovery call to discuss your specific challenge and how I can help.",
         "bookDiscoveryCall": "Book Architecture Review",
-        "differentiator": "Global delivery experience (NA • EU • Asia • South America) — not just assessment, but hands-on execution support."
+        "differentiator": "Global delivery experience (NA • EU • Asia • South America) — advice grounded in delivery, not slideware."
     },
     "services": {
         "blueprintSprint": {
@@ -754,7 +587,7 @@
         },
         "fractionalLead": {
             "title": "Fractional Transformation Lead",
-            "subtitle": "Ongoing architecture governance and delivery leadership. Program steering, stakeholder alignment, and hands-on execution support.",
+            "subtitle": "Ongoing architecture governance and delivery leadership. Program steering, stakeholder alignment, and delivery oversight.",
             "timeline": "1–2 days/week",
             "price": "€4,000/month",
             "for": "Companies needing ongoing architecture leadership without full-time commitment",
@@ -792,7 +625,7 @@
             "better": "Recommended",
             "best": "Ongoing Support"
         },
-        "mostPopular": "MOST POPULAR",
+        "mostPopular": "Most popular",
         "guarantee": {
             "title": "Money-Back Guarantee",
             "description": "If my review doesn't identify at least one significant improvement opportunity, I refund the full fee.",
@@ -818,8 +651,7 @@
                 "Recommended next steps"
             ],
             "notIncluded": "Implementation is not included (available separately)."
-        },
-        "mostPopular": "Most popular"
+        }
     },
     "architectureEngine": {
         "title": "AI-Assisted Architecture Assistant",
@@ -1154,7 +986,7 @@
     },
     "independentAdvisory": {
         "title": "Why independent validation",
-        "subtitle": "Direct senior involvement, vendor-neutral guidance, and hands-on execution support — without heavy overhead.",
+        "subtitle": "Direct senior involvement and vendor-neutral guidance, without heavy overhead.",
         "cards": {
             "direct": {
                 "title": "Direct senior involvement",
@@ -1169,7 +1001,7 @@
                 "text": "Tool-agnostic guidance aligned to your outcomes, not vendor revenue."
             },
             "executionReady": {
-                "title": "Hands-on execution support",
+                "title": "Close to delivery",
                 "text": "Not just assessment — I stay involved through delivery when needed."
             },
             "globalDelivery": {
@@ -1275,10 +1107,22 @@
         "impact": {
             "title": "Impact highlights",
             "metrics": {
-                "cost": { "value": "$1M+", "label": "Cost Saved" },
-                "speed": { "value": "30%", "label": "Faster Deployments" },
-                "transactions": { "value": "5M+", "label": "Daily Transactions" },
-                "sla": { "value": "99.99%", "label": "SLA Uptime" }
+                "cost": {
+                    "value": "Enterprise & AI",
+                    "label": "Architecture Advisory"
+                },
+                "speed": {
+                    "value": "90-Day",
+                    "label": "Delivery Plans"
+                },
+                "transactions": {
+                    "value": "High-Scale",
+                    "label": "& Regulated Systems"
+                },
+                "sla": {
+                    "value": "EU AI Act",
+                    "label": "& ISO 42001 Readiness"
+                }
             },
             "cards": {
                 "delivery": {
@@ -1295,25 +1139,34 @@
             }
         },
         "hero": {
-            "title": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
-            "subtitle": "I align strategy, architecture, and delivery so teams scale without compliance, reliability, or cost surprises.",
+            "title": "Ship AI into the EU without guessing what the AI Act requires.",
+            "subtitle": "I'm an enterprise architect who assesses AI systems against the EU AI Act and your existing CRM/ERP landscape. You get a fixed-scope assessment, a classification of every AI feature, and a 90-day plan your engineers can execute.",
             "proof": {
-                "savings": { "value": "$1M+", "label": "saved" },
-                "speed": { "value": "30%", "label": "faster deploys" },
-                "sla": { "value": "99.99%", "label": "SLA uptime" }
+                "savings": {
+                    "value": "Enterprise & AI",
+                    "label": "architecture advisory"
+                },
+                "speed": {
+                    "value": "90-day",
+                    "label": "delivery plans"
+                },
+                "sla": {
+                    "value": "EU AI Act",
+                    "label": "readiness"
+                }
             },
             "cta": {
-                "primary": "Book Discovery Call",
-                "secondary": "View Case Studies"
+                "primary": "Book a 30-minute scoping call",
+                "secondary": "See the EU AI Act assessment"
             },
             "whatYouGet": {
                 "title": "What you get",
                 "items": [
-                    "Executive decision memo: build vs buy vs modernize",
-                    "Architecture blueprint + 90-day delivery roadmap",
-                    "Stakeholder-ready narrative and hiring plan"
+                    "EU AI Act Readiness Assessment: your role, a risk classification of every AI feature, and a gap register with owners and dates",
+                    "AI Integration Readiness Assessment: data, access, APIs, and compliance checks before AI agents touch your CRM or ERP",
+                    "A 90-day plan your engineers can execute, delivered remotely in English in two weeks"
                 ],
-                "trustLine": "Delivery experience: tetrapy, PwC, BRITA, Boehringer Ingelheim, Delivery Hero"
+                "trustLine": "Delivery experience: tetrapy, PwC, BRITA, Boehringer Ingelheim, Delivery Hero, SINE Foundation (PACT)"
             }
         },
         "problem": {
@@ -1399,7 +1252,7 @@
             "hiringPrimary": "View Resume / Hiring Snapshot",
             "hiringSecondary": "Featured Case Studies",
             "hiringTitle": "Hiring Snapshot",
-            "hiringSubtitle": "Principal architect for regulated healthtech and scaling platforms (acting fractional CTO, hands-on)",
+            "hiringSubtitle": "Principal architect for regulated healthtech and scaling platforms (fractional CTO)",
             "hiringYears": "Years experience",
             "hiringIndustries": "Industries",
             "hiringStrengths": "Strengths",
@@ -1415,31 +1268,31 @@
             "toolkitSubtitle": "Free tools and resources to help you make better architecture decisions",
             "hiringStats": {
                 "dailyTransactions": {
-                    "label": "Daily Transactions",
-                    "desc": "High-scale platforms"
+                    "label": "Platforms & Systems",
+                    "desc": "Built for peak load and reliability"
                 },
                 "costSaved": {
-                    "label": "Cost Saved",
-                    "desc": "Documented savings"
+                    "label": "Architecture Advisory",
+                    "desc": "Cost- and risk-focused delivery"
                 },
                 "slaUptime": {
-                    "label": "SLA Uptime",
-                    "desc": "Patient-critical delivery"
+                    "label": "& ISO 42001",
+                    "desc": "Patient-critical & regulated delivery"
                 }
             }
         }
     },
     "hiringPage": {
         "hero": {
-            "title": "Principal Architect | Digital Transformation | Acting Fractional CTO (Hands-on)",
-            "subtitle": "Hands-on leadership for regulated healthtech and scaling platforms. Telemedicine, e-prescription, and compliance-first delivery.",
+            "title": "Enterprise & AI Architect | EU AI Act Readiness | Fractional CTO",
+            "subtitle": "Architecture leadership for regulated healthtech and scaling platforms. Telemedicine, e-prescription, and compliance-first delivery.",
             "note": "Currently available for fractional and advisory engagements. Full-time considered for the right mission."
         },
         "roles": {
             "title": "Roles I'm Open To",
             "items": [
                 {
-                    "title": "Acting Fractional CTO (Hands-on)",
+                    "title": "Fractional CTO",
                     "desc": "Leadership to align product, architecture, and delivery in regulated environments."
                 },
                 {
@@ -1464,12 +1317,12 @@
                     "desc": "Banking, telecom, e‑commerce, healthcare, and AdTech."
                 },
                 {
-                    "title": "$1M+ Savings + 30% Faster Deployments",
-                    "desc": "Cloud-first transformations on AWS/Azure with measurable business impact."
+                    "title": "Cloud-First Transformations",
+                    "desc": "AWS/Azure modernizations with measurable delivery outcomes."
                 },
                 {
-                    "title": "99.99% SLA Delivery",
-                    "desc": "Scaled platforms to 5M+ daily transactions with reliability and observability."
+                    "title": "High-Scale Reliability",
+                    "desc": "Re-architected platforms for peak-load stability and observability."
                 },
                 {
                     "title": "Compliance + AI Engineering",
@@ -1554,7 +1407,7 @@
             "button": "Download free guide"
         },
         "toolkit": {
-            "socialProof": "Used by CTOs across EU mid-market."
+            "socialProof": "Vendor-neutral. Built from 15+ years of enterprise delivery."
         },
         "impact": {
             "representative": "Representative outcomes — anonymized"
@@ -1579,7 +1432,7 @@
             "emailPlaceholder": "your.email@company.com",
             "submitButton": "Download Checklist (PDF)",
             "privacy": "One-time send. No newsletter. Unsubscribe option included.",
-            "trustNote": "Used by CTOs at mid-market companies across EU. Independent consultant • No vendor partnerships."
+            "trustNote": "Independent consultant • No vendor partnerships."
         },
         "preview": {
             "title": "Preview",
@@ -1639,7 +1492,7 @@
             "learnMore": "Learn about architecture reviews"
         },
         "trust": {
-            "usedBy": "Used by CTOs at mid-market companies across EU.",
+            "usedBy": "Built from 15+ years of enterprise delivery.",
             "independent": "Independent consultant",
             "noVendor": "No vendor partnerships",
             "global": "Global delivery experience",

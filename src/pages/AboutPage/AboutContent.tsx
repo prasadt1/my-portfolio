@@ -52,9 +52,6 @@ export function AboutContent({ experiences, certifications, techCategories }: Ab
               <p className="mb-6">
                 {t('about.proof.p2')}
               </p>
-              <div className="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 italic text-slate-700 dark:text-slate-300 rounded-r-lg">
-                "{t('about.proof.quote')}"
-              </div>
             </div>
           </section>
 
