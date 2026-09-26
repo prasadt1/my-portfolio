@@ -2638,19 +2638,19 @@ export const projects: CaseStudy[] = [
             }
         },
         challenge: {
-            situation: 'Logistics emissions are a major share of product Scope 3 footprints, but shippers and logistics providers had no shared data standard connecting the two. As named project contact for iLEAP (a joint initiative of Smart Freight Centre, SINE Foundation, and WBCSD PACT), I led the technical work to close that gap.',
+            situation: 'Logistics emissions are a major share of product Scope 3 footprints, but shippers and logistics providers had no shared data standard connecting the two. I was the initial named project contact for iLEAP (a joint initiative of Smart Freight Centre, SINE Foundation, and WBCSD PACT), helping kick off and shape the technical approach before moving on to other priorities; the initiative continued and grew under other contributors after I left.',
             pain_points: [],
             urgency: 'Need for a shared data standard across shippers and carriers',
-            why_prasad: 'Standards development and multi-stakeholder facilitation'
+            why_prasad: 'Standards development and multi-stakeholder facilitation to get the initiative off the ground'
         },
         approach: {
             methodology: 'Data Model Extension',
             phases: [],
-            unique_differentiator: 'Integrating the logistics data standard (GLEC Framework) with the product carbon footprint standard (PACT)'
+            unique_differentiator: 'Helped shape the approach to integrate the logistics data standard (GLEC Framework) with the product carbon footprint standard (PACT)'
         },
         outcomes: {
-            hero_metric: { value: '90+', label: 'Shippers Connected', icon: '🚛' },
-            secondary_metrics: [],
+            hero_metric: { value: 'Founding', label: 'Project Contact for iLEAP', icon: '🚛' },
+            secondary_metrics: [{ value: '90+', label: 'Shippers in the Network Today', icon: '🌍' }],
             compliance: [],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
         },
@@ -2673,138 +2673,133 @@ export const projects: CaseStudy[] = [
             iconBg: 'bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400'
         },
         domains: ['Healthcare', 'Consulting'],
-        projectType: 'migration',
-        seoTags: ['Healthcare Modernization', 'Mobile App'],
+        projectType: 'product',
+        seoTags: ['Healthcare', 'Pharmacy', 'Mobile App', 'Program Growth'],
         header: {
-            eyebrow: 'HIPAA COMPLIANCE & MODERNIZATION',
-            title: 'Healthcare System Modernization & Mobile App',
+            eyebrow: 'PHARMACY DIGITAL TRANSFORMATION',
+            title: 'Pharmacy Digital Transformation: Kaiser Permanente Mobile App',
             client: {
-                type: 'PwC Client',
+                type: 'Kaiser Permanente (via PwC)',
                 size: 'Enterprise',
                 industry: 'Healthcare'
             }
         },
         challenge: {
             contextChips: [
-                { label: { en: 'Industry', de: 'Branche' }, value: { en: 'Healthcare', de: 'Healthcare' } },
-                { label: { en: 'Savings', de: 'Einsparung' }, value: { en: 'Reduced audit costs', de: 'Reduzierte Audit-Kosten' } },
-                { label: { en: 'Traffic', de: 'Traffic' }, value: { en: 'Higher mobile traffic', de: 'Höherer Mobile-Traffic' } },
-                { label: { en: 'Compliance', de: 'Compliance' }, value: { en: 'HIPAA', de: 'HIPAA' } },
-                { label: { en: 'Platform', de: 'Plattform' }, value: { en: 'Cloud + Mobile', de: 'Cloud + Mobile' } }
+                { label: { en: 'Industry', de: 'Branche' }, value: { en: 'Healthcare', de: 'Gesundheitswesen' } },
+                { label: { en: 'Scope', de: 'Scope' }, value: { en: 'Pharmacy ordering, refills & curbside pickup', de: 'Rezeptbestellung, Refills & Curbside-Abholung' } },
+                { label: { en: 'Program', de: 'Programm' }, value: { en: '$1.2M+ digital transformation', de: '$1,2M+ Digital-Transformation' } },
+                { label: { en: 'Team', de: 'Team' }, value: { en: '3 delivery teams', de: '3 Delivery-Teams' } },
+                { label: { en: 'Trigger', de: 'Auslöser' }, value: { en: 'COVID-19 curbside pickup', de: 'COVID-19 Curbside-Abholung' } }
             ],
             standard: {
                 situation: {
-                    en: 'A 15-year-old healthcare and e-commerce platform was facing compliance audit failures, performance degradation, and escalating maintenance costs. The system needed modernization to cloud infrastructure while adding mobile capabilities to meet user demand.',
-                    de: 'Eine 15 Jahre alte Healthcare- und E-Commerce-Plattform stand vor Compliance-Audit-Fehlschlägen, Performance-Degradation und steigenden Wartungskosten. Das System benötigte eine Modernisierung auf Cloud-Infrastruktur bei gleichzeitiger Ergänzung mobiler Funktionen zur Erfüllung der Nutzeranforderungen.'
+                    en: "As a PwC delivery partner on Kaiser Permanente's member mobile app, I led the pharmacy module used by millions of members: prescription ordering, refill reminders, and mail-order or curbside pickup. I ran the 10-12 person team of developers, QA, and DevOps as technical product owner and delivery manager, including performance reviews.",
+                    de: 'Als PwC-Delivery-Partner für die Kaiser-Permanente-Mitglieder-App leitete ich das von Millionen Mitgliedern genutzte Pharmacy-Modul: Rezeptbestellung, Refill-Erinnerungen sowie Postversand oder Curbside-Abholung. Ich führte das 10- bis 12-köpfige Team aus Entwicklern, QA und DevOps als Technical Product Owner und Delivery Manager, inklusive Performance Reviews.'
                 },
                 keyTensions: {
                     en: [
-                        'Compliance audit deadlines vs migration complexity',
-                        'Legacy vendor EOL vs business continuity',
-                        'Mobile enablement vs security requirements',
-                        'Cost reduction targets vs modernization investment',
-                        'User experience improvements vs regulatory constraints'
+                        "Growing feature scope vs. one team's delivery capacity",
+                        'New program approval vs. realistic ramp-up time for two more teams',
+                        'COVID-driven urgency vs. the planned release roadmap'
                     ],
                     de: [
-                        'Compliance-Audit-Fristen vs Migrationskomplexität',
-                        'Legacy-Vendor-EOL vs Business-Kontinuität',
-                        'Mobile Enablement vs Sicherheitsanforderungen',
-                        'Kostenreduktionsziele vs Modernisierungsinvestition',
-                        'User-Experience-Verbesserungen vs regulatorische Constraints'
+                        'Wachsender Feature-Scope vs. Kapazität eines einzelnen Teams',
+                        'Neue Programmfreigabe vs. realistische Einarbeitungszeit für zwei weitere Teams',
+                        'COVID-bedingte Dringlichkeit vs. geplante Release-Roadmap'
                     ]
                 },
                 urgency: {
-                    en: 'Board mandate to achieve compliance within 6 months.',
-                    de: 'Vorstandsmandat: Compliance innerhalb von 6 Monaten erreichen.'
+                    en: 'Kaiser Permanente wanted to significantly expand pharmacy digital capabilities, and COVID-19 lockdowns created sudden, urgent demand for curbside pickup.',
+                    de: 'Kaiser Permanente wollte die Pharmacy-Digitalfunktionen deutlich ausbauen, und die COVID-19-Lockdowns erzeugten plötzliche, dringende Nachfrage nach Curbside-Abholung.'
                 }
             },
             executive: {
                 situation: {
-                    en: 'Recurring monthly audit findings were threatening operational continuity. The board mandate was clear: achieve HIPAA compliance and reduce operational costs within 6 months, or face escalating penalties and potential service disruption.',
-                    de: 'Wiederkehrende monatliche Audit-Feststellungen gefährdeten die operative Kontinuität. Das Vorstandsmandat war eindeutig: HIPAA-Compliance erreichen und operative Kosten innerhalb von 6 Monaten senken, oder mit eskalierenden Strafen und potenziellen Service-Unterbrechungen rechnen.'
+                    en: 'Kaiser Permanente decided to invest further in pharmacy digital capabilities. I ran workshops with product owners, product managers, the Director and VP of IT, and program management to shape the scope, then built the business case, budget, and resource plan with my PwC engagement director to take on the expanded work.',
+                    de: 'Kaiser Permanente entschied sich, weiter in die Pharmacy-Digitalfunktionen zu investieren. Ich führte Workshops mit Product Ownern, Product Managern, dem Director und VP IT sowie dem Program Management durch, um den Scope zu formen, und erstellte anschließend mit meinem PwC Engagement Director den Business Case, das Budget und die Ressourcenplanung für die erweiterte Arbeit.'
                 },
                 keyTensions: {
                     en: [
-                        'Audit cost burden vs transformation budget',
-                        'Compliance deadline vs realistic migration timeline',
-                        'Risk of continued operation vs migration risk',
-                        'Short-term fixes vs long-term platform strategy'
+                        'Business case credibility vs. speed of program approval',
+                        "PwC business development vs. Kaiser's budget and governance process",
+                        'Program growth vs. maintaining delivery quality on the existing module'
                     ],
                     de: [
-                        'Audit-Kostenbelastung vs Transformationsbudget',
-                        'Compliance-Deadline vs realistische Migrations-Timeline',
-                        'Risiko des Weiterbetriebs vs Migrationsrisiko',
-                        'Kurzfristige Fixes vs langfristige Plattformstrategie'
+                        'Glaubwürdigkeit des Business Case vs. Geschwindigkeit der Programmfreigabe',
+                        'PwC Business Development vs. Kaisers Budget- und Governance-Prozess',
+                        'Programmwachstum vs. Erhalt der Delivery-Qualität im bestehenden Modul'
                     ]
                 },
                 urgency: {
-                    en: 'Board deadline with a substantial annual audit burden at stake.',
-                    de: 'Vorstandsfrist mit einer erheblichen jährlichen Audit-Belastung auf dem Spiel.'
+                    en: 'Kaiser Permanente approved a $1.2M+ pharmacy digital transformation program that I helped initiate and scope.',
+                    de: 'Kaiser Permanente genehmigte ein $1,2M+ Pharmacy-Digital-Transformationsprogramm, das ich mit initiiert und gescoped habe.'
                 }
             },
             technical: {
                 situation: {
-                    en: 'The technical challenge involved migrating a legacy Java 8/Oracle system to AWS while maintaining HIPAA compliance, implementing zero-downtime deployment, and building a new pharmacy mobile app that would become the primary user channel.',
-                    de: 'Die technische Herausforderung bestand in der Migration eines Legacy Java 8/Oracle-Systems zu AWS unter Beibehaltung der HIPAA-Compliance, Implementierung von Zero-Downtime-Deployment und Aufbau einer neuen Apotheken-Mobile-App, die zum primären Nutzerkanal werden sollte.'
+                    en: 'The technical challenge was scaling the pharmacy module across two additional teams without fragmenting architecture decisions, while an urgent, unplanned COVID-19 curbside-pickup feature had to be delivered on emergency timelines without disrupting the existing release plan.',
+                    de: 'Die technische Herausforderung bestand darin, das Pharmacy-Modul über zwei zusätzliche Teams hinweg zu skalieren, ohne Architekturentscheidungen zu fragmentieren, während gleichzeitig ein dringendes, ungeplantes COVID-19-Curbside-Pickup-Feature unter Notfall-Zeitdruck geliefert werden musste, ohne den bestehenden Release-Plan zu stören.'
                 },
                 keyTensions: {
                     en: [
-                        'Blue-green deployment vs data consistency',
-                        'HIPAA controls vs cloud-native patterns',
-                        'Mobile app performance vs API legacy constraints',
-                        'Automated compliance monitoring vs manual audit processes',
-                        'Multi-region availability vs cost optimization'
+                        'Standing up two new teams without duplicating architecture decisions',
+                        'Training other architects on the pharmacy domain quickly',
+                        'Delivering curbside pickup under lockdown urgency',
+                        'Coordinating regression testing across a growing number of workstreams'
                     ],
                     de: [
-                        'Blue-Green-Deployment vs Datenkonsistenz',
-                        'HIPAA-Controls vs Cloud-Native-Patterns',
-                        'Mobile-App-Performance vs API-Legacy-Constraints',
-                        'Automatisiertes Compliance-Monitoring vs manuelle Audit-Prozesse',
-                        'Multi-Region-Verfügbarkeit vs Kostenoptimierung'
+                        'Zwei neue Teams aufbauen, ohne Architekturentscheidungen zu duplizieren',
+                        'Andere Architekten schnell in die Pharmacy-Domäne einarbeiten',
+                        'Curbside Pickup unter Lockdown-Dringlichkeit liefern',
+                        'Regressionstests über eine wachsende Zahl von Workstreams koordinieren'
                     ]
                 },
                 urgency: {
-                    en: 'Legacy vendor support ending within 12 months.',
-                    de: 'Legacy-Vendor-Support endet innerhalb von 12 Monaten.'
+                    en: 'Curbside pickup had to ship fast once US lockdowns began, since it was one of the few ways patients could still reach their pharmacy in person.',
+                    de: 'Curbside Pickup musste schnell live gehen, sobald die US-Lockdowns begannen, da es eine der wenigen Möglichkeiten war, wie Patienten ihre Apotheke noch persönlich erreichen konnten.'
                 }
             },
-            why_prasad: { en: 'Full stack leadership', de: 'Full-Stack Leadership' }
+            why_prasad: { en: 'Owned the pharmacy module end-to-end, then initiated and scoped its growth into a 3-team program', de: 'Das Pharmacy-Modul end-to-end verantwortet, dann dessen Wachstum zu einem 3-Team-Programm initiiert und gescoped' }
         },
         approach: {
-            methodology: 'Incremental Modernization',
+            methodology: 'Technical Product Ownership + Program Scoping',
             phases: [],
-            unique_differentiator: 'Pharmacy module mobile app that meaningfully increased user traffic'
+            unique_differentiator: 'Initiated and scoped the program expansion myself, then stayed on as lead technical expert across all three teams, training other architects on the pharmacy domain'
         },
         outcomes: {
-            hero_metric: { value: 'Higher', label: 'Mobile Traffic', icon: '📈' },
-            secondary_metrics: [{ value: 'Lower', label: 'Audit & Compliance Costs', icon: '💰' }],
-            compliance: [{ standard: 'HIPAA', result: 'Compliant', details: '' }],
-            timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
+            hero_metric: { value: '$1.2M+', label: 'Program I Initiated & Scoped', icon: '💊' },
+            secondary_metrics: [
+                { value: '3', label: 'Delivery Teams (from 1)', icon: '👥' },
+                { value: 'COVID-Era', label: 'Curbside Pickup Delivered', icon: '🚑' }
+            ],
+            compliance: [{ standard: 'HIPAA', result: 'Compliant', details: 'Patient prescription and health data' }],
+            timeline: { planned: 'Phased rollout', actual: 'Delivered through regression testing before handover', variance: 'On track' }
         },
         technical: {
-            before: { stack: ['Legacy'], infrastructure: '', issues: [] },
-            after: { stack: ['Angular', 'Spring Boot', 'iOS', 'Android'], infrastructure: 'Cloud', improvements: [] },
-            migration_strategy: 'Modernization'
+            before: { stack: ['Existing pharmacy ordering flow'], infrastructure: 'Single delivery team', issues: ['Team capacity capped against a growing feature backlog'] },
+            after: { stack: ['iOS', 'Android', 'Pharmacy ordering & fulfillment APIs'], infrastructure: '3 delivery teams', improvements: ['Refill reminders', 'Mail-order pharmacy', 'COVID-era curbside pickup'] },
+            migration_strategy: 'Workshop-driven scoping, a PwC business case, and phased team scale-up'
         },
         approachToday: {
             titleKey: 'projects.approachToday.title',
             bullets: [
-                'Clarify modernization strategy: strangler pattern vs. full rewrite, based on risk tolerance and compliance.',
-                'Map data flows and PHI boundaries for HIPAA/security controls and auditability.',
-                'Prioritize user journeys for mobile enablement to maximize adoption and reduce ops load.',
-                'Design API and integration layer to avoid duplicating business logic across channels.',
-                'Establish governance for release management, testing, and regulatory documentation.'
+                'Validate the business case with the actual budget holders (Director/VP of IT) before committing to team scale-up.',
+                'Bring new teams up to speed on domain knowledge deliberately, not just through documentation.',
+                "Build slack into the roadmap for regulatory or crisis-driven features that can't be predicted.",
+                'Keep one technical owner across a growing program so architecture decisions stay consistent.',
+                'Plan an explicit handover when you know a transition is coming.'
             ],
             bulletsDe: [
-                'Modernisierungsstrategie klären: Strangler Pattern vs. Full Rewrite je nach Risiko und Compliance.',
-                'Datenflüsse und PHI-Grenzen für Security-/Audit-Anforderungen sauber modellieren.',
-                'User Journeys für Mobile priorisieren, um Adoption zu erhöhen und Ops-Aufwand zu senken.',
-                'API- und Integrationsschicht so designen, dass Business-Logik nicht kanalweise dupliziert wird.',
-                'Governance für Release-Management, Testing und regulatorische Doku etablieren.'
+                'Den Business Case mit den tatsächlichen Budget-Verantwortlichen (Director/VP IT) validieren, bevor man sich auf Team-Skalierung festlegt.',
+                'Neue Teams gezielt auf Domänenwissen einarbeiten, nicht nur über Dokumentation.',
+                'Puffer für regulatorische oder krisenbedingte Features einplanen, die sich nicht vorhersehen lassen.',
+                'Einen technischen Owner über ein wachsendes Programm hinweg behalten, damit Architekturentscheidungen konsistent bleiben.',
+                'Eine klare Übergabe planen, wenn ein Wechsel absehbar ist.'
             ]
         },
         cta: {
-            primary: { text: 'Modernize Apps', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Go mobile.' },
+            primary: { text: 'Scale a Product Team', action: 'https://calendly.com/prasad-sgsits/30min', context: 'Grow a program without losing architectural coherence.' },
             secondary: { text: 'View Details', action: '#' }
         }
     },
