@@ -1,10 +1,7 @@
 import React from 'react';
 
 const logos = [
-    { src: "/assets/logos/PG.svg", alt: "P&G", className: "h-12 md:h-14" },
-    { src: "/assets/logos/Unilever.svg", alt: "Unilever", className: "h-8 md:h-10" },
     { src: "/assets/logos/Siemens-logo.svg", alt: "Siemens", className: "h-5 md:h-6" },
-    { src: "/assets/logos/Mercedes-Logo.svg", alt: "Mercedes", className: "h-12 md:h-14" },
     { src: "/assets/logos/Brita_(Unternehmen)_logo.svg", alt: "Brita", className: "h-6 md:h-8" },
     { src: "/assets/logos/Delivery-Hero-Logo-Red.png", alt: "Delivery Hero", className: "h-10 md:h-12" }, // Special handling for colored PNG
     { src: "/assets/logos/Comcast.svg", alt: "Comcast", className: "h-5 md:h-6" },
