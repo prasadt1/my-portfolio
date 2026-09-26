@@ -2440,13 +2440,13 @@ export const projects: CaseStudy[] = [
             eyebrow: 'EVENT-DRIVEN ARCHITECTURE',
             title: 'Future Pricing Platform (FPP) Transformation',
             client: {
-                type: 'Fortune 100 Telecom',
+                type: 'AT&T (via PwC)',
                 size: 'Enterprise',
                 industry: 'Telecom'
             }
         },
         challenge: {
-            situation: "The client's pricing engine ran on a patchwork of spreadsheets (Excel/VB), making pricing changes slow, error-prone, and hard to govern at telecom scale. As a PwC solution architect, I led the technical assessment of the existing engine and the target-state design.",
+            situation: "AT&T's pricing engine ran on a patchwork of spreadsheets (Excel/VB), making pricing changes slow, error-prone, and hard to govern at telecom scale. As a PwC solution architect, I led the technical assessment of the existing engine and the target-state design.",
             pain_points: [],
             urgency: 'Spreadsheet-based pricing could not keep pace with the business',
             why_prasad: 'Event-driven architecture expertise and hands-on PwC assessment experience'
@@ -2504,13 +2504,13 @@ export const projects: CaseStudy[] = [
             eyebrow: 'FROM 27 MINUTES TO SECONDS',
             title: 'Claims Processing Data Platform',
             client: {
-                type: 'Healthcare Claims Administrator',
+                type: 'AmeriHealth (via Innova Solutions)',
                 size: 'Enterprise',
                 industry: 'Insurance'
             }
         },
         challenge: {
-            situation: 'As a senior developer at a healthcare claims administrator (via Innova Solutions, 2013-2014), I owned a performance problem in reconciling claims data with partner insurers: large batch files (100MB+) were taking around 27 minutes to parse and process, well past what the reconciliation window allowed.',
+            situation: 'As a senior developer at AmeriHealth (via Innova Solutions, 2013-2014), I owned a performance problem in reconciling claims data with partner insurers: large batch files (100MB+) were taking around 27 minutes to parse and process, well past what the reconciliation window allowed.',
             pain_points: [],
             urgency: 'Reconciliation with partner insurers was bottlenecked by batch processing time',
             why_prasad: 'Hands-on data pipeline engineering (this was earlier in my career, before I moved into architecture)'
