@@ -442,10 +442,10 @@ export const projects: CaseStudy[] = [
             unique_differentiator: 'Created a decentralized, sovereignty-preserving network architecture rather than a central database'
         },
         outcomes: {
-            hero_metric: { value: '60%', label: 'Integration Time Reduction', icon: '⚡' },
+            hero_metric: { value: 'Faster', label: 'Vendor Integration', icon: '⚡' },
             secondary_metrics: [
-                { value: '25%', label: 'Adoption Increase', icon: '📈' },
-                { value: '90+', label: 'Fortune 100 Adopters', icon: '🏢' }
+                { value: 'Growing', label: 'Adoption', icon: '📈' },
+                { value: 'Fortune 100', label: 'Participants', icon: '🏢' }
             ],
             compliance: [],
             timeline: { planned: '18 months', actual: '18 months', variance: 'On Track' }
@@ -488,9 +488,9 @@ export const projects: CaseStudy[] = [
         },
         // Phase 4.5: Engagement Layer
         outcomeBadges: [
-            { label: { en: '60% faster integration', de: '60% schnellere Integration' }, type: 'speed' },
-            { label: { en: '90+ Fortune 100 adopters', de: '90+ Fortune-100-Adopter' }, type: 'compliance' },
-            { label: { en: '25% adoption increase', de: '25% Adoptionssteigerung' }, type: 'performance' }
+            { label: { en: 'Faster integration', de: 'Schnellere Integration' }, type: 'speed' },
+            { label: { en: 'Fortune 100 participants', de: 'Fortune-100-Teilnehmer' }, type: 'compliance' },
+            { label: { en: 'Growing adoption', de: 'Wachsende Adoption' }, type: 'performance' }
         ],
         beforeAfterDiagram: {
             before: {
@@ -528,8 +528,8 @@ export const projects: CaseStudy[] = [
                 }
             },
             deltaBadges: [
-                { label: { en: '60% faster integration', de: '60% schnellere Integration' }, type: 'speed' },
-                { label: { en: '90+ adopters', de: '90+ Adopter' }, type: 'compliance' }
+                { label: { en: 'Faster integration', de: 'Schnellere Integration' }, type: 'speed' },
+                { label: { en: 'Growing adopter base', de: 'Wachsende Adopter-Basis' }, type: 'compliance' }
             ]
         },
         pdfBrief: {
@@ -842,9 +842,9 @@ export const projects: CaseStudy[] = [
             unique_differentiator: 'Implemented a multi-tenant governance model allowing centralized core with local market flexibility'
         },
         outcomes: {
-            hero_metric: { value: '15+', label: 'Markets Supported', icon: '🌍' },
+            hero_metric: { value: '6', label: 'EMEA Markets Migrated', icon: '🌍' },
             secondary_metrics: [
-                { value: '30%', label: 'Faster Deployments', icon: '🚀' },
+                { value: 'Faster', label: 'Deployments', icon: '🚀' },
                 { value: 'Zero', label: 'Downtime Migration', icon: '✅' }
             ],
             compliance: [{ standard: 'GDPR', result: 'Compliant', details: 'Full EU compliance' }],
@@ -986,8 +986,8 @@ export const projects: CaseStudy[] = [
         // Phase 4.5: Engagement Layer
         outcomeBadges: [
             { label: { en: 'Zero downtime migration', de: 'Zero-Downtime-Migration' }, type: 'reliability' },
-            { label: { en: '30% faster deployments', de: '30% schnellere Deployments' }, type: 'speed' },
-            { label: { en: '15+ markets supported', de: '15+ Märkte unterstützt' }, type: 'performance' }
+            { label: { en: 'Faster deployments', de: 'Schnellere Deployments' }, type: 'speed' },
+            { label: { en: '6 EMEA markets migrated', de: '6 EMEA-Märkte migriert' }, type: 'performance' }
         ],
         beforeAfterDiagram: {
             before: {
@@ -1026,7 +1026,7 @@ export const projects: CaseStudy[] = [
             },
             deltaBadges: [
                 { label: { en: 'Zero downtime', de: 'Zero Downtime' }, type: 'reliability' },
-                { label: { en: '30% faster', de: '30% schneller' }, type: 'speed' }
+                { label: { en: 'Faster deployments', de: 'Schnellere Deployments' }, type: 'speed' }
             ]
         },
         pdfBrief: {
@@ -1077,8 +1077,8 @@ export const projects: CaseStudy[] = [
         visualType: 'performance',
         seoTags: ['AdTech', 'High Scale', 'Go', 'Kubernetes', 'Revenue Growth'],
         header: {
-            eyebrow: '$20M REVENUE UPLIFT',
-            title: 'Scaling Display Ads Platform to 5M+ Daily Transactions',
+            eyebrow: 'HIGH-SCALE PERFORMANCE ENGINEERING',
+            title: "Rebuilding a High-Scale Display Ads Platform for Peak-Hour Reliability",
             client: {
                 type: 'Global Food Delivery',
                 size: 'DAX Listed',
@@ -1088,15 +1088,15 @@ export const projects: CaseStudy[] = [
         challenge: {
             contextChips: [
                 { label: { en: 'Industry', de: 'Branche' }, value: { en: 'Food Delivery / AdTech', de: 'Food Delivery / AdTech' } },
-                { label: { en: 'Scale', de: 'Volumen' }, value: { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' } },
-                { label: { en: 'SLA', de: 'SLA' }, value: { en: '99.99% availability', de: '99,99% Verfügbarkeit' } },
+                { label: { en: 'Scale', de: 'Volumen' }, value: { en: 'High transaction volume', de: 'Hohes Transaktionsvolumen' } },
+                { label: { en: 'Reliability', de: 'Zuverlässigkeit' }, value: { en: 'High availability', de: 'Hohe Verfügbarkeit' } },
                 { label: { en: 'Latency', de: 'Latenz' }, value: { en: '<20ms target', de: '<20ms Ziel' } },
-                { label: { en: 'Impact', de: 'Impact' }, value: { en: '$20M revenue uplift', de: '$20M Umsatzsteigerung' } }
+                { label: { en: 'Impact', de: 'Impact' }, value: { en: 'Recovered lost ad impressions', de: 'Zurückgewonnene Ad-Impressions' } }
             ],
             standard: {
                 situation: {
-                    en: 'The existing ad server was crashing during peak lunch hours, with latency exceeding 200ms and causing lost impressions and revenue. The platform needed to scale to 5M+ daily transactions while maintaining sub-20ms response times and 99.99% availability.',
-                    de: 'Der bestehende Ad-Server stürzte zu Spitzenzeiten ab, mit Latenzen über 200ms und daraus resultierenden verlorenen Impressionen und Umsatzeinbußen. Die Plattform musste auf 5M+ tägliche Transaktionen skaliert werden bei gleichzeitiger Einhaltung von <20ms Antwortzeiten und 99,99% Verfügbarkeit.'
+                    en: 'The existing ad server was crashing during peak lunch hours, with latency exceeding 200ms and causing lost impressions and revenue. The platform needed to scale reliably while maintaining sub-20ms response times.',
+                    de: 'Der bestehende Ad-Server stürzte zu Spitzenzeiten ab, mit Latenzen über 200ms und daraus resultierenden verlorenen Impressionen und Umsatzeinbußen. Die Plattform musste zuverlässig skalieren und dabei <20ms Antwortzeiten einhalten.'
                 },
                 keyTensions: {
                     en: [
@@ -1121,8 +1121,8 @@ export const projects: CaseStudy[] = [
             },
             executive: {
                 situation: {
-                    en: 'Revenue from display ads was being lost due to platform instability during peak hours. The business case was clear: every millisecond of latency and every crash directly impacted impression yield and advertiser confidence. A 20% revenue increase was projected if performance targets were met.',
-                    de: 'Umsätze aus Display-Ads gingen durch Plattforminstabilität zu Spitzenzeiten verloren. Der Business Case war eindeutig: Jede Millisekunde Latenz und jeder Absturz wirkte sich direkt auf Impression-Yield und Advertiser-Vertrauen aus. Bei Erreichen der Performance-Ziele wurde eine 20%ige Umsatzsteigerung prognostiziert.'
+                    en: 'Revenue from display ads was being lost due to platform instability during peak hours. The business case was clear: every millisecond of latency and every crash directly impacted impression yield and advertiser confidence. A meaningful revenue recovery was projected if performance targets were met.',
+                    de: 'Umsätze aus Display-Ads gingen durch Plattforminstabilität zu Spitzenzeiten verloren. Der Business Case war eindeutig: Jede Millisekunde Latenz und jeder Absturz wirkte sich direkt auf Impression-Yield und Advertiser-Vertrauen aus. Bei Erreichen der Performance-Ziele wurde eine spürbare Umsatzerholung prognostiziert.'
                 },
                 keyTensions: {
                     en: [
@@ -1145,8 +1145,8 @@ export const projects: CaseStudy[] = [
             },
             technical: {
                 situation: {
-                    en: 'The core technical challenge was re-architecting a high-throughput ad serving system from PHP/MySQL to Go/Redis while implementing exact-once processing for billing accuracy. The system needed to handle 5M+ daily transactions with <20ms P99 latency and support real-time bidding workflows.',
-                    de: 'Die zentrale technische Herausforderung war die Re-Architektur eines Hochdurchsatz-Ad-Serving-Systems von PHP/MySQL zu Go/Redis bei gleichzeitiger Implementierung von Exactly-Once-Processing für Abrechnungsgenauigkeit. Das System musste 5M+ tägliche Transaktionen mit <20ms P99-Latenz bewältigen und Real-Time-Bidding-Workflows unterstützen.'
+                    en: 'The core technical challenge was re-architecting a high-throughput ad serving system from PHP/MySQL to Go/Redis while implementing exact-once processing for billing accuracy. The system needed to handle high transaction volume with <20ms P99 latency and support real-time bidding workflows.',
+                    de: 'Die zentrale technische Herausforderung war die Re-Architektur eines Hochdurchsatz-Ad-Serving-Systems von PHP/MySQL zu Go/Redis bei gleichzeitiger Implementierung von Exactly-Once-Processing für Abrechnungsgenauigkeit. Das System musste ein hohes Transaktionsvolumen mit <20ms P99-Latenz bewältigen und Real-Time-Bidding-Workflows unterstützen.'
                 },
                 keyTensions: {
                     en: [
@@ -1176,12 +1176,12 @@ export const projects: CaseStudy[] = [
             whyItMattered: {
                 en: [
                     'Advertising became a strategic revenue stream requiring enterprise-grade reliability and scale.',
-                    'The platform needed to handle millions of daily transactions with strict latency requirements.',
+                    'The platform needed to handle high transaction volume with strict latency requirements.',
                     'Leadership required a measurable uplift in monetization while protecting customer experience.'
                 ],
                 de: [
                     'Werbung wurde zu einem strategischen Revenue Stream mit Bedarf an Enterprise-Scale Reliability.',
-                    'Die Plattform musste Millionen täglicher Transaktionen mit strikten Latenzanforderungen verarbeiten.',
+                    'Die Plattform musste ein hohes Transaktionsvolumen mit strikten Latenzanforderungen verarbeiten.',
                     'Das Management erwartete messbare Monetarisierungssteigerung bei gleichzeitig stabiler Customer Experience.'
                 ]
             },
@@ -1198,8 +1198,8 @@ export const projects: CaseStudy[] = [
                 ]
             },
             metricCallout: {
-                value: { en: '99.99%', de: '99,99%' },
-                label: { en: 'SLA at scale', de: 'SLA bei hoher Last' }
+                value: { en: 'High', de: 'Hoch' },
+                label: { en: 'Availability at Scale', de: 'Verfügbarkeit bei hoher Last' }
             }
         },
         // Phase 2: Persona Challenges
@@ -1339,10 +1339,10 @@ export const projects: CaseStudy[] = [
             unique_differentiator: 'Custom RTB (Real-Time Bidding) engine'
         },
         outcomes: {
-            hero_metric: { value: '20%', label: 'Revenue Increase', icon: '📈' },
+            hero_metric: { value: '<20ms', label: 'Peak Latency (from 200ms+)', icon: '📈' },
             secondary_metrics: [
-                { value: '5M+', label: 'Daily Transactions', icon: '🔢' },
-                { value: '99.99%', label: 'SLA Achieved', icon: '🛡️' }
+                { value: 'Zero', label: 'Crashes at Peak Load', icon: '🔢' },
+                { value: 'Event-Driven', label: 'Architecture Rebuild', icon: '🛡️' }
             ],
             compliance: [{ standard: 'GDPR', result: 'Compliant', details: 'Privacy-first ad serving' }],
             timeline: { planned: '3 months', actual: '3 months', variance: 'On time' }
@@ -1382,13 +1382,13 @@ export const projects: CaseStudy[] = [
             'SLA / Reliability'
         ],
         listingSummary: {
-            en: 'Re-architected ad serving platform from PHP/MySQL to Go/Redis, scaling to 5M+ daily transactions with sub-20ms latency and 99.99% availability.',
-            de: 'Re-Architektur der Ad-Serving-Plattform von PHP/MySQL zu Go/Redis, Skalierung auf 5M+ tägliche Transaktionen mit <20ms Latenz und 99,99% Verfügbarkeit.'
+            en: 'Re-architected ad serving platform from PHP/MySQL to Go/Redis for sub-20ms latency and high availability at peak load.',
+            de: 'Re-Architektur der Ad-Serving-Plattform von PHP/MySQL zu Go/Redis für <20ms Latenz und hohe Verfügbarkeit bei Spitzenlast.'
         },
         listingMetrics: [
-            { label: { en: 'Scale', de: 'Skalierung' }, value: { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' }, type: 'scope' },
-            { label: { en: 'Reliability', de: 'Zuverlässigkeit' }, value: { en: '99.99% SLA', de: '99,99% SLA' }, type: 'constraint' },
-            { label: { en: 'Impact', de: 'Impact' }, value: { en: 'Revenue +20%', de: 'Umsatz +20%' }, type: 'outcome' }
+            { label: { en: 'Scale', de: 'Skalierung' }, value: { en: 'High transaction volume', de: 'Hohes Transaktionsvolumen' }, type: 'scope' },
+            { label: { en: 'Reliability', de: 'Zuverlässigkeit' }, value: { en: 'High availability', de: 'Hohe Verfügbarkeit' }, type: 'constraint' },
+            { label: { en: 'Impact', de: 'Impact' }, value: { en: 'Fewer lost impressions', de: 'Weniger verlorene Impressions' }, type: 'outcome' }
         ],
         // Phase 3.1: Trust Layer
         trustLayer: {
@@ -1481,9 +1481,9 @@ export const projects: CaseStudy[] = [
         },
         // Phase 4.5: Engagement Layer
         outcomeBadges: [
-            { label: { en: '20% revenue increase', de: '20% Umsatzsteigerung' }, type: 'performance' },
-            { label: { en: '5M+ daily transactions', de: '5M+ tägliche Transaktionen' }, type: 'speed' },
-            { label: { en: '99.9% uptime SLA', de: '99,9% Uptime SLA' }, type: 'reliability' }
+            { label: { en: 'Fewer lost impressions', de: 'Weniger verlorene Impressions' }, type: 'performance' },
+            { label: { en: 'High transaction volume', de: 'Hohes Transaktionsvolumen' }, type: 'speed' },
+            { label: { en: 'High uptime at peak load', de: 'Hohe Uptime bei Spitzenlast' }, type: 'reliability' }
         ],
         beforeAfterDiagram: {
             before: {
@@ -1492,13 +1492,13 @@ export const projects: CaseStudy[] = [
                     en: [
                         'Ad server latency during peak hours',
                         'Revenue loss from failed ad requests',
-                        'Scalability bottlenecks at 2M transactions/day',
+                        'Scalability bottlenecks as transaction volume grew',
                         'Inconsistent performance across regions'
                     ],
                     de: [
                         'Ad-Server-Latenz während Peak-Stunden',
                         'Umsatzverluste durch fehlgeschlagene Ad-Requests',
-                        'Skalierbarkeits-Engpässe bei 2M Transaktionen/Tag',
+                        'Skalierbarkeits-Engpässe bei wachsendem Transaktionsvolumen',
                         'Inkonsistente Performance über Regionen hinweg'
                     ]
                 }
@@ -1508,21 +1508,21 @@ export const projects: CaseStudy[] = [
                 bullets: {
                     en: [
                         'Exactly-once processing with Redis deduplication',
-                        'Horizontal scaling to 5M+ transactions/day',
-                        '99.9% uptime SLA maintained',
-                        '20% revenue increase from improved ad delivery'
+                        'Horizontal scaling for high transaction volume',
+                        'High uptime maintained at peak load',
+                        'Fewer lost impressions from improved ad delivery'
                     ],
                     de: [
                         'Exactly-Once-Processing mit Redis-Deduplizierung',
-                        'Horizontale Skalierung auf 5M+ Transaktionen/Tag',
-                        '99,9% Uptime SLA eingehalten',
-                        '20% Umsatzsteigerung durch verbesserte Ad-Auslieferung'
+                        'Horizontale Skalierung für hohes Transaktionsvolumen',
+                        'Hohe Uptime bei Spitzenlast eingehalten',
+                        'Weniger verlorene Impressions durch verbesserte Ad-Auslieferung'
                     ]
                 }
             },
             deltaBadges: [
-                { label: { en: '20% revenue increase', de: '20% Umsatzsteigerung' }, type: 'performance' },
-                { label: { en: '5M+ transactions/day', de: '5M+ Transaktionen/Tag' }, type: 'speed' }
+                { label: { en: 'Fewer lost impressions', de: 'Weniger verlorene Impressions' }, type: 'performance' },
+                { label: { en: 'High transaction volume', de: 'Hohes Transaktionsvolumen' }, type: 'speed' }
             ]
         },
         pdfBrief: {
@@ -1553,12 +1553,11 @@ export const projects: CaseStudy[] = [
         retrospectiveLite: {
             whatWorked: { en: ['Redis deduplication', 'Phased rollout by region'], de: ['Redis-Deduplizierung', 'Stufenweiser Rollout nach Region'] },
             whatIdDoToday: { en: ['Add load tests earlier', 'Define SLOs from day 1'], de: ['Load-Tests früher einplanen', 'SLOs von Tag 1 definieren'] },
-            prasadInsight: { en: 'Exactly-once semantics and horizontal scaling were the key to revenue-safe ad delivery at 5M+ daily transactions.', de: 'Exactly-Once-Semantik und horizontale Skalierung waren der Schlüssel zu umsatzsicherem Ad-Delivery bei 5M+ täglichen Transaktionen.' },
+            prasadInsight: { en: 'Exactly-once semantics and horizontal scaling were the key to revenue-safe ad delivery at high transaction volume.', de: 'Exactly-Once-Semantik und horizontale Skalierung waren der Schlüssel zu umsatzsicherem Ad-Delivery bei hohem Transaktionsvolumen.' },
             estimatedEffort: '6–9 months, 8–12 people',
             riskMitigation: { en: ['Deduplication before scale', 'Regional rollout with rollback'], de: ['Deduplizierung vor Skalierung', 'Regionaler Rollout mit Rollback'] }
         }
     },
-    // =============================================================================
     // INSURANCE PERFORMANCE IMPROVEMENT - NEW CASE STUDY (Phase 2)
     // =============================================================================
     {
@@ -1575,7 +1574,7 @@ export const projects: CaseStudy[] = [
         visualType: 'performance',
         seoTags: ['Performance Engineering', 'Insurance', 'Claims Processing', 'Latency Optimization', 'SLA'],
         header: {
-            eyebrow: { en: '80% FASTER PROCESSING', de: '80% SCHNELLERE VERARBEITUNG' },
+            eyebrow: { en: 'FASTER CLAIMS & POLICY PROCESSING', de: 'SCHNELLERE SCHADEN- & POLICENVERARBEITUNG' },
             title: { en: 'Insurance Performance Improvement: Claims & Policy Workflow Optimization', de: 'Performance-Optimierung: Schaden- und Policen-Workflow-Optimierung' },
             client: {
                 type: { en: 'Insurance / FinServ', de: 'Versicherung / FinServ' },
@@ -1586,7 +1585,7 @@ export const projects: CaseStudy[] = [
         challenge: {
             contextChips: [
                 { label: { en: 'Industry', de: 'Branche' }, value: { en: 'Insurance / FinServ', de: 'Versicherung / FinServ' } },
-                { label: { en: 'Impact', de: 'Impact' }, value: { en: '80% faster throughput', de: '80% schnellerer Durchsatz' } },
+                { label: { en: 'Impact', de: 'Impact' }, value: { en: 'Faster throughput', de: 'Schnellerer Durchsatz' } },
                 { label: { en: 'Focus', de: 'Fokus' }, value: { en: 'Claims & Policy workflows', de: 'Schaden- & Policen-Workflows' } },
                 { label: { en: 'Compliance', de: 'Compliance' }, value: { en: 'Audit-safe', de: 'Audit-sicher' } },
                 { label: { en: 'Approach', de: 'Ansatz' }, value: { en: 'Non-disruptive optimization', de: 'Non-disruptive Optimierung' } }
@@ -1635,8 +1634,8 @@ export const projects: CaseStudy[] = [
                     ]
                 },
                 urgency: {
-                    en: 'Board mandate to reduce SLA breaches by 50% within two quarters.',
-                    de: 'Vorstandsmandat: SLA-Verletzungen innerhalb von zwei Quartalen um 50% reduzieren.'
+                    en: 'Board mandate to significantly reduce SLA breaches within two quarters.',
+                    de: 'Vorstandsmandat: SLA-Verletzungen innerhalb von zwei Quartalen deutlich reduzieren.'
                 }
             },
             technical: {
@@ -1690,8 +1689,8 @@ export const projects: CaseStudy[] = [
                 ]
             },
             metricCallout: {
-                value: { en: '80%', de: '80%' },
-                label: { en: 'faster processing throughput', de: 'schnellerer Processing-Durchsatz' }
+                value: { en: 'Faster', de: 'Schneller' },
+                label: { en: 'processing throughput', de: 'Processing-Durchsatz' }
             }
         },
         // Phase 2: Persona Challenges
@@ -1840,7 +1839,7 @@ export const projects: CaseStudy[] = [
                     duration: '4 weeks',
                     activities: { en: ['DB query optimization', 'Caching layer', 'Async processing'], de: ['DB-Query-Optimierung', 'Caching-Layer', 'Async-Processing'] },
                     deliverable: { en: 'Optimized critical paths', de: 'Optimierte kritische Pfade' },
-                    outcome: { en: '50% latency reduction', de: '50% Latenz-Reduktion' }
+                    outcome: { en: 'Substantial latency reduction', de: 'Deutliche Latenz-Reduktion' }
                 },
                 {
                     number: 3,
@@ -1854,10 +1853,10 @@ export const projects: CaseStudy[] = [
             unique_differentiator: { en: 'Non-disruptive optimization with continuous production stability', de: 'Non-disruptive Optimierung bei kontinuierlicher Produktionsstabilität' }
         },
         outcomes: {
-            hero_metric: { value: '80%', label: { en: 'Faster Processing', de: 'Schnellere Verarbeitung' }, icon: '⚡' },
+            hero_metric: { value: 'Faster', label: { en: 'Claims & Policy Processing', de: 'Schaden- & Policenverarbeitung' }, icon: '⚡' },
             secondary_metrics: [
-                { value: '50%', label: { en: 'SLA Breach Reduction', de: 'SLA-Verletzungs-Reduktion' }, icon: '📉' },
-                { value: '30%', label: { en: 'Operational Cost Savings', de: 'Betriebskosten-Einsparung' }, icon: '💰' }
+                { value: 'Fewer', label: { en: 'SLA Breaches', de: 'SLA-Verletzungen' }, icon: '📉' },
+                { value: 'Lower', label: { en: 'Operational Costs', de: 'Betriebskosten' }, icon: '💰' }
             ],
             compliance: [{ standard: 'SOC 2', result: 'Maintained', details: { en: 'Audit-safe changes', de: 'Audit-sichere Änderungen' } }],
             timeline: { planned: '10 weeks', actual: '10 weeks', variance: { en: 'On time', de: 'Pünktlich' } }
@@ -1904,11 +1903,11 @@ export const projects: CaseStudy[] = [
             'Observability'
         ],
         listingSummary: {
-            en: 'Optimized claims and policy workflows to achieve 80% faster processing throughput through targeted bottleneck resolution and async processing patterns, without high-risk rewrites.',
-            de: 'Optimierung der Schaden- und Policen-Workflows zur Erreichung von 80% schnellerem Durchsatz durch gezielte Bottleneck-Behebung und Async-Processing-Patterns, ohne risikoreiche Rewrites.'
+            en: 'Optimized claims and policy workflows for faster processing throughput through targeted bottleneck resolution and async processing patterns, without high-risk rewrites.',
+            de: 'Optimierung der Schaden- und Policen-Workflows für schnelleren Durchsatz durch gezielte Bottleneck-Behebung und Async-Processing-Patterns, ohne risikoreiche Rewrites.'
         },
         listingMetrics: [
-            { label: { en: 'Throughput', de: 'Durchsatz' }, value: { en: '80% faster processing', de: '80% schnellere Verarbeitung' }, type: 'outcome' },
+            { label: { en: 'Throughput', de: 'Durchsatz' }, value: { en: 'Faster processing', de: 'Schnellere Verarbeitung' }, type: 'outcome' },
             { label: { en: 'Scope', de: 'Scope' }, value: { en: 'Claims workflow automation', de: 'Automatisierung Claims-Workflow' }, type: 'scope' },
             { label: { en: 'Ops', de: 'Betrieb' }, value: { en: 'Reduced operational load', de: 'Reduzierte operative Last' }, type: 'outcome' }
         ],
@@ -2003,22 +2002,22 @@ export const projects: CaseStudy[] = [
         },
         // Phase 4.5: Engagement Layer
         outcomeBadges: [
-            { label: { en: '3x faster queries', de: '3x schnellere Queries' }, type: 'performance' },
-            { label: { en: '30% cost reduction', de: '30% Kostenreduzierung' }, type: 'cost' },
-            { label: { en: '99.95% uptime', de: '99,95% Uptime' }, type: 'reliability' }
+            { label: { en: 'Faster queries', de: 'Schnellere Queries' }, type: 'performance' },
+            { label: { en: 'Lower operational cost', de: 'Geringere Betriebskosten' }, type: 'cost' },
+            { label: { en: 'High uptime', de: 'Hohe Uptime' }, type: 'reliability' }
         ],
         beforeAfterDiagram: {
             before: {
                 title: { en: 'Before', de: 'Vorher' },
                 bullets: {
                     en: [
-                        'Slow database queries (5-10s response times)',
+                        'Slow database queries with poor response times',
                         'High infrastructure costs',
                         'Frequent performance degradation',
                         'Limited observability into bottlenecks'
                     ],
                     de: [
-                        'Langsame Datenbank-Queries (5-10s Antwortzeiten)',
+                        'Langsame Datenbank-Queries mit schlechten Antwortzeiten',
                         'Hohe Infrastrukturkosten',
                         'Häufige Performance-Degradation',
                         'Begrenzte Observability in Bottlenecks'
@@ -2029,22 +2028,22 @@ export const projects: CaseStudy[] = [
                 title: { en: 'After', de: 'Nachher' },
                 bullets: {
                     en: [
-                        '3x faster queries with optimized indexes',
-                        '30% cost reduction through caching strategy',
-                        '99.95% uptime with improved reliability',
+                        'Faster queries with optimized indexes',
+                        'Lower infrastructure costs through caching strategy',
+                        'High uptime with improved reliability',
                         'Full observability with performance dashboards'
                     ],
                     de: [
-                        '3x schnellere Queries mit optimierten Indizes',
-                        '30% Kostenreduzierung durch Caching-Strategie',
-                        '99,95% Uptime mit verbesserter Zuverlässigkeit',
+                        'Schnellere Queries mit optimierten Indizes',
+                        'Geringere Infrastrukturkosten durch Caching-Strategie',
+                        'Hohe Uptime mit verbesserter Zuverlässigkeit',
                         'Vollständige Observability mit Performance-Dashboards'
                     ]
                 }
             },
             deltaBadges: [
-                { label: { en: '3x faster', de: '3x schneller' }, type: 'performance' },
-                { label: { en: '30% cost reduction', de: '30% Kostenreduzierung' }, type: 'cost' }
+                { label: { en: 'Faster queries', de: 'Schnellere Queries' }, type: 'performance' },
+                { label: { en: 'Lower cost', de: 'Geringere Kosten' }, type: 'cost' }
             ]
         },
         pdfBrief: {
@@ -2170,7 +2169,7 @@ export const projects: CaseStudy[] = [
         },
         outcomes: {
             hero_metric: { value: '10+', label: 'Clients Assessed', icon: '📋' },
-            secondary_metrics: [{ value: '30%', label: 'Release Velocity', icon: '🚀' }],
+            secondary_metrics: [{ value: 'Faster', label: 'Release Velocity', icon: '🚀' }],
             compliance: [],
             timeline: { planned: 'ongoing', actual: 'ongoing', variance: 'N/A' }
         },
@@ -2233,8 +2232,8 @@ export const projects: CaseStudy[] = [
             unique_differentiator: 'Automated discovery combined with business value scoring'
         },
         outcomes: {
-            hero_metric: { value: '40%', label: 'Accellerated Timeline', icon: '⏩' },
-            secondary_metrics: [{ value: '60%', label: 'Retired/Replaced', icon: '🗑️' }],
+            hero_metric: { value: 'Accelerated', label: 'Migration Timeline', icon: '⏩' },
+            secondary_metrics: [{ value: 'Reduced', label: 'App Portfolio Footprint', icon: '🗑️' }],
             compliance: [],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
         },
@@ -2280,7 +2279,7 @@ export const projects: CaseStudy[] = [
             unique_differentiator: 'Comprehensive testing strategy ensuring bit-level data parity'
         },
         outcomes: {
-            hero_metric: { value: '55%', label: 'Cost Reduction', icon: '💰' },
+            hero_metric: { value: 'Lower', label: 'MIPS & Run Costs', icon: '💰' },
             secondary_metrics: [{ value: 'Zero', label: 'Business Disruption', icon: '✅' }],
             compliance: [],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
@@ -2346,7 +2345,7 @@ export const projects: CaseStudy[] = [
         },
         outcomes: {
             hero_metric: { value: '15+', label: 'Engagements', icon: '🏥' },
-            secondary_metrics: [{ value: '100%', label: 'Audit Systems', icon: '🛡️' }],
+            secondary_metrics: [{ value: 'Full', label: 'Audit Readiness', icon: '🛡️' }],
             compliance: [{ standard: 'HIPAA', result: 'Compliant', details: 'Full protection' }],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
         },
@@ -2374,7 +2373,7 @@ export const projects: CaseStudy[] = [
         projectType: 'data-platform',
         seoTags: ['Data Lake', 'BioBERT', 'Pharma R&D'],
         header: {
-            eyebrow: '50% FASTER INSIGHTS',
+            eyebrow: 'AI/ML RESEARCH PLATFORM',
             title: 'Medical Research AI/ML Platform & Data Lake',
             client: {
                 type: 'Boehringer Ingelheim',
@@ -2394,8 +2393,8 @@ export const projects: CaseStudy[] = [
             unique_differentiator: 'Semantic search using BioBERT specific to medical queries'
         },
         outcomes: {
-            hero_metric: { value: '50%', label: 'Faster Insights', icon: '⚡' },
-            secondary_metrics: [{ value: '€500K', label: 'Savings', icon: '💰' }],
+            hero_metric: { value: 'Faster', label: 'Research Insights', icon: '⚡' },
+            secondary_metrics: [{ value: 'Reduced', label: 'Manual Search Time', icon: '💰' }],
             compliance: [{ standard: 'GDPR', result: 'Compliant', details: 'PII Masking' }],
             timeline: { planned: '6 months', actual: '6 months', variance: 'On time' }
         },
@@ -2447,18 +2446,18 @@ export const projects: CaseStudy[] = [
             }
         },
         challenge: {
-            situation: 'Manual pricing updates took days/weeks. Needed real-time dynamic pricing.',
+            situation: "The client's pricing engine ran on a patchwork of spreadsheets (Excel/VB), making pricing changes slow, error-prone, and hard to govern at telecom scale. As a PwC solution architect, I led the technical assessment of the existing engine and the target-state design.",
             pain_points: [],
-            urgency: 'Competitive pressure',
-            why_prasad: 'Event-driven architecture expertise'
+            urgency: 'Spreadsheet-based pricing could not keep pace with the business',
+            why_prasad: 'Event-driven architecture expertise and hands-on PwC assessment experience'
         },
         approach: {
             methodology: 'Domain-Driven Design',
             phases: [],
-            unique_differentiator: 'Seamless transition roadmap from manual to fully automated'
+            unique_differentiator: 'Took the engagement from assessment through to implementing a microservices-based pricing platform'
         },
         outcomes: {
-            hero_metric: { value: 'Real-time', label: 'Pricing Updates', icon: '⏱️' },
+            hero_metric: { value: 'Microservices', label: 'Replaced Spreadsheet-Based Pricing', icon: '⏱️' },
             secondary_metrics: [],
             compliance: [],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
@@ -2502,27 +2501,27 @@ export const projects: CaseStudy[] = [
         projectType: 'data-platform',
         seoTags: ['Claims Automation', 'Data Efficiency'],
         header: {
-            eyebrow: '80% EFFICIENCY GAIN',
+            eyebrow: 'FROM 27 MINUTES TO SECONDS',
             title: 'Claims Processing Data Platform',
             client: {
-                type: 'Innova Solutions',
-                size: 'Enterprise Services',
+                type: 'Healthcare Claims Administrator',
+                size: 'Enterprise',
                 industry: 'Insurance'
             }
         },
         challenge: {
-            situation: 'Manual claims processing was slow and error-prone.',
+            situation: 'As a senior developer at a healthcare claims administrator (via Innova Solutions, 2013-2014), I owned a performance problem in reconciling claims data with partner insurers: large batch files (100MB+) were taking around 27 minutes to parse and process, well past what the reconciliation window allowed.',
             pain_points: [],
-            urgency: 'Operational costs',
-            why_prasad: 'Data Engineering leadership'
+            urgency: 'Reconciliation with partner insurers was bottlenecked by batch processing time',
+            why_prasad: 'Hands-on data pipeline engineering (this was earlier in my career, before I moved into architecture)'
         },
         approach: {
             methodology: 'Automated Data Pipeline',
             phases: [],
-            unique_differentiator: 'Integrated business rules engine'
+            unique_differentiator: 'Rebuilt the ingestion and parsing pipeline for large batch files'
         },
         outcomes: {
-            hero_metric: { value: '80%', label: 'Efficiency Gain', icon: '📈' },
+            hero_metric: { value: '~30 sec', label: 'Down From ~27 Minutes', icon: '📈' },
             secondary_metrics: [],
             compliance: [],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
@@ -2639,18 +2638,18 @@ export const projects: CaseStudy[] = [
             }
         },
         challenge: {
-            situation: 'Up to 60% of product Scope 3 emissions come from logistics, but data was disconnected.',
+            situation: 'Logistics emissions are a major share of product Scope 3 footprints, but shippers and logistics providers had no shared data standard connecting the two. As named project contact for iLEAP (a joint initiative of Smart Freight Centre, SINE Foundation, and WBCSD PACT), I led the technical work to close that gap.',
             pain_points: [],
-            urgency: 'Need for holistic view',
-            why_prasad: 'Standards expertise'
+            urgency: 'Need for a shared data standard across shippers and carriers',
+            why_prasad: 'Standards development and multi-stakeholder facilitation'
         },
         approach: {
             methodology: 'Data Model Extension',
             phases: [],
-            unique_differentiator: 'Integrating logistics data standard (GLEC) with product standard (PACT)'
+            unique_differentiator: 'Integrating the logistics data standard (GLEC Framework) with the product carbon footprint standard (PACT)'
         },
         outcomes: {
-            hero_metric: { value: '60%', label: 'Scope 3 Coverage', icon: '🚛' },
+            hero_metric: { value: '90+', label: 'Shippers Connected', icon: '🚛' },
             secondary_metrics: [],
             compliance: [],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
@@ -2677,7 +2676,7 @@ export const projects: CaseStudy[] = [
         projectType: 'migration',
         seoTags: ['Healthcare Modernization', 'Mobile App'],
         header: {
-            eyebrow: '$500K SAVED',
+            eyebrow: 'HIPAA COMPLIANCE & MODERNIZATION',
             title: 'Healthcare System Modernization & Mobile App',
             client: {
                 type: 'PwC Client',
@@ -2688,8 +2687,8 @@ export const projects: CaseStudy[] = [
         challenge: {
             contextChips: [
                 { label: { en: 'Industry', de: 'Branche' }, value: { en: 'Healthcare', de: 'Healthcare' } },
-                { label: { en: 'Savings', de: 'Einsparung' }, value: { en: '$500K annually', de: '$500K jährlich' } },
-                { label: { en: 'Traffic', de: 'Traffic' }, value: { en: '70% increase', de: '70% Steigerung' } },
+                { label: { en: 'Savings', de: 'Einsparung' }, value: { en: 'Reduced audit costs', de: 'Reduzierte Audit-Kosten' } },
+                { label: { en: 'Traffic', de: 'Traffic' }, value: { en: 'Higher mobile traffic', de: 'Höherer Mobile-Traffic' } },
                 { label: { en: 'Compliance', de: 'Compliance' }, value: { en: 'HIPAA', de: 'HIPAA' } },
                 { label: { en: 'Platform', de: 'Plattform' }, value: { en: 'Cloud + Mobile', de: 'Cloud + Mobile' } }
             ],
@@ -2721,8 +2720,8 @@ export const projects: CaseStudy[] = [
             },
             executive: {
                 situation: {
-                    en: 'Monthly audit findings were costing €50K+ and threatening operational continuity. The board mandate was clear: achieve HIPAA compliance and reduce operational costs within 6 months, or face escalating penalties and potential service disruption.',
-                    de: 'Monatliche Audit-Feststellungen kosteten €50K+ und gefährdeten die operative Kontinuität. Das Vorstandsmandat war eindeutig: HIPAA-Compliance erreichen und operative Kosten innerhalb von 6 Monaten senken, oder mit eskalierenden Strafen und potenziellen Service-Unterbrechungen rechnen.'
+                    en: 'Recurring monthly audit findings were threatening operational continuity. The board mandate was clear: achieve HIPAA compliance and reduce operational costs within 6 months, or face escalating penalties and potential service disruption.',
+                    de: 'Wiederkehrende monatliche Audit-Feststellungen gefährdeten die operative Kontinuität. Das Vorstandsmandat war eindeutig: HIPAA-Compliance erreichen und operative Kosten innerhalb von 6 Monaten senken, oder mit eskalierenden Strafen und potenziellen Service-Unterbrechungen rechnen.'
                 },
                 keyTensions: {
                     en: [
@@ -2739,8 +2738,8 @@ export const projects: CaseStudy[] = [
                     ]
                 },
                 urgency: {
-                    en: 'Board deadline with €600K annual audit burden at stake.',
-                    de: 'Vorstandsfrist mit €600K jährlicher Audit-Belastung auf dem Spiel.'
+                    en: 'Board deadline with a substantial annual audit burden at stake.',
+                    de: 'Vorstandsfrist mit einer erheblichen jährlichen Audit-Belastung auf dem Spiel.'
                 }
             },
             technical: {
@@ -2774,11 +2773,11 @@ export const projects: CaseStudy[] = [
         approach: {
             methodology: 'Incremental Modernization',
             phases: [],
-            unique_differentiator: 'Pharmacy module mobile app that drove 70% traffic increase'
+            unique_differentiator: 'Pharmacy module mobile app that meaningfully increased user traffic'
         },
         outcomes: {
-            hero_metric: { value: '70%', label: 'Traffic Boost', icon: '📈' },
-            secondary_metrics: [{ value: '$500K', label: 'Annual Savings', icon: '💰' }],
+            hero_metric: { value: 'Higher', label: 'Mobile Traffic', icon: '📈' },
+            secondary_metrics: [{ value: 'Lower', label: 'Audit & Compliance Costs', icon: '💰' }],
             compliance: [{ standard: 'HIPAA', result: 'Compliant', details: '' }],
             timeline: { planned: 'N/A', actual: 'N/A', variance: 'N/A' }
         },
@@ -2824,21 +2823,21 @@ export const projects: CaseStudy[] = [
             eyebrow: 'CUSTOMER EXPERIENCE',
             title: 'Voice of Customer (VoC) 360 Model',
             client: {
-                type: 'Insurance Client',
+                type: 'Liability Insurance Provider',
                 size: 'Enterprise',
                 industry: 'Insurance'
             }
         },
         challenge: {
-            situation: 'Call center agents lacked unified view of customer, leading to long calls and frustration.',
+            situation: "Alongside PwC's management consulting team, I assessed a liability insurance provider's call center and customer support operations. Agents lacked a unified view of the customer, leading to long calls and repeated hand-offs across channels.",
             pain_points: [],
             urgency: 'CX Impact',
-            why_prasad: 'Data integration expertise'
+            why_prasad: 'Data integration expertise and PwC advisory experience'
         },
         approach: {
             methodology: '360 View Architecture',
             phases: [],
-            unique_differentiator: 'Real-time aggregation of policy, claims, and interaction data'
+            unique_differentiator: 'Assessment, agent interviews, and an omnichannel strategy recommendation alongside the technical 360-degree data model'
         },
         outcomes: {
             hero_metric: { value: 'Reduced', label: 'Call Handling Time', icon: '⏱️' },
