@@ -2818,13 +2818,13 @@ export const projects: CaseStudy[] = [
             eyebrow: 'CUSTOMER EXPERIENCE',
             title: 'Voice of Customer (VoC) 360 Model',
             client: {
-                type: 'Liability Insurance Provider',
+                type: 'Ameritas (via PwC)',
                 size: 'Enterprise',
                 industry: 'Insurance'
             }
         },
         challenge: {
-            situation: "Alongside PwC's management consulting team, I assessed a liability insurance provider's call center and customer support operations. Agents lacked a unified view of the customer, leading to long calls and repeated hand-offs across channels.",
+            situation: "Alongside PwC's management consulting team, I assessed Ameritas's client service center and customer support operations. Agents lacked a unified view of the customer, leading to long calls and repeated hand-offs across channels.",
             pain_points: [],
             urgency: 'CX Impact',
             why_prasad: 'Data integration expertise and PwC advisory experience'
